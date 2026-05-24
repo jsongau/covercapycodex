@@ -5432,3 +5432,14 @@ body{
   }
   .ff-medal-shine{ display: none; }
 }
+.cc-logo-img {
+  height: 46px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.cc-logo {
+  gap: 0;
+  align-items: center;
+}
