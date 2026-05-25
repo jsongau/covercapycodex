@@ -257,6 +257,51 @@ em, i, .em-accent{
   line-height: 1.05;
   overflow-wrap: anywhere;
 }
+
+.cc-logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+  min-width:0;
+  transition:opacity .2s var(--ease);
+}
+
+.cc-logo:hover{
+  opacity:.85;
+}
+
+.cc-logo-img{
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0;
+}
+
+.cc-edition{
+  display:flex;
+  flex-direction:column;
+  line-height:1;
+}
+
+.cc-edition-top{
+  font-size:14px;
+  letter-spacing:.18em;
+  font-weight:700;
+  color:var(--gd);
+}
+
+.cc-edition-bottom{
+  font-size:11px;
+  letter-spacing:.08em;
+  opacity:.7;
+  margin-top:4px;
+  color:var(--muted);
+}
+
+
+
 /* Center links */
 .cc-links{
   display: flex;
