@@ -1,99 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>CoverCapy | The concierge layer for PPO dentistry</title>
-  <meta name="description" content="CoverCapy is the concierge layer for PPO dentistry. Compare PPO plans, estimate treatment costs, and find trusted in-network dentists before you book.">
-
-  <!-- Editorial typography for the v513 masthead -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- ───────── Mega nav (must come first so dropdown tokens win) ───────── -->
-  <link rel="stylesheet" href="/assets/css/mega-nav.css">
-  <!-- ───────── Hero slider ───────── -->
-  <link rel="stylesheet" href="/assets/css/hero-slider.css">
-
-  <!-- Page-shell styles, scoped under .page-shell so they cannot touch
-       anything inside the mega nav. -->
-  <style>
-    body{
-      margin: 0;
-      background: var(--warm-cream, #FBF6EC);
-      color: var(--ink, #182A34);
-      font-family: var(--ff-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .page-shell{
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .index-intro{
-      padding: 96px 0 120px;
-      max-width: 760px;
-    }
-    .index-intro .eyebrow{
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--g, #2E7D76);
-      margin: 0 0 18px;
-    }
-    .index-intro h1{
-      font-family: 'Fraunces', Georgia, 'Iowan Old Style', serif;
-      font-weight: 400;
-      font-size: clamp(40px, 5.6vw, 68px);
-      line-height: 1.04;
-      letter-spacing: -.025em;
-      color: var(--gd, #123F52);
-      margin: 0 0 24px;
-    }
-    .index-intro p{
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--ink-mid, #526D76);
-      margin: 0;
-      max-width: 620px;
-    }
-  </style>
-
-  <!-- Scripts deferred so they execute in order after the document is parsed.
-       load-nav.js polls for window.initMegaNav, so the relative order of
-       these three scripts is robust either way. -->
-  <script src="/assets/js/load-nav.js" defer></script>
-  <script src="/assets/js/mega-nav.js" defer></script>
-  <script src="/assets/js/hero-slider.js" defer></script>
+  <link rel="stylesheet" href="/mega-nav.css">
+  <link rel="stylesheet" href="/hero-slider.css">
 </head>
+
 <body>
+  <div id="mega-nav-root"></div>
+  <div id="hero-slider-root"></div>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       MEGA NAV — loaded dynamically by load-nav.js
-       Source markup lives in /mega-nav.html
-       Behavior lives in /assets/js/mega-nav.js
-       ═══════════════════════════════════════════════════════════════ -->
-  <div id="mega-nav-placeholder"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       PAGE CONTENT
-       ═══════════════════════════════════════════════════════════════ -->
-  <main class="page-shell">
-
-    <section class="hero-slider-shell" aria-label="Hero slider">
-      <!-- hero slider goes here -->
-    </section>
-
-    <section class="index-intro">
-      <p class="eyebrow">CoverCapy Concierge</p>
-      <h1>The concierge layer for PPO dentistry</h1>
-      <p>Compare PPO coverage, estimate treatment costs, and find trusted in-network dentists before you book.</p>
-    </section>
-
-  </main>
-
+  <script src="/load-nav.js"></script>
+  <script src="/mega-nav.js"></script>
+  <script src="/hero-slider.js"></script>
 </body>
-</html>
