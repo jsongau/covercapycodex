@@ -1,1294 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists before booking care.">
-  <title>CoverCapy | PPO Dental Insurance, Cost Estimates & PPO Dentist Discovery</title>
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="CoverCapy | Concierge Dental Network">
-  <meta property="og:description" content="Compare PPO dental plans, estimate treatment costs, and discover PPO-friendly dentists.">
-  <meta property="og:url" content="https://covercapy.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CoverCapy | Concierge Dental Network">
-  <meta name="twitter:description" content="PPO dental insurance, cost estimates, and PPO-friendly dentist discovery.">
+<title>Dental Coverage Planning & PPO Insurance Comparison | CoverCapy</title>
 
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://covercapy.com/">
+<meta name="description" content="Compare PPO dental insurance plans by treatment cost, waiting periods, and annual maximum. Calculate what you'll actually pay for crowns, root canals, and implants — then find a PPO dentist near you.">
+<meta name="keywords" content="dental coverage planning, PPO dental insurance comparison, dental treatment cost calculator, root canal cost with insurance, crown cost with insurance, implant coverage dental insurance, dental insurance waiting periods, PPO dentist near me, self employed dental insurance, dental financial planning, dental PPO comparison, out of pocket dental cost">
+<meta name="author" content="CoverCapy">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#FAF7F1">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/covercapy-logo.svg">
+<link rel="canonical" href="https://covercapy.com/">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CoverCapy">
+<meta property="og:title" content="Dental Coverage Planning & PPO Insurance Comparison | CoverCapy">
+<meta property="og:description" content="Compare PPO dental insurance plans by treatment cost, waiting periods, and annual maximum. Calculate what you'll actually pay for crowns, root canals, and implants — then find a PPO dentist near you.">
+<meta property="og:url" content="https://covercapy.com/">
+<meta property="og:image" content="https://covercapy.com/assets/images/og-cover.jpg">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/mega-nav.css">
-  <link rel="stylesheet" href="assets/css/hero-slider.css">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dental Coverage Planning & PPO Insurance Comparison | CoverCapy">
+<meta name="twitter:description" content="Compare PPO dental insurance plans by treatment cost, waiting periods, and annual maximum. Calculate what you'll actually pay for crowns, root canals, and implants — then find a PPO dentist near you.">
+<meta name="twitter:image" content="https://covercapy.com/assets/images/og-cover.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Inter+Tight:wght@300..700&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="assets/css/mega-nav.css">
+<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="assets/css/hero-slider.css">
+<link rel="stylesheet" href="assets/css/hero-slider-mobile.css">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CoverCapy",
+    "url": "https://covercapy.com",
+    "logo": "https://covercapy.com/assets/images/covercapy-logo.svg",
+    "description": "CoverCapy is a dental coverage planning platform. Compare PPO dental insurance by treatment cost, calculate out-of-pocket expenses for crowns, root canals, and implants, and find PPO-friendly dentists near you.",
+    "foundingDate": "2024",
+    "areaServed": "US",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Uninsured patients, self-employed individuals, patients planning dental treatment"
+    },
+    "sameAs": []
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CoverCapy",
+    "url": "https://covercapy.com",
+    "description": "Dental coverage planning platform. Compare PPO dental insurance plans by treatment, calculate real out-of-pocket costs, and find PPO dentists by location.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://covercapy.com/dentists?zip={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CoverCapy Dental Cost Calculator",
+    "url": "https://covercapy.com/cost-calculator",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "description": "Calculate your real out-of-pocket dental costs with PPO insurance. Covers crowns, root canals, implants, extractions, fillings, and preventive care. Compares 6 major PPO carriers.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "PPO dental insurance comparison",
+      "Dental treatment cost calculator",
+      "Waiting period education",
+      "Annual maximum planning",
+      "Treatment timing strategy",
+      "PPO dentist matching"
+    ]
+  }
+]
+</script>
+
+<style>
+  html, body { margin:0; padding:0; background:#FAF7F1; overflow-x:hidden; }
+  body { max-width:100vw; }
+  #cc-nav-mount  { min-height:72px; }
+  #cc-hero-mount { min-height:80vh; }
+</style>
+
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════════════════
-     MEGA NAV (inlined from components/mega-nav.html)
-     ════════════════════════════════════════════════════════════════ -->
-<nav class="cc-nav" id="cc-nav">
-  <div class="cc-nav-row">
-
-    <!-- LOGO + EDITORIAL IDENTIFIER -->
-    <a class="cc-logo" href="/" onclick="goHome();return false;" title="CoverCapy home">
-      <span class="cc-logo-text">CoverCapy</span>
-      <span class="cc-edition" aria-hidden="true">
-        <span class="cc-edition-top">COVERCAPY</span>
-        <span class="cc-edition-bottom">Concierge Dental Network</span>
-      </span>
-    </a>
-
-    <!-- CENTER LINKS -->
-    <div class="cc-links" role="menubar">
-
-      <!-- 1. ABOUT -->
-      <div class="cc-link" data-link="about" role="menuitem" tabindex="0">
-        <span>About</span>
-        <span class="cc-link-caret">▾</span>
-
-        <div class="cc-dropdown about-drop" role="menu">
-          <div class="cc-drop-head">
-            <div class="cc-drop-head-text">
-              <div class="cc-drop-eyebrow">Concierge Dental Network</div>
-              <h3>The right PPO plan, matched to the right <em>dentist</em>.</h3>
-              <p>We're your concierge for dental coverage. We find PPO insurance that fits your needs, then match you with a highly rated PPO dentist nearby.</p>
-            </div>
-          </div>
-
-          <div class="cc-drop-body">
-            <div class="about-quote">
-              <div class="about-quote-text">
-                "You shouldn't need a friend in the dental industry to get a fair price. Every patient deserves to know what's covered, what it'll cost, and which dentist takes their plan — <span class="save">before</span> the appointment, not after the <span class="hit">$3,000</span> bill."
-              </div>
-              <div class="about-quote-sig">Captain Capy 🦫</div>
-            </div>
-
-            <div class="cc-secondary" style="margin-top:14px;">
-              <a class="cc-sec-card" href="/about/how-it-works" onclick="megaGo('how-it-works');return false;">
-                <span class="cc-sec-card-icon">🧭</span>
-                <span class="cc-sec-card-title">How It Works <span class="arr">→</span></span>
-                <span class="cc-sec-card-sub">Coverage, cost, then dentist — in that order</span>
-              </a>
-              <a class="cc-sec-card" href="/about/win-win-model" onclick="megaGo('win-win-model');return false;">
-                <span class="cc-sec-card-icon">🤝</span>
-                <span class="cc-sec-card-title">Always Free for Patients <span class="arr">→</span></span>
-                <span class="cc-sec-card-sub">Dentists fund the network. You never pay us — ever.</span>
-              </a>
-            </div>
-
-            <div class="cc-support" style="margin-top:14px;">
-              <div class="cc-support-grid" style="grid-template-columns:repeat(2,1fr);">
-                <a class="cc-support-link" href="/about/patient-stories" onclick="megaGo('patient-stories');return false;"><span class="dot"></span>Patient Stories</a>
-                <a class="cc-support-link" href="/about/privacy-trust" onclick="megaGo('privacy-trust');return false;"><span class="dot"></span>How We Protect You</a>
-                <a class="cc-support-link" href="/about/faq" onclick="megaGo('faq');return false;"><span class="dot"></span>Patient FAQ</a>
-                <a class="cc-support-link" href="/guides/smart-timing-strategy" onclick="megaGo('smart-timing');return false;"><span class="dot"></span>Smart Timing Guide</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>$0 to patients, always</span>
-              <span>No data sold, ever</span>
-              <span>12K+ patients helped</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. PPO PLANS -->
-      <div class="cc-link" data-link="plans" role="menuitem" tabindex="0">
-        <span>Coverage</span>
-        <span class="cc-link-caret">▾</span>
-
-        <div class="cc-dropdown plans-drop" role="menu">
-          <div class="cc-drop-head">
-            <div class="cc-drop-head-text">
-              <div class="cc-drop-eyebrow">Coverage</div>
-              <h3>The right plan for what you <em>need</em>.</h3>
-              <p>Compare by treatment, not just by price.</p>
-            </div>
-            <div class="cc-drop-head-trust">
-              <span>A-rated carriers</span>
-              <span>No assigned dentists</span>
-              <span>Cancel anytime</span>
-            </div>
-          </div>
-
-          <div class="cc-drop-body">
-            <a class="cc-hero" href="/ppo-plans/compare" onclick="megaGo('compare');return false;">
-              <div class="cc-hero-text">
-                <div class="cc-hero-eyebrow">Side-by-side · All major carriers</div>
-                <div class="cc-hero-title">Compare PPO <em>plans</em>.</div>
-                <div class="cc-hero-sub">Premiums, waiting periods, annual max, and what each plan actually covers for your treatment.</div>
-              </div>
-              <span class="cc-hero-cta">Compare Now <span class="arrow">→</span></span>
-            </a>
-
-            <div class="plans-uhc-feature">
-              <div class="plans-uhc-badge">⚡ Fastest Activation</div>
-              <div class="plans-uhc-info">
-                <div class="plans-uhc-name">UnitedHealthcare Primary PPO</div>
-                <div class="plans-uhc-sub">Coverage active in as little as 1–3 days. The easiest on-ramp to PPO dental care.</div>
-              </div>
-              <a class="plans-uhc-cta" href="/ppo-plans/uhc-primary-ppo" onclick="megaGo('plan-uhc');return false;">
-                Get Started <span class="arrow">→</span>
-              </a>
-            </div>
-
-            <div class="cc-support" style="margin-top:14px;">
-              <div class="cc-support-label">What do you need coverage for?</div>
-              <div class="plans-needs-grid" style="grid-template-columns:repeat(2,1fr);">
-                <a class="plans-need-pill" href="/ppo-plans/implant-planning" onclick="megaGo('need-implants');return false;">
-                  <span class="ic">🦷</span>Implant Planning
-                </a>
-                <a class="plans-need-pill" href="/ppo-plans/crowns-root-canals" onclick="megaGo('need-crowns');return false;">
-                  <span class="ic">👑</span>Crowns &amp; Root Canals
-                </a>
-                <a class="plans-need-pill" href="/ppo-plans/emergency-dental" onclick="megaGo('need-emergency');return false;">
-                  <span class="ic">🚨</span>Emergency Dental
-                </a>
-                <a class="plans-need-pill" href="/ppo-plans/cleaning-preventive" onclick="megaGo('need-preventive');return false;">
-                  <span class="ic">🪥</span>Cleaning &amp; Preventive
-                </a>
-              </div>
-            </div>
-
-            <div class="plans-picks">
-              <div class="plans-picks-label"><span>★</span> Top picks · fastest coverage</div>
-              <div class="plans-picks-row" style="grid-template-columns:1fr 1fr;">
-                <a class="plans-pick" href="/ppo-plans/uhc-primary-ppo" onclick="megaGo('plan-uhc');return false;">
-                  <span class="plans-pick-medal">🥇</span>
-                  <div class="plans-pick-title">Fastest activation</div>
-                  <div class="plans-pick-name">UHC Primary PPO</div>
-                </a>
-                <a class="plans-pick" href="/ppo-plans/ameritas-primestar" onclick="megaGo('plan-ameritas');return false;">
-                  <span class="plans-pick-medal">🥈</span>
-                  <div class="plans-pick-title">Best for major work</div>
-                  <div class="plans-pick-name">Ameritas PrimeStar</div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>AM Best A-rated carriers</span>
-              <span>Transparent pricing</span>
-              <span>No assigned dentists</span>
-            </div>
-            <a href="/ppo-plans" onclick="megaGo('plans');return false;" style="color:var(--g);font-weight:700;text-decoration:none;font-size:12.5px;">All plans →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. COST CALCULATOR -->
-      <div class="cc-link" data-link="calc" role="menuitem" tabindex="0">
-        <span>Estimates</span>
-        <span class="cc-link-caret">▾</span>
-
-        <div class="cc-dropdown calc-drop" role="menu" style="width:min(96vw,780px);">
-          <div class="cc-drop-head">
-            <div class="cc-drop-head-text">
-              <div class="cc-drop-eyebrow">Estimates</div>
-              <h3>Treatment plan every <em>dental procedure</em>.</h3>
-              <p>Real PPO cost estimates for every common procedure. Knowing what you'll pay is the first step to relieving dental anxiety.</p>
-            </div>
-            <div class="cc-drop-head-trust">
-              <span>In-network PPO rates</span>
-              <span>6 carriers compared</span>
-              <span>Updated 2026</span>
-            </div>
-          </div>
-
-          <div class="cc-drop-body" style="padding-bottom:0;">
-
-            <div class="calc-tabs" id="calc-tabs">
-              <button class="calc-tab is-active" data-tab="estimate" onclick="switchCalcTab('estimate',this);return false;">Quick Estimate</button>
-              <button class="calc-tab" data-tab="timing" onclick="switchCalcTab('timing',this);return false;">Smart Timing</button>
-            </div>
-
-            <div class="calc-tab-panel is-active" id="calc-panel-estimate">
-              <p style="font-size:12px;color:var(--ink-soft);margin:10px 0 10px;font-style:italic;">Choose a treatment to see what you'd actually pay with PPO coverage.</p>
-              <div class="calc-treatment-grid" id="calc-treatment-grid">
-                <button class="calc-treat" data-retail="5800" data-ppo="2400" data-save="3400" onclick="selectTreatment(this)" style="border-color:var(--g);background:var(--gll);">
-                  <span class="calc-treat-icon">🦷</span>
-                  <span class="calc-treat-name">Implant + Crown</span>
-                </button>
-                <button class="calc-treat" data-retail="1800" data-ppo="650" data-save="1150" onclick="selectTreatment(this)">
-                  <span class="calc-treat-icon">👑</span>
-                  <span class="calc-treat-name">Crown</span>
-                </button>
-                <button class="calc-treat" data-retail="2400" data-ppo="950" data-save="1450" onclick="selectTreatment(this)">
-                  <span class="calc-treat-icon">🦴</span>
-                  <span class="calc-treat-name">Extraction + Bone Graft</span>
-                </button>
-                <button class="calc-treat" data-retail="800" data-ppo="300" data-save="500" onclick="selectTreatment(this)">
-                  <span class="calc-treat-icon">🔧</span>
-                  <span class="calc-treat-name">Root Canal</span>
-                </button>
-                <button class="calc-treat" data-retail="380" data-ppo="0" data-save="380" onclick="selectTreatment(this)">
-                  <span class="calc-treat-icon">🧹</span>
-                  <span class="calc-treat-name">Cleaning + X-rays</span>
-                </button>
-                <button class="calc-treat" data-retail="450" data-ppo="145" data-save="305" onclick="selectTreatment(this)">
-                  <span class="calc-treat-icon">🩹</span>
-                  <span class="calc-treat-name">Filling</span>
-                </button>
-              </div>
-
-              <div class="calc-meter-wrap" id="calc-meter-wrap">
-                <div class="calc-meter-header">
-                  <div class="calc-meter-labels">
-                    <div>
-                      <div class="calc-meter-label-sm">Without PPO</div>
-                      <div class="calc-meter-price bad" id="calc-retail">$5,800</div>
-                    </div>
-                    <div class="calc-meter-vs">→</div>
-                    <div>
-                      <div class="calc-meter-label-sm">With PPO</div>
-                      <div class="calc-meter-price good" id="calc-ppo">from $2,400</div>
-                    </div>
-                    <div class="calc-meter-savings-bubble" id="calc-savings-bubble">
-                      <span class="calc-meter-savings-label">You save</span>
-                      <span class="calc-meter-savings-amt" id="calc-save">$3,400</span>
-                    </div>
-                  </div>
-                  <div class="calc-bar-wrap">
-                    <div class="calc-bar-track">
-                      <div class="calc-bar-ppo" id="calc-bar" style="width:41%"></div>
-                      <div class="calc-bar-label-retail">Full price</div>
-                      <div class="calc-bar-label-ppo">PPO rate →</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div style="display:flex;gap:8px;margin-top:12px;">
-                <a class="calc-cta-btn primary" href="/cost-calculator" onclick="megaGo('calc');return false;">Run My Full Estimate <span>→</span></a>
-                <a class="calc-cta-btn secondary" href="/ppo-plans" onclick="megaGo('plans');return false;">Find a PPO Plan</a>
-              </div>
-            </div>
-
-            <div class="calc-tab-panel" id="calc-panel-timing">
-              <div class="calc-timing-grid">
-                <div class="calc-timing-card">
-                  <span class="calc-timing-icon">📅</span>
-                  <div class="calc-timing-title">Use Your Annual Max</div>
-                  <div class="calc-timing-sub">Most PPO plans reset Jan 1. Schedule major work before year-end — don't leave your $1,500 on the table.</div>
-                </div>
-                <div class="calc-timing-card">
-                  <span class="calc-timing-icon">⏳</span>
-                  <div class="calc-timing-title">Beat Waiting Periods</div>
-                  <div class="calc-timing-sub">Enroll now. Cleanings &amp; x-rays are usually immediate. Crowns, root canals, and extractions often need 6–12 months.</div>
-                </div>
-                <div class="calc-timing-card">
-                  <span class="calc-timing-icon">🔁</span>
-                  <div class="calc-timing-title">Split Major Work</div>
-                  <div class="calc-timing-sub">Got multiple crowns or implants? Split them across plan years to double your coverage and cut your out-of-pocket nearly in half.</div>
-                </div>
-              </div>
-              <a class="calc-cta-btn primary" style="margin-top:12px;display:inline-flex;" href="/guides/smart-timing-strategy" onclick="megaGo('smart-timing');return false;">Full Timing Strategy →</a>
-            </div>
-
-          </div>
-
-          <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>Dentist-informed data</span>
-              <span>Transparent pricing</span>
-              <span>Updated 2026</span>
-            </div>
-            <a href="/cost-calculator" onclick="megaGo('calc');return false;" style="color:var(--g);font-weight:700;text-decoration:none;font-size:12px;">Open full calculator →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. FIND DENTIST -->
-      <div class="cc-link" data-link="find" role="menuitem" tabindex="0">
-        <span>Dentists</span>
-        <span class="cc-link-caret">▾</span>
-
-        <div class="cc-dropdown find-drop" role="menu">
-          <div class="cc-drop-head">
-            <div class="cc-drop-head-text">
-              <div class="cc-drop-eyebrow">Dentists</div>
-              <h3>A trusted <em>PPO dentist</em> near you.</h3>
-              <p>Browse Capy Accredited offices by region, area, or city.</p>
-            </div>
-            <div class="cc-drop-head-trust">
-              <span>Capy Accredited only</span>
-              <span>Patient-reviewed</span>
-              <span>Network growing daily</span>
-            </div>
-          </div>
-
-          <div class="cc-drop-body">
-            <div class="find-2col">
-              <div>
-                <div class="find-regions" id="find-regions"></div>
-                <div class="find-panel">
-                  <div class="find-panel-head">
-                    <span class="find-panel-title">
-                      <span class="find-step-label"><span class="step-num">2</span> Location</span>
-                    </span>
-                    <span class="find-panel-tag" id="find-locations-tag">3 STATES</span>
-                  </div>
-                  <div class="find-panel-body">
-                    <div class="find-locations" id="find-locations"></div>
-                  </div>
-                </div>
-                <div class="find-panel">
-                  <div class="find-panel-head">
-                    <span class="find-panel-title">
-                      <span class="find-step-label"><span class="step-num">3</span> Area</span>
-                    </span>
-                    <span class="find-panel-tag" id="find-areas-tag">0 AREAS</span>
-                  </div>
-                  <div class="find-panel-body">
-                    <div class="find-areas" id="find-areas"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <a class="find-featured" data-state="filled" href="/dentists/featured" onclick="megaGo('featured-dentist');return false;" id="find-featured">
-                  <div class="find-featured-avatar">🦷</div>
-                  <div>
-                    <div class="find-featured-eyebrow">Featured Dentist</div>
-                    <div class="find-featured-name" id="find-featured-name">KYT Dental Services</div>
-                    <div class="find-featured-loc" id="find-featured-loc">📍 Fountain Valley, CA · 4.9 ★</div>
-                  </div>
-                  <div class="find-featured-actions">
-                    <button class="find-featured-btn primary" onclick="event.stopPropagation();megaGo('book-featured');">View Profile</button>
-                    <button class="find-featured-btn secondary" onclick="event.stopPropagation();megaGo('book-appointment');">Book Appointment</button>
-                  </div>
-                </a>
-
-                <div class="find-zip-panel">
-                  <div class="find-panel-head" style="margin:-14px -14px 12px;border-bottom:1px solid var(--line);">
-                    <span class="find-panel-title">
-                      <span class="find-step-label"><span class="step-num">4</span> City / ZIP</span>
-                    </span>
-                    <span class="find-panel-tag">FIND BY ZIP</span>
-                  </div>
-
-                  <div class="find-zip-row">
-                    <input class="find-zip-input" type="text" inputmode="numeric" maxlength="5" placeholder="92708" id="rmg-zip-input" autocomplete="off"/>
-                    <button class="find-zip-btn" onclick="event.stopPropagation();rmgFindByZip();">Find</button>
-                  </div>
-                  <div class="find-zip-note">Auto-filled from your approximate location. You can change it anytime.</div>
-
-                  <div class="find-closest" id="find-closest" data-mode="area">
-                    <div class="find-closest-label" id="find-closest-label">Closest Nearby Area</div>
-                    <div class="find-closest-name" id="find-closest-name">Orange County</div>
-                    <div class="find-closest-count" id="find-closest-count"></div>
-                    <div class="find-zip-pills" id="find-zip-pills"></div>
-                    <div class="find-zip-fallback" id="find-zip-fallback"></div>
-                    <a class="find-closest-cta" id="find-closest-cta" href="/dentists" onclick="event.stopPropagation();event.preventDefault();findClosestDentists();">Find Nearby Dentists</a>
-                  </div>
-
-                  <div class="find-cities-head">
-                    <span class="find-cities-title">Popular cities in <span id="find-cities-area">Orange County</span></span>
-                    <span class="find-cities-tag" id="find-cities-tag">0 cities</span>
-                  </div>
-                  <div class="find-cities" id="find-cities"></div>
-
-                  <div class="find-awaiting" id="find-awaiting">
-                    <div class="find-awaiting-eyebrow">⏳ Awaiting Accreditation</div>
-                    <div class="find-awaiting-num" id="find-awaiting-num"><em>~</em>36</div>
-                    <div class="find-awaiting-text">dentists awaiting accreditation in <strong id="find-awaiting-region">West Coast</strong></div>
-                    <div class="find-awaiting-footer">
-                      <span class="find-awaiting-q">Want to be featured?</span>
-                      <a class="find-awaiting-link" href="/get-featured/platinum-elite" onclick="event.stopPropagation();megaGo('platinum-elite');return false;">Apply for Platinum Elite <span class="arr">→</span></a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>Capy Accredited network</span>
-              <span>No assigned dentists</span>
-              <span>Always free for patients</span>
-            </div>
-            <a href="/dentists" onclick="megaGo('directory');return false;" style="color:var(--g);font-weight:700;text-decoration:none;font-size:12px;">Full directory →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. PATIENT REWARDS -->
-      <div class="cc-link" data-link="rewards" role="menuitem" tabindex="0">
-        <span>Capy Crowns</span>
-        <span class="cc-link-caret">▾</span>
-
-        <div class="cc-dropdown rewards-drop" role="menu" style="width:min(96vw,760px);">
-          <div class="cc-drop-head">
-            <div class="cc-drop-head-text">
-              <div class="cc-drop-eyebrow">Capy Crowns™ Membership</div>
-              <h3>A smarter way to <em>own your dentistry.</em></h3>
-              <p>Earn Crowns for being informed. Redeem at our Platinum Elite network. Your first 300 are already yours.</p>
-            </div>
-            <div class="cc-drop-head-trust">
-              <span>Free to join</span>
-              <span>+300 on signup</span>
-              <span>No expiry</span>
-            </div>
-          </div>
-
-          <div class="cc-drop-body">
-
-            <div class="crown-goal-card">
-              <div class="crown-goal-left">
-                <div class="crown-goal-eyebrow">⭐ Featured Reward · Delivered by Capy Platinum Elite Dentists</div>
-                <div class="crown-goal-title">Free In-Office <em>Whitening</em></div>
-                <div class="crown-goal-msrp">MSRP <s>$600</s> &nbsp;·&nbsp; Unlocks at <strong>2,000 Crowns</strong></div>
-                <div class="crown-progress-wrap">
-                  <div class="crown-progress-track">
-                    <div class="crown-progress-fill" id="crown-progress-fill" style="width:15%"></div>
-                    <div class="crown-progress-marker" id="crown-progress-marker" style="left:15%">
-                      <span class="crown-progress-balloon" id="crown-progress-balloon">300 👑</span>
-                    </div>
-                  </div>
-                  <div class="crown-progress-ends">
-                    <span>0</span>
-                    <span>2,000 👑 = Free whitening</span>
-                  </div>
-                </div>
-                <div class="crown-progress-status">
-                  <span class="crown-prog-you">Balance: <strong id="crown-bal-display">300</strong> Crowns</span>
-                  <span class="crown-prog-need"><strong id="crown-need-display">1,700</strong> to go</span>
-                </div>
-              </div>
-              <div class="crown-goal-right">
-                <div class="crown-goal-icon">✨</div>
-                <div class="crown-goal-sub">In-office session<br>at Platinum Elite<br>network dentists</div>
-                <a class="crown-goal-cta" href="/rewards" onclick="megaGo('rewards');return false;">Claim Crowns <span>→</span></a>
-              </div>
-            </div>
-
-            <div class="crown-accordion" id="crown-earn-acc">
-              <button class="crown-acc-toggle" onclick="toggleCrownAcc('earn');return false;" aria-expanded="false" id="crown-earn-toggle">
-                <span class="crown-acc-toggle-left">
-                  <span class="crown-acc-toggle-icon">🗺</span>
-                  <div class="crown-acc-toggle-stack">
-                    <span class="crown-acc-toggle-title">See how to earn free whitening <span class="crown-acc-teaser-hint">— 4 steps, exactly 2,000 👑</span></span>
-                    <span class="crown-acc-mini-math">Sign up · Activate · Book · Refer one friend = done ✓ Tap to see the breakdown</span>
-                  </div>
-                </span>
-                <span class="crown-acc-chevron" id="crown-earn-chevron">▾</span>
-              </button>
-              <div class="crown-acc-body" id="crown-earn-body">
-                <div class="crown-earn-steps">
-                  <div class="crown-step is-done">
-                    <div class="crown-step-left">
-                      <div class="crown-step-check">✓</div>
-                      <div class="crown-step-connector"></div>
-                    </div>
-                    <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Create an Account</div>
-                        <div class="crown-step-pts">+300 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">Earned automatically on signup</div>
-                        <div class="crown-step-running">300 / 2,000</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="crown-step">
-                    <div class="crown-step-left">
-                      <div class="crown-step-num">2</div>
-                      <div class="crown-step-connector"></div>
-                    </div>
-                    <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Activate a PPO Plan</div>
-                        <div class="crown-step-pts">+500 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">Compare &amp; choose your best fit</div>
-                        <div class="crown-step-running">800 / 2,000</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="crown-step">
-                    <div class="crown-step-left">
-                      <div class="crown-step-num">3</div>
-                      <div class="crown-step-connector"></div>
-                    </div>
-                    <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Book a PPO Dentist</div>
-                        <div class="crown-step-pts">+500 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">Schedule at a Capy Accredited office</div>
-                        <div class="crown-step-running">1,300 / 2,000</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="crown-step is-highlight">
-                    <div class="crown-step-left">
-                      <div class="crown-step-num is-gold">4</div>
-                    </div>
-                    <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Refer a Friend or Family Member</div>
-                        <div class="crown-step-pts is-gold">+700 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">One referral hits exactly 2,000 — free whitening unlocked 🎉</div>
-                        <div class="crown-step-running is-unlock">2,000 👑 ✓</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="crown-earn-note">Whitening is delivered by Platinum Elite network dentists — like Beast Burgers through a vetted kitchen, not a coupon you have to chase.</div>
-              </div>
-            </div>
-
-            <div class="crown-accordion" id="crown-perks-acc">
-              <button class="crown-acc-toggle" onclick="toggleCrownAcc('perks');return false;" aria-expanded="false" id="crown-perks-toggle">
-                <span class="crown-acc-toggle-left">
-                  <span class="crown-acc-toggle-icon">✦</span>
-                  <span class="crown-acc-toggle-title">More rewards to redeem</span>
-                  <span class="crown-acc-mini-math">Invisalign · Botox · and more</span>
-                </span>
-                <span class="crown-acc-chevron" id="crown-perks-chevron">▾</span>
-              </button>
-              <div class="crown-acc-body" id="crown-perks-body">
-                <div class="rewards-perks-grid" style="padding:0 0 4px;">
-                  <a class="reward-perk theme-lavender" href="/rewards/redeem/in-office-whitening" onclick="megaGo('redeem-whitening');return false;">
-                    <span class="reward-perk-dot-frame"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
-                    <div class="reward-perk-crown"><span class="reward-perk-crown-core">👑</span></div>
-                    <span class="reward-perk-text">
-                      <span class="reward-perk-name">Whitening</span>
-                      <span style="font-size:10px;color:var(--ink-soft);display:block;margin-top:2px;">MSRP $600</span>
-                    </span>
-                    <span class="reward-perk-pts">2,000 👑</span>
-                  </a>
-                  <a class="reward-perk theme-ice" href="/rewards/redeem/invisalign-platinum" onclick="megaGo('redeem-invisalign');return false;">
-                    <span class="reward-perk-dot-frame"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
-                    <div class="reward-perk-crown"><span class="reward-perk-crown-core">👑</span></div>
-                    <span class="reward-perk-text"><span class="reward-perk-name">Invisalign Credit</span></span>
-                    <span class="reward-perk-pts">2,500 👑</span>
-                  </a>
-                  <a class="reward-perk theme-rose" href="/rewards/redeem/tmj-botox" onclick="megaGo('redeem-tmj');return false;">
-                    <span class="reward-perk-dot-frame"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
-                    <div class="reward-perk-crown"><span class="reward-perk-crown-core">👑</span></div>
-                    <span class="reward-perk-text"><span class="reward-perk-name">TMJ Botox</span></span>
-                    <span class="reward-perk-pts">3,000 👑</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="crown-cta-row">
-              <a class="crown-cta-primary" href="/rewards" onclick="megaGo('rewards');return false;">
-                <span class="crown-cta-icon">👑</span>
-                <div>
-                  <div class="crown-cta-label">Claim My Crowns</div>
-                  <div class="crown-cta-sub">Create your free account — 300 Crowns instantly</div>
-                </div>
-                <span class="crown-cta-arr">→</span>
-              </a>
-              <a class="crown-cta-secondary" href="/rewards/refer-a-friend" onclick="megaGo('refer');return false;">
-                <span class="crown-cta-icon">💌</span>
-                <div>
-                  <div class="crown-cta-label">Refer a Friend Now</div>
-                  <div class="crown-cta-sub">+700 Crowns · closest step to free whitening</div>
-                </div>
-                <span class="crown-cta-arr">→</span>
-              </a>
-            </div>
-
-          </div>
-
-          <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>Delivered by Capy Platinum Elite dentists</span>
-              <span>Crowns never expire</span>
-            </div>
-            <a href="/rewards" onclick="megaGo('rewards');return false;" style="color:var(--g);font-weight:700;text-decoration:none;font-size:12px;">All rewards →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. FOR DENTISTS -->
-      <div class="cc-link" data-link="featured" role="menuitem" tabindex="0">
-        <span>Membership</span>
-        <span class="cc-link-caret">▾</span>
-
-        <div class="cc-dropdown featured-drop" role="menu" style="width:min(96vw,780px);">
-
-          <div class="dent-header">
-            <div class="dent-header-left">
-              <div class="dent-header-eyebrow">Membership · For Practices</div>
-              <div class="dent-header-title">Your practice may already be <em>indexed.</em></div>
-              <div class="dent-header-sub">Curated. Accredited. Selectively invited.</div>
-            </div>
-            <div class="dent-header-stats">
-              <div class="dent-hstat">
-                <div class="dent-hstat-num">2,400+</div>
-                <div class="dent-hstat-lbl">searches near you<br>this month</div>
-              </div>
-              <div class="dent-hstat-div"></div>
-              <div class="dent-hstat">
-                <div class="dent-hstat-num">68%</div>
-                <div class="dent-hstat-lbl">profiles nearby<br>unclaimed</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cc-drop-body" style="padding-top:14px;">
-
-            <div class="dent-zip-card">
-              <div class="dent-zip-card-left">
-                <div class="dent-zip-card-eyebrow">Start here</div>
-                <div class="dent-zip-card-title">Find your practice by ZIP.</div>
-                <div class="dent-zip-card-sub">Free claim · 3-day review</div>
-              </div>
-              <form class="dent-zip-form-tight" onsubmit="dentZipSearch(event);return false;">
-                <input id="dent-zip-input" class="dent-zip-input" type="text" inputmode="numeric" maxlength="5" placeholder="ZIP code" onclick="event.stopPropagation();" onkeyup="dentZipKey(event);">
-                <button class="dent-zip-btn" type="submit" onclick="event.stopPropagation();">Search →</button>
-              </form>
-              <div class="dent-zip-meta" id="dent-zip-meta">Searches our nationwide index</div>
-            </div>
-
-            <div class="dent-tier-grid">
-
-              <a class="dent-card dent-card-free" href="/dentist-portal/claim-profile" onclick="event.stopPropagation();openPortalModal();return false;">
-                <div class="dent-card-header">
-                  <div class="dent-card-icon">📋</div>
-                  <div class="dent-card-badge dent-badge-free">Tier 01</div>
-                </div>
-                <div class="dent-card-title">Listed</div>
-                <div class="dent-card-hook">Verified, indexed, findable.</div>
-                <div class="dent-card-divider"></div>
-                <ul class="dent-card-list">
-                  <li>Verified practice page</li>
-                  <li>PPO acceptance visibility</li>
-                  <li>Booking link</li>
-                  <li>Local search presence</li>
-                </ul>
-                <div class="dent-card-foot">Free · 3-day review</div>
-                <div class="dent-card-cta">Request Listing →</div>
-              </a>
-
-              <a class="dent-card dent-card-trust" href="/get-featured/capy-accredited" onclick="event.stopPropagation();megaGo('accreditation');return false;">
-                <div class="dent-card-ribbon">The Standard</div>
-                <div class="dent-card-header">
-                  <div class="dent-card-icon">🦫</div>
-                  <div class="dent-card-badge dent-badge-trust">Tier 02</div>
-                </div>
-                <div class="dent-card-title">Accredited</div>
-                <div class="dent-card-hook">The badge patients filter for.</div>
-                <div class="dent-card-divider"></div>
-                <ul class="dent-card-list">
-                  <li>Accreditation badge on every listing</li>
-                  <li>"Accredited only" patient filter</li>
-                  <li>Capy Crowns whitening fulfillment</li>
-                  <li>Priority placement in organic results</li>
-                </ul>
-                <div class="dent-card-foot">By annual review · PPO-friendly only</div>
-                <div class="dent-card-cta">Apply →</div>
-              </a>
-
-              <a class="dent-card dent-card-plat" href="/get-featured/platinum-elite" onclick="event.stopPropagation();megaGo('platinum-elite');return false;">
-                <div class="dent-card-header">
-                  <div class="dent-card-icon">💎</div>
-                  <div class="dent-card-badge dent-badge-plat">Tier 03</div>
-                </div>
-                <div class="dent-card-title">Platinum Elite</div>
-                <div class="dent-card-hook">Patients are routed directly to you.</div>
-                <div class="dent-card-divider"></div>
-                <ul class="dent-card-list">
-                  <li>Concierge patient matching</li>
-                  <li>Territory exclusivity in your market</li>
-                  <li>Primary whitening redemption hub</li>
-                  <li>Direct account support</li>
-                </ul>
-                <div class="dent-card-foot">By invitation · Accreditation required</div>
-                <div class="dent-card-cta">Request Consideration →</div>
-              </a>
-
-            </div>
-
-            <div class="dent-reassure">
-              <div class="dent-reassure-item">
-                <span class="dent-reassure-ic">📐</span>
-                <div><strong>Curated, not crowdsourced.</strong><span>Every Tier 02+ membership is hand-reviewed.</span></div>
-              </div>
-              <div class="dent-reassure-item">
-                <span class="dent-reassure-ic">🧭</span>
-                <div><strong>Built for the long arc.</strong><span>Your patients stay yours. Month-to-month.</span></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>Hand-reviewed accreditations</span>
-              <span>Month-to-month</span>
-            </div>
-            <a href="/dentist-portal" onclick="event.stopPropagation();openPortalModal();return false;" style="color:var(--g);font-weight:700;text-decoration:none;font-size:12px;">Dentist portal →</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- RIGHT ACTIONS -->
-    <div class="cc-actions">
-      <button class="cc-action-link" onclick="gotoTab('signin')">Sign in</button>
-      <button class="cc-action-link cc-action-join" onclick="gotoTab('join')">
-        Join Free
-      </button>
-    </div>
-
-  </div>
-</nav>
-
-<!-- ════════════════════════════════════════════════════════════════
-     HERO SLIDER (inlined from components/hero-slider.html)
-     ════════════════════════════════════════════════════════════════ -->
-<div class="hero-wrap">
-<section class="hero" id="hero" aria-roledescription="carousel" aria-label="The CoverCapy story in five chapters">
-
-  <div class="grain" aria-hidden="true"></div>
-
-  <button class="hero-arrow hero-arrow-prev" id="arrow-prev" aria-label="Previous chapter" type="button">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 L7 12 L15 20"/></svg>
-  </button>
-  <button class="hero-arrow hero-arrow-next" id="arrow-next" aria-label="Next chapter" type="button">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 L17 12 L9 20"/></svg>
-  </button>
-
-  <button class="pause-btn" id="pause-btn" aria-label="Pause slideshow" type="button">
-    <svg class="pause-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
-      <rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/>
-      <rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/>
-    </svg>
-    <svg class="play-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
-      <path d="M8 5v14l11-7z" fill="currentColor"/>
-    </svg>
-  </button>
-
-  <div class="hero-stage" id="hero-stage">
-
-    <!-- CHAPTER I · RELIEF -->
-    <article class="chapter is-active" data-ch="1" aria-label="Chapter 1 of 5, Relief">
-      <span class="chapter-watermark" aria-hidden="true">Relief</span>
-
-      <div class="chapter-text">
-        <div class="chapter-mark">
-          <span class="roman">I.</span>
-          <span class="rule"></span>
-          <span class="emotion">Relief</span>
-        </div>
-        <h1 class="headline">
-          Get covered today.<br/>
-          <em>Book a dentist</em> tomorrow.
-        </h1>
-        <p class="lede">CoverCapy is the <strong>concierge layer</strong> between insurance confusion and great dental care. Activate a real PPO plan in <strong>one business day</strong>. Walk into your first appointment fully covered, with no waiting on cleanings, exams, or basic care.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary">Activate my PPO plan <span class="arr">→</span></button>
-          <a class="btn-quiet" href="#">Already insured? Find a dentist <span class="arr">→</span></a>
-        </div>
-        <div class="trust-line">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span>Trusted by smart patients nationwide</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>Always free · no email required</span>
-        </div>
-      </div>
-
-      <div class="chapter-visual">
-        <div class="ch1-stage">
-          <div class="ch1-status" aria-live="polite">
-            <span class="pulse" aria-hidden="true"></span>
-            <span>Active in as little as 1 business day</span>
-          </div>
-
-          <article class="primary-card" aria-label="UnitedHealthcare Primary Dental, Year 1 PPO summary">
-            <div class="pc-carrier">
-              <div class="pc-carrier-mark" aria-hidden="true">U</div>
-              <div class="pc-carrier-info">
-                <span class="pc-carrier-name">UnitedHealthcare · Golden Rule Insurance Co.</span>
-                <span class="pc-carrier-rating">
-                  <span class="pc-aplus">A+</span>
-                  rated by A.M. Best · Superior
-                </span>
-              </div>
-            </div>
-
-            <h3 class="pc-plan-name">Primary <em>Dental</em></h3>
-            <div class="pc-plan-sub">
-              <span>Year 1 PPO</span>
-              <span class="dot" aria-hidden="true"></span>
-              <em>no waiting period</em>
-              <span class="dot" aria-hidden="true"></span>
-              <span>$50 deductible</span>
-            </div>
-
-            <div class="pc-rule" aria-hidden="true"></div>
-
-            <div class="pc-benefits">
-              <div class="pc-benefit">
-                <span class="num">i.</span>
-                <span class="label"><strong>100% preventive</strong>: exams, cleanings, x-rays</span>
-                <span class="stamp">day one</span>
-              </div>
-              <div class="pc-benefit">
-                <span class="num">ii.</span>
-                <span class="label"><strong>50% basic restorative</strong>: fillings, simple repairs</span>
-                <span class="stamp">day one</span>
-              </div>
-              <div class="pc-benefit">
-                <span class="num">iii.</span>
-                <span class="label">Member ID issued on signup</span>
-                <span class="stamp">instant</span>
-              </div>
-            </div>
-
-            <div class="pc-action">
-              <div class="pc-price">
-                <span class="pc-price-num"><span class="approx">~</span>$34</span>
-                <span class="pc-price-suffix">per month · cancel anytime</span>
-              </div>
-              <button class="pc-activate" type="button">Activate <span class="arr">→</span></button>
-            </div>
-
-            <div class="pc-bridge">
-              <span class="ast" aria-hidden="true">✦</span>
-              <span>Eligible for ages under sixty-five. If you're past sixty-five, or need crowns, implants, or orthodontics, see chapter&nbsp;<em>ii.</em></span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </article>
-
-    <!-- CHAPTER II · CONFIDENCE -->
-    <article class="chapter" data-ch="2" aria-label="Chapter 2 of 5, Confidence">
-      <span class="chapter-watermark" aria-hidden="true">Confidence</span>
-
-      <div class="chapter-text">
-        <div class="chapter-mark">
-          <span class="roman">II.</span>
-          <span class="rule"></span>
-          <span class="emotion">Confidence</span>
-        </div>
-        <h2 class="headline">
-          Dental plans,<br/>
-          <em>curated</em> for<br/>
-          your needs.
-        </h2>
-        <p class="lede">Children needing braces? Adults past sixty-five who need major work? A higher annual maximum than <strong>$1,000</strong>? We read the fine print on every premium PPO insurance plan, so you find what basic coverage leaves out.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary">Explore other plans <span class="arr">→</span></button>
-          <a class="btn-quiet" href="#">Compare side-by-side <span class="arr">→</span></a>
-        </div>
-        <div class="trust-line">
-          <span>A-rated carriers only</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>No HMO</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>All ages eligible</span>
-        </div>
-      </div>
-
-      <div class="chapter-visual">
-        <div class="ch2-stage">
-          <div class="ch2-ghost ghost-1" aria-hidden="true">
-            <span class="ch2-ghost-tag">Runner-up</span>
-            <span class="ch2-ghost-name">Ameritas <em>PrimeStar</em></span>
-            <span class="ch2-ghost-meta"><span>$1,500 max</span><span>92% fit</span></span>
-          </div>
-          <div class="ch2-ghost ghost-2" aria-hidden="true">
-            <span class="ch2-ghost-tag">Also reviewed</span>
-            <span class="ch2-ghost-name">Humana <em>Loyalty Plus</em></span>
-            <span class="ch2-ghost-meta"><span>$1,250 max</span><span>87% fit</span></span>
-          </div>
-
-          <div class="ch2-chosen" role="article" aria-label="Featured premium plan">
-            <div class="ch2-recommended">
-              <span class="dot" aria-hidden="true"></span>
-              Effective on 1st of <span class="ch2-effective-month">June</span>
-            </div>
-
-            <div class="ch2-carrier-line">
-              <div class="ch2-carrier-mark" aria-hidden="true">G</div>
-              <span class="ch2-carrier-name">Guardian Direct · A+ rated</span>
-            </div>
-
-            <div class="ch2-plan-name">Guardian <em>Premier</em><br/>2.0</div>
-
-            <div class="ch2-key-stats">
-              <div class="ch2-key-stat">
-                <div class="label">Annual max</div>
-                <div class="value">$3,000</div>
-              </div>
-              <div class="ch2-key-stat gold">
-                <div class="label">Major · year 2</div>
-                <div class="value">60%</div>
-              </div>
-              <div class="ch2-key-stat">
-                <div class="label">Age cap</div>
-                <div class="value">None</div>
-              </div>
-              <div class="ch2-key-stat">
-                <div class="label">Kids' ortho</div>
-                <div class="value">$1,500</div>
-              </div>
-            </div>
-
-            <div class="ch2-whisper">
-              <span class="quote" aria-hidden="true">❝</span>
-              <span>60% on crowns and majors from Year Two. Orthodontia for dependents under nineteen. No member age limit. A PPO insurance plan for what preventative-only coverage leaves out.</span>
-            </div>
-
-            <div class="ch2-why">
-              <span class="ch2-why-cta">See reasoning <span class="arr">→</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CHAPTER III · CLARITY -->
-    <article class="chapter" data-ch="3" aria-label="Chapter 3 of 5, Clarity">
-      <span class="chapter-watermark" aria-hidden="true">Clarity</span>
-
-      <div class="chapter-text">
-        <div class="chapter-mark">
-          <span class="roman">III.</span>
-          <span class="rule"></span>
-          <span class="emotion">Clarity</span>
-        </div>
-        <h2 class="headline">
-          See what your<br/>
-          dental insurance<br/>
-          <em>actually</em> pays.
-        </h2>
-        <p class="lede">No bill shock. No out-of-network surprises. We model your <strong>real out-of-pocket cost</strong> for cleanings, crowns, and root canals against your PPO's verified fee schedule, before the chair reclines.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary">Estimate my treatment <span class="arr">→</span></button>
-        </div>
-        <div class="trust-line">
-          <span>Median saved per patient last month:</span>
-          <span style="color:var(--gold-deep); font-weight:600;">$847 / year</span>
-        </div>
-      </div>
-
-      <div class="chapter-visual">
-        <div class="ch3-stage">
-          <div class="ch3-treatment">
-            <span class="ch3-treatment-label">Estimate · 3-procedure plan</span>
-            <div class="ch3-treatment-list">
-              <div class="ch3-procedure">
-                <span class="num">i.</span>
-                <span class="name">Composite resin restoration</span>
-                <span class="meta">D2392</span>
-              </div>
-              <div class="ch3-procedure">
-                <span class="num">ii.</span>
-                <span class="name">Endodontic root canal therapy</span>
-                <span class="meta">D3330</span>
-              </div>
-              <div class="ch3-procedure">
-                <span class="num">iii.</span>
-                <span class="name">BruxZir<sup>®</sup> zirconia crown</span>
-                <span class="meta">D2950 + D2740</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="ch3-reveal">
-            <div class="ch3-without">
-              <span class="label">Without PPO</span>
-              <span class="amt">$4,600</span>
-            </div>
-            <div class="ch3-with">
-              <span class="label">With PPO</span>
-              <span class="amt">$1,189</span>
-            </div>
-          </div>
-
-          <div class="ch3-savings">
-            <div class="ch3-savings-eyebrow">
-              <span class="sparkle" aria-hidden="true">✦</span>
-              <span>You keep</span>
-            </div>
-            <div class="ch3-savings-line">
-              <span class="ch3-amount" data-count-target="3411">$0</span>
-              <span class="ch3-amount-suffix">across three procedures.</span>
-            </div>
-          </div>
-
-          <div class="ch3-footnote">
-            <span class="dot" aria-hidden="true"></span>
-            Modeled from verified in-network PPO fee schedules and nationwide contracted reimbursement averages. Your actual savings may vary based on the dentist's submitted fees and your plan's coordination of benefits.
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CHAPTER IV · TRUST -->
-    <article class="chapter" data-ch="4" aria-label="Chapter 4 of 5, Trust">
-      <span class="chapter-watermark" aria-hidden="true">Trust</span>
-
-      <div class="chapter-text">
-        <div class="chapter-mark">
-          <span class="roman">IV.</span>
-          <span class="rule"></span>
-          <span class="emotion">Trust</span>
-        </div>
-        <h2 class="headline">
-          Your <em>concierge</em><br/>
-          guide to<br/>
-          dental PPO.
-        </h2>
-        <p class="lede">Skim our guides if you want the basics on PPO, waiting periods, or annual maximums. <strong>Or skip them entirely.</strong> Your dentist's office will explain what matters before treatment begins. We just make sure you walk in informed.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary">Read the field guides <span class="arr">→</span></button>
-          <a class="btn-quiet" href="#">Skip to finding a dentist <span class="arr">→</span></a>
-        </div>
-        <div class="trust-line">
-          <span>120+ field guides</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>Independent reporting</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>Refreshed quarterly</span>
-        </div>
-      </div>
-
-      <div class="chapter-visual">
-        <div class="ch4-stage">
-          <div class="ch4-spread" role="article" aria-label="Field guide preview">
-            <div class="ch4-folio">
-              <span>Field Guide · No. 04</span>
-              <div class="right">
-                <em>The PPO Field Guide</em>
-                <span class="pip" aria-hidden="true"></span>
-                <span>p. 14</span>
-              </div>
-            </div>
-
-            <h3 class="ch4-headline">What is <em>PPO dental insurance?</em></h3>
-
-            <p class="ch4-body">
-              <span class="dropcap">A</span>Preferred Provider Organization plan is, at its core, a <strong>negotiated discount</strong>: your insurance carrier and a network of dentists agree on a fee schedule, and you pay the contracted rate instead of the open-market price. No assigned dentist. No referrals. No surprise gatekeeping.
-            </p>
-
-            <div class="ch4-pull">
-              <span class="open" aria-hidden="true">❝</span>
-              <span>When a dentist is in-network with a PPO insurance plan, they cannot bill above the contracted rate. The insurance then covers what remains, often 100% of preventive care and a sliding scale for the rest.</span>
-            </div>
-
-            <div class="ch4-index">
-              <span class="ch4-index-label">In this guide</span>
-              <div class="ch4-index-row">
-                <span class="ix">i.</span><span>What a PPO actually means</span><span class="lead"></span><span class="pg">p. 02</span>
-              </div>
-              <div class="ch4-index-row">
-                <span class="ix">ii.</span><span>Waiting periods, decoded</span><span class="lead"></span><span class="pg">p. 09</span>
-              </div>
-              <div class="ch4-index-row">
-                <span class="ix">iii.</span><span>The missing-tooth clause trap</span><span class="lead"></span><span class="pg">p. 14</span>
-              </div>
-              <div class="ch4-index-row">
-                <span class="ix">iv.</span><span>Why HMO dental costs more</span><span class="lead"></span><span class="pg">p. 22</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CHAPTER V · ACTION -->
-    <article class="chapter" data-ch="5" aria-label="Chapter 5 of 5, Action">
-      <span class="chapter-watermark" aria-hidden="true">Action</span>
-
-      <div class="chapter-text">
-        <div class="chapter-mark">
-          <span class="roman">V.</span>
-          <span class="rule"></span>
-          <span class="emotion">Action</span>
-        </div>
-        <h2 class="headline">
-          The PPO dentist near me,<br/>
-          your insurance<br/>
-          <em class="gold">already knows.</em>
-        </h2>
-        <p class="lede">Every practice we feature is patient-verified, accepts your PPO, and has openings inside seven days. <strong>Platinum Elite</strong> is reserved for the top one percent. Earned through outcomes, not advertising.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary">Find my in-network dentist <span class="arr">→</span></button>
-        </div>
-        <div class="trust-line">
-          <span>PPO-friendly</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>CoverCapy Accredited</span>
-          <span class="pip" aria-hidden="true"></span>
-          <span>Open this week</span>
-        </div>
-      </div>
-
-      <div class="chapter-visual">
-        <div class="ch5-stage">
-          <div class="ch5-runner ch5-runner-1" aria-hidden="true">
-            <div class="mini-av">B</div>
-            <div class="info">
-              <div class="name">Beverly Smile Studio</div>
-              <div class="meta">Dr. Hsu, DDS · Los Angeles</div>
-            </div>
-            <div class="fit">89<sup>% fit</sup></div>
-          </div>
-
-          <div class="ch5-runner ch5-runner-2" aria-hidden="true">
-            <div class="mini-av">H</div>
-            <div class="info">
-              <div class="name">Highland Family Dental</div>
-              <div class="meta">Dr. Vasquez · San Bernardino</div>
-            </div>
-            <div class="fit">76<sup>% fit</sup></div>
-          </div>
-
-          <div class="ch5-featured" role="article" aria-label="Featured Platinum Elite practice">
-            <div class="ch5-platinum-bar">
-              <span><span class="gem" aria-hidden="true">◆</span>&nbsp; Platinum Elite</span>
-              <span class="right">Top 1% · CoverCapy Accredited</span>
-            </div>
-
-            <div class="ch5-featured-body">
-              <div class="ch5-practice-row">
-                <div class="ch5-avatar" aria-hidden="true">
-                  K
-                  <span class="verify">✓</span>
-                </div>
-                <div class="ch5-practice-info">
-                  <div class="ch5-practice-name">KYT Dental Services</div>
-                  <div class="ch5-practice-meta">
-                    Cosmetic &amp; General Dentistry
-                    <span class="sep">·</span>
-                    Orange County, CA
-                  </div>
-                </div>
-              </div>
-
-              <div class="ch5-stats">
-                <div class="ch5-stat">
-                  <span class="label">Plan fit</span>
-                  <span class="value"><em>98</em>%</span>
-                </div>
-                <div class="ch5-stat">
-                  <span class="label">Patient rating</span>
-                  <span class="value">4.9<em>★</em></span>
-                </div>
-                <div class="ch5-stat">
-                  <span class="label">Patients seen</span>
-                  <span class="value"><em>2,140</em></span>
-                </div>
-              </div>
-
-              <div class="ch5-row-availability">
-                <div class="ch5-avail-left">
-                  <div class="ch5-avail-eyebrow">
-                    <span class="live" aria-hidden="true"></span>
-                    <span>Soonest opening</span>
-                  </div>
-                  <div class="ch5-avail-time" data-tomorrow="9:00 am">Tomorrow · 9:00 am</div>
-                </div>
-                <button class="ch5-book">Book <span class="arr">→</span></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
-  <!-- Chapter rail -->
-  <div class="chapter-rail" role="tablist" aria-label="Chapter rail">
-    <button class="rail-chapter is-active" data-go="1" role="tab" aria-selected="true" type="button">
-      <span class="roman">I.</span><span class="emotion">Relief</span>
-    </button>
-    <span class="rail-filament" aria-hidden="true"></span>
-    <button class="rail-chapter" data-go="2" role="tab" aria-selected="false" type="button">
-      <span class="roman">II.</span><span class="emotion">Confidence</span>
-    </button>
-    <span class="rail-filament" aria-hidden="true"></span>
-    <button class="rail-chapter" data-go="3" role="tab" aria-selected="false" type="button">
-      <span class="roman">III.</span><span class="emotion">Clarity</span>
-    </button>
-    <span class="rail-filament" aria-hidden="true"></span>
-    <button class="rail-chapter" data-go="4" role="tab" aria-selected="false" type="button">
-      <span class="roman">IV.</span><span class="emotion">Trust</span>
-    </button>
-    <span class="rail-filament" aria-hidden="true"></span>
-    <button class="rail-chapter" data-go="5" role="tab" aria-selected="false" type="button">
-      <span class="roman">V.</span><span class="emotion">Action</span>
-    </button>
-  </div>
-
-  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-
-</section>
-</div>
-
-<!-- TRUST STRIP -->
-<section class="trust-strip" aria-label="Patient outcomes">
-  <div class="trust-strip-row">
-    <div class="trust-strip-item">
-      <span class="figure">$<em>847</em></span>
-      <span class="label">Median saved · per patient · last month</span>
-    </div>
-    <span class="trust-strip-divider" aria-hidden="true"></span>
-    <div class="trust-strip-item">
-      <span class="figure"><em>34,210</em></span>
-      <span class="label">Plans compared · this quarter</span>
-    </div>
-    <span class="trust-strip-divider" aria-hidden="true"></span>
-    <div class="trust-strip-item">
-      <span class="figure"><em>4:12</em></span>
-      <span class="label">Median concierge reply · today</span>
-    </div>
-    <span class="trust-strip-divider" aria-hidden="true"></span>
-    <div class="trust-strip-item">
-      <span class="figure"><em>A</em></span>
-      <span class="label">Rated carriers only · independent &amp; ad-free</span>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer style="padding: 40px 24px; text-align: center; color: #7892A3; font-size: 14px;">
-  <p>&copy; 2026 CoverCapy</p>
-</footer>
-
-<!-- JS -->
-<script src="assets/js/mega-nav.js"></script>
-<script src="assets/js/hero-slider.js"></script>
+<div id="cc-nav-mount"></div>
+<div id="cc-hero-mount"></div>
+
+<script>
+(async function(){
+  const loadScript = src => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload  = resolve;
+    s.onerror = () => reject(new Error('Failed to load ' + src));
+    document.body.appendChild(s);
+  });
+
+  const injectComponent = async (mountId, url) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(url + ' returned ' + res.status);
+      mount.outerHTML = await res.text();
+    } catch (err) {
+      console.error('[loader] failed:', url, err);
+    }
+  };
+
+  await injectComponent('cc-nav-mount',  'components/mega-nav.html');
+  await injectComponent('cc-hero-mount', 'components/hero-slider.html');
+
+  await loadScript('assets/js/mega-nav.js');
+  await loadScript('assets/js/hero-slider.js');
+})();
+</script>
 
 </body>
 </html>
