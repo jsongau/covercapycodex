@@ -1,3 +1,4 @@
+
 /* ════════════════════════════════════════════════════════════════
    TYPOGRAPHY SYSTEM — system-native, no webfonts
    Editorial serif: Georgia-led stack, engineered for screen rendering
@@ -7204,4 +7205,88 @@ body{
 @media (max-width:520px){
   .cc-logo-text{ font-size:23px; }
   .cc-action-join{ padding:8px 14px; }
+}
+
+
+/* === CoverCapy logo SVG lockup override === */
+.cc-logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  min-width:0;
+  text-decoration:none;
+}
+
+.cc-logo-img{
+  width:38px;
+  height:38px;
+  display:block;
+  object-fit:contain;
+  flex:0 0 auto;
+}
+
+.cc-logo-divider{
+  width:1px;
+  height:34px;
+  display:block;
+  background:rgba(15,31,38,.16);
+  flex:0 0 auto;
+}
+
+.cc-logo-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2px;
+  line-height:1;
+  min-width:0;
+}
+
+.cc-logo-copy .cc-logo-text{
+  display:block;
+  font-family:var(--v510-display, var(--ff-serif, Georgia, serif));
+  font-size:27px;
+  font-weight:400;
+  letter-spacing:-.045em;
+  color:var(--v510-teal-night, var(--gd));
+  line-height:.92;
+  white-space:nowrap;
+}
+
+.cc-logo-copy .cc-edition{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:1px;
+  min-height:auto;
+  padding-left:0;
+  border-left:0;
+  line-height:1;
+}
+
+.cc-logo-copy .cc-edition-top{
+  font-family:var(--v510-body, var(--ff-sans, Arial, sans-serif));
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:.24em;
+  color:var(--v510-ink-soft, var(--ink-soft));
+  white-space:nowrap;
+}
+
+.cc-logo-copy .cc-edition-bottom{
+  font-family:var(--v510-display, var(--ff-serif, Georgia, serif));
+  font-style:italic;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:-.01em;
+  color:var(--v510-teal-deep, var(--g));
+  white-space:nowrap;
+}
+
+@media (max-width: 760px){
+  .cc-logo-img{ width:34px; height:34px; }
+  .cc-logo-divider{ height:30px; }
+  .cc-logo-copy .cc-logo-text{ font-size:22px; }
+  .cc-logo-copy .cc-edition-top{ font-size:8px; letter-spacing:.18em; }
+  .cc-logo-copy .cc-edition-bottom{ font-size:12px; }
 }
