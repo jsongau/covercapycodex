@@ -119,6 +119,8 @@
 
 <script>
 (async function(){
+
+  /* Load an external JS file and resolve when it finishes loading */
   const loadScript = src => new Promise((resolve, reject) => {
     const s = document.createElement('script');
     s.src = src;
@@ -127,23 +129,60 @@
     document.body.appendChild(s);
   });
 
+  /* Inject HTML and execute any inline <script> tags it contains.
+     Scripts inserted via innerHTML/outerHTML are inert by spec —
+     we have to clone them into fresh <script> elements for the
+     browser to actually run them. */
   const injectComponent = async (mountId, url) => {
     const mount = document.getElementById(mountId);
     if (!mount) return;
     try {
       const res = await fetch(url, { cache: 'no-cache' });
       if (!res.ok) throw new Error(url + ' returned ' + res.status);
-      mount.outerHTML = await res.text();
+      const html = await res.text();
+
+      // Parse HTML in a detached wrapper so we can find ONLY the
+      // scripts that came in with this injection.
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+
+      // Capture script refs BEFORE moving the nodes anywhere.
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+
+      // Move all children from wrapper into the document, in place
+      // of the mount div.
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) {
+        parent.insertBefore(wrapper.firstChild, mount);
+      }
+      parent.removeChild(mount);
+
+      // Replace each injected script with a fresh one that actually
+      // runs. Note: this only touches scripts we just injected, never
+      // the loader script that's currently executing.
+      injectedScripts.forEach(old => {
+        const fresh = document.createElement('script');
+        for (const attr of old.attributes) {
+          fresh.setAttribute(attr.name, attr.value);
+        }
+        fresh.textContent = old.textContent;
+        if (old.parentNode) {
+          old.parentNode.replaceChild(fresh, old);
+        }
+      });
     } catch (err) {
       console.error('[loader] failed:', url, err);
     }
   };
 
+  // Inject components in order — nav first, hero second
   await injectComponent('cc-nav-mount',  'components/mega-nav.html');
   await injectComponent('cc-hero-mount', 'components/hero-slider.html');
 
+  // Load interaction scripts — DOM is ready for them now
   await loadScript('assets/js/mega-nav.js');
   await loadScript('assets/js/hero-slider.js');
+
 })();
 </script>
 
