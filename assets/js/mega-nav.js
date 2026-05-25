@@ -1,34 +1,12 @@
-function initMegaNav() {
-  const navLinks = document.querySelectorAll('.cc-link');
+document.addEventListener('click', function(e){
+  const link = e.target.closest('.cc-link');
 
-  navLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      navLinks.forEach(item => item.classList.remove('is-open'));
-      link.classList.add('is-open');
-    });
-
-    link.addEventListener('mouseleave', () => {
-      setTimeout(() => {
-        if (!link.matches(':hover')) {
-          link.classList.remove('is-open');
-        }
-      }, 120);
-    });
-
-    link.addEventListener('click', e => {
-      e.preventDefault();
-
-      const alreadyOpen = link.classList.contains('is-open');
-
-      navLinks.forEach(item => item.classList.remove('is-open'));
-
-      if (!alreadyOpen) {
-        link.classList.add('is-open');
-      }
-    });
+  document.querySelectorAll('.cc-link').forEach(item => {
+    if (item !== link) item.classList.remove('is-open');
   });
 
-  console.log('Mega nav dropdowns ready');
-}
-
-window.initMegaNav = initMegaNav;
+  if (link && !e.target.closest('.cc-dropdown')) {
+    e.preventDefault();
+    link.classList.toggle('is-open');
+  }
+});
