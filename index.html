@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CoverCapy | PPO Dental Insurance, Cost Estimates & PPO Dentist Discovery</title>
-  <meta name="description" content="CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists before booking care." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://covercapy.com/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+  <title>
+    CoverCapy | PPO Dental Insurance, Cost Estimates & PPO Dentist Discovery
+  </title>
+
+  <meta
+    name="description"
+    content="CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists before booking care."
+  />
+
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://covercapycodex.vercel.app/" />
+
+  <!-- OPEN GRAPH -->
   <meta property="og:title" content="CoverCapy | Concierge Dental Network" />
   <meta property="og:description" content="Compare PPO dental plans, estimate treatment costs, and discover PPO-friendly dentists." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://covercapy.com/" />
+  <meta property="og:url" content="https://covercapycodex.vercel.app/" />
 
+  <!-- TWITTER -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CoverCapy | Concierge Dental Network" />
   <meta name="twitter:description" content="PPO dental insurance, cost estimates, and PPO-friendly dentist discovery." />
 
+  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/mega-nav.css" />
   <link rel="stylesheet" href="/assets/css/hero-slider.css" />
 
@@ -25,44 +37,54 @@
       margin:0;
       background:#faf8f4;
       overflow-x:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    #site-nav{
+      position:relative;
+      z-index:9999;
+    }
+
+    #hero-slider{
+      position:relative;
+      z-index:1;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- MEGA NAV -->
   <div id="site-nav"></div>
+
+  <!-- HERO -->
   <div id="hero-slider"></div>
 
+  <!-- LOAD NAV -->
+  <script src="/assets/js/load-nav.js"></script>
+
+  <!-- LOAD HERO -->
   <script>
-    fetch('/components/mega-nav.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-nav').innerHTML = html;
-
-        const navScript = document.createElement('script');
-        navScript.src = '/assets/js/mega-nav.js';
-        document.body.appendChild(navScript);
-      });
-
     fetch('/components/hero-slider.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('hero-slider').innerHTML = html;
 
         const heroScript = document.createElement('script');
-        heroScript.src = '/assets/js/hero-slider.js';
+        heroScript.src = '/assets/js/hero-slider.js?v=' + Date.now();
         document.body.appendChild(heroScript);
-      });
+      })
+      .catch(err => console.error('Hero slider failed to load:', err));
   </script>
 
+  <!-- SCHEMA -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "CoverCapy",
-    "url": "https://covercapy.com/",
-    "description": "CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists."
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"CoverCapy",
+    "url":"https://covercapycodex.vercel.app/",
+    "description":"CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists."
   }
   </script>
 
