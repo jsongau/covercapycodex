@@ -15,22 +15,11 @@
 
   <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://covercapycodex.vercel.app/" />
+  <!-- MEGA NAV CSS -->
+  <link rel="stylesheet" href="/assets/css/mega-nav.css">
 
-  <!-- OPEN GRAPH -->
-  <meta property="og:title" content="CoverCapy | Concierge Dental Network" />
-  <meta property="og:description" content="Compare PPO dental plans, estimate treatment costs, and discover PPO-friendly dentists." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://covercapycodex.vercel.app/" />
-
-  <!-- TWITTER -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CoverCapy | Concierge Dental Network" />
-  <meta name="twitter:description" content="PPO dental insurance, cost estimates, and PPO-friendly dentist discovery." />
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/mega-nav.css" />
-  <link rel="stylesheet" href="/assets/css/hero-slider.css" />
+  <!-- HERO SLIDER CSS -->
+  <link rel="stylesheet" href="/assets/css/hero-slider.css">
 
   <style>
     body{
@@ -57,13 +46,24 @@
   <!-- MEGA NAV -->
   <div id="site-nav"></div>
 
-  <!-- HERO -->
+  <!-- HERO SLIDER -->
   <div id="hero-slider"></div>
 
-  <!-- LOAD NAV -->
-  <script src="/assets/js/load-nav.js"></script>
+  <!-- LOAD MEGA NAV -->
+  <script>
+    fetch('/components/mega-nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-nav').innerHTML = html;
 
-  <!-- LOAD HERO -->
+        const navScript = document.createElement('script');
+        navScript.src = '/assets/js/mega-nav.js?v=' + Date.now();
+        document.body.appendChild(navScript);
+      })
+      .catch(err => console.error('Mega nav failed:', err));
+  </script>
+
+  <!-- LOAD HERO SLIDER -->
   <script>
     fetch('/components/hero-slider.html')
       .then(res => res.text())
@@ -74,18 +74,7 @@
         heroScript.src = '/assets/js/hero-slider.js?v=' + Date.now();
         document.body.appendChild(heroScript);
       })
-      .catch(err => console.error('Hero slider failed to load:', err));
-  </script>
-
-  <!-- SCHEMA -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"CoverCapy",
-    "url":"https://covercapycodex.vercel.app/",
-    "description":"CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists."
-  }
+      .catch(err => console.error('Hero slider failed:', err));
   </script>
 
 </body>
