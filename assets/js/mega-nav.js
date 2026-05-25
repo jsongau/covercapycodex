@@ -1,126 +1,18 @@
 /* ════════════════════════════════════════════════════════════════
-   COVERCAPY MEGA NAV — v700 standalone behavior bundle
-   Extracted from membership_v513.html → membership_v700.html
-   Includes: mega nav hover/keyboard behavior · v201 find-dentist
-             data · v207 slug system · v211 ZIP recognition · toast
-             feedback · v207 routing table (megaGo function).
+   CoverCapy MEGA NAV — behavior + data + interactions
+   Extracted verbatim from membership v513.
+
+   Architecture:
+     • Top-level declarations (data + named functions) are global
+       because this file is loaded as a non-module <script src=>.
+       That's required so inline onclick="megaGo(...)" handlers
+       inside mega-nav.html (which is injected dynamically) can
+       resolve them by bare name.
+     • DOM binding (link hover/click/escape, initial paint, calc
+       pre-select, crown count-up) lives inside window.initMegaNav(),
+       which load-nav.js calls AFTER the nav HTML is injected.
+     • initMegaNav() is idempotent — guarded by window.__megaNavInitialized.
    ════════════════════════════════════════════════════════════════ */
-
-/* ════════════════════════════════════════════════════════════════
-   MEGA NAV BEHAVIOR (production-ready, accessible, debounced)
-   ════════════════════════════════════════════════════════════════ */
-(function(){
-  const links = document.querySelectorAll('.cc-link');
-  let openTimer = null;
-  let closeTimer = null;
-  let activeLink = null;
-
-  function closeAll(except){
-    links.forEach(l => {
-      if(l !== except) l.classList.remove('is-open');
-    });
-    if(except !== activeLink) activeLink = except || null;
-  }
-
-  function openLink(link){
-    clearTimeout(closeTimer);
-    closeAll(link);
-    link.classList.add('is-open');
-    activeLink = link;
-    positionDropdown(link);
-  }
-
-  function scheduleClose(link){
-    clearTimeout(closeTimer);
-    closeTimer = setTimeout(() => {
-      link.classList.remove('is-open');
-      if(activeLink === link) activeLink = null;
-    }, 180);
-  }
-
-  /* Center under link if it fits, else snap to viewport edge */
-  function positionDropdown(link){
-    const drop = link.querySelector('.cc-dropdown');
-    if(!drop) return;
-
-    drop.style.left = '50%';
-    drop.style.transform = 'translate(-50%, 0)';
-
-    requestAnimationFrame(() => {
-      const linkRect = link.getBoundingClientRect();
-      const dropRect = drop.getBoundingClientRect();
-      const viewW = window.innerWidth;
-      const pad = 16;
-      let leftPx = linkRect.left + (linkRect.width / 2) - (dropRect.width / 2);
-      if(leftPx < pad) leftPx = pad;
-      if(leftPx + dropRect.width > viewW - pad) leftPx = viewW - pad - dropRect.width;
-      drop.style.left = leftPx + 'px';
-      drop.style.transform = 'translate(0, 0)';
-    });
-  }
-
-  links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      clearTimeout(closeTimer);
-      openTimer = setTimeout(() => openLink(link), 60);
-    });
-    link.addEventListener('mouseleave', () => {
-      clearTimeout(openTimer);
-      scheduleClose(link);
-    });
-    link.addEventListener('click', (e) => {
-      if(e.target.closest('.cc-dropdown a, .cc-dropdown button, .cc-dropdown input, .cc-dropdown [data-region], .cc-dropdown [data-location], .cc-dropdown [data-area], .cc-dropdown [data-city]')) return;
-      e.preventDefault();
-      e.stopPropagation();
-      if(link.classList.contains('is-open')){
-        link.classList.remove('is-open');
-        activeLink = null;
-      } else {
-        openLink(link);
-      }
-    });
-    link.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        if(link.classList.contains('is-open')) link.classList.remove('is-open');
-        else openLink(link);
-      }
-      if(e.key === 'Escape'){ link.classList.remove('is-open'); link.focus(); }
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if(!e.target.closest('.cc-link')) closeAll();
-  });
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeAll();
-  });
-
-  let rafId;
-  function reposition(){ if(activeLink) positionDropdown(activeLink); }
-  window.addEventListener('resize', () => {
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(reposition);
-  });
-  window.addEventListener('scroll', reposition, { passive: true });
-
-  // ZIP input
-  const zipInput = document.getElementById('rmg-zip-input');
-  if(zipInput){
-    zipInput.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D/g, '');
-      if(e.target.value.length === 5){
-        e.stopPropagation();
-        rmgFindByZip();
-      }
-    });
-    zipInput.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){ e.stopPropagation(); rmgFindByZip(); }
-    });
-    zipInput.addEventListener('click', (e) => e.stopPropagation());
-  }
-
-})();
 
 /* ════════════════════════════════════════════════════════════════
    v201 DATA — sourced directly from v156
@@ -1374,16 +1266,6 @@ function findClosestDentists(){
   closeNav();
 }
 
-/* Initial paint */
-renderRegions();
-renderLocations();
-renderAreas();
-renderCities();
-renderClosest();
-renderAwaiting();
-renderFeatured();
-updateFeaturedDemand();
-
 /* ════════════════════════════════════════════════════════════════
    TOAST — visual feedback for every click
    ════════════════════════════════════════════════════════════════ */
@@ -1607,23 +1489,306 @@ function rmgGoArea(slug, name){
   closeNav();
 }
 
-/* Crown balance count-up on first reveal */
-(function(){
-  const bal = document.getElementById('mega-crown-bal');
-  if(!bal) return;
-  const target = 300;
-  let cur = 0;
-  const step = Math.max(1, Math.floor(target / 40));
-  let started = false;
-  function start(){
-    if(started) return;
-    started = true;
-    const t = setInterval(() => {
-      cur = Math.min(cur + step, target);
-      bal.textContent = cur.toLocaleString();
-      if(cur >= target) clearInterval(t);
-    }, 30);
+/* ════════════════════════════════════════════════════════════════
+   CALC TABS · TREATMENT SELECTOR · CROWN PROGRESS · ACCORDION
+   ════════════════════════════════════════════════════════════════ */
+
+// CALC TABS
+function switchCalcTab(tab, btn){
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('is-active'));
+  document.querySelectorAll('.calc-tab-panel').forEach(p => p.classList.remove('is-active'));
+  if(btn) btn.classList.add('is-active');
+  const panel = document.getElementById('calc-panel-' + tab);
+  if(panel) panel.classList.add('is-active');
+}
+
+// TREATMENT SELECTOR
+function selectTreatment(el){
+  document.querySelectorAll('.calc-treat').forEach(t => {
+    t.classList.remove('is-active');
+    t.style.borderColor = '';
+    t.style.background = '';
+  });
+  el.classList.add('is-active');
+  el.style.borderColor = 'var(--g)';
+  el.style.background = 'var(--gll)';
+  const retail = parseInt(el.dataset.retail);
+  const ppo    = parseInt(el.dataset.ppo);
+  const save   = parseInt(el.dataset.save);
+  const pct    = Math.round((ppo / retail) * 100);
+  const fmt = n => '$' + n.toLocaleString();
+  const retailEl  = document.getElementById('calc-retail');
+  const ppoEl     = document.getElementById('calc-ppo');
+  const saveEl    = document.getElementById('calc-save');
+  const barEl     = document.getElementById('calc-bar');
+  if(retailEl) retailEl.textContent = fmt(retail);
+  if(ppoEl)    ppoEl.textContent    = ppo === 0 ? 'Free (covered)' : 'from ' + fmt(ppo);
+  if(saveEl)   saveEl.textContent   = fmt(save);
+  if(barEl)    barEl.style.width    = Math.max(5, pct) + '%';
+}
+
+// CROWN PROGRESS
+function updateCrownProgress(crowns){
+  const total = 2000;
+  const pct   = Math.min(100, Math.round((crowns / total) * 100));
+  const fill   = document.getElementById('crown-progress-fill');
+  const marker = document.getElementById('crown-progress-marker');
+  const balloon= document.getElementById('crown-progress-balloon');
+  const balD   = document.getElementById('crown-bal-display');
+  const needD  = document.getElementById('crown-need-display');
+  if(fill)   fill.style.width  = pct + '%';
+  if(marker) marker.style.left = Math.min(94, pct) + '%';
+  if(balloon) balloon.textContent = crowns.toLocaleString() + ' 👑';
+  if(balD)   balD.textContent  = crowns.toLocaleString();
+  if(needD)  needD.textContent = Math.max(0, total - crowns).toLocaleString();
+}
+
+// CROWN ACCORDION TOGGLE
+function toggleCrownAcc(which){
+  const body    = document.getElementById('crown-' + which + '-body');
+  const chevron = document.getElementById('crown-' + which + '-chevron');
+  const toggle  = document.getElementById('crown-' + which + '-toggle');
+  if(!body) return;
+  const isOpen = body.classList.contains('is-open');
+  body.classList.toggle('is-open', !isOpen);
+  if(chevron) chevron.textContent = isOpen ? '▾' : '▴';
+  if(toggle)  toggle.setAttribute('aria-expanded', String(!isOpen));
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   DENTIST ZIP SEARCH (Membership dropdown claim form)
+   ════════════════════════════════════════════════════════════════ */
+// DENTIST ZIP SEARCH (claim profile lookup)
+function dentZipKey(ev){
+  const input = ev.target;
+  input.value = input.value.replace(/\D/g, '');
+  if(input.value.length === 5){
+    dentZipSearch(ev);
   }
-  const rewardsLink = document.querySelector('[data-link="rewards"]');
-  if(rewardsLink) rewardsLink.addEventListener('mouseenter', start, { once: true });
-})();
+}
+function dentZipSearch(ev){
+  if(ev && ev.preventDefault) ev.preventDefault();
+  const input = document.getElementById('dent-zip-input');
+  const meta  = document.getElementById('dent-zip-meta');
+  if(!input || !meta) return;
+  const zip = (input.value || '').replace(/\D/g,'');
+  if(zip.length !== 5){
+    meta.textContent = 'Enter a 5-digit ZIP to search';
+    meta.classList.remove('is-found');
+    return;
+  }
+  meta.textContent = 'Searching our dentist index for ZIP ' + zip + '...';
+  meta.classList.remove('is-found');
+  setTimeout(function(){
+    meta.textContent = "Found 14 practices near " + zip + " · Continue to claim yours";
+    meta.classList.add('is-found');
+    setTimeout(function(){
+      if(typeof openPortalModal === 'function'){
+        openPortalModal();
+      } else if(typeof toast === 'function'){
+        toast('Claim Profile', 'ZIP ' + zip);
+      }
+    }, 600);
+  }, 700);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   window.initMegaNav() — called by load-nav.js once the nav HTML
+   has been injected into #mega-nav-placeholder. Idempotent.
+   ════════════════════════════════════════════════════════════════ */
+window.initMegaNav = function(){
+  if(window.__megaNavInitialized) return;
+  var nav = document.getElementById('cc-nav');
+  if(!nav) return; // HTML not in DOM yet — caller will retry
+  window.__megaNavInitialized = true;
+
+  /* ── 1. Initial paint of the Find Dentist cascade ───────────── */
+  try {
+    if(typeof renderRegions === 'function')        renderRegions();
+    if(typeof renderLocations === 'function')      renderLocations();
+    if(typeof renderAreas === 'function')          renderAreas();
+    if(typeof renderCities === 'function')         renderCities();
+    if(typeof renderClosest === 'function')        renderClosest();
+    if(typeof renderAwaiting === 'function')       renderAwaiting();
+    if(typeof renderFeatured === 'function')       renderFeatured();
+    if(typeof updateFeaturedDemand === 'function') updateFeaturedDemand();
+  } catch(e){ console.warn('[megaNav] initial render skipped:', e); }
+
+  /* ── 2. Crown progress + treatment pre-select ───────────────── */
+  try {
+    if(typeof updateCrownProgress === 'function') updateCrownProgress(300);
+    var firstTreat = nav.querySelector('.calc-treat');
+    if(firstTreat){
+      firstTreat.style.borderColor = 'var(--g)';
+      firstTreat.style.background  = 'var(--gll)';
+      firstTreat.classList.add('is-active');
+    }
+  } catch(e){}
+
+  /* ── 3. MEGA NAV BEHAVIOR (production-ready, accessible) ──────
+       Verbatim port of the source IIFE, scoped to the freshly
+       injected nav. Uses event delegation where possible so
+       dynamic content (regions, cities, areas, ZIP pills, etc.)
+       keeps working when re-rendered.
+     ─────────────────────────────────────────────────────────── */
+  var links = nav.querySelectorAll('.cc-link');
+  var openTimer = null;
+  var closeTimer = null;
+  var activeLink = null;
+
+  function closeAll(except){
+    links.forEach(function(l){
+      if(l !== except){
+        l.classList.remove('is-open');
+        l.setAttribute('aria-expanded', 'false');
+      }
+    });
+    if(except !== activeLink) activeLink = except || null;
+  }
+
+  function openLink(link){
+    clearTimeout(closeTimer);
+    closeAll(link);
+    link.classList.add('is-open');
+    link.setAttribute('aria-expanded', 'true');
+    activeLink = link;
+    positionDropdown(link);
+  }
+
+  function scheduleClose(link){
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(function(){
+      link.classList.remove('is-open');
+      link.setAttribute('aria-expanded', 'false');
+      if(activeLink === link) activeLink = null;
+    }, 180);
+  }
+
+  /* Center under link if it fits, else snap to viewport edge */
+  function positionDropdown(link){
+    var drop = link.querySelector('.cc-dropdown');
+    if(!drop) return;
+    drop.style.left = '50%';
+    drop.style.transform = 'translate(-50%, 0)';
+    requestAnimationFrame(function(){
+      var linkRect = link.getBoundingClientRect();
+      var dropRect = drop.getBoundingClientRect();
+      var viewW = window.innerWidth;
+      var pad = 16;
+      var leftPx = linkRect.left + (linkRect.width / 2) - (dropRect.width / 2);
+      if(leftPx < pad) leftPx = pad;
+      if(leftPx + dropRect.width > viewW - pad) leftPx = viewW - pad - dropRect.width;
+      drop.style.left = leftPx + 'px';
+      drop.style.transform = 'translate(0, 0)';
+    });
+  }
+
+  links.forEach(function(link){
+    link.setAttribute('aria-haspopup', 'true');
+    link.setAttribute('aria-expanded', 'false');
+
+    // Hover open (desktop)
+    link.addEventListener('mouseenter', function(){
+      clearTimeout(closeTimer);
+      openTimer = setTimeout(function(){ openLink(link); }, 60);
+    });
+    // Hover-out → debounced close (keeps dropdown open when cursor
+    // re-enters the dropdown body, since the dropdown is a child of
+    // .cc-link so mouseleave only fires when leaving both)
+    link.addEventListener('mouseleave', function(){
+      clearTimeout(openTimer);
+      scheduleClose(link);
+    });
+    // Click toggle — but don't intercept clicks on interactive items
+    // INSIDE the dropdown (tabs, links, buttons, ZIP input, region pills).
+    link.addEventListener('click', function(e){
+      if(e.target.closest('.cc-dropdown a, .cc-dropdown button, .cc-dropdown input, .cc-dropdown [data-region], .cc-dropdown [data-location], .cc-dropdown [data-area], .cc-dropdown [data-city]')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if(link.classList.contains('is-open')){
+        link.classList.remove('is-open');
+        link.setAttribute('aria-expanded', 'false');
+        activeLink = null;
+      } else {
+        openLink(link);
+      }
+    });
+    // Keyboard accessibility
+    link.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        if(link.classList.contains('is-open')){
+          link.classList.remove('is-open');
+          link.setAttribute('aria-expanded', 'false');
+        } else {
+          openLink(link);
+        }
+      }
+      if(e.key === 'Escape'){
+        link.classList.remove('is-open');
+        link.setAttribute('aria-expanded', 'false');
+        link.focus();
+      }
+    });
+  });
+
+  // Click outside the nav closes any open dropdown
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.cc-link')) closeAll();
+  });
+  // Global Escape closes everything
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeAll();
+  });
+
+  // Reposition active dropdown on resize / scroll
+  var rafId;
+  function reposition(){ if(activeLink) positionDropdown(activeLink); }
+  window.addEventListener('resize', function(){
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(reposition);
+  });
+  window.addEventListener('scroll', reposition, { passive: true });
+
+  /* ── 4. ZIP input (Find Dentist dropdown) ───────────────────── */
+  var zipInput = document.getElementById('rmg-zip-input');
+  if(zipInput){
+    zipInput.addEventListener('input', function(e){
+      e.target.value = e.target.value.replace(/\D/g, '');
+      if(e.target.value.length === 5){
+        e.stopPropagation();
+        if(typeof rmgFindByZip === 'function') rmgFindByZip();
+      }
+    });
+    zipInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        e.stopPropagation();
+        if(typeof rmgFindByZip === 'function') rmgFindByZip();
+      }
+    });
+    zipInput.addEventListener('click', function(e){ e.stopPropagation(); });
+  }
+
+  /* ── 5. Crown balance count-up on first rewards hover ───────── */
+  (function(){
+    var bal = document.getElementById('mega-crown-bal');
+    if(!bal) return;
+    var target = 300;
+    var cur = 0;
+    var step = Math.max(1, Math.floor(target / 40));
+    var started = false;
+    function start(){
+      if(started) return;
+      started = true;
+      var t = setInterval(function(){
+        cur = Math.min(cur + step, target);
+        bal.textContent = cur.toLocaleString();
+        if(cur >= target) clearInterval(t);
+      }, 30);
+    }
+    var rewardsLink = nav.querySelector('[data-link="rewards"]');
+    if(rewardsLink) rewardsLink.addEventListener('mouseenter', start, { once: true });
+  })();
+
+};  // end window.initMegaNav
