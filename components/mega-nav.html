@@ -2,6 +2,7 @@
      CoverCapy · MEGA NAV · HTML
      Extracted from membership_v514.html
      Pair with: mega-nav.css (styles) + mega-nav.js (behavior)
+                mega-nav-mobile.css (mobile hamburger + drawer)
      Inject via fetch + innerHTML, or paste directly into your page.
      ════════════════════════════════════════════════════════════════ -->
 <nav class="cc-nav" id="cc-nav">
@@ -73,6 +74,7 @@
           </div>
         </div>
       </div>
+
       <!-- 2. PPO PLANS — primary patient entry -->
       <div class="cc-link" data-link="plans" role="menuitem" tabindex="0">
         <span>Coverage</span>
@@ -93,7 +95,6 @@
           </div>
 
           <div class="cc-drop-body">
-            <!-- HERO — Compare Plans as primary action -->
             <a class="cc-hero" href="/ppo-plans/compare" onclick="megaGo('compare');return false;">
               <div class="cc-hero-text">
                 <div class="cc-hero-eyebrow">Side-by-side · All major carriers</div>
@@ -103,7 +104,6 @@
               <span class="cc-hero-cta">Compare Now <span class="arrow">→</span></span>
             </a>
 
-            <!-- UHC FEATURED ACCESS CARD -->
             <div class="plans-uhc-feature">
               <div class="plans-uhc-badge">⚡ Fastest Activation</div>
               <div class="plans-uhc-info">
@@ -115,7 +115,6 @@
               </a>
             </div>
 
-            <!-- POPULAR NEEDS — 4 only -->
             <div class="cc-support" style="margin-top:14px;">
               <div class="cc-support-label">What do you need coverage for?</div>
               <div class="plans-needs-grid" style="grid-template-columns:repeat(2,1fr);">
@@ -134,7 +133,6 @@
               </div>
             </div>
 
-            <!-- 2-COL TOP PICKS — fastest + best value -->
             <div class="plans-picks">
               <div class="plans-picks-label"><span>★</span> Top picks · fastest coverage</div>
               <div class="plans-picks-row" style="grid-template-columns:1fr 1fr;">
@@ -163,7 +161,7 @@
         </div>
       </div>
 
-      <!-- 3. COST CALCULATOR — Ascend-style interactive -->
+      <!-- 3. COST CALCULATOR -->
       <div class="cc-link" data-link="calc" role="menuitem" tabindex="0">
         <span>Estimates</span>
         <span class="cc-link-caret">▾</span>
@@ -183,17 +181,13 @@
           </div>
 
           <div class="cc-drop-body" style="padding-bottom:0;">
-
-            <!-- CALC TABS -->
             <div class="calc-tabs" id="calc-tabs">
               <button class="calc-tab is-active" data-tab="estimate" onclick="switchCalcTab('estimate',this);return false;">Quick Estimate</button>
               <button class="calc-tab" data-tab="timing" onclick="switchCalcTab('timing',this);return false;">Smart Timing</button>
             </div>
 
-            <!-- TAB: QUICK ESTIMATE -->
             <div class="calc-tab-panel is-active" id="calc-panel-estimate">
               <p style="font-size:12px;color:var(--ink-soft);margin:10px 0 10px;font-style:italic;">Choose a treatment to see what you'd actually pay with PPO coverage.</p>
-              <!-- TREATMENT CARDS -->
               <div class="calc-treatment-grid" id="calc-treatment-grid">
                 <button class="calc-treat" data-retail="5800" data-ppo="2400" data-save="3400" onclick="selectTreatment(this)" style="border-color:var(--g);background:var(--gll);">
                   <span class="calc-treat-icon">🦷</span>
@@ -221,7 +215,6 @@
                 </button>
               </div>
 
-              <!-- SAVINGS METER -->
               <div class="calc-meter-wrap" id="calc-meter-wrap">
                 <div class="calc-meter-header">
                   <div class="calc-meter-labels">
@@ -254,7 +247,6 @@
               </div>
             </div>
 
-            <!-- TAB: SMART TIMING -->
             <div class="calc-tab-panel" id="calc-panel-timing">
               <div class="calc-timing-grid">
                 <div class="calc-timing-card">
@@ -275,7 +267,6 @@
               </div>
               <a class="calc-cta-btn primary" style="margin-top:12px;display:inline-flex;" href="/guides/smart-timing-strategy" onclick="megaGo('smart-timing');return false;">Full Timing Strategy →</a>
             </div>
-
           </div>
 
           <div class="cc-drop-foot">
@@ -309,51 +300,30 @@
           </div>
 
           <div class="cc-drop-body">
-
-            <!-- TWO-COLUMN LAYOUT: Left = Region+Location+Area | Right = Featured+ZIP -->
             <div class="find-2col">
-
-              <!-- LEFT: Regions + Locations + Popular Areas -->
               <div>
-                <!-- COMPACT REGION TABS — STEP 1 -->
-                <div class="find-regions" id="find-regions">
-                  <!-- populated by JS -->
-                </div>
-
-                <!-- LOCATIONS panel — STEP 2 -->
+                <div class="find-regions" id="find-regions"></div>
                 <div class="find-panel">
                   <div class="find-panel-head">
-                    <span class="find-panel-title">
-                      <span class="find-step-label"><span class="step-num">2</span> Location</span>
-                    </span>
+                    <span class="find-panel-title"><span class="find-step-label"><span class="step-num">2</span> Location</span></span>
                     <span class="find-panel-tag" id="find-locations-tag">3 STATES</span>
                   </div>
                   <div class="find-panel-body">
-                    <div class="find-locations" id="find-locations">
-                      <!-- populated by JS -->
-                    </div>
+                    <div class="find-locations" id="find-locations"></div>
                   </div>
                 </div>
-
-                <!-- POPULAR AREAS panel — STEP 3 -->
                 <div class="find-panel">
                   <div class="find-panel-head">
-                    <span class="find-panel-title">
-                      <span class="find-step-label"><span class="step-num">3</span> Area</span>
-                    </span>
+                    <span class="find-panel-title"><span class="find-step-label"><span class="step-num">3</span> Area</span></span>
                     <span class="find-panel-tag" id="find-areas-tag">0 AREAS</span>
                   </div>
                   <div class="find-panel-body">
-                    <div class="find-areas" id="find-areas">
-                      <!-- populated by JS -->
-                    </div>
+                    <div class="find-areas" id="find-areas"></div>
                   </div>
                 </div>
               </div>
 
-              <!-- RIGHT: Featured Dentist + City/ZIP Panel -->
               <div>
-                <!-- FEATURED DENTIST -->
                 <a class="find-featured" data-state="filled" href="/dentists/featured" onclick="megaGo('featured-dentist');return false;" id="find-featured">
                   <div class="find-featured-avatar">🦷</div>
                   <div>
@@ -367,44 +337,29 @@
                   </div>
                 </a>
 
-                <!-- CITY / ZIP PANEL — STEP 4 -->
                 <div class="find-zip-panel">
                   <div class="find-panel-head" style="margin:-14px -14px 12px;border-bottom:1px solid var(--line);">
-                    <span class="find-panel-title">
-                      <span class="find-step-label"><span class="step-num">4</span> City / ZIP</span>
-                    </span>
+                    <span class="find-panel-title"><span class="find-step-label"><span class="step-num">4</span> City / ZIP</span></span>
                     <span class="find-panel-tag">FIND BY ZIP</span>
                   </div>
-
                   <div class="find-zip-row">
                     <input class="find-zip-input" type="text" inputmode="numeric" maxlength="5" placeholder="92708" id="rmg-zip-input" autocomplete="off"/>
                     <button class="find-zip-btn" onclick="event.stopPropagation();rmgFindByZip();">Find</button>
                   </div>
                   <div class="find-zip-note">Auto-filled from your approximate location. You can change it anytime.</div>
-
-                  <!-- CLOSEST NEARBY (mode-aware: AREA, CITY, or ZIP) -->
                   <div class="find-closest" id="find-closest" data-mode="area">
                     <div class="find-closest-label" id="find-closest-label">Closest Nearby Area</div>
                     <div class="find-closest-name" id="find-closest-name">Orange County</div>
                     <div class="find-closest-count" id="find-closest-count"></div>
-
-                    <!-- v211: ZIP mode shows recognized cities as pills + a closest-indexed hint -->
                     <div class="find-zip-pills" id="find-zip-pills"></div>
                     <div class="find-zip-fallback" id="find-zip-fallback"></div>
-
                     <a class="find-closest-cta" id="find-closest-cta" href="/dentists" onclick="event.stopPropagation();event.preventDefault();findClosestDentists();">Find Nearby Dentists</a>
                   </div>
-
-                  <!-- POPULAR CITIES -->
                   <div class="find-cities-head">
                     <span class="find-cities-title">Popular cities in <span id="find-cities-area">Orange County</span></span>
                     <span class="find-cities-tag" id="find-cities-tag">0 cities</span>
                   </div>
-                  <div class="find-cities" id="find-cities">
-                    <!-- populated by JS -->
-                  </div>
-
-                  <!-- AWAITING ACCREDITATION -->
+                  <div class="find-cities" id="find-cities"></div>
                   <div class="find-awaiting" id="find-awaiting">
                     <div class="find-awaiting-eyebrow">⏳ Awaiting Accreditation</div>
                     <div class="find-awaiting-num" id="find-awaiting-num"><em>~</em>36</div>
@@ -415,9 +370,8 @@
                     </div>
                   </div>
                 </div>
-
-              </div><!-- /RIGHT -->
-            </div><!-- /find-2col -->
+              </div>
+            </div>
           </div>
 
           <div class="cc-drop-foot">
@@ -431,7 +385,7 @@
         </div>
       </div>
 
-      <!-- 5. PATIENT REWARDS — Capy Crowns v500 -->
+      <!-- 5. PATIENT REWARDS -->
       <div class="cc-link" data-link="rewards" role="menuitem" tabindex="0">
         <span>Capy Crowns</span>
         <span class="cc-link-caret">▾</span>
@@ -451,8 +405,6 @@
           </div>
 
           <div class="cc-drop-body">
-
-            <!-- GOAL CARD — always visible, compact -->
             <div class="crown-goal-card">
               <div class="crown-goal-left">
                 <div class="crown-goal-eyebrow">⭐ Featured Reward · Delivered by Capy Platinum Elite Dentists</div>
@@ -482,7 +434,6 @@
               </div>
             </div>
 
-            <!-- EARN PATH — collapsible accordion -->
             <div class="crown-accordion" id="crown-earn-acc">
               <button class="crown-acc-toggle" onclick="toggleCrownAcc('earn');return false;" aria-expanded="false" id="crown-earn-toggle">
                 <span class="crown-acc-toggle-left">
@@ -496,84 +447,39 @@
               </button>
               <div class="crown-acc-body" id="crown-earn-body">
                 <div class="crown-earn-steps">
-
-                  <!-- STEP 1 — done state -->
                   <div class="crown-step is-done">
-                    <div class="crown-step-left">
-                      <div class="crown-step-check">✓</div>
-                      <div class="crown-step-connector"></div>
-                    </div>
+                    <div class="crown-step-left"><div class="crown-step-check">✓</div><div class="crown-step-connector"></div></div>
                     <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Create an Account</div>
-                        <div class="crown-step-pts">+300 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">Earned automatically on signup</div>
-                        <div class="crown-step-running">300 / 2,000</div>
-                      </div>
+                      <div class="crown-step-row"><div class="crown-step-name">Create an Account</div><div class="crown-step-pts">+300 👑</div></div>
+                      <div class="crown-step-row-sub"><div class="crown-step-meta">Earned automatically on signup</div><div class="crown-step-running">300 / 2,000</div></div>
                     </div>
                   </div>
-
-                  <!-- STEP 2 -->
                   <div class="crown-step">
-                    <div class="crown-step-left">
-                      <div class="crown-step-num">2</div>
-                      <div class="crown-step-connector"></div>
-                    </div>
+                    <div class="crown-step-left"><div class="crown-step-num">2</div><div class="crown-step-connector"></div></div>
                     <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Activate a PPO Plan</div>
-                        <div class="crown-step-pts">+500 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">Compare &amp; choose your best fit</div>
-                        <div class="crown-step-running">800 / 2,000</div>
-                      </div>
+                      <div class="crown-step-row"><div class="crown-step-name">Activate a PPO Plan</div><div class="crown-step-pts">+500 👑</div></div>
+                      <div class="crown-step-row-sub"><div class="crown-step-meta">Compare &amp; choose your best fit</div><div class="crown-step-running">800 / 2,000</div></div>
                     </div>
                   </div>
-
-                  <!-- STEP 3 -->
                   <div class="crown-step">
-                    <div class="crown-step-left">
-                      <div class="crown-step-num">3</div>
-                      <div class="crown-step-connector"></div>
-                    </div>
+                    <div class="crown-step-left"><div class="crown-step-num">3</div><div class="crown-step-connector"></div></div>
                     <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Book a PPO Dentist</div>
-                        <div class="crown-step-pts">+500 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">Schedule at a Capy Accredited office</div>
-                        <div class="crown-step-running">1,300 / 2,000</div>
-                      </div>
+                      <div class="crown-step-row"><div class="crown-step-name">Book a PPO Dentist</div><div class="crown-step-pts">+500 👑</div></div>
+                      <div class="crown-step-row-sub"><div class="crown-step-meta">Schedule at a Capy Accredited office</div><div class="crown-step-running">1,300 / 2,000</div></div>
                     </div>
                   </div>
-
-                  <!-- STEP 4 — the finisher -->
                   <div class="crown-step is-highlight">
-                    <div class="crown-step-left">
-                      <div class="crown-step-num is-gold">4</div>
-                    </div>
+                    <div class="crown-step-left"><div class="crown-step-num is-gold">4</div></div>
                     <div class="crown-step-content">
-                      <div class="crown-step-row">
-                        <div class="crown-step-name">Refer a Friend or Family Member</div>
-                        <div class="crown-step-pts is-gold">+700 👑</div>
-                      </div>
-                      <div class="crown-step-row-sub">
-                        <div class="crown-step-meta">One referral hits exactly 2,000 — free whitening unlocked 🎉</div>
-                        <div class="crown-step-running is-unlock">2,000 👑 ✓</div>
-                      </div>
+                      <div class="crown-step-row"><div class="crown-step-name">Refer a Friend or Family Member</div><div class="crown-step-pts is-gold">+700 👑</div></div>
+                      <div class="crown-step-row-sub"><div class="crown-step-meta">One referral hits exactly 2,000 — free whitening unlocked 🎉</div><div class="crown-step-running is-unlock">2,000 👑 ✓</div></div>
                     </div>
                   </div>
-
                 </div>
                 <div class="crown-earn-note">Whitening is delivered by Platinum Elite network dentists — like Beast Burgers through a vetted kitchen, not a coupon you have to chase.</div>
               </div>
             </div>
 
-            <!-- MORE REWARDS — collapsible -->
             <div class="crown-accordion" id="crown-perks-acc">
               <button class="crown-acc-toggle" onclick="toggleCrownAcc('perks');return false;" aria-expanded="false" id="crown-perks-toggle">
                 <span class="crown-acc-toggle-left">
@@ -586,28 +492,19 @@
               <div class="crown-acc-body" id="crown-perks-body">
                 <div class="rewards-perks-grid" style="padding:0 0 4px;">
                   <a class="reward-perk theme-lavender" href="/rewards/redeem/in-office-whitening" onclick="megaGo('redeem-whitening');return false;">
-                    <span class="reward-perk-dot-frame"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
+                    <span class="reward-perk-dot-frame"></span><span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span><span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
                     <div class="reward-perk-crown"><span class="reward-perk-crown-core">👑</span></div>
-                    <span class="reward-perk-text">
-                      <span class="reward-perk-name">Whitening</span>
-                      <span style="font-size:10px;color:var(--ink-soft);display:block;margin-top:2px;">MSRP $600</span>
-                    </span>
+                    <span class="reward-perk-text"><span class="reward-perk-name">Whitening</span><span style="font-size:10px;color:var(--ink-soft);display:block;margin-top:2px;">MSRP $600</span></span>
                     <span class="reward-perk-pts">2,000 👑</span>
                   </a>
                   <a class="reward-perk theme-ice" href="/rewards/redeem/invisalign-platinum" onclick="megaGo('redeem-invisalign');return false;">
-                    <span class="reward-perk-dot-frame"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
+                    <span class="reward-perk-dot-frame"></span><span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span><span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
                     <div class="reward-perk-crown"><span class="reward-perk-crown-core">👑</span></div>
                     <span class="reward-perk-text"><span class="reward-perk-name">Invisalign Credit</span></span>
                     <span class="reward-perk-pts">2,500 👑</span>
                   </a>
                   <a class="reward-perk theme-rose" href="/rewards/redeem/tmj-botox" onclick="megaGo('redeem-tmj');return false;">
-                    <span class="reward-perk-dot-frame"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span>
-                    <span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
+                    <span class="reward-perk-dot-frame"></span><span class="reward-perk-glow-dot reward-perk-glow-dot-1"></span><span class="reward-perk-glow-dot reward-perk-glow-dot-2"></span>
                     <div class="reward-perk-crown"><span class="reward-perk-crown-core">👑</span></div>
                     <span class="reward-perk-text"><span class="reward-perk-name">TMJ Botox</span></span>
                     <span class="reward-perk-pts">3,000 👑</span>
@@ -616,26 +513,18 @@
               </div>
             </div>
 
-            <!-- DUAL CTA ROW -->
             <div class="crown-cta-row">
               <a class="crown-cta-primary" href="/rewards" onclick="megaGo('rewards');return false;">
                 <span class="crown-cta-icon">👑</span>
-                <div>
-                  <div class="crown-cta-label">Claim My Crowns</div>
-                  <div class="crown-cta-sub">Create your free account — 300 Crowns instantly</div>
-                </div>
+                <div><div class="crown-cta-label">Claim My Crowns</div><div class="crown-cta-sub">Create your free account — 300 Crowns instantly</div></div>
                 <span class="crown-cta-arr">→</span>
               </a>
               <a class="crown-cta-secondary" href="/rewards/refer-a-friend" onclick="megaGo('refer');return false;">
                 <span class="crown-cta-icon">💌</span>
-                <div>
-                  <div class="crown-cta-label">Refer a Friend Now</div>
-                  <div class="crown-cta-sub">+700 Crowns · closest step to free whitening</div>
-                </div>
+                <div><div class="crown-cta-label">Refer a Friend Now</div><div class="crown-cta-sub">+700 Crowns · closest step to free whitening</div></div>
                 <span class="crown-cta-arr">→</span>
               </a>
             </div>
-
           </div>
 
           <div class="cc-drop-foot">
@@ -648,14 +537,12 @@
         </div>
       </div>
 
-      <!-- 6. FOR DENTISTS — v500.4 tighter, less salesy -->
+      <!-- 6. FOR DENTISTS / MEMBERSHIP -->
       <div class="cc-link" data-link="featured" role="menuitem" tabindex="0">
         <span>Membership</span>
         <span class="cc-link-caret">▾</span>
 
         <div class="cc-dropdown featured-drop" role="menu" style="width:min(96vw,780px);">
-
-          <!-- DARK HEADER -->
           <div class="dent-header">
             <div class="dent-header-left">
               <div class="dent-header-eyebrow">Membership · For Practices</div>
@@ -663,21 +550,13 @@
               <div class="dent-header-sub">Curated. Accredited. Selectively invited.</div>
             </div>
             <div class="dent-header-stats">
-              <div class="dent-hstat">
-                <div class="dent-hstat-num">2,400+</div>
-                <div class="dent-hstat-lbl">searches near you<br>this month</div>
-              </div>
+              <div class="dent-hstat"><div class="dent-hstat-num">2,400+</div><div class="dent-hstat-lbl">searches near you<br>this month</div></div>
               <div class="dent-hstat-div"></div>
-              <div class="dent-hstat">
-                <div class="dent-hstat-num">68%</div>
-                <div class="dent-hstat-lbl">profiles nearby<br>unclaimed</div>
-              </div>
+              <div class="dent-hstat"><div class="dent-hstat-num">68%</div><div class="dent-hstat-lbl">profiles nearby<br>unclaimed</div></div>
             </div>
           </div>
 
           <div class="cc-drop-body" style="padding-top:14px;">
-
-            <!-- COMPACT CLAIM ZIP — single tight row -->
             <div class="dent-zip-card">
               <div class="dent-zip-card-left">
                 <div class="dent-zip-card-eyebrow">Start here</div>
@@ -691,101 +570,219 @@
               <div class="dent-zip-meta" id="dent-zip-meta">Searches our nationwide index</div>
             </div>
 
-            <!-- TIER GRID — left-aligned, real, exclusive -->
             <div class="dent-tier-grid">
-
               <a class="dent-card dent-card-free" href="/dentist-portal/claim-profile" onclick="event.stopPropagation();openPortalModal();return false;">
-                <div class="dent-card-header">
-                  <div class="dent-card-icon">📋</div>
-                  <div class="dent-card-badge dent-badge-free">Tier 01</div>
-                </div>
+                <div class="dent-card-header"><div class="dent-card-icon">📋</div><div class="dent-card-badge dent-badge-free">Tier 01</div></div>
                 <div class="dent-card-title">Listed</div>
                 <div class="dent-card-hook">Verified, indexed, findable.</div>
                 <div class="dent-card-divider"></div>
-                <ul class="dent-card-list">
-                  <li>Verified practice page</li>
-                  <li>PPO acceptance visibility</li>
-                  <li>Booking link</li>
-                  <li>Local search presence</li>
-                </ul>
+                <ul class="dent-card-list"><li>Verified practice page</li><li>PPO acceptance visibility</li><li>Booking link</li><li>Local search presence</li></ul>
                 <div class="dent-card-foot">Free · 3-day review</div>
                 <div class="dent-card-cta">Request Listing →</div>
               </a>
-
               <a class="dent-card dent-card-trust" href="/get-featured/capy-accredited" onclick="event.stopPropagation();megaGo('accreditation');return false;">
                 <div class="dent-card-ribbon">The Standard</div>
-                <div class="dent-card-header">
-                  <div class="dent-card-icon">🦫</div>
-                  <div class="dent-card-badge dent-badge-trust">Tier 02</div>
-                </div>
+                <div class="dent-card-header"><div class="dent-card-icon">🦫</div><div class="dent-card-badge dent-badge-trust">Tier 02</div></div>
                 <div class="dent-card-title">Accredited</div>
                 <div class="dent-card-hook">The badge patients filter for.</div>
                 <div class="dent-card-divider"></div>
-                <ul class="dent-card-list">
-                  <li>Accreditation badge on every listing</li>
-                  <li>"Accredited only" patient filter</li>
-                  <li>Capy Crowns whitening fulfillment</li>
-                  <li>Priority placement in organic results</li>
-                </ul>
+                <ul class="dent-card-list"><li>Accreditation badge on every listing</li><li>"Accredited only" patient filter</li><li>Capy Crowns whitening fulfillment</li><li>Priority placement in organic results</li></ul>
                 <div class="dent-card-foot">By annual review · PPO-friendly only</div>
                 <div class="dent-card-cta">Apply →</div>
               </a>
-
               <a class="dent-card dent-card-plat" href="/get-featured/platinum-elite" onclick="event.stopPropagation();megaGo('platinum-elite');return false;">
-                <div class="dent-card-header">
-                  <div class="dent-card-icon">💎</div>
-                  <div class="dent-card-badge dent-badge-plat">Tier 03</div>
-                </div>
+                <div class="dent-card-header"><div class="dent-card-icon">💎</div><div class="dent-card-badge dent-badge-plat">Tier 03</div></div>
                 <div class="dent-card-title">Platinum Elite</div>
                 <div class="dent-card-hook">Patients are routed directly to you.</div>
                 <div class="dent-card-divider"></div>
-                <ul class="dent-card-list">
-                  <li>Concierge patient matching</li>
-                  <li>Territory exclusivity in your market</li>
-                  <li>Primary whitening redemption hub</li>
-                  <li>Direct account support</li>
-                </ul>
+                <ul class="dent-card-list"><li>Concierge patient matching</li><li>Territory exclusivity in your market</li><li>Primary whitening redemption hub</li><li>Direct account support</li></ul>
                 <div class="dent-card-foot">By invitation · Accreditation required</div>
                 <div class="dent-card-cta">Request Consideration →</div>
               </a>
-
             </div>
 
             <div class="dent-reassure">
-              <div class="dent-reassure-item">
-                <span class="dent-reassure-ic">📐</span>
-                <div><strong>Curated, not crowdsourced.</strong><span>Every Tier 02+ membership is hand-reviewed.</span></div>
-              </div>
-              <div class="dent-reassure-item">
-                <span class="dent-reassure-ic">🧭</span>
-                <div><strong>Built for the long arc.</strong><span>Your patients stay yours. Month-to-month.</span></div>
-              </div>
+              <div class="dent-reassure-item"><span class="dent-reassure-ic">📐</span><div><strong>Curated, not crowdsourced.</strong><span>Every Tier 02+ membership is hand-reviewed.</span></div></div>
+              <div class="dent-reassure-item"><span class="dent-reassure-ic">🧭</span><div><strong>Built for the long arc.</strong><span>Your patients stay yours. Month-to-month.</span></div></div>
             </div>
-
           </div>
 
           <div class="cc-drop-foot">
-            <div class="cc-drop-foot-trust">
-              <span>Hand-reviewed accreditations</span>
-              <span>Month-to-month</span>
-            </div>
+            <div class="cc-drop-foot-trust"><span>Hand-reviewed accreditations</span><span>Month-to-month</span></div>
             <a href="/dentist-portal" onclick="event.stopPropagation();openPortalModal();return false;" style="color:var(--g);font-weight:700;text-decoration:none;font-size:12px;">Dentist portal →</a>
           </div>
         </div>
       </div>
 
+    </div><!-- /.cc-links -->
 
-
-
-    </div>
-
-    <!-- RIGHT ACTIONS -->
+    <!-- RIGHT ACTIONS — Sign in + Join Free + HAMBURGER (mobile only) -->
     <div class="cc-actions">
       <button class="cc-action-link" onclick="gotoTab('signin')">Sign in</button>
-      <button class="cc-action-link cc-action-join" onclick="gotoTab('join')">
-        Join Free
+      <button class="cc-action-link cc-action-join" onclick="gotoTab('join')">Join Free</button>
+
+      <!-- ══ HAMBURGER — hidden on desktop, shown on mobile ══ -->
+      <button class="cc-burger" id="cc-burger"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              aria-controls="cc-drawer"
+              onclick="ccMobileToggle()">
+        <span class="cc-burger-bar"></span>
+        <span class="cc-burger-bar"></span>
+        <span class="cc-burger-bar"></span>
       </button>
     </div>
 
   </div>
 </nav>
+
+<!-- ════════════════════════════════════════════════════════════════
+     MOBILE DRAWER — slides in from right when hamburger tapped.
+     Mirrors the 6 desktop menus as tap-to-expand accordions.
+     ════════════════════════════════════════════════════════════════ -->
+<aside class="cc-drawer" id="cc-drawer" aria-hidden="true" aria-label="Mobile navigation">
+
+  <div class="cc-drawer-head">
+    <span class="cc-drawer-brand">CoverCapy</span>
+    <button class="cc-drawer-close" aria-label="Close menu" onclick="ccMobileClose()">✕</button>
+  </div>
+
+  <nav class="cc-drawer-nav" role="navigation" aria-label="Mobile menu">
+
+    <!-- 1. ABOUT -->
+    <div class="cc-dacc">
+      <button class="cc-dacc-btn" onclick="ccDacc(this)">
+        About <span class="cc-dacc-caret">›</span>
+      </button>
+      <div class="cc-dacc-body">
+        <a class="cc-dacc-link" href="/about/how-it-works">🧭 How It Works</a>
+        <a class="cc-dacc-link" href="/about/win-win-model">🤝 Always Free for Patients</a>
+        <a class="cc-dacc-link" href="/about/patient-stories">Patient Stories</a>
+        <a class="cc-dacc-link" href="/about/faq">Patient FAQ</a>
+        <a class="cc-dacc-link" href="/guides/smart-timing-strategy">Smart Timing Guide</a>
+      </div>
+    </div>
+
+    <!-- 2. COVERAGE -->
+    <div class="cc-dacc">
+      <button class="cc-dacc-btn" onclick="ccDacc(this)">
+        Coverage <span class="cc-dacc-caret">›</span>
+      </button>
+      <div class="cc-dacc-body">
+        <a class="cc-dacc-link cc-dacc-link-feature" href="/ppo-plans/compare">Compare All PPO Plans →</a>
+        <a class="cc-dacc-link" href="/ppo-plans/uhc-primary-ppo">⚡ UHC Primary PPO — Fastest</a>
+        <a class="cc-dacc-link" href="/ppo-plans/ameritas-primestar">Ameritas PrimeStar</a>
+        <a class="cc-dacc-link" href="/ppo-plans/implant-planning">🦷 Implant Planning</a>
+        <a class="cc-dacc-link" href="/ppo-plans/crowns-root-canals">👑 Crowns &amp; Root Canals</a>
+        <a class="cc-dacc-link" href="/ppo-plans/emergency-dental">🚨 Emergency Dental</a>
+        <a class="cc-dacc-link" href="/ppo-plans/cleaning-preventive">🪥 Cleaning &amp; Preventive</a>
+      </div>
+    </div>
+
+    <!-- 3. ESTIMATES -->
+    <div class="cc-dacc">
+      <button class="cc-dacc-btn" onclick="ccDacc(this)">
+        Estimates <span class="cc-dacc-caret">›</span>
+      </button>
+      <div class="cc-dacc-body">
+        <a class="cc-dacc-link cc-dacc-link-feature" href="/cost-calculator">Run My Full Estimate →</a>
+        <a class="cc-dacc-link" href="/guides/smart-timing-strategy">📅 Smart Timing Strategy</a>
+      </div>
+    </div>
+
+    <!-- 4. DENTISTS -->
+    <div class="cc-dacc">
+      <button class="cc-dacc-btn" onclick="ccDacc(this)">
+        Dentists <span class="cc-dacc-caret">›</span>
+      </button>
+      <div class="cc-dacc-body">
+        <a class="cc-dacc-link cc-dacc-link-feature" href="/dentists">Find a PPO Dentist →</a>
+        <a class="cc-dacc-link" href="/dentists/featured">🦷 Featured: KYT Dental Services</a>
+        <a class="cc-dacc-link" href="/get-featured/platinum-elite">Apply for Platinum Elite</a>
+      </div>
+    </div>
+
+    <!-- 5. CAPY CROWNS -->
+    <div class="cc-dacc">
+      <button class="cc-dacc-btn" onclick="ccDacc(this)">
+        Capy Crowns 👑 <span class="cc-dacc-caret">›</span>
+      </button>
+      <div class="cc-dacc-body">
+        <a class="cc-dacc-link cc-dacc-link-feature" href="/rewards">Claim My 300 Crowns →</a>
+        <a class="cc-dacc-link" href="/rewards/refer-a-friend">💌 Refer a Friend (+700 👑)</a>
+        <a class="cc-dacc-link" href="/rewards/redeem/in-office-whitening">✨ Redeem: Free Whitening</a>
+        <a class="cc-dacc-link" href="/rewards/redeem/invisalign-platinum">Invisalign Credit</a>
+        <a class="cc-dacc-link" href="/rewards/redeem/tmj-botox">TMJ Botox</a>
+      </div>
+    </div>
+
+    <!-- 6. MEMBERSHIP -->
+    <div class="cc-dacc">
+      <button class="cc-dacc-btn" onclick="ccDacc(this)">
+        Membership <span class="cc-dacc-caret">›</span>
+      </button>
+      <div class="cc-dacc-body">
+        <a class="cc-dacc-link" href="/dentist-portal/claim-profile">📋 Listed — Free</a>
+        <a class="cc-dacc-link" href="/get-featured/capy-accredited">🦫 Capy Accredited</a>
+        <a class="cc-dacc-link" href="/get-featured/platinum-elite">💎 Platinum Elite</a>
+        <a class="cc-dacc-link" href="/dentist-portal">Dentist Portal →</a>
+      </div>
+    </div>
+
+  </nav>
+
+  <div class="cc-drawer-foot">
+    <button class="cc-drawer-join-btn" onclick="gotoTab('join');ccMobileClose();">Join Free</button>
+    <button class="cc-drawer-sign-btn" onclick="gotoTab('signin');ccMobileClose();">Sign in</button>
+  </div>
+
+</aside>
+
+<!-- ════════════════════════════════════════════════════════════════
+     MOBILE NAV JS — hamburger toggle + accordion
+     Functions are globally scoped to work with onclick attributes.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+function ccMobileToggle(){
+  var d = document.getElementById('cc-drawer');
+  var b = document.getElementById('cc-burger');
+  var isOpen = d.getAttribute('aria-hidden') === 'false';
+  if(isOpen){ ccMobileClose(); }
+  else {
+    d.setAttribute('aria-hidden','false');
+    d.classList.add('is-open');
+    b.classList.add('is-open');
+    b.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function ccMobileClose(){
+  var d = document.getElementById('cc-drawer');
+  var b = document.getElementById('cc-burger');
+  if(!d) return;
+  d.setAttribute('aria-hidden','true');
+  d.classList.remove('is-open');
+  b.classList.remove('is-open');
+  b.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+
+function ccDacc(btn){
+  var body = btn.nextElementSibling;
+  var isOpen = body.classList.contains('is-open');
+  // Close all open accordions
+  document.querySelectorAll('.cc-dacc-body.is-open').forEach(function(el){ el.classList.remove('is-open'); });
+  document.querySelectorAll('.cc-dacc-btn.is-active').forEach(function(el){ el.classList.remove('is-active'); });
+  // Open this one if it was closed
+  if(!isOpen){
+    body.classList.add('is-open');
+    btn.classList.add('is-active');
+  }
+}
+
+// Close drawer on Escape key
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') ccMobileClose();
+});
+</script>
