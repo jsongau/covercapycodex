@@ -1,16 +1,3 @@
-/* CoverCapy reusable mega-nav loader for Vercel static pages. */
-(async function loadCoverCapyMegaNav(){
-  const mount = document.getElementById('covercapy-mega-nav');
-  if(!mount) return;
-  try{
-    const res = await fetch('/partials/mega-nav.html', { cache: 'no-cache' });
-    if(!res.ok) throw new Error('Could not load /partials/mega-nav.html');
-    mount.innerHTML = await res.text();
-  }catch(err){
-    console.error('[CoverCapy] Mega nav include failed:', err);
-    mount.innerHTML = '<div style="padding:14px;font-family:Arial,sans-serif;color:#123F52">CoverCapy navigation could not load.</div>';
-    return;
-  }
 
 /* ════════════════════════════════════════════════════════════════
    MEGA NAV BEHAVIOR (production-ready, accessible, debounced)
@@ -1788,7 +1775,7 @@ function toggleCrownAcc(which){
   if(toggle)  toggle.setAttribute('aria-expanded', String(!isOpen));
 }
 
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   // Init crown progress at 300 (just joined)
   updateCrownProgress(300);
 
@@ -1857,7 +1844,7 @@ function updateCrownProgress(crowns){
 }
 
 // CROWN STEP INTERACTIVE — check off steps on hover for demo
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   updateCrownProgress(300);
   
   // Animate crown steps on rewards hover to show earning
@@ -1912,4 +1899,3 @@ function dentZipSearch(ev){
     }, 600);
   }, 700);
 }
-})();
