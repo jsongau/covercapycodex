@@ -1,81 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>
-    CoverCapy | PPO Dental Insurance, Cost Estimates & PPO Dentist Discovery
-  </title>
+<!-- ════════════════════════════════════════════════════════════════
+     CoverCapy — The Dental Insurance Field Guide
+     ════════════════════════════════════════════════════════════════ -->
 
-  <meta
-    name="description"
-    content="CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists before booking care."
-  />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <meta name="robots" content="index, follow" />
+<title>CoverCapy — The Dental Insurance Field Guide</title>
+<meta name="description" content="The Michelin Guide of dental insurance. Curated PPO plans, vetted dentists, and independent reporting on what your coverage actually pays. Compare carriers without the noise.">
+<meta name="keywords" content="dental insurance, PPO dental insurance, dental PPO, dental insurance reviews, dentist near me, PPO dentist, dental coverage, dental savings">
+<meta name="author" content="CoverCapy">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#FAF7F1">
 
-  <!-- MEGA NAV CSS -->
-  <link rel="stylesheet" href="/assets/css/mega-nav.css">
+<link rel="canonical" href="https://covercapy.com/">
 
-  <!-- HERO SLIDER CSS -->
-  <link rel="stylesheet" href="/assets/css/hero-slider.css">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CoverCapy">
+<meta property="og:title" content="CoverCapy — The Dental Insurance Field Guide">
+<meta property="og:description" content="Curated PPO plans, vetted dentists, independent reporting. The Michelin Guide of dental insurance.">
+<meta property="og:url" content="https://covercapy.com/">
+<meta property="og:image" content="https://covercapy.com/assets/images/og-cover.jpg">
 
-  <style>
-    body{
-      margin:0;
-      background:#faf8f4;
-      overflow-x:hidden;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    }
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CoverCapy — The Dental Insurance Field Guide">
+<meta name="twitter:description" content="Curated PPO plans, vetted dentists, independent reporting.">
+<meta name="twitter:image" content="https://covercapy.com/assets/images/og-cover.jpg">
 
-    #site-nav{
-      position:relative;
-      z-index:9999;
-    }
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
-    #hero-slider{
-      position:relative;
-      z-index:1;
-    }
-  </style>
+<!-- ════════════════════════════════════════════════════════════════
+     FONTS — Fraunces (variable serif) + Inter Tight (sans body)
+     Loaded from Google's CDN. Includes italic, optical-size, weight,
+     SOFT, and WONK axes for Fraunces.
+     ════════════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Inter+Tight:wght@300..700&display=swap" rel="stylesheet">
+
+<!-- ════════════════════════════════════════════════════════════════
+     STYLESHEETS — Mega nav first (cascade order matters)
+     ════════════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="assets/css/mega-nav.css">
+<link rel="stylesheet" href="assets/css/hero-slider.css">
+
+<!-- ════════════════════════════════════════════════════════════════
+     JSON-LD — Organization schema for SEO
+     ════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CoverCapy",
+  "url": "https://covercapy.com",
+  "logo": "https://covercapy.com/assets/images/covercapy-logo.svg",
+  "description": "The Michelin Guide of dental insurance. Curated PPO plans, vetted dentists, and independent reporting.",
+  "sameAs": []
+}
+</script>
+
+<!-- Minimal page-shell styles (mount points use no chrome) -->
+<style>
+  html, body{ margin:0; padding:0; background:#FAF7F1; overflow-x:hidden; }
+  body{ max-width:100vw; }
+  /* Skeleton placeholders while components load */
+  #cc-nav-mount{ min-height:72px; }
+  #cc-hero-mount{ min-height:80vh; }
+</style>
+
 </head>
-
 <body>
 
-  <!-- MEGA NAV -->
-  <div id="site-nav"></div>
+<!-- ════════════════════════════════════════════════════════════════
+     MEGA NAV MOUNT POINT
+     Loaded from components/mega-nav.html by the loader script below.
+     ════════════════════════════════════════════════════════════════ -->
+<div id="cc-nav-mount"></div>
 
-  <!-- HERO SLIDER -->
-  <div id="hero-slider"></div>
+<!-- ════════════════════════════════════════════════════════════════
+     HERO SLIDER MOUNT POINT
+     Loaded from components/hero-slider.html by the loader script below.
+     ════════════════════════════════════════════════════════════════ -->
+<div id="cc-hero-mount"></div>
 
-  <!-- LOAD MEGA NAV -->
-  <script>
-    fetch('/components/mega-nav.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-nav').innerHTML = html;
+<!-- ════════════════════════════════════════════════════════════════
+     COMPONENT LOADER
+     Fetches mega-nav.html and hero-slider.html in parallel, injects
+     them into their mount points, then loads the interaction scripts
+     (mega-nav.js, hero-slider.js) so they find the DOM elements they
+     need.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+(async function(){
+  const loadScript = src => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload  = resolve;
+    s.onerror = () => reject(new Error('Failed to load ' + src));
+    document.body.appendChild(s);
+  });
 
-        const navScript = document.createElement('script');
-        navScript.src = '/assets/js/mega-nav.js?v=' + Date.now();
-        document.body.appendChild(navScript);
-      })
-      .catch(err => console.error('Mega nav failed:', err));
-  </script>
+  const injectComponent = async (mountId, url) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(url + ' returned ' + res.status);
+      const html = await res.text();
+      mount.outerHTML = html;
+    } catch (err) {
+      console.error('Component load failed for', url, err);
+      mount.innerHTML = '<!-- Component failed to load: ' + url + ' -->';
+    }
+  };
 
-  <!-- LOAD HERO SLIDER -->
-  <script>
-    fetch('/components/hero-slider.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('hero-slider').innerHTML = html;
+  try {
+    // Inject both components (nav first so it's painted on top of the page)
+    await injectComponent('cc-nav-mount',  'components/mega-nav.html');
+    await injectComponent('cc-hero-mount', 'components/hero-slider.html');
 
-        const heroScript = document.createElement('script');
-        heroScript.src = '/assets/js/hero-slider.js?v=' + Date.now();
-        document.body.appendChild(heroScript);
-      })
-      .catch(err => console.error('Hero slider failed:', err));
-  </script>
+    // Now load interaction JS — DOM elements exist at this point
+    await loadScript('assets/js/mega-nav.js');
+    await loadScript('assets/js/hero-slider.js');
+  } catch (err) {
+    console.error('Page bootstrap failed:', err);
+  }
+})();
+</script>
 
 </body>
 </html>
