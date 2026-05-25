@@ -3,62 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>CoverCapy | PPO Dental Insurance, Cost Estimates & PPO Dentist Discovery</title>
-
   <meta name="description" content="CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists before booking care." />
-
   <meta name="robots" content="index, follow" />
-
   <link rel="canonical" href="https://covercapy.com/" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="CoverCapy | Concierge Dental Network" />
   <meta property="og:description" content="Compare PPO dental plans, estimate treatment costs, and discover PPO-friendly dentists." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://covercapy.com/" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CoverCapy | Concierge Dental Network" />
   <meta name="twitter:description" content="PPO dental insurance, cost estimates, and PPO-friendly dentist discovery." />
 
-  <!-- Mega Nav CSS -->
   <link rel="stylesheet" href="/assets/css/mega-nav.css" />
+  <link rel="stylesheet" href="/assets/css/hero-slider.css" />
+
+  <style>
+    body{
+      margin:0;
+      background:#faf8f4;
+      overflow-x:hidden;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- NAV LOAD TARGET -->
   <div id="site-nav"></div>
+  <div id="hero-slider"></div>
 
-  <!-- SEO CONTENT -->
-  <main style="min-height:200vh;background:#faf8f4;padding:120px 32px;">
-    <section style="max-width:920px;margin:0 auto;">
-      <h1 style="font-size:56px;line-height:1.04;color:#123F52;margin-bottom:18px;">
-        CoverCapy Concierge Dental Network
-      </h1>
-
-      <p style="max-width:760px;font-size:20px;line-height:1.65;color:#526D76;">
-        Compare PPO dental plans, estimate treatment costs before treatment, and discover PPO-friendly dentists with transparent pricing guidance.
-      </p>
-    </section>
-  </main>
-
-  <!-- LOAD MEGA NAV -->
   <script>
     fetch('/components/mega-nav.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('site-nav').innerHTML = html;
 
-        const script = document.createElement('script');
-        script.src = '/assets/js/mega-nav.js';
-        document.body.appendChild(script);
+        const navScript = document.createElement('script');
+        navScript.src = '/assets/js/mega-nav.js';
+        document.body.appendChild(navScript);
+      });
+
+    fetch('/components/hero-slider.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('hero-slider').innerHTML = html;
+
+        const heroScript = document.createElement('script');
+        heroScript.src = '/assets/js/hero-slider.js';
+        document.body.appendChild(heroScript);
       });
   </script>
 
-  <!-- SCHEMA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
