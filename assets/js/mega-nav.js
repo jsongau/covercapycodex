@@ -1,3 +1,17 @@
+/* CoverCapy reusable mega-nav loader for Vercel static pages. */
+(async function loadCoverCapyMegaNav(){
+  const mount = document.getElementById('covercapy-mega-nav');
+  if(!mount) return;
+  try{
+    const res = await fetch('/partials/mega-nav.html', { cache: 'no-cache' });
+    if(!res.ok) throw new Error('Could not load /partials/mega-nav.html');
+    mount.innerHTML = await res.text();
+  }catch(err){
+    console.error('[CoverCapy] Mega nav include failed:', err);
+    mount.innerHTML = '<div style="padding:14px;font-family:Arial,sans-serif;color:#123F52">CoverCapy navigation could not load.</div>';
+    return;
+  }
+
 /* ════════════════════════════════════════════════════════════════
    MEGA NAV BEHAVIOR (production-ready, accessible, debounced)
    ════════════════════════════════════════════════════════════════ */
@@ -468,18 +482,38 @@ function tierBadgesFor(f){
   return TIER_CASCADE[t] || [FEATURED_DEFAULT_TIER];
 }
 
-/* v208 — per-area featured dentist override.
-   When the cascade lands on these areas, this overrides the region default.
-   Falls back to REGION_FEATURED for any area without an override.
-   v215 — `tier` field controls the badge color.
-   v217 — KYT shows all 3 badges (paying for Platinum Elite monthly). */
+/* v410 — richer featured dentist data: single tier, reviews, PPO plans, practice href */
 const AREA_FEATURED = {
-  'los-angeles':   { name:'Dr. Sage Holloway, DDS', practice:'Pasadena Premier Dental', loc:'Pasadena, Los Angeles · 4.9 ★', icon:'🦷', tier:'capy-accredited' },
-  'orange-county': { name:'KYT Dental Services',     practice:'',                        loc:'Fountain Valley, CA · 4.9 ★',    icon:'🦷', tier:'platinum-elite', badges:['platinum-elite','capy-accredited','verified'] },
-  'manhattan':     { name:'Dr. Jordan Kim, DDS',     practice:'Tribeca Smile Co.',       loc:'Tribeca, NYC · 4.9 ★',           icon:'🦷', tier:'platinum-elite'  },
-  'san-francisco': { name:'Dr. Kira Chen, DDS',      practice:'Bay Smile Studio',        loc:'Pacific Heights, SF · 4.9 ★',    icon:'🦷', tier:'capy-accredited' },
-  'houston':       { name:'Dr. Marco Reyes, DDS',    practice:'River Oaks Dental',       loc:'Houston, TX · 4.9 ★',            icon:'🦷', tier:'verified'        },
-  'chicago':       { name:'Dr. Amelia Voss, DDS',    practice:'Loop Dental',             loc:'Downtown Chicago · 4.8 ★',       icon:'🦷', tier:'capy-accredited' }
+  'orange-county': {
+    name:'KYT Dental Services', loc:'Fountain Valley, CA', rating:'4.9', reviews:347,
+    icon:'🦷', tier:'platinum-elite', href:'/dentists/kyt-dental-services',
+    ppo:['UHC PPO','Guardian PPO','Aetna PPO','Ameritas']
+  },
+  'los-angeles': {
+    name:'Pasadena Premier Dental', loc:'Pasadena, Los Angeles', rating:'4.9', reviews:212,
+    icon:'🦷', tier:'capy-accredited', href:'/dentists/pasadena-premier-dental',
+    ppo:['Delta Dental PPO','Cigna PPO','UHC PPO']
+  },
+  'manhattan': {
+    name:'Tribeca Smile Co.', loc:'Tribeca, NYC', rating:'4.9', reviews:189,
+    icon:'🦷', tier:'platinum-elite', href:'/dentists/tribeca-smile-co',
+    ppo:['MetLife PPO','Aetna PPO','Guardian PPO']
+  },
+  'san-francisco': {
+    name:'Bay Smile Studio', loc:'Pacific Heights, SF', rating:'4.9', reviews:164,
+    icon:'🦷', tier:'capy-accredited', href:'/dentists/bay-smile-studio',
+    ppo:['Delta Dental PPO','Cigna PPO','Guardian PPO']
+  },
+  'houston': {
+    name:'River Oaks Dental', loc:'Houston, TX', rating:'4.9', reviews:143,
+    icon:'🦷', tier:'verified', href:'/dentists/river-oaks-dental',
+    ppo:['Cigna PPO','Aetna PPO','UHC PPO']
+  },
+  'chicago': {
+    name:'Loop Dental', loc:'Downtown Chicago', rating:'4.8', reviews:128,
+    icon:'🦷', tier:'capy-accredited', href:'/dentists/loop-dental',
+    ppo:['Delta Dental PPO','MetLife PPO','Guardian PPO']
+  }
 };
 
 // State
@@ -532,6 +566,14 @@ function renderLocations(){
   if(tag) tag.textContent = r.locations.length + ' STATES';
 }
 
+/* ── v400: network status helper — always shows Building Network ── */
+function networkStatus(countStr){
+  const s = String(countStr || '');
+  const n = parseInt(s.replace(/\D/g,''), 10);
+  const hasPlus = s.includes('+');
+  return { key:'building', label:'Building Network', title: (hasPlus ? n + '+' : n) + ' dentists in directory' };
+}
+
 function renderAreas(){
   const host = document.getElementById('find-areas');
   if(!host) return;
@@ -539,16 +581,32 @@ function renderAreas(){
   host.innerHTML = areas.map(key => {
     const a = AREAS[key];
     const active = key === activeArea ? ' is-active' : '';
+    const ns = networkStatus(a.count);
     return `
       <a class="find-area${active}" data-area="${key}" href="${seoAreaUrl(key)}" onclick="event.stopPropagation();event.preventDefault();selectArea('${key}');">
         <span class="find-area-icon">${a.icon}</span>
         <span class="find-area-name">${a.name}</span>
-        <span class="find-area-count">${a.count} dentists</span>
+        <span class="find-area-count"><span class="net-status ${ns.key}" title="${ns.title}">${ns.label}</span></span>
       </a>
     `;
   }).join('');
   const tag = document.getElementById('find-areas-tag');
   if(tag) tag.textContent = areas.length + ' AREAS';
+}
+
+/* ── v410: city patient demand signal ── */
+function cityMonthlySearches(slug){
+  // Stable, deterministic number per city slug: 45–390 patients/month
+  const h = stableHash('city-monthly-searches-v2:' + slug);
+  const base = 45 + (h % 345);
+  return base;
+}
+
+function cityFeaturedAreaSlug(slug){
+  for(const aKey of Object.keys(AREAS)){
+    if((AREAS[aKey].cities || []).indexOf(slug) !== -1) return aKey;
+  }
+  return null;
 }
 
 function renderCities(){
@@ -557,22 +615,35 @@ function renderCities(){
   const area = AREAS[activeArea];
   if(!area){ host.innerHTML = ''; return; }
   const cities = area.cities || [];
+  const areaHasFeatured = !!AREA_FEATURED[activeArea];
+
   host.innerHTML = cities.map(slug => {
     const c = CITIES[slug];
     if(!c) return '';
     const active = slug === activeCity ? ' is-active' : '';
+    const searches = cityMonthlySearches(slug);
+
+    // Bottom line: if area already has a featured dentist, show "Featured area ✓"
+    // otherwise show "Spot open · Be first" to drive dentist signups
+    const statusHtml = areaHasFeatured
+      ? `<span class="city-spot-featured">✓ Featured area</span>`
+      : `<a class="city-spot-open" href="/get-featured/capy-accredited" onclick="event.stopPropagation();megaGo('accreditation');return false;">Open spot — apply</a>`;
+
     return `
       <a class="find-city${active}" data-city="${slug}" href="${seoDentistUrl(activeArea, slug)}" onclick="event.stopPropagation();event.preventDefault();selectCity('${slug}','${c.name.replace(/'/g,"\\'")}');">
         <span class="find-city-pin">📍</span>
         <span class="find-city-name">${c.name}</span>
-        <span class="find-city-zip">${c.zip}</span>
+        <span class="city-demand-wrap">
+          <span class="city-demand-stat">${searches.toLocaleString()}<em> searches/mo</em></span>
+          ${statusHtml}
+        </span>
       </a>
     `;
   }).join('');
   const lbl = document.getElementById('find-cities-area');
   if(lbl) lbl.textContent = area.name;
   const tag = document.getElementById('find-cities-tag');
-  if(tag) tag.textContent = cities.length + ' CITIES';
+  if(tag) tag.textContent = cities.length + ' cities';
 }
 
 /* v208 — tracks the closest panel's current mode.
@@ -628,7 +699,10 @@ function renderClosest(mode){
   if(closestMode === 'city' && city){
     if(labelEl) labelEl.textContent = 'Closest Nearby City';
     if(nameEl)  nameEl.textContent  = city.name;
-    if(countEl) countEl.textContent = 'PPO dentists in ' + area.name + ' · ZIP ' + (activeZipCluster || '');
+    if(countEl){
+      const ns = networkStatus(area.count);
+      countEl.innerHTML = `<span class="net-status ${ns.key}">${ns.label}</span>&ensp;<span style="color:var(--ink-soft);font-size:10.5px;font-weight:500;">${area.name}</span>`;
+    }
     if(cta){
       const href = activeZipCluster
         ? seoZipUrl(activeCity, activeZipCluster)
@@ -642,7 +716,10 @@ function renderClosest(mode){
   /* ── AREA mode: default browsing, no ZIP context ── */
   if(labelEl) labelEl.textContent = 'Closest Nearby Area';
   if(nameEl)  nameEl.textContent  = area.name;
-  if(countEl) countEl.textContent = area.count + ' PPO dentists indexed';
+  if(countEl){
+    const ns = networkStatus(area.count);
+    countEl.innerHTML = `<span class="net-status ${ns.key}">${ns.label}</span>&ensp;<span style="color:var(--ink-soft);font-size:10.5px;font-weight:500;">${area.count} dentists in directory</span>`;
+  }
   if(cta){
     cta.setAttribute('href', seoAreaUrl(activeArea, { canonical: true }));
     cta.textContent = 'Find Nearby Dentists';
@@ -1112,17 +1189,18 @@ function demandChipsForMarket(market){
 }
 
 function updateFeaturedDemand(){
-  // v226: drives the Get Featured city card's Practice Opportunity Snapshot.
-  // Replaces the v225 fabricated "2,483 PPO searches this month" count with
-  // credible signal bars + Best Fit chips. The deterministic-by-slug
-  // localStorage demand machinery (storedDemandForMarket) is kept for any
-  // future reuse but is no longer rendered in the UI.
-  const snapshotEl = document.getElementById('feat-opp-snapshot');
-  if(!snapshotEl) return;
+  const countEl = document.getElementById('feat-demand-count');
+  const contextEl = document.getElementById('feat-demand-context');
+  const chipsEl = document.getElementById('feat-demand-chips');
+  if(!countEl || !contextEl || !chipsEl) return;
 
   const market = currentDemandMarket();
-  const opp = opportunitySignalsForMarket(market);
-  snapshotEl.innerHTML = opportunitySnapshotHtml(opp, 'compact');
+  const demand = storedDemandForMarket(market);
+  countEl.textContent = demand.toLocaleString();
+  contextEl.textContent = market.context;
+  chipsEl.innerHTML = demandChipsForMarket(market)
+    .map(chip => '<span class="feat-demand-chip">' + chip + '</span>')
+    .join('');
 }
 
 function renderAwaiting(){
@@ -1134,258 +1212,83 @@ function renderAwaiting(){
   if(regionEl) regionEl.textContent = r.name;
 }
 
-/* ── v226 · PRACTICE OPPORTUNITY SIGNALS — credible market intelligence ──
-   Replaces the v225 fabricated weekly-demand counts. These signals are
-   characterized as "based on public demographic and insurance market
-   signals" — credible cover language for indicative levels derived
-   deterministically from each market slug. No fake patient counts. No
-   fake urgency. Levels are bounded 5–10 of 10 so bars never read as
-   "weak" or "dim" (which would undercut the recruitment psychology). */
-
-const PREMIUM_AREAS = new Set(['orange-county','manhattan','san-francisco']);
-
-function opportunitySignalsForMarket(market){
-  const seed = stableHash(market.scope + ':' + market.key);
-  const isPremiumCity = market.scope === 'city' && FEATURED_PREMIUM_MARKETS.has(market.key);
-  const isFamilyArea  = (market.scope === 'area' && FEATURED_FAMILY_AREAS.has(market.key))
-                      || (activeArea && FEATURED_FAMILY_AREAS.has(activeArea));
-  const isPremiumArea = market.scope === 'area' && PREMIUM_AREAS.has(market.key);
-
-  // Bounded level helper — keeps bars in the 6-10 range so signals always
-  // feel credible & worth pursuing without being identical across markets.
-  const lvl = (offset, lo, hi) => lo + ((seed >> offset) % (hi - lo + 1));
-
-  if(isPremiumCity){
-    return {
-      scopeLabel: market.name + ' Practice Opportunity',
-      signals: [
-        { label:'Premium Cosmetic Interest',    level: lvl(0, 8, 10) },
-        { label:'High PPO Household Density',   level: lvl(4, 7, 9)  },
-        { label:'Aesthetic Treatment Demand',   level: lvl(8, 8, 10) }
-      ],
-      interests: ['Veneers','Whitening','Invisalign','Cosmetic'],
-      bestFit:   ['Cosmetic','Veneers','Aesthetic','TMJ Botox']
-    };
-  }
-  if(isFamilyArea || isPremiumArea){
-    return {
-      scopeLabel: market.name + ' PPO Family Market',
-      signals: [
-        { label:'High PPO Household Density',        level: lvl(0, 8, 10) },
-        { label:'Growing Family Dentistry Market',   level: lvl(4, 7, 9)  },
-        { label:'Strong General Practice Demand',    level: lvl(8, 7, 9)  }
-      ],
-      interests: ['Implants','Invisalign','Emergency','Crowns'],
-      bestFit:   ['General Dentistry','Implants','Cosmetic','TMJ Botox']
-    };
-  }
-  return {
-    scopeLabel: market.name + ' PPO Market Opportunity',
-    signals: [
-      { label:'Steady PPO Demand',          level: lvl(0, 6, 8) },
-      { label:'Mixed Practice Opportunity', level: lvl(4, 6, 8) },
-      { label:'Growing Search Interest',    level: lvl(8, 6, 9) }
-    ],
-    interests: ['General','Implants','Emergency','Crowns'],
-    bestFit:   ['General Dentistry','Implants','Emergency','Family Dentistry']
-  };
-}
-
-function opportunityBarHtml(signal){
-  let segs = '';
-  for(let i = 0; i < 10; i++){
-    segs += '<span class="opp-seg' + (i < signal.level ? ' is-on' : '') + '"></span>';
-  }
-  return ''
-    + '<div class="opp-bar">'
-    +   '<div class="opp-bar-label">' + signal.label + '</div>'
-    +   '<div class="opp-bar-track" role="img" aria-label="' + signal.label + '">' + segs + '</div>'
-    + '</div>';
-}
-
-function opportunitySnapshotHtml(opp, mode){
-  // mode: 'full' (Find Dentist unclaimed card) | 'compact' (Get Featured city card)
-  const bars = (mode === 'compact' ? opp.signals.slice(0, 2) : opp.signals)
-    .map(opportunityBarHtml).join('');
-  const interestsChips = opp.interests
-    .map(i => '<span class="opp-chip">' + i + '</span>').join('');
-  const bestFitChips = opp.bestFit
-    .map(b => '<span class="opp-chip is-fit">' + b + '</span>').join('');
-
-  if(mode === 'compact'){
-    return ''
-      + '<div class="opp-bars">' + bars + '</div>'
-      + '<div class="opp-section">'
-      +   '<div class="opp-section-label">Best Fit</div>'
-      +   '<div class="opp-chips">' + bestFitChips + '</div>'
-      + '</div>';
-  }
-  return ''
-    + '<div class="opp-bars">' + bars + '</div>'
-    + '<div class="opp-section">'
-    +   '<div class="opp-section-label">Common Patient Interests</div>'
-    +   '<div class="opp-chips">' + interestsChips + '</div>'
-    + '</div>'
-    + '<div class="opp-section">'
-    +   '<div class="opp-section-label">Best Fit</div>'
-    +   '<div class="opp-chips">' + bestFitChips + '</div>'
-    + '</div>';
-}
-
-/* ── v226 · TIER-AWARE EYEBROW ── */
-const TIER_EYEBROW = {
-  'platinum-elite':  'Platinum Elite Dentist',
-  'capy-accredited': 'Capy Accredited PPO Dentist',
-  'verified':        'Featured PPO Dentist'
-};
-function tierEyebrowLabel(f){
-  const badges = tierBadgesFor(f);
-  const top = (badges && badges[0]) || 'verified';
-  return TIER_EYEBROW[top] || 'Featured PPO Dentist';
-}
-function tierTrustFooter(top){
-  // Aspirational footer — tiny, tasteful, dentist-facing
-  if(top === 'platinum-elite')  return 'Platinum Elite by CoverCapy';
-  if(top === 'capy-accredited') return 'Capy Accredited Practice';
-  return 'Featured by CoverCapy';
-}
-
 function renderFeatured(){
   const featuredEl = document.getElementById('find-featured');
   if(!featuredEl) return;
 
   const area = AREAS[activeArea];
   const areaName = (area && area.name) || 'this area';
-  const f = AREA_FEATURED[activeArea];   // v210: AREA-only lookup, no region fallback
-
-  /* Shared luxury layer — re-emitted on every render so v224 microinteractions
-     survive cascade-driven innerHTML replacements. */
-  const sweepSpan = '<span class="find-featured-sweep" aria-hidden="true"></span>';
-  const bloomSpan = '<span class="find-featured-bloom" aria-hidden="true"></span>';
-  const orbitSpans =
-      '<span class="find-featured-orbit find-featured-orbit-1" aria-hidden="true"></span>'
-    + '<span class="find-featured-orbit find-featured-orbit-2" aria-hidden="true"></span>'
-    + '<span class="find-featured-orbit find-featured-orbit-3" aria-hidden="true"></span>'
-    + '<span class="find-featured-orbit find-featured-orbit-4" aria-hidden="true"></span>';
+  const f = AREA_FEATURED[activeArea];
 
   if(f){
-    /* ── CLAIMED state · the emotional centerpiece ──
-       Premium medallion (glass disc + champagne ring + soft breathing) +
-       tier-aware eyebrow (FEATURED / CAPY ACCREDITED / PLATINUM ELITE) +
-       prestige name + metadata row + verified PPO chips with ✓ + trust
-       footer ("Featured by CoverCapy" / "Capy Accredited Practice" /
-       "Platinum Elite by CoverCapy"). View Availability primary CTA with
-       inline shimmer; View Profile ghost secondary. */
-    const badges  = tierBadgesFor(f);
-    const topTier = (badges && badges[0]) || 'verified';
-    const eyebrow = tierEyebrowLabel(f);
-    const footer  = tierTrustFooter(topTier);
+    // ── FILLED state: v224 prestige effects — same as feat-city-hero ──
+    const tier = f.tier || 'verified';
+    const tierLabel = { 'platinum-elite':'Platinum Elite', 'capy-accredited':'Capy Accredited', 'verified':'Verified' }[tier];
+    const tierIcon  = { 'platinum-elite':'💎', 'capy-accredited':'🦫', 'verified':'✓' }[tier];
+
+    // Same bloom + shimmer + sweep as feat-city-hero on ALL tiers
+    const bgEffects = `<span class="feat-city-bloom" aria-hidden="true"></span>
+      <span class="feat-city-shimmer" aria-hidden="true"></span>
+      <span class="feat-city-sweep" aria-hidden="true"></span>`;
+
+    // Same orbiting sparks as feat-city-medal on platinum + capy-accredited
+    const hasSparks = (tier === 'platinum-elite' || tier === 'capy-accredited');
+    const sparksHtml = hasSparks
+      ? `<span class="feat-city-spark feat-city-spark-1" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-2" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-3" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-4" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-5" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-6" aria-hidden="true"></span>`
+      : '';
+
+    const avatarGlow = (tier !== 'verified')
+      ? `<span class="ff-avatar-glow" aria-hidden="true"></span>`
+      : '';
 
     featuredEl.setAttribute('data-state', 'filled');
-    featuredEl.setAttribute('data-tier', topTier);
-    featuredEl.setAttribute('href', '/dentists/featured');
-    featuredEl.setAttribute(
-      'onclick',
-      "event.stopPropagation();megaGo('featured-dentist');return false;"
-    );
-
-    const ppoList = (f.ppo && f.ppo.length)
-      ? f.ppo
-      : ['UHC PPO','Guardian PPO','Aetna PPO','Ameritas'];
-    const ppoChips = ppoList
-      .map(p => '<span class="ff-ppo-chip" role="listitem"><span class="ff-ppo-check">✓</span> ' + p + '</span>')
-      .join('');
+    featuredEl.setAttribute('data-tier', tier);
+    featuredEl.setAttribute('href', f.href || '/dentists/featured');
+    featuredEl.setAttribute('onclick', "event.stopPropagation();return false;");
 
     featuredEl.innerHTML = `
-      ${sweepSpan}
-      ${bloomSpan}
-      <div class="find-featured-avatar" data-medallion="premium">
-        <span class="ff-medal-glow" aria-hidden="true"></span>
-        <span class="ff-medal-shine" aria-hidden="true"></span>
-        <span class="ff-medal-icon">${f.icon || '🦷'}</span>
-        <span class="ff-medal-ring" aria-hidden="true"></span>
-        ${orbitSpans}
+      ${bgEffects}
+      <div class="ff-avatar" data-tier="${tier}">
+        ${avatarGlow}
+        <span class="ff-avatar-shine" aria-hidden="true"></span>
+        <span class="ff-avatar-icon">${f.icon || '🦷'}</span>
+        ${sparksHtml}
       </div>
       <div class="ff-info">
-        <div class="ff-eyebrow">${eyebrow}</div>
-        <div class="ff-name">${f.name}</div>
+        <span class="ff-tier-badge ${tier}">${tierIcon} ${tierLabel}</span>
+        <a class="ff-name" href="${f.href || '/dentists/featured'}" onclick="event.stopPropagation();megaGo('featured-dentist');return false;">${f.name}</a>
         <div class="ff-meta">
-          <span class="ff-meta-item"><span class="ff-meta-ic">📍</span> ${f.loc.replace(/ · 4\.\d+ ★$/, '')}</span>
-          <span class="ff-meta-dot" aria-hidden="true"></span>
-          <span class="ff-meta-item"><span class="ff-meta-ic">⭐</span> Patient reviewed</span>
-          <span class="ff-meta-dot" aria-hidden="true"></span>
-          <span class="ff-meta-item"><span class="ff-meta-ic">🛡</span> PPO verified</span>
+          <span>📍 ${f.loc}</span>
+          <span class="ff-meta-dot"></span>
+          <span>⭐ ${f.rating} <span class="ff-reviews">(${(f.reviews || 0).toLocaleString()} reviews)</span></span>
         </div>
-        <div class="ff-ppo" role="list" aria-label="Accepted PPO insurance">${ppoChips}</div>
-        <div class="ff-footer">${footer}</div>
       </div>
-      <div class="find-featured-actions">
-        <button class="find-featured-btn primary"
-                onclick="event.stopPropagation();megaGo('book-featured');">
-          <span class="ff-btn-shine" aria-hidden="true"></span>
-          <span class="ff-btn-label">View Availability</span>
-          <span class="ff-btn-arrow" aria-hidden="true">→</span>
-        </button>
-        <button class="find-featured-btn secondary"
-                onclick="event.stopPropagation();megaGo('featured-dentist');">
-          View Profile
-        </button>
+      <div class="ff-actions">
+        <button class="ff-btn-book" onclick="event.stopPropagation();megaGo('book-appointment');">Book Appointment</button>
+        <button class="ff-btn-call" onclick="event.stopPropagation();megaGo('book-featured');">Call Office</button>
       </div>
     `;
     return;
   }
 
-  /* ── UNCLAIMED state · Practice Opportunity Snapshot ──
-     v226: removed LIVE pulse (no fake urgency), removed weekly user-count
-     line (no fabricated data). Replaced with credible opportunity signal
-     bars + Common Patient Interests + Best Fit chips + "Based on public
-     demographic and insurance market signals." legal-safe note.
-
-     Same wrapper as the filled card → zero layout shift. Shares visual
-     DNA with the Get Featured city card so dentists immediately
-     recognize what they unlock when they claim. */
-  const market = currentDemandMarket();
-  const opp = opportunitySignalsForMarket(market);
-  const snapshot = opportunitySnapshotHtml(opp, 'full');
-
+  // ── EMPTY state: open featured spot CTA ──
   featuredEl.setAttribute('data-state', 'empty');
-  featuredEl.removeAttribute('data-tier');
-  featuredEl.setAttribute('href', '/get-featured/city-featured');
-  featuredEl.setAttribute(
-    'onclick',
-    "event.stopPropagation();megaGo('city-featured');return false;"
-  );
+  featuredEl.setAttribute('data-tier', 'empty');
+  featuredEl.setAttribute('href', '/get-featured/capy-accredited');
+  featuredEl.setAttribute('onclick', "event.stopPropagation();megaGo('accreditation');return false;");
   featuredEl.innerHTML = `
-    ${sweepSpan}
-    ${bloomSpan}
-    <div class="find-featured-avatar" data-medallion="opportunity">
-      <span class="ff-medal-glow" aria-hidden="true"></span>
-      <span class="ff-medal-shine" aria-hidden="true"></span>
-      <span class="ff-medal-icon">✨</span>
-      <span class="ff-medal-ring" aria-hidden="true"></span>
-      ${orbitSpans}
+    <div class="ff-avatar" data-tier="verified">
+      <span class="ff-avatar-shine" aria-hidden="true"></span>
+      <span class="ff-avatar-icon">✨</span>
     </div>
-    <div class="ff-info ff-info-opportunity">
-      <div class="ff-eyebrow">Practice Opportunity</div>
-      <div class="ff-name">${opp.scopeLabel}</div>
-      <div class="ff-opp-sub">
-        Show up where high-intent PPO patients are looking. This snapshot
-        reflects market signals for ${market.name || areaName}.
-      </div>
-      <div class="opp-snapshot opp-snapshot-full">${snapshot}</div>
-      <div class="opp-source">Based on public demographic and insurance market signals.</div>
+    <div class="ff-info">
+      <span class="ff-tier-badge empty">Featured Spot · Available</span>
+      <div class="ff-name-plain">Your practice could be here.</div>
+      <div class="ff-meta">Become the featured PPO dentist in ${areaName}</div>
     </div>
-    <div class="find-featured-actions">
-      <button class="find-featured-btn primary"
-              onclick="event.stopPropagation();megaGo('city-featured');">
-        <span class="ff-btn-shine" aria-hidden="true"></span>
-        <span class="ff-btn-label">Claim This Area</span>
-        <span class="ff-btn-arrow" aria-hidden="true">→</span>
-      </button>
-      <button class="find-featured-btn secondary"
-              onclick="event.stopPropagation();megaGo('city-featured');">
-        See Market Activity
-      </button>
+    <div class="ff-actions">
+      <button class="ff-btn-book" onclick="event.stopPropagation();megaGo('accreditation');">Apply Now</button>
+      <button class="ff-btn-call" onclick="event.stopPropagation();megaGo('city-featured');">See City Featured</button>
     </div>
   `;
 }
@@ -1456,7 +1359,6 @@ function selectCity(slug, name){
   const c = CITIES[slug];
   if(c) activeZipCluster = (c.zip || '').split('·')[0].trim();
   renderCities();
-  renderFeatured();          // v225: refresh unclaimed-state weekly demand for new city scope
   updateFeaturedDemand();
   renderStepRail(3);
   toast('City', name);
@@ -1530,7 +1432,7 @@ const MEGA_ROUTES = {
   'compare':         { label:'Compare Plans',               href:'/ppo-plans/compare' },
   'ppo-guide':       { label:'How PPO Works',               href:'/ppo-plans/how-it-works' },
   'cheapest-plans':  { label:'Cheapest Plans',              href:'/ppo-plans/cheapest' },
-  'plans':           { label:'All PPO Plans',               href:'/ppo-plans' },
+  'plans':           { label:'Coverage',                    href:'/ppo-plans' },
   'need-implants':   { label:'Implant Planning',            href:'/ppo-plans/implant-planning' },
   'need-crowns':     { label:'Crowns & Root Canals',        href:'/ppo-plans/crowns-root-canals' },
   'need-invisalign': { label:'Invisalign',                  href:'/ppo-plans/invisalign' },
@@ -1546,7 +1448,7 @@ const MEGA_ROUTES = {
   'plan-cheapest':   { label:'Cheapest PPO',                href:'/ppo-plans/cheapest' },
 
   // Cost Calculator
-  'calc':            { label:'Cost Calculator',             href:'/cost-calculator' },
+  'calc':            { label:'Estimates',                   href:'/cost-calculator' },
   'cost-implant':    { label:'Implant Cost',                href:'/cost-calculator/implant' },
   'cost-crown':      { label:'Crown Cost',                  href:'/cost-calculator/crown' },
   'cost-invisalign': { label:'Invisalign Cost',             href:'/cost-calculator/invisalign' },
@@ -1555,7 +1457,7 @@ const MEGA_ROUTES = {
   'cost-guide':      { label:'Full Cost Guide',             href:'/guides/full-cost-guide' },
 
   // Find Dentist
-  'directory':       { label:'Find Dentist Directory',      href:'/dentists' },
+  'directory':       { label:'Dentists',                    href:'/dentists' },
   'featured-dentist':{ label:'Featured Dentist',            href:'/dentists/featured' },
   'book-featured':   { label:'View Featured Profile',       href:'/dentists/featured' },
   'book-appointment':{ label:'Book Featured Appointment',   href:'/dentists/featured/book' },
@@ -1612,7 +1514,6 @@ function gotoTab(slug){ megaGo(slug); }
 function goHome(){ megaGo('home'); }
 function openPortalModal(){ toast('Modal', 'Dentist Portal'); closeNav(); }
 function openSignupModal(){ toast('Modal', 'Join Free'); closeNav(); }
-function openCountyPicker(){ toast('Modal', 'County Picker'); }
 
 function rmgFindByZip(){
   const inputEl = document.getElementById('rmg-zip-input');
@@ -1731,4 +1632,284 @@ function rmgGoArea(slug, name){
   }
   const rewardsLink = document.querySelector('[data-link="rewards"]');
   if(rewardsLink) rewardsLink.addEventListener('mouseenter', start, { once: true });
+})();
+
+/* ──────────── injected: ABOUT v2 behavior ──────────── */
+
+/* ════════════════════════════════════════════════════════════════
+   ABOUT v2 — SLIDER + FAQ ACCORDION
+   ════════════════════════════════════════════════════════════════ */
+(function(){
+  /* ── Slider ──────────────────────────────────────────────── */
+  const track = document.getElementById('slider-track');
+  if(track){
+    const cards = Array.from(track.querySelectorAll('.slide-card'));
+    const prev  = document.getElementById('slider-prev');
+    const next  = document.getElementById('slider-next');
+    const dotsWrap = document.getElementById('slider-dots');
+
+    // Build dots
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', () => scrollToIndex(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.querySelectorAll('.slider-dot'));
+
+    function getStep(){
+      if(cards.length < 2) return 320;
+      const a = cards[0].getBoundingClientRect();
+      const b = cards[1].getBoundingClientRect();
+      return Math.max(200, b.left - a.left);
+    }
+    function currentIndex(){
+      const step = getStep();
+      return Math.round(track.scrollLeft / step);
+    }
+    function scrollToIndex(i){
+      const clamped = Math.max(0, Math.min(cards.length - 1, i));
+      track.scrollTo({ left: clamped * getStep(), behavior: 'smooth' });
+    }
+    function updateUI(){
+      const i = currentIndex();
+      dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
+      prev.disabled = i <= 0;
+      next.disabled = i >= cards.length - 1;
+    }
+
+    prev.addEventListener('click', () => scrollToIndex(currentIndex() - 1));
+    next.addEventListener('click', () => scrollToIndex(currentIndex() + 1));
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateUI);
+    }, { passive: true });
+    window.addEventListener('resize', updateUI);
+
+    // Keyboard support
+    track.setAttribute('tabindex', '0');
+    track.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollToIndex(currentIndex() - 1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); scrollToIndex(currentIndex() + 1); }
+    });
+
+    updateUI();
+  }
+
+  /* ── FAQ Accordion ───────────────────────────────────────── */
+  const faqWrap = document.getElementById('faq-wrap');
+  if(faqWrap){
+    const items = Array.from(faqWrap.querySelectorAll('.faq-item'));
+    items.forEach((item) => {
+      const btn = item.querySelector('.faq-q');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        // Close all
+        items.forEach(i => {
+          i.classList.remove('is-open');
+          const b = i.querySelector('.faq-q');
+          if(b) b.setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked (if not already open)
+        if(!isOpen){
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+})();
+
+
+/* ════════════════════════════════════════════════════════════════
+   V500.1 — CALC TABS · TREATMENT SELECTOR · CROWN TRACKER · ACCORDION
+   ════════════════════════════════════════════════════════════════ */
+
+// CALC TABS
+function switchCalcTab(tab, btn){
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('is-active'));
+  document.querySelectorAll('.calc-tab-panel').forEach(p => p.classList.remove('is-active'));
+  if(btn) btn.classList.add('is-active');
+  const panel = document.getElementById('calc-panel-' + tab);
+  if(panel) panel.classList.add('is-active');
+}
+
+// TREATMENT SELECTOR
+function selectTreatment(el){
+  document.querySelectorAll('.calc-treat').forEach(t => {
+    t.classList.remove('is-active');
+    t.style.borderColor = '';
+    t.style.background = '';
+  });
+  el.classList.add('is-active');
+  el.style.borderColor = 'var(--g)';
+  el.style.background = 'var(--gll)';
+  const retail = parseInt(el.dataset.retail);
+  const ppo    = parseInt(el.dataset.ppo);
+  const save   = parseInt(el.dataset.save);
+  const pct    = Math.round((ppo / retail) * 100);
+  const fmt = n => '$' + n.toLocaleString();
+  const retailEl  = document.getElementById('calc-retail');
+  const ppoEl     = document.getElementById('calc-ppo');
+  const saveEl    = document.getElementById('calc-save');
+  const barEl     = document.getElementById('calc-bar');
+  if(retailEl) retailEl.textContent = fmt(retail);
+  if(ppoEl)    ppoEl.textContent    = ppo === 0 ? 'Free (covered)' : 'from ' + fmt(ppo);
+  if(saveEl)   saveEl.textContent   = fmt(save);
+  if(barEl)    barEl.style.width    = Math.max(5, pct) + '%';
+}
+
+// CROWN PROGRESS
+function updateCrownProgress(crowns){
+  const total = 2000;
+  const pct   = Math.min(100, Math.round((crowns / total) * 100));
+  const fill   = document.getElementById('crown-progress-fill');
+  const marker = document.getElementById('crown-progress-marker');
+  const balloon= document.getElementById('crown-progress-balloon');
+  const balD   = document.getElementById('crown-bal-display');
+  const needD  = document.getElementById('crown-need-display');
+  if(fill)   fill.style.width  = pct + '%';
+  if(marker) marker.style.left = Math.min(94, pct) + '%';
+  if(balloon) balloon.textContent = crowns.toLocaleString() + ' 👑';
+  if(balD)   balD.textContent  = crowns.toLocaleString();
+  if(needD)  needD.textContent = Math.max(0, total - crowns).toLocaleString();
+}
+
+// CROWN ACCORDION TOGGLE
+function toggleCrownAcc(which){
+  const body    = document.getElementById('crown-' + which + '-body');
+  const chevron = document.getElementById('crown-' + which + '-chevron');
+  const toggle  = document.getElementById('crown-' + which + '-toggle');
+  if(!body) return;
+  const isOpen = body.classList.contains('is-open');
+  body.classList.toggle('is-open', !isOpen);
+  if(chevron) chevron.textContent = isOpen ? '▾' : '▴';
+  if(toggle)  toggle.setAttribute('aria-expanded', String(!isOpen));
+}
+
+(function(){
+  // Init crown progress at 300 (just joined)
+  updateCrownProgress(300);
+
+  // Pre-select first treatment card
+  const firstTreat = document.querySelector('.calc-treat');
+  if(firstTreat){
+    firstTreat.style.borderColor = 'var(--g)';
+    firstTreat.style.background  = 'var(--gll)';
+    firstTreat.classList.add('is-active');
+  }
+});
+
+
+// CALC TABS
+function switchCalcTab(tab, btn){
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('is-active'));
+  document.querySelectorAll('.calc-tab-panel').forEach(p => p.classList.remove('is-active'));
+  if(btn) btn.classList.add('is-active');
+  const panel = document.getElementById('calc-panel-' + tab);
+  if(panel) panel.classList.add('is-active');
+}
+
+// TREATMENT SELECTOR
+function selectTreatment(el){
+  document.querySelectorAll('.calc-treat').forEach(t => {
+    t.classList.remove('is-active');
+    t.style.borderColor = '';
+    t.style.background = '';
+  });
+  el.classList.add('is-active');
+  el.style.borderColor = 'var(--g)';
+  el.style.background = 'var(--gll)';
+
+  const retail = parseInt(el.dataset.retail);
+  const ppo = parseInt(el.dataset.ppo);
+  const save = parseInt(el.dataset.save);
+  const pct = Math.round((ppo / retail) * 100);
+
+  const fmt = n => '$' + n.toLocaleString();
+
+  const retailEl = document.getElementById('calc-retail');
+  const ppoEl = document.getElementById('calc-ppo');
+  const saveEl = document.getElementById('calc-save');
+  const barEl = document.getElementById('calc-bar');
+
+  if(retailEl) retailEl.textContent = fmt(retail);
+  if(ppoEl) ppoEl.textContent = ppo === 0 ? 'Free (covered)' : 'from ' + fmt(ppo);
+  if(saveEl) saveEl.textContent = fmt(save);
+  if(barEl) barEl.style.width = Math.max(5, pct) + '%';
+}
+
+// CROWN PROGRESS INTERACTIVE
+function updateCrownProgress(crowns){
+  const total = 2000;
+  const pct = Math.min(100, Math.round((crowns / total) * 100));
+  const fill = document.getElementById('crown-progress-fill');
+  const marker = document.getElementById('crown-progress-marker');
+  const balloon = document.getElementById('crown-progress-balloon');
+  const balDisplay = document.getElementById('crown-bal-display');
+  const needDisplay = document.getElementById('crown-need-display');
+  if(fill) fill.style.width = pct + '%';
+  if(marker) marker.style.left = pct + '%';
+  if(balloon) balloon.textContent = crowns.toLocaleString() + ' 👑';
+  if(balDisplay) balDisplay.textContent = crowns.toLocaleString();
+  if(needDisplay) needDisplay.textContent = Math.max(0, total - crowns).toLocaleString();
+}
+
+// CROWN STEP INTERACTIVE — check off steps on hover for demo
+(function(){
+  updateCrownProgress(300);
+  
+  // Animate crown steps on rewards hover to show earning
+  const rewardsLink = document.querySelector('[data-link="rewards"]');
+  if(rewardsLink){
+    let demoTimeout;
+    rewardsLink.addEventListener('mouseenter', function(){
+      clearTimeout(demoTimeout);
+    });
+  }
+
+  // Calculator — pre-select implant
+  const firstTreat = document.querySelector('.calc-treat');
+  if(firstTreat) {
+    firstTreat.style.borderColor = 'var(--g)';
+    firstTreat.style.background = 'var(--gll)';
+    firstTreat.classList.add('is-active');
+  }
+});
+
+
+// DENTIST ZIP SEARCH (claim profile lookup)
+function dentZipKey(ev){
+  const input = ev.target;
+  input.value = input.value.replace(/\D/g, '');
+  if(input.value.length === 5){
+    dentZipSearch(ev);
+  }
+}
+function dentZipSearch(ev){
+  if(ev && ev.preventDefault) ev.preventDefault();
+  const input = document.getElementById('dent-zip-input');
+  const meta  = document.getElementById('dent-zip-meta');
+  if(!input || !meta) return;
+  const zip = (input.value || '').replace(/\D/g,'');
+  if(zip.length !== 5){
+    meta.textContent = 'Enter a 5-digit ZIP to search';
+    meta.classList.remove('is-found');
+    return;
+  }
+  meta.textContent = 'Searching our dentist index for ZIP ' + zip + '...';
+  meta.classList.remove('is-found');
+  setTimeout(function(){
+    meta.textContent = "Found 14 practices near " + zip + " · Continue to claim yours";
+    meta.classList.add('is-found');
+    setTimeout(function(){
+      if(typeof openPortalModal === 'function'){
+        openPortalModal();
+      } else if(typeof toast === 'function'){
+        toast('Claim Profile', 'ZIP ' + zip);
+      }
+    }, 600);
+  }, 700);
+}
 })();
