@@ -57,7 +57,7 @@
 
   function load(){
     // Relative path so it works equally on `/` and on `/subpath/` deployments.
-    fetch('mega-nav.html', { credentials: 'same-origin' })
+    fetch("/components/mega-nav.html"), { credentials: 'same-origin' })
       .then(function(res){
         if(!res.ok) throw new Error('HTTP ' + res.status + ' fetching mega-nav.html');
         return res.text();
