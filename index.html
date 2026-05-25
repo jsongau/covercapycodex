@@ -3,11 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CoverCapy — The Concierge Chapters">
-  <title>CoverCapy</title>
+  <meta name="description" content="CoverCapy helps patients compare PPO dental plans, estimate treatment costs, and find PPO-friendly dentists before booking care.">
+  <title>CoverCapy | PPO Dental Insurance, Cost Estimates & PPO Dentist Discovery</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CoverCapy | Concierge Dental Network">
+  <meta property="og:description" content="Compare PPO dental plans, estimate treatment costs, and discover PPO-friendly dentists.">
+  <meta property="og:url" content="https://covercapy.com/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CoverCapy | Concierge Dental Network">
+  <meta name="twitter:description" content="PPO dental insurance, cost estimates, and PPO-friendly dentist discovery.">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://covercapy.com/">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/covercapy-logo.svg">
+
+  <!-- Fonts (mega-nav.css also @imports, but preconnect speeds first paint) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/mega-nav.css">
@@ -15,26 +33,26 @@
 </head>
 <body>
 
-  <!-- MEGA NAV (injected by load-nav.js from components/mega-nav.html) -->
+  <!-- MEGA NAV — injected by assets/js/load-nav.js from components/mega-nav.html -->
   <div id="mega-nav-placeholder"></div>
 
-  <!-- HERO SLIDER (injected by load-nav.js from components/hero-slider.html) -->
+  <!-- HERO SLIDER — injected by assets/js/load-nav.js from components/hero-slider.html -->
   <div id="hero-slider-placeholder"></div>
 
   <!-- PAGE CONTENT -->
   <main>
-    <section style="padding: 80px 40px;">
-      <h1>Welcome to CoverCapy</h1>
-      <p>The Concierge Chapters — Relief → Confidence → Clarity → Trust → Action.</p>
+    <section style="max-width: 980px; margin: 0 auto; padding: 80px 24px;">
+      <h1>CoverCapy Concierge Dental Network</h1>
+      <p>Compare PPO dental plans, estimate treatment costs before treatment, and discover PPO-friendly dentists with transparent pricing guidance.</p>
     </section>
   </main>
 
-  <!-- FOOTER (optional placeholder) -->
-  <footer>
+  <!-- FOOTER -->
+  <footer style="padding: 40px 24px; text-align: center; color: #7892A3; font-size: 14px;">
     <p>&copy; 2026 CoverCapy</p>
   </footer>
 
-  <!-- JS — load-nav.js should run first to inject the partials, then component scripts -->
+  <!-- JS — load-nav.js runs first to inject the partials, then component scripts initialize -->
   <script src="assets/js/load-nav.js"></script>
   <script src="assets/js/mega-nav.js"></script>
   <script src="assets/js/hero-slider.js"></script>
