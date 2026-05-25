@@ -7290,3 +7290,22 @@ body{
   .cc-logo-copy .cc-edition-top{ font-size:8px; letter-spacing:.18em; }
   .cc-logo-copy .cc-edition-bottom{ font-size:12px; }
 }
+
+.cc-link:hover .cc-dropdown,
+.cc-link:focus-within .cc-dropdown,
+.cc-link.is-open .cc-dropdown{
+  opacity:1 !important;
+  transform:translate(-50%,0) !important;
+  pointer-events:auto !important;
+  visibility:visible !important;
+}
+
+.cc-dropdown{
+  visibility:hidden;
+}
+
+.cc-link:hover .cc-dropdown,
+.cc-link:focus-within .cc-dropdown,
+.cc-link.is-open .cc-dropdown{
+  visibility:visible;
+}
