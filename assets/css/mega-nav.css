@@ -227,36 +227,6 @@ em, i, .em-accent{
 }
 
 /* Logo */
-.cc-logo{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity .2s var(--ease);
-}
-.cc-logo:hover{ opacity: .85; }
-.cc-logo-mark{
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--trust-blue), var(--reward-coastal));
-  border: 1px solid rgba(18,63,82,.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-.cc-logo-text{
-  font-family:var(--ff-sans);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--gd);
-  letter-spacing: -.01em;
-  line-height: 1.05;
-  overflow-wrap: anywhere;
-}
 
 .cc-logo{
   display:flex;
