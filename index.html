@@ -3,25 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>CoverCapy</title>
 
-  <!-- Component CSS first, so styles are ready when HTML injects -->
-  <link rel="stylesheet" href="assets/css/mega-nav.css">
-  <link rel="stylesheet" href="assets/css/hero-slider.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/mega-nav.css">
+  <link rel="stylesheet" href="/css/hero-slider.css">
 </head>
+
 <body>
 
-  <!-- 1. Mega nav goes here — load-nav.js fills this -->
+  <!-- MEGA NAV -->
   <div id="mega-nav-placeholder"></div>
 
-  <!-- 2. Hero right after the nav -->
+  <!-- HERO SLIDER -->
   <div id="hero-slider-placeholder"></div>
 
-  <!-- ...rest of your page below... -->
+  <!-- YOUR PAGE CONTENT -->
+  <main>
 
-  <!-- Component JS at end of body, deferred so DOM is ready -->
-  <script src="assets/js/load-nav.js" defer></script>
-  <script src="assets/js/mega-nav.js" defer></script>
-  <script src="assets/js/hero-slider.js" defer></script>
+    <section style="padding:80px 40px;">
+      <h1>The concierge layer for PPO dentistry</h1>
+      <p>Your page content starts here.</p>
+    </section>
+
+  </main>
+
+  <!-- JS -->
+  <script src="/js/load-nav.js"></script>
+  <script src="/js/mega-nav.js"></script>
+  <script src="/js/hero-slider.js"></script>
+
 </body>
 </html>
