@@ -1,0 +1,261 @@
+/* ════════════════════════════════════════════════════════════════
+   CoverCapy · MEGA NAV MOBILE
+   Load AFTER mega-nav.css in index.html.
+   Adds: hamburger button, slide-in drawer, tap accordions.
+   ════════════════════════════════════════════════════════════════ */
+
+
+/* ── HAMBURGER BUTTON ───────────────────────────────────────────
+   Hidden on desktop. Revealed at ≤980px.
+   Three bars animate into an X when open.
+   ─────────────────────────────────────────────────────────────── */
+.cc-burger{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  width:40px; height:40px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  padding:0;
+  margin-left:4px;
+  border-radius:8px;
+  transition:background .15s;
+  flex-shrink:0;
+}
+.cc-burger:hover{ background:rgba(0,0,0,.05); }
+
+.cc-burger-bar{
+  display:block;
+  width:22px; height:2px;
+  background:var(--ink, #14242A);
+  border-radius:2px;
+  transition:transform .25s cubic-bezier(.22,1,.36,1),
+             opacity   .2s,
+             width     .2s;
+}
+
+/* X state */
+.cc-burger.is-open .cc-burger-bar:nth-child(1){
+  transform:translateY(7px) rotate(45deg);
+}
+.cc-burger.is-open .cc-burger-bar:nth-child(2){
+  opacity:0; width:0;
+}
+.cc-burger.is-open .cc-burger-bar:nth-child(3){
+  transform:translateY(-7px) rotate(-45deg);
+}
+
+
+/* ── MOBILE DRAWER ──────────────────────────────────────────────
+   Full-screen panel that slides in from the right.
+   ─────────────────────────────────────────────────────────────── */
+.cc-drawer{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  background:#FAF7F1;
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  /* Start off-screen */
+  transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+  /* Hidden from assistive tech until open */
+  visibility:hidden;
+}
+.cc-drawer.is-open{
+  transform:translateX(0);
+  visibility:visible;
+}
+
+
+/* ── DRAWER HEAD ────────────────────────────────────────────── */
+.cc-drawer-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px 16px;
+  border-bottom:1px solid #E6DDC8;
+  position:sticky;
+  top:0;
+  background:#FAF7F1;
+  z-index:2;
+  flex-shrink:0;
+}
+.cc-drawer-brand{
+  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
+  font-size:17px;
+  font-weight:600;
+  color:#14242A;
+  letter-spacing:-.01em;
+}
+.cc-drawer-close{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:36px; height:36px;
+  border:none;
+  background:transparent;
+  color:#14242A;
+  font-size:18px;
+  cursor:pointer;
+  border-radius:8px;
+  transition:background .15s;
+  padding:0;
+}
+.cc-drawer-close:hover{ background:rgba(0,0,0,.06); }
+
+
+/* ── DRAWER NAV (accordion list) ────────────────────────────── */
+.cc-drawer-nav{
+  flex:1;
+  padding:8px 0 24px;
+}
+
+/* Each accordion item */
+.cc-dacc{
+  border-bottom:1px solid #E6DDC8;
+}
+
+/* Accordion trigger button */
+.cc-dacc-btn{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 20px;
+  background:transparent;
+  border:none;
+  text-align:left;
+  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
+  font-size:15px;
+  font-weight:500;
+  color:#14242A;
+  cursor:pointer;
+  transition:background .15s;
+}
+.cc-dacc-btn:hover{ background:rgba(0,0,0,.04); }
+.cc-dacc-btn.is-active{ color:#1B5E5A; background:rgba(27,94,90,.04); }
+
+.cc-dacc-caret{
+  font-size:18px;
+  color:#97A4A9;
+  transition:transform .22s;
+  line-height:1;
+}
+.cc-dacc-btn.is-active .cc-dacc-caret{
+  transform:rotate(90deg);
+  color:#1B5E5A;
+}
+
+/* Accordion body — collapsed by default */
+.cc-dacc-body{
+  display:none;
+  flex-direction:column;
+  background:#F4F1E9;
+  padding:4px 0 8px;
+}
+.cc-dacc-body.is-open{
+  display:flex;
+}
+
+/* Links inside accordion body */
+.cc-dacc-link{
+  display:block;
+  padding:11px 24px;
+  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
+  font-size:14px;
+  font-weight:400;
+  color:#3D5057;
+  text-decoration:none;
+  transition:color .15s, background .15s;
+}
+.cc-dacc-link:hover{
+  color:#1B5E5A;
+  background:rgba(27,94,90,.06);
+}
+/* Featured link — bolder, teal */
+.cc-dacc-link-feature{
+  font-weight:600;
+  color:#1B5E5A;
+  padding-bottom:14px;
+  border-bottom:1px solid #E6DDC8;
+  margin-bottom:4px;
+}
+.cc-dacc-link-feature:hover{ color:#0E3F44; }
+
+
+/* ── DRAWER FOOTER ──────────────────────────────────────────── */
+.cc-drawer-foot{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:20px;
+  border-top:1px solid #E6DDC8;
+  position:sticky;
+  bottom:0;
+  background:#FAF7F1;
+  flex-shrink:0;
+}
+.cc-drawer-join-btn{
+  width:100%;
+  padding:14px;
+  background:#1B5E5A;
+  color:#FAF7F1;
+  border:none;
+  border-radius:10px;
+  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  letter-spacing:.01em;
+  transition:background .2s;
+}
+.cc-drawer-join-btn:hover{ background:#0E3F44; }
+
+.cc-drawer-sign-btn{
+  width:100%;
+  padding:13px;
+  background:transparent;
+  color:#14242A;
+  border:1px solid #C9B98F;
+  border-radius:10px;
+  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+  transition:background .2s, border-color .2s;
+}
+.cc-drawer-sign-btn:hover{ background:rgba(0,0,0,.04); }
+
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   Show hamburger, hide desktop links.
+   ════════════════════════════════════════════════════════════════ */
+
+/* Tablet and below — where the 6-menu desktop bar gets crowded */
+@media (max-width:980px){
+  /* Hide full desktop menu bar */
+  .cc-links{ display:none !important; }
+
+  /* Show the hamburger */
+  .cc-burger{ display:flex; }
+
+  /* Optionally hide Sign In on mobile to keep the nav bar tidy —
+     the drawer footer has it. Remove this rule to keep it visible. */
+  .cc-action-link:not(.cc-action-join){ display:none; }
+}
+
+/* On very small phones, shrink the Join Free pill slightly */
+@media (max-width:400px){
+  .cc-action-join{
+    font-size:12px;
+    padding:6px 12px;
+  }
+}
