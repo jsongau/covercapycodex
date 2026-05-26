@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/best-ppo-dentists/:area/:city",
+      "destination": "/ppodentists.html"
+    },
+    {
+      "source": "/best-ppo-dentists/:area",
+      "destination": "/ppodentists.html"
+    }
+  ]
+}
