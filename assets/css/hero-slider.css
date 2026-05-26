@@ -169,6 +169,25 @@ img,svg{ max-width:100%; display:block; }
   pointer-events:none;
   transition: opacity .9s var(--e-luxe), visibility 0s linear .9s;
 }
+
+/* ── Wide-screen content lock ─────────────────────────────────────
+   On large desktops (≥1280px), the chapter pads itself inward so the
+   text column and visual column sit ~1200px apart at most — instead
+   of spreading to the screen edges. Keeps eye-travel comfortable on
+   1440 / 1920 / ultrawide displays without changing narrower layouts. */
+@media (min-width: 1280px){
+  .chapter{
+    padding-left:  max(96px, calc((100vw - 1200px) / 2));
+    padding-right: max(96px, calc((100vw - 1200px) / 2));
+    gap: 64px;
+  }
+}
+@media (min-width: 1600px){
+  .chapter{
+    padding-left:  max(96px, calc((100vw - 1240px) / 2));
+    padding-right: max(96px, calc((100vw - 1240px) / 2));
+  }
+}
 .chapter.is-active{
   opacity:1;
   visibility:visible;
@@ -2277,79 +2296,6 @@ img,svg{ max-width:100%; display:block; }
   color:var(--gold-deep);
   letter-spacing:-.003em;
   opacity:.85;
-}
-
-
-/* ════════════════════════════════════════════════════════════════
-   CHAPTER I · MEMBER RATING PROOF (Supabase-ready)
-   ────────────────────────────────────────────────────────────────
-   Replaces the older social-proof block. Three rows: filled gold
-   stars, plain-language rating copy, overlapping circular avatars
-   with member initials. The data-source="supabase-ready" attribute
-   on the wrapper is the swap point — when real verified-member
-   data is available, the inner three rows can be replaced without
-   touching this CSS.
-   ════════════════════════════════════════════════════════════════ */
-.member-rating-proof{
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-.member-stars{
-  font-size: 17px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  /* Keep stars on a single row even on narrow viewports */
-  white-space: nowrap;
-  line-height: 1;
-  text-shadow: 0 1px 0 rgba(255,255,255,.4);
-}
-.member-rating-copy{
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-variation-settings: "opsz" 24, "SOFT" 80;
-  font-size: 14px;
-  line-height: 1.3;
-  color: var(--ink-soft);
-  letter-spacing: -.005em;
-}
-.member-avatar-stack{
-  display: inline-flex;
-  align-items: center;
-  margin-top: 4px;
-}
-.member-avatar{
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .02em;
-  color: var(--paper);
-  border: 2px solid var(--paper);
-  box-shadow: 0 1px 3px rgba(15,31,38,.18);
-  flex-shrink: 0;
-}
-.member-avatar + .member-avatar{ margin-left: -9px; }
-/* Five distinct brand-palette gradients, rotated through the placeholders */
-.member-avatar:nth-child(5n+1){ background: linear-gradient(135deg, #1B5E5A 0%, #0E3F44 100%); }
-.member-avatar:nth-child(5n+2){ background: linear-gradient(135deg, #B8924F 0%, #8A6A30 100%); }
-.member-avatar:nth-child(5n+3){ background: linear-gradient(135deg, #0E3F44 0%, #082A30 100%); }
-.member-avatar:nth-child(5n+4){ background: linear-gradient(135deg, #C9A468 0%, #B8924F 100%); }
-.member-avatar:nth-child(5n+5){ background: linear-gradient(135deg, #2A7672 0%, #1B5E5A 100%); }
-.member-rating-proof:hover .member-avatar{ transform: translateY(-1px); }
-.member-avatar{ transition: transform .35s var(--e-out); }
-
-@media (max-width: 640px){
-  .member-rating-proof{ margin-top: 16px; gap: 5px; }
-  .member-stars{ font-size: 15px; letter-spacing: 1.5px; }
-  .member-rating-copy{ font-size: 13px; }
-  .member-avatar{ width: 26px; height: 26px; font-size: 9.5px; }
-  .member-avatar + .member-avatar{ margin-left: -8px; }
 }
 
 
