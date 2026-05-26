@@ -6,11 +6,20 @@
  
   
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XNBPGSZ1LZ');
+  </script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#FBF6EC" />
-  <title id="ppo-title">PPO Dentists in Orange County · Fountain Valley, Irvine, Newport Beach | CoverCapy</title>
-  <meta id="ppo-desc" name="description" content="Find PPO-friendly dentists in Orange County. Compare local dental offices, check PPO compatibility, and request CoverCapy outreach before you book." />
+  <title id="ppo-title">PPO Dentists in Orange County | Find PPO-Friendly Dentists Near You | CoverCapy</title>
+  <meta id="ppo-desc" name="description" content="Find PPO-friendly dentists in Orange County. Search by ZIP, compare Google, Yelp, and verified CoverCapy patient feedback, and discover Platinum Elite, Capy Accredited, and verified dental offices near you." />
   <link id="ppo-canonical" rel="canonical" href="https://www.covercapy.com/best-ppo-dentists/orange-county/fountain-valley" />
 
   <meta property="og:type" content="website" />
@@ -34,7 +43,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- CoverCapy shared navigation + hero assets -->
+  <link rel="stylesheet" href="/assets/css/mega-nav.css">
+  <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+  <link rel="stylesheet" href="/assets/css/hero-slider.css">
+  <link rel="stylesheet" href="/assets/css/hero-slider-mobile.css">
+
   <style>
+
+  /* Shared CoverCapy header mounts */
+  #cc-nav-mount{ min-height:72px; }
+  #cc-hero-mount{ min-height:72vh; }
+  @media (max-width: 780px){ #cc-hero-mount{ min-height:64vh; } }
   /* CoverCapy · PPO dentist discovery page · slots into the existing
      mega-nav design system. All tokens mirror mega-nav.css. */
   :root{
@@ -440,6 +460,61 @@
   </style>
 </head>
 <body>
+
+<div id="cc-nav-mount"></div>
+<div id="cc-hero-mount"></div>
+
+<script>
+(async function(){
+  const loadScript = src => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Failed to load ' + src));
+    document.body.appendChild(s);
+  });
+
+  const injectComponent = async (mountId, url) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(url + ' returned ' + res.status);
+      const html = await res.text();
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+      const parent = mount.parentNode;
+
+      while (wrapper.firstChild) {
+        parent.insertBefore(wrapper.firstChild, mount);
+      }
+
+      parent.removeChild(mount);
+
+      injectedScripts.forEach(old => {
+        const fresh = document.createElement('script');
+        for (const attr of old.attributes) {
+          fresh.setAttribute(attr.name, attr.value);
+        }
+        fresh.textContent = old.textContent;
+        if (old.parentNode) old.parentNode.replaceChild(fresh, old);
+      });
+    } catch (err) {
+      console.error('[CoverCapy component loader] failed:', url, err);
+    }
+  };
+
+  await injectComponent('cc-nav-mount', '/components/mega-nav.html');
+  await injectComponent('cc-hero-mount', '/components/hero-slider.html');
+
+  await loadScript('/assets/js/mega-nav.js');
+  await loadScript('/assets/js/hero-slider.js');
+})();
+</script>
 
 <div class="ppo-sticky-search" id="ppo-sticky-search">
   <div class="ppo-shell">
