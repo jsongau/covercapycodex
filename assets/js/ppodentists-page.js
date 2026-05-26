@@ -1,10 +1,56 @@
 import { supabase } from './supabase-dentists.js'
 
-const FALLBACK_ZIP = '92708'
-const FALLBACK_CITY = 'Fountain Valley'
-const FALLBACK_AREA = 'Orange County'
+const FALLBACK_CONTEXT = {
+  zip: '92708',
+  city: 'Fountain Valley',
+  area: 'Orange County',
+  location: 'Southern California',
+  region: 'West Coast'
+}
+
+let ctx = { ...FALLBACK_CONTEXT }
+let ALL_DENTISTS = []
+let shown = 12
+let activeSpecialty = 'all'
+
+const $ = (s, r = document) => r.querySelector(s)
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s))
+
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, m => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  }[m]))
+}
+
+function slugToTitle(slug) {
+  return String(slug || '')
+    .split('-')
+    .filter(Boolean)
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ')
+}
+
+function getContextFromUrl() {
+  const path = window.location.pathname
+  const parts = path.split('/').filter(Boolean)
+
+  const idx = parts.indexOf('best-ppo-dentists')
+  if (idx >= 0) {
+    const areaSlug = parts[idx + 1]
+    const citySlug = parts[idx + 2]
+
+    if (areaSlug) ctx.area = slugToTitle(areaSlug)
+    if (citySlug) ctx.city = slugToTitle(citySlug)
+  }
+
+  const url = new URL(window.location.href)
+  const zip = url.searchParams.get('zip')
+  if (zip) ctx.zip = zip
+}
 
 async function getZipContext(zip) {
+  if (!zip) return null
+
   const { data, error } = await supabase
     .from('zip_city_map')
     .select('*')
@@ -19,135 +65,390 @@ async function getZipContext(zip) {
   return data
 }
 
-function getAggregateRating(d) {
-  const googleCount = d.google_review_count || 0
-  const yelpCount = d.yelp_review_count || 0
-  const capyCount = d.capy_review_count || 0
-
-  const weightedCount =
-    googleCount + yelpCount + capyCount * 2
-
-  if (!weightedCount) {
-    return { rating: 0, count: 0, score: 0 }
-  }
-
-  const total =
-    (d.google_rating || 0) * googleCount +
-    (d.yelp_rating || 0) * yelpCount +
-    (d.capy_rating || 0) * capyCount * 2
-
-  const rating = total / weightedCount
-  const reviewVolumeBonus = Math.log(weightedCount + 1) * 40
-
-  return {
-    rating,
-    count: weightedCount,
-    score: rating * 100 + reviewVolumeBonus
-  }
-}
-
-function getPlacementScore(d, context) {
-  const tier = String(d.featured_tier || '').toLowerCase()
-
-  const sameCity =
-    String(d.city || '').toLowerCase() ===
-    String(context.city || '').toLowerCase()
-
-  const sameArea =
-    String(d.area || '').toLowerCase() ===
-    String(context.area || '').toLowerCase()
-
-  if (tier === 'platinum-elite' && sameArea) return 100000
-  if (tier === 'capy-accredited' && sameCity) return 80000
-  if (tier === 'verified' && sameCity) return 50000
-  if (sameCity) return 20000
-  if (sameArea) return 10000
-
-  return 0
-}
-
-function getDistanceScore(distanceMiles) {
-  if (distanceMiles == null) return 0
-  return Math.max(0, 3000 - distanceMiles * 150)
-}
-
-function getCapyEngagementScore(d) {
-  return (d.capy_review_count || 0) * 25
-}
-
-function getCoverCapyRankScore(d, context) {
-  const ratingData = getAggregateRating(d)
-
-  return (
-    getPlacementScore(d, context) +
-    getDistanceScore(d.distance_miles) +
-    ratingData.score +
-    getCapyEngagementScore(d)
-  )
-}
-
-function rankDentists(dentists, context) {
-  return dentists
-    .map(d => {
-      const ratingData = getAggregateRating(d)
-
-      return {
-        ...d,
-        aggregate_rating: Number(ratingData.rating.toFixed(1)),
-        aggregate_review_count: ratingData.count,
-        covercapy_rank_score: getCoverCapyRankScore(d, context)
-      }
-    })
-    .sort((a, b) => b.covercapy_rank_score - a.covercapy_rank_score)
-}
-
-async function fetchDentists(context) {
+async function fetchDentists() {
   const { data, error } = await supabase
     .from('dentists')
     .select('*')
-    .eq('area', context.area || FALLBACK_AREA)
+    .eq('area', ctx.area || FALLBACK_CONTEXT.area)
 
   if (error) {
     console.error('Dentist fetch failed:', error)
     return []
   }
 
-  return rankDentists(data || [], context)
+  return (data || []).map(normalizeDentist)
 }
 
-function getSearchZip() {
-  const zipInput = document.getElementById('ppo-zip')
-  const url = new URL(window.location.href)
-  const zipParam = url.searchParams.get('zip')
+function normalizeDentist(d) {
+  const pending = d.pending_display_label || 'Public Directory Listing'
 
-  return zipParam || zipInput?.value || FALLBACK_ZIP
+  let tier = d.featured_tier
+  if (!tier) tier = 'public-directory'
+
+  return {
+    ...d,
+    id: d.id || d.slug,
+    name: d.name || d.practice_name,
+    practice_name: d.practice_name || d.name || 'Dental Office',
+    featured_tier: tier,
+    display_badge:
+      d.featured_tier === 'platinum-elite' ? 'Platinum Elite' :
+      d.featured_tier === 'capy-accredited' ? 'Capy Accredited' :
+      d.featured_tier === 'verified' ? 'Verified Profile' :
+      pending,
+    specialties: Array.isArray(d.specialties) ? d.specialties : [],
+    languages: Array.isArray(d.languages) ? d.languages : [],
+    insurance_networks: Array.isArray(d.insurance_networks) ? d.insurance_networks : [],
+    procedures: Array.isArray(d.procedures) ? d.procedures : [],
+    google_rating: Number(d.google_rating || 0),
+    google_review_count: Number(d.google_review_count || 0),
+    yelp_rating: Number(d.yelp_rating || 0),
+    yelp_review_count: Number(d.yelp_review_count || 0),
+    capy_rating: Number(d.capy_rating || 0),
+    capy_review_count: Number(d.capy_review_count || 0),
+    distance_miles: d.distance_miles == null ? null : Number(d.distance_miles)
+  }
 }
 
-async function loadPage() {
-  const zip = getSearchZip()
+function getAggregateRating(d) {
+  const googleCount = d.google_review_count || 0
+  const yelpCount = d.yelp_review_count || 0
+  const capyCount = d.capy_review_count || 0
 
-  let context = await getZipContext(zip)
+  const weightedCount = googleCount + yelpCount * 0.7 + capyCount * 2
 
-  if (!context) {
-    context = {
-      zip: FALLBACK_ZIP,
-      city: FALLBACK_CITY,
-      area: FALLBACK_AREA,
-      location: 'Southern California',
-      region: 'West Coast'
+  if (!weightedCount) return { rating: 0, count: 0, score: 0 }
+
+  const total =
+    d.google_rating * googleCount +
+    d.yelp_rating * yelpCount * 0.7 +
+    d.capy_rating * capyCount * 2
+
+  const rating = total / weightedCount
+  const count = googleCount + yelpCount + capyCount
+  const score = rating * 100 + Math.log(count + 1) * 40
+
+  return { rating, count, score }
+}
+
+function getPlacementScore(d) {
+  const tier = String(d.featured_tier || '').toLowerCase()
+  const sameCity = String(d.city || '').toLowerCase() === String(ctx.city || '').toLowerCase()
+  const sameArea = String(d.area || '').toLowerCase() === String(ctx.area || '').toLowerCase()
+
+  if (tier === 'platinum-elite' && sameArea) return 100000
+  if (tier === 'capy-accredited' && sameCity) return 80000
+  if (tier === 'verified' && sameCity) return 50000
+  if (sameCity) return 30000
+  if (sameArea) return 10000
+  return 0
+}
+
+function getDistanceScore(d) {
+  if (d.distance_miles == null) return 0
+  return Math.max(0, 3000 - d.distance_miles * 150)
+}
+
+function getRankScore(d) {
+  return (
+    getPlacementScore(d) +
+    getDistanceScore(d) +
+    getAggregateRating(d).score +
+    (d.capy_review_count || 0) * 25
+  )
+}
+
+function rankDentists(list) {
+  return list
+    .map(d => ({
+      ...d,
+      aggregate_rating: Number(getAggregateRating(d).rating.toFixed(1)),
+      aggregate_review_count: getAggregateRating(d).count,
+      covercapy_rank_score: getRankScore(d)
+    }))
+    .sort((a, b) => b.covercapy_rank_score - a.covercapy_rank_score)
+}
+
+function titleHtml(name) {
+  const parts = String(name || 'Dental Office').split(' ')
+  if (parts.length < 2) return esc(name)
+  const last = parts.pop()
+  return `${esc(parts.join(' '))} <em style="font-style:italic;color:var(--g);">${esc(last)}</em>`
+}
+
+function badgeClass(d) {
+  if (d.featured_tier === 'platinum-elite') return 'platinum-elite'
+  if (d.featured_tier === 'capy-accredited') return 'capy-accredited'
+  if (d.featured_tier === 'verified') return 'unverified'
+  return 'unverified'
+}
+
+function cardHtml(d) {
+  const phoneHref = d.phone ? `tel:${String(d.phone).replace(/\s/g, '')}` : '#'
+  const rating = d.aggregate_rating || d.google_rating || 0
+  const reviewCount = d.aggregate_review_count || d.google_review_count || 0
+  const profile = d.profile_url || `/dentist/${slug(d.city)}/${d.slug || slug(d.practice_name)}`
+  const distance = d.distance_miles != null ? `${d.distance_miles} mi away` : ''
+  const note = d.featured_tier === 'public-directory'
+    ? 'Public directory profile. Not yet CoverCapy accredited. CoverCapy can contact this office about your PPO on request.'
+    : 'CoverCapy network profile with enhanced PPO visibility.'
+
+  return `
+    <article class="ppo-card" data-tier="${esc(d.featured_tier)}" data-id="${esc(d.id)}">
+      <header class="ppo-card-head">
+        <div class="ppo-card-avatar" aria-hidden="true">🦷</div>
+        <div>
+          <h3 class="ppo-card-title">${titleHtml(d.practice_name)}</h3>
+          <div class="ppo-card-loc">📍 ${esc(d.city || '')}</div>
+          ${distance ? `<div class="ppo-card-distance">· ${esc(distance)}</div>` : ''}
+          <div class="ppo-card-rating" title="Based on aggregated Google / Yelp reviews and verified CoverCapy patient feedback.">
+            <span class="ppo-card-rating-star">★</span>
+            <strong>${rating ? rating.toFixed(1) : '—'}</strong>
+            <em>${reviewCount ? `${reviewCount} reviews` : 'reviews pending'}</em>
+          </div>
+        </div>
+        <span class="tier-badge ${badgeClass(d)}"><span class="ic">○</span>${esc(d.display_badge)}</span>
+      </header>
+
+      ${d.specialties.length ? `
+        <div>
+          <div class="ppo-card-section-label">Specialties</div>
+          <div class="ppo-card-tags">
+            ${d.specialties.slice(0, 4).map(s => `<span class="ppo-tag is-specialty">${esc(s)}</span>`).join('')}
+          </div>
+        </div>` : ''}
+
+      ${d.languages.length ? `
+        <div>
+          <div class="ppo-card-section-label">Languages</div>
+          <div class="ppo-card-tags">
+            ${d.languages.slice(0, 4).map(s => `<span class="ppo-tag is-language">${esc(s)}</span>`).join('')}
+          </div>
+        </div>` : ''}
+
+      ${d.insurance_networks.length ? `
+        <div>
+          <div class="ppo-card-section-label">PPO & Insurance</div>
+          <div class="ppo-card-tags">
+            ${d.insurance_networks.slice(0, 5).map(s => `<span class="ppo-tag is-ppo">${esc(s)}</span>`).join('')}
+          </div>
+        </div>` : ''}
+
+      <div class="ppo-card-note">
+        <strong>${esc(d.display_badge)}.</strong> ${esc(d.short_description || note)}
+      </div>
+
+      <div class="ppo-card-actions">
+        <a class="ppo-btn ppo-btn-primary" href="${esc(profile)}">View Profile</a>
+        <a class="ppo-btn ppo-btn-secondary" href="${esc(d.booking_url || profile)}">Book Now</a>
+        <a class="ppo-btn ppo-btn-secondary" href="${esc(phoneHref)}" data-span="full">Call Office</a>
+        <button type="button" class="ppo-btn ppo-btn-ghost" data-span="full" data-act="ask">Ask CoverCapy to Check →</button>
+      </div>
+
+      <div class="ppo-card-claim">
+        <div class="ppo-card-claim-text">
+          <strong>Own this office?</strong><br>
+          Claim this profile to verify details & respond to inquiries.
+        </div>
+        <a class="ppo-card-claim-link" href="/claim-profile?dentist=${esc(d.slug || '')}">Claim Profile →</a>
+      </div>
+    </article>
+  `
+}
+
+function featuredHtml(d, mini = false) {
+  const profile = d.profile_url || `/dentist/${slug(d.city)}/${d.slug || slug(d.practice_name)}`
+  const rating = d.aggregate_rating || d.google_rating || 0
+  const count = d.aggregate_review_count || d.google_review_count || 0
+
+  return `
+    <article class="ppo-feat ${d.featured_tier === 'platinum-elite' ? 'ppo-feat-platinum' : 'ppo-feat-runnerup'} ${mini ? 'ppo-feat-mini' : ''}">
+      <header class="ppo-feat-head">
+        <div class="ppo-feat-avatar">🦷</div>
+        <div class="ppo-feat-head-text">
+          <div class="ppo-feat-eyebrow">${esc(d.display_badge)}</div>
+          <h3 class="ppo-feat-name">${titleHtml(d.practice_name)}</h3>
+          <div class="ppo-feat-loc">
+            📍 ${esc(d.city || '')}
+            ${rating ? `<span class="ppo-feat-loc-dot"></span><span class="ppo-feat-rating">★ ${rating.toFixed(1)} <em>(${count} reviews)</em></span>` : ''}
+          </div>
+        </div>
+        <span class="tier-badge ${badgeClass(d)}"><span class="ic">💎</span>${esc(d.display_badge)}</span>
+      </header>
+
+      <div class="ppo-feat-tags">
+        ${d.specialties.slice(0, 4).map(s => `<span class="ppo-tag is-specialty">${esc(s)}</span>`).join('')}
+      </div>
+
+      <div class="ppo-feat-actions">
+        <a class="ppo-btn ${d.featured_tier === 'platinum-elite' ? 'ppo-btn-platinum' : 'ppo-btn-primary'}" href="${esc(profile)}">View Profile →</a>
+        <a class="ppo-btn ppo-btn-secondary" href="${esc(d.booking_url || profile)}">Book Now</a>
+      </div>
+    </article>
+  `
+}
+
+function slug(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+function renderDirectory() {
+  const host = $('#ppo-grid')
+  if (!host) return
+
+  let pool = ALL_DENTISTS.slice()
+
+  if (activeSpecialty !== 'all') {
+    const needle = activeSpecialty.toLowerCase()
+    pool = pool.filter(d =>
+      [...d.specialties, ...d.procedures].some(s =>
+        String(s).toLowerCase().includes(needle)
+      )
+    )
+  }
+
+  const ranked = rankDentists(pool)
+  const visible = ranked.slice(0, shown)
+
+  const locEl = $('#ppo-dir-loc')
+  const countEl = $('#ppo-dir-count')
+  if (locEl) locEl.textContent = ctx.city || ctx.area || 'your area'
+  if (countEl) countEl.textContent = ranked.length
+
+  host.innerHTML = visible.length
+    ? visible.map(cardHtml).join('')
+    : `<div class="ppo-empty"><div class="ppo-empty-icon">🔎</div><h3>No dentists found yet.</h3><p>Try another city or ZIP.</p></div>`
+
+  const more = $('#ppo-load-more')
+  if (more) {
+    more.hidden = shown >= ranked.length
+    more.onclick = () => {
+      shown += 12
+      renderDirectory()
     }
   }
+}
 
-  console.log('ZIP Context:', context)
+function renderFeatured() {
+  const host = $('#ppo-featured-grid')
+  if (!host) return
 
-  const dentists = await fetchDentists(context)
+  const ranked = rankDentists(ALL_DENTISTS)
+  const primary =
+    ranked.find(d => d.featured_tier === 'platinum-elite') ||
+    ranked.find(d => d.featured_tier === 'capy-accredited') ||
+    ranked[0]
 
-  console.log('Ranked Dentists:', dentists)
+  const nearby = ranked
+    .filter(d => primary && d.id !== primary.id)
+    .slice(0, 3)
 
-  window.CoverCapyLiveDentists = {
-    context,
-    dentists
+  const cityName = $('#ppo-feat-city-name')
+  if (cityName) cityName.textContent = ctx.city || 'your area'
+
+  if (!primary) {
+    host.innerHTML = ''
+    return
+  }
+
+  host.innerHTML = `
+    <div class="ppo-featured-primary">
+      ${featuredHtml(primary)}
+    </div>
+    ${nearby.length ? `
+      <div class="ppo-featured-nearby">
+        <div class="ppo-featured-nearby-head">
+          <span class="ppo-eyebrow">Other featured offices nearby</span>
+        </div>
+        <div class="ppo-featured-nearby-row">
+          ${nearby.map(d => featuredHtml(d, true)).join('')}
+        </div>
+      </div>` : ''}
+  `
+}
+
+function renderSeoMeta() {
+  const title = `PPO Dentists in ${ctx.city}, ${ctx.area} | CoverCapy`
+  const desc = `Find PPO-friendly dentists near ${ctx.city}. Compare local offices, ratings, specialties, languages, and CoverCapy accreditation status before booking.`
+
+  document.title = title
+
+  const titleEl = $('#ppo-title')
+  const descEl = $('#ppo-desc')
+  const canon = $('#ppo-canonical')
+
+  if (titleEl) titleEl.textContent = title
+  if (descEl) descEl.setAttribute('content', desc)
+  if (canon) canon.setAttribute('href', `https://www.covercapy.com/best-ppo-dentists/${slug(ctx.area)}/${slug(ctx.city)}`)
+}
+
+function bindFilters() {
+  $$('.ppo-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('.ppo-filter').forEach(b => b.classList.remove('is-active'))
+      btn.classList.add('is-active')
+      activeSpecialty = btn.dataset.filter || btn.textContent.trim().toLowerCase() || 'all'
+      if (activeSpecialty === 'any') activeSpecialty = 'all'
+      shown = 12
+      renderDirectory()
+    })
+  })
+}
+
+function bindSearch() {
+  const buttons = [
+    $('.ppo-search-submit'),
+    $('#ppo-find-dentists'),
+    $('[data-act="find-dentists"]')
+  ].filter(Boolean)
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.preventDefault()
+      const zip = $('#ppo-zip')?.value || $('#ppo-sticky-zip')?.value
+      if (!zip) return
+      const zctx = await getZipContext(zip)
+      if (zctx) ctx = { ...ctx, ...zctx }
+      shown = 12
+      await reload()
+      document.querySelector('.ppo-directory')?.scrollIntoView({ behavior: 'smooth' })
+    })
+  })
+}
+
+async function reload() {
+  ALL_DENTISTS = await fetchDentists()
+  renderSeoMeta()
+  renderFeatured()
+  renderDirectory()
+
+  const zipI = $('#ppo-zip')
+  if (zipI) zipI.value = ctx.zip || ''
+
+  console.log('CoverCapy context:', ctx)
+  console.log('CoverCapy dentists:', ALL_DENTISTS)
+}
+
+async function init() {
+  getContextFromUrl()
+
+  const zipValue = $('#ppo-zip')?.value || ctx.zip
+  const zctx = await getZipContext(zipValue)
+  if (zctx) ctx = { ...ctx, ...zctx }
+
+  await reload()
+  bindSearch()
+  bindFilters()
+
+  window.CoverCapyPPO = {
+    ctx,
+    dentists: ALL_DENTISTS,
+    reload,
+    rankDentists
   }
 }
 
-loadPage()
+init()
