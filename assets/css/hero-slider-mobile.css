@@ -31,8 +31,8 @@
   .chapter{
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    gap: 24px;
-    padding: 32px 24px 84px;
+    gap: 16px;
+    padding: 24px 22px 76px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     align-content: start;
@@ -61,8 +61,26 @@
   .rail-filament{ width: 8px; }
 
   /* Chapter II — hide ghost runner-up cards on mobile */
-  .ch2-stage{ height: auto; min-height: 360px; }
+  .ch2-stage{
+    height: auto;
+    min-height: 0;
+    perspective: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .ch2-ghost{ display: none; }
+  /* Reset absolute centering — card flows normally below the text column */
+  .ch2-chosen{
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
+    animation: none;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .ch2-stage:hover .ch2-chosen{ transform: none; }
 
   /* Chapter V — hide runner-up dentist cards on mobile */
   .ch5-stage{ height: auto; min-height: 360px; }
@@ -107,8 +125,8 @@
   .hero{ min-height: 580px; }
 
   .chapter{
-    padding: 28px 20px 78px;
-    gap: 20px;
+    padding: 20px 18px 70px;
+    gap: 14px;
   }
 
   .headline{
@@ -117,8 +135,8 @@
     letter-spacing: -.02em;
   }
   .lede{
-    font-size: 15.5px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .chapter-watermark{
@@ -161,9 +179,6 @@
   }
   .avatar-stack .avatar + .avatar{ margin-left: -8px; }
   .social-proof-count{ font-size: 11.5px; }
-
-  /* Chapter II chosen card — full-width within stage */
-  .ch2-chosen{ width: min(100%, 320px); }
 
   /* Chapter IV — tighter on phone */
   .ch4-coverage{ padding: 20px 18px 18px; }
