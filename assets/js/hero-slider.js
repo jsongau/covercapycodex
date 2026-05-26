@@ -460,7 +460,7 @@
   }
 
   const triggers = document.querySelectorAll(
-    '[data-carrier-modal], [data-disclosure-modal]'
+    '.pc-activate, [data-carrier-modal], [data-disclosure-modal]'
   );
   triggers.forEach(t => t.addEventListener('click', handleTrigger));
 
