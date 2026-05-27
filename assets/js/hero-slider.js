@@ -296,7 +296,7 @@
    elements aren't present.
    ════════════════════════════════════════════════════════════════ */
 (function(){
-  const avatars = document.querySelectorAll('.avatar-stack .avatar');
+  const avatars = document.querySelectorAll('.cc-avatar-stack .cc-proof-avatar');
   if (!avatars.length) return;
 
   const POOL = [
