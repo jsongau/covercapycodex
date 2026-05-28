@@ -4301,6 +4301,7 @@ body.js-reveals .reveal.in,
 /* Component mount guards — keeps nav/hero/footer space stable while external HTML loads */
 #cc-nav-mount { min-height: 72px; position: relative; z-index: 100; }
 #cc-hero-mount { min-height: 80vh; position: relative; z-index: 1; }
+#cc-footer-mount { min-height: 420px; position: relative; z-index: 1; }
 .hero-mobile-slider { max-width: 100vw; overflow: hidden; }
 
 </style>
@@ -5516,17 +5517,16 @@ body.js-reveals .reveal.in,
 </section>
 
 
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     YOUR EXISTING FOOTER LIVES BELOW THIS LINE
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- CoverCapy footer component mount -->
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
-
-<!-- CoverCapy component loader: mega nav + hero -->
+<!-- CoverCapy component loader: mega nav + hero + footer -->
 <script>
 (function(){
   const components = [
     { mountId: 'cc-nav-mount', html: 'components/mega-nav.html', script: 'assets/js/mega-nav.js' },
-    { mountId: 'cc-hero-mount', html: 'components/hero-slider.html', script: 'assets/js/hero-slider.js' }
+    { mountId: 'cc-hero-mount', html: 'components/hero-slider.html', script: 'assets/js/hero-slider.js' },
+    { mountId: 'cc-footer-mount', html: 'components/footer.html', script: 'assets/js/footer.js' }
   ];
 
   const loadScript = (src) => new Promise(resolve => {
@@ -7047,10 +7047,5 @@ document.querySelectorAll('.btn-gold, .btn-primary').forEach(btn => {
 })();
 </script>
 
-<!-- COVERCAPY FOOTER DIRECT INCLUDE START -->
-
-<!-- COVERCAPY FOOTER DIRECT INCLUDE END -->
-
-<script src="assets/js/footer.js" defer></script>
 </body>
 </html>
