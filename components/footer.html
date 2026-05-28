@@ -1,27 +1,100 @@
 <!--
-  ============================================================================
   CoverCapy — Sitewide Footer
-  ============================================================================
-  HOW TO INSTALL (do this once, then repeat step 3 on every page):
-
-  1. Upload all three files to your site, for example:
-       /assets/css/covercapy-footer.css
-       /assets/js/covercapy-footer.js
-       (this file is just a reference for the markup below)
-
-  2. In every page's <head>, add this line:
-       <link rel="stylesheet" href="/assets/css/covercapy-footer.css">
-
-  3. Just before the closing </body> tag on every page, paste:
-       (a) the entire <footer>...</footer> block below
-       (b) this line:
-           <script src="/assets/js/covercapy-footer.js" defer></script>
-
-  Path note: if you put the files somewhere else (e.g. /css/ and /js/),
-  just update the href and src to match.
-  ============================================================================
+  Install: link covercapy-footer.css in <head>, paste this <footer> block
+  before </body>, then include covercapy-footer.js with defer.
 -->
 <footer class="cc-footer" role="contentinfo" aria-label="CoverCapy site footer">
+
+  <!-- JSON-LD: Footer navigation + featured PPO dentist markets (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://covercapy.com/#footer-main",
+        "name": "Main",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Home", "url": "https://covercapy.com/index.html" },
+          { "@type": "WebPage", "name": "Compare PPO Plans", "url": "https://covercapy.com/compare-ppo-dental-plans.html" },
+          { "@type": "WebPage", "name": "Find PPO Dentists", "url": "https://covercapy.com/ppodentists.html" },
+          { "@type": "WebPage", "name": "Estimate Treatment Costs", "url": "https://covercapy.com/estimatecost.html" },
+          { "@type": "WebPage", "name": "Dental Financing", "url": "https://covercapy.com/dental-financing-monthly-payments.html" },
+          { "@type": "WebPage", "name": "Patient Portal", "url": "https://covercapy.com/patient-portal.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://covercapy.com/#footer-patients",
+        "name": "For Patients",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Best PPO Dentists Near Me", "url": "https://covercapy.com/best-ppo-dentists.html" },
+          { "@type": "WebPage", "name": "Dental Implant Cost", "url": "https://covercapy.com/dental-implant-cost.html" },
+          { "@type": "WebPage", "name": "Dental Crown Cost", "url": "https://covercapy.com/dental-crown-cost.html" },
+          { "@type": "WebPage", "name": "Invisalign Cost", "url": "https://covercapy.com/invisalign-cost.html" },
+          { "@type": "WebPage", "name": "Cosmetic PPO Dentists", "url": "https://covercapy.com/cosmetic-ppo-dentists.html" },
+          { "@type": "WebPage", "name": "Emergency PPO Dentists", "url": "https://covercapy.com/emergency-ppo-dentists.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://covercapy.com/#footer-dentists",
+        "name": "For Dentists",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Dentist Portal", "url": "https://covercapy.com/dentist-portal.html" },
+          { "@type": "WebPage", "name": "Claim Free Profile", "url": "https://covercapy.com/membership.html" },
+          { "@type": "WebPage", "name": "Capy Accreditation", "url": "https://covercapy.com/capy-accreditation.html" },
+          { "@type": "WebPage", "name": "Platinum Elite Dentists", "url": "https://covercapy.com/platinum-elite-dentists.html" },
+          { "@type": "WebPage", "name": "Sponsored Dentist Listings", "url": "https://covercapy.com/sponsored-dentist-listings.html" },
+          { "@type": "WebPage", "name": "PPO Patient Acquisition", "url": "https://covercapy.com/ppo-patient-acquisition.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://covercapy.com/#footer-nationwide",
+        "name": "Nationwide",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Browse by State", "url": "https://covercapy.com/states.html" },
+          { "@type": "WebPage", "name": "Browse by City", "url": "https://covercapy.com/cities.html" },
+          { "@type": "WebPage", "name": "Browse by Treatment", "url": "https://covercapy.com/treatments.html" },
+          { "@type": "WebPage", "name": "Featured Markets", "url": "https://covercapy.com/featured-markets.html" },
+          { "@type": "WebPage", "name": "PPO Dentist Directory", "url": "https://covercapy.com/ppo-dentist-directory.html" },
+          { "@type": "WebPage", "name": "Request a Dentist", "url": "https://covercapy.com/request-a-dentist.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://covercapy.com/#footer-company",
+        "name": "Company",
+        "hasPart": [
+          { "@type": "WebPage", "name": "About CoverCapy", "url": "https://covercapy.com/about.html" },
+          { "@type": "WebPage", "name": "Carrier Watch", "url": "https://covercapy.com/carrier-watch.html" },
+          { "@type": "WebPage", "name": "Dental Insurance Market", "url": "https://covercapy.com/dental-insurance-market.html" },
+          { "@type": "WebPage", "name": "Insurance Carrier Intelligence", "url": "https://covercapy.com/insurance-carrier-intelligence.html" },
+          { "@type": "WebPage", "name": "CoverCapy Network Effect", "url": "https://covercapy.com/covercapy-network-effect.html" },
+          { "@type": "WebPage", "name": "Contact", "url": "https://covercapy.com/contact.html" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://covercapy.com/#footer-markets",
+        "name": "Featured PPO Dentist Markets",
+        "itemListOrder": "https://schema.org/ItemListUnordered",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Orange County",  "url": "https://covercapy.com/best-ppo-dentists/orange-county.html" },
+          { "@type": "ListItem", "position": 2, "name": "Los Angeles",    "url": "https://covercapy.com/best-ppo-dentists/los-angeles.html" },
+          { "@type": "ListItem", "position": 3, "name": "San Diego",      "url": "https://covercapy.com/best-ppo-dentists/san-diego.html" },
+          { "@type": "ListItem", "position": 4, "name": "San Francisco",  "url": "https://covercapy.com/best-ppo-dentists/san-francisco.html" },
+          { "@type": "ListItem", "position": 5, "name": "New York City",  "url": "https://covercapy.com/best-ppo-dentists/new-york-city.html" },
+          { "@type": "ListItem", "position": 6, "name": "Chicago",        "url": "https://covercapy.com/best-ppo-dentists/chicago.html" },
+          { "@type": "ListItem", "position": 7, "name": "Dallas",         "url": "https://covercapy.com/best-ppo-dentists/dallas.html" },
+          { "@type": "ListItem", "position": 8, "name": "Miami",          "url": "https://covercapy.com/best-ppo-dentists/miami.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <div class="cc-footer-shell">
 
     <!-- ===================== 1. CTA BAND ===================== -->
