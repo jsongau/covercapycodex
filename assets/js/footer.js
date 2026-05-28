@@ -1,7 +1,4 @@
-/* ============================================================================
-   CoverCapy — Sitewide Footer Script
-   Powers mobile column accordions only. Progressive: footer works without JS.
-   ============================================================================ */
+/* CoverCapy — Sitewide Footer Script  (mobile column accordion) */
 
 /* CoverCapy footer — mobile accordion only. Progressive: works without JS. */
   (function () {
