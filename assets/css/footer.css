@@ -1,8 +1,4 @@
-/* ============================================================================
-   CoverCapy — Sitewide Footer Styles
-   Scoped under .cc-footer ; will not affect or be affected by other page styles.
-   Includes responsive breakpoints at 1080px, 760px (phone), and 420px (small phone).
-   ============================================================================ */
+/* CoverCapy — Sitewide Footer Styles  (scoped under .cc-footer) */
 
 /* ==========================================================================
      CoverCapy Footer — scoped, prefix cc-footer-
@@ -50,7 +46,7 @@
     --cc-radius-card:  18px;
     --cc-radius-pill:  999px;
 
-    --cc-serif: "Hoefler Text", "Iowan Old Style", "Palatino Linotype",
+    --cc-serif: "Fraunces", "Hoefler Text", "Iowan Old Style", "Palatino Linotype",
                 "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
     --cc-sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                 Helvetica, Arial, sans-serif;
@@ -221,13 +217,19 @@
   .cc-footer-textlink:hover .cc-footer-arrow { transform: translateX(3px); }
 
   /* ==========================================================================
-     2 + 3. BRAND + NAV
+     2 + 3. BRAND + NAV  (stacked: brand row on top, 5 columns full-width below)
      ========================================================================== */
   .cc-footer-main {
     display: grid;
-    grid-template-columns: minmax(260px, 1.05fr) 3fr;
-    gap: clamp(28px, 4vw, 56px);
+    grid-template-columns: 1fr;
+    gap: clamp(22px, 3vw, 34px);
     padding: clamp(28px, 4vw, 44px) clamp(20px, 4vw, 44px);
+  }
+
+  .cc-footer-brand {
+    max-width: 580px;
+    padding-bottom: clamp(20px, 2.5vw, 28px);
+    border-bottom: 1px solid var(--cc-line);
   }
 
   .cc-footer-logo {
@@ -488,7 +490,6 @@
      Responsive
      ========================================================================== */
   @media (max-width: 1080px) {
-    .cc-footer-main { grid-template-columns: 1fr; }
     .cc-footer-nav  { grid-template-columns: repeat(3, 1fr); }
   }
 
