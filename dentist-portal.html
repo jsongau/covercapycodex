@@ -56,6 +56,413 @@
     opacity: 1;
     pointer-events: auto;
   }
+
+/* =========================================================
+   vNext hero card placement polish
+   Center the green benefit card and lower the bottom trust card.
+   ========================================================= */
+@keyframes cc-centered-benefit-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-8px); }
+}
+
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(520px, 62vh, 700px) !important;
+  }
+
+  .hero__grid {
+    min-height: clamp(470px, 54vh, 620px) !important;
+  }
+
+  .coverage-card--green {
+    left: 51% !important;
+    right: auto !important;
+    top: 50% !important;
+    width: min(360px, 32vw) !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 22px 78px 22px 24px !important;
+    animation: cc-centered-benefit-float 7s ease-in-out infinite .45s !important;
+  }
+
+  .coverage-badge {
+    left: calc(51% + 136px) !important;
+    right: auto !important;
+    top: calc(50% - 46px) !important;
+  }
+
+  .coverage-card--bottom {
+    right: 7% !important;
+    bottom: clamp(22px, 4vh, 56px) !important;
+  }
+
+  .coverage-pin {
+    right: calc(7% - 20px) !important;
+    bottom: calc(clamp(22px, 4vh, 56px) - 10px) !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--green {
+    left: 52% !important;
+    top: 50% !important;
+  }
+
+  .coverage-badge {
+    left: calc(52% + 136px) !important;
+    top: calc(50% - 46px) !important;
+  }
+
+  .coverage-card--bottom {
+    bottom: clamp(28px, 5vh, 70px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .hero__photo {
+    min-height: clamp(600px, 78vw, 760px) !important;
+  }
+
+  .coverage-card--green {
+    left: 50% !important;
+    right: auto !important;
+    top: 48% !important;
+    width: min(360px, 58%) !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 22px 78px 22px 24px !important;
+    animation: none !important;
+  }
+
+  .coverage-badge {
+    left: calc(50% + 136px) !important;
+    right: auto !important;
+    top: calc(48% - 44px) !important;
+  }
+
+  .coverage-card--bottom {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 6% !important;
+    width: min(300px, 52%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__photo {
+    min-height: clamp(690px, 158vw, 790px) !important;
+    overflow: hidden !important;
+  }
+
+  .hero__photo img {
+    object-position: center top !important;
+    transform: scale(1.08) !important;
+  }
+
+  .coverage-card--top {
+    top: 6% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 76% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-card--green {
+    top: 44% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 78% !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 22px 72px 22px 24px !important;
+    animation: none !important;
+  }
+
+  .coverage-badge {
+    top: calc(44% - 34px) !important;
+    left: calc(50% + 82px) !important;
+    right: auto !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .coverage-card--bottom {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 8% !important;
+    width: 72% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   vNext hero card alternating pattern
+   Top card right, benefit card left, trust card right.
+   ========================================================= */
+@keyframes cc-left-benefit-float {
+  0%, 100% { transform: translate(0, -50%) translateY(0); }
+  50% { transform: translate(0, -50%) translateY(-8px); }
+}
+
+@media (min-width: 1081px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 6% !important;
+    top: 12% !important;
+    width: min(285px, 28vw) !important;
+    transform: none !important;
+  }
+
+  .coverage-card--green {
+    left: 47% !important;
+    right: auto !important;
+    top: 50% !important;
+    width: min(360px, 31vw) !important;
+    transform: translate(0, -50%) !important;
+    animation: cc-left-benefit-float 7s ease-in-out infinite .45s !important;
+  }
+
+  .coverage-badge {
+    left: calc(47% + 290px) !important;
+    right: auto !important;
+    top: calc(50% - 48px) !important;
+  }
+
+  .coverage-card--bottom {
+    left: auto !important;
+    right: 7% !important;
+    bottom: clamp(22px, 4vh, 56px) !important;
+    width: min(285px, 30vw) !important;
+    transform: none !important;
+  }
+
+  .coverage-pin {
+    right: calc(7% - 18px) !important;
+    bottom: calc(clamp(22px, 4vh, 56px) - 10px) !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--top {
+    right: 7% !important;
+    top: 12% !important;
+  }
+
+  .coverage-card--green {
+    left: 48% !important;
+    top: 51% !important;
+  }
+
+  .coverage-badge {
+    left: calc(48% + 290px) !important;
+    top: calc(51% - 48px) !important;
+  }
+
+  .coverage-card--bottom {
+    right: 8% !important;
+    bottom: clamp(28px, 5vh, 70px) !important;
+  }
+
+  .coverage-pin {
+    right: calc(8% - 18px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 7% !important;
+    top: 9% !important;
+    width: min(300px, 42%) !important;
+    transform: none !important;
+  }
+
+  .coverage-card--green {
+    left: 8% !important;
+    right: auto !important;
+    top: 48% !important;
+    width: min(360px, 52%) !important;
+    transform: translate(0, -50%) !important;
+    animation: none !important;
+  }
+
+  .coverage-badge {
+    left: calc(8% + 292px) !important;
+    right: auto !important;
+    top: calc(48% - 44px) !important;
+  }
+
+  .coverage-card--bottom {
+    left: auto !important;
+    right: 7% !important;
+    bottom: 6% !important;
+    width: min(300px, 44%) !important;
+    transform: none !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+/* Keep mobile stacked and readable instead of forcing side alternation on a narrow phone. */
+@media (max-width: 640px) {
+  .coverage-card--top {
+    top: 6% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 76% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-card--green {
+    top: 44% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 78% !important;
+    transform: translate(-50%, -50%) !important;
+    animation: none !important;
+  }
+
+  .coverage-card--bottom {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 8% !important;
+    width: 72% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+
+/* =========================================================
+   vNext hero top PPO card further right
+   ========================================================= */
+@media (min-width: 1081px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: clamp(22px, 3vw, 64px) !important;
+    top: 12% !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--top {
+    right: clamp(32px, 4vw, 88px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 4% !important;
+    top: 8% !important;
+    transform: none !important;
+  }
+}
+
+
+/* =========================================================
+   vNext force PPO active card to the right of the patient image
+   ========================================================= */
+@media (min-width: 1081px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: clamp(64px, 8vw, 150px) !important;
+    top: clamp(78px, 14vh, 128px) !important;
+    width: min(290px, 24vw) !important;
+    transform: none !important;
+    z-index: 5 !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--top {
+    right: clamp(88px, 10vw, 190px) !important;
+    top: clamp(82px, 14vh, 132px) !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  .coverage-card--top {
+    right: clamp(120px, 12vw, 230px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 6% !important;
+    top: 8% !important;
+    width: min(300px, 40%) !important;
+    transform: none !important;
+    z-index: 5 !important;
+  }
+}
+
+
+/* =========================================================
+   vNext lower green benefit card and pin icon to top-right corner
+   ========================================================= */
+@media (min-width: 1081px) {
+  .coverage-card--green {
+    top: 58% !important;
+  }
+
+  .coverage-badge {
+    top: calc(58% - 106px) !important;
+    left: calc(48% + 304px) !important;
+    right: auto !important;
+    z-index: 6 !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--green {
+    top: 58% !important;
+  }
+
+  .coverage-badge {
+    top: calc(58% - 106px) !important;
+    left: calc(48% + 304px) !important;
+    right: auto !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--green {
+    top: 55% !important;
+  }
+
+  .coverage-badge {
+    top: calc(55% - 96px) !important;
+    left: calc(8% + 292px) !important;
+    right: auto !important;
+    z-index: 6 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .coverage-card--green {
+    top: 47% !important;
+  }
+
+  .coverage-badge {
+    top: calc(47% - 92px) !important;
+    left: calc(50% + 82px) !important;
+    right: auto !important;
+    z-index: 6 !important;
+  }
+}
+
 </style>
 
 <style>
