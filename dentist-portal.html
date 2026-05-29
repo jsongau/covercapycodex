@@ -49,6 +49,13 @@
   body > footer.site-footer,
   body > .foot,
   body > .footer { display: none !important; }
+  .cc-nav { z-index: 5000; }
+  .cc-dropdown { z-index: 6000; }
+  .cc-link:hover > .cc-dropdown,
+  .cc-link:focus-within > .cc-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+  }
 </style>
 
 <style>
@@ -5244,9 +5251,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     document.body.appendChild(s);
   });
 
-  const runScripts = (root) => {
-    root.querySelectorAll('script').forEach(old => {
-      if (old.id === 'cc-shared-shell-loader') return;
+  const runScripts = (scripts) => {
+    scripts.forEach(old => {
       const fresh = document.createElement('script');
       Array.from(old.attributes).forEach(attr => fresh.setAttribute(attr.name, attr.value));
       fresh.textContent = old.textContent;
@@ -5262,10 +5268,11 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       if (!res.ok) throw new Error(html + ' returned ' + res.status);
       const wrapper = document.createElement('div');
       wrapper.innerHTML = await res.text();
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
       const parent = mount.parentNode;
       while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
       parent.removeChild(mount);
-      runScripts(parent);
+      runScripts(injectedScripts);
       await loadScript(script);
       return true;
     } catch (err) {
