@@ -3921,6 +3921,211 @@ body {
     width: 82%;
   }
 }
+
+/* =========================================================
+   HERO CARD STACKING FIX · desktop Windows + iOS mobile
+   Keeps all patient cards separated and keeps the 3rd-card pin visible.
+   ========================================================= */
+.coverage-card {
+  max-width: calc(100vw - 32px);
+}
+
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(620px, calc(100vh - 72px), 740px);
+  }
+
+  .hero > .wrap.hero__grid {
+    min-height: clamp(545px, calc(100vh - 170px), 650px);
+  }
+
+  .coverage-card--top {
+    top: clamp(36px, 6vh, 66px);
+    right: clamp(350px, 32vw, 640px);
+    width: clamp(270px, 17vw, 325px);
+  }
+
+  .coverage-card--green {
+    top: clamp(300px, 42vh, 392px);
+    right: clamp(64px, 6.5vw, 142px);
+    width: clamp(310px, 22vw, 395px);
+    padding: 21px 76px 21px 24px;
+  }
+
+  .coverage-card--bottom {
+    top: clamp(468px, 58vh, 535px);
+    bottom: auto;
+    right: clamp(90px, 7.5vw, 170px);
+    width: clamp(270px, 18vw, 330px);
+  }
+
+  .coverage-badge {
+    top: clamp(282px, 40vh, 370px);
+    right: clamp(46px, 5.2vw, 108px);
+    width: 60px;
+    height: 60px;
+  }
+
+  .coverage-pin {
+    display: grid;
+    top: clamp(520px, 64vh, 590px);
+    bottom: auto;
+    right: clamp(42px, 5vw, 108px);
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (min-width: 1081px) and (max-height: 820px) {
+  .coverage-card--top { top: 34px; }
+  .coverage-card--green { top: 292px; }
+  .coverage-card--bottom { top: 454px; }
+  .coverage-badge { top: 276px; }
+  .coverage-pin { top: 504px; }
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+  .coverage-card--top {
+    right: clamp(250px, 27vw, 360px);
+  }
+  .coverage-card--green {
+    right: 4.5vw;
+    width: min(360px, 31vw);
+  }
+  .coverage-card--bottom {
+    right: 6vw;
+    width: min(310px, 28vw);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1080px) {
+  .coverage-card--green {
+    top: 40%;
+  }
+  .coverage-card--bottom {
+    bottom: 5%;
+  }
+  .coverage-pin {
+    display: grid;
+    right: 2%;
+    bottom: 4%;
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__photo {
+    min-height: clamp(920px, 220vw, 1040px);
+  }
+
+  .hero__photo img {
+    object-position: 60% top;
+    transform: scale(1.02);
+  }
+
+  .coverage-card {
+    box-shadow: 0 14px 42px rgba(11,51,66,.16), 0 2px 8px rgba(11,51,66,.08);
+  }
+
+  .coverage-card--top {
+    top: 5.5%;
+    left: 7%;
+    right: auto;
+    width: 86%;
+    min-height: 86px;
+  }
+
+  .coverage-card--green {
+    top: 38.5%;
+    left: 6.5%;
+    right: auto;
+    width: 82%;
+    padding: 20px 72px 22px 22px;
+  }
+
+  .coverage-card--bottom {
+    top: 68%;
+    left: 16%;
+    right: auto;
+    bottom: auto;
+    width: 78%;
+    padding: 19px 22px 22px;
+  }
+
+  .coverage-badge {
+    top: calc(38.5% - 14px);
+    right: 9%;
+    width: 58px;
+    height: 58px;
+  }
+
+  .coverage-pin {
+    display: grid;
+    top: calc(68% + 92px);
+    right: 6.5%;
+    bottom: auto;
+    width: 58px;
+    height: 58px;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero__photo {
+    min-height: clamp(940px, 226vw, 1080px);
+  }
+
+  .coverage-card--top {
+    top: 5%;
+    width: 86%;
+  }
+
+  .coverage-card--green {
+    top: 38%;
+    width: 84%;
+  }
+
+  .coverage-card--bottom {
+    top: 68.5%;
+    left: 13%;
+    width: 82%;
+  }
+
+  .coverage-badge {
+    top: calc(38% - 13px);
+    right: 8%;
+  }
+
+  .coverage-pin {
+    top: calc(68.5% + 94px);
+    right: 5.5%;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__photo {
+    min-height: 980px;
+  }
+
+  .coverage-card--green {
+    top: 38.5%;
+    left: 5%;
+    width: 88%;
+  }
+
+  .coverage-card--bottom {
+    top: 69%;
+    left: 10%;
+    width: 84%;
+  }
+
+  .coverage-pin {
+    top: calc(69% + 94px);
+    right: 4.5%;
+  }
+}
+
 </style>
 
 </head>
