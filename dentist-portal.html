@@ -2335,37 +2335,51 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); }
 
 /* Localized Discovery callout (Platinum section) */
 .discovery-placement {
-  background: var(--amber-soft);
-  border: 1px solid rgba(201,122,43,.25);
-  border-radius: var(--radius-sm);
-  padding: 16px 18px;
-  margin-bottom: 22px;
+  background: linear-gradient(135deg, var(--sky-panel, #F6FBFC), rgba(238,248,250,.78));
+  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
+  border-radius: 16px;
+  padding: 13px 14px 12px;
+  margin: 16px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 10px 26px rgba(49,90,114,.06);
+  overflow: hidden;
 }
 .discovery-placement__title {
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--amber-deep);
-  letter-spacing: .04em;
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--blue-ink, #315A72);
+  letter-spacing: .13em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .discovery-placement p {
-  font-size: .84rem;
-  color: var(--ink-soft);
-  line-height: 1.5;
-  margin: 0 0 12px;
+  font-size: .78rem;
+  color: var(--ink-mid);
+  line-height: 1.36;
+  margin: 0 0 9px;
+  max-width: 64ch;
 }
 .discovery-placement__chips {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 1px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.discovery-placement__chips::-webkit-scrollbar { display: none; }
 .discovery-chip {
-  font-size: .74rem;
-  color: var(--amber-deep);
-  background: rgba(217,144,61,.12);
-  border: 1px solid rgba(201,122,43,.2);
-  padding: 5px 11px;
+  flex: 0 0 auto;
+  max-width: 215px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .68rem;
+  line-height: 1.15;
+  color: var(--blue-ink, #315A72);
+  background: rgba(70,127,148,.10);
+  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
+  padding: 5px 9px;
   border-radius: var(--radius-pill);
   font-style: italic;
 }
@@ -3408,53 +3422,6 @@ body {
   box-shadow: 0 26px 90px rgba(11,51,66,.15);
   filter: saturate(.96) contrast(1.02);
 }
-@media (min-width: 1081px) {
-  .hero {
-    min-height: clamp(550px, 68vh, 760px);
-    padding: clamp(54px, 6vw, 84px) 0 clamp(36px, 4vw, 64px);
-    background: var(--bg);
-  }
-  .hero > .wrap.hero__grid {
-    position: static;
-  }
-  .hero__grid {
-    min-height: clamp(500px, 58vh, 660px);
-  }
-  .hero__copy {
-    position: relative;
-    z-index: 4;
-  }
-  .hero__photo {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    min-height: 0;
-    border-radius: 0;
-    z-index: 0;
-  }
-  .hero__photo::before {
-    inset: 0;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    z-index: 2;
-  }
-  .hero__photo::after {
-    background: none;
-  }
-  .hero__photo::after,
-  .hero__photo img {
-    border-radius: 0;
-  }
-  .hero__photo img {
-    object-position: center top;
-    transform: none;
-    box-shadow: none;
-  }
-}
 .coverage-card {
   position: absolute;
   z-index: 3;
@@ -3481,8 +3448,8 @@ body {
   line-height: 1.35;
 }
 .coverage-card--top {
-  top: 7%;
-  right: 34%;
+  top: 10%;
+  right: 4%;
   width: min(285px, 44%);
   padding: 18px 20px;
   display: flex;
@@ -3503,10 +3470,10 @@ body {
   box-shadow: 0 10px 24px rgba(18,107,79,.24);
 }
 .coverage-card--green {
-  right: 6%;
-  top: calc(43% + 145px);
-  width: min(350px, 36%);
-  padding: 22px 78px 22px 24px;
+  right: 8%;
+  top: 41%;
+  width: min(330px, 52%);
+  padding: 22px;
   background: linear-gradient(145deg, #06553F, #083B35);
   color: #fff;
   border-color: rgba(91,224,160,.18);
@@ -3525,9 +3492,9 @@ body {
   box-shadow: 0 10px 24px rgba(0,0,0,.12);
 }
 .coverage-card--bottom {
-  right: 6%;
-  bottom: 3.5%;
-  width: min(275px, 34%);
+  right: 3%;
+  bottom: 8%;
+  width: min(260px, 44%);
   padding: 18px 20px;
   animation: float-soft 6.5s ease-in-out infinite .9s;
 }
@@ -3551,16 +3518,16 @@ body {
   box-shadow: 0 14px 38px rgba(11,51,66,.14);
 }
 .coverage-badge {
-  top: calc(43% + 127px);
-  right: calc(6% + 12px);
-  width: 64px;
-  height: 64px;
+  top: 39%;
+  right: -4px;
+  width: 74px;
+  height: 74px;
 }
 .coverage-pin {
-  right: calc(6% - 20px);
-  bottom: calc(3.5% - 10px);
-  width: 62px;
-  height: 62px;
+  right: -4px;
+  bottom: 8%;
+  width: 70px;
+  height: 70px;
   background: rgba(255,250,241,.94);
   color: var(--gold-deep);
 }
@@ -3570,12 +3537,12 @@ body {
   .hero__photo { max-width: 820px; width: 100%; margin: 0 auto; }
 }
 @media (max-width: 640px) {
-  .hero__photo { min-height: clamp(600px, 128vw, 680px); }
-  .hero__photo img { object-position: center top; transform: scale(1.10); }
+  .hero__photo { min-height: 500px; }
+  .hero__photo img { object-position: center center; transform: scale(1.10); }
   .coverage-card--top { top: 5%; right: 4%; width: 74%; }
-  .coverage-card--green { top: 43%; left: 6%; right: auto; width: 78%; padding-right: 72px; }
-  .coverage-card--bottom { right: 8%; bottom: 8%; width: 68%; }
-  .coverage-badge { top: calc(43% - 14px); right: 10%; width: 56px; height: 56px; }
+  .coverage-card--green { top: 42%; left: 6%; right: auto; width: 78%; }
+  .coverage-card--bottom { right: 5%; bottom: 5%; width: 72%; }
+  .coverage-badge { top: 34%; right: 4%; width: 58px; height: 58px; }
   .coverage-pin { display: none; }
 }
 </style>
@@ -3654,6 +3621,308 @@ body {
   ]
 }
 </script>
+
+
+<style id="cc-hero-cross-browser-position-fix">
+/* =========================================================
+   CoverCapy hero visual position fix
+   Keeps the patient image balanced on Windows, macOS, and mobile.
+   ========================================================= */
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(650px, calc(100vh - 72px), 780px);
+    padding: clamp(52px, 6vh, 84px) 0 clamp(42px, 5vh, 68px);
+    background: var(--bg);
+  }
+
+  .hero > .wrap.hero__grid {
+    position: static;
+    min-height: clamp(560px, calc(100vh - 165px), 690px);
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    gap: clamp(34px, 4vw, 64px);
+  }
+
+  .hero__copy {
+    position: relative;
+    z-index: 4;
+    max-width: 560px;
+  }
+
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero__photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    z-index: 2;
+    box-shadow: none;
+    background:
+      linear-gradient(90deg,
+        rgba(251,250,245,.98) 0%,
+        rgba(251,250,245,.94) 25%,
+        rgba(251,250,245,.72) 41%,
+        rgba(251,250,245,.22) 58%,
+        rgba(251,250,245,.02) 76%,
+        rgba(251,250,245,0) 100%);
+  }
+
+  .hero__photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 54% 36%, rgba(91,224,160,.06), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(246,242,232,.18));
+    pointer-events: none;
+  }
+
+  .hero__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 63% 48%;
+    transform: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .coverage-card {
+    z-index: 3;
+    pointer-events: auto;
+  }
+
+  .coverage-card--top {
+    top: clamp(38px, 7vh, 82px);
+    right: clamp(380px, 34vw, 700px);
+    width: clamp(270px, 17vw, 330px);
+  }
+
+  .coverage-card--green {
+    top: clamp(322px, 48vh, 455px);
+    right: clamp(72px, 7vw, 150px);
+    width: clamp(315px, 23vw, 410px);
+    padding: 22px 78px 22px 24px;
+  }
+
+  .coverage-card--bottom {
+    top: clamp(502px, 64vh, 620px);
+    bottom: auto;
+    right: clamp(104px, 8vw, 190px);
+    width: clamp(270px, 19vw, 340px);
+  }
+
+  .coverage-badge {
+    top: clamp(304px, 46vh, 432px);
+    right: clamp(58px, 5.5vw, 120px);
+    width: 62px;
+    height: 62px;
+  }
+
+  .coverage-pin {
+    top: clamp(555px, 70vh, 662px);
+    bottom: auto;
+    right: clamp(58px, 5.5vw, 126px);
+    width: 62px;
+    height: 62px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .hero > .wrap.hero__grid {
+    max-width: 1440px;
+  }
+}
+
+@media (min-width: 1081px) and (max-height: 820px) {
+  .coverage-card--top { top: 34px; }
+  .coverage-card--green { top: 342px; }
+  .coverage-card--bottom { top: 518px; }
+  .coverage-badge { top: 320px; }
+  .coverage-pin { top: 566px; }
+}
+
+@media (min-width: 641px) and (max-width: 1080px) {
+  .hero__photo {
+    min-height: clamp(600px, 75vw, 760px);
+    max-width: 880px;
+    overflow: hidden;
+  }
+
+  .hero__photo img {
+    object-position: 58% center;
+    transform: scale(1.08);
+  }
+
+  .coverage-card--top {
+    top: 7%;
+    right: 6%;
+    width: min(360px, 48%);
+  }
+
+  .coverage-card--green {
+    top: 41%;
+    right: 7%;
+    width: min(370px, 56%);
+    padding-right: 76px;
+  }
+
+  .coverage-card--bottom {
+    right: 8%;
+    bottom: 7%;
+    width: min(320px, 48%);
+  }
+
+  .coverage-badge {
+    top: 38%;
+    right: 8%;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-bottom: 64px;
+  }
+
+  .hero__grid {
+    gap: 30px;
+  }
+
+  .hero__photo {
+    min-height: clamp(780px, 196vw, 900px);
+    max-width: calc(100vw - 32px);
+    border-radius: 32px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .hero__photo::before {
+    inset: 0;
+    border-radius: 32px;
+    box-shadow: none;
+    background:
+      linear-gradient(180deg, rgba(255,252,246,.50) 0%, rgba(255,252,246,.12) 38%, rgba(255,252,246,.30) 100%);
+    z-index: 1;
+  }
+
+  .hero__photo::after {
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(246,242,232,.10));
+    z-index: 1;
+  }
+
+  .hero__photo img {
+    object-position: 58% top;
+    transform: scale(1.04);
+  }
+
+  .coverage-card {
+    z-index: 3;
+    border-radius: 20px;
+    backdrop-filter: blur(12px) saturate(132%);
+    -webkit-backdrop-filter: blur(12px) saturate(132%);
+  }
+
+  .coverage-card strong {
+    font-size: clamp(.98rem, 4.2vw, 1.12rem);
+    line-height: 1.12;
+  }
+
+  .coverage-card span {
+    font-size: clamp(.86rem, 3.8vw, .98rem);
+    line-height: 1.36;
+  }
+
+  .coverage-card--top,
+  .coverage-card--green,
+  .coverage-card--bottom {
+    animation: none;
+  }
+
+  .coverage-card--top {
+    top: 7%;
+    left: 8%;
+    right: auto;
+    width: 84%;
+    padding: 15px 16px;
+  }
+
+  .coverage-card__check {
+    width: 44px;
+    height: 44px;
+  }
+
+  .coverage-card--green {
+    top: 40%;
+    left: 7%;
+    right: auto;
+    width: 82%;
+    padding: 20px 70px 22px 22px;
+  }
+
+  .coverage-card--green button {
+    margin-top: 16px;
+    padding: 10px 22px;
+  }
+
+  .coverage-badge {
+    top: calc(40% - 12px);
+    right: 10%;
+    width: 58px;
+    height: 58px;
+  }
+
+  .coverage-card--bottom {
+    top: 66.5%;
+    left: 18%;
+    right: auto;
+    bottom: auto;
+    width: 76%;
+    padding: 18px 20px;
+  }
+
+  .coverage-pin {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__photo {
+    min-height: 820px;
+  }
+
+  .coverage-card--green {
+    left: 5%;
+    width: 86%;
+  }
+
+  .coverage-card--bottom {
+    top: 67%;
+    left: 12%;
+    width: 82%;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
@@ -4246,7 +4515,7 @@ body {
         </ol>
         <div class="discovery-placement">
           <div class="discovery-placement__title">Localized Discovery Placement</div>
-          <p>Eligible Platinum Elite practices may receive expanded visibility across localized treatment and PPO discovery experiences within CoverCapy.</p>
+          <p>Eligible Platinum Elite practices can be reviewed for added visibility across local treatment and PPO discovery paths.</p>
           <div class="discovery-placement__chips">
             <span class="discovery-chip">Best PPO dentist in Irvine</span>
             <span class="discovery-chip">Invisalign PPO dentist near me</span>
