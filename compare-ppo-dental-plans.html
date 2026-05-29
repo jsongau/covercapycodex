@@ -2996,5 +2996,55 @@ runSim();
 })();
 </script>
 
+  <!-- Footer mount -->
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
+
+<script>
+(function(){
+  const mountId = 'cc-footer-mount';
+  const htmlUrl = 'components/footer.html';
+  const jsUrl   = 'assets/js/footer.js';
+
+  const replayScripts = (scripts) => {
+    scripts.forEach(old => {
+      if (!old.parentNode) return;
+      const fresh = document.createElement('script');
+      for (const attr of old.attributes) fresh.setAttribute(attr.name, attr.value);
+      fresh.textContent = old.textContent;
+      old.parentNode.replaceChild(fresh, old);
+    });
+  };
+
+  const loadScript = (src) => {
+    if (!src || document.querySelector(`script[src="${src}"]`)) return;
+    const s = document.createElement('script');
+    s.src = src; s.defer = true;
+    document.body.appendChild(s);
+  };
+
+  const init = async () => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+    try {
+      const res = await fetch(htmlUrl, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${htmlUrl} returned ${res.status}`);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = await res.text();
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      replayScripts(injectedScripts);
+      loadScript(jsUrl);
+    } catch (err) {
+      console.warn('[footer loader]', err);
+    }
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
+})();
+</script>
+  
 </body>
 </html>
