@@ -3928,6 +3928,202 @@ body {
     width: 82%;
   }
 }
+
+
+/* =========================================================
+   v28 HERO TRIM + RESPONSIVE CARD POSITIONING
+   Removes chip-row dead space and keeps patient cards balanced
+   across desktop, Windows browser widths, tablet, and mobile.
+   ========================================================= */
+.hero__chips { display: none !important; }
+
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(500px, 61vh, 680px) !important;
+    padding: clamp(34px, 4.2vw, 64px) 0 clamp(22px, 2.8vw, 42px) !important;
+  }
+
+  .hero__grid {
+    min-height: clamp(445px, 51vh, 585px) !important;
+    align-items: center !important;
+  }
+
+  .hero__copy {
+    max-width: 560px !important;
+  }
+
+  .hero__cta {
+    margin-bottom: 0 !important;
+  }
+
+  .hero__photo img {
+    object-position: 63% 46% !important;
+  }
+
+  .coverage-card--top {
+    top: clamp(28px, 5.2vh, 58px) !important;
+    right: clamp(410px, 36vw, 720px) !important;
+    width: clamp(265px, 17vw, 320px) !important;
+  }
+
+  .coverage-card--green {
+    top: clamp(244px, 37vh, 350px) !important;
+    right: clamp(76px, 7vw, 155px) !important;
+    width: clamp(315px, 23vw, 405px) !important;
+  }
+
+  .coverage-card--bottom {
+    top: clamp(386px, 52vh, 490px) !important;
+    right: clamp(100px, 8vw, 190px) !important;
+    width: clamp(268px, 19vw, 336px) !important;
+    bottom: auto !important;
+  }
+
+  .coverage-badge {
+    top: clamp(224px, 35vh, 328px) !important;
+    right: clamp(60px, 5.8vw, 124px) !important;
+  }
+
+  .coverage-pin {
+    top: clamp(440px, 58vh, 535px) !important;
+    right: clamp(60px, 5.8vw, 124px) !important;
+    bottom: auto !important;
+  }
+}
+
+@media (min-width: 1081px) and (max-height: 820px) {
+  .hero {
+    min-height: 570px !important;
+  }
+  .hero__grid {
+    min-height: 500px !important;
+  }
+  .coverage-card--top { top: 28px !important; }
+  .coverage-card--green { top: 270px !important; }
+  .coverage-card--bottom { top: 424px !important; }
+  .coverage-badge { top: 250px !important; }
+  .coverage-pin { top: 478px !important; }
+}
+
+@media (min-width: 641px) and (max-width: 1080px) {
+  .hero {
+    padding-bottom: 62px !important;
+  }
+  .hero__photo {
+    min-height: clamp(560px, 68vw, 700px) !important;
+  }
+  .coverage-card--top {
+    top: 5.5% !important;
+    right: 7% !important;
+  }
+  .coverage-card--green {
+    top: 36% !important;
+    right: 8% !important;
+  }
+  .coverage-card--bottom {
+    top: 60% !important;
+    right: 9% !important;
+    bottom: auto !important;
+  }
+  .coverage-badge {
+    top: calc(36% - 12px) !important;
+    right: 9% !important;
+  }
+  .coverage-pin {
+    top: calc(60% + 72px) !important;
+    right: 5% !important;
+    bottom: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-bottom: 50px !important;
+  }
+
+  .hero__grid {
+    gap: 24px !important;
+  }
+
+  .hero__photo {
+    min-height: 0 !important;
+    height: auto !important;
+    max-width: calc(100vw - 32px) !important;
+    padding: clamp(76px, 18vw, 104px) 20px 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    border-radius: 32px !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+  }
+
+  .hero__photo img {
+    object-position: 57% top !important;
+    transform: scale(1.04) !important;
+  }
+
+  .coverage-card,
+  .coverage-card--top,
+  .coverage-card--green,
+  .coverage-card--bottom {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .coverage-card--top {
+    align-self: center !important;
+    width: min(100%, 560px) !important;
+    padding: 15px 16px !important;
+    margin: 0 auto 174px !important;
+  }
+
+  .coverage-card--green {
+    width: min(100%, 560px) !important;
+    margin: 0 auto !important;
+    padding: 20px 68px 22px 22px !important;
+  }
+
+  .coverage-card--bottom {
+    width: min(88%, 520px) !important;
+    margin: 0 0 0 auto !important;
+    padding: 18px 20px !important;
+  }
+
+  .coverage-badge {
+    top: calc(100% - 312px) !important;
+    right: 9% !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__photo {
+    padding-top: 72px !important;
+    gap: 14px !important;
+  }
+  .coverage-card--top {
+    margin-bottom: 154px !important;
+  }
+  .coverage-card--bottom {
+    width: 92% !important;
+  }
+}
+
 </style>
 
 </head>
@@ -3957,13 +4153,6 @@ body {
         </button>
       </div>
 
-      <div class="hero__chips">
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Update name, address, and phone</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Add active dentist and treatments</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> PPO aware trust signals</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Financing and payment path clarity</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Capy Accreditation path</span>
-      </div>
     </div>
 
     <!-- VERIFIED HERO IMAGE RIGHT SIDE: assets/images/capy-accreditation.jpg -->
