@@ -1,4 +1,128 @@
 <!doctype html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+<!-- ════════════════════════════════════════════════════════════════
+     #1 · GOOGLE TRACKING (gtag.js) — keep on every page
+     ════════════════════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNBPGSZ1LZ');
+</script>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     #2 · SHARED COMPONENT STYLESHEETS (nav + hero + footer)
+     All five MUST be present or components render unstyled.
+     ════════════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="assets/css/mega-nav.css">
+<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="assets/css/hero-slider.css">
+<link rel="stylesheet" href="assets/css/hero-slider-mobile.css">
+<link rel="stylesheet" href="assets/css/footer.css">
+
+<style>
+  /* Mount guards — keep layout stable while components load */
+  #cc-nav-mount    { min-height: 72px; }
+  #cc-hero-mount   { min-height: 80vh; }
+  #cc-footer-mount { min-height: 420px; }
+</style>
+
+<!-- Page-specific <style> or stylesheets go below -->
+
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     #3 · NAV + HERO MOUNTS — immediately after <body>
+     ════════════════════════════════════════════════════════════════ -->
+<div id="cc-nav-mount"></div>
+<div id="cc-hero-mount"></div>
+
+
+<main id="main-content">
+
+  <!-- ▼▼▼ YOUR PAGE CONTENT GOES HERE ▼▼▼ -->
+
+
+
+  <!-- ▲▲▲ YOUR PAGE CONTENT ▲▲▲ -->
+
+</main>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     #4 · FOOTER MOUNT + COMBINED LOADER — immediately before </body>
+     This one script loads nav + hero + footer.
+     ════════════════════════════════════════════════════════════════ -->
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
+
+<script>
+(function(){
+  const components = [
+    { mountId: 'cc-nav-mount',    html: 'components/mega-nav.html',    script: 'assets/js/mega-nav.js' },
+    { mountId: 'cc-hero-mount',   html: 'components/hero-slider.html', script: 'assets/js/hero-slider.js' },
+    { mountId: 'cc-footer-mount', html: 'components/footer.html',      script: 'assets/js/footer.js' }
+  ];
+
+  const loadScript = (src) => new Promise(resolve => {
+    if (!src || document.querySelector(`script[src="${src}"]`)) return resolve();
+    const s = document.createElement('script');
+    s.src = src; s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => { console.warn('[CoverCapy loader] script failed:', src); resolve(); };
+    document.body.appendChild(s);
+  });
+
+  const replayScripts = (scripts) => {
+    scripts.forEach(old => {
+      if (!old.parentNode) return;
+      const fresh = document.createElement('script');
+      for (const attr of old.attributes) fresh.setAttribute(attr.name, attr.value);
+      fresh.textContent = old.textContent;
+      old.parentNode.replaceChild(fresh, old);
+    });
+  };
+
+  const injectComponent = async ({ mountId, html: url }) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${url} returned ${res.status}`);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = await res.text();
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      replayScripts(injectedScripts);
+    } catch (err) {
+      console.warn('[CoverCapy loader] component failed:', url, err);
+    }
+  };
+
+  const init = async () => {
+    for (const c of components) await injectComponent(c);
+    for (const c of components) await loadScript(c.script);
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
+})();
+</script>
+
+</body>
+</html>
+
+
 <html lang="en">
 <head>
 <meta charset="utf-8" />
