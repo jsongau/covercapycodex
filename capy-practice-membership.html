@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- CoverCapy Google Analytics / Google tag copied from template -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNBPGSZ1LZ');
+</script>
+
+<!-- Google AdSense note:
+     No live ca-pub AdSense publisher ID was found in the accessible CoverCapy template/index file.
+     Paste the real AdSense loader here when available.
+-->
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
@@ -18,6 +32,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- CoverCapy shared component styles: mega nav + footer -->
+<link rel="stylesheet" href="assets/css/mega-nav.css" />
+<link rel="stylesheet" href="assets/css/mega-nav-mobile.css" />
+<link rel="stylesheet" href="assets/css/footer.css" />
+
+<style id="cc-shared-shell-mount-guards">
+  html, body { overflow-x: hidden; }
+  body { max-width: 100vw; }
+  #cc-nav-mount { min-height: 72px; position: relative; z-index: 1000; }
+  #cc-footer-mount { display: block; position: relative; z-index: 2; }
+  body > nav.nav#nav,
+  body > .mobile-menu#mobileMenu,
+  body > footer.footer,
+  body > footer.site-footer,
+  body > .foot,
+  body > .footer { display: none !important; }
+</style>
 
 <style>
 /* =========================================================
@@ -2303,20 +2335,52 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); }
 
 /* Localized Discovery callout (Platinum section) */
 .discovery-placement {
-  background: var(--amber-soft);
-  border: 1px solid rgba(201,122,43,.25);
-  border-radius: var(--radius-sm);
-  padding: 16px 18px;
-  margin-bottom: 22px;
+  background: linear-gradient(135deg, var(--sky-panel, #F6FBFC), rgba(238,248,250,.78));
+  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
+  border-radius: 16px;
+  padding: 13px 14px 12px;
+  margin: 16px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 10px 26px rgba(49,90,114,.06);
+  overflow: hidden;
 }
-.discovery-placement__title { font-size: .8rem; font-weight: 700; color: var(--amber-deep); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 8px; }
-.discovery-placement p { font-size: .84rem; color: var(--ink-soft); line-height: 1.5; margin: 0 0 12px; }
-.discovery-placement__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.discovery-placement__title {
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--blue-ink, #315A72);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.discovery-placement p {
+  font-size: .78rem;
+  color: var(--ink-mid);
+  line-height: 1.36;
+  margin: 0 0 9px;
+  max-width: 64ch;
+}
+.discovery-placement__chips {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 1px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.discovery-placement__chips::-webkit-scrollbar { display: none; }
 .discovery-chip {
-  font-size: .74rem; color: var(--amber-deep);
-  background: rgba(217,144,61,.12);
-  border: 1px solid rgba(201,122,43,.2);
-  padding: 5px 11px; border-radius: var(--radius-pill);
+  flex: 0 0 auto;
+  max-width: 215px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .68rem;
+  line-height: 1.15;
+  color: var(--blue-ink, #315A72);
+  background: rgba(70,127,148,.10);
+  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
+  padding: 5px 9px;
+  border-radius: var(--radius-pill);
   font-style: italic;
 }
 
@@ -2706,7 +2770,6 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); }
 }
 
 
-
 /* Platinum invitation panel */
 .platinum-invite {
   margin: 18px 0 16px;
@@ -2749,7 +2812,6 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); }
   .platinum-invite { grid-template-columns: 1fr; text-align: left; }
   .platinum-invite .btn { width: 100%; }
 }
-
 
 
 /* =========================================================
@@ -3393,6 +3455,8 @@ body {
 </script>
 </head>
 <body>
+<div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
+
 
 <!-- =========================================================
      HERO
@@ -3992,7 +4056,7 @@ body {
         </ol>
         <div class="discovery-placement">
           <div class="discovery-placement__title">Localized Discovery Placement</div>
-          <p>Eligible Platinum Elite practices may receive expanded visibility across localized treatment and PPO discovery experiences within CoverCapy.</p>
+          <p>Eligible Platinum Elite practices can be reviewed for added visibility across local treatment and PPO discovery paths.</p>
           <div class="discovery-placement__chips">
             <span class="discovery-chip">Best PPO dentist in Irvine</span>
             <span class="discovery-chip">Invisalign PPO dentist near me</span>
@@ -4700,6 +4764,66 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+<!-- CoverCapy footer component mount -->
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
+<!-- Shared CoverCapy component loader: mega nav + footer -->
+<script id="cc-shared-shell-loader">
+(function(){
+  const components = [
+    { mountId: 'cc-nav-mount', html: 'components/mega-nav.html', script: 'assets/js/mega-nav.js' },
+    { mountId: 'cc-footer-mount', html: 'components/footer.html', script: 'assets/js/footer.js' }
+  ];
+
+  const loadScript = (src) => new Promise(resolve => {
+    if (!src || document.querySelector('script[src="' + src + '"]')) return resolve(true);
+    const s = document.createElement('script');
+    s.src = src;
+    s.defer = true;
+    s.onload = () => resolve(true);
+    s.onerror = () => { console.warn('[CoverCapy shell] optional script could not load:', src); resolve(false); };
+    document.body.appendChild(s);
+  });
+
+  const runScripts = (root) => {
+    root.querySelectorAll('script').forEach(old => {
+      if (old.id === 'cc-shared-shell-loader') return;
+      const fresh = document.createElement('script');
+      Array.from(old.attributes).forEach(attr => fresh.setAttribute(attr.name, attr.value));
+      fresh.textContent = old.textContent;
+      old.replaceWith(fresh);
+    });
+  };
+
+  const injectComponent = async ({ mountId, html, script }) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return false;
+    try {
+      const res = await fetch(html, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(html + ' returned ' + res.status);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = await res.text();
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      runScripts(parent);
+      await loadScript(script);
+      return true;
+    } catch (err) {
+      console.error('[CoverCapy shell] failed:', html, err);
+      mount.innerHTML = '<div style="padding:14px 20px;text-align:center;font:14px system-ui;color:#667874;background:#FFFCF6;border:1px solid rgba(20,32,31,.10)">CoverCapy component did not load: ' + html + '</div>';
+      return false;
+    }
+  };
+
+  const boot = async () => {
+    for (const component of components) await injectComponent(component);
+    document.documentElement.classList.add('cc-shell-loaded');
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
+  else boot();
+})();
+</script>
 </body>
 </html>
