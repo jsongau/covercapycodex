@@ -1,127 +1,4 @@
 <!doctype html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-<!-- ════════════════════════════════════════════════════════════════
-     #1 · GOOGLE TRACKING (gtag.js) — keep on every page
-     ════════════════════════════════════════════════════════════════ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XNBPGSZ1LZ');
-</script>
-
-
-<!-- ════════════════════════════════════════════════════════════════
-     #2 · SHARED COMPONENT STYLESHEETS (nav + hero + footer)
-     All five MUST be present or components render unstyled.
-     ════════════════════════════════════════════════════════════════ -->
-<link rel="stylesheet" href="assets/css/mega-nav.css">
-<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
-
-<link rel="stylesheet" href="assets/css/footer.css">
-
-<style>
-  /* Mount guards — keep layout stable while components load */
-  #cc-nav-mount    { min-height: 72px; }
-  #cc-hero-mount   { min-height: 80vh; }
-  #cc-footer-mount { min-height: 420px; }
-</style>
-
-<!-- Page-specific <style> or stylesheets go below -->
-
-</head>
-<body>
-
-<!-- ════════════════════════════════════════════════════════════════
-     #3 · NAV + HERO MOUNTS — immediately after <body>
-     ════════════════════════════════════════════════════════════════ -->
-<div id="cc-nav-mount"></div>
-<div id="cc-hero-mount"></div>
-
-
-<main id="main-content">
-
-  <!-- ▼▼▼ YOUR PAGE CONTENT GOES HERE ▼▼▼ -->
-
-
-
-  <!-- ▲▲▲ YOUR PAGE CONTENT ▲▲▲ -->
-
-</main>
-
-
-<!-- ════════════════════════════════════════════════════════════════
-     #4 · FOOTER MOUNT + COMBINED LOADER — immediately before </body>
-     This one script loads nav + hero + footer.
-     ════════════════════════════════════════════════════════════════ -->
-<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
-
-<script>
-(function(){
-  const components = [
-    { mountId: 'cc-nav-mount',    html: 'components/mega-nav.html',    script: 'assets/js/mega-nav.js' },
-    { mountId: 'cc-hero-mount',   html: 'components/hero-slider.html', script: 'assets/js/hero-slider.js' },
-    { mountId: 'cc-footer-mount', html: 'components/footer.html',      script: 'assets/js/footer.js' }
-  ];
-
-  const loadScript = (src) => new Promise(resolve => {
-    if (!src || document.querySelector(`script[src="${src}"]`)) return resolve();
-    const s = document.createElement('script');
-    s.src = src; s.defer = true;
-    s.onload = () => resolve();
-    s.onerror = () => { console.warn('[CoverCapy loader] script failed:', src); resolve(); };
-    document.body.appendChild(s);
-  });
-
-  const replayScripts = (scripts) => {
-    scripts.forEach(old => {
-      if (!old.parentNode) return;
-      const fresh = document.createElement('script');
-      for (const attr of old.attributes) fresh.setAttribute(attr.name, attr.value);
-      fresh.textContent = old.textContent;
-      old.parentNode.replaceChild(fresh, old);
-    });
-  };
-
-  const injectComponent = async ({ mountId, html: url }) => {
-    const mount = document.getElementById(mountId);
-    if (!mount) return;
-    try {
-      const res = await fetch(url, { cache: 'no-cache' });
-      if (!res.ok) throw new Error(`${url} returned ${res.status}`);
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = await res.text();
-      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
-      const parent = mount.parentNode;
-      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
-      parent.removeChild(mount);
-      replayScripts(injectedScripts);
-    } catch (err) {
-      console.warn('[CoverCapy loader] component failed:', url, err);
-    }
-  };
-
-  const init = async () => {
-    for (const c of components) await injectComponent(c);
-    for (const c of components) await loadScript(c.script);
-  };
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
-  else init();
-})();
-</script>
-
-</body>
-</html>
-
-
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -2426,52 +2303,20 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); }
 
 /* Localized Discovery callout (Platinum section) */
 .discovery-placement {
-  background: linear-gradient(135deg, var(--sky-panel, #F6FBFC), rgba(238,248,250,.78));
-  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
-  border-radius: 16px;
-  padding: 13px 14px 12px;
-  margin: 16px 0 0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 10px 26px rgba(49,90,114,.06);
-  overflow: hidden;
+  background: var(--amber-soft);
+  border: 1px solid rgba(201,122,43,.25);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  margin-bottom: 22px;
 }
-.discovery-placement__title {
-  font-size: .72rem;
-  font-weight: 800;
-  color: var(--blue-ink, #315A72);
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-.discovery-placement p {
-  font-size: .78rem;
-  color: var(--ink-mid);
-  line-height: 1.36;
-  margin: 0 0 9px;
-  max-width: 64ch;
-}
-.discovery-placement__chips {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 6px;
-  overflow-x: auto;
-  padding-bottom: 1px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.discovery-placement__chips::-webkit-scrollbar { display: none; }
+.discovery-placement__title { font-size: .8rem; font-weight: 700; color: var(--amber-deep); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 8px; }
+.discovery-placement p { font-size: .84rem; color: var(--ink-soft); line-height: 1.5; margin: 0 0 12px; }
+.discovery-placement__chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .discovery-chip {
-  flex: 0 0 auto;
-  max-width: 215px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: .68rem;
-  line-height: 1.15;
-  color: var(--blue-ink, #315A72);
-  background: rgba(70,127,148,.10);
-  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
-  padding: 5px 9px;
-  border-radius: var(--radius-pill);
+  font-size: .74rem; color: var(--amber-deep);
+  background: rgba(217,144,61,.12);
+  border: 1px solid rgba(201,122,43,.2);
+  padding: 5px 11px; border-radius: var(--radius-pill);
   font-style: italic;
 }
 
@@ -4147,7 +3992,7 @@ body {
         </ol>
         <div class="discovery-placement">
           <div class="discovery-placement__title">Localized Discovery Placement</div>
-          <p>Eligible Platinum Elite practices can be reviewed for added visibility across local treatment and PPO discovery paths.</p>
+          <p>Eligible Platinum Elite practices may receive expanded visibility across localized treatment and PPO discovery experiences within CoverCapy.</p>
           <div class="discovery-placement__chips">
             <span class="discovery-chip">Best PPO dentist in Irvine</span>
             <span class="discovery-chip">Invisalign PPO dentist near me</span>
