@@ -3377,6 +3377,170 @@ body {
   .final h2 { line-height: 1.04; }
 }
 
+
+
+/* =========================================================
+   HERO PATIENT PHOTO VISUAL
+   ========================================================= */
+.hero__photo {
+  position: relative;
+  min-height: clamp(460px, 46vw, 620px);
+  border-radius: 28px;
+  overflow: visible;
+  isolation: isolate;
+}
+.hero__photo::before {
+  content: "";
+  position: absolute;
+  inset: 6% 2% 0 10%;
+  border-radius: 34px;
+  background: linear-gradient(135deg, rgba(255,255,255,.52), rgba(238,248,250,.34));
+  box-shadow: 0 30px 90px rgba(11,51,66,.14);
+  z-index: -2;
+}
+.hero__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background:
+    linear-gradient(90deg, rgba(255,252,246,.06) 0%, rgba(255,252,246,.16) 54%, rgba(255,252,246,.74) 100%),
+    radial-gradient(circle at 78% 12%, rgba(91,224,160,.16), transparent 34%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 47% center;
+  border-radius: 28px;
+  box-shadow: 0 26px 90px rgba(11,51,66,.15);
+  filter: saturate(.94) contrast(1.02);
+}
+.coverage-card {
+  position: absolute;
+  z-index: 3;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(16px) saturate(142%);
+  -webkit-backdrop-filter: blur(16px) saturate(142%);
+  border: 1px solid rgba(255,255,255,.74);
+  border-radius: 18px;
+  box-shadow: 0 18px 54px rgba(11,51,66,.16), 0 2px 10px rgba(11,51,66,.08);
+  color: var(--ink);
+}
+.coverage-card strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+.coverage-card span {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink-mid);
+  font-size: .84rem;
+  line-height: 1.35;
+}
+.coverage-card--top {
+  top: 10%;
+  right: 2%;
+  width: min(285px, 44%);
+  padding: 18px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  animation: float-soft 6s ease-in-out infinite;
+}
+.coverage-card__check {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: var(--emerald);
+  color: #fff;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(18,107,79,.24);
+}
+.coverage-card--green {
+  right: 10%;
+  top: 43%;
+  width: min(330px, 52%);
+  padding: 22px;
+  background: linear-gradient(145deg, #06553F, #083B35);
+  color: #fff;
+  border-color: rgba(91,224,160,.18);
+  box-shadow: 0 24px 72px rgba(6,85,63,.28);
+  animation: float-soft-2 7s ease-in-out infinite .45s;
+}
+.coverage-card--green span { color: rgba(255,255,255,.84); }
+.coverage-card--green button {
+  margin-top: 16px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 750;
+  font-size: .84rem;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+.coverage-card--bottom {
+  right: 0;
+  bottom: 9%;
+  width: min(260px, 44%);
+  padding: 18px 20px;
+  animation: float-soft 6.5s ease-in-out infinite .9s;
+}
+.coverage-card--bottom em {
+  display: block;
+  margin-top: 12px;
+  color: var(--gold-deep);
+  font-style: normal;
+  letter-spacing: .08em;
+}
+.coverage-badge,
+.coverage-pin {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(230,251,241,.92);
+  color: var(--emerald);
+  border: 1px solid rgba(18,107,79,.12);
+  box-shadow: 0 14px 38px rgba(11,51,66,.14);
+}
+.coverage-badge {
+  top: 39%;
+  right: -10px;
+  width: 74px;
+  height: 74px;
+}
+.coverage-pin {
+  right: -12px;
+  bottom: 8%;
+  width: 70px;
+  height: 70px;
+  background: rgba(255,250,241,.94);
+  color: var(--gold-deep);
+}
+@media (max-width: 1080px) {
+  .hero__photo { max-width: 740px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  .hero__photo { min-height: 500px; }
+  .hero__photo img { object-position: 42% center; }
+  .coverage-card--top { top: 5%; right: 4%; width: 74%; }
+  .coverage-card--green { top: 42%; left: 6%; right: auto; width: 78%; }
+  .coverage-card--bottom { right: 5%; bottom: 5%; width: 72%; }
+  .coverage-badge { top: 34%; right: 4%; width: 58px; height: 58px; }
+  .coverage-pin { display: none; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -3489,49 +3653,38 @@ body {
       </div>
     </div>
 
-    <!-- Premium dashboard visual -->
-    <div class="hero__dash" aria-label="How insurance-aware patients evaluate care">
-      <div class="dash-card dash-card--c1">
-        <div class="dash-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></div>
-        <div><strong>"Coverage is active. Who do I book?"</strong><small>PPO activation</small></div>
-      </div>
-      <div class="dash-card dash-card--c2 dash-card--gold">
-        <div class="dash-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <div><strong>"Estimated implant cost"</strong><small>after insurance</small></div>
-      </div>
-      <div class="dash-card dash-card--c3 dash-card--plum">
-        <div class="dash-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        <div><strong>"Maybe Invisalign is possible"</strong><small>exploring options</small></div>
-      </div>
-      <div class="dash-card dash-card--c4 dash-card--amber">
-        <div class="dash-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5M12 17h.01"/></svg></div>
-        <div><strong>"Exploring monthly payments"</strong><small>affordability</small></div>
-      </div>
-      <div class="dash-card dash-card--c5">
-        <div class="dash-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4M7.8 4.7a4 4 0 0 0 1.7-1 4 4 0 0 1 5 0 4 4 0 0 0 2.4 1 4 4 0 0 1 3.5 3.5 4 4 0 0 0 1 2.4 4 4 0 0 1 0 5 4 4 0 0 0-1 2.4 4 4 0 0 1-3.5 3.5 4 4 0 0 0-2.4 1 4 4 0 0 1-5 0 4 4 0 0 0-2.4-1 4 4 0 0 1-3.5-3.5 4 4 0 0 0-1-2.4 4 4 0 0 1 0-5 4 4 0 0 0 1-1.7"/></svg></div>
-        <div><strong>"Ready for consultation"</strong><small>treatment ready</small></div>
+    <!-- VERIFIED HERO IMAGE RIGHT SIDE: assets/images/capy-accreditation.jpg -->
+    <!-- Patient activation hero image -->
+    <div class="hero__photo" aria-label="PPO patient ready to book a dentist after coverage activation">
+      <img src="assets/images/capy-accreditation.jpg" alt="Patient ready to book a dentist after activating PPO coverage" loading="eager" fetchpriority="high" />
+
+      <div class="coverage-card coverage-card--top">
+        <div class="coverage-card__check">✓</div>
+        <div>
+          <strong>PPO Coverage Active!</strong>
+          <span>Your benefits are ready to use.</span>
+        </div>
       </div>
 
-      <!-- Central profile card -->
-      <div class="dash-profile">
-        <div class="dash-profile__top">
-          <div class="dash-profile__avatar">cc</div>
-          <div>
-            <div class="dash-profile__name">Your Dental Studio</div>
-            <div class="dash-profile__loc">Practice discovery card</div>
-          </div>
-        </div>
-        <div class="dash-profile__rating">★★★★★ 4.9 profile signal</div>
-        <div class="dash-profile__rows">
-          <div class="dash-profile__row"><span>Insurance context</span><b>PPO aware</b></div>
-          <div class="dash-profile__row"><span>Patient intent</span><b>Cost ready</b></div>
-          <div class="dash-profile__row"><span>Profile status</span><b><span class="status-dot"></span> Ready to claim</b></div>
-        </div>
-        <p class="dash-profile__caption">Better profile data helps patients find, trust, and book confidently.</p>
-        <button class="btn btn--accredit dash-profile__cta" onclick="openMembershipModal('featured')">Activate Capy Accreditation</button>
+      <div class="coverage-card coverage-card--green">
+        <strong>Do not let benefits go to waste.</strong>
+        <span>Book your dental visit now and make the most of your coverage.</span>
+        <button type="button" onclick="scrollToDirectorySearch()">Find Dentist</button>
       </div>
-    </div>
-  </div>
+
+      <div class="coverage-card coverage-card--bottom">
+        <strong>Ready to get the care you have been putting off?</strong>
+        <span>Find a trusted PPO dentist near you and book today.</span>
+        <em>★★★★★</em>
+      </div>
+
+      <div class="coverage-badge" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 13l2 2 4-4"/></svg>
+      </div>
+      <div class="coverage-pin" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      </div>
+    </div>  </div>
 
 </section>
 
