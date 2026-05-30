@@ -27,9 +27,184 @@
     });
   </script>
 
-  <!-- Sitewide CoverCapy assets. If one path does not exist, the page still works. -->
-  <link rel="stylesheet" href="/assets/css/mega-nav.css" />
-  <link rel="stylesheet" href="/assets/css/footer.css" />
+  <!-- CoverCapy shared component styles. These are needed so the injected nav/footer do not render as raw links. -->
+  <link rel="stylesheet" href="assets/css/mega-nav.css" />
+  <link rel="stylesheet" href="assets/css/mega-nav-mobile.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+
+  <!-- Safety net only. Your real mega-nav.css still wins when it loads. -->
+  <style id="cc-mega-nav-failsafe">
+    #cc-nav-mount,
+    #mega-nav-placeholder {
+      min-height: 72px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    #cc-nav-mount .cc-nav,
+    #mega-nav-placeholder .cc-nav {
+      width: 100%;
+      background: rgba(255,252,245,.94);
+      border-bottom: 1px solid rgba(23,63,54,.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #173f36;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    #cc-nav-mount .cc-nav-row,
+    #cc-nav-mount .cc-nav-shell,
+    #mega-nav-placeholder .cc-nav-row,
+    #mega-nav-placeholder .cc-nav-shell {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 32px;
+    }
+
+    #cc-nav-mount .cc-logo,
+    #mega-nav-placeholder .cc-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #173f36;
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+
+    #cc-nav-mount .cc-logo-img,
+    #mega-nav-placeholder .cc-logo-img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    #cc-nav-mount .cc-edition,
+    #cc-nav-mount .cc-logo-copy,
+    #mega-nav-placeholder .cc-edition,
+    #mega-nav-placeholder .cc-logo-copy {
+      display: grid;
+      line-height: 1.1;
+    }
+
+    #cc-nav-mount .cc-edition-top,
+    #cc-nav-mount .cc-logo-word,
+    #mega-nav-placeholder .cc-edition-top,
+    #mega-nav-placeholder .cc-logo-word {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .22em;
+    }
+
+    #cc-nav-mount .cc-edition-bottom,
+    #cc-nav-mount .cc-logo-line,
+    #mega-nav-placeholder .cc-edition-bottom,
+    #mega-nav-placeholder .cc-logo-line {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(23,63,54,.72);
+    }
+
+    #cc-nav-mount .cc-links,
+    #mega-nav-placeholder .cc-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      flex: 1 1 auto;
+    }
+
+    #cc-nav-mount .cc-link,
+    #mega-nav-placeholder .cc-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #173f36;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    #cc-nav-mount .cc-link > a,
+    #cc-nav-mount .cc-link-trigger,
+    #mega-nav-placeholder .cc-link > a,
+    #mega-nav-placeholder .cc-link-trigger {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 26px 0;
+    }
+
+    #cc-nav-mount .cc-dropdown,
+    #mega-nav-placeholder .cc-dropdown {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 8px);
+      transform: translateX(-50%);
+      width: min(820px, calc(100vw - 36px));
+      max-height: min(76vh, 680px);
+      overflow: auto;
+      z-index: 1005;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(23,63,54,.12);
+      background: rgba(255,252,245,.98);
+      box-shadow: 0 24px 70px rgba(23,63,54,.18);
+    }
+
+    #cc-nav-mount .cc-link:hover > .cc-dropdown,
+    #cc-nav-mount .cc-link:focus-within > .cc-dropdown,
+    #mega-nav-placeholder .cc-link:hover > .cc-dropdown,
+    #mega-nav-placeholder .cc-link:focus-within > .cc-dropdown {
+      display: block;
+    }
+
+    #cc-nav-mount .cc-actions,
+    #mega-nav-placeholder .cc-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    #cc-nav-mount .cc-actions a,
+    #mega-nav-placeholder .cc-actions a {
+      text-decoration: none;
+      color: #173f36;
+      font-weight: 800;
+    }
+
+    #cc-nav-mount .cc-mobile-menu,
+    #cc-nav-mount .cc-mobile-panel,
+    #cc-nav-mount .cc-mobile-drawer,
+    #cc-nav-mount .cc-drawer,
+    #cc-nav-mount .cc-nav-drawer,
+    #cc-nav-mount .mobile-menu,
+    #mega-nav-placeholder .cc-mobile-menu,
+    #mega-nav-placeholder .cc-mobile-panel,
+    #mega-nav-placeholder .cc-mobile-drawer,
+    #mega-nav-placeholder .cc-drawer,
+    #mega-nav-placeholder .cc-nav-drawer,
+    #mega-nav-placeholder .mobile-menu {
+      display: none;
+    }
+
+    @media (max-width: 880px) {
+      #cc-nav-mount .cc-links,
+      #mega-nav-placeholder .cc-links { display: none; }
+      #cc-nav-mount .cc-nav-row,
+      #cc-nav-mount .cc-nav-shell,
+      #mega-nav-placeholder .cc-nav-row,
+      #mega-nav-placeholder .cc-nav-shell { padding: 0 18px; }
+    }
+  </style>
 
   <style>
     :root {
@@ -61,14 +236,14 @@
       overflow-x: hidden;
     }
 
-    #mega-nav-container:empty,
-    #site-footer-container:empty { display: none; }
+    #cc-nav-mount:empty,
+    #cc-footer-mount:empty { display: none; }
 
     .cc404-page {
-      min-height: 100vh;
+      min-height: calc(100vh - 72px);
       display: grid;
       place-items: center;
-      padding: clamp(24px, 4vw, 48px) 18px;
+      padding: clamp(28px, 4.5vw, 56px) 18px;
       position: relative;
       isolation: isolate;
     }
@@ -105,6 +280,7 @@
       border-radius: 34px;
       box-shadow: var(--cc-shadow);
       backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
       overflow: hidden;
     }
 
@@ -202,10 +378,10 @@
 
     .cc404-headline h1 {
       margin: 0;
-      max-width: 900px;
-      font-size: clamp(48px, 7.5vw, 94px);
+      max-width: 960px;
+      font-size: clamp(52px, 7.8vw, 100px);
       line-height: .88;
-      letter-spacing: -.08em;
+      letter-spacing: -.085em;
     }
 
     .cc404-left {
@@ -399,7 +575,7 @@
   </style>
 </head>
 <body>
-  <div id="mega-nav-container" aria-label="CoverCapy navigation"></div>
+  <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
 
   <div class="cc404-page">
     <section class="cc404-shell" aria-labelledby="page-title">
@@ -463,75 +639,99 @@
     </section>
   </div>
 
-  <div id="site-footer-container" aria-label="CoverCapy footer"></div>
+  <div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('missing-path').textContent = 'Missing page: ' + window.location.pathname;
+    window.goHome = window.goHome || function () { window.location.href = '/'; };
 
-    (function loadCoverCapyPartials() {
-      function reviveScripts(container) {
-        container.querySelectorAll('script').forEach(function (oldScript) {
-          var newScript = document.createElement('script');
-          Array.prototype.slice.call(oldScript.attributes).forEach(function (attr) {
-            newScript.setAttribute(attr.name, attr.value);
+    (function loadCoverCapyComponents(){
+      var components = [
+        {
+          mountId: 'cc-nav-mount',
+          html: ['components/mega-nav.html', '/components/mega-nav.html', 'mega-nav.html', '/mega-nav.html'],
+          script: ['assets/js/mega-nav.js', '/assets/js/mega-nav.js', 'mega-nav.js', '/mega-nav.js'],
+          successClass: 'has-external-nav'
+        },
+        {
+          mountId: 'cc-footer-mount',
+          html: ['components/footer.html', '/components/footer.html', 'footer.html', '/footer.html'],
+          script: ['assets/js/footer.js', '/assets/js/footer.js', 'footer.js', '/footer.js'],
+          successClass: 'has-external-footer'
+        }
+      ];
+
+      function loadScript(srcList) {
+        return srcList.reduce(function(chain, src) {
+          return chain.catch(function(){
+            return new Promise(function(resolve, reject){
+              if (document.querySelector('script[src="' + src + '"]')) return resolve(true);
+              var script = document.createElement('script');
+              script.src = src;
+              script.defer = true;
+              script.onload = function(){ resolve(true); };
+              script.onerror = function(){ reject(new Error('Script failed: ' + src)); };
+              document.body.appendChild(script);
+            });
           });
-          newScript.text = oldScript.textContent;
-          oldScript.replaceWith(newScript);
+        }, Promise.reject()).catch(function(){ return false; });
+      }
+
+      function replayScripts(root) {
+        Array.prototype.slice.call(root.querySelectorAll('script')).forEach(function(oldScript){
+          var fresh = document.createElement('script');
+          Array.prototype.slice.call(oldScript.attributes).forEach(function(attr){
+            fresh.setAttribute(attr.name, attr.value);
+          });
+          fresh.textContent = oldScript.textContent;
+          if (oldScript.parentNode) oldScript.parentNode.replaceChild(fresh, oldScript);
         });
       }
 
-      function loadHtmlInto(mountId, paths, successClass) {
-        var mount = document.getElementById(mountId);
-        if (!mount) return Promise.resolve(false);
-
-        return paths.reduce(function (chain, path) {
-          return chain.catch(function () {
-            return fetch(path, { cache: 'no-cache' }).then(function (response) {
-              if (!response.ok) throw new Error('Missing partial: ' + path);
-              return response.text();
-            }).then(function (html) {
-              mount.innerHTML = html;
-              reviveScripts(mount);
-              document.body.classList.add(successClass);
-              return true;
+      function fetchFirst(urls) {
+        return urls.reduce(function(chain, url){
+          return chain.catch(function(){
+            return fetch(url, { cache: 'no-cache' }).then(function(res){
+              if (!res.ok) throw new Error(url + ' returned ' + res.status);
+              return res.text();
             });
           });
-        }, Promise.reject()).catch(function () {
+        }, Promise.reject());
+      }
+
+      function injectComponent(component) {
+        var mount = document.getElementById(component.mountId);
+        if (!mount) return Promise.resolve(false);
+
+        return fetchFirst(component.html).then(function(html){
+          var wrapper = document.createElement('div');
+          wrapper.innerHTML = html;
+          replayScripts(wrapper);
+
+          while (wrapper.firstChild) {
+            mount.parentNode.insertBefore(wrapper.firstChild, mount);
+          }
+          mount.parentNode.removeChild(mount);
+          document.body.classList.add(component.successClass);
+          return loadScript(component.script);
+        }).catch(function(err){
+          console.warn('[CoverCapy 404 loader] Component failed:', component.mountId, err);
           return false;
         });
       }
 
-      function loadScriptOnce(src) {
-        if (document.querySelector('script[src="' + src + '"]')) return;
-        var script = document.createElement('script');
-        script.src = src;
-        script.defer = true;
-        document.body.appendChild(script);
+      function init() {
+        components.reduce(function(chain, component){
+          return chain.then(function(){ return injectComponent(component); });
+        }, Promise.resolve());
       }
 
-      loadHtmlInto('mega-nav-container', [
-        '/mega-nav.html',
-        '/assets/html/mega-nav.html',
-        '/assets/components/mega-nav.html',
-        '/components/mega-nav.html'
-      ], 'has-external-nav').then(function (loaded) {
-        if (loaded) {
-          loadScriptOnce('/assets/js/load-nav.js');
-          loadScriptOnce('/assets/js/mega-nav.js');
-        }
-      });
-
-      loadHtmlInto('site-footer-container', [
-        '/footer.html',
-        '/assets/html/footer.html',
-        '/assets/components/footer.html',
-        '/components/footer.html'
-      ], 'has-external-footer').then(function (loaded) {
-        if (loaded) {
-          loadScriptOnce('/assets/js/footer.js');
-        }
-      });
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init, { once: true });
+      } else {
+        init();
+      }
     })();
   </script>
 </body>
