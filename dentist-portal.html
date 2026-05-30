@@ -5914,6 +5914,118 @@ a[onclick*='openMembershipModal("platinum")']:hover,
 }
 </style>
 
+<style id="cc-lava-lamp-float">
+/* ============================================================
+   Lava-lamp float for the 3 hero coverage cards.
+   Driven by the INDEPENDENT `translate`/`scale` properties so the motion
+   COMPOSES with the existing `transform` centering rules instead of being
+   overridden by their `!important` transforms (which is exactly why the old
+   transform-based keyframes were frozen in place).
+   The corner emojis are now nested inside their cards, so they inherit the
+   card's motion and stay glued to the corners — calendar badge on the green
+   card's TOP-RIGHT, location pin on the bottom card's BOTTOM-RIGHT — in every
+   state, including hover.
+   ============================================================ */
+
+@keyframes cc-lava-top {
+  0%, 100% { translate: 0 0;        scale: 1;     }
+  25%      { translate: -6px -12px; scale: 1.01;  }
+  50%      { translate: 6px -22px;  scale: 1.018; }
+  75%      { translate: 9px -9px;   scale: 1.01;  }
+}
+@keyframes cc-lava-green {
+  0%, 100% { translate: 0 0;        scale: 1;     }
+  25%      { translate: 8px 12px;   scale: 1.012; }
+  50%      { translate: -6px 23px;  scale: 1.02;  }
+  75%      { translate: -9px 9px;   scale: 1.012; }
+}
+@keyframes cc-lava-bottom {
+  0%, 100% { translate: 0 0;        scale: 1;     }
+  25%      { translate: 7px -10px;  scale: 1.01;  }
+  50%      { translate: -7px -20px; scale: 1.018; }
+  75%      { translate: -4px -8px;  scale: 1.01;  }
+}
+
+/* Apply the float to each card. Different durations + phases give an organic,
+   desynced lava-lamp drift. */
+.coverage-card--top {
+  animation: cc-lava-top 9s ease-in-out infinite !important;
+  will-change: translate, scale;
+}
+.coverage-card--green {
+  animation: cc-lava-green 11s ease-in-out infinite !important;
+  will-change: translate, scale;
+}
+.coverage-card--bottom {
+  animation: cc-lava-bottom 10s ease-in-out infinite !important;
+  will-change: translate, scale;
+}
+
+/* Card 1's internal check icon rides the card instead of bobbing on its own */
+.coverage-card--top .coverage-card__check {
+  animation: none !important;
+  translate: none !important;
+  scale: none !important;
+  transform: none !important;
+}
+
+/* Let the corner emojis overhang the card edges */
+.coverage-card--green,
+.coverage-card--bottom {
+  overflow: visible !important;
+}
+
+/* Extra right padding so the corner emoji never sits on top of the text */
+.coverage-card--green  { padding-right: 40px !important; }
+.coverage-card--bottom { padding-right: 34px !important; }
+
+/* Nested emoji glued to the green card's TOP-RIGHT corner.
+   The child combinator (0,2,0) outranks every single-class positioning rule,
+   so position + size are pinned here. `display` is deliberately left unset so
+   the existing per-breakpoint visibility rules still apply. */
+.coverage-card--green > .coverage-badge {
+  position: absolute !important;
+  top: -22px !important;
+  right: -22px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  animation: none !important;
+  z-index: 6 !important;
+}
+
+/* Nested emoji glued to the bottom card's BOTTOM-RIGHT corner */
+.coverage-card--bottom > .coverage-pin {
+  position: absolute !important;
+  bottom: -22px !important;
+  right: -22px !important;
+  left: auto !important;
+  top: auto !important;
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  animation: none !important;
+  z-index: 6 !important;
+}
+
+/* Respect a user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .coverage-card--top,
+  .coverage-card--green,
+  .coverage-card--bottom {
+    animation: none !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
@@ -5960,19 +6072,18 @@ a[onclick*='openMembershipModal("platinum")']:hover,
         <strong>Do not let benefits go to waste.</strong>
         <span>Book your dental visit now and make the most of your coverage.</span>
         <button type="button" class="btn-find-dentist" onclick="scrollToDirectorySearch()">Find Dentist</button>
+        <div class="coverage-badge" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 13l2 2 4-4"/></svg>
+        </div>
       </div>
 
       <div class="coverage-card coverage-card--bottom">
         <strong>Ready to get the care you have been putting off?</strong>
         <span>Find a trusted PPO dentist near you and book today.</span>
         <em>★★★★★</em>
-      </div>
-
-      <div class="coverage-badge" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 13l2 2 4-4"/></svg>
-      </div>
-      <div class="coverage-pin" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div class="coverage-pin" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </div>
       </div>
     </div>  </div>
 
@@ -6468,10 +6579,6 @@ a[onclick*='openMembershipModal("platinum")']:hover,
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 5v14M5 12h14"/></svg>
               Claim this profile
             </button>
-            <div class="cc-ru-active">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/></svg>
-              Capy Accredited preview active
-            </div>
             <div class="cc-ru-actions">
               <a class="cc-ru-act solid" href="https://share.google/64WtauIlBBUGETpcM" target="_blank" rel="noopener">View Profile</a>
               <a class="cc-ru-act ghost" href="https://www.kytdentalservices.com/contact" target="_blank" rel="noopener">Request Appointment</a>
@@ -6479,8 +6586,6 @@ a[onclick*='openMembershipModal("platinum")']:hover,
             </div>
           </div>
         </article>
-
-        <button type="button" class="cc-ru-apply-now" onclick="openMembershipModal('featured')">Apply for Capy Accreditation Now &rarr;</button>
 
         <button type="button" class="cc-ru-bigcta" data-cc-activate aria-pressed="false">
           <span class="pip" aria-hidden="true"></span><span data-cc-cta-text>Preview Capy Accredited Profile</span>
