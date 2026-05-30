@@ -4003,7 +4003,7 @@ body {
           "name": "Capy Accredited",
           "price": "369",
           "priceCurrency": "USD",
-          "description": "Capy Accredited visibility, Pre-Verified PPO Readiness, insurance-aware intake support. $295/month billed annually.",
+          "description": "Capy Accredited visibility, Pre-Verified PPO Readiness, insurance-aware intake support. $285/month billed annually.",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
             "price": "369",
@@ -4025,7 +4025,7 @@ body {
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "Is claiming my profile free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Qualified practices can claim a free CoverCapy profile so patients can verify practice info, PPO acceptance, photos, reviews, and booking. Free profiles are visible but do not receive the same placement priority as Capy Accredited or Platinum offices." } },
-        { "@type": "Question", "name": "What does Capy Accreditation include?", "acceptedAnswer": { "@type": "Answer", "text": "Capy Accredited is $369/month, or $295/month billed annually with a Founder's Rate Lock. It includes Pre-Verified PPO Readiness, insurance-aware intake support, Capy Accreditation placement when relevance is equal, treatment and cosmetic visibility, a financing friendly indicator, and priority inclusion on treatment pages. Cancel anytime." } },
+        { "@type": "Question", "name": "What does Capy Accreditation include?", "acceptedAnswer": { "@type": "Answer", "text": "Capy Accredited is $369/month, or $285/month billed annually with a Founder's Rate Lock. It includes Pre-Verified PPO Readiness, insurance-aware intake support, Capy Accreditation placement when relevance is equal, treatment and cosmetic visibility, a financing friendly indicator, and priority inclusion on treatment pages. Cancel anytime." } },
         { "@type": "Question", "name": "What is Platinum Elite?", "acceptedAnswer": { "@type": "Answer", "text": "Platinum Elite is the premium visibility tier, starting at $1,499/month. Capy Accreditation is not required first, but Platinum requires application review, profile vetting, market availability, and marketplace balance approval. Placement remains subject to profile relevance, treatment category fit, market rules, and availability." } },
         { "@type": "Question", "name": "Does CoverCapy guarantee patients?", "acceptedAnswer": { "@type": "Answer", "text": "No. CoverCapy does not guarantee a specific number of leads, appointments, or revenue. We improve discovery, trust signals, patient education, and booking paths so qualified practices can compete for new PPO patients more effectively." } },
         { "@type": "Question", "name": "Are CoverCapy bookings unlimited?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Capy Accredited and Platinum memberships include unlimited PPO patient bookings. CoverCapy does not charge per-patient or per-appointment fees on top of membership." } },
@@ -5914,147 +5914,6 @@ a[onclick*='openMembershipModal("platinum")']:hover,
 }
 </style>
 
-
-<style id="cc-final-user-request-polish">
-/* Final requested polish:
-   pricing back to pictured annual setup, Free left / Capy middle / Platinum right,
-   shorter patient readiness section, stronger Find Dentist CTA, better hero emoji placement.
-*/
-
-/* Pricing order and pictured setup */
-.price-grid--value-first {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr) !important;
-  align-items: stretch !important;
-}
-
-.price-grid--value-first .price-card--free { order: 1 !important; }
-.price-grid--value-first .price-card--featured { order: 2 !important; }
-.price-grid--value-first .price-card--platinum { order: 3 !important; }
-
-.billing-row .billing-toggle .billing-btn--annual.is-active,
-.billing-row .billing-toggle .billing-btn[data-billing="annual"].is-active {
-  background: linear-gradient(135deg, var(--cc-accredit, #0B6F50), var(--cc-accredit-deep, #064B3A)) !important;
-  color: #fff !important;
-}
-
-.billing-row .billing-save {
-  color: rgba(255,255,255,.88) !important;
-}
-
-.pricing-fomo {
-  background: rgba(236,248,241,.92) !important;
-  border: 1px dotted rgba(15,107,79,.34) !important;
-}
-
-.pricing-fomo span {
-  color: var(--cc-accredit-deep, #064B3A) !important;
-  font-weight: 850 !important;
-}
-
-/* Directory cards should not stretch huge when one neighboring card is taller */
-.cards {
-  align-items: start !important;
-}
-
-.cards .card {
-  height: auto !important;
-  min-height: unset !important;
-  align-self: start !important;
-}
-
-.cards .card__micro {
-  min-height: unset !important;
-}
-
-/* Make Find Dentist feel active and featured */
-.btn-find-dentist,
-.coverage-card--green button {
-  background: linear-gradient(180deg, #ffffff 0%, #f7fffb 100%) !important;
-  color: var(--emerald) !important;
-  border: 1px solid rgba(11,111,80,.18) !important;
-  box-shadow: 0 14px 30px rgba(3,32,39,.16) !important;
-  cursor: pointer !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  font-weight: 850 !important;
-}
-
-.btn-find-dentist:hover,
-.coverage-card--green button:hover {
-  transform: translateY(-1px) !important;
-  box-shadow: 0 18px 36px rgba(3,32,39,.20) !important;
-}
-
-/* Shorten the patient readiness block after removing redundant CTAs */
-#patient-readiness-upgrade .cc-ru-apply-now,
-#patient-readiness-upgrade .cc-ru-active {
-  display: none !important;
-}
-
-#patient-readiness-upgrade .cc-ru-visual {
-  padding-bottom: clamp(22px, 4vw, 42px) !important;
-}
-
-#patient-readiness-upgrade .cc-ru-panel {
-  gap: clamp(18px, 3.5vw, 36px) !important;
-}
-
-/* Hero card emoji positioning */
-@media (min-width: 1081px) {
-  /* 2nd emoji: higher and slightly left so it covers more of the green card corner */
-  .coverage-badge {
-    width: 62px !important;
-    height: 62px !important;
-    left: calc(49.5% + 94px) !important;
-    right: auto !important;
-    top: calc(53% - 96px) !important;
-    z-index: 10 !important;
-  }
-
-  /* 3rd emoji: lower on the 3rd card bottom-right corner */
-  .coverage-pin {
-    width: 60px !important;
-    height: 60px !important;
-    right: calc(6.2% - 18px) !important;
-    left: auto !important;
-    bottom: calc(10% - 28px) !important;
-    z-index: 10 !important;
-  }
-}
-
-@media (max-width: 1080px) and (min-width: 641px) {
-  .coverage-badge {
-    width: 58px !important;
-    height: 58px !important;
-    top: calc(48% - 66px) !important;
-    left: calc(50% + 104px) !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .coverage-badge {
-    width: 54px !important;
-    height: 54px !important;
-    top: calc(44% - 36px) !important;
-    left: calc(50% + 76px) !important;
-  }
-
-  .coverage-pin {
-    display: grid !important;
-    width: 52px !important;
-    height: 52px !important;
-    right: 8% !important;
-    bottom: calc(10% - 20px) !important;
-  }
-}
-
-@media (max-width: 980px) {
-  .price-grid--value-first {
-    grid-template-columns: 1fr !important;
-  }
-}
-</style>
-
 </head>
 <body>
 <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
@@ -6609,6 +6468,10 @@ a[onclick*='openMembershipModal("platinum")']:hover,
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 5v14M5 12h14"/></svg>
               Claim this profile
             </button>
+            <div class="cc-ru-active">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/></svg>
+              Capy Accredited preview active
+            </div>
             <div class="cc-ru-actions">
               <a class="cc-ru-act solid" href="https://share.google/64WtauIlBBUGETpcM" target="_blank" rel="noopener">View Profile</a>
               <a class="cc-ru-act ghost" href="https://www.kytdentalservices.com/contact" target="_blank" rel="noopener">Request Appointment</a>
@@ -6616,6 +6479,8 @@ a[onclick*='openMembershipModal("platinum")']:hover,
             </div>
           </div>
         </article>
+
+        <button type="button" class="cc-ru-apply-now" onclick="openMembershipModal('featured')">Apply for Capy Accreditation Now &rarr;</button>
 
         <button type="button" class="cc-ru-bigcta" data-cc-activate aria-pressed="false">
           <span class="pip" aria-hidden="true"></span><span data-cc-cta-text>Preview Capy Accredited Profile</span>
@@ -6689,7 +6554,7 @@ a[onclick*='openMembershipModal("platinum")']:hover,
         if (c.hasAttribute('aria-pressed')) c.setAttribute('aria-pressed', String(on));
         if (c.getAttribute('role') === 'switch') c.setAttribute('aria-checked', String(on));
       });
-      if (ctaText) ctaText.textContent = on ? 'Preview active' : 'Preview Capy Accredited Profile';
+      if (ctaText) ctaText.textContent = on ? 'Capy Accredited preview active' : 'Preview Capy Accredited Profile';
     }
 
     controls.forEach(function (c) {
@@ -6766,10 +6631,10 @@ a[onclick*='openMembershipModal("platinum")']:hover,
 
       <div class="billing-row" aria-label="Billing options">
         <div class="billing-toggle" id="billingToggle">
-          <button class="billing-btn billing-btn--annual is-active" data-billing="annual">Billed yearly <span class="billing-save">save 20%</span></button>
-          <button class="billing-btn" data-billing="monthly">Billed monthly</button>
+          <button class="billing-btn billing-btn--annual is-active" data-billing="annual">20% Annual <span class="billing-save">Founder rate</span></button>
+          <button class="billing-btn" data-billing="monthly">Monthly flexibility</button>
         </div>
-        <div class="pricing-fomo"><span>Founder rate lock</span> Annual members keep the $295/mo Capy Accreditation rate while active.</div>
+        <div class="pricing-fomo"><span>Founder rate</span> 20% annual pricing • 12 month commitment required.</div>
       </div>
     </div>
 
@@ -6810,7 +6675,7 @@ a[onclick*='openMembershipModal("platinum")']:hover,
 
       <!-- CAPY ACCREDITED , featured middle -->
       <article class="price-card price-card--featured price-card--best reveal" data-plan="featured">
-        <div class="price-card__top-band">✦ Best value for new patient conversion</div>
+        <div class="price-card__top-band">✦ Featured · 20% Annual</div>
         <div class="ribbon-clip"><div class="founder-ribbon">FOUNDER RATE</div></div>
         <div class="price-card__intro">
           <div class="price-card__icon">◆</div>
@@ -6818,9 +6683,9 @@ a[onclick*='openMembershipModal("platinum")']:hover,
           <div class="price-card__sub">Green patient facing trust badge.</div>
           <div class="price-card__price">
             <span class="price-monthly"><span class="num">$369</span><span class="unit">/ month · monthly flexibility</span></span>
-            <span class="price-annual"><span class="price-was">$369</span><span class="num">$295</span><span class="unit">/ month · billed yearly</span></span>
+            <span class="price-annual"><span class="price-was">$369</span><span class="num">$285</span><span class="unit">/ month · 12 month commitment</span></span>
           </div>
-          <div class="annual-savings-line">Save $888 per year. Founder rate stays locked while your membership stays active.</div>
+          <div class="annual-savings-line">20% annual pricing • 12 month commitment required</div>
           <p class="price-card__value-copy">For practices ready to move beyond a free listing with a clearer trust signal, stronger PPO patient context, and a smoother path from search to scheduled visit.</p>
         </div>
         <div class="price-card__actions">
@@ -6841,7 +6706,7 @@ a[onclick*='openMembershipModal("platinum")']:hover,
               <li>Built for practices that can streamline production</li>
             </ul>
             <p class="price-card__support">Best for practices ready to compete for stronger visibility and more prepared patient conversations.</p>
-            <div class="price-card__micro">Founder pricing requires a 12 month commitment. Annual members keep the $295/mo Capy Accreditation rate while active.</div>
+            <div class="price-card__micro">Founder pricing requires a 12 month commitment. This annual rate is already applied while it is still available in your market.</div>
             <button class="price-card__text-cta" onclick="openMembershipModal('featured')">Ready for the green badge patients understand? Activate Capy Accreditation.</button>
           </div>
         </div>
@@ -7320,7 +7185,7 @@ const forms = {
   free: {
     tier: 'Capy Accreditation · Founder Annual Checkout',
     title: 'Claim Your Free Profile',
-    sub: 'Founder pricing requires a 12 month commitment. Annual payment is based on . Use ',
+    sub: 'Founder pricing requires a 12 month commitment. Annual payment is based on 12 x $285. Use coupon code FOUNDER for an additional 10% off the annual total at checkout.',
     submit: 'Continue to Founder Annual Checkout',
     success: 'Profile claim received. CoverCapy will review your practice details.',
     fields: [
@@ -7370,16 +7235,33 @@ const forms = {
   featured: {
     tier: 'Capy Accreditation · Founder Annual Checkout',
     title: 'Activate Capy Accreditation',
-    sub: 'Founder pricing requires a 12 month commitment. Annual payment is based on . Use ',
+    sub: 'Founder pricing requires a 12 month commitment. Annual payment is based on 12 x $285. Use coupon code FOUNDER for an additional 10% off the annual total at checkout.',
     submit: 'Continue to Founder Annual Checkout',
     checkout: 'capy-accredited',
     accredit: true,
     readiness: {
       title: "What you'll need",
       time: 'About 2 minutes',
-      items: ['Practice name', 'Dentist / owner name', 'NPI number', 'Practice email', 'Office phone', 'ZIP code', 'PPO carriers accepted', 'Financing availability', 'Founder checkout:  with ' },
+      items: ['Practice name', 'Dentist / owner name', 'NPI number', 'Practice email', 'Office phone', 'ZIP code', 'PPO carriers accepted', 'Financing availability', 'Founder checkout: 12 x $285 with coupon code FOUNDER'],
+    },
+    fields: [
+      { name: 'practice_name', label: 'Practice Name', type: 'text', required: true },
+      { name: 'owner_name', label: 'Dentist / Owner Name', type: 'text', required: true },
+      { row: [
+        { name: 'email', label: 'Practice Email', type: 'email', required: true },
+        { name: 'phone', label: 'Office Phone', type: 'tel', required: true },
+      ]},
+      { row: [
+        { name: 'npi', label: 'NPI Number', type: 'text', required: true },
+        { name: 'zip', label: 'Practice ZIP', type: 'text', required: true },
+      ]},
+      { name: 'website', label: 'Practice Website (optional)', type: 'url' },
+      { name: 'financing', label: 'Do you offer financing?', type: 'select', options: ['Yes', 'No'], required: true },
+      { name: 'ppo_carriers', label: 'Which PPO carriers do you commonly accept?', type: 'textarea', placeholder: 'Delta Dental PPO, Cigna, Aetna, MetLife…' },
+      { name: 'notes', label: 'Optional notes', type: 'textarea' },
+      { type: 'checkbox', name: 'agreement', required: true, label: 'I confirm I represent this practice and understand visibility and placement may vary by market, patient relevance, and CoverCapy marketplace rules.' },
     ],
-    disclaimer: 'Founder pricing requires a 12 month commitment. Annual checkout is based on  =  before coupon.  Capy Accreditation membership does not guarantee a specific ranking, patient volume, appointments, revenue, insurance coverage, or payment.',
+    disclaimer: 'Founder pricing requires a 12 month commitment. Annual checkout is based on 12 x $285 = $3,420 before coupon. Coupon code FOUNDER provides an additional 10% off the annual payment while available. Capy Accreditation membership does not guarantee a specific ranking, patient volume, appointments, revenue, insurance coverage, or payment.',
   },
   platinum: {
     tier: 'Platinum Elite · Application Review',
@@ -7586,7 +7468,7 @@ const faqItems = [
   {
     kicker: 'Founder annual rate',
     question: 'Why choose the annual plan?',
-    answer: 'The monthly path is $369/month. The annual commitment lowers the founder rate to $295/month with a 12 month commitment, which is the strongest value for practices that already believe the Capy Accredited badge will help them convert patient interest into booked care.',
+    answer: 'The monthly path is $369/month. The annual commitment lowers the founder rate to $285/month with a 12 month commitment, which is the strongest value for practices that already believe the Capy Accredited badge will help them convert patient interest into booked care.',
     takeaway: '<strong>Best fit:</strong> Claim free first, understand the value, then use the annual Capy Accreditation rate when you are ready to commit.'
   },
   {
