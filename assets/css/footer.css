@@ -1,7 +1,7 @@
 /* ==========================================================================
    CoverCapy — Sitewide Footer Styles
-   Scoped under .cc-footer. Full-bleed warm parchment ground, one cohesive
-   concierge module. Teal = patients, amber = dentists.
+   Scoped under .cc-footer. Full-bleed transparent footer that blends
+   into the page background; only CTA tiles remain softly carded. Teal = patients, amber = dentists.
    Layout is 100% CSS (grid/flex). JS only: mobile accordion + optional
    side-rail hide. Tuned ~30% shorter than the previous build.
    ========================================================================== */
@@ -71,21 +71,20 @@
               Helvetica, Arial, sans-serif;
 
   /* ---- Inner content width ---- */
-  --cc-maxw: 1320px;
-  --cc-gutter: clamp(28px, 5vw, 80px);
+  --cc-maxw: 1760px;
+  --cc-gutter: clamp(36px, 6vw, 128px);
 
   position: relative;
   isolation: isolate;
-  overflow: hidden;                 /* contain the ambient aura */
-  background:
-    radial-gradient(120% 80% at 50% -10%, var(--cc-cream) 0%, var(--cc-ivory) 60%);
+  overflow: visible;                /* no framed footer background; blends into page */
+  background: transparent;
   color: var(--cc-graphite);
   font-family: var(--cc-sans);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Compact full-bleed vertical padding */
-  padding: clamp(30px, 4vw, 48px) 0 clamp(18px, 2.4vw, 26px);
+  /* Full-bleed vertical rhythm. Horizontal gutters live on .cc-footer-shell. */
+  padding: clamp(44px, 5.5vw, 78px) 0 clamp(24px, 3vw, 40px);
 }
 
 .cc-footer *,
@@ -98,10 +97,7 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(34% 50% at 16% 22%, rgba(61, 161, 161, 0.11), transparent 70%),
-    radial-gradient(34% 50% at 84% 24%, rgba(212, 154, 94, 0.12), transparent 70%),
-    radial-gradient(50% 56% at 50% 94%, var(--cc-lavender), transparent 72%);
+  display: none; /* removed: footer should inherit the page background, not create its own panel */
 }
 
 /* ==========================================================================
@@ -109,16 +105,15 @@
    ========================================================================== */
 .cc-footer-shell {
   max-width: var(--cc-maxw);
-  width: calc(100% - var(--cc-gutter));
+  width: min(calc(100% - var(--cc-gutter)), var(--cc-maxw));
   margin: 0 auto;
-  border-radius: var(--cc-radius-shell);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(247, 243, 233, 0.55) 100%);
-  border: 1px solid var(--cc-line);
-  box-shadow: var(--cc-shadow-soft);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  padding: clamp(22px, 2.6vw, 34px);
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: 0;
 }
 
 /* ---- Eyebrow ---- */
@@ -200,11 +195,11 @@
    ========================================================================== */
 .cc-footer-top {
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(280px, .95fr) minmax(280px, .95fr);
-  gap: var(--footer-gap-md);
+  grid-template-columns: minmax(360px, 1.08fr) minmax(340px, .96fr) minmax(340px, .96fr);
+  gap: clamp(22px, 2.4vw, 44px);
   align-items: stretch;
-  padding-bottom: var(--footer-gap-lg);
-  margin-bottom: var(--footer-gap-lg);
+  padding-bottom: clamp(26px, 3vw, 44px);
+  margin-bottom: clamp(28px, 3.2vw, 46px);
   border-bottom: 1px solid var(--cc-line);
 }
 
@@ -331,9 +326,9 @@
 .cc-footer-nav {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: var(--footer-gap-lg);
-  padding-bottom: var(--footer-gap-lg);
-  margin-bottom: var(--footer-gap-md);
+  gap: clamp(28px, 4.6vw, 92px);
+  padding-bottom: clamp(28px, 3.6vw, 48px);
+  margin-bottom: clamp(18px, 2.4vw, 32px);
   border-bottom: 1px solid var(--cc-line);
 }
 .cc-footer-col { min-width: 0; }
@@ -392,11 +387,13 @@
   align-items: center;
   column-gap: var(--footer-gap-lg);
   row-gap: var(--footer-gap-sm);
-  padding: clamp(13px, 1.6vw, 17px) clamp(15px, 1.8vw, 20px);
-  margin-bottom: var(--footer-gap-md);
-  border-radius: var(--cc-radius-card);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(243, 238, 224, 0.42));
-  border: 1px solid var(--cc-line);
+  padding: clamp(18px, 2vw, 26px) 0;
+  margin-bottom: clamp(18px, 2.5vw, 34px);
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--cc-line);
+  border-bottom: 1px solid var(--cc-line-soft);
 }
 .cc-footer-discovery-head { min-width: 0; }
 .cc-footer-discovery-title {
@@ -462,8 +459,8 @@
   color: var(--cc-graphite-2);
   padding: 6px 12px;
   border-radius: var(--cc-radius-pill);
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid var(--cc-line);
+  background: rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(42, 45, 38, 0.11);
   transition: border-color .2s ease, color .2s ease, background .2s ease;
 }
 .cc-footer-markets a:hover {
@@ -476,10 +473,11 @@
    4. LEGAL — compact parchment band
    ========================================================================== */
 .cc-footer-legal {
-  border-radius: var(--cc-radius-card);
-  background: linear-gradient(180deg, var(--cc-parchment-2) 0%, var(--cc-parchment) 100%);
-  border: 1px solid var(--cc-line);
-  padding: clamp(14px, 1.8vw, 20px) clamp(16px, 2vw, 24px);
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--cc-line);
+  padding: clamp(16px, 2vw, 24px) 0 0;
 }
 .cc-footer-legal-top {
   display: flex;
@@ -520,6 +518,9 @@
   font-style: italic;
   color: var(--cc-graphite-2);
 }
+.cc-footer-fineprint--second {
+  margin-top: 8px;
+}
 
 /* ==========================================================================
    Focus — obvious & elegant
@@ -544,6 +545,24 @@
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+
+
+
+/* ==========================================================================
+   Wide desktop polish — prevents the footer from looking like a small app card
+   when the browser is zoomed out on large monitors.
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .cc-footer-brand-copy { max-width: 48ch; }
+  .cc-footer-card { padding: clamp(24px, 2vw, 34px); }
+  .cc-footer-card-title { font-size: clamp(1.44rem, 1.36vw, 1.76rem); }
+  .cc-footer-nav { grid-template-columns: 1.06fr 1.1fr 1.1fr 1.06fr .98fr; }
+}
+
+@media (min-width: 1800px) {
+  .cc-footer { --cc-gutter: clamp(80px, 7vw, 156px); }
+  .cc-footer-shell { max-width: 1840px; }
 }
 
 /* ==========================================================================
@@ -606,11 +625,11 @@
 @media (max-width: 480px) {
   .cc-footer {
     --cc-gutter: clamp(20px, 6vw, 32px);
-    padding-top: clamp(26px, 7vw, 38px);
+    padding-top: clamp(28px, 8vw, 44px);
   }
   .cc-footer-shell {
-    border-radius: 22px;
-    padding: clamp(16px, 5vw, 22px);
+    border-radius: 0;
+    padding: 0;
   }
   .cc-footer-card { padding: 18px; }
 
