@@ -143,17 +143,29 @@
 <!-- ════════════════════════════════════════════════════════════════
      SHARED COMPONENT STYLESHEETS — mega nav + hero slider + footer
      ════════════════════════════════════════════════════════════════ -->
-<link rel="stylesheet" href="assets/css/mega-nav.css">
-<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
-<link rel="stylesheet" href="assets/css/hero-slider.css">
-<link rel="stylesheet" href="assets/css/hero-slider-mobile.css">
-<link rel="stylesheet" href="assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/mega-nav.css">
+<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="/assets/css/hero-slider.css">
+<link rel="stylesheet" href="/assets/css/hero-slider-mobile.css">
+<link rel="stylesheet" href="/assets/css/footer.css">
 
 <style>
   /* Mount guards keep layout stable while shared components load. */
   #cc-nav-mount    { min-height: 72px; }
   #cc-hero-mount   { min-height: 80vh; }
   #cc-footer-mount { min-height: 420px; }
+
+  /* This estimator page should open on the calculator intro, not the global nav/hero.
+     The components still load; we just hide their reserved height during first paint,
+     then scroll past them after they are injected. */
+  #estimate-cost-intro{ scroll-margin-top: 24px; }
+  html.cc-estimator-autoland-active #cc-nav-mount,
+  html.cc-estimator-autoland-active #cc-hero-mount{
+    min-height: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
 </style>
 
 <style>
@@ -3540,12 +3552,248 @@ body[data-savings-period="6"] .proof-6mo-only    { display: grid; }
 </head>
 <body class="theme-now" data-savings-period="3">
 
+<script id="cc-estimator-autoland-bootstrap">
+(function(){
+  'use strict';
+  /* No hash means a normal page open should land on the estimator intro.
+     A real hash link still wins, so footer/legal/nav links behave normally. */
+  if (!window.location.hash){
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (_) {}
+    document.documentElement.classList.add('cc-estimator-autoland-active');
+  }
+})();
+</script>
 
 <!-- ════════════════════════════════════════════════════════════════
      SHARED NAV + HERO MOUNTS
      ════════════════════════════════════════════════════════════════ -->
 <div id="cc-nav-mount"></div>
 <div id="cc-hero-mount"></div>
+
+<script id="cc-shared-component-loader">
+(function(){
+  'use strict';
+
+  const COMPONENTS = [
+    {
+      name: 'mega nav',
+      mountId: 'cc-nav-mount',
+      html: [
+        '/components/mega-nav.html',
+        '/mega-nav.html',
+        '/assets/html/mega-nav.html',
+        '/assets/components/mega-nav.html',
+        'components/mega-nav.html',
+        'mega-nav.html',
+        'assets/html/mega-nav.html',
+        'assets/components/mega-nav.html'
+      ],
+      scripts: [
+        ['/assets/js/mega-nav.js', 'assets/js/mega-nav.js'],
+        ['/assets/js/mega-nav-mobile.js', 'assets/js/mega-nav-mobile.js']
+      ],
+      fallback: `
+        <nav class="cc-fallback-nav" aria-label="CoverCapy navigation" style="position:sticky;top:0;z-index:9000;background:rgba(255,253,247,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(15,31,38,.1);">
+          <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;">
+            <a href="/" style="font-weight:800;color:#0E3F44;letter-spacing:-.02em;">CoverCapy</a>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:#3C5560;">
+              <a href="/compare-ppo-dental-plans.html">Compare PPO Plans</a>
+              <a href="/dental-treatment-cost-estimator.html">Estimate Costs</a>
+              <a href="/ppodentists.html">Find Dentists</a>
+              <a href="/capy-practice-membership.html">For Dentists</a>
+            </div>
+          </div>
+        </nav>`
+    },
+    {
+      name: 'hero slider',
+      mountId: 'cc-hero-mount',
+      html: [
+        '/components/hero-slider.html',
+        '/hero-slider.html',
+        '/assets/html/hero-slider.html',
+        '/assets/components/hero-slider.html',
+        'components/hero-slider.html',
+        'hero-slider.html',
+        'assets/html/hero-slider.html',
+        'assets/components/hero-slider.html'
+      ],
+      scripts: [
+        ['/assets/js/hero-slider.js', 'assets/js/hero-slider.js'],
+        ['/assets/js/hero-slider-mobile.js', 'assets/js/hero-slider-mobile.js']
+      ],
+      fallback: `
+        <section class="cc-fallback-hero" aria-label="CoverCapy hero" style="min-height:520px;display:grid;place-items:center;padding:72px 24px;background:linear-gradient(135deg,#FFFDF7 0%,#F6F1E7 55%,#EAE3F2 100%);border-bottom:1px solid rgba(15,31,38,.08);">
+          <div style="max-width:980px;text-align:center;">
+            <p style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A6A30;margin-bottom:16px;">CoverCapy Concierge Dental Network</p>
+            <h1 style="font-family:Georgia,serif;font-size:clamp(38px,6vw,72px);line-height:1.02;color:#082A30;font-weight:400;margin:0 0 18px;">Compare PPO plans, estimate treatment cost, and find in-network dentists.</h1>
+            <p style="max-width:680px;margin:0 auto 26px;color:#3C5560;font-size:18px;line-height:1.6;">The shared hero slider did not load, so this fallback keeps the page usable while the component path is fixed.</p>
+            <a href="/compare-ppo-dental-plans.html" style="display:inline-flex;padding:14px 22px;border-radius:999px;background:#0E3F44;color:#FFFDF7;font-weight:700;">Activate Coverage</a>
+          </div>
+        </section>`
+    },
+    {
+      name: 'footer',
+      mountId: 'cc-footer-mount',
+      html: [
+        '/components/footer.html',
+        '/footer.html',
+        '/assets/html/footer.html',
+        '/assets/components/footer.html',
+        'components/footer.html',
+        'footer.html',
+        'assets/html/footer.html',
+        'assets/components/footer.html'
+      ],
+      scripts: [
+        ['/assets/js/footer.js', 'assets/js/footer.js']
+      ],
+      fallback: `
+        <footer class="cc-fallback-footer" style="background:#FBF6EB;border-top:1px solid rgba(15,31,38,.1);padding:46px 24px;color:#3C5560;">
+          <div style="max-width:1200px;margin:0 auto;display:grid;gap:22px;">
+            <strong style="color:#0E3F44;font-size:20px;">CoverCapy</strong>
+            <p style="max-width:700px;line-height:1.65;margin:0;">Independent PPO dental plan comparison, treatment cost estimates, and in-network dentist discovery.</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;">
+              <a href="/privacy.html">Privacy</a>
+              <a href="/terms.html">Terms</a>
+              <a href="/insurance-disclaimer.html">Insurance Disclaimer</a>
+              <a href="/advertising-disclosure.html">Advertising Disclosure</a>
+              <a href="/provider-listing.html">Provider Listing</a>
+              <a href="/accessibility.html">Accessibility</a>
+            </div>
+            <small>© <span id="cc-year-fallback"></span> CoverCapy. All rights reserved.</small>
+          </div>
+        </footer>`
+    }
+  ];
+
+  const loadedScripts = new Set();
+
+  function ready(fn){
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+    else fn();
+  }
+
+  function normalizeUrl(url){
+    try { return new URL(url, window.location.href).href; }
+    catch (_) { return url; }
+  }
+
+  async function fetchFirst(urls){
+    for (const url of urls){
+      try{
+        const response = await fetch(url, { cache: 'no-cache', credentials: 'same-origin' });
+        if (response.ok){
+          return { url, html: await response.text() };
+        }
+      }catch(error){
+        // Try the next candidate path.
+      }
+    }
+    return null;
+  }
+
+  function extractBody(html){
+    if (!/^\s*<!doctype|<html[\s>]/i.test(html)) return html;
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body ? doc.body.innerHTML : html;
+  }
+
+  function reviveScripts(scope){
+    scope.querySelectorAll('script').forEach(oldScript => {
+      const script = document.createElement('script');
+      Array.from(oldScript.attributes).forEach(attr => script.setAttribute(attr.name, attr.value));
+      script.text = oldScript.textContent || '';
+      oldScript.replaceWith(script);
+    });
+  }
+
+  function loadScriptCandidates(candidates){
+    return new Promise(resolve => {
+      let i = 0;
+      const next = () => {
+        if (i >= candidates.length) return resolve(false);
+        const src = candidates[i++];
+        const key = normalizeUrl(src);
+        if (loadedScripts.has(key) || document.querySelector('script[src="' + src.replace(/"/g, '\\"') + '"]')){
+          loadedScripts.add(key);
+          return resolve(true);
+        }
+        const script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        script.onload = () => { loadedScripts.add(key); resolve(true); };
+        script.onerror = () => { script.remove(); next(); };
+        document.body.appendChild(script);
+      };
+      next();
+    });
+  }
+
+  async function loadComponent(component){
+    const mount = document.getElementById(component.mountId);
+    if (!mount) return { name: component.name, loaded: false, reason: 'missing mount' };
+
+    const found = await fetchFirst(component.html);
+    if (found){
+      mount.innerHTML = extractBody(found.html);
+      mount.setAttribute('data-cc-component', component.name);
+      mount.setAttribute('data-cc-component-src', found.url);
+      reviveScripts(mount);
+    }else{
+      mount.innerHTML = component.fallback;
+      mount.setAttribute('data-cc-component', component.name);
+      mount.setAttribute('data-cc-component-src', 'fallback');
+      if (component.mountId === 'cc-footer-mount'){
+        const y = mount.querySelector('#cc-year-fallback');
+        if (y) y.textContent = new Date().getFullYear();
+      }
+    }
+
+    for (const scriptCandidates of component.scripts){
+      await loadScriptCandidates(scriptCandidates);
+    }
+
+    return { name: component.name, loaded: Boolean(found), src: found ? found.url : 'fallback' };
+  }
+
+  ready(async () => {
+    const results = [];
+    for (const component of COMPONENTS){
+      results.push(await loadComponent(component));
+    }
+    document.documentElement.classList.add('cc-shared-components-ready');
+    document.dispatchEvent(new CustomEvent('covercapy:components-loaded', { detail: results }));
+
+    /* Estimator-page landing behavior:
+       keep mega nav + hero available, but make first open land on the section
+       patients actually came here for. Re-run briefly in case injected components
+       or fonts shift the page height after first paint. */
+    (function landOnEstimatorIntro(){
+      if (!document.documentElement.classList.contains('cc-estimator-autoland-active')) return;
+      const target = document.getElementById('estimate-cost-intro') || document.getElementById('main-content');
+      if (!target) return;
+
+      const scrollToTarget = () => {
+        const navMount = document.getElementById('cc-nav-mount');
+        const navHeight = navMount ? Math.min(Math.max(navMount.getBoundingClientRect().height || 0, 0), 96) : 0;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      };
+
+      document.documentElement.classList.remove('cc-estimator-autoland-active');
+      document.documentElement.classList.add('cc-estimator-autolanded');
+      requestAnimationFrame(() => {
+        scrollToTarget();
+        setTimeout(scrollToTarget, 180);
+        setTimeout(scrollToTarget, 650);
+      });
+    })();
+
+    if (window.console && console.info) console.info('[CoverCapy] Shared components loaded:', results);
+  });
+})();
+</script>
 <!-- ════════════════════════════════════════════════════════════════
      PAGE SHELL
      Shared mega nav, homepage hero slider, and footer load from
@@ -3561,7 +3809,7 @@ body[data-savings-period="6"] .proof-6mo-only    { display: grid; }
   <!-- ══════════════════════════════════════════════════════════
        SECTION 1 · HERO · Patient-centered cost intent
        ══════════════════════════════════════════════════════════ -->
-  <section class="intro" aria-labelledby="intro-title">
+  <section class="intro" id="estimate-cost-intro" aria-labelledby="intro-title">
     <div class="container">
       <div class="intro-grid">
 
@@ -4607,6 +4855,9 @@ body[data-savings-period="6"] .proof-6mo-only    { display: grid; }
   </section>
 
 </main>
+
+<!-- Shared footer mount -->
+<div id="cc-footer-mount"></div>
 
 <!-- SEO content block -->
 <section class="sr-only" aria-label="About CoverCapy's dental treatment cost estimator">
