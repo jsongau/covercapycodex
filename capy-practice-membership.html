@@ -49,6 +49,420 @@
   body > footer.site-footer,
   body > .foot,
   body > .footer { display: none !important; }
+  .cc-nav { z-index: 5000; }
+  .cc-dropdown { z-index: 6000; }
+  .cc-link:hover > .cc-dropdown,
+  .cc-link:focus-within > .cc-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+/* =========================================================
+   vNext hero card placement polish
+   Center the green benefit card and lower the bottom trust card.
+   ========================================================= */
+@keyframes cc-centered-benefit-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-8px); }
+}
+
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(520px, 62vh, 700px) !important;
+  }
+
+  .hero__grid {
+    min-height: clamp(470px, 54vh, 620px) !important;
+  }
+
+  .coverage-card--green {
+    left: 51% !important;
+    right: auto !important;
+    top: 50% !important;
+    width: min(360px, 32vw) !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 22px 78px 22px 24px !important;
+    animation: cc-centered-benefit-float 7s ease-in-out infinite .45s !important;
+  }
+
+  .coverage-badge {
+    left: calc(51% + 136px) !important;
+    right: auto !important;
+    top: calc(50% - 46px) !important;
+  }
+
+  .coverage-card--bottom {
+    right: 7% !important;
+    bottom: clamp(22px, 4vh, 56px) !important;
+  }
+
+  .coverage-pin {
+    right: calc(7% - 20px) !important;
+    bottom: calc(clamp(22px, 4vh, 56px) - 10px) !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--green {
+    left: 52% !important;
+    top: 50% !important;
+  }
+
+  .coverage-badge {
+    left: calc(52% + 136px) !important;
+    top: calc(50% - 46px) !important;
+  }
+
+  .coverage-card--bottom {
+    bottom: clamp(28px, 5vh, 70px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .hero__photo {
+    min-height: clamp(600px, 78vw, 760px) !important;
+  }
+
+  .coverage-card--green {
+    left: 50% !important;
+    right: auto !important;
+    top: 48% !important;
+    width: min(360px, 58%) !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 22px 78px 22px 24px !important;
+    animation: none !important;
+  }
+
+  .coverage-badge {
+    left: calc(50% + 136px) !important;
+    right: auto !important;
+    top: calc(48% - 44px) !important;
+  }
+
+  .coverage-card--bottom {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 6% !important;
+    width: min(300px, 52%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__photo {
+    min-height: clamp(690px, 158vw, 790px) !important;
+    overflow: hidden !important;
+  }
+
+  .hero__photo img {
+    object-position: center top !important;
+    transform: scale(1.08) !important;
+  }
+
+  .coverage-card--top {
+    top: 6% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 76% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-card--green {
+    top: 44% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 78% !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 22px 72px 22px 24px !important;
+    animation: none !important;
+  }
+
+  .coverage-badge {
+    top: calc(44% - 34px) !important;
+    left: calc(50% + 82px) !important;
+    right: auto !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .coverage-card--bottom {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 8% !important;
+    width: 72% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   vNext hero card alternating pattern
+   Top card right, benefit card left, trust card right.
+   ========================================================= */
+@keyframes cc-left-benefit-float {
+  0%, 100% { transform: translate(0, -50%) translateY(0); }
+  50% { transform: translate(0, -50%) translateY(-8px); }
+}
+
+@media (min-width: 1081px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 6% !important;
+    top: 12% !important;
+    width: min(285px, 28vw) !important;
+    transform: none !important;
+  }
+
+  .coverage-card--green {
+    left: 47% !important;
+    right: auto !important;
+    top: 50% !important;
+    width: min(360px, 31vw) !important;
+    transform: translate(0, -50%) !important;
+    animation: cc-left-benefit-float 7s ease-in-out infinite .45s !important;
+  }
+
+  .coverage-badge {
+    left: calc(47% + 290px) !important;
+    right: auto !important;
+    top: calc(50% - 48px) !important;
+  }
+
+  .coverage-card--bottom {
+    left: auto !important;
+    right: 7% !important;
+    bottom: clamp(22px, 4vh, 56px) !important;
+    width: min(285px, 30vw) !important;
+    transform: none !important;
+  }
+
+  .coverage-pin {
+    right: calc(7% - 18px) !important;
+    bottom: calc(clamp(22px, 4vh, 56px) - 10px) !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--top {
+    right: 7% !important;
+    top: 12% !important;
+  }
+
+  .coverage-card--green {
+    left: 48% !important;
+    top: 51% !important;
+  }
+
+  .coverage-badge {
+    left: calc(48% + 290px) !important;
+    top: calc(51% - 48px) !important;
+  }
+
+  .coverage-card--bottom {
+    right: 8% !important;
+    bottom: clamp(28px, 5vh, 70px) !important;
+  }
+
+  .coverage-pin {
+    right: calc(8% - 18px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 7% !important;
+    top: 9% !important;
+    width: min(300px, 42%) !important;
+    transform: none !important;
+  }
+
+  .coverage-card--green {
+    left: 8% !important;
+    right: auto !important;
+    top: 48% !important;
+    width: min(360px, 52%) !important;
+    transform: translate(0, -50%) !important;
+    animation: none !important;
+  }
+
+  .coverage-badge {
+    left: calc(8% + 292px) !important;
+    right: auto !important;
+    top: calc(48% - 44px) !important;
+  }
+
+  .coverage-card--bottom {
+    left: auto !important;
+    right: 7% !important;
+    bottom: 6% !important;
+    width: min(300px, 44%) !important;
+    transform: none !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+/* Keep mobile stacked and readable instead of forcing side alternation on a narrow phone. */
+@media (max-width: 640px) {
+  .coverage-card--top {
+    top: 6% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 76% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-card--green {
+    top: 44% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 78% !important;
+    transform: translate(-50%, -50%) !important;
+    animation: none !important;
+  }
+
+  .coverage-card--bottom {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 8% !important;
+    width: 72% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+
+/* =========================================================
+   vNext hero top PPO card further right
+   ========================================================= */
+@media (min-width: 1081px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: clamp(22px, 3vw, 64px) !important;
+    top: 12% !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--top {
+    right: clamp(32px, 4vw, 88px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 4% !important;
+    top: 8% !important;
+    transform: none !important;
+  }
+}
+
+
+/* =========================================================
+   vNext force PPO active card to the right of the patient image
+   ========================================================= */
+@media (min-width: 1081px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: clamp(64px, 8vw, 150px) !important;
+    top: clamp(78px, 14vh, 128px) !important;
+    width: min(290px, 24vw) !important;
+    transform: none !important;
+    z-index: 5 !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--top {
+    right: clamp(88px, 10vw, 190px) !important;
+    top: clamp(82px, 14vh, 132px) !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  .coverage-card--top {
+    right: clamp(120px, 12vw, 230px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top {
+    left: auto !important;
+    right: 6% !important;
+    top: 8% !important;
+    width: min(300px, 40%) !important;
+    transform: none !important;
+    z-index: 5 !important;
+  }
+}
+
+
+/* =========================================================
+   vNext lower green benefit card and pin icon to top-right corner
+   ========================================================= */
+@media (min-width: 1081px) {
+  .coverage-card--green {
+    top: 58% !important;
+  }
+
+  .coverage-badge {
+    top: calc(58% - 106px) !important;
+    left: calc(48% + 304px) !important;
+    right: auto !important;
+    z-index: 6 !important;
+  }
+}
+
+@media (min-width: 1360px) {
+  .coverage-card--green {
+    top: 58% !important;
+  }
+
+  .coverage-badge {
+    top: calc(58% - 106px) !important;
+    left: calc(48% + 304px) !important;
+    right: auto !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--green {
+    top: 55% !important;
+  }
+
+  .coverage-badge {
+    top: calc(55% - 96px) !important;
+    left: calc(8% + 292px) !important;
+    right: auto !important;
+    z-index: 6 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .coverage-card--green {
+    top: 47% !important;
+  }
+
+  .coverage-badge {
+    top: calc(47% - 92px) !important;
+    left: calc(50% + 82px) !important;
+    right: auto !important;
+    z-index: 6 !important;
+  }
+}
+
 </style>
 
 <style>
@@ -2335,37 +2749,51 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); }
 
 /* Localized Discovery callout (Platinum section) */
 .discovery-placement {
-  background: var(--amber-soft);
-  border: 1px solid rgba(201,122,43,.25);
-  border-radius: var(--radius-sm);
-  padding: 16px 18px;
-  margin-bottom: 22px;
+  background: linear-gradient(135deg, var(--sky-panel, #F6FBFC), rgba(238,248,250,.78));
+  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
+  border-radius: 16px;
+  padding: 13px 14px 12px;
+  margin: 16px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 10px 26px rgba(49,90,114,.06);
+  overflow: hidden;
 }
 .discovery-placement__title {
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--amber-deep);
-  letter-spacing: .04em;
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--blue-ink, #315A72);
+  letter-spacing: .13em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .discovery-placement p {
-  font-size: .84rem;
-  color: var(--ink-soft);
-  line-height: 1.5;
-  margin: 0 0 12px;
+  font-size: .78rem;
+  color: var(--ink-mid);
+  line-height: 1.36;
+  margin: 0 0 9px;
+  max-width: 64ch;
 }
 .discovery-placement__chips {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 1px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.discovery-placement__chips::-webkit-scrollbar { display: none; }
 .discovery-chip {
-  font-size: .74rem;
-  color: var(--amber-deep);
-  background: rgba(217,144,61,.12);
-  border: 1px solid rgba(201,122,43,.2);
-  padding: 5px 11px;
+  flex: 0 0 auto;
+  max-width: 215px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .68rem;
+  line-height: 1.15;
+  color: var(--blue-ink, #315A72);
+  background: rgba(70,127,148,.10);
+  border: 1px solid var(--sky-line, rgba(70,127,148,.18));
+  padding: 5px 9px;
   border-radius: var(--radius-pill);
   font-style: italic;
 }
@@ -3408,53 +3836,6 @@ body {
   box-shadow: 0 26px 90px rgba(11,51,66,.15);
   filter: saturate(.96) contrast(1.02);
 }
-@media (min-width: 1081px) {
-  .hero {
-    min-height: clamp(550px, 68vh, 760px);
-    padding: clamp(54px, 6vw, 84px) 0 clamp(36px, 4vw, 64px);
-    background: var(--bg);
-  }
-  .hero > .wrap.hero__grid {
-    position: static;
-  }
-  .hero__grid {
-    min-height: clamp(500px, 58vh, 660px);
-  }
-  .hero__copy {
-    position: relative;
-    z-index: 4;
-  }
-  .hero__photo {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    min-height: 0;
-    border-radius: 0;
-    z-index: 0;
-  }
-  .hero__photo::before {
-    inset: 0;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    z-index: 2;
-  }
-  .hero__photo::after {
-    background: none;
-  }
-  .hero__photo::after,
-  .hero__photo img {
-    border-radius: 0;
-  }
-  .hero__photo img {
-    object-position: center top;
-    transform: none;
-    box-shadow: none;
-  }
-}
 .coverage-card {
   position: absolute;
   z-index: 3;
@@ -3481,8 +3862,8 @@ body {
   line-height: 1.35;
 }
 .coverage-card--top {
-  top: 7%;
-  right: 34%;
+  top: 10%;
+  right: 4%;
   width: min(285px, 44%);
   padding: 18px 20px;
   display: flex;
@@ -3503,10 +3884,10 @@ body {
   box-shadow: 0 10px 24px rgba(18,107,79,.24);
 }
 .coverage-card--green {
-  right: 6%;
-  top: calc(43% + 145px);
-  width: min(350px, 36%);
-  padding: 22px 78px 22px 24px;
+  right: 8%;
+  top: 41%;
+  width: min(330px, 52%);
+  padding: 22px;
   background: linear-gradient(145deg, #06553F, #083B35);
   color: #fff;
   border-color: rgba(91,224,160,.18);
@@ -3525,9 +3906,9 @@ body {
   box-shadow: 0 10px 24px rgba(0,0,0,.12);
 }
 .coverage-card--bottom {
-  right: 6%;
-  bottom: 3.5%;
-  width: min(275px, 34%);
+  right: 3%;
+  bottom: 8%;
+  width: min(260px, 44%);
   padding: 18px 20px;
   animation: float-soft 6.5s ease-in-out infinite .9s;
 }
@@ -3551,16 +3932,16 @@ body {
   box-shadow: 0 14px 38px rgba(11,51,66,.14);
 }
 .coverage-badge {
-  top: calc(43% + 127px);
-  right: calc(6% + 12px);
-  width: 64px;
-  height: 64px;
+  top: 39%;
+  right: -4px;
+  width: 74px;
+  height: 74px;
 }
 .coverage-pin {
-  right: calc(6% - 20px);
-  bottom: calc(3.5% - 10px);
-  width: 62px;
-  height: 62px;
+  right: -4px;
+  bottom: 8%;
+  width: 70px;
+  height: 70px;
   background: rgba(255,250,241,.94);
   color: var(--gold-deep);
 }
@@ -3570,12 +3951,12 @@ body {
   .hero__photo { max-width: 820px; width: 100%; margin: 0 auto; }
 }
 @media (max-width: 640px) {
-  .hero__photo { min-height: clamp(600px, 128vw, 680px); }
-  .hero__photo img { object-position: center top; transform: scale(1.10); }
+  .hero__photo { min-height: 500px; }
+  .hero__photo img { object-position: center center; transform: scale(1.10); }
   .coverage-card--top { top: 5%; right: 4%; width: 74%; }
-  .coverage-card--green { top: 43%; left: 6%; right: auto; width: 78%; padding-right: 72px; }
-  .coverage-card--bottom { right: 8%; bottom: 8%; width: 68%; }
-  .coverage-badge { top: calc(43% - 14px); right: 10%; width: 56px; height: 56px; }
+  .coverage-card--green { top: 42%; left: 6%; right: auto; width: 78%; }
+  .coverage-card--bottom { right: 5%; bottom: 5%; width: 72%; }
+  .coverage-badge { top: 34%; right: 4%; width: 58px; height: 58px; }
   .coverage-pin { display: none; }
 }
 </style>
@@ -3622,7 +4003,7 @@ body {
           "name": "Capy Accredited",
           "price": "369",
           "priceCurrency": "USD",
-          "description": "Capy Accredited visibility, Pre-Verified PPO Readiness, insurance-aware intake support. $295/month billed annually.",
+          "description": "Capy Accredited visibility, Pre-Verified PPO Readiness, insurance-aware intake support. $285/month billed annually.",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
             "price": "369",
@@ -3644,7 +4025,7 @@ body {
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "Is claiming my profile free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Qualified practices can claim a free CoverCapy profile so patients can verify practice info, PPO acceptance, photos, reviews, and booking. Free profiles are visible but do not receive the same placement priority as Capy Accredited or Platinum offices." } },
-        { "@type": "Question", "name": "What does Capy Accreditation include?", "acceptedAnswer": { "@type": "Answer", "text": "Capy Accredited is $369/month, or $295/month billed annually with a Founder's Rate Lock. It includes Pre-Verified PPO Readiness, insurance-aware intake support, Capy Accreditation placement when relevance is equal, treatment and cosmetic visibility, a financing friendly indicator, and priority inclusion on treatment pages. Cancel anytime." } },
+        { "@type": "Question", "name": "What does Capy Accreditation include?", "acceptedAnswer": { "@type": "Answer", "text": "Capy Accredited is $369/month, or $285/month billed annually with a Founder's Rate Lock. It includes Pre-Verified PPO Readiness, insurance-aware intake support, Capy Accreditation placement when relevance is equal, treatment and cosmetic visibility, a financing friendly indicator, and priority inclusion on treatment pages. Cancel anytime." } },
         { "@type": "Question", "name": "What is Platinum Elite?", "acceptedAnswer": { "@type": "Answer", "text": "Platinum Elite is the premium visibility tier, starting at $1,499/month. Capy Accreditation is not required first, but Platinum requires application review, profile vetting, market availability, and marketplace balance approval. Placement remains subject to profile relevance, treatment category fit, market rules, and availability." } },
         { "@type": "Question", "name": "Does CoverCapy guarantee patients?", "acceptedAnswer": { "@type": "Answer", "text": "No. CoverCapy does not guarantee a specific number of leads, appointments, or revenue. We improve discovery, trust signals, patient education, and booking paths so qualified practices can compete for new PPO patients more effectively." } },
         { "@type": "Question", "name": "Are CoverCapy bookings unlimited?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Capy Accredited and Platinum memberships include unlimited PPO patient bookings. CoverCapy does not charge per-patient or per-appointment fees on top of membership." } },
@@ -3654,6 +4035,1997 @@ body {
   ]
 }
 </script>
+
+
+<style id="cc-hero-cross-browser-position-fix">
+/* =========================================================
+   CoverCapy hero visual position fix
+   Keeps the patient image balanced on Windows, macOS, and mobile.
+   ========================================================= */
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(650px, calc(100vh - 72px), 780px);
+    padding: clamp(52px, 6vh, 84px) 0 clamp(42px, 5vh, 68px);
+    background: var(--bg);
+  }
+
+  .hero > .wrap.hero__grid {
+    position: static;
+    min-height: clamp(560px, calc(100vh - 165px), 690px);
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    gap: clamp(34px, 4vw, 64px);
+  }
+
+  .hero__copy {
+    position: relative;
+    z-index: 4;
+    max-width: 560px;
+  }
+
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero__photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    z-index: 2;
+    box-shadow: none;
+    background:
+      linear-gradient(90deg,
+        rgba(251,250,245,.98) 0%,
+        rgba(251,250,245,.94) 25%,
+        rgba(251,250,245,.72) 41%,
+        rgba(251,250,245,.22) 58%,
+        rgba(251,250,245,.02) 76%,
+        rgba(251,250,245,0) 100%);
+  }
+
+  .hero__photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 54% 36%, rgba(91,224,160,.06), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(246,242,232,.18));
+    pointer-events: none;
+  }
+
+  .hero__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 63% 48%;
+    transform: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .coverage-card {
+    z-index: 3;
+    pointer-events: auto;
+  }
+
+  .coverage-card--top {
+    top: clamp(38px, 7vh, 82px);
+    right: clamp(380px, 34vw, 700px);
+    width: clamp(270px, 17vw, 330px);
+  }
+
+  .coverage-card--green {
+    top: clamp(322px, 48vh, 455px);
+    right: clamp(72px, 7vw, 150px);
+    width: clamp(315px, 23vw, 410px);
+    padding: 22px 78px 22px 24px;
+  }
+
+  .coverage-card--bottom {
+    top: clamp(502px, 64vh, 620px);
+    bottom: auto;
+    right: clamp(104px, 8vw, 190px);
+    width: clamp(270px, 19vw, 340px);
+  }
+
+  .coverage-badge {
+    top: clamp(304px, 46vh, 432px);
+    right: clamp(58px, 5.5vw, 120px);
+    width: 62px;
+    height: 62px;
+  }
+
+  .coverage-pin {
+    top: clamp(555px, 70vh, 662px);
+    bottom: auto;
+    right: clamp(58px, 5.5vw, 126px);
+    width: 62px;
+    height: 62px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .hero > .wrap.hero__grid {
+    max-width: 1440px;
+  }
+}
+
+@media (min-width: 1081px) and (max-height: 820px) {
+  .coverage-card--top { top: 34px; }
+  .coverage-card--green { top: 342px; }
+  .coverage-card--bottom { top: 518px; }
+  .coverage-badge { top: 320px; }
+  .coverage-pin { top: 566px; }
+}
+
+@media (min-width: 641px) and (max-width: 1080px) {
+  .hero__photo {
+    min-height: clamp(600px, 75vw, 760px);
+    max-width: 880px;
+    overflow: hidden;
+  }
+
+  .hero__photo img {
+    object-position: 58% center;
+    transform: scale(1.08);
+  }
+
+  .coverage-card--top {
+    top: 7%;
+    right: 6%;
+    width: min(360px, 48%);
+  }
+
+  .coverage-card--green {
+    top: 41%;
+    right: 7%;
+    width: min(370px, 56%);
+    padding-right: 76px;
+  }
+
+  .coverage-card--bottom {
+    right: 8%;
+    bottom: 7%;
+    width: min(320px, 48%);
+  }
+
+  .coverage-badge {
+    top: 38%;
+    right: 8%;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-bottom: 64px;
+  }
+
+  .hero__grid {
+    gap: 30px;
+  }
+
+  .hero__photo {
+    min-height: clamp(780px, 196vw, 900px);
+    max-width: calc(100vw - 32px);
+    border-radius: 32px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .hero__photo::before {
+    inset: 0;
+    border-radius: 32px;
+    box-shadow: none;
+    background:
+      linear-gradient(180deg, rgba(255,252,246,.50) 0%, rgba(255,252,246,.12) 38%, rgba(255,252,246,.30) 100%);
+    z-index: 1;
+  }
+
+  .hero__photo::after {
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(246,242,232,.10));
+    z-index: 1;
+  }
+
+  .hero__photo img {
+    object-position: 58% top;
+    transform: scale(1.04);
+  }
+
+  .coverage-card {
+    z-index: 3;
+    border-radius: 20px;
+    backdrop-filter: blur(12px) saturate(132%);
+    -webkit-backdrop-filter: blur(12px) saturate(132%);
+  }
+
+  .coverage-card strong {
+    font-size: clamp(.98rem, 4.2vw, 1.12rem);
+    line-height: 1.12;
+  }
+
+  .coverage-card span {
+    font-size: clamp(.86rem, 3.8vw, .98rem);
+    line-height: 1.36;
+  }
+
+  .coverage-card--top,
+  .coverage-card--green,
+  .coverage-card--bottom {
+    animation: none;
+  }
+
+  .coverage-card--top {
+    top: 7%;
+    left: 8%;
+    right: auto;
+    width: 84%;
+    padding: 15px 16px;
+  }
+
+  .coverage-card__check {
+    width: 44px;
+    height: 44px;
+  }
+
+  .coverage-card--green {
+    top: 40%;
+    left: 7%;
+    right: auto;
+    width: 82%;
+    padding: 20px 70px 22px 22px;
+  }
+
+  .coverage-card--green button {
+    margin-top: 16px;
+    padding: 10px 22px;
+  }
+
+  .coverage-badge {
+    top: calc(40% - 12px);
+    right: 10%;
+    width: 58px;
+    height: 58px;
+  }
+
+  .coverage-card--bottom {
+    top: 66.5%;
+    left: 18%;
+    right: auto;
+    bottom: auto;
+    width: 76%;
+    padding: 18px 20px;
+  }
+
+  .coverage-pin {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__photo {
+    min-height: 820px;
+  }
+
+  .coverage-card--green {
+    left: 5%;
+    width: 86%;
+  }
+
+  .coverage-card--bottom {
+    top: 67%;
+    left: 12%;
+    width: 82%;
+  }
+}
+
+
+/* =========================================================
+   v28 HERO TRIM + RESPONSIVE CARD POSITIONING
+   Removes chip-row dead space and keeps patient cards balanced
+   across desktop, Windows browser widths, tablet, and mobile.
+   ========================================================= */
+.hero__chips { display: none !important; }
+
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(500px, 61vh, 680px) !important;
+    padding: clamp(34px, 4.2vw, 64px) 0 clamp(22px, 2.8vw, 42px) !important;
+  }
+
+  .hero__grid {
+    min-height: clamp(445px, 51vh, 585px) !important;
+    align-items: center !important;
+  }
+
+  .hero__copy {
+    max-width: 560px !important;
+  }
+
+  .hero__cta {
+    margin-bottom: 0 !important;
+  }
+
+  .hero__photo img {
+    object-position: 63% 46% !important;
+  }
+
+  .coverage-card--top {
+    top: clamp(28px, 5.2vh, 58px) !important;
+    right: clamp(410px, 36vw, 720px) !important;
+    width: clamp(265px, 17vw, 320px) !important;
+  }
+
+  .coverage-card--green {
+    top: clamp(244px, 37vh, 350px) !important;
+    right: clamp(76px, 7vw, 155px) !important;
+    width: clamp(315px, 23vw, 405px) !important;
+  }
+
+  .coverage-card--bottom {
+    top: clamp(386px, 52vh, 490px) !important;
+    right: clamp(100px, 8vw, 190px) !important;
+    width: clamp(268px, 19vw, 336px) !important;
+    bottom: auto !important;
+  }
+
+  .coverage-badge {
+    top: clamp(224px, 35vh, 328px) !important;
+    right: clamp(60px, 5.8vw, 124px) !important;
+  }
+
+  .coverage-pin {
+    top: clamp(440px, 58vh, 535px) !important;
+    right: clamp(60px, 5.8vw, 124px) !important;
+    bottom: auto !important;
+  }
+}
+
+@media (min-width: 1081px) and (max-height: 820px) {
+  .hero {
+    min-height: 570px !important;
+  }
+  .hero__grid {
+    min-height: 500px !important;
+  }
+  .coverage-card--top { top: 28px !important; }
+  .coverage-card--green { top: 270px !important; }
+  .coverage-card--bottom { top: 424px !important; }
+  .coverage-badge { top: 250px !important; }
+  .coverage-pin { top: 478px !important; }
+}
+
+@media (min-width: 641px) and (max-width: 1080px) {
+  .hero {
+    padding-bottom: 62px !important;
+  }
+  .hero__photo {
+    min-height: clamp(560px, 68vw, 700px) !important;
+  }
+  .coverage-card--top {
+    top: 5.5% !important;
+    right: 7% !important;
+  }
+  .coverage-card--green {
+    top: 36% !important;
+    right: 8% !important;
+  }
+  .coverage-card--bottom {
+    top: 60% !important;
+    right: 9% !important;
+    bottom: auto !important;
+  }
+  .coverage-badge {
+    top: calc(36% - 12px) !important;
+    right: 9% !important;
+  }
+  .coverage-pin {
+    top: calc(60% + 72px) !important;
+    right: 5% !important;
+    bottom: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-bottom: 50px !important;
+  }
+
+  .hero__grid {
+    gap: 24px !important;
+  }
+
+  .hero__photo {
+    min-height: 0 !important;
+    height: auto !important;
+    max-width: calc(100vw - 32px) !important;
+    padding: clamp(76px, 18vw, 104px) 20px 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    border-radius: 32px !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+  }
+
+  .hero__photo img {
+    object-position: 57% top !important;
+    transform: scale(1.04) !important;
+  }
+
+  .coverage-card,
+  .coverage-card--top,
+  .coverage-card--green,
+  .coverage-card--bottom {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .coverage-card--top {
+    align-self: center !important;
+    width: min(100%, 560px) !important;
+    padding: 15px 16px !important;
+    margin: 0 auto 174px !important;
+  }
+
+  .coverage-card--green {
+    width: min(100%, 560px) !important;
+    margin: 0 auto !important;
+    padding: 20px 68px 22px 22px !important;
+  }
+
+  .coverage-card--bottom {
+    width: min(88%, 520px) !important;
+    margin: 0 0 0 auto !important;
+    padding: 18px 20px !important;
+  }
+
+  .coverage-badge {
+    top: calc(100% - 312px) !important;
+    right: 9% !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__photo {
+    padding-top: 72px !important;
+    gap: 14px !important;
+  }
+  .coverage-card--top {
+    margin-bottom: 154px !important;
+  }
+  .coverage-card--bottom {
+    width: 92% !important;
+  }
+}
+
+</style>
+
+
+
+
+
+
+
+
+<style id="cc-hero-length-trim">
+/* Final hero length trim after copy update */
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(560px, 64vh, 720px) !important;
+    padding-top: clamp(34px, 4.8vw, 68px) !important;
+    padding-bottom: clamp(26px, 3.2vw, 48px) !important;
+  }
+
+  .hero__grid {
+    min-height: clamp(490px, 57vh, 640px) !important;
+  }
+
+  .hero h1 {
+    margin-bottom: 18px !important;
+  }
+
+  .hero__sub {
+    margin-bottom: 24px !important;
+    line-height: 1.48 !important;
+    max-width: 50ch !important;
+  }
+
+  .hero__cta {
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero {
+    padding-top: 34px !important;
+    padding-bottom: 54px !important;
+  }
+
+  .hero__sub {
+    margin-bottom: 24px !important;
+  }
+}
+</style>
+
+
+
+
+<style id="cc-final-hero-card-positioning">
+/* Final hero card placement: compact copy, closer icon, and visible lava + hover motion on all cards and icons. */
+@keyframes cc-lava-card-a {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(0,-14px,0) scale(1.012); }
+}
+@keyframes cc-lava-card-b {
+  0%, 100% { transform: translate(-50%, -50%) translate3d(0,0,0) scale(1); }
+  50% { transform: translate(-50%, -50%) translate3d(0,13px,0) scale(1.012); }
+}
+@keyframes cc-lava-card-b-mobile {
+  0%, 100% { transform: translateX(-50%) translate3d(0,0,0) scale(1); }
+  50% { transform: translateX(-50%) translate3d(0,10px,0) scale(1.012); }
+}
+@keyframes cc-lava-card-c {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(0,-12px,0) scale(1.012); }
+}
+@keyframes cc-lava-icon {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(0,-8px,0) scale(1.04); }
+}
+
+/* Shared hover feel for cards and icon badges */
+.coverage-card,
+.coverage-badge,
+.coverage-pin,
+.coverage-card__check {
+  will-change: transform;
+}
+
+.coverage-card {
+  transition: filter .22s ease, box-shadow .22s ease !important;
+}
+
+.coverage-card:hover {
+  filter: saturate(1.04) brightness(1.02);
+  box-shadow: 0 26px 74px rgba(11,51,66,.22), 0 5px 16px rgba(11,51,66,.10) !important;
+}
+
+.coverage-card:hover .coverage-card__check,
+.coverage-badge:hover,
+.coverage-pin:hover {
+  filter: saturate(1.08) brightness(1.03);
+}
+
+/* Desktop and Windows wide-browser layout */
+@media (min-width: 1081px) {
+  .hero {
+    min-height: clamp(540px, 61vh, 690px) !important;
+    padding-top: clamp(30px, 4.3vw, 60px) !important;
+    padding-bottom: clamp(22px, 3vw, 42px) !important;
+  }
+
+  .hero__grid {
+    min-height: clamp(470px, 54vh, 610px) !important;
+  }
+
+  .hero h1 {
+    margin-bottom: 18px !important;
+  }
+
+  .hero__sub {
+    margin-bottom: 22px !important;
+    line-height: 1.46 !important;
+    max-width: 48ch !important;
+  }
+
+  .hero__cta {
+    gap: 12px !important;
+  }
+
+  .coverage-card--top {
+    left: auto !important;
+    right: clamp(44px, 5.2vw, 112px) !important;
+    top: clamp(30px, 5.2vh, 64px) !important;
+    width: clamp(268px, 19vw, 315px) !important;
+    transform: none !important;
+    animation: cc-lava-card-a 5.8s ease-in-out infinite !important;
+    z-index: 7 !important;
+  }
+
+  .coverage-card--top:hover {
+    animation-play-state: paused !important;
+    transform: translate3d(0,-8px,0) scale(1.018) !important;
+  }
+
+  .coverage-card--top .coverage-card__check {
+    animation: cc-lava-icon 4.9s ease-in-out infinite .2s !important;
+  }
+
+  .coverage-card--top:hover .coverage-card__check {
+    animation-play-state: paused !important;
+    transform: translate3d(0,-6px,0) scale(1.08) !important;
+  }
+
+  .coverage-card--green {
+    left: 53% !important;
+    right: auto !important;
+    top: 50% !important;
+    width: clamp(285px, 21vw, 340px) !important;
+    padding: 20px 74px 20px 22px !important;
+    transform: translate(-50%, -50%) !important;
+    animation: cc-lava-card-b 6.4s ease-in-out infinite .25s !important;
+    z-index: 6 !important;
+  }
+
+  .coverage-card--green:hover {
+    animation-play-state: paused !important;
+    transform: translate(-50%, -50%) translate3d(0,-8px,0) scale(1.018) !important;
+  }
+
+  .coverage-card--green strong {
+    font-size: .94rem !important;
+  }
+
+  .coverage-card--green span {
+    font-size: .80rem !important;
+    line-height: 1.34 !important;
+  }
+
+  .coverage-card--green button {
+    margin-top: 13px !important;
+    padding: 9px 20px !important;
+    font-size: .82rem !important;
+  }
+
+  /* Calendar icon is tucked closer to the green card top-right corner */
+  .coverage-badge {
+    left: calc(53% + clamp(104px, 9.5vw, 154px)) !important;
+    right: auto !important;
+    top: calc(50% - 72px) !important;
+    width: 56px !important;
+    height: 56px !important;
+    transform: none !important;
+    animation: cc-lava-icon 6.4s ease-in-out infinite .25s !important;
+    z-index: 8 !important;
+  }
+
+  .coverage-badge:hover {
+    animation-play-state: paused !important;
+    transform: translate3d(0,-7px,0) scale(1.08) !important;
+  }
+
+  .coverage-card--bottom {
+    left: auto !important;
+    right: clamp(82px, 7vw, 165px) !important;
+    top: clamp(430px, 55vh, 520px) !important;
+    bottom: auto !important;
+    width: clamp(280px, 22vw, 340px) !important;
+    transform: none !important;
+    animation: cc-lava-card-c 6.1s ease-in-out infinite .7s !important;
+    z-index: 7 !important;
+  }
+
+  .coverage-card--bottom:hover {
+    animation-play-state: paused !important;
+    transform: translate3d(0,-8px,0) scale(1.018) !important;
+  }
+
+  .coverage-pin {
+    right: clamp(54px, calc(7vw - 28px), 136px) !important;
+    top: clamp(487px, calc(55vh + 62px), 578px) !important;
+    bottom: auto !important;
+    transform: none !important;
+    animation: cc-lava-icon 6.1s ease-in-out infinite .9s !important;
+    z-index: 8 !important;
+  }
+
+  .coverage-pin:hover {
+    animation-play-state: paused !important;
+    transform: translate3d(0,-7px,0) scale(1.08) !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  .coverage-card--top {
+    right: clamp(64px, 6vw, 140px) !important;
+    top: clamp(30px, 5vh, 66px) !important;
+  }
+
+  .coverage-card--green {
+    left: 54% !important;
+  }
+
+  .coverage-badge {
+    left: calc(54% + clamp(104px, 9.5vw, 154px)) !important;
+  }
+
+  .coverage-card--bottom {
+    right: clamp(110px, 8vw, 200px) !important;
+    top: clamp(450px, 56vh, 540px) !important;
+  }
+
+  .coverage-pin {
+    right: clamp(82px, calc(8vw - 28px), 172px) !important;
+    top: clamp(507px, calc(56vh + 62px), 598px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .hero {
+    padding-top: 32px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .hero__photo {
+    min-height: clamp(600px, 74vw, 740px) !important;
+    overflow: hidden !important;
+  }
+
+  .coverage-card--top {
+    left: auto !important;
+    right: 4% !important;
+    top: 6% !important;
+    width: min(300px, 40%) !important;
+    transform: none !important;
+    animation: cc-lava-card-a 5.8s ease-in-out infinite !important;
+  }
+
+  .coverage-card--top .coverage-card__check {
+    animation: cc-lava-icon 4.9s ease-in-out infinite .2s !important;
+  }
+
+  .coverage-card--green {
+    left: 53% !important;
+    right: auto !important;
+    top: 49% !important;
+    width: min(330px, 50%) !important;
+    padding: 20px 72px 20px 22px !important;
+    transform: translate(-50%, -50%) !important;
+    animation: cc-lava-card-b 6.4s ease-in-out infinite .25s !important;
+  }
+
+  .coverage-badge {
+    left: calc(53% + 116px) !important;
+    right: auto !important;
+    top: calc(49% - 70px) !important;
+    width: 54px !important;
+    height: 54px !important;
+    animation: cc-lava-icon 6.4s ease-in-out infinite .25s !important;
+  }
+
+  .coverage-card--bottom {
+    left: auto !important;
+    right: 7% !important;
+    bottom: 13% !important;
+    top: auto !important;
+    width: min(310px, 46%) !important;
+    transform: none !important;
+    animation: cc-lava-card-c 6.1s ease-in-out infinite .7s !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 32px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .hero__photo {
+    min-height: clamp(690px, 162vw, 805px) !important;
+    overflow: hidden !important;
+  }
+
+  .hero__photo img {
+    object-position: center top !important;
+    transform: scale(1.08) !important;
+  }
+
+  .coverage-card--top {
+    top: 6% !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 76% !important;
+    transform: translateX(-50%) !important;
+    animation: cc-lava-card-a 5.8s ease-in-out infinite !important;
+  }
+
+  .coverage-card--top .coverage-card__check {
+    animation: cc-lava-icon 4.9s ease-in-out infinite .2s !important;
+  }
+
+  .coverage-card--green {
+    top: 45% !important;
+    left: 52% !important;
+    right: auto !important;
+    width: 76% !important;
+    padding: 19px 70px 20px 21px !important;
+    transform: translateX(-50%) !important;
+    animation: cc-lava-card-b-mobile 6.4s ease-in-out infinite .25s !important;
+  }
+
+  .coverage-badge {
+    top: calc(45% - 12px) !important;
+    left: auto !important;
+    right: 8% !important;
+    width: 54px !important;
+    height: 54px !important;
+    animation: cc-lava-icon 6.4s ease-in-out infinite .25s !important;
+  }
+
+  .coverage-card--bottom {
+    top: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 13% !important;
+    width: 74% !important;
+    transform: translateX(-50%) !important;
+    animation: cc-lava-card-c 6.1s ease-in-out infinite .7s !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+</style>
+
+
+<style id="cc-final-tier-color-system">
+/* =========================================================
+   FINAL TIER COLOR SYSTEM
+   Free = hollow dotted pastel green
+   Capy Accredited = solid green
+   Platinum Elite = orange
+   Purple removed from visible tier styling
+   ========================================================= */
+:root {
+  --plum: #C6761D !important;
+  --plum-soft: #FFF4E5 !important;
+
+  --tier-free: #0F6B4F;
+  --tier-free-soft: #ECF8F1;
+  --tier-free-line: rgba(15, 107, 79, .34);
+
+  --tier-accredited: #0B6F50;
+  --tier-accredited-deep: #064B3A;
+  --tier-accredited-soft: #E8F7EF;
+  --tier-accredited-line: rgba(11, 111, 80, .24);
+
+  --tier-platinum: #C6761D;
+  --tier-platinum-deep: #9B520E;
+  --tier-platinum-soft: #FFF4E5;
+  --tier-platinum-line: rgba(198, 118, 29, .32);
+}
+
+/* Free claim should feel like a soft, low-friction first step */
+.btn--outline,
+.btn--submit-practice,
+.price-card:first-child .btn,
+button[onclick*="openMembershipModal('free')"],
+button[onclick*='openMembershipModal("free")'],
+.card--unclaimed .btn,
+.card--submit-office .btn {
+  background: rgba(255,255,255,.55) !important;
+  color: var(--tier-free) !important;
+  border: 1.5px dotted var(--tier-free-line) !important;
+  box-shadow: 0 10px 26px rgba(15,107,79,.06) !important;
+}
+
+.btn--outline:hover,
+.btn--submit-practice:hover,
+.price-card:first-child .btn:hover,
+button[onclick*="openMembershipModal('free')"]:hover,
+button[onclick*='openMembershipModal("free")']:hover,
+.card--unclaimed .btn:hover,
+.card--submit-office .btn:hover {
+  background: var(--tier-free-soft) !important;
+  border-color: rgba(15,107,79,.55) !important;
+  color: var(--tier-accredited-deep) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(15,107,79,.12) !important;
+}
+
+/* Main hero claim button stays hollow/dotted now, not solid green */
+.hero__cta .btn--primary,
+.hero__cta--early .btn--primary {
+  background: rgba(255,255,255,.55) !important;
+  color: var(--tier-free) !important;
+  border: 1.5px dotted var(--tier-free-line) !important;
+  box-shadow: 0 12px 28px rgba(15,107,79,.08) !important;
+}
+.hero__cta .btn--primary:hover,
+.hero__cta--early .btn--primary:hover {
+  background: var(--tier-free-soft) !important;
+  border-color: rgba(15,107,79,.55) !important;
+}
+
+/* Capy Accredited is the green paid trust layer */
+.btn--accredit,
+.price-card--featured .btn,
+.price-card--accent .btn,
+.price-card:nth-child(2) .btn,
+button[onclick*="openMembershipModal('featured')"],
+button[onclick*='openMembershipModal("featured")'] {
+  background: linear-gradient(135deg, var(--tier-accredited), var(--tier-accredited-deep)) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow: 0 16px 38px rgba(11,111,80,.22) !important;
+}
+
+.btn--accredit:hover,
+.price-card--featured .btn:hover,
+.price-card--accent .btn:hover,
+.price-card:nth-child(2) .btn:hover,
+button[onclick*="openMembershipModal('featured')"]:hover,
+button[onclick*='openMembershipModal("featured")']:hover {
+  filter: saturate(1.05) brightness(1.02);
+  box-shadow: 0 20px 48px rgba(11,111,80,.30) !important;
+}
+
+/* Capy Accredited cards and badges should read green, not orange */
+.price-card--featured,
+.price-card--accent,
+.price-card:nth-child(2) {
+  border-color: var(--tier-accredited-line) !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(11,111,80,.11), transparent 45%),
+    linear-gradient(180deg, #FFFFFF, var(--tier-accredited-soft)) !important;
+  box-shadow: 0 22px 70px rgba(11,111,80,.12) !important;
+}
+
+.price-card--featured h3,
+.price-card--accent h3,
+.price-card:nth-child(2) h3,
+.badge--featured,
+.tag--featured,
+.card--featured-glow .card__name,
+.card--featured-glow .card__badge,
+.accredit,
+.accredited {
+  color: var(--tier-accredited-deep) !important;
+}
+
+.badge--featured,
+.tag--featured,
+.card__badge.badge--featured {
+  background: var(--tier-accredited-soft) !important;
+  border-color: var(--tier-accredited-line) !important;
+  color: var(--tier-accredited-deep) !important;
+}
+
+.card--featured-glow {
+  border-color: var(--tier-accredited-line) !important;
+  box-shadow: 0 18px 54px rgba(11,111,80,.14) !important;
+}
+
+.readiness--accredit {
+  background: var(--tier-accredited-soft) !important;
+  border-color: var(--tier-accredited-line) !important;
+}
+.readiness--accredit .readiness__title,
+.readiness--accredit ul li::before {
+  color: var(--tier-accredited-deep) !important;
+}
+
+/* Platinum Elite is now orange, not purple */
+.btn--platinum,
+.price-card--platinum .btn,
+.price-card:nth-child(3) .btn,
+button[onclick*="openMembershipModal('platinum')"],
+button[onclick*='openMembershipModal("platinum")'] {
+  background: linear-gradient(135deg, #D9903D, var(--tier-platinum-deep)) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow: 0 18px 44px rgba(198,118,29,.26) !important;
+}
+
+.btn--platinum:hover,
+.price-card--platinum .btn:hover,
+.price-card:nth-child(3) .btn:hover,
+button[onclick*="openMembershipModal('platinum')"]:hover,
+button[onclick*='openMembershipModal("platinum")']:hover {
+  filter: saturate(1.06) brightness(1.03);
+  box-shadow: 0 22px 54px rgba(198,118,29,.34) !important;
+}
+
+.price-card--platinum,
+.price-card:nth-child(3) {
+  border-color: var(--tier-platinum-line) !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(198,118,29,.14), transparent 45%),
+    linear-gradient(180deg, #FFFFFF, var(--tier-platinum-soft)) !important;
+  box-shadow: 0 22px 70px rgba(198,118,29,.14) !important;
+}
+
+.price-card--platinum h3,
+.price-card:nth-child(3) h3,
+.badge--platinum,
+.badge--platinum-lux,
+.card--platinum-glow .card__name,
+.card--platinum-glow .card__badge,
+.platinum,
+.platinum-invite__spark {
+  color: var(--tier-platinum-deep) !important;
+}
+
+.badge--platinum,
+.badge--platinum-lux,
+.card__badge.badge--platinum-lux {
+  background: var(--tier-platinum-soft) !important;
+  border-color: var(--tier-platinum-line) !important;
+  color: var(--tier-platinum-deep) !important;
+}
+
+.card--platinum-glow {
+  border-color: var(--tier-platinum-line) !important;
+  box-shadow: 0 18px 54px rgba(198,118,29,.16) !important;
+}
+
+.readiness--platinum {
+  background: var(--tier-platinum-soft) !important;
+  border-color: var(--tier-platinum-line) !important;
+}
+.readiness--platinum .readiness__title,
+.readiness--platinum ul li::before {
+  color: var(--tier-platinum-deep) !important;
+}
+
+/* Remove lavender/purple visual residue from common tier elements */
+.platinum-invite,
+.tier--platinum,
+.platinum-panel,
+.final .btn--platinum {
+  --plum: var(--tier-platinum) !important;
+  --plum-soft: var(--tier-platinum-soft) !important;
+}
+
+[style*="#6B5A85"],
+[style*="#F4F0FA"] {
+  color: var(--tier-platinum-deep) !important;
+}
+
+/* The tiny plan-tier tags should follow the new ladder */
+.price-card:first-child .plan-badge,
+.price-card:first-child .tier-badge {
+  color: var(--tier-free) !important;
+  border-color: var(--tier-free-line) !important;
+  background: rgba(236,248,241,.72) !important;
+}
+.price-card:nth-child(2) .plan-badge,
+.price-card:nth-child(2) .tier-badge {
+  color: var(--tier-accredited-deep) !important;
+  border-color: var(--tier-accredited-line) !important;
+  background: var(--tier-accredited-soft) !important;
+}
+.price-card:nth-child(3) .plan-badge,
+.price-card:nth-child(3) .tier-badge {
+  color: var(--tier-platinum-deep) !important;
+  border-color: var(--tier-platinum-line) !important;
+  background: var(--tier-platinum-soft) !important;
+}
+</style>
+
+
+<style id="cc-final-remove-card-hover-effects">
+/* Cards already have ambient floating motion. Remove extra hover movement/effects. */
+.coverage-card,
+.coverage-badge,
+.coverage-pin,
+.coverage-card__check {
+  transition: none !important;
+}
+
+.coverage-card:hover,
+.coverage-card--top:hover,
+.coverage-card--green:hover,
+.coverage-card--bottom:hover {
+  filter: none !important;
+  transform: inherit !important;
+  animation-play-state: running !important;
+}
+
+.coverage-card:hover .coverage-card__check,
+.coverage-card--top:hover .coverage-card__check,
+.coverage-badge:hover,
+.coverage-pin:hover {
+  filter: none !important;
+  transform: inherit !important;
+  animation-play-state: running !important;
+}
+
+/* Preserve each card's correct base transform while hovered */
+@media (min-width: 1081px) {
+  .coverage-card--top:hover,
+  .coverage-card--bottom:hover {
+    transform: none !important;
+  }
+
+  .coverage-card--green:hover {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .coverage-badge:hover,
+  .coverage-pin:hover,
+  .coverage-card--top:hover .coverage-card__check {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .coverage-card--top:hover,
+  .coverage-card--bottom:hover {
+    transform: none !important;
+  }
+
+  .coverage-card--green:hover {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .coverage-badge:hover,
+  .coverage-pin:hover,
+  .coverage-card--top:hover .coverage-card__check {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .coverage-card--top:hover,
+  .coverage-card--green:hover,
+  .coverage-card--bottom:hover {
+    transform: translateX(-50%) !important;
+  }
+
+  .coverage-badge:hover,
+  .coverage-pin:hover,
+  .coverage-card--top:hover .coverage-card__check {
+    transform: none !important;
+  }
+}
+</style>
+
+
+<style id="cc-final-pricing-mailerlite-structure">
+/* MailerLite-inspired pricing structure: annual value first, founder FOMO, three clean cards. */
+.pricing--mailerlite {
+  background:
+    radial-gradient(circle at 50% -18%, rgba(11,111,80,.08), transparent 34%),
+    linear-gradient(180deg, var(--bg), #fff 52%, var(--bg));
+}
+
+.pricing--mailerlite .pricing__head {
+  max-width: 820px;
+}
+
+.billing-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.billing-row .billing-toggle {
+  padding: 5px;
+  gap: 4px;
+  border-radius: 14px;
+  background: #EEF2F0;
+  box-shadow: inset 0 0 0 1px rgba(15,31,38,.04), var(--shadow-xs);
+}
+
+.billing-row .billing-btn {
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 650;
+}
+
+.billing-row .billing-btn.is-active {
+  background: var(--tier-accredited, #0B6F50) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(11,111,80,.20);
+}
+
+.billing-row .billing-save {
+  color: rgba(255,255,255,.88);
+  font-weight: 700;
+  margin-left: 7px;
+}
+
+.billing-row .billing-btn:not(.is-active) .billing-save {
+  color: var(--tier-accredited, #0B6F50);
+}
+
+.pricing-fomo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 620px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(236,248,241,.86);
+  border: 1px dotted rgba(15,107,79,.34);
+  color: var(--ink-soft);
+  font-size: .84rem;
+  line-height: 1.3;
+}
+
+.pricing-fomo span {
+  color: var(--tier-accredited, #0B6F50);
+  font-weight: 800;
+}
+
+.price-grid--value-first {
+  align-items: stretch;
+}
+
+.price-card--best {
+  border-width: 2px !important;
+  transform: translateY(-12px);
+}
+
+.price-card--best:hover {
+  transform: translateY(-14px);
+}
+
+.price-card__top-band {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(135deg, var(--tier-accredited, #0B6F50), var(--tier-accredited-deep, #064B3A));
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.price-card--best .price-card__intro {
+  padding-top: 42px;
+}
+
+.price-card--best .price-card__price .num {
+  color: var(--tier-accredited-deep, #064B3A);
+}
+
+.price-card--platinum .platinum-price__amount {
+  color: var(--tier-platinum-deep, #9B520E) !important;
+}
+
+.price-card--free {
+  border-style: dotted !important;
+  border-color: rgba(15,107,79,.30) !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(236,248,241,.72), transparent 45%),
+    linear-gradient(180deg, rgba(255,255,255,.86), rgba(236,248,241,.36)) !important;
+}
+
+.price-card--free .price-card__icon {
+  background: rgba(236,248,241,.84) !important;
+  color: var(--tier-free, #0F6B4F) !important;
+  border: 1px dotted rgba(15,107,79,.35);
+}
+
+.price-card--free .btn--primary {
+  background: rgba(255,255,255,.55) !important;
+  color: var(--tier-free, #0F6B4F) !important;
+  border: 1.5px dotted rgba(15,107,79,.34) !important;
+  box-shadow: 0 10px 26px rgba(15,107,79,.06) !important;
+}
+
+.price-grid[data-billing="annual"] .annual-savings-line {
+  display: block;
+  animation: pulse-reveal .5s ease;
+}
+
+.price-grid[data-billing="annual"] .price-card--best {
+  box-shadow: 0 0 0 1px rgba(11,111,80,.40), 0 28px 70px rgba(11,111,80,.22), 0 0 48px rgba(91,224,160,.20) !important;
+}
+
+.price-was {
+  text-decoration: line-through;
+  color: var(--ink-mute);
+  margin-right: 8px;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+@media (max-width: 980px) {
+  .price-card--best {
+    transform: none;
+  }
+  .price-card--best:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-fomo {
+    border-radius: 16px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .billing-row .billing-toggle {
+    width: 100%;
+  }
+
+  .billing-row .billing-btn {
+    flex: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+</style>
+
+
+
+
+
+
+<style id="cc-directory-before-readiness-polish">
+/* Directory now appears before patient readiness: search or claim first, then show the Capy Accredited benefit. */
+#directory {
+  scroll-margin-top: 96px;
+}
+
+#directory .directory__head .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+
+#directory .directory__head h2 {
+  max-width: 780px;
+}
+
+#directory .directory__head > p:not(.eyebrow) {
+  max-width: 76ch;
+}
+
+#directory + #patient-readiness-upgrade {
+  margin-top: 0;
+}
+</style>
+
+
+<style id="cc-final-global-cta-color-scan">
+/* =========================================================
+   GLOBAL CTA COLOR SCAN
+   Free Claim = hollow pastel green with dotted frame
+   Capy Accreditation = solid green
+   Platinum Elite = orange
+   This block intentionally sits last in <head> to override older purple/orange experiments.
+   ========================================================= */
+:root {
+  --cc-free: #0F6B4F;
+  --cc-free-soft: #ECF8F1;
+  --cc-free-line: rgba(15,107,79,.36);
+
+  --cc-accredit: #0B6F50;
+  --cc-accredit-deep: #064B3A;
+  --cc-accredit-soft: #E8F7EF;
+  --cc-accredit-line: rgba(11,111,80,.30);
+
+  --cc-platinum: #D9903D;
+  --cc-platinum-deep: #9B520E;
+  --cc-platinum-soft: #FFF4E5;
+  --cc-platinum-line: rgba(198,118,29,.34);
+
+  --plum: var(--cc-platinum) !important;
+  --plum-soft: var(--cc-platinum-soft) !important;
+}
+
+/* FREE CLAIM CTAs: hollow pastel green with dotted line frame */
+button[onclick*="openMembershipModal('free')"],
+button[onclick*='openMembershipModal("free")'],
+a[onclick*="openMembershipModal('free')"],
+a[onclick*='openMembershipModal("free")'],
+.btn--free,
+.btn--submit-practice,
+.cc-ru-claim,
+.price-card--free .btn,
+.price-card[data-plan="free"] .btn,
+.card--submit-office .btn,
+.card--unclaimed .btn,
+button[onclick*="scrollToDirectorySearch"],
+.hero__cta button[onclick*="scrollToDirectorySearch"] {
+  background: rgba(255,255,255,.58) !important;
+  color: var(--cc-free) !important;
+  border: 1.6px dotted var(--cc-free-line) !important;
+  box-shadow: 0 10px 28px rgba(15,107,79,.07) !important;
+  text-shadow: none !important;
+}
+
+button[onclick*="openMembershipModal('free')"]:hover,
+button[onclick*='openMembershipModal("free")']:hover,
+a[onclick*="openMembershipModal('free')"]:hover,
+a[onclick*='openMembershipModal("free")']:hover,
+.btn--free:hover,
+.btn--submit-practice:hover,
+.cc-ru-claim:hover,
+.price-card--free .btn:hover,
+.price-card[data-plan="free"] .btn:hover,
+.card--submit-office .btn:hover,
+.card--unclaimed .btn:hover,
+button[onclick*="scrollToDirectorySearch"]:hover,
+.hero__cta button[onclick*="scrollToDirectorySearch"]:hover {
+  background: var(--cc-free-soft) !important;
+  border-color: rgba(15,107,79,.58) !important;
+  color: var(--cc-accredit-deep) !important;
+  box-shadow: 0 14px 34px rgba(15,107,79,.12) !important;
+}
+
+/* Capy Accreditation CTAs: always green */
+.btn--accredit,
+.cc-ru-apply-now,
+.cc-ru-bigcta,
+.cc-ru-act.solid,
+button[onclick*="openMembershipModal('featured')"],
+button[onclick*='openMembershipModal("featured")'],
+a[onclick*="openMembershipModal('featured')"],
+a[onclick*='openMembershipModal("featured")'],
+.price-card--featured .btn,
+.price-card--accent .btn,
+.price-card[data-plan="featured"] .btn,
+.price-card:nth-child(1)[data-plan="featured"] .btn,
+.card--featured-glow .btn,
+button[onclick*="featured"],
+a[href="#apply-capy-accreditation"] {
+  background: linear-gradient(135deg, var(--cc-accredit), var(--cc-accredit-deep)) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow: 0 16px 40px rgba(11,111,80,.24) !important;
+  text-shadow: none !important;
+}
+
+.btn--accredit:hover,
+.cc-ru-apply-now:hover,
+.cc-ru-bigcta:hover,
+.cc-ru-act.solid:hover,
+button[onclick*="openMembershipModal('featured')"]:hover,
+button[onclick*='openMembershipModal("featured")']:hover,
+a[onclick*="openMembershipModal('featured')"]:hover,
+a[onclick*='openMembershipModal("featured")']:hover,
+.price-card--featured .btn:hover,
+.price-card--accent .btn:hover,
+.price-card[data-plan="featured"] .btn:hover,
+.card--featured-glow .btn:hover {
+  filter: saturate(1.05) brightness(1.02);
+  box-shadow: 0 20px 50px rgba(11,111,80,.31) !important;
+}
+
+/* Capy Accreditation badges/cards also green */
+.badge--featured,
+.tag--featured,
+.card__badge.badge--featured,
+.cc-ru-badge,
+.price-card--featured .price-card__pill,
+.price-card--featured .plan-badge,
+.price-card--featured .tier-badge {
+  background: var(--cc-accredit-soft) !important;
+  color: var(--cc-accredit-deep) !important;
+  border-color: var(--cc-accredit-line) !important;
+}
+
+.price-card--featured,
+.price-card--accent,
+.price-card[data-plan="featured"] {
+  border-color: var(--cc-accredit-line) !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(11,111,80,.11), transparent 45%),
+    linear-gradient(180deg, #FFFFFF, var(--cc-accredit-soft)) !important;
+  box-shadow: 0 22px 70px rgba(11,111,80,.14) !important;
+}
+
+.price-card__top-band,
+.price-card--best .price-card__top-band {
+  background: linear-gradient(135deg, var(--cc-accredit), var(--cc-accredit-deep)) !important;
+  color: #fff !important;
+}
+
+/* Platinum Elite CTAs: always orange */
+.btn--platinum,
+button[onclick*="openMembershipModal('platinum')"],
+button[onclick*='openMembershipModal("platinum")'],
+a[onclick*="openMembershipModal('platinum')"],
+a[onclick*='openMembershipModal("platinum")'],
+.price-card--platinum .btn,
+.price-card[data-plan="platinum"] .btn,
+.card--platinum-glow .btn,
+.final__cta button[onclick*="platinum"] {
+  background: linear-gradient(135deg, var(--cc-platinum), var(--cc-platinum-deep)) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow: 0 18px 46px rgba(198,118,29,.28) !important;
+  text-shadow: none !important;
+}
+
+.btn--platinum:hover,
+button[onclick*="openMembershipModal('platinum')"]:hover,
+button[onclick*='openMembershipModal("platinum")']:hover,
+a[onclick*="openMembershipModal('platinum')"]:hover,
+a[onclick*='openMembershipModal("platinum")']:hover,
+.price-card--platinum .btn:hover,
+.price-card[data-plan="platinum"] .btn:hover,
+.card--platinum-glow .btn:hover {
+  filter: saturate(1.06) brightness(1.03);
+  box-shadow: 0 22px 56px rgba(198,118,29,.36) !important;
+}
+
+/* Platinum cards/badges: orange, never purple */
+.price-card--platinum,
+.price-card[data-plan="platinum"] {
+  border-color: var(--cc-platinum-line) !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(198,118,29,.14), transparent 45%),
+    linear-gradient(180deg, #FFFFFF, var(--cc-platinum-soft)) !important;
+  box-shadow: 0 22px 70px rgba(198,118,29,.14) !important;
+}
+
+.badge--platinum,
+.badge--platinum-lux,
+.card__badge.badge--platinum-lux,
+.price-card--platinum .price-card__pill,
+.price-card--platinum .plan-badge,
+.price-card--platinum .tier-badge,
+.platinum-scarce,
+.founder-ribbon {
+  background: var(--cc-platinum-soft) !important;
+  color: var(--cc-platinum-deep) !important;
+  border-color: var(--cc-platinum-line) !important;
+}
+
+/* Remove visible purple from Platinum-related text and tiles */
+.price-card--platinum h3,
+.price-card[data-plan="platinum"] h3,
+.platinum-price__amount,
+.card--platinum-glow .card__name,
+.card--platinum-glow .card__badge,
+.platinum-invite__spark,
+.conversion-tile--platinum .map-tile__type,
+.platinum {
+  color: var(--cc-platinum-deep) !important;
+}
+
+.conversion-tile--platinum {
+  border-color: var(--cc-platinum-line) !important;
+  background: linear-gradient(180deg, var(--cc-platinum-soft), rgba(255,255,255,.88)) !important;
+}
+
+/* Free cards and labels */
+.price-card--free,
+.price-card[data-plan="free"] {
+  border: 1.6px dotted var(--cc-free-line) !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(236,248,241,.72), transparent 45%),
+    linear-gradient(180deg, rgba(255,255,255,.90), rgba(236,248,241,.38)) !important;
+  box-shadow: 0 18px 52px rgba(15,107,79,.08) !important;
+}
+
+.badge--available,
+.badge--submit,
+.tag--unclaimed,
+.price-card--free .price-card__pill,
+.price-card--free .plan-badge,
+.price-card--free .tier-badge {
+  background: var(--cc-free-soft) !important;
+  color: var(--cc-free) !important;
+  border: 1px dotted var(--cc-free-line) !important;
+}
+
+/* Keep ordinary non-tier search buttons green unless they are a claim/free CTA */
+.search-row .btn--primary:not([onclick*="free"]):not([onclick*="scrollToDirectorySearch"]) {
+  background: linear-gradient(135deg, var(--cc-accredit), var(--cc-accredit-deep)) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+</style>
+
+
+<style id="cc-final-pricing-order-founder-lock">
+/* Pricing order: Free Claim left, Capy Accredited featured middle, Platinum Elite exclusive right. */
+.pricing--mailerlite .pricing__head h2 {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pricing--mailerlite .pricing__head h2 .serif-em {
+  color: var(--cc-accredit-deep, #064B3A) !important;
+}
+
+.billing-row .billing-btn--annual.is-active,
+.billing-row .billing-btn[data-billing="annual"].is-active {
+  background: linear-gradient(135deg, var(--cc-accredit, #0B6F50), var(--cc-accredit-deep, #064B3A)) !important;
+}
+
+.billing-row .billing-save {
+  font-size: .76rem;
+  padding-left: 2px;
+}
+
+.pricing-fomo strong {
+  font-weight: 900;
+  color: var(--cc-accredit-deep, #064B3A);
+  letter-spacing: .03em;
+}
+
+.price-grid--value-first {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr) !important;
+}
+
+.price-grid--value-first .price-card--free { order: 1; }
+.price-grid--value-first .price-card--featured { order: 2; }
+.price-grid--value-first .price-card--platinum { order: 3; }
+
+.price-card--best {
+  transform: translateY(-14px);
+}
+
+.price-card--free .price-card__pill {
+  border-style: dotted !important;
+}
+
+.price-card--platinum .price-card__pill {
+  background: var(--cc-platinum-soft, #FFF4E5) !important;
+  color: var(--cc-platinum-deep, #9B520E) !important;
+  border-color: var(--cc-platinum-line, rgba(198,118,29,.34)) !important;
+}
+
+@media (max-width: 980px) {
+  .price-grid--value-first {
+    grid-template-columns: 1fr !important;
+  }
+  .price-card--best {
+    transform: none;
+  }
+  .price-grid--value-first .price-card--free,
+  .price-grid--value-first .price-card--featured,
+  .price-grid--value-first .price-card--platinum {
+    order: initial;
+  }
+}
+</style>
+
+
+<style id="cc-final-hero-emoji-card-alignment">
+/* Precise emoji overlap:
+   - 2nd card emoji overlaps the top-right corner of the green card by ~50%
+   - 3rd card emoji overlaps the bottom-right corner of the white card by ~50%
+*/
+@media (min-width: 1081px) {
+  /* 2nd card emoji: half-overlapping the green card's top-right corner */
+  .coverage-badge {
+    left: calc(53% + clamp(108px, 9.9vw, 156px)) !important;
+    right: auto !important;
+    top: calc(50% - 50px) !important;
+    width: 58px !important;
+    height: 58px !important;
+    z-index: 9 !important;
+  }
+
+  /* 3rd card emoji: half-overlapping the white card's bottom-right corner */
+  .coverage-pin {
+    right: clamp(38px, calc(7vw - 44px), 118px) !important;
+    top: clamp(514px, calc(55vh + 89px), 604px) !important;
+    bottom: auto !important;
+    width: 58px !important;
+    height: 58px !important;
+    z-index: 9 !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  .coverage-badge {
+    left: calc(54% + clamp(108px, 9.9vw, 156px)) !important;
+  }
+
+  .coverage-pin {
+    right: clamp(66px, calc(8vw - 42px), 156px) !important;
+    top: clamp(531px, calc(56vh + 90px), 620px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  /* Keep the 2nd card emoji overlapping the card on tablet */
+  .coverage-badge {
+    left: calc(53% + 104px) !important;
+    right: auto !important;
+    top: calc(49% - 48px) !important;
+    width: 54px !important;
+    height: 54px !important;
+    z-index: 9 !important;
+  }
+
+  /* Avoid crowding on tablet for the 3rd icon */
+  .coverage-pin {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Mobile keeps the 2nd emoji tucked into the green card corner */
+  .coverage-badge {
+    top: calc(45% - 8px) !important;
+    left: auto !important;
+    right: 7% !important;
+    width: 54px !important;
+    height: 54px !important;
+    z-index: 9 !important;
+  }
+
+  .coverage-pin {
+    display: none !important;
+  }
+}
+</style>
+
+
+<style id="final-user-edits">
+/* ===== Final polish: hero overlays, directory card heights, pricing banner ===== */
+.cards { align-items: start !important; }
+.cards .card { height: auto !important; align-self: start !important; }
+
+.btn-find-dentist {
+  background: linear-gradient(180deg, #ffffff 0%, #f6fffb 100%) !important;
+  color: var(--emerald) !important;
+  border: 1px solid rgba(11, 111, 80, .18) !important;
+  box-shadow: 0 14px 28px rgba(3, 32, 39, .14) !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease !important;
+}
+.btn-find-dentist:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 18px 32px rgba(3, 32, 39, .18) !important;
+  background: #ffffff !important;
+}
+
+.pricing-fomo {
+  background: rgba(236,248,241,.92) !important;
+}
+
+@media (min-width: 1081px) {
+  /* Move first card up/right so it clears the head better */
+  .coverage-card--top {
+    top: 8% !important;
+    right: 4.5% !important;
+    left: auto !important;
+    width: min(305px, 28vw) !important;
+    transform: none !important;
+  }
+
+  /* Keep the green card featured but slightly tighter */
+  .coverage-card--green {
+    top: 53% !important;
+    left: 49.5% !important;
+    right: auto !important;
+    width: min(316px, 27vw) !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 20px 24px !important;
+  }
+
+  /* Make the second emoji cover more of the green card top-right corner */
+  .coverage-badge {
+    width: 60px !important;
+    height: 60px !important;
+    left: calc(49.5% + 104px) !important;
+    right: auto !important;
+    top: calc(53% - 80px) !important;
+  }
+
+  /* Lift the 3rd card a touch so it breathes above the bottom edge */
+  .coverage-card--bottom {
+    right: 6.2% !important;
+    left: auto !important;
+    bottom: 10% !important;
+    width: min(305px, 27vw) !important;
+    transform: none !important;
+  }
+
+  /* Move the 3rd emoji lower on the card */
+  .coverage-pin {
+    width: 60px !important;
+    height: 60px !important;
+    right: calc(6.2% - 18px) !important;
+    left: auto !important;
+    bottom: calc(10% - 18px) !important;
+  }
+}
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .cards { align-items: start !important; }
+  .coverage-card--green {
+    width: min(330px, 56%) !important;
+  }
+  .coverage-badge {
+    width: 56px !important;
+    height: 56px !important;
+    top: calc(48% - 54px) !important;
+    left: calc(50% + 120px) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .cards { align-items: start !important; }
+  .cards .card { min-height: unset !important; }
+
+  .coverage-card--green {
+    width: 74% !important;
+    padding: 20px 22px !important;
+  }
+
+  .coverage-badge {
+    width: 52px !important;
+    height: 52px !important;
+    top: calc(44% - 26px) !important;
+    left: calc(50% + 86px) !important;
+  }
+
+  .coverage-card--bottom {
+    bottom: 10% !important;
+  }
+
+  .coverage-pin {
+    display: grid !important;
+    width: 52px !important;
+    height: 52px !important;
+    right: 10% !important;
+    bottom: calc(10% - 14px) !important;
+  }
+}
+</style>
+
+<style id="cc-lava-lamp-float">
+/* ============================================================
+   Lava-lamp float for the 3 hero coverage cards.
+   Driven by the INDEPENDENT `translate`/`scale` properties so the motion
+   COMPOSES with the existing `transform` centering rules instead of being
+   overridden by their `!important` transforms (which is exactly why the old
+   transform-based keyframes were frozen in place).
+   The corner emojis are now nested inside their cards, so they inherit the
+   card's motion and stay glued to the corners — calendar badge on the green
+   card's TOP-RIGHT, location pin on the bottom card's BOTTOM-RIGHT — in every
+   state, including hover.
+   ============================================================ */
+
+@keyframes cc-lava-top {
+  0%, 100% { translate: 0 0;        scale: 1;     }
+  25%      { translate: -6px -12px; scale: 1.01;  }
+  50%      { translate: 6px -22px;  scale: 1.018; }
+  75%      { translate: 9px -9px;   scale: 1.01;  }
+}
+@keyframes cc-lava-green {
+  0%, 100% { translate: 0 0;        scale: 1;     }
+  25%      { translate: 8px 12px;   scale: 1.012; }
+  50%      { translate: -6px 23px;  scale: 1.02;  }
+  75%      { translate: -9px 9px;   scale: 1.012; }
+}
+@keyframes cc-lava-bottom {
+  0%, 100% { translate: 0 0;        scale: 1;     }
+  25%      { translate: 7px -10px;  scale: 1.01;  }
+  50%      { translate: -7px -20px; scale: 1.018; }
+  75%      { translate: -4px -8px;  scale: 1.01;  }
+}
+
+/* Apply the float to each card. Different durations + phases give an organic,
+   desynced lava-lamp drift. */
+.coverage-card--top {
+  animation: cc-lava-top 9s ease-in-out infinite !important;
+  will-change: translate, scale;
+}
+.coverage-card--green {
+  animation: cc-lava-green 11s ease-in-out infinite !important;
+  will-change: translate, scale;
+}
+.coverage-card--bottom {
+  animation: cc-lava-bottom 10s ease-in-out infinite !important;
+  will-change: translate, scale;
+}
+
+/* Card 1's internal check icon rides the card instead of bobbing on its own */
+.coverage-card--top .coverage-card__check {
+  animation: none !important;
+  translate: none !important;
+  scale: none !important;
+  transform: none !important;
+}
+
+/* Let the corner emojis overhang the card edges */
+.coverage-card--green,
+.coverage-card--bottom {
+  overflow: visible !important;
+}
+
+/* Extra right padding so the corner emoji never sits on top of the text */
+.coverage-card--green  { padding-right: 40px !important; }
+.coverage-card--bottom { padding-right: 34px !important; }
+
+/* Nested emoji glued to the green card's TOP-RIGHT corner.
+   The child combinator (0,2,0) outranks every single-class positioning rule,
+   so position + size are pinned here. `display` is deliberately left unset so
+   the existing per-breakpoint visibility rules still apply. */
+.coverage-card--green > .coverage-badge {
+  position: absolute !important;
+  top: -22px !important;
+  right: -22px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  animation: none !important;
+  z-index: 6 !important;
+}
+
+/* Nested emoji glued to the bottom card's BOTTOM-RIGHT corner */
+.coverage-card--bottom > .coverage-pin {
+  position: absolute !important;
+  bottom: -22px !important;
+  right: -22px !important;
+  left: auto !important;
+  top: auto !important;
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  animation: none !important;
+  z-index: 6 !important;
+}
+
+/* Respect a user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .coverage-card--top,
+  .coverage-card--green,
+  .coverage-card--bottom {
+    animation: none !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
@@ -3669,7 +6041,7 @@ body {
       <div class="hero__microline"><span class="live-dot"></span><span><strong>High-intent moment:</strong> after patients activate PPO coverage,<br>they move from comparing plans to choosing where care begins.</span></div>
       <h1>Be the first dentist patients see<br><span class="serif-em">after they activate</span><br><span class="serif-em">PPO coverage.</span></h1>
       <p class="hero__sub">
-        Once coverage is active, the patient is not cold traffic. They have compared coverage, checked affordability, and are choosing which office feels safe enough to book. Start by claiming your profile, then activate Capy Accreditation when your practice is ready for a stronger patient-facing trust signal.
+        Once PPO coverage is active, patients are no longer browsing. They have checked affordability, compared coverage, and are choosing the office they trust enough to book.
       </p>
 
       <div class="hero__cta hero__cta--early">
@@ -3681,13 +6053,6 @@ body {
         </button>
       </div>
 
-      <div class="hero__chips">
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Update name, address, and phone</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Add active dentist and treatments</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> PPO aware trust signals</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Financing and payment path clarity</span>
-        <span class="hero__chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Capy Accreditation path</span>
-      </div>
     </div>
 
     <!-- VERIFIED HERO IMAGE RIGHT SIDE: assets/images/capy-accreditation.jpg -->
@@ -3706,107 +6071,30 @@ body {
       <div class="coverage-card coverage-card--green">
         <strong>Do not let benefits go to waste.</strong>
         <span>Book your dental visit now and make the most of your coverage.</span>
-        <button type="button" onclick="scrollToDirectorySearch()">Find Dentist</button>
+        <button type="button" class="btn-find-dentist" onclick="scrollToDirectorySearch()">Find Dentist</button>
+        <div class="coverage-badge" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 13l2 2 4-4"/></svg>
+        </div>
       </div>
 
       <div class="coverage-card coverage-card--bottom">
         <strong>Ready to get the care you have been putting off?</strong>
         <span>Find a trusted PPO dentist near you and book today.</span>
         <em>★★★★★</em>
-      </div>
-
-      <div class="coverage-badge" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 13l2 2 4-4"/></svg>
-      </div>
-      <div class="coverage-pin" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div class="coverage-pin" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </div>
       </div>
     </div>  </div>
 
 </section>
 
-<!-- =========================================================
-     MEMBERSHIP PATH SNAPSHOT
-     ========================================================= -->
-<section class="membership-strip" aria-label="CoverCapy membership starting paths">
-  <div class="wrap membership-strip__grid">
-    <article class="path-card reveal">
-      <div class="path-card__label"><span class="path-card__dot"></span> Start Free</div>
-      <h3>Claim the profile patients may already see</h3>
-      <p>Control the basics first: practice name, address, phone, active dentist, PPO friendly details, and the path patients use to contact you.</p>
-      <a href="#pricing">Start with the free claim →</a>
-    </article>
-    <article class="path-card path-card--featured reveal">
-      <div class="path-card__label"><span class="path-card__dot"></span> Capy Accredited</div>
-      <h3>Add the trust signal before patients choose</h3>
-      <p>When your profile is claimed, Capy Accreditation gives your office the orange badge, stronger profile context, and a clearer reason to book.</p>
-      <a href="#pricing">Explore Capy Accreditation →</a>
-    </article>
-  </div>
-</section>
-
-<!-- =========================================================
-     THE PPO DECISION MOMENT
-     ========================================================= -->
-<section class="decision" id="why">
-  <div class="wrap decision__grid">
-    <div class="decision__left reveal">
-      <p class="eyebrow">Patient readiness</p>
-      <h2>Patients are closer to <em>yes.</em></h2>
-      <p class="decision__lead">
-        CoverCapy is not random traffic. Patients arrive after selecting or activating PPO coverage, checking treatment costs,
-        and exploring affordability pathways. They are already moving from planning into booking.
-      </p>
-      <ul class="decision__checks">
-        <li>They choose or activate PPO coverage</li>
-        <li>They understand possible treatment costs</li>
-        <li>They explore monthly payment pathways</li>
-        <li>They become more confident about treatment</li>
-        <li>They search for the office they trust enough to book</li>
-      </ul>
-      <p class="decision__q">That is where <span>your practice should appear.</span></p>
-    </div>
-
-    <div class="decision__right reveal">
-      <div class="dtimeline">
-        <div class="dstep">
-          <span class="dstep__num">1</span>
-          <div class="dstep__text"><em>"I finally got PPO coverage."</em></div>
-        </div>
-        <div class="dconnect"></div>
-        <div class="dstep">
-          <span class="dstep__num">2</span>
-          <div class="dstep__text"><em>"How much will Invisalign cost? What about a crown after insurance?"</em></div>
-        </div>
-        <div class="dconnect"></div>
-        <div class="dstep">
-          <span class="dstep__num">3</span>
-          <div class="dstep__text">Explores monthly payment options</div>
-        </div>
-        <div class="dconnect"></div>
-        <div class="dstep">
-          <span class="dstep__num">4</span>
-          <div class="dstep__text">Feels more confident treatment is possible</div>
-        </div>
-        <div class="dconnect"></div>
-        <div class="dstep dstep--search">
-          <span class="dstep__num">→</span>
-          <div class="dstep__text">Searching for a dentist</div>
-        </div>
-        <div class="dyou">
-          <div>
-            <div class="dyou__name">Your Practice</div>
-            <div class="dyou__badge"><span class="status-dot"></span> Ready to claim</div>
-          </div>
-          <button class="btn btn--primary" onclick="scrollToDirectorySearch()">Claim Your Profile</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="wrap">
-    <p class="early-note" style="color:rgba(255,255,255,.55); margin-top:44px;">Patients may discover practices already positioned inside the decision journey. Many practices have not yet claimed their profile.</p>
-  </div>
-</section>
+<!-- ============================================================= -->
+<!-- CoverCapy &middot; Light Patient Readiness x Capy Accreditation       -->
+<!-- Paste this block into dentist-portal.html where the old        -->
+<!-- Patient Readiness / Accreditation section lives.               -->
+<!-- Scoped under #patient-readiness-upgrade only.                  -->
+<!-- ============================================================= -->
 
 <!-- =========================================================
      DIRECTORY (Find + sample cards)
@@ -3814,9 +6102,9 @@ body {
 <section class="directory" id="directory">
   <div class="wrap">
     <div class="directory__head">
-      <p class="eyebrow">Find your practice</p>
-      <h2>Search your area to see if your practice is <span class="serif-em">already indexed.</span></h2>
-      <p>CoverCapy shows nearby practice cards for the location a patient searches after coverage activation. If your practice appears, claim it first so the details patients rely on are accurate, then consider Capy Accreditation when you want the orange trust signal.</p>
+      <p class="eyebrow">FIND YOUR PRACTICE</p>
+      <h2>Search your area to see if your practice is already indexed.</h2>
+      <p>CoverCapy shows nearby practice cards for the location a patient searches after coverage activation. If your practice appears, claim it first so the details patients rely on are accurate, then consider Capy Accreditation when you want the green trust signal.</p>
     </div>
 
     <div class="search-card">
@@ -3862,21 +6150,532 @@ body {
   </div>
 </section>
 
-<!-- =========================================================
-     TRUST (patients-first)
-     ========================================================= -->
-<section class="trust">
-  <div class="wrap">
-    <div class="trust__inner reveal">
-      <div class="trust__mark">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+<section id="patient-readiness-upgrade" class="cc-readiness-upgrade" aria-labelledby="cc-ru-title">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700;800&display=swap');
+
+    #patient-readiness-upgrade.cc-readiness-upgrade{
+      --ccru-cream:#fbf8ef;
+      --ccru-cream-2:#f4eddf;
+      --ccru-card:#fffef9;
+      --ccru-card-soft:#f9f4ea;
+      --ccru-ink:#102326;
+      --ccru-ink-soft:#526463;
+      --ccru-ink-mute:#83918d;
+      --ccru-emerald:#0d604c;
+      --ccru-emerald-deep:#063d32;
+      --ccru-emerald-bright:#18896c;
+      --ccru-mint:#77e5ad;
+      --ccru-mint-soft:#e7f8ee;
+      --ccru-gold:#b58a3c;
+      --ccru-line:rgba(16,35,38,.10);
+      --ccru-line-strong:rgba(13,96,76,.20);
+      --ccru-serif:'Fraunces',Georgia,'Times New Roman',serif;
+      --ccru-ui:'Inter Tight','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+      --ccru-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+      box-sizing:border-box;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      padding:clamp(54px,6vw,92px) clamp(20px,5vw,72px);
+      background:
+        radial-gradient(circle at 78% 12%, rgba(119,229,173,.20), transparent 34%),
+        radial-gradient(circle at 14% 82%, rgba(181,138,60,.10), transparent 38%),
+        linear-gradient(180deg,#fffdf7 0%,var(--ccru-cream) 48%,var(--ccru-cream-2) 100%);
+      color:var(--ccru-ink);
+      font-family:var(--ccru-body);
+      -webkit-font-smoothing:antialiased;
+    }
+    #patient-readiness-upgrade.cc-readiness-upgrade *,
+    #patient-readiness-upgrade.cc-readiness-upgrade *::before,
+    #patient-readiness-upgrade.cc-readiness-upgrade *::after{box-sizing:border-box;}
+
+    #patient-readiness-upgrade .cc-ru-grain{
+      position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.38;
+      background-image:radial-gradient(rgba(16,35,38,.045) 1px, transparent 1px);
+      background-size:5px 5px;mix-blend-mode:multiply;
+    }
+    #patient-readiness-upgrade .cc-ru-orb{position:absolute;border-radius:999px;filter:blur(34px);pointer-events:none;z-index:0;opacity:.55;}
+    #patient-readiness-upgrade .cc-ru-orb.o1{width:260px;height:260px;right:10%;top:8%;background:rgba(119,229,173,.20);}
+    #patient-readiness-upgrade .cc-ru-orb.o2{width:240px;height:240px;left:4%;bottom:3%;background:rgba(181,138,60,.10);}
+    #patient-readiness-upgrade .cc-ru-container{position:relative;z-index:1;max-width:1180px;margin:0 auto;}
+
+    #patient-readiness-upgrade .cc-ru-rise{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-rise{opacity:1;transform:none;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-rise.d1{transition-delay:.08s;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-rise.d2{transition-delay:.16s;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-rise.d3{transition-delay:.24s;}
+
+    #patient-readiness-upgrade .cc-ru-grid{display:grid;grid-template-columns:1.03fr 1fr;gap:clamp(30px,4.6vw,62px);align-items:start;position:relative;}
+
+    /* left */
+    #patient-readiness-upgrade .cc-ru-eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      font-family:var(--ccru-ui);font-weight:700;font-size:11px;letter-spacing:.19em;text-transform:uppercase;
+      color:var(--ccru-emerald);padding:8px 12px;border:1px solid rgba(13,96,76,.14);border-radius:999px;
+      background:rgba(255,255,255,.55);box-shadow:0 10px 28px -24px rgba(13,96,76,.55);
+    }
+    #patient-readiness-upgrade .cc-ru-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--ccru-emerald-bright);box-shadow:0 0 0 5px rgba(24,137,108,.12);}
+    #patient-readiness-upgrade h2.cc-ru-title{
+      font-family:var(--ccru-serif);font-weight:500;font-size:clamp(34px,4.5vw,56px);line-height:1.02;letter-spacing:-.025em;margin:18px 0 0;color:var(--ccru-ink);
+    }
+    #patient-readiness-upgrade .cc-ru-title .l1,
+    #patient-readiness-upgrade .cc-ru-title .l2{display:block;}
+    #patient-readiness-upgrade .cc-ru-title .l1{color:#182a2d;}
+    #patient-readiness-upgrade .nowrap{white-space:nowrap;}
+    #patient-readiness-upgrade .cc-ru-title .l2{margin-top:4px;font-style:italic;color:var(--ccru-emerald);}
+    #patient-readiness-upgrade .cc-ru-title strong{
+      display:inline-block;font-style:normal;font-weight:600;color:var(--ccru-emerald-deep);position:relative;white-space:nowrap;
+    }
+    #patient-readiness-upgrade .cc-ru-title strong::after{
+      content:"";position:absolute;left:-.06em;right:-.06em;bottom:.04em;height:.34em;border-radius:999px;background:rgba(119,229,173,.35);z-index:-1;
+    }
+    #patient-readiness-upgrade .cc-ru-intro{font-size:15.5px;line-height:1.65;color:var(--ccru-ink-soft);max-width:52ch;margin:18px 0 0;}
+
+    #patient-readiness-upgrade .cc-ru-journey{
+      position:relative;list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:11px;max-width:620px;
+    }
+    #patient-readiness-upgrade .cc-ru-journey::before{
+      content:"";position:absolute;left:18px;top:20px;bottom:20px;width:2px;border-radius:4px;
+      background:linear-gradient(180deg,rgba(13,96,76,.12),rgba(13,96,76,.34),rgba(119,229,173,.58));
+    }
+    #patient-readiness-upgrade .cc-ru-journey::after{
+      content:"";position:absolute;left:14px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--ccru-emerald-bright);
+      box-shadow:0 0 0 6px rgba(24,137,108,.10),0 0 18px rgba(24,137,108,.45);opacity:0;
+    }
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-journey::after{animation:ccru-railDot 6.6s cubic-bezier(.4,0,.2,1) infinite;}
+    @keyframes ccru-railDot{
+      0%,8%{opacity:0;transform:translateY(0)}
+      12%,78%{opacity:1}
+      82%,100%{opacity:0;transform:translateY(236px)}
+    }
+    #patient-readiness-upgrade .cc-ru-jstep{position:relative;display:grid;grid-template-columns:38px 1fr;gap:15px;align-items:center;}
+    #patient-readiness-upgrade .cc-ru-jnum{
+      position:relative;z-index:1;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+      font-family:var(--ccru-ui);font-weight:800;font-size:12px;color:var(--ccru-emerald);
+      background:linear-gradient(180deg,#ffffff,#edf8f0);border:1px solid rgba(13,96,76,.15);
+      box-shadow:0 12px 26px -20px rgba(13,96,76,.65), inset 0 1px 0 rgba(255,255,255,.9);
+    }
+    #patient-readiness-upgrade .cc-ru-jcard{
+      padding:13px 16px;border-radius:17px;background:rgba(255,255,255,.72);border:1px solid var(--ccru-line);
+      box-shadow:0 14px 34px -26px rgba(16,35,38,.42), inset 0 1px 0 rgba(255,255,255,.8);
+      transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s,background .35s;
+    }
+    #patient-readiness-upgrade .cc-ru-jcard:hover{transform:translateX(4px);border-color:rgba(13,96,76,.22);box-shadow:0 18px 38px -25px rgba(13,96,76,.40);}
+    #patient-readiness-upgrade .cc-ru-jstep.is-final .cc-ru-jnum{color:#fff;background:linear-gradient(135deg,var(--ccru-emerald-bright),var(--ccru-emerald));box-shadow:0 0 0 7px rgba(24,137,108,.09),0 18px 32px -20px rgba(13,96,76,.75);}
+    #patient-readiness-upgrade .cc-ru-jstep.is-final .cc-ru-jcard{border-color:rgba(24,137,108,.28);background:linear-gradient(180deg,#ffffff,#f0fbf4);box-shadow:0 22px 48px -28px rgba(13,96,76,.48);}
+    #patient-readiness-upgrade .cc-ru-je{font-family:var(--ccru-ui);font-weight:800;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ccru-emerald);}
+    #patient-readiness-upgrade .cc-ru-jt{font-size:13.2px;line-height:1.45;color:var(--ccru-ink-soft);margin-top:4px;}
+    #patient-readiness-upgrade .cc-ru-jstep.is-final .cc-ru-jt{color:#25443f;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep .cc-ru-jnum{animation:ccru-stepNode 6.6s ease-in-out infinite;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep .cc-ru-jcard{animation:ccru-stepCard 6.6s ease-in-out infinite;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(1) .cc-ru-jnum,
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(1) .cc-ru-jcard{animation-delay:0s;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(2) .cc-ru-jnum,
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(2) .cc-ru-jcard{animation-delay:.85s;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(3) .cc-ru-jnum,
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(3) .cc-ru-jcard{animation-delay:1.7s;}
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(4) .cc-ru-jnum,
+    #patient-readiness-upgrade.cc-ru-inview .cc-ru-jstep:nth-child(4) .cc-ru-jcard{animation-delay:2.55s;}
+    @keyframes ccru-stepNode{
+      0%,20%,100%{transform:scale(1)}
+      8%{transform:scale(1.09);box-shadow:0 0 0 8px rgba(119,229,173,.18),0 14px 34px -18px rgba(13,96,76,.55)}
+    }
+    @keyframes ccru-stepCard{
+      0%,20%,100%{transform:none;border-color:var(--ccru-line);background:rgba(255,255,255,.72)}
+      8%{transform:translateX(5px);border-color:rgba(24,137,108,.32);background:rgba(231,248,238,.85)}
+    }
+    #patient-readiness-upgrade .cc-ru-jclose{font-family:var(--ccru-serif);font-style:italic;font-size:16px;line-height:1.45;color:var(--ccru-emerald);margin:20px 0 0;}
+
+    /* right panel */
+    #patient-readiness-upgrade .cc-right-accreditation{
+      position:relative;border-radius:28px;padding:20px;background:rgba(255,255,255,.60);border:1px solid rgba(13,96,76,.13);
+      box-shadow:0 26px 68px -42px rgba(13,96,76,.48), inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    }
+    #patient-readiness-upgrade .cc-right-accreditation::before{
+      content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;border:1px solid rgba(119,229,173,0);box-shadow:0 0 0 rgba(119,229,173,0);
+    }
+    #patient-readiness-upgrade.cc-ru-inview .cc-right-accreditation::before{animation:ccru-panelHandoff 6.6s ease-in-out infinite;}
+    @keyframes ccru-panelHandoff{
+      0%,58%,100%{border-color:rgba(119,229,173,0);box-shadow:0 0 0 rgba(119,229,173,0)}
+      73%{border-color:rgba(24,137,108,.24);box-shadow:0 0 34px -12px rgba(24,137,108,.42)}
+    }
+    #patient-readiness-upgrade .cc-ru-simhead{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+    #patient-readiness-upgrade .cc-ru-live{
+      display:inline-flex;align-items:center;gap:8px;font-family:var(--ccru-ui);font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ccru-emerald);
+    }
+    #patient-readiness-upgrade .cc-ru-live .lv{width:7px;height:7px;border-radius:50%;background:var(--ccru-emerald-bright);box-shadow:0 0 0 0 rgba(24,137,108,.45);animation:ccru-pulse 2s ease-out infinite;}
+    @keyframes ccru-pulse{0%{box-shadow:0 0 0 0 rgba(24,137,108,.42)}70%{box-shadow:0 0 0 9px rgba(24,137,108,0)}100%{box-shadow:0 0 0 0 rgba(24,137,108,0)}}
+
+    #patient-readiness-upgrade .cc-ru-switch{
+      display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none;
+      padding:7px 8px 7px 13px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(13,96,76,.16);
+      box-shadow:0 12px 28px -22px rgba(13,96,76,.55),inset 0 1px 0 rgba(255,255,255,.95);transition:.3s cubic-bezier(.22,1,.36,1);
+    }
+    #patient-readiness-upgrade .cc-ru-switch:hover{transform:translateY(-1px);border-color:rgba(24,137,108,.28);box-shadow:0 16px 32px -22px rgba(13,96,76,.62);}
+    #patient-readiness-upgrade .cc-ru-switch .lab{font-family:var(--ccru-ui);font-weight:800;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ccru-emerald-deep);line-height:1;}
+    #patient-readiness-upgrade .cc-ru-track{width:50px;height:30px;border-radius:999px;position:relative;flex:none;background:linear-gradient(180deg,#f7f2e8,#e9e1d3);border:1px solid rgba(13,96,76,.16);box-shadow:inset 0 2px 6px rgba(16,35,38,.10);transition:.35s;}
+    #patient-readiness-upgrade .cc-ru-knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:linear-gradient(180deg,#ffffff,#edf7ef);box-shadow:0 6px 14px rgba(16,35,38,.18),inset 0 1px 0 #fff;transition:transform .38s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-switch{border-color:rgba(24,137,108,.32);box-shadow:0 0 26px -12px rgba(24,137,108,.7),inset 0 1px 0 #fff;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-track{background:linear-gradient(90deg,var(--ccru-emerald-bright),var(--ccru-mint));border-color:rgba(24,137,108,.36);box-shadow:0 0 20px -6px rgba(24,137,108,.62),inset 0 2px 7px rgba(16,35,38,.12);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-knob{transform:translateX(20px);box-shadow:0 6px 14px rgba(16,35,38,.22),0 0 16px rgba(255,255,255,.78);}
+
+    #patient-readiness-upgrade .cc-ru-profile{
+      border-radius:22px;padding:20px;background:linear-gradient(180deg,#ffffff,#fbf7ee);border:1px solid rgba(16,35,38,.10);
+      box-shadow:0 18px 42px -32px rgba(16,35,38,.46),inset 0 1px 0 #fff;transition:background .6s,border-color .6s,box-shadow .6s,transform .6s;color:var(--ccru-ink);
+    }
+    #patient-readiness-upgrade.is-accredited .cc-ru-profile{
+      transform:translateY(-2px);background:linear-gradient(165deg,#ffffff 0%,#f5fff8 42%,#e4faee 100%);border-color:rgba(24,137,108,.34);
+      box-shadow:0 28px 64px -32px rgba(13,96,76,.56),0 0 0 1px rgba(119,229,173,.26),0 0 42px -14px rgba(24,137,108,.50),inset 0 1px 0 #fff;
+    }
+    #patient-readiness-upgrade .cc-ru-ptop{display:flex;align-items:center;gap:13px;}
+    #patient-readiness-upgrade .cc-ru-mono{width:48px;height:48px;border-radius:14px;flex:none;display:grid;place-items:center;font-family:var(--ccru-ui);font-weight:800;font-size:13px;color:var(--ccru-emerald);background:var(--ccru-mint-soft);border:1px solid rgba(13,96,76,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.9);transition:.55s;letter-spacing:.04em;}
+    #patient-readiness-upgrade .cc-ru-mono-capy{display:none;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-mono-yp{display:none;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-mono-capy{display:inline-block;font-size:27px;line-height:1;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-mono{background:#fff;border-color:rgba(24,137,108,.22);box-shadow:0 14px 26px -18px rgba(13,96,76,.7),0 0 0 7px rgba(119,229,173,.12);}
+    #patient-readiness-upgrade .cc-ru-pname{font-family:var(--ccru-ui);font-weight:800;font-size:18px;letter-spacing:-.01em;color:var(--ccru-ink);}
+    #patient-readiness-upgrade .cc-ru-status{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap;}
+    #patient-readiness-upgrade .cc-ru-basicbadge{font-family:var(--ccru-ui);font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#7d8883;padding:5px 10px;border-radius:999px;background:#f2eee5;border:1px solid rgba(16,35,38,.08);}
+    #patient-readiness-upgrade .cc-ru-badge{display:none;align-items:center;gap:6px;font-family:var(--ccru-ui);font-weight:800;font-size:11px;letter-spacing:.03em;color:#ecfff4;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--ccru-emerald-bright),var(--ccru-emerald));border:1px solid rgba(13,96,76,.24);box-shadow:0 10px 22px -14px rgba(13,96,76,.75),0 0 18px -6px rgba(24,137,108,.75);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-basicbadge{display:none;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-badge{display:inline-flex;}
+    #patient-readiness-upgrade .cc-ru-basemeta{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin:14px 0 0;font-size:13px;color:var(--ccru-ink-mute);transition:color .55s;}
+    #patient-readiness-upgrade .cc-ru-stars{color:var(--ccru-gold);font-weight:800;letter-spacing:.02em;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-basemeta{color:#3d5b55;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-loc-city{display:none;}
+    #patient-readiness-upgrade .cc-ru-basic{font-size:12.5px;color:var(--ccru-ink-mute);margin:11px 0 0;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-basic{display:none;}
+
+    #patient-readiness-upgrade .cc-ru-extra{display:grid;grid-template-rows:0fr;transition:grid-template-rows .62s cubic-bezier(.22,1,.36,1),opacity .48s;opacity:0;margin-top:0;}
+    #patient-readiness-upgrade .cc-ru-extra>div{overflow:hidden;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-extra{grid-template-rows:1fr;opacity:1;margin-top:14px;}
+    #patient-readiness-upgrade .cc-ru-feature{display:inline-flex;align-items:center;gap:7px;font-family:var(--ccru-ui);font-weight:700;font-size:11.5px;color:var(--ccru-emerald);background:rgba(119,229,173,.18);border:1px solid rgba(24,137,108,.18);padding:7px 11px;border-radius:999px;}
+    #patient-readiness-upgrade .cc-ru-feature svg{width:13px;height:13px;}
+    #patient-readiness-upgrade .cc-ru-addr{display:flex;flex-direction:column;gap:7px;margin:13px 0 0;font-size:13px;color:#315a52;}
+    #patient-readiness-upgrade .cc-ru-addr .line{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none;width:fit-content;transition:color .2s;}
+    #patient-readiness-upgrade .cc-ru-addr .line:hover{color:var(--ccru-emerald);text-decoration:underline;}
+    #patient-readiness-upgrade .cc-ru-addr svg{width:14px;height:14px;color:var(--ccru-emerald);flex:none;}
+    #patient-readiness-upgrade .cc-ru-cap{font-family:var(--ccru-ui);font-weight:800;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#6b7b78;margin:14px 0 8px;}
+    #patient-readiness-upgrade .cc-ru-chips{display:flex;flex-wrap:wrap;gap:6px;margin:11px 0 0;}
+    #patient-readiness-upgrade .cc-ru-chip{font-family:var(--ccru-ui);font-weight:600;font-size:11.5px;padding:6px 10px;border-radius:9px;}
+    #patient-readiness-upgrade .cc-ru-chip.spec{color:var(--ccru-emerald);background:#ffffff;border:1px solid rgba(13,96,76,.15);}
+    #patient-readiness-upgrade .cc-ru-chip.ppo{color:#73551f;background:rgba(181,138,60,.13);border:1px solid rgba(181,138,60,.24);}
+    #patient-readiness-upgrade .cc-ru-trust{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:6px;}
+    #patient-readiness-upgrade .cc-ru-trust div{display:flex;align-items:flex-start;gap:7px;font-size:12.5px;color:#3d5b55;line-height:1.35;}
+    #patient-readiness-upgrade .cc-ru-trust svg{width:14px;height:14px;flex:none;margin-top:1px;color:var(--ccru-emerald-bright);}
+
+    #patient-readiness-upgrade .cc-ru-claimwrap{margin-top:16px;}
+    #patient-readiness-upgrade .cc-ru-claim{width:100%;font-family:var(--ccru-ui);font-weight:700;font-size:13.5px;cursor:pointer;padding:12px 18px;border-radius:14px;border:1px dashed rgba(13,96,76,.28);color:var(--ccru-emerald);background:rgba(231,248,238,.48);display:flex;align-items:center;justify-content:center;gap:9px;transition:.35s;}
+    #patient-readiness-upgrade .cc-ru-claim:hover{background:rgba(231,248,238,.82);border-color:rgba(13,96,76,.44);transform:translateY(-1px);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-claim{display:none;}
+    #patient-readiness-upgrade .cc-ru-active{display:none;align-items:center;justify-content:center;gap:8px;font-family:var(--ccru-ui);font-weight:700;font-size:12.5px;color:var(--ccru-emerald);padding:10px;border-radius:12px;background:#ffffff;border:1px solid rgba(13,96,76,.16);}
+    #patient-readiness-upgrade .cc-ru-active svg{width:15px;height:15px;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-active{display:flex;}
+    #patient-readiness-upgrade .cc-ru-actions{display:none;gap:8px;margin-top:10px;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-actions{display:flex;}
+    #patient-readiness-upgrade .cc-ru-act{flex:1;font-family:var(--ccru-ui);font-weight:700;font-size:12.2px;padding:11px 8px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:.25s;text-align:center;text-decoration:none;}
+    #patient-readiness-upgrade .cc-ru-act.solid{color:#fff;background:linear-gradient(180deg,var(--ccru-emerald-bright),var(--ccru-emerald));box-shadow:0 12px 24px -16px rgba(13,96,76,.72);}
+    #patient-readiness-upgrade .cc-ru-act.solid:hover{transform:translateY(-2px);}
+    #patient-readiness-upgrade .cc-ru-act.ghost{color:var(--ccru-emerald);background:#fff;border-color:rgba(13,96,76,.16);}
+    #patient-readiness-upgrade .cc-ru-act.ghost:hover{transform:translateY(-2px);background:#f7fff9;}
+
+    #patient-readiness-upgrade .cc-ru-apply-now{
+      display:none;margin-top:13px;width:100%;align-items:center;justify-content:center;gap:9px;text-align:center;text-decoration:none;
+      font-family:var(--ccru-ui);font-weight:800;font-size:15px;letter-spacing:.005em;border-radius:16px;padding:15px 18px;color:#fff;
+      background:linear-gradient(180deg,#23a984,var(--ccru-emerald));border:1px solid rgba(13,96,76,.22);
+      box-shadow:0 18px 36px -18px rgba(13,96,76,.82),0 0 30px -10px rgba(24,137,108,.62);transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .3s;
+    }
+    #patient-readiness-upgrade.is-accredited .cc-ru-apply-now{display:flex;animation:ccru-applyIn .55s cubic-bezier(.22,1,.36,1) both;}
+    #patient-readiness-upgrade .cc-ru-apply-now:hover{transform:translateY(-2px);box-shadow:0 22px 42px -18px rgba(13,96,76,.88),0 0 38px -8px rgba(24,137,108,.75);}
+    @keyframes ccru-applyIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+    #patient-readiness-upgrade .cc-ru-bigcta{width:100%;margin-top:16px;font-family:var(--ccru-ui);font-weight:800;font-size:15.5px;letter-spacing:.005em;cursor:pointer;border:1px solid rgba(13,96,76,.22);border-radius:16px;padding:16px 22px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;background:linear-gradient(180deg,#23a984,var(--ccru-emerald));box-shadow:0 18px 38px -18px rgba(13,96,76,.74),0 0 26px -10px rgba(24,137,108,.52);transition:.28s cubic-bezier(.22,1,.36,1);}
+    #patient-readiness-upgrade .cc-ru-bigcta:hover{transform:translateY(-2px);box-shadow:0 24px 46px -18px rgba(13,96,76,.82),0 0 34px -10px rgba(24,137,108,.62);}
+    #patient-readiness-upgrade .cc-ru-bigcta .pip{width:8px;height:8px;border-radius:50%;background:#d6ffe9;box-shadow:0 0 10px #9bf0c4;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-bigcta{color:var(--ccru-emerald);background:rgba(255,255,255,.70);border-color:rgba(13,96,76,.18);box-shadow:0 12px 28px -22px rgba(13,96,76,.55);}
+
+    #patient-readiness-upgrade .cc-ru-meter{margin-top:18px;padding:16px;border-radius:18px;background:rgba(255,255,255,.68);border:1px solid rgba(13,96,76,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.9);}
+    #patient-readiness-upgrade .cc-ru-mhead{display:flex;align-items:baseline;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;}
+    #patient-readiness-upgrade .cc-ru-mhead .t{font-family:var(--ccru-ui);font-weight:800;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ccru-emerald);}
+    #patient-readiness-upgrade .cc-ru-mright{display:inline-flex;align-items:center;gap:10px;}
+    #patient-readiness-upgrade .cc-ru-mstate{font-family:var(--ccru-ui);font-weight:700;font-size:13px;color:#48625d;}
+    #patient-readiness-upgrade .cc-ru-mstate .cc-ru-pct{font-family:var(--ccru-serif);font-weight:600;font-size:21px;color:var(--ccru-ink);letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
+    #patient-readiness-upgrade.is-accredited .cc-ru-mstate .cc-ru-pct{color:var(--ccru-emerald);}
+    #patient-readiness-upgrade .cc-ru-lift{display:none;align-items:center;gap:4px;font-family:var(--ccru-ui);font-weight:800;font-size:10.5px;color:var(--ccru-emerald);padding:4px 9px;border-radius:999px;background:rgba(119,229,173,.22);border:1px solid rgba(24,137,108,.24);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-lift{display:inline-flex;}
+    #patient-readiness-upgrade .cc-ru-track2{position:relative;height:10px;border-radius:999px;background:#e6ded1;overflow:hidden;margin-top:12px;}
+    #patient-readiness-upgrade .cc-ru-fill{position:absolute;left:0;top:0;bottom:0;width:38%;border-radius:999px;background:linear-gradient(90deg,#86b6a4,#77e5ad);transition:width .9s cubic-bezier(.22,1,.36,1);}
+    #patient-readiness-upgrade .cc-ru-upseg{position:absolute;top:0;bottom:0;left:38%;width:0;background:linear-gradient(90deg,#77e5ad,#23a984);box-shadow:0 0 14px rgba(24,137,108,.35);transition:width .9s cubic-bezier(.22,1,.36,1);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-upseg{width:44%;}
+    #patient-readiness-upgrade .cc-ru-mk{position:absolute;top:0;bottom:0;width:2px;transform:translateX(-1px);z-index:3;}
+    #patient-readiness-upgrade .cc-ru-mk.basic{background:rgba(16,35,38,.38);}
+    #patient-readiness-upgrade .cc-ru-mk.acc{background:var(--ccru-emerald);box-shadow:0 0 8px rgba(24,137,108,.55);}
+    #patient-readiness-upgrade .cc-ru-mklabels{position:relative;height:13px;margin-top:7px;font-family:var(--ccru-ui);font-weight:800;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;}
+    #patient-readiness-upgrade .cc-ru-mklabels span{position:absolute;transform:translateX(-50%);white-space:nowrap;}
+    #patient-readiness-upgrade .cc-ru-mklabels .basic{color:#80908c;}
+    #patient-readiness-upgrade .cc-ru-mklabels .acc{color:var(--ccru-emerald);}
+    #patient-readiness-upgrade .cc-ru-micro{position:relative;min-height:22px;margin-top:12px;font-size:13px;}
+    #patient-readiness-upgrade .cc-ru-micro span{position:absolute;left:0;top:0;right:0;transition:opacity .5s,transform .5s;color:#61716e;display:flex;align-items:flex-start;gap:9px;line-height:1.4;}
+    #patient-readiness-upgrade .cc-ru-micro .before{opacity:1;}
+    #patient-readiness-upgrade .cc-ru-micro .after{opacity:0;transform:translateY(6px);color:var(--ccru-emerald);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-micro .before{opacity:0;transform:translateY(-6px);}
+    #patient-readiness-upgrade.is-accredited .cc-ru-micro .after{opacity:1;transform:none;}
+    #patient-readiness-upgrade .cc-ru-micro .pin{width:6px;height:6px;border-radius:50%;margin-top:5px;background:var(--ccru-emerald-bright);flex:none;}
+
+    #patient-readiness-upgrade .cc-ru-flow{display:none;}
+    @media (min-width:980px){
+      #patient-readiness-upgrade .cc-ru-flow{display:block;position:absolute;left:-48px;top:50%;width:52px;height:2px;transform:translateY(-50%);z-index:2;}
+      #patient-readiness-upgrade .cc-ru-flow .ln{position:absolute;inset:0;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(24,137,108,.30));}
+      #patient-readiness-upgrade .cc-ru-flow .dot{position:absolute;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ccru-emerald-bright);transform:translate(-50%,-50%);opacity:0;box-shadow:0 0 10px rgba(24,137,108,.6);animation:ccru-flow 2.1s linear infinite;animation-delay:3.55s;}
+      #patient-readiness-upgrade .cc-ru-flow .dot.f2{animation-delay:4.2s;}
+      #patient-readiness-upgrade .cc-ru-flow .dot.f3{animation-delay:4.85s;}
+      #patient-readiness-upgrade.is-accredited .cc-ru-flow .dot{animation-duration:1.25s;}
+    }
+    @keyframes ccru-flow{0%{left:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:100%;opacity:0}}
+
+    @media (max-width:920px){
+      #patient-readiness-upgrade .cc-ru-grid{grid-template-columns:1fr;}
+      #patient-readiness-upgrade .cc-ru-title strong{white-space:normal;}
+    }
+    @media (max-width:560px){
+      #patient-readiness-upgrade.cc-readiness-upgrade{padding:44px 18px;}
+      #patient-readiness-upgrade .cc-ru-trust{grid-template-columns:1fr;}
+      #patient-readiness-upgrade .cc-ru-actions{flex-direction:column;}
+      #patient-readiness-upgrade .cc-ru-switch .lab{font-size:10px;}
+      #patient-readiness-upgrade .cc-ru-simhead{align-items:flex-start;}
+      #patient-readiness-upgrade .cc-ru-mright{width:100%;justify-content:space-between;}
+      #patient-readiness-upgrade .cc-ru-journey::after{display:none;}
+    }
+    @media (prefers-reduced-motion:reduce){
+      #patient-readiness-upgrade *{animation:none!important;transition-duration:.001ms!important;}
+      #patient-readiness-upgrade .cc-ru-rise{opacity:1;transform:none;}
+    }
+  </style>
+
+  <div class="cc-ru-grain" aria-hidden="true"></div>
+  <span class="cc-ru-orb o1" aria-hidden="true"></span>
+  <span class="cc-ru-orb o2" aria-hidden="true"></span>
+
+  <div class="cc-ru-container">
+    <div class="cc-ru-grid">
+      <div class="cc-left-readiness">
+        <span class="cc-ru-eyebrow cc-ru-rise"><span class="dot"></span>Patient readiness</span>
+
+        <h2 id="cc-ru-title" class="cc-ru-title cc-ru-rise d1">
+          <span class="l1">First Yes: <span class="nowrap">PPO Insurance</span>.</span>
+          <span class="l2">Second yes: <strong>Your Practice</strong>.</span>
+        </h2>
+
+        <p class="cc-ru-intro cc-ru-rise d2">CoverCapy helps the coverage decision feel clear first. Then Capy Accreditation helps your office look more complete, credible, and easy to contact when the patient is choosing who to book.</p>
+
+        <ol class="cc-ru-journey cc-ru-rise d2">
+          <li class="cc-ru-jstep">
+            <span class="cc-ru-jnum">1</span>
+            <div class="cc-ru-jcard">
+              <div class="cc-ru-je">PPO coverage is active</div>
+              <div class="cc-ru-jt">They already said yes to insurance.</div>
+            </div>
+          </li>
+          <li class="cc-ru-jstep">
+            <span class="cc-ru-jnum">2</span>
+            <div class="cc-ru-jcard">
+              <div class="cc-ru-je">Cost feels clearer</div>
+              <div class="cc-ru-jt">They checked treatment estimates, annual max, and possible out-of-pocket cost.</div>
+            </div>
+          </li>
+          <li class="cc-ru-jstep">
+            <span class="cc-ru-jnum">3</span>
+            <div class="cc-ru-jcard">
+              <div class="cc-ru-je">Trust becomes the decision</div>
+              <div class="cc-ru-jt">They are asking, &lsquo;which office feels right for me?&rsquo;</div>
+            </div>
+          </li>
+          <li class="cc-ru-jstep is-final">
+            <span class="cc-ru-jnum">4</span>
+            <div class="cc-ru-jcard">
+              <div class="cc-ru-je">Ready to choose</div>
+              <div class="cc-ru-jt">This is where <strong>Your Practice</strong> should appear.</div>
+            </div>
+          </li>
+        </ol>
+
+        <p class="cc-ru-jclose cc-ru-rise d3">That is the moment a stronger profile can turn interest into action.</p>
       </div>
-      <h2>Why this matters for <em>your practice.</em></h2>
-      <p>
-        CoverCapy does not begin with cold traffic. We help patients understand PPO benefits, treatment costs, financing, and care options before they choose a dentist. That trust is what makes Capy Accreditation valuable because patients arrive informed, motivated, and closer to booking.
-      </p>
+
+      <div class="cc-right-accreditation cc-ru-rise d2">
+        <span class="cc-ru-flow" aria-hidden="true"><span class="ln"></span><span class="dot f1"></span><span class="dot f2"></span><span class="dot f3"></span></span>
+
+        <div class="cc-ru-simhead">
+          <span class="cc-ru-live"><span class="lv" aria-hidden="true"></span>Profile preview</span>
+          <button type="button" class="cc-ru-switch" role="switch" aria-checked="false" data-cc-activate aria-label="Preview Capy Accreditation upgrade">
+            <span class="lab">Preview upgrade</span>
+            <span class="cc-ru-track" aria-hidden="true"><span class="cc-ru-knob"></span></span>
+          </button>
+        </div>
+
+        <article class="cc-ru-profile" aria-live="polite">
+          <div class="cc-ru-ptop">
+            <span class="cc-ru-mono" aria-hidden="true"><span class="cc-ru-mono-yp">KYT</span><span class="cc-ru-mono-capy">&#129451;</span></span>
+            <div>
+              <div class="cc-ru-pname">KYT Dental Services</div>
+              <div class="cc-ru-status">
+                <span class="cc-ru-basicbadge">Unclaimed Profile</span>
+                <span class="cc-ru-badge">&#129451; Capy Accredited</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cc-ru-basemeta">
+            <span class="cc-ru-stars">&#9733; 4.9</span>
+            <span>&middot; 139 reviews</span>
+            <span class="cc-ru-loc-city">&middot; Fountain Valley, CA</span>
+            <span>&middot; 0.4 mi away</span>
+          </div>
+
+          <p class="cc-ru-basic">Unclaimed profile &middot; city-level visibility</p>
+
+          <div class="cc-ru-extra">
+            <div>
+              <span class="cc-ru-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Appears in PPO-friendly searches</span>
+
+              <div class="cc-ru-addr">
+                <a class="line" href="https://share.google/64WtauIlBBUGETpcM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>11180 Warner Ave, Suite 251, Fountain Valley, CA 92708</a>
+                <a class="line" href="tel:+18335983368"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1Z"/></svg>(833) 598-3368</a>
+              </div>
+
+              <div class="cc-ru-cap">Specialties</div>
+              <div class="cc-ru-chips">
+                <span class="cc-ru-chip spec">Preventive Dentistry</span>
+                <span class="cc-ru-chip spec">Implants</span>
+                <span class="cc-ru-chip spec">Cosmetic Dentistry</span>
+                <span class="cc-ru-chip spec">PPO Planning</span>
+              </div>
+
+              <div class="cc-ru-cap">PPO networks</div>
+              <div class="cc-ru-chips">
+                <span class="cc-ru-chip ppo">UnitedHealthcare</span>
+                <span class="cc-ru-chip ppo">MetLife</span>
+                <span class="cc-ru-chip ppo">Guardian</span>
+                <span class="cc-ru-chip ppo">Ameritas</span>
+                <span class="cc-ru-chip ppo">Humana</span>
+              </div>
+
+              <div class="cc-ru-cap">What patients see</div>
+              <div class="cc-ru-trust">
+                <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>Verified PPO details</div>
+                <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>Claimed practice profile</div>
+                <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>Full address and phone visible</div>
+                <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>Treatment cost planning friendly</div>
+                <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>Monthly payment guidance</div>
+                <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>Local profile enhanced</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cc-ru-claimwrap">
+            <button type="button" class="cc-ru-claim" data-cc-activate>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 5v14M5 12h14"/></svg>
+              Claim this profile
+            </button>
+            <div class="cc-ru-actions">
+              <a class="cc-ru-act solid" href="https://share.google/64WtauIlBBUGETpcM" target="_blank" rel="noopener">View Profile</a>
+              <a class="cc-ru-act ghost" href="https://www.kytdentalservices.com/contact" target="_blank" rel="noopener">Request Appointment</a>
+              <a class="cc-ru-act ghost" href="tel:+18335983368">Call Office</a>
+            </div>
+          </div>
+        </article>
+
+        <button type="button" class="cc-ru-bigcta" data-cc-activate aria-pressed="false">
+          <span class="pip" aria-hidden="true"></span><span data-cc-cta-text>Preview Capy Accredited Profile</span>
+        </button>
+
+        <div class="cc-ru-meter">
+          <div class="cc-ru-mhead">
+            <span class="t">Profile visibility preview</span>
+            <span class="cc-ru-mright">
+              <span class="cc-ru-mstate"><span data-cc-state>Unclaimed Profile</span> &middot; <span class="cc-ru-pct" data-cc-pct>38%</span></span>
+              <span class="cc-ru-lift" data-cc-lift>&#9650; +44 profile lift</span>
+            </span>
+          </div>
+          <div class="cc-ru-track2">
+            <div class="cc-ru-fill" data-cc-bar></div>
+            <div class="cc-ru-upseg"></div>
+            <span class="cc-ru-mk basic" style="left:38%"></span>
+            <span class="cc-ru-mk acc" style="left:82%"></span>
+          </div>
+          <div class="cc-ru-mklabels">
+            <span class="basic" style="left:38%">Unclaimed</span>
+            <span class="acc" style="left:82%">Accredited</span>
+          </div>
+          <div class="cc-ru-micro">
+            <span class="before"><span class="pin"></span>Patients can see your profile exists.</span>
+            <span class="after"><span class="pin"></span>Nearby patients get more reasons to trust and contact you.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+  (function () {
+    var section = document.getElementById('patient-readiness-upgrade');
+    if (!section || section.dataset.ccInit) return;
+    section.dataset.ccInit = '1';
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pctEl = section.querySelector('[data-cc-pct]');
+    var barEl = section.querySelector('[data-cc-bar]');
+    var stateEl = section.querySelector('[data-cc-state]');
+    var ctaText = section.querySelector('[data-cc-cta-text]');
+    var controls = section.querySelectorAll('[data-cc-activate]');
+    var FROM = 38, TO = 82;
+    var accredited = false, raf = null;
+
+    function countTo(target) {
+      if (!pctEl) return;
+      var start = parseInt(pctEl.textContent, 10) || FROM;
+      if (reduce) { pctEl.textContent = target + '%'; return; }
+      var t0 = null, dur = 880;
+      cancelAnimationFrame(raf);
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        pctEl.textContent = Math.round(start + (target - start) * eased) + '%';
+        if (p < 1) raf = requestAnimationFrame(step);
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    function setState(on) {
+      accredited = on;
+      section.classList.toggle('is-accredited', on);
+      if (barEl) barEl.style.width = (on ? TO : FROM) + '%';
+      countTo(on ? TO : FROM);
+      if (stateEl) stateEl.textContent = on ? 'Capy Accredited' : 'Unclaimed Profile';
+      controls.forEach(function (c) {
+        if (c.hasAttribute('aria-pressed')) c.setAttribute('aria-pressed', String(on));
+        if (c.getAttribute('role') === 'switch') c.setAttribute('aria-checked', String(on));
+      });
+      if (ctaText) ctaText.textContent = on ? 'Capy Accredited preview active' : 'Preview Capy Accredited Profile';
+    }
+
+    controls.forEach(function (c) {
+      c.addEventListener('click', function (e) { e.preventDefault(); setState(!accredited); });
+    });
+
+    if ('IntersectionObserver' in window && !reduce) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { section.classList.add('cc-ru-inview'); io.disconnect(); } });
+      }, { threshold: 0.12 });
+      io.observe(section);
+    } else { section.classList.add('cc-ru-inview'); }
+
+    if (barEl) barEl.style.width = FROM + '%';
+  })();
+  </script>
 </section>
 
 
@@ -3923,53 +6722,35 @@ body {
   </div>
 </section>
 
-<!-- =========================================================
-     PPO PATIENT CONVERSION MOMENT
-     ========================================================= -->
-<section class="network-map conversion-moment" id="network">
-  <div class="wrap">
-    <div class="network-map__panel conversion-moment__panel reveal">
-      <div>
-        <p class="eyebrow">Why this matters</p>
-        <h2>Patients are not cold traffic.<br><em>They are ready<br>to choose.</em></h2>
-        <p>They have compared PPO plans, checked affordability, and reached the point where a trusted office makes the difference. Capy Accreditation helps your practice look more credible when that decision happens.</p>
-        <div class="conversion-moment__cta">
-          <button class="btn btn--accredit" onclick="openMembershipModal('featured')">Activate Capy Accreditation</button>
-          <button class="btn btn--ghost" onclick="document.getElementById('directory').scrollIntoView({behavior:'smooth'})">Find your practice</button>
-        </div>
-      </div>
-      <div class="map-grid conversion-grid" aria-label="Patient conversion drivers for dental practices">
-        <div class="map-tile conversion-tile"><div class="map-tile__type">Coverage is active</div><strong>The plan decision is done</strong><span>The patient is looking for the office where benefits turn into real care.</span></div>
-        <div class="map-tile conversion-tile"><div class="map-tile__type">Affordability is clearer</div><strong>Cost anxiety is lower</strong><span>Patients have more context before they call, which helps the first visit feel easier.</span></div>
-        <div class="map-tile conversion-tile conversion-tile--accent"><div class="map-tile__type">Capy Accreditation</div><strong>The orange badge creates trust</strong><span>Your office gets a visible signal that can turn patient interest into action.</span></div>
-        <div class="map-tile conversion-tile conversion-tile--platinum"><div class="map-tile__type">Annual commitment</div><strong>Lock the founder rate</strong><span>Practices that see the value can choose the annual Capy Accreditation path and stay visible while their city is still open.</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- =========================================================
      PRICING
      ========================================================= -->
-<section class="pricing" id="pricing">
+<section class="pricing pricing--mailerlite" id="pricing">
   <div class="wrap">
     <div class="pricing__head reveal">
       <p class="eyebrow">Choose your visibility path</p>
-      <h2>Start free.<br>Then activate <span class="serif-em">Capy Accreditation.</span></h2>
-      <p>Most practices begin by claiming the profile. When the value is clear, Capy Accreditation becomes the paid trust layer. Growth-ready offices can then compare whether Platinum Elite review is worth the larger market opportunity.</p>
-      <div class="billing-toggle" id="billingToggle">
-        <button class="billing-btn is-active" data-billing="monthly">Monthly</button>
-        <button class="billing-btn billing-btn--annual" data-billing="annual">Annual <span class="billing-save">save 20%</span></button>
+      <h2>Claim free.<br><span class="serif-em">Lock the Founder Rate when you are ready.</span></h2>
+      <p>Start by claiming your profile, then upgrade into Capy Accreditation when you want the green trust signal patients understand. Founder pricing requires a 12 month commitment and is available while your market is still open.</p>
+
+      <div class="billing-row" aria-label="Billing options">
+        <div class="billing-toggle" id="billingToggle">
+          <button class="billing-btn billing-btn--annual is-active" data-billing="annual">20% Annual <span class="billing-save">Founder rate</span></button>
+          <button class="billing-btn" data-billing="monthly">Monthly flexibility</button>
+        </div>
+        <div class="pricing-fomo"><span>Founder rate</span> 20% annual pricing • 12 month commitment required.</div>
       </div>
     </div>
 
-    <div class="price-grid" id="priceGrid" data-billing="monthly">
-      <!-- FREE -->
-      <article class="price-card reveal" data-plan="free">
+    <div class="price-grid price-grid--value-first" id="priceGrid" data-billing="annual">
+      <!-- FREE CLAIM , tier 1 -->
+      <article class="price-card price-card--free reveal" data-plan="free">
+        <span class="price-card__pill">Tier 1 · Free claim</span>
         <div class="price-card__intro">
           <div class="price-card__icon">○</div>
           <h3>Free Claimed Profile</h3>
-          <div class="price-card__sub">Protect your presence.</div>
+          <div class="price-card__sub">Hollow dotted profile claim.</div>
           <div class="price-card__price"><span class="num">$0</span><span class="unit">always</span></div>
           <p class="price-card__value-copy">Claim your listing before someone else controls the conversation in your city.</p>
         </div>
@@ -3997,20 +6778,20 @@ body {
         </div>
       </article>
 
-      <!-- CAPY ACCREDITED , dominant -->
-      <article class="price-card price-card--featured reveal" data-plan="featured">
-        <div class="ribbon-clip"><div class="founder-ribbon">Founder's Rate</div></div>
-        <span class="price-card__pill">Most Popular</span>
+      <!-- CAPY ACCREDITED , featured middle -->
+      <article class="price-card price-card--featured price-card--best reveal" data-plan="featured">
+        <div class="price-card__top-band">✦ Featured · 20% Annual</div>
+        <div class="ribbon-clip"><div class="founder-ribbon">FOUNDER RATE</div></div>
         <div class="price-card__intro">
           <div class="price-card__icon">◆</div>
           <h3>Capy Accredited</h3>
-          <div class="price-card__sub">Patient facing trust badge.</div>
+          <div class="price-card__sub">Green patient facing trust badge.</div>
           <div class="price-card__price">
-            <span class="price-monthly"><span class="num">$369</span><span class="unit">/ month · cancel anytime</span></span>
-            <span class="price-annual"><span class="price-was">$369</span><span class="num">$295</span><span class="price-save-pill">Save 20%</span><span class="unit">/ month · 12 month commitment</span></span>
+            <span class="price-monthly"><span class="num">$369</span><span class="unit">/ month · monthly flexibility</span></span>
+            <span class="price-annual"><span class="price-was">$369</span><span class="num">$285</span><span class="unit">/ month · 12 month commitment</span></span>
           </div>
-          <div class="annual-savings-line">Annual founder rate locks in the strongest Capy Accreditation value.</div>
-          <p class="price-card__value-copy">For practices ready to move beyond a free listing with the patient-facing Capy Accredited badge, stronger trust signals, and a smoother path from search to scheduled visit.</p>
+          <div class="annual-savings-line">20% annual pricing • 12 month commitment required</div>
+          <p class="price-card__value-copy">For practices ready to move beyond a free listing with a clearer trust signal, stronger PPO patient context, and a smoother path from search to scheduled visit.</p>
         </div>
         <div class="price-card__actions">
           <button class="btn btn--accredit" onclick="openMembershipModal('featured')">Activate Capy Accreditation</button>
@@ -4023,31 +6804,32 @@ body {
           <div class="plan-details__inner">
             <ul>
               <li>Capy Accreditation placement in city searches</li>
-              <li>Capy Accredited badge on patient facing results</li>
-              <li>Stronger trust signals for PPO patients</li>
+              <li>Green Capy Accredited badge on patient facing results</li>
+              <li>Stronger trust signals for PPO ready patients</li>
               <li>Better visibility for ready to book patients</li>
               <li>Ideal for offices with organized scheduling</li>
               <li>Built for practices that can streamline production</li>
             </ul>
             <p class="price-card__support">Best for practices ready to compete for stronger visibility and more prepared patient conversations.</p>
-            <div class="price-card__micro">Founder pricing locked for active members. Eligibility preparation does not guarantee insurance benefits, coverage, or payment.</div>
-            <button class="price-card__text-cta" onclick="openMembershipModal('featured')">Ready for the badge patients actually understand? Activate Capy Accreditation.</button>
+            <div class="price-card__micro">Founder pricing requires a 12 month commitment. This annual rate is already applied while it is still available in your market.</div>
+            <button class="price-card__text-cta" onclick="openMembershipModal('featured')">Ready for the green badge patients understand? Activate Capy Accreditation.</button>
           </div>
         </div>
       </article>
 
-      <!-- PLATINUM , application-based vetted tier, purple -->
+      <!-- PLATINUM , exclusive orange tier -->
       <article class="price-card price-card--platinum reveal" data-plan="platinum">
-        <span class="price-card__pill">Upgrade Review</span>
+        <span class="price-card__pill">Tier 3 · Exclusive review</span>
         <div class="price-card__intro">
           <div class="price-card__icon">◆</div>
           <h3>Platinum Elite</h3>
-          <div class="price-card__sub">Optional premium review.</div>
+          <div class="price-card__sub">Orange premium review lane.</div>
           <div class="price-card__price">
             <div class="platinum-price__from">Starting at</div>
             <div class="platinum-price__amount">$1,499<span style="font-size:.9rem; font-weight:500; color:var(--ink-mid);">/mo</span></div>
           </div>
-          <p class="price-card__value-copy">For practices that already see the value of Capy Accreditation and want to know whether the larger visibility lane is worth it. Platinum Elite is reviewed by market, treatment fit, and profile quality before premium placement goes live.</p>
+          <div class="platinum-scarce"><span>Limited by location</span> We review market availability before premium visibility goes live.</div>
+          <p class="price-card__value-copy">For offices that want to welcome more new patients and are ready to be reviewed for the larger local visibility lane.</p>
         </div>
         <div class="price-card__actions">
           <button class="btn btn--platinum btn--shimmer" onclick="openMembershipModal('platinum')">Apply for Platinum Elite</button>
@@ -4059,29 +6841,27 @@ body {
         <div class="plan-details" id="details-platinum">
           <div class="plan-details__inner">
             <ul>
-              <li>Top placement in primary location</li>
-              <li>Priority above Capy Accredited offices in eligible nearby cities</li>
-              <li>Surrounding city advantage up to 20 miles</li>
+              <li>Reviewed premium visibility in primary location</li>
+              <li>Stronger positioning where market inventory is available</li>
               <li>Built for offices ready for more patient demand</li>
               <li>Strong fit for 2+ dentist practices</li>
               <li>Ideal for expansion minded or multi location offices</li>
               <li>Also valuable for cosmetic, implant, and restorative growth</li>
             </ul>
-            <p class="price-card__support">Best for established practices, multi location groups, and growth ready offices that want premium market positioning now.</p>
-            <div class="price-card__micro">Capy Accreditation is not required first, but many practices use it as the natural step before deciding whether Platinum Elite is worth the larger commitment.</div>
-            <button class="price-card__text-cta" onclick="openMembershipModal('platinum')">Ready for premium visibility? Apply for Platinum Elite.</button>
+            <p class="price-card__support">Best for established practices, multi location groups, and growth ready offices that want premium market positioning.</p>
+            <div class="price-card__micro">Platinum Elite requires application review, market availability, and profile fit. Placement is not automatic.</div>
+            <button class="price-card__text-cta" onclick="openMembershipModal('platinum')">Ready for the larger local lane? Apply for Platinum Elite.</button>
           </div>
         </div>
       </article>
     </div>
 
     <p class="pricing__footnote">
-      Capy Accreditation availability varies by city, and Platinum placements are intentionally limited. Platinum Elite requires application review and market availability approval. CoverCapy does not
-      guarantee a specific number of patient leads, appointments, or revenue. Actual outcomes vary by location,
-      category availability, profile completeness, patient demand, and marketplace rules.
+      Founder rate availability varies by city and launch market. Capy Accreditation and Platinum Elite do not guarantee a specific number of patient leads, appointments, revenue, insurance coverage, or payment. Actual outcomes vary by location, profile completeness, patient demand, treatment category, and marketplace rules.
     </p>
   </div>
 </section>
+
 
 <!-- =========================================================
      LA COUNTY VISIBILITY PREVIEW (Platinum upsell)
@@ -4172,103 +6952,7 @@ body {
       <p>If your office is looking to welcome more new patients, Platinum Elite is worth looking into. Availability is intentionally limited by location, so review is reserved for practices that fit the market and can support stronger patient demand.</p>
       <div class="ranking__close-cta">
         <button class="btn btn--platinum btn--lg" onclick="openMembershipModal('platinum')">Apply for Platinum Elite</button>
-        <a class="btn btn--outline btn--lg" href="#vetting">View Platinum market rules</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     WHY DENTISTS CARE
-     ========================================================= -->
-<section class="why">
-  <div class="wrap">
-    <div class="why__head reveal">
-      <p class="eyebrow">Why dentists care</p>
-      <h2>CoverCapy patients arrive with <em>the math already done.</em></h2>
-    </div>
-    <div class="why-grid">
-      <article class="why-card reveal">
-        <div class="why-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></div>
-        <h4>They activated PPO coverage</h4>
-        <p>Patients use CoverCapy to understand coverage, waiting periods, and in network benefits before they book.</p>
-      </article>
-      <article class="why-card reveal">
-        <div class="why-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v20M5 7l7-4 7 4"/><circle cx="12" cy="14" r="4"/></svg></div>
-        <h4>They estimated treatment cost</h4>
-        <p>Crowns, implants, Invisalign, restorative work, patients arrive understanding their estimated out of pocket range.</p>
-      </article>
-      <article class="why-card reveal">
-        <div class="why-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 10l9-7 9 7v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21V12h6v9"/></svg></div>
-        <h4>They understand financing</h4>
-        <p>Insurance covers first. Third party plans handle the rest. Patients arrive ready to discuss the path.</p>
-      </article>
-      <article class="why-card reveal">
-        <div class="why-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h4>They are closer to yes</h4>
-        <p>A patient who understands PPO savings and payment pathways accepts treatment faster.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     VETTING (Platinum)
-     ========================================================= -->
-<section class="vetting" id="vetting">
-  <div class="wrap">
-    <div class="vetting__inner reveal">
-      <div class="vetting__left">
-        <p class="eyebrow">Platinum Elite</p>
-        <h2>Premium placement. <em>Reviewed before it goes live.</em></h2>
-        <p>
-          Platinum Elite is the upgrade path for practices that want more than a claimed profile and Capy Accreditation. Review looks at profile completeness, treatment category fit, local market availability, and marketplace balance before premium visibility goes live.
-        </p>
-        <ol class="vetting__steps">
-          <li>
-            <div>
-              <strong>Apply for Platinum Elite</strong>
-              <span>Request premium review when your practice is ready for a larger visibility commitment.</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <strong>Complete profile verification</strong>
-              <span>Provide NPI, office details, PPO plans, treatment strengths, financing options, and profile assets.</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <strong>Go live where market rules allow</strong>
-              <span>Placement depends on location, patient relevance, profile quality, specialty mix, and available inventory.</span>
-            </div>
-          </li>
-        </ol>
-        <div class="discovery-placement">
-          <div class="discovery-placement__title">Localized Discovery Placement</div>
-          <p>Eligible Platinum Elite practices may receive expanded visibility across localized treatment and PPO discovery experiences within CoverCapy.</p>
-          <div class="discovery-placement__chips">
-            <span class="discovery-chip">Best PPO dentist in Irvine</span>
-            <span class="discovery-chip">Invisalign PPO dentist near me</span>
-            <span class="discovery-chip">Dental implants with PPO benefits</span>
-            <span class="discovery-chip">Veneers consultation Newport Beach</span>
-            <span class="discovery-chip">Cosmetic dentist with financing friendly options</span>
-          </div>
-        </div>
-      </div>
-      <div class="vetting__right">
-        <h3>Market rules</h3>
-        <div class="vetting__refund">
-          <strong>Platinum is vetted, limited, and not automatic.</strong> We review premium placements by city and treatment category to protect trust, quality, and marketplace balance.
-        </div>
-        <ul class="vetting__reqs">
-          <li><span class="vetting__check">✓</span><span><strong>Capy Accreditation is the natural step before Platinum review</strong></span></li>
-          <li><span class="vetting__check">✓</span><span>Profile completeness and NPI verification</span></li>
-          <li><span class="vetting__check">✓</span><span>Treatment category fit and local market availability</span></li>
-          <li><span class="vetting__or">Pref</span><span>Cosmetic, implant, restorative, or advanced treatment readiness</span></li>
-          <li><span class="vetting__or">Pref</span><span>Technology forward diagnostics, strong reviews, or financing options</span></li>
-        </ul>
-        <button class="btn btn--platinum btn--block" onclick="openMembershipModal('platinum')">Apply for Platinum Elite</button>
+        
       </div>
     </div>
   </div>
@@ -4604,10 +7288,10 @@ const modalSuccess = document.getElementById('modalSuccess');
 
 const forms = {
   free: {
-    tier: 'Free Claimed Profile',
+    tier: 'Capy Accreditation · Founder Annual Checkout',
     title: 'Claim Your Free Profile',
-    sub: 'Verify your practice details and improve your presence above unclaimed listings.',
-    submit: 'Submit Free Claim',
+    sub: 'Founder pricing requires a 12 month commitment. Annual payment is based on 12 x $285. Use coupon code FOUNDER for an additional 10% off the annual total at checkout.',
+    submit: 'Continue to Founder Annual Checkout',
     success: 'Profile claim received. CoverCapy will review your practice details.',
     fields: [
       { name: 'practice_name', label: 'Practice Name', type: 'text', required: true },
@@ -4654,16 +7338,16 @@ const forms = {
     ],
   },
   featured: {
-    tier: 'Capy Accredited',
+    tier: 'Capy Accreditation · Founder Annual Checkout',
     title: 'Activate Capy Accreditation',
-    sub: 'Capy Accreditation gives eligible practices the patient facing Capy Accredited badge and stronger city visibility when patient relevance is equal. Annual founder pricing is $295 per month with a 12 month commitment.',
-    submit: 'Continue to Annual Activation',
+    sub: 'Founder pricing requires a 12 month commitment. Annual payment is based on 12 x $285. Use coupon code FOUNDER for an additional 10% off the annual total at checkout.',
+    submit: 'Continue to Founder Annual Checkout',
     checkout: 'capy-accredited',
     accredit: true,
     readiness: {
       title: "What you'll need",
       time: 'About 2 minutes',
-      items: ['Practice name', 'Dentist / owner name', 'NPI number', 'Practice email', 'Office phone', 'ZIP code', 'PPO carriers accepted', 'Financing availability'],
+      items: ['Practice name', 'Dentist / owner name', 'NPI number', 'Practice email', 'Office phone', 'ZIP code', 'PPO carriers accepted', 'Financing availability', 'Founder checkout: 12 x $285 with coupon code FOUNDER'],
     },
     fields: [
       { name: 'practice_name', label: 'Practice Name', type: 'text', required: true },
@@ -4682,7 +7366,7 @@ const forms = {
       { name: 'notes', label: 'Optional notes', type: 'textarea' },
       { type: 'checkbox', name: 'agreement', required: true, label: 'I confirm I represent this practice and understand visibility and placement may vary by market, patient relevance, and CoverCapy marketplace rules.' },
     ],
-    disclaimer: 'Capy Accreditation membership does not guarantee a specific ranking, patient volume, appointments, revenue, insurance coverage, or payment.',
+    disclaimer: 'Founder pricing requires a 12 month commitment. Annual checkout is based on 12 x $285 = $3,420 before coupon. Coupon code FOUNDER provides an additional 10% off the annual payment while available. Capy Accreditation membership does not guarantee a specific ranking, patient volume, appointments, revenue, insurance coverage, or payment.',
   },
   platinum: {
     tier: 'Platinum Elite · Application Review',
@@ -4889,7 +7573,7 @@ const faqItems = [
   {
     kicker: 'Founder annual rate',
     question: 'Why choose the annual plan?',
-    answer: 'The monthly path is $369/month. The annual commitment lowers the founder rate to $295/month with a 12 month commitment, which is the strongest value for practices that already believe the Capy Accredited badge will help them convert patient interest into booked care.',
+    answer: 'The monthly path is $369/month. The annual commitment lowers the founder rate to $285/month with a 12 month commitment, which is the strongest value for practices that already believe the Capy Accredited badge will help them convert patient interest into booked care.',
     takeaway: '<strong>Best fit:</strong> Claim free first, understand the value, then use the annual Capy Accreditation rate when you are ready to commit.'
   },
   {
@@ -4954,6 +7638,8 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
+
 <!-- CoverCapy footer component mount -->
 <div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
@@ -4975,9 +7661,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     document.body.appendChild(s);
   });
 
-  const runScripts = (root) => {
-    root.querySelectorAll('script').forEach(old => {
-      if (old.id === 'cc-shared-shell-loader') return;
+  const runScripts = (scripts) => {
+    scripts.forEach(old => {
       const fresh = document.createElement('script');
       Array.from(old.attributes).forEach(attr => fresh.setAttribute(attr.name, attr.value));
       fresh.textContent = old.textContent;
@@ -4993,10 +7678,11 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       if (!res.ok) throw new Error(html + ' returned ' + res.status);
       const wrapper = document.createElement('div');
       wrapper.innerHTML = await res.text();
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
       const parent = mount.parentNode;
       while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
       parent.removeChild(mount);
-      runScripts(parent);
+      runScripts(injectedScripts);
       await loadScript(script);
       return true;
     } catch (err) {
