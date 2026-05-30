@@ -10,6 +10,10 @@
   gtag('config', 'G-XNBPGSZ1LZ');
 </script>
 
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8699915070570206"
+     crossorigin="anonymous"></script>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -65,10 +69,10 @@
     {
       "@type": "SoftwareApplication",
       "@id": "https://www.covercapy.com/#cost-calculator",
-      "name": "CoverCapy Dental Treatment Cost Calculator",
+      "name": "CoverCapy Dental Treatment Cost Estimator",
       "applicationCategory": "HealthApplication",
       "operatingSystem": "Web",
-      "url": "https://www.covercapy.com/dental-treatment-cost-calculator.html",
+      "url": "https://www.covercapy.com/dental-treatment-cost-estimator.html",
       "description": "Estimate crown, root canal, implant, cleaning, and other dental treatment costs with PPO insurance context."
     },
     {
@@ -4298,11 +4302,289 @@ body.js-reveals .reveal.in,
 }
 
 
-/* Component mount guards — keeps nav/hero/footer space stable while external HTML loads */
+/* Component mount guards — keeps nav/hero space stable while external HTML loads */
 #cc-nav-mount { min-height: 72px; position: relative; z-index: 100; }
 #cc-hero-mount { min-height: 80vh; position: relative; z-index: 1; }
-#cc-footer-mount { min-height: 420px; position: relative; z-index: 1; }
 .hero-mobile-slider { max-width: 100vw; overflow: hidden; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   CoverCapy full-bleed crawlable footer
+   Keep this inline on index.html so AdSense and crawlers can see legal links in view-source.
+   ════════════════════════════════════════════════════════════════ */
+.cc-compliance-footer {
+  --cc-footer-bg: var(--paper, #FFFCF6);
+  --cc-footer-ink: var(--ink, #14201F);
+  --cc-footer-muted: var(--ink-mid, #556A67);
+  --cc-footer-line: rgba(20,32,31,.10);
+  --cc-footer-line-2: rgba(20,32,31,.15);
+  --cc-footer-card: rgba(255, 252, 246, 0.58);
+  --cc-footer-green: var(--deep, #0E3A33);
+  --cc-footer-green-2: var(--deep-2, #15524A);
+  --cc-footer-gold: var(--gold, #B89456);
+  --cc-footer-lav: var(--lav-d, #826FA6);
+  width: 100%;
+  background:
+    radial-gradient(ellipse 680px 360px at 7% 15%, rgba(200,221,212,.24), transparent 62%),
+    radial-gradient(ellipse 700px 360px at 90% 20%, rgba(233,226,245,.34), transparent 62%),
+    linear-gradient(180deg, rgba(255,252,246,.70), rgba(255,252,246,.96));
+  color: var(--cc-footer-ink);
+  border-top: 1px solid var(--cc-footer-line);
+  padding: clamp(54px, 6vw, 92px) 0 26px;
+}
+.cc-compliance-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.cc-footer-wide {
+  width: min(1760px, calc(100vw - 56px));
+  margin: 0 auto;
+}
+.cc-footer-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: baseline;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--cc-footer-line);
+}
+.cc-footer-kicker {
+  font-family: var(--ff-serif, Georgia, serif);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--cc-footer-lav);
+  letter-spacing: .01em;
+}
+.cc-footer-note {
+  max-width: 560px;
+  font-size: 12px;
+  color: rgba(85,106,103,.76);
+  text-align: right;
+}
+.cc-footer-hero {
+  display: grid;
+  grid-template-columns: .95fr 1fr 1fr;
+  gap: 24px;
+  padding: 46px 0 38px;
+}
+.cc-footer-brand h2 {
+  font-family: var(--ff-serif, Georgia, serif);
+  font-size: clamp(28px, 2.4vw, 42px);
+  font-weight: 420;
+  letter-spacing: -.03em;
+  margin: 0 0 12px;
+}
+.cc-footer-pill {
+  display: inline-flex;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(14,58,51,.12);
+  background: rgba(200,221,212,.28);
+  color: var(--cc-footer-green);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.cc-footer-brand p {
+  max-width: 410px;
+  color: var(--cc-footer-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.cc-footer-mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.cc-footer-mini-tags span {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.58);
+  border: 1px solid var(--cc-footer-line);
+  color: var(--cc-footer-muted);
+  font-size: 11px;
+}
+.cc-footer-card {
+  position: relative;
+  padding: clamp(22px, 2vw, 30px);
+  border-radius: 22px;
+  border: 1px solid var(--cc-footer-line-2);
+  background: linear-gradient(180deg, var(--cc-footer-card), rgba(255,252,246,.34));
+  box-shadow: 0 18px 48px rgba(14,58,51,.06);
+  overflow: hidden;
+}
+.cc-footer-card::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  right: -80px;
+  bottom: -90px;
+  background: radial-gradient(circle, rgba(184,148,86,.14), transparent 68%);
+  pointer-events: none;
+}
+.cc-footer-card small {
+  display: block;
+  color: var(--cc-footer-gold);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .20em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.cc-footer-card h3 {
+  font-family: var(--ff-serif, Georgia, serif);
+  font-weight: 420;
+  font-size: clamp(23px, 2.1vw, 34px);
+  letter-spacing: -.03em;
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+.cc-footer-card h3 em {
+  color: var(--cc-footer-green);
+}
+.cc-footer-card p {
+  color: var(--cc-footer-muted);
+  font-size: 15px;
+  line-height: 1.52;
+  max-width: 520px;
+  margin-bottom: 22px;
+}
+.cc-footer-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cc-footer-green), var(--cc-footer-green-2));
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(14,58,51,.18);
+}
+.cc-footer-cta.cc-footer-cta-gold {
+  background: linear-gradient(135deg, #B89456, #936C34);
+}
+.cc-footer-link-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(22px, 5vw, 82px);
+  padding: 34px 0 32px;
+  border-top: 1px solid var(--cc-footer-line);
+  border-bottom: 1px solid var(--cc-footer-line);
+}
+.cc-footer-col h4 {
+  margin: 0 0 16px;
+  color: var(--cc-footer-ink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+.cc-footer-col nav {
+  display: grid;
+  gap: 10px;
+}
+.cc-footer-col a {
+  color: var(--cc-footer-muted);
+  font-size: 14px;
+  line-height: 1.25;
+}
+.cc-footer-col a:hover {
+  color: var(--cc-footer-green);
+}
+.cc-footer-discovery {
+  padding: 30px 0 28px;
+  border-bottom: 1px solid var(--cc-footer-line);
+}
+.cc-footer-discovery-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.cc-footer-discovery h3 {
+  font-family: var(--ff-serif, Georgia, serif);
+  font-weight: 420;
+  font-size: 25px;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.cc-footer-discovery h3 em {
+  color: var(--cc-footer-gold);
+}
+.cc-footer-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cc-footer-chip-row a {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--cc-footer-line);
+  background: rgba(255,255,255,.42);
+  color: var(--cc-footer-muted);
+  font-size: 13px;
+}
+.cc-footer-bottom {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px 32px;
+  align-items: center;
+  padding-top: 24px;
+}
+.cc-footer-copyright {
+  color: var(--cc-footer-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.cc-footer-legal {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+.cc-footer-legal a {
+  color: var(--cc-footer-muted);
+  font-size: 13px;
+}
+.cc-footer-legal a:hover {
+  color: var(--cc-footer-green);
+}
+.cc-footer-disclaimer {
+  grid-column: 1 / -1;
+  max-width: 980px;
+  color: rgba(85,106,103,.72);
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 1100px) {
+  .cc-footer-hero { grid-template-columns: 1fr; }
+  .cc-footer-link-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cc-footer-bottom { grid-template-columns: 1fr; }
+  .cc-footer-legal { justify-content: flex-start; }
+  .cc-footer-note { text-align: left; }
+}
+@media (max-width: 720px) {
+  .cc-footer-wide { width: min(100% - 32px, 1760px); }
+  .cc-footer-topline,
+  .cc-footer-discovery-row { display: block; }
+  .cc-footer-link-grid { grid-template-columns: 1fr 1fr; gap: 26px 24px; }
+  .cc-footer-brand p,
+  .cc-footer-card p { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .cc-footer-link-grid { grid-template-columns: 1fr; }
+}
 
 </style>
 <script type="application/ld+json" id="covercapy-extra-seo-schema">
@@ -4486,7 +4768,7 @@ body.js-reveals .reveal.in,
         <span class="card-link">Open treatment cost calculator →</span>
       </a>
 
-      <a class="seo-link-card reveal reveal-d3" href="ppodentists.html">
+      <a class="seo-link-card reveal reveal-d3" href="/ppodentists.html">
         <span class="eyebrow lav">Find Care</span>
         <h3>Find PPO-friendly dentists <em>nationwide</em>.</h3>
         <p>Search by state, city, metro, treatment, and coverage type as CoverCapy expands across local PPO dentist, treatment-cost, and nationwide PPO dentist network pages.</p>
@@ -5249,7 +5531,7 @@ body.js-reveals .reveal.in,
           <div class="dentist-specs"><span class="spec-tag">General</span><span class="spec-tag">Cosmetic</span><span class="spec-tag">Sedation</span></div>
           <div class="dentist-meta">
             <div class="dentist-rating"><span class="stars">★★★★★</span><span>4.9</span><small>(312)</small></div>
-            <a href="ppodentists.html" class="dentist-link">View →</a>
+            <a href="/ppodentists.html" class="dentist-link">View →</a>
           </div>
         </div>
       </div>
@@ -5265,7 +5547,7 @@ body.js-reveals .reveal.in,
           <div class="dentist-specs"><span class="spec-tag">General</span><span class="spec-tag">Pediatric</span><span class="spec-tag">Family</span></div>
           <div class="dentist-meta">
             <div class="dentist-rating"><span class="stars">★★★★★</span><span>4.8</span><small>(548)</small></div>
-            <a href="ppodentists.html" class="dentist-link">View →</a>
+            <a href="/ppodentists.html" class="dentist-link">View →</a>
           </div>
         </div>
       </div>
@@ -5281,7 +5563,7 @@ body.js-reveals .reveal.in,
           <div class="dentist-specs"><span class="spec-tag">Cosmetic</span><span class="spec-tag">Implants</span><span class="spec-tag">Invisalign</span></div>
           <div class="dentist-meta">
             <div class="dentist-rating"><span class="stars">★★★★★</span><span>5.0</span><small>(189)</small></div>
-            <a href="ppodentists.html" class="dentist-link">View →</a>
+            <a href="/ppodentists.html" class="dentist-link">View →</a>
           </div>
         </div>
       </div>
@@ -5297,7 +5579,7 @@ body.js-reveals .reveal.in,
           <div class="dentist-specs"><span class="spec-tag">Orthodontics</span><span class="spec-tag">Aligners</span></div>
           <div class="dentist-meta">
             <div class="dentist-rating"><span class="stars">★★★★★</span><span>4.9</span><small>(421)</small></div>
-            <a href="ppodentists.html" class="dentist-link">View →</a>
+            <a href="/ppodentists.html" class="dentist-link">View →</a>
           </div>
         </div>
       </div>
@@ -5313,7 +5595,7 @@ body.js-reveals .reveal.in,
           <div class="dentist-specs"><span class="spec-tag">Implants</span><span class="spec-tag">Periodontics</span><span class="spec-tag">Surgery</span></div>
           <div class="dentist-meta">
             <div class="dentist-rating"><span class="stars">★★★★★</span><span>4.9</span><small>(267)</small></div>
-            <a href="ppodentists.html" class="dentist-link">View →</a>
+            <a href="/ppodentists.html" class="dentist-link">View →</a>
           </div>
         </div>
       </div>
@@ -5329,14 +5611,14 @@ body.js-reveals .reveal.in,
           <div class="dentist-specs"><span class="spec-tag">Pediatric</span><span class="spec-tag">Family</span><span class="spec-tag">Special Care</span></div>
           <div class="dentist-meta">
             <div class="dentist-rating"><span class="stars">★★★★★</span><span>5.0</span><small>(683)</small></div>
-            <a href="ppodentists.html" class="dentist-link">View →</a>
+            <a href="/ppodentists.html" class="dentist-link">View →</a>
           </div>
         </div>
       </div>
     </div>
 
     <div style="text-align: center; margin-top: 32px;" class="reveal">
-      <a href="ppodentists.html" class="btn btn-primary">
+      <a href="/ppodentists.html" class="btn btn-primary">
         Explore in network dentists
         <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -5433,9 +5715,9 @@ body.js-reveals .reveal.in,
         <p>CoverCapy helps a dental practice turn PPO clarity into stronger discovery, cleaner first conversations, and a more premium dentist profile. Practices can claim a listing, apply for Capy Accreditation, or explore dental membership visibility as the dental network expands.</p>
       </div>
       <div class="membership-actions" aria-label="Dentist membership links">
-        <a href="membership.html" class="btn btn-gold">Dentist Membership</a>
-        <a href="apply-capy-practice-membership.html" class="btn btn-outline">Apply for Accreditation</a>
-        <a href="capy-accredited-dentists.html" class="btn btn-outline">Capy Accredited Dentists</a>
+        <a href="/capy-practice-membership.html" class="btn btn-gold">Dentist Membership</a>
+        <a href="/capy-practice-membership.html" class="btn btn-outline">Apply for Accreditation</a>
+        <a href="/capy-practice-membership.html#capy-accreditation" class="btn btn-outline">Capy Accredited Dentists</a>
       </div>
     </div>
   </div>
@@ -5473,7 +5755,7 @@ body.js-reveals .reveal.in,
       </article>
       <article class="faq-item reveal reveal-d3">
         <h3>Where can I compare financing or dentist directories?</h3>
-        <p>Start with <a href="dental-financing-monthly-payments.html">dental financing monthly payments</a>, <a href="best-ppo-dentists.html">best PPO dentists</a>, or the nationwide <a href="ppodentists.html">PPO dentist directory</a>.</p>
+        <p>Start with <a href="/dental-financing-monthly-payments.html">dental financing monthly payments</a>, <a href="/ppodentists.html">best PPO dentists</a>, or the nationwide <a href="/ppodentists.html">PPO dentist directory</a>.</p>
       </article>
     </div>
   </div>
@@ -5488,15 +5770,15 @@ body.js-reveals .reveal.in,
       <h2 class="simple-final-title">Before you make a dental decision,<br>talk to someone who <em>understands PPOs.</em></h2>
       <p class="simple-final-copy">Whether you are choosing a plan, finding an in-network dentist, or reviewing a treatment estimate, you do not have to figure it out alone.</p>
       <div class="simple-final-actions" aria-label="CoverCapy next steps">
-        <a href="compare-ppo-plans.html" class="btn btn-gold">
+        <a href="/compare-ppo-dental-plans.html" class="btn btn-gold">
           Get PPO Guidance
           <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="ppodentists.html" class="btn btn-outline">
+        <a href="/ppodentists.html" class="btn btn-outline">
           Understand My Plan
           <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="membership.html" class="btn btn-outline">
+        <a href="/capy-practice-membership.html" class="btn btn-outline">
           For Dentists
           <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -5508,25 +5790,147 @@ body.js-reveals .reveal.in,
 
 </main>
 
-<!-- ═════════════════════════════ COLOPHON ═════════════════════════════ -->
-<section class="colophon">
-  <div class="colophon-inner">
-    <div class="colophon-mark"><em>CoverCapy</em> · PPO dental concierge for patients, dentists, and the care network.</div>
-    <div class="colophon-meta">Coverage decisions, dentist discovery, and treatment preparation made clearer before care begins.</div>
+
+<!-- ═════════════════════════════ CRAWLABLE LEGAL FOOTER ═════════════════════════════ -->
+<footer class="cc-compliance-footer" id="covercapy-footer" aria-label="CoverCapy footer">
+  <div class="cc-footer-wide">
+    <div class="cc-footer-topline">
+      <p class="cc-footer-kicker">CoverCapy · PPO dental concierge for patients, dentists, and the care network.</p>
+      <p class="cc-footer-note">Coverage decisions, dentist discovery, and treatment preparation made clearer before care begins.</p>
+    </div>
+
+    <div class="cc-footer-hero">
+      <div class="cc-footer-brand">
+        <h2>CoverCapy</h2>
+        <span class="cc-footer-pill">Nationwide PPO Dental Concierge Network</span>
+        <p>CoverCapy helps patients across the U.S. understand PPO dental plans, estimate treatment costs, and discover dentists who can turn coverage into care.</p>
+        <div class="cc-footer-mini-tags" aria-label="CoverCapy focus areas">
+          <span>PPO Plans</span>
+          <span>Treatment Costs</span>
+          <span>Dentist Discovery</span>
+        </div>
+      </div>
+
+      <article class="cc-footer-card">
+        <small>For patients</small>
+        <h3>Enter dental care <em>prepared</em>.</h3>
+        <p>Compare PPO plans, estimate treatment costs, and find in-network dentists before the appointment begins.</p>
+        <a class="cc-footer-cta" href="/join/">Patient Portal →</a>
+      </article>
+
+      <article class="cc-footer-card">
+        <small>For dentists</small>
+        <h3>Join CoverCapy’s <em>network</em>.</h3>
+        <p>Claim your profile, apply for Capy Accreditation, or prepare for Platinum Elite placement as patient demand grows.</p>
+        <a class="cc-footer-cta cc-footer-cta-gold" href="/dentist-portal.html">Dentist Portal →</a>
+      </article>
+    </div>
+
+    <div class="cc-footer-link-grid">
+      <section class="cc-footer-col" aria-labelledby="footer-main">
+        <h4 id="footer-main">Main</h4>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/compare-ppo-dental-plans.html">Compare PPO Plans</a>
+          <a href="/ppodentists.html">Find PPO Dentists</a>
+          <a href="/dental-treatment-cost-estimator.html">Estimate Treatment Costs</a>
+          <a href="/dental-financing-monthly-payments.html">Dental Financing</a>
+          <a href="/join/">Patient Portal</a>
+        </nav>
+      </section>
+
+      <section class="cc-footer-col" aria-labelledby="footer-patients">
+        <h4 id="footer-patients">For Patients</h4>
+        <nav>
+          <a href="/ppodentists.html">Best PPO Dentists Near Me</a>
+          <a href="/dental-treatment-cost-estimator.html#implants">Dental Implant Cost</a>
+          <a href="/dental-treatment-cost-estimator.html#crowns">Dental Crown Cost</a>
+          <a href="/dental-treatment-cost-estimator.html#invisalign">Invisalign Cost</a>
+          <a href="/ppodentists.html?category=cosmetic">Cosmetic PPO Dentists</a>
+          <a href="/ppodentists.html?category=emergency">Emergency PPO Dentists</a>
+        </nav>
+      </section>
+
+      <section class="cc-footer-col" aria-labelledby="footer-dentists">
+        <h4 id="footer-dentists">For Dentists</h4>
+        <nav>
+          <a href="/dentist-portal.html">Dentist Portal</a>
+          <a href="/capy-practice-membership.html">Claim Free Profile</a>
+          <a href="/capy-practice-membership.html#capy-accreditation">Capy Accreditation</a>
+          <a href="/capy-practice-membership.html#platinum-elite">Platinum Elite Dentists</a>
+          <a href="/advertising-disclosure.html">Sponsored Dentist Listings</a>
+          <a href="/capy-practice-membership.html#patient-acquisition">PPO Patient Acquisition</a>
+        </nav>
+      </section>
+
+      <section class="cc-footer-col" aria-labelledby="footer-nationwide">
+        <h4 id="footer-nationwide">Nationwide</h4>
+        <nav>
+          <a href="/ppodentists.html?browse=state">Browse by State</a>
+          <a href="/ppodentists.html?browse=city">Browse by City</a>
+          <a href="/ppodentists.html?browse=treatment">Browse by Treatment</a>
+          <a href="/ppodentists.html?market=featured">Featured Markets</a>
+          <a href="/ppodentists.html">PPO Dentist Directory</a>
+          <a href="/contact.html">Request a Dentist</a>
+        </nav>
+      </section>
+
+      <section class="cc-footer-col" aria-labelledby="footer-company">
+        <h4 id="footer-company">Company</h4>
+        <nav>
+          <a href="/#how-it-works">About CoverCapy</a>
+          <a href="/#covercapy-effect">Network Effect</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </section>
+    </div>
+
+    <div class="cc-footer-discovery" aria-label="Popular PPO dentist discovery markets">
+      <div class="cc-footer-discovery-row">
+        <div>
+          <h3>PPO dentist discovery, <em>nationwide</em>.</h3>
+          <p>Browse by state, city, and treatment as our accredited network expands.</p>
+        </div>
+      </div>
+      <div class="cc-footer-chip-row">
+        <a href="/ppodentists.html?market=orange-county">Orange County</a>
+        <a href="/ppodentists.html?market=los-angeles">Los Angeles</a>
+        <a href="/ppodentists.html?market=san-diego">San Diego</a>
+        <a href="/ppodentists.html?market=san-francisco">San Francisco</a>
+        <a href="/ppodentists.html?market=new-york-city">New York City</a>
+        <a href="/ppodentists.html?market=chicago">Chicago</a>
+        <a href="/ppodentists.html?market=dallas">Dallas</a>
+        <a href="/ppodentists.html?market=miami">Miami</a>
+      </div>
+    </div>
+
+    <div class="cc-footer-bottom">
+      <p class="cc-footer-copyright">© 2026 CoverCapy. All rights reserved.</p>
+      <nav class="cc-footer-legal" aria-label="Legal and trust links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/insurance-disclaimer.html">Insurance Disclaimer</a>
+        <a href="/advertising-disclosure.html">Advertising Disclosure</a>
+        <a href="/provider-listing.html">Provider Listing Policy</a>
+        <a href="/accessibility.html">Accessibility</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <p class="cc-footer-disclaimer">
+        CoverCapy is a dental guidance and discovery platform, not an insurance carrier or dental practice. Some listings or links may be sponsored. Always verify benefits, pricing, provider participation, credentials, availability, and treatment costs directly with the carrier and dental office.
+      </p>
+    </div>
   </div>
-</section>
+</footer>
 
 
-<!-- CoverCapy footer component mount -->
-<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
-
-<!-- CoverCapy component loader: mega nav + hero + footer -->
+<!-- CoverCapy component loader: mega nav + hero only -->
 <script>
 (function(){
   const components = [
     { mountId: 'cc-nav-mount', html: 'components/mega-nav.html', script: 'assets/js/mega-nav.js' },
-    { mountId: 'cc-hero-mount', html: 'components/hero-slider.html', script: 'assets/js/hero-slider.js' },
-    { mountId: 'cc-footer-mount', html: 'components/footer.html', script: 'assets/js/footer.js' }
+    { mountId: 'cc-hero-mount', html: 'components/hero-slider.html', script: 'assets/js/hero-slider.js' }
   ];
 
   const loadScript = (src) => new Promise(resolve => {
