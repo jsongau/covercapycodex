@@ -27,6 +27,10 @@
     });
   </script>
 
+  <!-- Sitewide CoverCapy assets. If one path does not exist, the page still works. -->
+  <link rel="stylesheet" href="/assets/css/mega-nav.css" />
+  <link rel="stylesheet" href="/assets/css/footer.css" />
+
   <style>
     :root {
       --cc-emerald: #173f36;
@@ -57,17 +61,20 @@
       overflow-x: hidden;
     }
 
-    .page {
+    #mega-nav-container:empty,
+    #site-footer-container:empty { display: none; }
+
+    .cc404-page {
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 34px 18px;
+      padding: clamp(24px, 4vw, 48px) 18px;
       position: relative;
       isolation: isolate;
     }
 
-    .page::before,
-    .page::after {
+    .cc404-page::before,
+    .cc404-page::after {
       content: "";
       position: fixed;
       width: 380px;
@@ -79,20 +86,20 @@
       pointer-events: none;
     }
 
-    .page::before {
+    .cc404-page::before {
       left: -160px;
       bottom: -140px;
       background: rgba(229,138,74,.22);
     }
 
-    .page::after {
+    .cc404-page::after {
       right: -130px;
       top: -160px;
       background: rgba(23,63,54,.12);
     }
 
-    .shell {
-      width: min(980px, 100%);
+    .cc404-shell {
+      width: min(1080px, 100%);
       background: var(--cc-card);
       border: 1px solid rgba(255,255,255,.7);
       border-radius: 34px;
@@ -101,7 +108,7 @@
       overflow: hidden;
     }
 
-    .topbar {
+    .cc404-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -110,7 +117,9 @@
       border-bottom: 1px solid var(--cc-line);
     }
 
-    .brand {
+    body.has-external-nav .cc404-topbar { display: none; }
+
+    .cc404-brand {
       display: inline-flex;
       align-items: center;
       gap: 12px;
@@ -120,7 +129,7 @@
       letter-spacing: -.03em;
     }
 
-    .brand img {
+    .cc404-brand img {
       width: 42px;
       height: 42px;
       object-fit: contain;
@@ -129,7 +138,7 @@
       padding: 5px;
     }
 
-    .brand span small {
+    .cc404-brand span small {
       display: block;
       margin-top: 2px;
       font-size: 11px;
@@ -139,7 +148,7 @@
       color: var(--cc-muted);
     }
 
-    .status-pill {
+    .cc404-status-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -153,7 +162,7 @@
       white-space: nowrap;
     }
 
-    .dot {
+    .cc404-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
@@ -161,18 +170,18 @@
       box-shadow: 0 0 0 5px rgba(229,138,74,.14);
     }
 
-    main {
+    .cc404-main {
       display: grid;
-      grid-template-columns: 1.06fr .94fr;
-      gap: 0;
+      grid-template-columns: minmax(0, .98fr) minmax(340px, 1.02fr);
       align-items: stretch;
     }
 
-    .hero {
-      padding: clamp(34px, 6vw, 66px);
+    .cc404-headline {
+      grid-column: 1 / -1;
+      padding: clamp(34px, 5vw, 58px) clamp(28px, 6vw, 68px) clamp(18px, 3vw, 26px);
     }
 
-    .eyebrow {
+    .cc404-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
@@ -184,35 +193,38 @@
       text-transform: uppercase;
     }
 
-    .eyebrow::before {
+    .cc404-eyebrow::before {
       content: "";
       width: 34px;
       height: 1px;
       background: linear-gradient(90deg, var(--cc-gold), transparent);
     }
 
-    h1 {
+    .cc404-headline h1 {
       margin: 0;
-      max-width: 560px;
-      font-size: clamp(42px, 7.4vw, 76px);
-      line-height: .9;
-      letter-spacing: -.075em;
+      max-width: 900px;
+      font-size: clamp(48px, 7.5vw, 94px);
+      line-height: .88;
+      letter-spacing: -.08em;
     }
 
+    .cc404-left {
+      padding: 0 clamp(28px, 6vw, 68px) clamp(34px, 5vw, 58px);
+      border-top: 1px solid var(--cc-line);
+    }
 
-    .captain-visual {
-      width: min(100%, 420px);
-      margin: 24px 0 0;
+    .cc404-captain-visual {
+      width: min(100%, 470px);
+      margin: 28px 0 0;
       border-radius: 28px;
       border: 1px solid rgba(23,63,54,.14);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.70), rgba(251,246,236,.52));
+      background: linear-gradient(135deg, rgba(255,255,255,.70), rgba(251,246,236,.52));
       box-shadow: 0 18px 46px rgba(23,63,54,.12);
       overflow: hidden;
       position: relative;
     }
 
-    .captain-visual::after {
+    .cc404-captain-visual::after {
       content: "";
       position: absolute;
       inset: auto 18px 14px 18px;
@@ -221,29 +233,29 @@
       pointer-events: none;
     }
 
-    .captain-visual img {
+    .cc404-captain-visual img {
       display: block;
       width: 100%;
       height: auto;
       object-fit: contain;
     }
 
-    .lead {
-      margin: 18px 0 0;
+    .cc404-lead {
+      margin: 20px 0 0;
       max-width: 520px;
       color: var(--cc-muted);
       font-size: clamp(16px, 2vw, 18px);
       line-height: 1.62;
     }
 
-    .actions {
+    .cc404-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 24px;
     }
 
-    .btn {
+    .cc404-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -256,32 +268,33 @@
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
 
-    .btn:hover { transform: translateY(-2px); }
+    .cc404-btn:hover { transform: translateY(-2px); }
 
-    .btn.primary {
+    .cc404-btn.primary {
       color: #fff;
       background: linear-gradient(135deg, var(--cc-emerald), var(--cc-emerald-2));
       box-shadow: 0 16px 32px rgba(23,63,54,.22);
     }
 
-    .btn.secondary {
+    .cc404-btn.secondary {
       color: var(--cc-emerald);
       border: 1px solid var(--cc-line);
       background: rgba(255,255,255,.64);
     }
 
-    .quick-panel {
-      padding: clamp(22px, 4vw, 34px);
+    .cc404-quick-panel {
+      padding: clamp(28px, 5vw, 48px) clamp(24px, 4vw, 38px);
       background:
         linear-gradient(180deg, rgba(255,255,255,.48), rgba(255,255,255,.28)),
         radial-gradient(circle at 70% 10%, rgba(196,154,90,.18), transparent 36%);
       border-left: 1px solid var(--cc-line);
+      border-top: 1px solid var(--cc-line);
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .mini-title {
+    .cc404-mini-title {
       margin: 0 0 14px;
       font-size: 14px;
       font-weight: 900;
@@ -290,12 +303,12 @@
       color: var(--cc-muted);
     }
 
-    .links {
+    .cc404-links {
       display: grid;
       gap: 10px;
     }
 
-    .link-card {
+    .cc404-link-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -311,13 +324,13 @@
       transition: transform .2s ease, border-color .2s ease, background .2s ease;
     }
 
-    .link-card:hover {
+    .cc404-link-card:hover {
       transform: translateX(3px);
       border-color: rgba(23,63,54,.28);
       background: rgba(255,255,255,.82);
     }
 
-    .link-card small {
+    .cc404-link-card small {
       display: block;
       margin-top: 4px;
       color: var(--cc-muted);
@@ -325,7 +338,7 @@
       line-height: 1.35;
     }
 
-    .arrow {
+    .cc404-arrow {
       width: 30px;
       height: 30px;
       display: inline-grid;
@@ -337,7 +350,7 @@
       font-weight: 900;
     }
 
-    .path {
+    .cc404-path {
       margin-top: 16px;
       padding: 12px 14px;
       border-radius: 18px;
@@ -348,7 +361,7 @@
       overflow-wrap: anywhere;
     }
 
-    footer {
+    .cc404-local-footer {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -360,96 +373,166 @@
       font-weight: 700;
     }
 
-    footer a {
+    body.has-external-footer .cc404-local-footer { display: none; }
+
+    .cc404-local-footer a {
       color: var(--cc-text);
       text-decoration: none;
     }
 
-    footer a:hover { text-decoration: underline; }
+    .cc404-local-footer a:hover { text-decoration: underline; }
 
-    @media (max-width: 800px) {
-      .shell { border-radius: 26px; }
-      .topbar { align-items: flex-start; }
-      .status-pill { display: none; }
-      main { grid-template-columns: 1fr; }
-      .quick-panel { border-left: 0; border-top: 1px solid var(--cc-line); }
-      .hero { padding: 38px 22px 30px; }
-
-      .captain-visual {
-        width: 100%;
-        margin-top: 20px;
-        border-radius: 22px;
-      }
-
-      .actions { flex-direction: column; }
-      .btn { width: 100%; }
-      footer { padding: 16px 18px; }
+    @media (max-width: 860px) {
+      .cc404-shell { border-radius: 26px; }
+      .cc404-topbar { align-items: flex-start; }
+      .cc404-status-pill { display: none; }
+      .cc404-main { grid-template-columns: 1fr; }
+      .cc404-headline { padding: 38px 22px 18px; }
+      .cc404-headline h1 { font-size: clamp(46px, 14vw, 76px); }
+      .cc404-left { padding: 0 22px 30px; }
+      .cc404-quick-panel { border-left: 0; padding: 26px 22px 30px; }
+      .cc404-captain-visual { width: 100%; margin-top: 22px; border-radius: 22px; }
+      .cc404-actions { flex-direction: column; }
+      .cc404-btn { width: 100%; }
+      .cc404-local-footer { padding: 16px 18px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <section class="shell" aria-labelledby="page-title">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="CoverCapy home">
+  <div id="mega-nav-container" aria-label="CoverCapy navigation"></div>
+
+  <div class="cc404-page">
+    <section class="cc404-shell" aria-labelledby="page-title">
+      <header class="cc404-topbar">
+        <a class="cc404-brand" href="/" aria-label="CoverCapy home">
           <img src="/assets/images/covercapy-logo.svg" alt="" onerror="this.style.display='none'" />
           <span>CoverCapy<small>Concierge Dental Network</small></span>
         </a>
-        <div class="status-pill" aria-label="Page not found status"><span class="dot"></span>404 route</div>
+        <div class="cc404-status-pill" aria-label="Page not found status"><span class="cc404-dot"></span>404 route</div>
       </header>
 
-      <main>
-        <section class="hero">
-          <p class="eyebrow">Route not found</p>
+      <main class="cc404-main">
+        <section class="cc404-headline">
+          <p class="cc404-eyebrow">Route not found</p>
           <h1 id="page-title">This page wandered off.</h1>
-          <figure class="captain-visual" aria-label="Captain Capy map illustration">
-            <img src="/assets/images/captaincapymap.png" alt="Captain Capy holding a map and helping visitors find the right CoverCapy path" />
-          </figure>
-          <p class="lead">Let’s get you back to PPO plans, dentists, rewards, or treatment costs.</p>
-          <div class="actions" aria-label="Primary links">
-            <a class="btn primary" href="/">Back to CoverCapy</a>
-            <a class="btn secondary" href="/join">Claim 300 Capy Crowns</a>
-          </div>
-          <div class="path" id="missing-path">Missing page: loading…</div>
         </section>
 
-        <aside class="quick-panel" aria-label="Helpful CoverCapy links">
-          <p class="mini-title">Popular paths</p>
-          <nav class="links">
-            <a class="link-card" href="/ppodentists.html">
+        <section class="cc404-left" aria-label="Page not found recovery">
+          <figure class="cc404-captain-visual" aria-label="Captain Capy map illustration">
+            <img src="/assets/images/captaincapymap.png" alt="Captain Capy holding a map and helping visitors find the right CoverCapy path" />
+          </figure>
+          <p class="cc404-lead">Let’s get you back to PPO plans, dentists, rewards, or treatment costs.</p>
+          <div class="cc404-actions" aria-label="Primary links">
+            <a class="cc404-btn primary" href="/">Back to CoverCapy</a>
+            <a class="cc404-btn secondary" href="/join">Claim 300 Capy Crowns</a>
+          </div>
+          <div class="cc404-path" id="missing-path">Missing page: loading…</div>
+        </section>
+
+        <aside class="cc404-quick-panel" aria-label="Helpful CoverCapy links">
+          <p class="cc404-mini-title">Popular paths</p>
+          <nav class="cc404-links">
+            <a class="cc404-link-card" href="/ppodentists.html">
               <span>Find PPO Dentists<small>Search nearby dental offices</small></span>
-              <span class="arrow">›</span>
+              <span class="cc404-arrow">›</span>
             </a>
-            <a class="link-card" href="/compare-ppo-dental-plans.html">
+            <a class="cc404-link-card" href="/compare-ppo-dental-plans.html">
               <span>Compare PPO Plans<small>Understand coverage faster</small></span>
-              <span class="arrow">›</span>
+              <span class="cc404-arrow">›</span>
             </a>
-            <a class="link-card" href="/estimate-dental-treatment-cost.html">
+            <a class="cc404-link-card" href="/estimate-dental-treatment-cost.html">
               <span>Estimate Costs<small>Crowns, implants, Invisalign, and more</small></span>
-              <span class="arrow">›</span>
+              <span class="cc404-arrow">›</span>
             </a>
-            <a class="link-card" href="/dental-financing-monthly-payments.html">
+            <a class="cc404-link-card" href="/dental-financing-monthly-payments.html">
               <span>Monthly Financing<small>Plan care with payment options</small></span>
-              <span class="arrow">›</span>
+              <span class="cc404-arrow">›</span>
             </a>
-            <a class="link-card" href="/capy-practice-membership.html">
+            <a class="cc404-link-card" href="/capy-practice-membership.html">
               <span>For Dental Practices<small>Claim or upgrade your profile</small></span>
-              <span class="arrow">›</span>
+              <span class="cc404-arrow">›</span>
             </a>
           </nav>
         </aside>
       </main>
 
-      <footer>
+      <footer class="cc404-local-footer">
         <span>© <span id="year"></span> CoverCapy</span>
         <span><a href="/">Home</a> · <a href="/join">Rewards</a> · <a href="/ppodentists.html">Dentists</a></span>
       </footer>
     </section>
   </div>
 
+  <div id="site-footer-container" aria-label="CoverCapy footer"></div>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('missing-path').textContent = 'Missing page: ' + window.location.pathname;
+
+    (function loadCoverCapyPartials() {
+      function reviveScripts(container) {
+        container.querySelectorAll('script').forEach(function (oldScript) {
+          var newScript = document.createElement('script');
+          Array.prototype.slice.call(oldScript.attributes).forEach(function (attr) {
+            newScript.setAttribute(attr.name, attr.value);
+          });
+          newScript.text = oldScript.textContent;
+          oldScript.replaceWith(newScript);
+        });
+      }
+
+      function loadHtmlInto(mountId, paths, successClass) {
+        var mount = document.getElementById(mountId);
+        if (!mount) return Promise.resolve(false);
+
+        return paths.reduce(function (chain, path) {
+          return chain.catch(function () {
+            return fetch(path, { cache: 'no-cache' }).then(function (response) {
+              if (!response.ok) throw new Error('Missing partial: ' + path);
+              return response.text();
+            }).then(function (html) {
+              mount.innerHTML = html;
+              reviveScripts(mount);
+              document.body.classList.add(successClass);
+              return true;
+            });
+          });
+        }, Promise.reject()).catch(function () {
+          return false;
+        });
+      }
+
+      function loadScriptOnce(src) {
+        if (document.querySelector('script[src="' + src + '"]')) return;
+        var script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        document.body.appendChild(script);
+      }
+
+      loadHtmlInto('mega-nav-container', [
+        '/mega-nav.html',
+        '/assets/html/mega-nav.html',
+        '/assets/components/mega-nav.html',
+        '/components/mega-nav.html'
+      ], 'has-external-nav').then(function (loaded) {
+        if (loaded) {
+          loadScriptOnce('/assets/js/load-nav.js');
+          loadScriptOnce('/assets/js/mega-nav.js');
+        }
+      });
+
+      loadHtmlInto('site-footer-container', [
+        '/footer.html',
+        '/assets/html/footer.html',
+        '/assets/components/footer.html',
+        '/components/footer.html'
+      ], 'has-external-footer').then(function (loaded) {
+        if (loaded) {
+          loadScriptOnce('/assets/js/footer.js');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
