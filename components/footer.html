@@ -4,6 +4,7 @@
     1. Link assets/css/footer.css in <head>.
     2. Paste this <footer> block before </body> (or load via your component loader).
     3. Include assets/js/footer.js with `defer`.
+    4. Add the included legal pages to your domain root so every footer link works.
   Layout is 100% CSS (grid/flex). footer.js only: (a) mobile nav accordion,
   (b) optional: hides a fixed side-scroll rail while the footer is on screen
      (see data-cc-side-rail note in footer.js).
@@ -25,9 +26,9 @@
           { "@type": "WebPage", "name": "Home", "url": "https://www.covercapy.com/index.html" },
           { "@type": "WebPage", "name": "Compare PPO Plans", "url": "https://www.covercapy.com/compare-ppo-dental-plans.html" },
           { "@type": "WebPage", "name": "Find PPO Dentists", "url": "https://www.covercapy.com/ppodentists.html" },
-          { "@type": "WebPage", "name": "Estimate Treatment Costs", "url": "https://www.covercapy.com/estimatecost.html" },
+          { "@type": "WebPage", "name": "Estimate Treatment Costs", "url": "https://www.covercapy.com/dental-treatment-cost-estimator.html" },
           { "@type": "WebPage", "name": "Dental Financing", "url": "https://www.covercapy.com/dental-financing-monthly-payments.html" },
-          { "@type": "WebPage", "name": "Patient Portal", "url": "https://www.covercapy.com/patient-portal.html" }
+          { "@type": "WebPage", "name": "Patient Portal", "url": "https://www.covercapy.com/join/" }
         ]
       },
       {
@@ -49,7 +50,7 @@
         "name": "For Dentists",
         "hasPart": [
           { "@type": "WebPage", "name": "Dentist Portal", "url": "https://www.covercapy.com/dentist-portal.html" },
-          { "@type": "WebPage", "name": "Claim Free Profile", "url": "https://www.covercapy.com/membership.html" },
+          { "@type": "WebPage", "name": "Claim Free Profile", "url": "https://www.covercapy.com/capy-practice-membership.html" },
           { "@type": "WebPage", "name": "Capy Accreditation", "url": "https://www.covercapy.com/capy-accreditation.html" },
           { "@type": "WebPage", "name": "Platinum Elite Dentists", "url": "https://www.covercapy.com/platinum-elite-dentists.html" },
           { "@type": "WebPage", "name": "Sponsored Dentist Listings", "url": "https://www.covercapy.com/sponsored-dentist-listings.html" },
@@ -83,6 +84,20 @@
         ]
       },
       {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-legal",
+        "name": "Legal and Trust",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Privacy Policy", "url": "https://www.covercapy.com/privacy.html" },
+          { "@type": "WebPage", "name": "Terms of Service", "url": "https://www.covercapy.com/terms.html" },
+          { "@type": "WebPage", "name": "Insurance Disclaimer", "url": "https://www.covercapy.com/insurance-disclaimer.html" },
+          { "@type": "WebPage", "name": "Advertising Disclosure", "url": "https://www.covercapy.com/advertising-disclosure.html" },
+          { "@type": "WebPage", "name": "Provider Listing Policy", "url": "https://www.covercapy.com/provider-listing.html" },
+          { "@type": "WebPage", "name": "Accessibility Statement", "url": "https://www.covercapy.com/accessibility.html" },
+          { "@type": "WebPage", "name": "Contact", "url": "https://www.covercapy.com/contact.html" }
+        ]
+      },
+      {
         "@type": "ItemList",
         "@id": "https://www.covercapy.com/#footer-markets",
         "name": "Featured PPO Dentist Markets",
@@ -112,7 +127,7 @@
 
       <!-- Column 1 — Brand identity -->
       <div class="cc-footer-brand">
-        <a class="cc-footer-logo" href="index.html" aria-label="CoverCapy home">CoverCapy</a>
+        <a class="cc-footer-logo" href="/" aria-label="CoverCapy home">CoverCapy</a>
         <span class="cc-footer-badge">Nationwide PPO Dental Concierge Network</span>
         <p class="cc-footer-brand-copy">
           CoverCapy helps patients across the U.S. understand PPO dental plans,
@@ -135,11 +150,11 @@
           dentists before the appointment begins.
         </p>
         <div class="cc-footer-card-actions">
-          <a class="cc-footer-btn cc-footer-btn--teal" href="compare-ppo-dental-plans.html">
-            Compare PPO Plans
+          <a class="cc-footer-btn cc-footer-btn--teal" href="/join/">
+            Patient Portal
           </a>
-          <a class="cc-footer-textlink cc-footer-textlink--teal" href="estimatecost.html">
-            Estimate treatment costs
+          <a class="cc-footer-textlink cc-footer-textlink--teal" href="/compare-ppo-dental-plans.html">
+            Compare PPO plans
             <span class="cc-footer-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -154,10 +169,10 @@
           Platinum Elite placement as the network expands.
         </p>
         <div class="cc-footer-card-actions">
-          <a class="cc-footer-btn cc-footer-btn--amber" href="dentist-portal.html">
+          <a class="cc-footer-btn cc-footer-btn--amber" href="/dentist-portal.html">
             Dentist Portal
           </a>
-          <a class="cc-footer-textlink cc-footer-textlink--amber" href="membership.html">
+          <a class="cc-footer-textlink cc-footer-textlink--amber" href="/capy-practice-membership.html">
             Explore membership
             <span class="cc-footer-arrow" aria-hidden="true">&rarr;</span>
           </a>
@@ -177,12 +192,12 @@
           </button>
         </h3>
         <ul id="cc-col-main" class="cc-footer-col-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="compare-ppo-dental-plans.html">Compare PPO Plans</a></li>
-          <li><a href="ppodentists.html">Find PPO Dentists</a></li>
-          <li><a href="estimatecost.html">Estimate Treatment Costs</a></li>
-          <li><a href="dental-financing-monthly-payments.html">Dental Financing</a></li>
-          <li><a href="patient-portal.html">Patient Portal</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/compare-ppo-dental-plans.html">Compare PPO Plans</a></li>
+          <li><a href="/ppodentists.html">Find PPO Dentists</a></li>
+          <li><a href="/dental-treatment-cost-estimator.html">Estimate Treatment Costs</a></li>
+          <li><a href="/dental-financing-monthly-payments.html">Dental Financing</a></li>
+          <li><a href="/join/">Patient Portal</a></li>
         </ul>
       </div>
 
@@ -194,12 +209,12 @@
           </button>
         </h3>
         <ul id="cc-col-patients" class="cc-footer-col-list">
-          <li><a href="best-ppo-dentists.html">Best PPO Dentists Near Me</a></li>
-          <li><a href="dental-implant-cost.html">Dental Implant Cost</a></li>
-          <li><a href="dental-crown-cost.html">Dental Crown Cost</a></li>
-          <li><a href="invisalign-cost.html">Invisalign Cost</a></li>
-          <li><a href="cosmetic-ppo-dentists.html">Cosmetic PPO Dentists</a></li>
-          <li><a href="emergency-ppo-dentists.html">Emergency PPO Dentists</a></li>
+          <li><a href="/best-ppo-dentists.html">Best PPO Dentists Near Me</a></li>
+          <li><a href="/dental-implant-cost.html">Dental Implant Cost</a></li>
+          <li><a href="/dental-crown-cost.html">Dental Crown Cost</a></li>
+          <li><a href="/invisalign-cost.html">Invisalign Cost</a></li>
+          <li><a href="/cosmetic-ppo-dentists.html">Cosmetic PPO Dentists</a></li>
+          <li><a href="/emergency-ppo-dentists.html">Emergency PPO Dentists</a></li>
         </ul>
       </div>
 
@@ -211,12 +226,12 @@
           </button>
         </h3>
         <ul id="cc-col-dentists" class="cc-footer-col-list">
-          <li><a href="dentist-portal.html">Dentist Portal</a></li>
-          <li><a href="membership.html">Claim Free Profile</a></li>
-          <li><a href="capy-accreditation.html">Capy Accreditation</a></li>
-          <li><a href="platinum-elite-dentists.html">Platinum Elite Dentists</a></li>
-          <li><a href="sponsored-dentist-listings.html">Sponsored Dentist Listings</a></li>
-          <li><a href="ppo-patient-acquisition.html">PPO Patient Acquisition</a></li>
+          <li><a href="/dentist-portal.html">Dentist Portal</a></li>
+          <li><a href="/capy-practice-membership.html">Claim Free Profile</a></li>
+          <li><a href="/capy-accreditation.html">Capy Accreditation</a></li>
+          <li><a href="/platinum-elite-dentists.html">Platinum Elite Dentists</a></li>
+          <li><a href="/sponsored-dentist-listings.html">Sponsored Dentist Listings</a></li>
+          <li><a href="/ppo-patient-acquisition.html">PPO Patient Acquisition</a></li>
         </ul>
       </div>
 
@@ -228,12 +243,12 @@
           </button>
         </h3>
         <ul id="cc-col-nationwide" class="cc-footer-col-list">
-          <li><a href="states.html">Browse by State</a></li>
-          <li><a href="cities.html">Browse by City</a></li>
-          <li><a href="treatments.html">Browse by Treatment</a></li>
-          <li><a href="featured-markets.html">Featured Markets</a></li>
-          <li><a href="ppo-dentist-directory.html">PPO Dentist Directory</a></li>
-          <li><a href="request-a-dentist.html">Request a Dentist</a></li>
+          <li><a href="/states.html">Browse by State</a></li>
+          <li><a href="/cities.html">Browse by City</a></li>
+          <li><a href="/treatments.html">Browse by Treatment</a></li>
+          <li><a href="/featured-markets.html">Featured Markets</a></li>
+          <li><a href="/ppo-dentist-directory.html">PPO Dentist Directory</a></li>
+          <li><a href="/request-a-dentist.html">Request a Dentist</a></li>
         </ul>
       </div>
 
@@ -245,12 +260,12 @@
           </button>
         </h3>
         <ul id="cc-col-company" class="cc-footer-col-list">
-          <li><a href="about.html">About CoverCapy</a></li>
-          <li><a href="carrier-watch.html">Carrier Watch</a></li>
-          <li><a href="dental-insurance-market.html">Dental Insurance Market</a></li>
-          <li><a href="insurance-carrier-intelligence.html">Carrier Intelligence</a></li>
-          <li><a href="covercapy-network-effect.html">Network Effect</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/about.html">About CoverCapy</a></li>
+          <li><a href="/carrier-watch.html">Carrier Watch</a></li>
+          <li><a href="/dental-insurance-market.html">Dental Insurance Market</a></li>
+          <li><a href="/insurance-carrier-intelligence.html">Carrier Intelligence</a></li>
+          <li><a href="/covercapy-network-effect.html">Network Effect</a></li>
+          <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
 
@@ -268,63 +283,43 @@
       </div>
 
       <div class="cc-footer-discovery-actions">
-        <a class="cc-footer-pill cc-footer-pill--strong" href="states.html">All States</a>
-        <a class="cc-footer-pill cc-footer-pill--strong" href="cities.html">All Cities</a>
-        <a class="cc-footer-pill cc-footer-pill--strong" href="treatments.html">All Treatments</a>
+        <a class="cc-footer-pill cc-footer-pill--strong" href="/states.html">All States</a>
+        <a class="cc-footer-pill cc-footer-pill--strong" href="/cities.html">All Cities</a>
+        <a class="cc-footer-pill cc-footer-pill--strong" href="/treatments.html">All Treatments</a>
       </div>
 
       <ul class="cc-footer-markets" aria-label="Featured markets">
-        <li><a href="best-ppo-dentists/orange-county.html">Orange County</a></li>
-        <li><a href="best-ppo-dentists/los-angeles.html">Los Angeles</a></li>
-        <li><a href="best-ppo-dentists/san-diego.html">San Diego</a></li>
-        <li><a href="best-ppo-dentists/san-francisco.html">San Francisco</a></li>
-        <li><a href="best-ppo-dentists/new-york-city.html">New York City</a></li>
-        <li><a href="best-ppo-dentists/chicago.html">Chicago</a></li>
-        <li><a href="best-ppo-dentists/dallas.html">Dallas</a></li>
-        <li><a href="best-ppo-dentists/miami.html">Miami</a></li>
+        <li><a href="/best-ppo-dentists/orange-county.html">Orange County</a></li>
+        <li><a href="/best-ppo-dentists/los-angeles.html">Los Angeles</a></li>
+        <li><a href="/best-ppo-dentists/san-diego.html">San Diego</a></li>
+        <li><a href="/best-ppo-dentists/san-francisco.html">San Francisco</a></li>
+        <li><a href="/best-ppo-dentists/new-york-city.html">New York City</a></li>
+        <li><a href="/best-ppo-dentists/chicago.html">Chicago</a></li>
+        <li><a href="/best-ppo-dentists/dallas.html">Dallas</a></li>
+        <li><a href="/best-ppo-dentists/miami.html">Miami</a></li>
       </ul>
     </section>
 
-    <!-- ===================== 4. LEGAL (compact parchment band) ===================== -->
-    <section class="cc-footer-legal">
+    <!-- ===================== 4. LEGAL + TRUST (crawlable links for AdSense review) ===================== -->
+    <section class="cc-footer-legal" aria-label="Legal and trust information">
       <div class="cc-footer-legal-top">
         <p class="cc-footer-copyright">&copy; 2026 CoverCapy. All rights reserved.</p>
-        <!-- Legal links open in-page modals (see footer.js legalModalContent).
-             Real page targets kept here for when standalone pages ship:
-             privacy.html · terms.html · dental-insurance-disclaimer.html ·
-             advertising-disclosure.html · provider-listing-disclaimer.html · accessibility.html -->
-        <nav class="cc-footer-legal-links" aria-label="Legal">
-          <a href="privacy.html" data-legal-modal="privacy">Privacy</a>
-          <a href="terms.html" data-legal-modal="terms">Terms</a>
-          <a href="dental-insurance-disclaimer.html" data-legal-modal="insurance">Insurance Disclaimer</a>
-          <a href="advertising-disclosure.html" data-legal-modal="advertising">Advertising Disclosure</a>
-          <a href="provider-listing-disclaimer.html" data-legal-modal="provider">Provider Listing</a>
-          <a href="accessibility.html" data-legal-modal="accessibility">Accessibility</a>
+        <nav class="cc-footer-legal-links" aria-label="Legal and trust links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/insurance-disclaimer.html">Insurance Disclaimer</a>
+          <a href="/advertising-disclosure.html">Advertising Disclosure</a>
+          <a href="/provider-listing.html">Provider Listing Policy</a>
+          <a href="/accessibility.html">Accessibility</a>
+          <a href="/contact.html">Contact</a>
         </nav>
       </div>
-
       <p class="cc-footer-fineprint">
-        <em>Not an insurance company. Not a dental practice. A concierge guidance layer for families preparing for dental care.</em>
-        CoverCapy is not a dental insurance carrier and does not provide dental, medical, legal, or financial advice.
-        Plan availability, benefits, networks, waiting periods, annual maximums, and reimbursement vary by carrier,
-        plan, state, and eligibility. Always confirm benefits with the carrier and dental office before treatment.
+        CoverCapy is a dental guidance and discovery platform, not an insurance carrier or dental practice.
+        Some listings or links may be sponsored. Always verify benefits, pricing, provider participation,
+        credentials, availability, and treatment costs directly with the carrier and dental office.
       </p>
     </section>
 
   </div>
 </footer>
-
-<!-- ===================== LEGAL MODAL (shared, reusable) ===================== -->
-<!-- Place once per page. Styled in footer.css, controlled by footer.js. -->
-<div class="legal-modal-overlay" id="legalModalOverlay" aria-hidden="true">
-  <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle" tabindex="-1">
-    <div class="legal-modal-header">
-      <div>
-        <p class="legal-modal-kicker">CoverCapy Legal</p>
-        <h2 id="legalModalTitle">Legal Notice</h2>
-      </div>
-      <button class="legal-modal-close" type="button" aria-label="Close legal notice">&times;</button>
-    </div>
-    <div class="legal-modal-body" id="legalModalBody"></div>
-  </section>
-</div>
