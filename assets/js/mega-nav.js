@@ -1,1824 +1,484 @@
-/* ════════════════════════════════════════════════════════════════
-   CoverCapy · MEGA NAV · JS
-   Extracted from membership_v514.html
-   Pair with: mega-nav.html (markup) + mega-nav.css (styles)
-   Load AFTER mega-nav.html is in the DOM (defer, or inject then append).
-   ════════════════════════════════════════════════════════════════ */
-
-/* ════════════════════════════════════════════════════════════════
-   MEGA NAV BEHAVIOR (production-ready, accessible, debounced)
-   ════════════════════════════════════════════════════════════════ */
+/* CoverCapy Mega Nav + Universal Insurance/Booking Modal */
 (function(){
-  const links = document.querySelectorAll('.cc-link');
-  let openTimer = null;
-  let closeTimer = null;
-  let activeLink = null;
+  if(window.__CoverCapyMegaNavInitialized) return;
+  window.__CoverCapyMegaNavInitialized = true;
 
-  function closeAll(except){
-    links.forEach(l => {
-      if(l !== except) l.classList.remove('is-open');
-    });
-    if(except !== activeLink) activeLink = except || null;
-  }
+(function(){
+  "use strict";
+  var nav=document.getElementById('cc-nav');
+  var backdrop=document.getElementById('cc-backdrop');
+  var links=Array.prototype.slice.call(document.querySelectorAll('.cc-link'));
+  var openTimer=null,closeTimer=null,activeLink=null;
+  var DESKTOP=function(){return window.matchMedia('(min-width:1081px)').matches;};
 
-  function openLink(link){
+  var curtainBtn=document.getElementById('cc-curtain'),ccStage=document.getElementById('cc-stage');
+  function openMega(link){
     clearTimeout(closeTimer);
-    closeAll(link);
-    link.classList.add('is-open');
-    activeLink = link;
-    positionDropdown(link);
+    links.forEach(function(l){if(l!==link)l.classList.remove('is-open');});
+    link.classList.add('is-open'); activeLink=link;
+    backdrop.classList.add('show'); nav.classList.add('dimmed'); if(curtainBtn)curtainBtn.classList.add('show');
   }
-
-  function scheduleClose(link){
-    clearTimeout(closeTimer);
-    closeTimer = setTimeout(() => {
-      link.classList.remove('is-open');
-      if(activeLink === link) activeLink = null;
-    }, 180);
+  function closeMega(){
+    links.forEach(function(l){l.classList.remove('is-open');});
+    activeLink=null; backdrop.classList.remove('show'); nav.classList.remove('dimmed'); if(curtainBtn)curtainBtn.classList.remove('show');
   }
+  function scheduleClose(){clearTimeout(closeTimer);closeTimer=setTimeout(closeMega,180);}
 
-  /* Center under link if it fits, else snap to viewport edge */
-  function positionDropdown(link){
-    const drop = link.querySelector('.cc-dropdown');
-    if(!drop) return;
+  links.forEach(function(link){
+    var anchor=link.querySelector('.cc-link-anchor');
+    var caret=link.querySelector('[data-toggle]');
+    var mega=link.querySelector('.cc-mega');
 
-    drop.style.left = '50%';
-    drop.style.transform = 'translate(-50%, 0)';
+    link.addEventListener('mouseenter',function(){if(!DESKTOP())return;clearTimeout(closeTimer);openTimer=setTimeout(function(){openMega(link);},55);});
+    link.addEventListener('mouseleave',function(){if(!DESKTOP())return;clearTimeout(openTimer);scheduleClose();});
+    if(mega){
+      mega.addEventListener('mouseenter',function(){if(!DESKTOP())return;clearTimeout(closeTimer);});
+      mega.addEventListener('mouseleave',function(){if(!DESKTOP())return;scheduleClose();});
+    }
+    if(caret){caret.addEventListener('click',function(e){if(!DESKTOP())return;e.preventDefault();e.stopPropagation();link.classList.contains('is-open')?closeMega():openMega(link);});}
+    anchor.addEventListener('click',function(){if(DESKTOP())closeMega();});
+    link.addEventListener('focusin',function(){if(DESKTOP())openMega(link);});
+    anchor.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMega();anchor.focus();}});
+  });
 
-    requestAnimationFrame(() => {
-      const linkRect = link.getBoundingClientRect();
-      const dropRect = drop.getBoundingClientRect();
-      const viewW = window.innerWidth;
-      const pad = 16;
-      let leftPx = linkRect.left + (linkRect.width / 2) - (dropRect.width / 2);
-      if(leftPx < pad) leftPx = pad;
-      if(leftPx + dropRect.width > viewW - pad) leftPx = viewW - pad - dropRect.width;
-      drop.style.left = leftPx + 'px';
-      drop.style.transform = 'translate(0, 0)';
-    });
+  function curtainClose(){
+    var m=document.querySelector('.cc-link.is-open .cc-mega');
+    if(!m||!ccStage){closeMega();return;}
+    ccStage.style.height=m.offsetHeight+'px';
+    ccStage.classList.remove('done');ccStage.classList.add('closing');
+    setTimeout(function(){closeMega();ccStage.classList.add('done');},470);
+    setTimeout(function(){ccStage.classList.remove('closing');ccStage.classList.remove('done');ccStage.style.height='0px';},780);
   }
+  if(curtainBtn)curtainBtn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();curtainClose();});
+  backdrop.addEventListener('click',closeMega);
+  document.addEventListener('click',function(e){if(!e.target.closest('.cc-link')&&!e.target.closest('.cc-mega'))closeMega();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMega();});
+  window.addEventListener('scroll',function(){if(activeLink)closeMega();},{passive:true});
 
-  links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      clearTimeout(closeTimer);
-      openTimer = setTimeout(() => openLink(link), 60);
-    });
-    link.addEventListener('mouseleave', () => {
-      clearTimeout(openTimer);
-      scheduleClose(link);
-    });
-    link.addEventListener('click', (e) => {
-      if(e.target.closest('.cc-dropdown a, .cc-dropdown button, .cc-dropdown input, .cc-dropdown [data-region], .cc-dropdown [data-location], .cc-dropdown [data-area], .cc-dropdown [data-city]')) return;
-      e.preventDefault();
-      e.stopPropagation();
-      if(link.classList.contains('is-open')){
-        link.classList.remove('is-open');
-        activeLink = null;
-      } else {
-        openLink(link);
-      }
-    });
-    link.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        if(link.classList.contains('is-open')) link.classList.remove('is-open');
-        else openLink(link);
-      }
-      if(e.key === 'Escape'){ link.classList.remove('is-open'); link.focus(); }
-    });
-  });
+  /* ZIP */
+  var zip=document.getElementById('nav-zip'),zipBtn=document.getElementById('nav-zip-btn');
+  var ZIP_DB={'92708':{city:'Fountain Valley',area:'Orange County',region:'West Coast',slug:'orange-county/fountain-valley'},'92728':{city:'Fountain Valley',area:'Orange County',region:'West Coast',slug:'orange-county/fountain-valley'},'92602':{city:'Irvine',area:'Orange County',region:'West Coast',slug:'orange-county/irvine'},'92604':{city:'Irvine',area:'Orange County',region:'West Coast',slug:'orange-county/irvine'},'92612':{city:'Irvine',area:'Orange County',region:'West Coast',slug:'orange-county/irvine'},'92618':{city:'Irvine',area:'Orange County',region:'West Coast',slug:'orange-county/irvine'},'92620':{city:'Irvine',area:'Orange County',region:'West Coast',slug:'orange-county/irvine'},'92660':{city:'Newport Beach',area:'Orange County',region:'West Coast',slug:'orange-county/newport-beach'},'92661':{city:'Newport Beach',area:'Orange County',region:'West Coast',slug:'orange-county/newport-beach'},'92663':{city:'Newport Beach',area:'Orange County',region:'West Coast',slug:'orange-county/newport-beach'},'92626':{city:'Costa Mesa',area:'Orange County',region:'West Coast',slug:'orange-county/costa-mesa'},'92627':{city:'Costa Mesa',area:'Orange County',region:'West Coast',slug:'orange-county/costa-mesa'},'92646':{city:'Huntington Beach',area:'Orange County',region:'West Coast',slug:'orange-county/huntington-beach'},'92647':{city:'Huntington Beach',area:'Orange County',region:'West Coast',slug:'orange-county/huntington-beach'},'92648':{city:'Huntington Beach',area:'Orange County',region:'West Coast',slug:'orange-county/huntington-beach'},'92649':{city:'Huntington Beach',area:'Orange County',region:'West Coast',slug:'orange-county/huntington-beach'},'92801':{city:'Anaheim',area:'Orange County',region:'West Coast',slug:'orange-county/anaheim'},'92802':{city:'Anaheim',area:'Orange County',region:'West Coast',slug:'orange-county/anaheim'},'92805':{city:'Anaheim',area:'Orange County',region:'West Coast',slug:'orange-county/anaheim'},'92806':{city:'Anaheim',area:'Orange County',region:'West Coast',slug:'orange-county/anaheim'},'92701':{city:'Santa Ana',area:'Orange County',region:'West Coast',slug:'orange-county/santa-ana'},'92703':{city:'Santa Ana',area:'Orange County',region:'West Coast',slug:'orange-county/santa-ana'},'92704':{city:'Santa Ana',area:'Orange County',region:'West Coast',slug:'orange-county/santa-ana'},'92705':{city:'Santa Ana',area:'Orange County',region:'West Coast',slug:'orange-county/santa-ana'},'91745':{area:'Los Angeles County',region:'West Coast',cities:[{city:'Hacienda Heights',slug:'los-angeles-county/hacienda-heights'},{city:'City of Industry',slug:'los-angeles-county/city-of-industry'}]},'91748':{city:'Rowland Heights',area:'Los Angeles County',region:'West Coast',slug:'los-angeles-county/rowland-heights'}};
+  function regionFromPrefix(z){var n=parseInt(z.slice(0,3),10);if((n>=900&&n<=961)||(n>=970&&n<=994)||(n>=889&&n<=899))return 'West Coast';if((n>=850&&n<=865)||(n>=870&&n<=884)||(n>=750&&n<=799)||(n>=730&&n<=749))return 'Southwest';if((n>=600&&n<=629)||(n>=430&&n<=458)||(n>=480&&n<=499)||(n>=530&&n<=567)||(n>=460&&n<=479)||(n>=500&&n<=528)||(n>=630&&n<=658))return 'Midwest';if((n>=320&&n<=349)||(n>=300&&n<=319)||(n>=270&&n<=289)||(n>=370&&n<=385)||(n>=290&&n<=299)||(n>=350&&n<=369)||(n>=386&&n<=427))return 'South';if((n>=100&&n<=149)||(n>=10&&n<=89)||(n>=150&&n<=269))return 'East Coast';return 'West Coast';}
+  var REGION_SLUG={'West Coast':'west-coast','Southwest':'southwest','Midwest':'midwest','South':'south','East Coast':'east-coast'};
+  function highlightRegion(r){var cs=document.querySelectorAll('.region-card');for(var k=0;k<cs.length;k++){cs[k].classList.toggle('active',cs[k].getAttribute('data-region')===r);}}
+  var CC_RECENT='cc_recent_cities';
+  function ccGetRecent(){try{return JSON.parse(localStorage.getItem(CC_RECENT)||'[]');}catch(e){return window._ccRecent||[];}}
+  function ccSetRecent(a){try{localStorage.setItem(CC_RECENT,JSON.stringify(a));}catch(e){window._ccRecent=a;}}
+  function ccRenderRecent(){var el=document.getElementById('recent-chips');if(!el)return;var a=ccGetRecent();if(!a.length){el.innerHTML='<span class="recent-empty">Search a ZIP and your recent cities appear here.</span>';return;}el.innerHTML=a.map(function(r){return '<a class="recent-chip" href="/dentists/'+r.slug+'.html"><span class="rc-ic">\u25F7</span>'+r.city+'</a>';}).join('');}
+  function ccAddRecent(city,slug){if(!city||!slug)return;var a=ccGetRecent().filter(function(r){return r.slug!==slug;});a.unshift({city:city,slug:slug});ccSetRecent(a.slice(0,5));ccRenderRecent();}
+  if(!ccGetRecent().length){ccSetRecent([{city:'Fountain Valley',slug:'orange-county/fountain-valley'},{city:'Irvine',slug:'orange-county/irvine'},{city:'Costa Mesa',slug:'orange-county/costa-mesa'}]);}
+  ccRenderRecent();
+  var NEARBY={'Fountain Valley':[{name:'Huntington Beach',slug:'orange-county/huntington-beach'},{name:'Costa Mesa',slug:'orange-county/costa-mesa'},{name:'Santa Ana',slug:'orange-county/santa-ana'},{name:'Garden Grove',slug:'orange-county/garden-grove'},{name:'Westminster',slug:'orange-county/westminster'}],'Irvine':[{name:'Tustin',slug:'orange-county/tustin'},{name:'Costa Mesa',slug:'orange-county/costa-mesa'},{name:'Lake Forest',slug:'orange-county/lake-forest'},{name:'Newport Beach',slug:'orange-county/newport-beach'},{name:'Santa Ana',slug:'orange-county/santa-ana'}],'Anaheim':[{name:'Orange',slug:'orange-county/orange'},{name:'Fullerton',slug:'orange-county/fullerton'},{name:'Garden Grove',slug:'orange-county/garden-grove'},{name:'Santa Ana',slug:'orange-county/santa-ana'},{name:'Buena Park',slug:'orange-county/buena-park'}],'Costa Mesa':[{name:'Newport Beach',slug:'orange-county/newport-beach'},{name:'Irvine',slug:'orange-county/irvine'},{name:'Huntington Beach',slug:'orange-county/huntington-beach'},{name:'Santa Ana',slug:'orange-county/santa-ana'},{name:'Fountain Valley',slug:'orange-county/fountain-valley'}],'Huntington Beach':[{name:'Fountain Valley',slug:'orange-county/fountain-valley'},{name:'Costa Mesa',slug:'orange-county/costa-mesa'},{name:'Westminster',slug:'orange-county/westminster'},{name:'Newport Beach',slug:'orange-county/newport-beach'},{name:'Seal Beach',slug:'orange-county/seal-beach'}],'Newport Beach':[{name:'Costa Mesa',slug:'orange-county/costa-mesa'},{name:'Irvine',slug:'orange-county/irvine'},{name:'Huntington Beach',slug:'orange-county/huntington-beach'},{name:'Laguna Beach',slug:'orange-county/laguna-beach'},{name:'Tustin',slug:'orange-county/tustin'}]};
+  var _feat=document.getElementById('find-featured');var FEAT_KYT_HTML=_feat?_feat.innerHTML:'';var KYT_MI={'Fountain Valley':1,'Costa Mesa':4,'Huntington Beach':5,'Santa Ana':6,'Newport Beach':8,'Irvine':9,'Anaheim':11,'Hacienda Heights':22,'City of Industry':23};function placementHTML(city){return '<div class="featured-banner spot-open">\u25C7 Platinum Elite \u00b7 Opportunity Open</div>'+'<div class="featured-body"><div class="featured-avatar">\uD83D\uDCCD</div><div class="featured-copy"><div class="featured-name">No Platinum Elite dentist<br><span class="open-city-line">near '+city+' yet</span></div><div class="featured-meta">Patients are searching this area</div><div class="feature-lines open-opportunity-lines"><span>Appear in local discovery</span><span>Serve PPO-ready patients</span></div></div></div>'+'<div class="featured-actions"><a class="featured-btn primary" href="/dentist-portal.html#capy-accredited">Get Accredited</a><a class="featured-btn secondary" href="/dentist-portal.html#platinum-elite">Apply Platinum Elite</a></div>';}function goZip(){var v=(zip.value||'').replace(/\D/g,'').slice(0,5);if(v.length!==5){toast('Enter a 5-digit ZIP');zip.focus();return;}var _b=document.getElementById('nav-zip-btn'),_t=document.getElementById('nav-zip-tag'),_f=document.getElementById('find-featured');if(_b){_b.disabled=true;_b.textContent='Searching\u2026';}if(_f){_f.className='featured-card promo-action-card';_f.innerHTML='<div class="featured-banner plan-feature-banner">\u25C6 Searching near '+v+'\u2026</div><div class="featured-body"><div class="featured-avatar feat-radar-av"><i></i><i></i><i></i><span class="feat-pin">\uD83D\uDCCD</span></div><div style="flex:1;min-width:0"><div class="sk-line" style="width:64%"></div><div class="sk-line" style="width:50%;margin-top:8px"></div><div class="sk-line" style="width:72%;margin-top:8px"></div></div></div><div class="featured-actions"><div class="sk-btn"></div><div class="sk-btn"></div></div>';}if(_t){_t.classList.add('show');_t.innerHTML='<div class="find-tag-eyebrow">Searching</div><span class="find-tag find-tag-loading"><span class="find-dots"><i></i><i></i><i></i></span>Checking accredited dentists near '+v+'</span><div class="find-tag-meta">One moment\u2026</div>';}setTimeout(function(){renderZip(v);if(_b){_b.disabled=false;_b.textContent='Search';}},1100);}
+  function renderZip(v){var loc=ZIP_DB[v];var tagEl=document.getElementById('nav-zip-tag'),ctaEl=document.getElementById('nav-find-cta'),ctaAll=document.getElementById('nav-find-all'),nearLabel=document.getElementById('nav-near-label'),chips=document.getElementById('recent-chips'),feat=document.getElementById('find-featured');var cities=loc?(loc.cities||[{city:loc.city,slug:loc.slug}]):[];var area=loc?(loc.area||''):'',region=loc?(loc.region||''):'';function setCTAs(c){if(ctaEl){ctaEl.href='/ppodentists.html?zip='+encodeURIComponent(v)+(c.slug?'&city='+encodeURIComponent(c.slug):'');ctaEl.innerHTML='Browse Dentists Near '+c.city;ctaEl.classList.remove('cta-idle');ctaEl.classList.add('cta-live');}if(ctaAll){ctaAll.href='/ppodentists.html?zip='+encodeURIComponent(v)+(c.slug?'&city='+encodeURIComponent(c.slug):'');}}var pick=cities.length?cities[0]:{city:'ZIP '+v,slug:''};var kytMi=(loc&&pick)?KYT_MI[pick.city]:null;var found=(loc&&kytMi!=null&&kytMi<=18);if(tagEl){var msg=found?'Platinum Elite dentist found near you':'Capy Accredited dentists available near you';var tagCls=found?'find-tag-found':'find-tag-none';var html='<div class="find-tag-eyebrow">Searched ZIP '+v+'</div>';if(cities.length>1){html+='<div class="find-pick" style="margin-top:2px">'+cities.map(function(c,idx){return '<button type="button" class="find-pick-chip'+(idx===0?' on':'')+'" data-slug="'+(c.slug||'')+'" data-city="'+c.city+'"><span class="find-tag-pin">\u{1F4CD}</span>'+c.city+'</button>';}).join('')+'</div><div class="find-tag-meta">'+msg+' \u00b7 pick your city, then view dentists nearby</div>';}else if(cities.length===1){html+='<span class="find-tag '+tagCls+'"><span class="find-tag-pin">\u{1F4CD}</span>'+cities[0].city+'</span><div class="find-tag-meta">'+msg+(area?' \u00b7 '+area:'')+' \u00b7 view dentists nearby</div>';}else{html+='<span class="find-tag '+tagCls+'"><span class="find-tag-pin">\u{1F4CD}</span>ZIP '+v+'</span><div class="find-tag-meta">ZIP '+v+' located \u00b7 '+msg+' \u00b7 view dentists nearby</div>';}tagEl.innerHTML=html;tagEl.classList.add('show');var pks=tagEl.querySelectorAll('.find-pick-chip');Array.prototype.forEach.call(pks,function(b){b.addEventListener('click',function(){Array.prototype.forEach.call(pks,function(x){x.classList.remove('on');});b.classList.add('on');setCTAs({city:b.getAttribute('data-city'),slug:b.getAttribute('data-slug')});});});}setCTAs(pick);if(cities.length)ccAddRecent(cities[0].city,cities[0].slug);if(feat){if(found){feat.className='featured-card promo-action-card dentist-feature-card';feat.innerHTML=FEAT_KYT_HTML;var _mel=document.getElementById('feat-mi');if(_mel)_mel.textContent=' \u00b7 ~'+kytMi+' mi away';}else{feat.className='featured-card promo-action-card open-spot-card';feat.innerHTML=placementHTML(cities.length?cities[0].city:'your area');}}var near=(loc&&typeof window.ccNearbyCities==='function'&&window.ccNearbyCities(v,loc))||(loc&&cities[0]&&NEARBY[cities[0].city])||[];if(nearLabel)nearLabel.textContent=near.length?'Cities nearby':'Recent searches';if(chips&&near.length){chips.innerHTML=near.slice(0,6).map(function(c){return '<a class="recent-chip" href="/ppodentists.html?city='+encodeURIComponent(c.slug||'')+'">'+c.name+'</a>';}).join('');}if(typeof window.ccLoadDentists==='function'){try{window.ccLoadDentists(v,loc||{});}catch(e){}}}
+  if(zip){zip.addEventListener('input',function(){zip.value=zip.value.replace(/\D/g,'');});zip.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();goZip();}});zip.addEventListener('click',function(e){e.stopPropagation();});}
+  if(zipBtn)zipBtn.addEventListener('click',function(e){e.stopPropagation();goZip();});
 
-  document.addEventListener('click', (e) => {
-    if(!e.target.closest('.cc-link')) closeAll();
-  });
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeAll();
-  });
+  var pzip=document.getElementById('portal-zip'),pzipBtn=document.getElementById('portal-zip-btn');
+  function goPortalZip(){var v=(pzip.value||'').replace(/\D/g,'').slice(0,5);if(v.length!==5){toast('Enter a 5-digit ZIP');pzip.focus();return;}window.location.assign('/claim-dentist-listing-profile.html?zip='+v);}
+  if(pzip){pzip.addEventListener('input',function(){pzip.value=pzip.value.replace(/\D/g,'');});pzip.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();goPortalZip();}});pzip.addEventListener('click',function(e){e.stopPropagation();});}
+  if(pzipBtn)pzipBtn.addEventListener('click',function(e){e.stopPropagation();goPortalZip();});
 
-  let rafId;
-  function reposition(){ if(activeLink) positionDropdown(activeLink); }
-  window.addEventListener('resize', () => {
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(reposition);
-  });
-  window.addEventListener('scroll', reposition, { passive: true });
-
-  // ZIP input
-  const zipInput = document.getElementById('rmg-zip-input');
-  if(zipInput){
-    zipInput.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D/g, '');
-      if(e.target.value.length === 5){
+  var ppoSwitch=document.getElementById('ppo-switch');
+  if(ppoSwitch){
+    var ppoOpts=ppoSwitch.querySelectorAll('.ppo-opt');
+    var ppoLists=document.querySelectorAll('.ppo-points');
+    ppoOpts.forEach(function(btn){
+      btn.addEventListener('click',function(e){
         e.stopPropagation();
-        rmgFindByZip();
-      }
+        var plan=btn.getAttribute('data-plan');
+        ppoSwitch.classList.toggle('is-hmo',plan==='hmo');
+        ppoOpts.forEach(function(o){o.classList.toggle('is-on',o===btn);});
+        ppoLists.forEach(function(ul){ul.hidden=ul.getAttribute('data-for')!==plan;});
+      });
     });
-    zipInput.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){ e.stopPropagation(); rmgFindByZip(); }
-    });
-    zipInput.addEventListener('click', (e) => e.stopPropagation());
   }
 
+  /* PLAN FINDER */
+  var PF_MAP={
+    me:['UnitedHealthcare Primary Dental','Fast activation, coverage in days','/ppo-plans/uhc-primary-ppo.html'],
+    family:['Humana Extend 5000','Everyone covered under one plan','/family-ppo-dental-plans.html'],
+    senior:['Ameritas Primestar Complete','Implants, crowns and major work covered','/ppo-dental-plans-seniors.html'],
+    ortho:['Guardian Premier 2.0','Braces and Invisalign for children covered','/ppo-plans/orthodontics.html']
+  };
+  var pfPills=document.querySelectorAll('.pf-pill'),pfName=document.getElementById('pf-name'),pfBen=document.getElementById('pf-benefit'),pfGo=document.getElementById('pf-go');
+  function pfSelect(key){var d=PF_MAP[key];if(!d||!pfName)return;pfName.textContent=d[0];pfBen.textContent=d[1];pfGo.setAttribute('href',d[2]);
+    pfName.classList.remove('pf-fade');pfBen.classList.remove('pf-fade');void pfName.offsetWidth;pfName.classList.add('pf-fade');pfBen.classList.add('pf-fade');
+    for(var i=0;i<pfPills.length;i++)pfPills[i].classList.toggle('on',pfPills[i].getAttribute('data-plan')===key);}
+  for(var pi=0;pi<pfPills.length;pi++){pfPills[pi].addEventListener('click',function(e){e.stopPropagation();pfSelect(this.getAttribute('data-plan'));});}
+
+  /* DRAWER */
+  var burger=document.getElementById('cc-burger'),drawer=document.getElementById('cc-drawer'),closeBtn=document.getElementById('cc-drawer-close');
+  function openDrawer(){drawer.classList.add('is-open');drawer.setAttribute('aria-hidden','false');burger.classList.add('is-open');burger.setAttribute('aria-expanded','true');document.body.classList.add('cc-locked');}
+  function closeDrawer(){drawer.classList.remove('is-open');drawer.setAttribute('aria-hidden','true');burger.classList.remove('is-open');burger.setAttribute('aria-expanded','false');document.body.classList.remove('cc-locked');}
+  if(burger)burger.addEventListener('click',function(){drawer.classList.contains('is-open')?closeDrawer():openDrawer();});
+  if(closeBtn)closeBtn.addEventListener('click',closeDrawer);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
+  Array.prototype.slice.call(document.querySelectorAll('[data-acc]')).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var body=btn.nextElementSibling,isOpen=btn.classList.contains('is-active');
+      document.querySelectorAll('.cc-dacc-btn.is-active').forEach(function(b){if(b!==btn){b.classList.remove('is-active');b.nextElementSibling.style.maxHeight=null;}});
+      if(isOpen){btn.classList.remove('is-active');body.style.maxHeight=null;}else{btn.classList.add('is-active');body.style.maxHeight=body.scrollHeight+'px';}
+    });
+  });
+  document.querySelectorAll('.cc-dacc-link,.cc-drawer-join,.cc-drawer-sign').forEach(function(a){a.addEventListener('click',closeDrawer);});
+
+  /* toast (ZIP validation only) */
+  var toastEl=null,toastTimer=null;
+  function toast(msg){if(!toastEl){toastEl=document.createElement('div');toastEl.className='cc-toast';document.body.appendChild(toastEl);}toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){toastEl.classList.remove('show');},2400);}
 })();
 
-/* ════════════════════════════════════════════════════════════════
-   v201 DATA — sourced directly from v156
-   Hierarchy:  Region → Location (state) → Popular Areas (county) → Cities (w/ ZIP)
-   No status labels. Only data that renders.
-   ════════════════════════════════════════════════════════════════ */
-
-// Tier 1: Regions, display order = west-coast · southwest · midwest · south · east-coast
-const REGIONS = {
-  'west-coast': { name:'West Coast', icon:'🌊', locations:['southern-california','northern-california','washington','oregon'],         awaiting:36 },
-  'southwest':  { name:'Southwest',  icon:'🌵', locations:['central-california','nevada','arizona'],                                   awaiting:31 },
-  'midwest':    { name:'Midwest',    icon:'🌾', locations:['illinois','michigan','ohio'],                                             awaiting:21 },
-  'south':      { name:'South',      icon:'🤠', locations:['texas','georgia','north-carolina','greater-new-orleans'],                 awaiting:33 },
-  'east-coast': { name:'East Coast', icon:'🗽', locations:['new-york','new-jersey','florida','dmv-area'],                             awaiting:46 }
-};
-const REGION_ORDER = ['west-coast','southwest','midwest','south','east-coast'];
-
-// Tier 2: Locations (states / sub-regions)
-const LOCATIONS = {
-  // West Coast
-  'northern-california': { name:'San Francisco Bay Area', icon:'🌉' },
-  'washington':          { name:'Washington',             icon:'🌧️' },
-  'oregon':              { name:'Oregon',                 icon:'🌲' },
-  // Southwest
-  'southern-california': { name:'Southern California',    icon:'🌴' },
-  'central-california':  { name:'Central California',     icon:'🍇' },
-  'nevada':              { name:'Nevada',                 icon:'🎰' },
-  'arizona':             { name:'Arizona',                icon:'🌵' },
-  // Midwest
-  'illinois':            { name:'Chicagoland',            icon:'🌆' },
-  'michigan':            { name:'Michigan',               icon:'🚗' },
-  'ohio':                { name:'Ohio',                   icon:'🍂' },
-  // South
-  'texas':               { name:'Texas',                  icon:'⭐' },
-  'georgia':             { name:'Georgia',                icon:'🍑' },
-  'north-carolina':      { name:'North Carolina',         icon:'🌳' },
-  'greater-new-orleans': { name:'Greater New Orleans',    icon:'🎷' },
-  // East Coast
-  'new-york':            { name:'NYC Metro',              icon:'🗽' },
-  'new-jersey':          { name:'New Jersey',             icon:'🏙️' },
-  'florida':             { name:'South Florida',          icon:'🐊' },
-  'dmv-area':            { name:'DMV Area',               icon:'🏛️' }
-};
-
-// Tier 3: Popular Areas (mixed counties + cities from v156's POPULAR_AREAS_V104)
-// Each area lists its child cities (with ZIPs) where applicable.
-const AREAS = {
-  // ── Southern California ─────────────────────────────────────────────
-  'orange-county':    { name:'Orange County',     icon:'🌴', loc:'southern-california', count:'48',  cities:['irvine','newport-beach','fountain-valley','costa-mesa','huntington-beach'] },
-  'los-angeles':      { name:'Los Angeles',       icon:'🌆', loc:'southern-california', count:'124', cities:['beverly-hills','santa-monica','long-beach','pasadena','culver-city','rowland-heights','west-covina','diamond-bar','arcadia','el-monte'] },
-  'san-diego':        { name:'San Diego',         icon:'🌊', loc:'southern-california', count:'52',  cities:['la-jolla','carlsbad','encinitas','del-mar'] },
-  'inland-empire':    { name:'Inland Empire',     icon:'🍊', loc:'southern-california', count:'29',  cities:['riverside','temecula','corona'] },
-  'san-bernardino':   { name:'San Bernardino',    icon:'🏔️', loc:'southern-california', count:'24',  cities:['rancho-cucamonga','redlands','ontario'] },
-  'ventura-county':   { name:'Ventura County',    icon:'🌅', loc:'southern-california', count:'420+',cities:['thousand-oaks','ventura','oxnard'] },
-
-  // ── Bay Area ────────────────────────────────────────────────────────
-  'san-francisco':    { name:'San Francisco',     icon:'🌉', loc:'northern-california', count:'600+',cities:['pacific-heights','marina','mission'] },
-  'oakland':          { name:'Oakland',           icon:'🌳', loc:'northern-california', count:'350+',cities:['oakland-downtown','berkeley','fremont'] },
-  'san-jose':         { name:'San Jose',          icon:'💻', loc:'northern-california', count:'380+',cities:['san-jose-downtown','palo-alto','sunnyvale'] },
-
-  // ── Central CA ──────────────────────────────────────────────────────
-  'fresno':           { name:'Fresno',            icon:'🍇', loc:'central-california', count:'250+',cities:['fresno-downtown','clovis','sanger'] },
-  'bakersfield':      { name:'Bakersfield',       icon:'🌾', loc:'central-california', count:'180+',cities:['bakersfield-downtown','delano'] },
-
-  // ── Washington ──────────────────────────────────────────────────────
-  'seattle':          { name:'Seattle',           icon:'🌧️', loc:'washington',         count:'600+',cities:['seattle-downtown','bellevue','redmond'] },
-  'tacoma':           { name:'Tacoma',            icon:'🏔️', loc:'washington',         count:'180+',cities:['tacoma-downtown','puyallup','lakewood'] },
-  'everett':          { name:'Everett',           icon:'🌲', loc:'washington',         count:'150+',cities:['everett-downtown','lynnwood','marysville'] },
-
-  // ── Oregon ──────────────────────────────────────────────────────────
-  'portland':         { name:'Portland',          icon:'🌲', loc:'oregon',             count:'350+',cities:['portland-downtown','gresham'] },
-  'beaverton':        { name:'Beaverton',         icon:'🍃', loc:'oregon',             count:'120+',cities:['beaverton-downtown','hillsboro','tigard'] },
-
-  // ── Nevada ──────────────────────────────────────────────────────────
-  'las-vegas':        { name:'Las Vegas',         icon:'🎰', loc:'nevada',             count:'450+',cities:['las-vegas-strip','henderson','north-las-vegas'] },
-  'reno':             { name:'Reno',              icon:'🏔️', loc:'nevada',             count:'180+',cities:['reno-downtown','sparks','incline-village'] },
-
-  // ── Arizona ─────────────────────────────────────────────────────────
-  'phoenix':          { name:'Phoenix',           icon:'🌵', loc:'arizona',            count:'750+',cities:['phoenix-downtown','scottsdale','mesa','tempe'] },
-  'tucson':           { name:'Tucson',            icon:'🦎', loc:'arizona',            count:'250+',cities:['tucson-downtown','oro-valley','marana'] },
-
-  // ── Illinois ────────────────────────────────────────────────────────
-  'chicago':          { name:'Chicago',           icon:'🌆', loc:'illinois',           count:'900+',cities:['chicago-downtown','evanston','oak-park'] },
-  'naperville':       { name:'Naperville',        icon:'🌳', loc:'illinois',           count:'180+',cities:['naperville-downtown','wheaton','downers-grove'] },
-
-  // ── Michigan ────────────────────────────────────────────────────────
-  'detroit':          { name:'Detroit',           icon:'🚗', loc:'michigan',           count:'300+',cities:['detroit-downtown','livonia','dearborn'] },
-  'troy':             { name:'Troy',              icon:'🍂', loc:'michigan',           count:'160+',cities:['troy-downtown','royal-oak','birmingham-mi'] },
-
-  // ── Ohio ────────────────────────────────────────────────────────────
-  'columbus':         { name:'Columbus',          icon:'🦌', loc:'ohio',               count:'280+',cities:['columbus-downtown','dublin','westerville'] },
-  'cleveland':        { name:'Cleveland',         icon:'🏈', loc:'ohio',               count:'250+',cities:['cleveland-downtown','beachwood','westlake'] },
-
-  // ── Texas ───────────────────────────────────────────────────────────
-  'houston':          { name:'Houston',           icon:'🚀', loc:'texas',              count:'700+',cities:['houston-downtown','bellaire','sugar-land'] },
-  'dallas':           { name:'Dallas',            icon:'⭐', loc:'texas',              count:'600+',cities:['dallas-downtown','plano','frisco','mckinney'] },
-  'austin':           { name:'Austin',            icon:'🎸', loc:'texas',              count:'280+',cities:['austin-downtown','west-lake-hills'] },
-
-  // ── Georgia ─────────────────────────────────────────────────────────
-  'atlanta':          { name:'Atlanta',           icon:'🍑', loc:'georgia',            count:'400+',cities:['atlanta-downtown','sandy-springs','roswell'] },
-  'gwinnett':         { name:'Gwinnett',          icon:'🌳', loc:'georgia',            count:'250+',cities:['lawrenceville','duluth','suwanee'] },
-
-  // ── North Carolina ──────────────────────────────────────────────────
-  'raleigh':          { name:'Raleigh',           icon:'🌳', loc:'north-carolina',     count:'250+',cities:['raleigh-downtown','cary','apex'] },
-  'charlotte':        { name:'Charlotte',         icon:'🐝', loc:'north-carolina',     count:'320+',cities:['charlotte-downtown','matthews','davidson'] },
-
-  // ── Greater New Orleans ─────────────────────────────────────────────
-  'new-orleans':      { name:'New Orleans',       icon:'🎷', loc:'greater-new-orleans',count:'400+',cities:['french-quarter','garden-district','uptown'] },
-  'metairie':         { name:'Metairie',          icon:'⚜️', loc:'greater-new-orleans',count:'350+',cities:['metairie-downtown','kenner','gretna'] },
-  'st-tammany':       { name:'St. Tammany',       icon:'🌳', loc:'greater-new-orleans',count:'200+',cities:['mandeville','covington','slidell'] },
-
-  // ── New York ────────────────────────────────────────────────────────
-  'manhattan':        { name:'Manhattan',         icon:'🏙️', loc:'new-york',          count:'800+',cities:['upper-east-side','tribeca','chelsea'] },
-  'brooklyn':         { name:'Brooklyn',          icon:'🌉', loc:'new-york',          count:'600+',cities:['williamsburg','park-slope','dumbo'] },
-  'queens':           { name:'Queens',            icon:'🌎', loc:'new-york',          count:'700+',cities:['astoria','lic','forest-hills'] },
-
-  // ── New Jersey ──────────────────────────────────────────────────────
-  'jersey-city':      { name:'Jersey City',       icon:'🌉', loc:'new-jersey',         count:'200+',cities:['jersey-city-downtown','hoboken','bayonne'] },
-  'hackensack':       { name:'Hackensack',        icon:'🌳', loc:'new-jersey',         count:'180+',cities:['hackensack-downtown','paramus','englewood'] },
-  'middlesex':        { name:'Middlesex',         icon:'🏙️', loc:'new-jersey',        count:'220+',cities:['edison','new-brunswick','woodbridge'] },
-
-  // ── Florida ─────────────────────────────────────────────────────────
-  'miami':            { name:'Miami',             icon:'🌊', loc:'florida',            count:'600+',cities:['miami-downtown','miami-beach','coral-gables'] },
-  'broward':          { name:'Broward',           icon:'🐊', loc:'florida',            count:'700+',cities:['fort-lauderdale','hollywood-fl'] },
-  'orlando':          { name:'Orlando',           icon:'🍊', loc:'florida',            count:'500+',cities:['orlando-downtown','winter-park'] },
-
-  // ── DMV ─────────────────────────────────────────────────────────────
-  'washington-dc':    { name:'Washington DC',     icon:'🏛️', loc:'dmv-area',          count:'600+',cities:['capitol-hill','georgetown','dupont'] },
-  'arlington':        { name:'Arlington',         icon:'🌳', loc:'dmv-area',           count:'300+',cities:['arlington-downtown','crystal-city','rosslyn'] },
-  'montgomery':       { name:'Montgomery',        icon:'🌲', loc:'dmv-area',           count:'700+',cities:['bethesda','rockville','silver-spring'] },
-  'fairfax':          { name:'Fairfax',           icon:'🦌', loc:'dmv-area',           count:'650+',cities:['reston','tysons','fairfax-city'] }
-};
-
-// Tier 4: Cities (with anchor ZIP, sourced from v156)
-const CITIES = {
-  // SoCal — Orange County
-  'irvine':              { name:'Irvine',           zip:'92602 · 92603 · 92618' },
-  'newport-beach':       { name:'Newport Beach',    zip:'92660 · 92661 · 92663' },
-  'fountain-valley':     { name:'Fountain Valley',  zip:'92708' },
-  'costa-mesa':          { name:'Costa Mesa',       zip:'92626 · 92627' },
-  'huntington-beach':    { name:'Huntington Beach', zip:'92647 · 92648' },
-  // SoCal — Los Angeles
-  'beverly-hills':       { name:'Beverly Hills',    zip:'90210 · 90212' },
-  'santa-monica':        { name:'Santa Monica',     zip:'90401 · 90402' },
-  'long-beach':          { name:'Long Beach',       zip:'90802 · 90803' },
-  'pasadena':            { name:'Pasadena',         zip:'91101 · 91103' },
-  'culver-city':         { name:'Culver City',      zip:'90230 · 90232' },
-  // SoCal — San Gabriel Valley (under Los Angeles area)
-  'rowland-heights':     { name:'Rowland Heights',  zip:'91748' },
-  'west-covina':         { name:'West Covina',      zip:'91790 · 91791' },
-  'diamond-bar':         { name:'Diamond Bar',      zip:'91765' },
-  'arcadia':             { name:'Arcadia',          zip:'91006 · 91007' },
-  'el-monte':            { name:'El Monte',         zip:'91731 · 91732' },
-  // SoCal — San Diego
-  'la-jolla':            { name:'La Jolla',         zip:'92037' },
-  'carlsbad':            { name:'Carlsbad',         zip:'92008 · 92009' },
-  'encinitas':           { name:'Encinitas',        zip:'92024' },
-  'del-mar':             { name:'Del Mar',          zip:'92014' },
-  // SoCal — Inland Empire
-  'riverside':           { name:'Riverside',        zip:'92501 · 92503' },
-  'temecula':            { name:'Temecula',         zip:'92590 · 92591' },
-  'corona':              { name:'Corona',           zip:'92879 · 92881' },
-  // SoCal — San Bernardino
-  'rancho-cucamonga':    { name:'Rancho Cucamonga', zip:'91730 · 91737' },
-  'redlands':            { name:'Redlands',         zip:'92373 · 92374' },
-  'ontario':             { name:'Ontario',          zip:'91761 · 91764' },
-  // SoCal — Ventura
-  'thousand-oaks':       { name:'Thousand Oaks',    zip:'91360 · 91362' },
-  'ventura':             { name:'Ventura',          zip:'93001 · 93003' },
-  'oxnard':              { name:'Oxnard',           zip:'93030 · 93033' },
-  // Bay Area
-  'pacific-heights':     { name:'Pacific Heights',  zip:'94115 · 94123' },
-  'marina':              { name:'Marina',           zip:'94123' },
-  'mission':             { name:'Mission',          zip:'94110 · 94114' },
-  'oakland-downtown':    { name:'Oakland Downtown', zip:'94607 · 94612' },
-  'berkeley':            { name:'Berkeley',         zip:'94704 · 94705' },
-  'fremont':             { name:'Fremont',          zip:'94536 · 94538' },
-  'san-jose-downtown':   { name:'Downtown San Jose',zip:'95110 · 95113' },
-  'palo-alto':           { name:'Palo Alto',        zip:'94301 · 94306' },
-  'sunnyvale':           { name:'Sunnyvale',        zip:'94085 · 94087' },
-  // Central CA
-  'fresno-downtown':     { name:'Downtown Fresno',  zip:'93721' },
-  'clovis':              { name:'Clovis',           zip:'93611 · 93612' },
-  'sanger':              { name:'Sanger',           zip:'93657' },
-  'bakersfield-downtown':{ name:'Downtown Bakersfield', zip:'93301' },
-  'delano':              { name:'Delano',           zip:'93215' },
-  // Washington
-  'seattle-downtown':    { name:'Downtown Seattle', zip:'98101 · 98104' },
-  'bellevue':            { name:'Bellevue',         zip:'98004 · 98007' },
-  'redmond':             { name:'Redmond',          zip:'98052 · 98053' },
-  'tacoma-downtown':     { name:'Downtown Tacoma',  zip:'98402 · 98403' },
-  'puyallup':            { name:'Puyallup',         zip:'98371 · 98374' },
-  'lakewood':            { name:'Lakewood',         zip:'98498 · 98499' },
-  'everett-downtown':    { name:'Downtown Everett', zip:'98201 · 98203' },
-  'lynnwood':            { name:'Lynnwood',         zip:'98036 · 98037' },
-  'marysville':          { name:'Marysville',       zip:'98270 · 98271' },
-  // Oregon
-  'portland-downtown':   { name:'Downtown Portland',zip:'97201 · 97204' },
-  'gresham':             { name:'Gresham',          zip:'97030 · 97080' },
-  'beaverton-downtown':  { name:'Downtown Beaverton', zip:'97005 · 97006' },
-  'hillsboro':           { name:'Hillsboro',        zip:'97123 · 97124' },
-  'tigard':              { name:'Tigard',           zip:'97223 · 97224' },
-  // Nevada
-  'las-vegas-strip':     { name:'Las Vegas Strip',  zip:'89101 · 89109' },
-  'henderson':           { name:'Henderson',        zip:'89014 · 89052' },
-  'north-las-vegas':     { name:'North Las Vegas',  zip:'89030 · 89031' },
-  'reno-downtown':       { name:'Downtown Reno',    zip:'89501 · 89503' },
-  'sparks':              { name:'Sparks',           zip:'89431 · 89434' },
-  'incline-village':     { name:'Incline Village',  zip:'89451' },
-  // Arizona
-  'phoenix-downtown':    { name:'Downtown Phoenix', zip:'85004 · 85007' },
-  'scottsdale':          { name:'Scottsdale',       zip:'85251 · 85254' },
-  'mesa':                { name:'Mesa',             zip:'85201 · 85204' },
-  'tempe':               { name:'Tempe',            zip:'85281 · 85282' },
-  'tucson-downtown':     { name:'Downtown Tucson',  zip:'85701 · 85705' },
-  'oro-valley':          { name:'Oro Valley',       zip:'85737 · 85755' },
-  'marana':              { name:'Marana',           zip:'85653 · 85658' },
-  // Illinois
-  'chicago-downtown':    { name:'Downtown Chicago', zip:'60601 · 60603' },
-  'evanston':            { name:'Evanston',         zip:'60201 · 60202' },
-  'oak-park':            { name:'Oak Park',         zip:'60301 · 60302' },
-  'naperville-downtown': { name:'Downtown Naperville', zip:'60540' },
-  'wheaton':             { name:'Wheaton',          zip:'60187 · 60189' },
-  'downers-grove':       { name:'Downers Grove',    zip:'60515 · 60516' },
-  // Michigan
-  'detroit-downtown':    { name:'Downtown Detroit', zip:'48201 · 48226' },
-  'livonia':             { name:'Livonia',          zip:'48150 · 48152' },
-  'dearborn':            { name:'Dearborn',         zip:'48124 · 48126' },
-  'troy-downtown':       { name:'Downtown Troy',    zip:'48084 · 48085' },
-  'royal-oak':           { name:'Royal Oak',        zip:'48067 · 48073' },
-  'birmingham-mi':       { name:'Birmingham',       zip:'48009' },
-  // Ohio
-  'columbus-downtown':   { name:'Downtown Columbus',zip:'43215 · 43219' },
-  'dublin':              { name:'Dublin',           zip:'43016 · 43017' },
-  'westerville':         { name:'Westerville',      zip:'43081 · 43082' },
-  'cleveland-downtown':  { name:'Downtown Cleveland', zip:'44113 · 44115' },
-  'beachwood':           { name:'Beachwood',        zip:'44122' },
-  'westlake':            { name:'Westlake',         zip:'44145' },
-  // Texas
-  'houston-downtown':    { name:'Downtown Houston', zip:'77002 · 77003' },
-  'bellaire':            { name:'Bellaire',         zip:'77401' },
-  'sugar-land':          { name:'Sugar Land',       zip:'77478 · 77479' },
-  'dallas-downtown':     { name:'Downtown Dallas',  zip:'75201 · 75202' },
-  'plano':               { name:'Plano',            zip:'75024 · 75025' },
-  'frisco':              { name:'Frisco',           zip:'75033 · 75034' },
-  'mckinney':            { name:'McKinney',         zip:'75069 · 75070' },
-  'austin-downtown':     { name:'Downtown Austin',  zip:'78701 · 78704' },
-  'west-lake-hills':     { name:'West Lake Hills',  zip:'78746' },
-  // Georgia
-  'atlanta-downtown':    { name:'Downtown Atlanta', zip:'30303 · 30308' },
-  'sandy-springs':       { name:'Sandy Springs',    zip:'30328 · 30342' },
-  'roswell':             { name:'Roswell',          zip:'30075 · 30076' },
-  'lawrenceville':       { name:'Lawrenceville',    zip:'30043 · 30044' },
-  'duluth':              { name:'Duluth',           zip:'30096 · 30097' },
-  'suwanee':             { name:'Suwanee',          zip:'30024' },
-  // NC
-  'raleigh-downtown':    { name:'Downtown Raleigh', zip:'27601 · 27603' },
-  'cary':                { name:'Cary',             zip:'27511 · 27513' },
-  'apex':                { name:'Apex',             zip:'27502 · 27523' },
-  'charlotte-downtown':  { name:'Downtown Charlotte', zip:'28202 · 28204' },
-  'matthews':            { name:'Matthews',         zip:'28104 · 28105' },
-  'davidson':            { name:'Davidson',         zip:'28036' },
-  // New Orleans
-  'french-quarter':      { name:'French Quarter',   zip:'70112 · 70116' },
-  'garden-district':     { name:'Garden District',  zip:'70115 · 70130' },
-  'uptown':              { name:'Uptown',           zip:'70118 · 70125' },
-  'metairie-downtown':   { name:'Downtown Metairie',zip:'70001 · 70003' },
-  'kenner':              { name:'Kenner',           zip:'70062 · 70065' },
-  'gretna':              { name:'Gretna',           zip:'70053 · 70056' },
-  'mandeville':          { name:'Mandeville',       zip:'70448 · 70471' },
-  'covington':           { name:'Covington',        zip:'70433 · 70435' },
-  'slidell':             { name:'Slidell',          zip:'70458 · 70460' },
-  // New York
-  'upper-east-side':     { name:'Upper East Side',  zip:'10021 · 10028' },
-  'tribeca':             { name:'Tribeca',          zip:'10007 · 10013' },
-  'chelsea':             { name:'Chelsea',          zip:'10001 · 10011' },
-  'williamsburg':        { name:'Williamsburg',     zip:'11211 · 11249' },
-  'park-slope':          { name:'Park Slope',       zip:'11215 · 11217' },
-  'dumbo':               { name:'DUMBO',            zip:'11201' },
-  'astoria':             { name:'Astoria',          zip:'11102 · 11106' },
-  'lic':                 { name:'Long Island City', zip:'11101 · 11109' },
-  'forest-hills':        { name:'Forest Hills',     zip:'11375' },
-  // New Jersey
-  'jersey-city-downtown':{ name:'Downtown JC',      zip:'07302 · 07304' },
-  'hoboken':             { name:'Hoboken',          zip:'07030' },
-  'bayonne':             { name:'Bayonne',          zip:'07002' },
-  'hackensack-downtown': { name:'Downtown Hackensack', zip:'07601' },
-  'paramus':             { name:'Paramus',          zip:'07652 · 07653' },
-  'englewood':           { name:'Englewood',        zip:'07631 · 07632' },
-  'edison':              { name:'Edison',           zip:'08817 · 08820' },
-  'new-brunswick':       { name:'New Brunswick',    zip:'08901' },
-  'woodbridge':          { name:'Woodbridge',       zip:'07095' },
-  // Florida
-  'miami-downtown':      { name:'Downtown Miami',   zip:'33130 · 33131' },
-  'miami-beach':         { name:'Miami Beach',      zip:'33139 · 33140' },
-  'coral-gables':        { name:'Coral Gables',     zip:'33134 · 33146' },
-  'fort-lauderdale':     { name:'Fort Lauderdale',  zip:'33301 · 33304' },
-  'hollywood-fl':        { name:'Hollywood',        zip:'33019 · 33020' },
-  'orlando-downtown':    { name:'Downtown Orlando', zip:'32801 · 32803' },
-  'winter-park':         { name:'Winter Park',      zip:'32789 · 32792' },
-  // DMV
-  'capitol-hill':        { name:'Capitol Hill',     zip:'20002 · 20003' },
-  'georgetown':          { name:'Georgetown',       zip:'20007' },
-  'dupont':              { name:'Dupont',           zip:'20036' },
-  'arlington-downtown':  { name:'Downtown Arlington', zip:'22201 · 22203' },
-  'crystal-city':        { name:'Crystal City',     zip:'22202' },
-  'rosslyn':             { name:'Rosslyn',          zip:'22209' },
-  'bethesda':            { name:'Bethesda',         zip:'20814 · 20817' },
-  'rockville':           { name:'Rockville',        zip:'20850 · 20852' },
-  'silver-spring':       { name:'Silver Spring',    zip:'20901 · 20910' },
-  'reston':              { name:'Reston',           zip:'20190 · 20194' },
-  'tysons':              { name:'Tysons',           zip:'22102' },
-  'fairfax-city':        { name:'Fairfax',          zip:'22030 · 22033' }
-};
-
-// Featured dentist per region (default for that region's hero card)
-const REGION_FEATURED = {
-  'west-coast': { name:'Dr. Kira Chen, DDS',  practice:'Bay Smile Studio',  loc:'Pacific Heights, SF · 4.9 ★', icon:'🦷' },
-  'southwest':  { name:'KYT Dental Services', practice:'',                  loc:'Fountain Valley, CA · 4.9 ★',  icon:'🦷' },
-  'midwest':    { name:'Dr. Amelia Voss, DDS',practice:'Loop Dental',        loc:'Downtown Chicago · 4.8 ★',     icon:'🦷' },
-  'south':      { name:'Dr. Marco Reyes, DDS',practice:'River Oaks Dental',  loc:'Houston, TX · 4.9 ★',          icon:'🦷' },
-  'east-coast': { name:'Dr. Jordan Kim, DDS', practice:'Tribeca Smile Co.',  loc:'Tribeca, NYC · 4.9 ★',         icon:'🦷' }
-};
-
-/* v215 — tier badge shown on the Featured Dentist card.
-   v217 — badges now STACK: Platinum Elite cards also show Capy Accredited,
-   Capy Accredited cards also show Verified. Each entry can override the
-   default cascade with an explicit `badges: [...]` array (used by KYT). */
-const FEATURED_DEFAULT_TIER = 'verified';
-
-const TIER_LABEL = {
-  'platinum-elite':  'Platinum Elite',
-  'capy-accredited': 'Capy Accredited',
-  'verified':        'Verified'
-};
-const TIER_ICON = {
-  'platinum-elite':  '💎',
-  'capy-accredited': '🦫',
-  'verified':        '✓'
-};
-
-/* Standard tier cascade — render the dentist's tier plus the next one down.
-   KYT (paying for the top tier monthly) overrides this and shows all three. */
-const TIER_CASCADE = {
-  'platinum-elite':  ['platinum-elite', 'capy-accredited'],
-  'capy-accredited': ['capy-accredited', 'verified'],
-  'verified':        ['verified']
-};
-
-function tierBadgesFor(f){
-  if(f && Array.isArray(f.badges)) return f.badges;
-  const t = (f && f.tier) || FEATURED_DEFAULT_TIER;
-  return TIER_CASCADE[t] || [FEATURED_DEFAULT_TIER];
-}
-
-/* v410 — richer featured dentist data: single tier, reviews, PPO plans, practice href */
-const AREA_FEATURED = {
-  'orange-county': {
-    name:'KYT Dental Services', loc:'Fountain Valley, CA', rating:'4.9', reviews:347,
-    icon:'🦷', tier:'platinum-elite', href:'/dentists/kyt-dental-services',
-    ppo:['UHC PPO','Guardian PPO','Aetna PPO','Ameritas']
-  },
-  'los-angeles': {
-    name:'Pasadena Premier Dental', loc:'Pasadena, Los Angeles', rating:'4.9', reviews:212,
-    icon:'🦷', tier:'capy-accredited', href:'/dentists/pasadena-premier-dental',
-    ppo:['Delta Dental PPO','Cigna PPO','UHC PPO']
-  },
-  'manhattan': {
-    name:'Tribeca Smile Co.', loc:'Tribeca, NYC', rating:'4.9', reviews:189,
-    icon:'🦷', tier:'platinum-elite', href:'/dentists/tribeca-smile-co',
-    ppo:['MetLife PPO','Aetna PPO','Guardian PPO']
-  },
-  'san-francisco': {
-    name:'Bay Smile Studio', loc:'Pacific Heights, SF', rating:'4.9', reviews:164,
-    icon:'🦷', tier:'capy-accredited', href:'/dentists/bay-smile-studio',
-    ppo:['Delta Dental PPO','Cigna PPO','Guardian PPO']
-  },
-  'houston': {
-    name:'River Oaks Dental', loc:'Houston, TX', rating:'4.9', reviews:143,
-    icon:'🦷', tier:'verified', href:'/dentists/river-oaks-dental',
-    ppo:['Cigna PPO','Aetna PPO','UHC PPO']
-  },
-  'chicago': {
-    name:'Loop Dental', loc:'Downtown Chicago', rating:'4.8', reviews:128,
-    icon:'🦷', tier:'capy-accredited', href:'/dentists/loop-dental',
-    ppo:['Delta Dental PPO','MetLife PPO','Guardian PPO']
+(function(){
+  var s=document.getElementById('est-slider'); if(!s) return;
+  var qv=document.getElementById('est-qval'),full=document.getElementById('est-full'),ppo=document.getElementById('est-ppo'),save=document.getElementById('est-save');
+  var TYP=1800, FIRST=675, ADD=600;
+  function money(n){return '$'+n.toLocaleString('en-US');}
+  function upd(){
+    var n=parseInt(s.value,10);
+    qv.textContent='\u00d7'+n;
+    var f=TYP*n, pp=FIRST+ADD*(n-1);
+    full.textContent=money(f);
+    ppo.textContent=money(pp);
+    save.textContent=money(f-pp);
+    var pct=(n-1)/5*100;
+    s.style.background='linear-gradient(90deg,var(--emerald) 0%,var(--emerald) '+pct+'%,var(--sand) '+pct+'%)';
   }
-};
+  s.addEventListener('input',upd);
+  var minus=document.getElementById('est-minus'),plus=document.getElementById('est-plus');
+  function step(d){var n=Math.min(6,Math.max(1,parseInt(s.value,10)+d));s.value=n;upd();}
+  if(minus)minus.addEventListener('click',function(){step(-1);});
+  if(plus)plus.addEventListener('click',function(){step(1);});
+  upd();
+})();
 
-// State
-let activeRegion = 'west-coast';
-let activeLocation = 'southern-california';
-let activeArea = 'orange-county';
-let activeCity = 'irvine';
-let activeZipCluster = '92612';
-
-/* ── RENDERERS ── */
-function renderRegions(){
-  const host = document.getElementById('find-regions');
-  if(!host) return;
-  host.innerHTML = REGION_ORDER.map(key => {
-    const r = REGIONS[key];
-    const active = key === activeRegion ? ' is-active' : '';
-    const areaCount = r.locations.reduce((sum, locKey) => {
-      return sum + Object.keys(AREAS).filter(aKey => AREAS[aKey].loc === locKey).length;
-    }, 0);
-    return `
-      <a class="find-region${active}" data-region="${key}" href="${seoRegionUrl(key)}" onclick="event.stopPropagation();event.preventDefault();selectRegion('${key}');">
-        <span class="find-region-icon">${r.icon}</span>
-        <span class="find-region-name">${r.name}</span>
-        <span class="find-region-sub">${areaCount} AREAS</span>
-      </a>
-    `;
-  }).join('');
-}
-
-function renderLocations(){
-  const host = document.getElementById('find-locations');
-  if(!host) return;
-  const r = REGIONS[activeRegion];
-  host.innerHTML = r.locations.map(key => {
-    const loc = LOCATIONS[key];
-    if(!loc) return '';
-    const active = key === activeLocation ? ' is-active' : '';
-    const areaCount = Object.keys(AREAS).filter(aKey => AREAS[aKey].loc === key).length;
-    return `
-      <a class="find-location${active}" data-location="${key}" href="${seoLocationUrl(key)}" onclick="event.stopPropagation();event.preventDefault();selectLocation('${key}');">
-        <span class="find-location-icon">${loc.icon}</span>
-        <span class="find-location-text">
-          <span class="find-location-name">${loc.name}</span>
-          <span class="find-location-sub">${areaCount} local areas</span>
-        </span>
-      </a>
-    `;
-  }).join('');
-  const tag = document.getElementById('find-locations-tag');
-  if(tag) tag.textContent = r.locations.length + ' STATES';
-}
-
-/* ── v400: network status helper — always shows Building Network ── */
-function networkStatus(countStr){
-  const s = String(countStr || '');
-  const n = parseInt(s.replace(/\D/g,''), 10);
-  const hasPlus = s.includes('+');
-  return { key:'building', label:'Building Network', title: (hasPlus ? n + '+' : n) + ' dentists in directory' };
-}
-
-function renderAreas(){
-  const host = document.getElementById('find-areas');
-  if(!host) return;
-  const areas = Object.keys(AREAS).filter(key => AREAS[key].loc === activeLocation);
-  host.innerHTML = areas.map(key => {
-    const a = AREAS[key];
-    const active = key === activeArea ? ' is-active' : '';
-    const ns = networkStatus(a.count);
-    return `
-      <a class="find-area${active}" data-area="${key}" href="${seoAreaUrl(key)}" onclick="event.stopPropagation();event.preventDefault();selectArea('${key}');">
-        <span class="find-area-icon">${a.icon}</span>
-        <span class="find-area-name">${a.name}</span>
-        <span class="find-area-count"><span class="net-status ${ns.key}" title="${ns.title}">${ns.label}</span></span>
-      </a>
-    `;
-  }).join('');
-  const tag = document.getElementById('find-areas-tag');
-  if(tag) tag.textContent = areas.length + ' AREAS';
-}
-
-/* ── v410: city patient demand signal ── */
-function cityMonthlySearches(slug){
-  // Stable, deterministic number per city slug: 45–390 patients/month
-  const h = stableHash('city-monthly-searches-v2:' + slug);
-  const base = 45 + (h % 345);
-  return base;
-}
-
-function cityFeaturedAreaSlug(slug){
-  for(const aKey of Object.keys(AREAS)){
-    if((AREAS[aKey].cities || []).indexOf(slug) !== -1) return aKey;
+/* CoverCapy i18n - full-page translation.
+   Layer 1 (DICT/HTML): curated, instant, offline - nav, hero, section headers, italic titles.
+   Layer 2 (machine translation): auto-translates EVERYTHING else live, cached in localStorage.
+   PRODUCTION: for best quality + dynamic modals, set window.ccMT = async (text,lang)=>{ ...call your Gemini / Google Cloud Translation backend... return translated; }
+   It overrides the default provider below. window.ccI18nReport shows coverage after each switch. */
+(function(){
+  var DICT = {"What does PPO dental insurance cover?": {"zh": "PPO 牙科保险保障哪些项目？", "es": "¿Qué cubre el seguro dental PPO?"}, "Dental costs: with vs without insurance": {"zh": "牙科费用：有保险与无保险对比", "es": "Costos dentales: con y sin seguro"}, "See the savings": {"zh": "看看能省多少", "es": "Vea el ahorro"}, "How to lower your dental costs": {"zh": "如何降低您的牙科费用", "es": "Cómo reducir sus costos dentales"}, "Proven ways to save": {"zh": "经过验证的省钱方法", "es": "Formas comprobadas de ahorrar"}, "Is dental insurance worth it?": {"zh": "牙科保险值得买吗？", "es": "¿Vale la pena el seguro dental?"}, "When it pays off": {"zh": "何时划算", "es": "Cuándo conviene"}, "Free Whitening Session": {"zh": "免费美白疗程", "es": "Sesión de blanqueamiento gratis"}, "Invisalign Promo": {"zh": "Invisalign 优惠", "es": "Promo Invisalign"}, "Member-exclusive rate": {"zh": "会员专属价格", "es": "Tarifa exclusiva para miembros"}, "Botox for TMJ": {"zh": "TMJ 肉毒治疗", "es": "Bótox para ATM"}, "Therapeutic jaw relief": {"zh": "缓解颉部紧张", "es": "Alivio terapéutico de mandíbula"}, "+700 Crowns for you, a welcome bonus for them": {"zh": "您获得 +700 皇冠，对方获得欢迎奖励", "es": "+700 Crowns para usted, un bono de bienvenida para ellos"}, "Your local results": {"zh": "您的本地结果", "es": "Sus resultados locales"}, "Enter a ZIP": {"zh": "输入邮编", "es": "Ingrese un código postal"}, "We'll show your city and the dentists nearby.": {"zh": "我们会显示您的城市以及附近的牙医。", "es": "Le mostraremos su ciudad y los dentistas cercanos."}, "Platinum Elite · Featured Dentist": {"zh": "白金尊享 · 特色牙医", "es": "Platinum Elite · Dentista destacado"}, "General & Cosmetic Dentistry": {"zh": "综合与美容牙科", "es": "Odontología general y estética"}, "212 Google reviews": {"zh": "212 条谷歌评价", "es": "212 reseñas de Google"}, "Call": {"zh": "致电", "es": "Llamar"}, "Apply for Capy Accreditation": {"zh": "激活会员", "es": "Activar membresía"}, "Find a PPO dentist near you.": {"zh": "查找您附近接受 PPO 的牙医。", "es": "Encuentre un dentista PPO cerca de usted."}, "Enter your ZIP. We'll find your city, the areas nearby, and the PPO dentists around you.": {"zh": "输入您的邮编。我们会找到您所在的城市、附近区域，以及您周边接受 PPO 的牙医。", "es": "Ingrese su código postal. Encontraremos su ciudad, las áreas cercanas y los dentistas PPO a su alrededor."}, "Accepts your PPO": {"zh": "接受您的 PPO", "es": "Acepta su PPO"}, "Compare PPO Plans": {"zh": "激活保障", "es": "Activar cobertura"}, "Where patients look first": {"zh": "患者最先看到的地方", "es": "Donde los pacientes miran primero"}, "Patient rewards visibility": {"zh": "患者奖励可见度", "es": "Visibilidad de recompensas para pacientes"}, "By application": {"zh": "需申请", "es": "Por solicitud"}, "Cost guides": {"zh": "费用指南", "es": "Guías de costos"}, "Preventive, basic & major": {"zh": "预防、基础与重大项目", "es": "Preventivo, básico y mayor"}, "How 0% dental financing works": {"zh": "0% 牙科分期如何运作", "es": "Cómo funciona el financiamiento dental al 0%"}, "Spread the cost, no interest": {"zh": "分摊费用，零利息", "es": "Reparta el costo, sin intereses"}, "How it works": {"zh": "使用流程", "es": "Cómo funciona"}, "Enter your ZIP": {"zh": "输入您的邮编", "es": "Ingrese su código postal"}, "Plan ahead": {"zh": "提前规划", "es": "Planifique con tiempo"}, "Time it around your benefits": {"zh": "围绕您的福利安排时间", "es": "Planéelo según sus beneficios"}, "Use your annual maximum before it resets.": {"zh": "在年度额度重置前充分利用。", "es": "Use su máximo anual antes de que se reinicie."}, "Start with the basics": {"zh": "从基础项目开始", "es": "Comience por lo básico"}, "Preventive care now prevents major work later.": {"zh": "现在做好预防，避免日后的大型治疗。", "es": "El cuidado preventivo ahora evita trabajos mayores después."}, "Stage major treatment": {"zh": "分阶段进行大型治疗", "es": "Escalone los tratamientos mayores"}, "Split big cases across benefit years.": {"zh": "将大型病例分摄到不同福利年度。", "es": "Reparta los casos grandes entre años de beneficios."}, "Estimate by treatment": {"zh": "按治疗项目估算", "es": "Estimar por tratamiento"}, "Crown": {"zh": "牙冠", "es": "Corona"}, "Implant": {"zh": "种植牙", "es": "Implante"}, "Root canal": {"zh": "根管", "es": "Endodoncia"}, "Monthly Payment Options": {"zh": "月供方案", "es": "Opciones de Pago Mensual"}, "Smart Timing Strategy": {"zh": "智慧时机策略", "es": "Estrategia de Tiempo Inteligente"}, "Exclusive placement · 1 of 1": {"zh": "独家展位 · 仅此一席", "es": "Espacio exclusivo · 1 de 1"}, "Become our financing partner": {"zh": "成为我们的融资合作伙伴", "es": "Conviértase en nuestro socio de financiamiento"}, "One brand, featured inside every estimate a patient sees.": {"zh": "一个品牌，呈现在患者看到的每一份费用估算中。", "es": "Una marca, presente en cada estimación que ve el paciente."}, "By application · reserved for one": {"zh": "需申请 · 仅留一席", "es": "Por solicitud · reservado para uno"}, "Basic": {"zh": "基础", "es": "Básico"}, "Major": {"zh": "大型", "es": "Mayor"}, "Crowns, implants, root canals": {"zh": "牙冠、种植牙、根管", "es": "Coronas, implantes, endodoncias"}, "Treatment": {"zh": "治疗费用", "es": "Tratamiento"}, "Insurance covers": {"zh": "保险报销", "es": "El seguro cubre"}, "You pay": {"zh": "您支付", "es": "Usted paga"}, "Spread at 0% APR": {"zh": "0% 年利率分期", "es": "Reparta al 0% de interés"}, "/mo": {"zh": "/月", "es": "/mes"}, "Insurance knocks it down. 0% financing spreads the rest.": {"zh": "保险先减一笔，0% 分期再摊余款。", "es": "El seguro lo reduce. El financiamiento al 0% reparte el resto."}, "Showing offices near": {"zh": "正在显示附近诊所", "es": "Mostrando consultorios cerca de"}, "Searching near": {"zh": "正在搜索附近", "es": "Buscando cerca de"}, "Find dentists nearby": {"zh": "查找附近牙医", "es": "Buscar dentistas cercanos"}, "See all dentists nearby": {"zh": "查看附近所有牙医", "es": "Ver todos los dentistas cercanos"}, "See all dentists": {"zh": "查看所有牙医", "es": "Ver todos los dentistas"}, "Nearby cities": {"zh": "周边城市", "es": "Ciudades cercanas"}, "Search": {"zh": "搜索", "es": "Buscar"}, "See featured dentists": {"zh": "查看精选牙医", "es": "Ver dentistas destacados"}, "Enter your ZIP. We'll pinpoint your city, show the cities around it, and surface the Capy Accredited offices nearby.": {"zh": "输入您的邮编。我们将定位您所在的城市、显示周边城市，并呈现附近的 Capy 认证诊所。", "es": "Ingrese su código postal. Localizaremos su ciudad, mostraremos las ciudades cercanas y presentaremos los consultorios Capy Acreditados cercanos."}, "No paid placement": {"zh": "无付费排名", "es": "Sin posiciones pagadas"}, "Real patient reviews": {"zh": "真实患者评价", "es": "Reseñas de pacientes reales"}, "Capy Accredited": {"zh": "Capy 认证", "es": "Capy Acreditado"}, "Capy Accredited badge": {"zh": "Capy 认证徽章", "es": "Insignia Capy Acreditado"}, "Featured in local city searches": {"zh": "在本地城市搜索中精选展示", "es": "Destacado en búsquedas de la ciudad"}, "Priority placement": {"zh": "优先展示", "es": "Posición prioritaria"}, "The badge patients recognize first.": {"zh": "患者会按此徽章筛选。", "es": "La insignia que los pacientes filtran."}, "The Standard": {"zh": "标准版", "es": "El Estándar"}, "Apply": {"zh": "立即申请", "es": "Solicitar"}, "Listed": {"zh": "已收录", "es": "Listado"}, "Verified, indexed, findable.": {"zh": "已验证、已索引、可查找。", "es": "Verificado, indexado, localizable."}, "Apply for Platinum Elite": {"zh": "申请铂金精英", "es": "Solicitar Platinum Elite"}, "Featured Promotion": {"zh": "精选推广", "es": "Promoción Destacada"}, "Feature your promotion to PPO patients": {"zh": "向 PPO 患者展示您的优惠", "es": "Destaque su promoción ante pacientes PPO"}, "Share a patient-friendly offer with people planning care.": {"zh": "把优惠展示给刚刚激活保障的患者。", "es": "Muestre una oferta a los pacientes que acaban de activar su cobertura."}, "Requires Capy Accreditation": {"zh": "需要 Capy 认证", "es": "Requiere Acreditación Capy"}, "About": {"zh": "关于我们", "es": "Nosotros"}, "Get Coverage": {"zh": "获取保障", "es": "Obtener Cobertura"}, "Estimate Costs": {"zh": "费用估算", "es": "Estimar Costos"}, "Find My Dentist": {"zh": "查找牙医", "es": "Buscar Dentista"}, "Patient Rewards": {"zh": "患者奖励", "es": "Recompensas"}, "Dentist Portal": {"zh": "牙医门户", "es": "Portal Dentistas"}, "Sign in": {"zh": "登录", "es": "Iniciar Sesión"}, "Join Free": {"zh": "免费加入", "es": "Únete Gratis"}, "Concierge Dental Network": {"zh": "尊享牙科网络", "es": "Red Dental Concierge"}, "Compare coverage, estimate cost, and find a trusted PPO dentist before the chair reclines, so fewer surprises follow you home.": {"zh": "不再有账单冲击，也没有来自网络之外的意外收费。在就诊之前，比较保障、估算费用，并找到值得信赖的 PPO 牙医。", "es": "Sin sustos en la factura ni cargos sorpresa fuera de su red. Compare la cobertura, estime el costo y encuentre un dentista PPO de confianza antes de reclinar la silla."}, "PPO Coverage Guidance": {"zh": "PPO 保障指南", "es": "Guía de Cobertura PPO"}, "PPO Dentist Discovery": {"zh": "PPO 牙医发现", "es": "Descubrir Dentistas PPO"}, "Treatment Cost Guidance": {"zh": "牙科费用指南", "es": "Guía de Costos de Tratamiento"}, "PPO insurance": {"zh": "PPO 牙科保险", "es": "Seguro PPO"}, "By treatment": {"zh": "按治疗项目", "es": "Por Tratamiento"}, "Plan & pay": {"zh": "方案与支付", "es": "Plan y Pago"}, "Local Rewards": {"zh": "本地奖励", "es": "Recompensas Locales"}, "Practice Growth": {"zh": "诊所增长", "es": "Crecimiento del Consultorio"}, "What makes us different": {"zh": "我们的不同之处", "es": "Lo que nos diferencia"}, "Carriers and networks": {"zh": "承保公司与网络", "es": "Aseguradoras y redes"}, "Guides & Trust": {"zh": "指南与信任", "es": "Guías y Confianza"}, "Why patients trust us": {"zh": "患者为何信赖我们", "es": "Por qué los pacientes confían en nosotros"}, "See your number": {"zh": "查看您的数字", "es": "Vea su cifra"}, "Who's it for?": {"zh": "适合谁？", "es": "¿Para quién es?"}, "Plan finder": {"zh": "方案查找器", "es": "Buscador de planes"}, "New here?": {"zh": "初次来访？", "es": "¿Nuevo aquí?"}, "Why join": {"zh": "为何加入", "es": "Por qué unirse"}, "Individual": {"zh": "个人", "es": "Individual"}, "Family": {"zh": "家庭", "es": "Familia"}, "Child Orthodontics": {"zh": "儿童正畸", "es": "Ortodoncia Infantil"}, "Fast PPO Activation": {"zh": "快速激活 PPO", "es": "Activación Rápida de PPO"}, "Fast activation, coverage in days": {"zh": "快速激活，数日内生效", "es": "Activación rápida, cobertura en días"}, "Not sure which plan?": {"zh": "不确定选哪个方案？", "es": "¿No sabe qué plan elegir?"}, "Crowns & Root Canals": {"zh": "牙冠与根管", "es": "Coronas y Endodoncias"}, "Dental Implants": {"zh": "种植牙", "es": "Implantes Dentales"}, "Emergency Dental": {"zh": "急诊牙科", "es": "Dental de Emergencia"}, "Cleaning & Preventive": {"zh": "洁牙与预防", "es": "Limpieza y Prevención"}, "Aetna Dental PPO": {"zh": "Aetna 牙科 PPO", "es": "Aetna PPO Dental"}, "Ameritas Dental PPO": {"zh": "Ameritas 牙科 PPO", "es": "Ameritas PPO Dental"}, "Guardian Dental PPO": {"zh": "Guardian 牙科 PPO", "es": "Guardian PPO Dental"}, "Mutual of Omaha Dental PPO": {"zh": "Mutual of Omaha 牙科 PPO", "es": "Mutual of Omaha PPO Dental"}, "Humana Dental PPO": {"zh": "Humana 牙科 PPO", "es": "Humana PPO Dental"}, "UnitedHealthcare Primary PPO": {"zh": "UnitedHealthcare 首选 PPO", "es": "UnitedHealthcare PPO Principal"}, "Estimate common treatments, compare PPO savings, and plan monthly payments before your appointment.": {"zh": "估算常见治疗费用，比较 PPO 节省，并在就诊前规划月供。", "es": "Estime tratamientos comunes, compare el ahorro PPO y planifique pagos mensuales antes de su cita."}, "Treatment Cost Estimator": {"zh": "牙科费用估算器", "es": "Estimador de Costos de Tratamiento"}, "Crowns, implants, root canals and more": {"zh": "牙冠、种植牙、根管治疗等", "es": "Coronas, implantes, endodoncias y más"}, "How it works": {"zh": "了解原理", "es": "Cómo funciona"}, "How many?": {"zh": "数量？", "es": "¿Cuántas?"}, "Typical cost": {"zh": "常规费用", "es": "Costo típico"}, "with PPO": {"zh": "使用 PPO", "es": "con PPO"}, "You save": {"zh": "为您节省", "es": "Usted ahorra"}, "See your full breakdown": {"zh": "查看完整明细", "es": "Vea el desglose completo"}, "Crown Cost": {"zh": "牙冠费用", "es": "Costo de Corona"}, "Implant Cost": {"zh": "种植牙费用", "es": "Costo de Implante"}, "Root Canal Cost": {"zh": "根管治疗费用", "es": "Costo de Endodoncia"}, "Run My Estimate": {"zh": "开始估算", "es": "Calcular mi Estimado"}, "Monthly Payments": {"zh": "月供支付", "es": "Pagos Mensuales"}, "Dentist informed": {"zh": "牙医审核", "es": "Revisado por dentistas"}, "Educational estimates": {"zh": "仅供参考估算", "es": "Estimaciones educativas"}, "Updated 2026": {"zh": "2026 年更新", "es": "Actualizado 2026"}, "Full calculator": {"zh": "完整计算器", "es": "Calculadora completa"}, "Plan my treatment": {"zh": "规划我的治疗", "es": "Planear mi tratamiento"}, "Compare all PPO plans": {"zh": "比较所有 PPO 方案", "es": "Comparar todos los planes PPO"}, "Compare all plans": {"zh": "比较所有方案", "es": "Comparar todos los planes"}, "All carriers": {"zh": "所有承保公司", "es": "Todas las aseguradoras"}, "All rewards": {"zh": "所有奖励", "es": "Todas las recompensas"}, "Full directory": {"zh": "完整目录", "es": "Directorio completo"}, "Compare & match": {"zh": "比较并匹配", "es": "Comparar y combinar"}, "See How It Works": {"zh": "了解运作方式", "es": "Vea Cómo Funciona"}, "Explore the Network": {"zh": "探索网络", "es": "Explore la Red"}, "Browse PPO Dentists": {"zh": "浏览 PPO 牙医", "es": "Explorar Dentistas PPO"}, "Claim Free Profile": {"zh": "领取免费档案", "es": "Reclamar Perfil Gratis"}, "Redeem Free Whitening": {"zh": "兑换免费美白", "es": "Canjear Blanqueamiento Gratis"}, "West Coast": {"zh": "西海岸", "es": "Costa Oeste"}, "Southwest": {"zh": "西南部", "es": "Suroeste"}, "Midwest": {"zh": "中西部", "es": "Medio Oeste"}, "South": {"zh": "南部", "es": "Sur"}, "East Coast": {"zh": "东海岸", "es": "Costa Este"}, "Refer a Friend": {"zh": "推荐好友", "es": "Refiera a un Amigo"}, "Refer a friend": {"zh": "推荐好友", "es": "Refiera a un amigo"}, "Your balance:": {"zh": "您的余额：", "es": "Su saldo:"}, "Capy Crowns Membership": {"zh": "Capy Crowns 会员", "es": "Membresía Capy Crowns"}, "Platinum Elite": {"zh": "铂金精英", "es": "Platinum Elite"}, "Is your practice listed?": {"zh": "您的诊所已收录了吗？", "es": "¿Está su consultorio en la lista?"}, "The Concierge Difference": {"zh": "尊享式的不同", "es": "La Diferencia Concierge"}, "How CoverCapy Works": {"zh": "CoverCapy 如何运作", "es": "Cómo Funciona CoverCapy"}, "Inquire": {"zh": "咨询", "es": "Consultar"}, "Close": {"zh": "关闭", "es": "Cerrar"}};
+  var HTML = {"hero_h1": {"zh": "看清您的牙科保险<em>实际</em>能报销多少。", "es": "Vea lo que su seguro dental <em>realmente</em> paga."}, "est_title": {"zh": "<em>预约前</em>先了解您的牙科费用。", "es": "Conozca el costo dental <em>antes</em> de reservar."}, "cov_title": {"zh": "<em>安心</em>激活 PPO 保障。", "es": "Active su cobertura PPO con <em>confianza.</em>"}, "about_title": {"zh": "牙科护理，从保障到<em>预约</em>全程指引。", "es": "Atención dental, guiada desde la cobertura hasta la <em>reserva.</em>"}, "find_title": {"zh": "在<em>您附近</em>找到值得信赖的 PPO 牙医。", "es": "Encuentre un dentista PPO de confianza <em>cerca de usted.</em>"}, "est_aside": {"zh": "先制定您<em>自己</em>的治疗方案和费用估算，做到心中有数，再与诊所谈付款。", "es": "Arme primero su <em>propio</em> plan de tratamiento y estimación de costos, para llegar informado antes de cualquier conversación sobre financiamiento."}, "rew_title": {"zh": "免费美白 <em>疗程</em>", "es": "Sesión de Blanqueamiento <em>Gratis</em>"}, "port_title": {"zh": "让新的 PPO <em>患者</em>发现您。", "es": "Sea descubierto por nuevos <em>pacientes</em> PPO."}, "port_alt": {"zh": "更聪明地<em>经营您的牙科诊所。</em>", "es": "Una forma más inteligente de <em>gestionar su consultorio.</em>"}, "cov_sub": {"zh": "为您<em>匹配</em>契合治疗需求与时机的 PPO 保障。", "es": "Le <em>conectamos</em> con la cobertura PPO ideal para su tratamiento y momento."}, "find_aside": {"zh": "每一家精选诊所都经我们团队审核，并由<em>真实患者</em>评分。", "es": "Cada consultorio destacado es revisado por nuestro equipo y calificado por <em>pacientes reales.</em>"}, "port_aside": {"zh": "Tier 02 及以上的每个会员资格都经我们团队审核。<em>精心甄选</em>，绝非众包。", "es": "Cada membresía de Nivel 02 o superior es revisada por nuestro equipo. <em>Seleccionada</em>, nunca por la multitud."}, "about_video": {"zh": "两分钟快速了解 CoverCapy 如何引导您从<em>获得保障</em>走向就诊。", "es": "Un resumen rápido de dos minutos sobre cómo CoverCapy le guía desde la <em>cobertura</em> hasta la silla."}};
+  var LANGS = {en:"EN", zh:"\u4e2d\u6587", es:"ES"};
+  var MMPAIR = {zh:"en|zh-CN", es:"en|es"};
+  var MEMO = {zh:{}, es:{}};
+  try{ var sv=JSON.parse(localStorage.getItem("ccI18nMemo")||"{}"); MEMO.zh=sv.zh||{}; MEMO.es=sv.es||{}; }catch(e){}
+  function saveMemo(){ try{ localStorage.setItem("ccI18nMemo", JSON.stringify(MEMO)); }catch(e){} }
+  var origT=[], origH=[];
+  function translatable(s){
+    s=s.trim();
+    if(s.length<2) return false;
+    if(!/[A-Za-z]/.test(s)) return false;
+    if(/^[A-Z]{2,4}([ .\u00b7/|&-]+[A-Z]{2,4})*$/.test(s)) return false;
+    return true;
   }
-  return null;
-}
+  function skip(node){
+    var p=node.parentElement;
+    while(p){
+      var t=p.tagName;
+      if(t==="SCRIPT"||t==="STYLE"||t==="NOSCRIPT") return true;
+      if(p.hasAttribute("data-i18n-skip")||p.hasAttribute("data-i18n-html")) return true;
+      p=p.parentElement;
+    }
+    return false;
+  }
+  function buildIndex(){
+    var w=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), byKey={}, n;
+    while(n=w.nextNode()){
+      if(!n.nodeValue || !n.nodeValue.trim()) continue;
+      if(skip(n)) continue;
+      var k=n.nodeValue.trim();
+      (byKey[k]=byKey[k]||[]).push(n);
+    }
+    return byKey;
+  }
+  function setNode(n, val){
+    if(n.__en===undefined){ n.__en=n.nodeValue; origT.push({n:n, en:n.nodeValue}); }
+    var key=n.__en.trim();
+    n.nodeValue = n.__en.replace(key, val);
+  }
+  function restoreEN(){
+    origT.forEach(function(c){ c.n.nodeValue=c.en; });
+    origH.forEach(function(c){ c.el.innerHTML=c.en; });
+  }
+  function applyHTML(lang){
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){
+      if(el.__en===undefined){ el.__en=el.innerHTML; origH.push({el:el, en:el.innerHTML}); }
+      var k=el.getAttribute("data-i18n-html"), t=HTML[k] && HTML[k][lang];
+      if(t) el.innerHTML=t;
+    });
+  }
+  async function defaultMT(text, lang){
+    var url="https://api.mymemory.translated.net/get?q="+encodeURIComponent(text)+"&langpair="+MMPAIR[lang];
+    var r=await fetch(url); var j=await r.json();
+    var t=j && j.responseData && j.responseData.translatedText;
+    if(t && !/MYMEMORY|QUERY LENGTH|QUOTA|INVALID|PLEASE/i.test(t)) return t;
+    return null;
+  }
+  async function mt(text, lang){
+    var fn=(typeof window.ccMT==="function") ? window.ccMT : defaultMT;
+    try{ return await fn(text, lang); }catch(e){ return null; }
+  }
+  function fetchPool(list, lang, byKey){
+    return new Promise(function(resolve){
+      var i=0, active=0;
+      function pump(){
+        if(i>=list.length && active===0){ resolve(); return; }
+        while(active<5 && i<list.length){
+          (function(key){
+            active++;
+            mt(key, lang).then(function(val){
+              if(val){ MEMO[lang][key]=val; (byKey[key]||[]).forEach(function(n){ setNode(n, val); }); }
+              active--; pump();
+            }).catch(function(){ active--; pump(); });
+          })(list[i++]);
+        }
+      }
+      pump();
+    });
+  }
+  function setBusy(b){ var w=document.getElementById("cc-lang"); if(w) w.classList.toggle("translating", b); }
+  async function setLang(lang){
+    restoreEN();
+    window.ccLang=lang;
+    document.documentElement.setAttribute("lang", lang);
+    var cur=document.getElementById("cc-lang-cur"); if(cur) cur.textContent=LANGS[lang]||"EN";
+    document.querySelectorAll(".cc-lang-opt").forEach(function(o){ o.classList.toggle("is-active", o.getAttribute("data-lang")===lang); });
+    try{ localStorage.setItem("cc-lang", lang); }catch(e){}
+    if(lang==="en") return;
+    applyHTML(lang);
+    var byKey=buildIndex();
+    Object.keys(byKey).forEach(function(key){
+      var t=(DICT[key] && DICT[key][lang]) || MEMO[lang][key];
+      if(t) byKey[key].forEach(function(n){ setNode(n, t); });
+    });
+    var list=Object.keys(byKey).filter(function(key){
+      return translatable(key) && !(DICT[key] && DICT[key][lang]) && !MEMO[lang][key];
+    });
+    setBusy(true);
+    await fetchPool(list, lang, byKey);
+    var leftover=list.filter(function(k){ return !MEMO[lang][k]; });   // double-check / retry pass
+    if(leftover.length) await fetchPool(leftover, lang, byKey);
+    saveMemo(); setBusy(false);
+    var uncovered=list.filter(function(k){ return !MEMO[lang][k]; });
+    window.ccI18nReport={ language:lang, machineTranslated:(list.length-uncovered.length), uncovered:uncovered };
+    if(uncovered.length) console.log("[i18n] uncovered ("+uncovered.length+"):", uncovered);
+  }
+  window.ccSetLang=setLang; window.ccLang="en";
+  var wrap=document.getElementById("cc-lang"), btn=document.getElementById("cc-lang-btn");
+  if(btn && wrap){
+    btn.addEventListener("click", function(e){ e.stopPropagation(); var o=wrap.classList.toggle("open"); btn.setAttribute("aria-expanded", o?"true":"false"); });
+    document.querySelectorAll(".cc-lang-opt").forEach(function(o){
+      o.addEventListener("click", function(e){ e.stopPropagation(); setLang(o.getAttribute("data-lang")); wrap.classList.remove("open"); btn.setAttribute("aria-expanded","false"); });
+    });
+    document.addEventListener("click", function(e){ if(!wrap.contains(e.target)) wrap.classList.remove("open"); });
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") wrap.classList.remove("open"); });
+  }
+  try{ var s=localStorage.getItem("cc-lang"); if(s && s!=="en") setLang(s); }catch(e){}
+})();
 
-function renderCities(){
-  const host = document.getElementById('find-cities');
-  if(!host) return;
-  const area = AREAS[activeArea];
-  if(!area){ host.innerHTML = ''; return; }
-  const cities = area.cities || [];
-  const areaHasFeatured = !!AREA_FEATURED[activeArea];
+(function(){
+  var modal=document.getElementById('covercapy-universal-modal');
+  if(!modal) return;
 
-  host.innerHTML = cities.map(slug => {
-    const c = CITIES[slug];
-    if(!c) return '';
-    const active = slug === activeCity ? ' is-active' : '';
-    const searches = cityMonthlySearches(slug);
+  var COVER_CAPY_UNIVERSAL_MODALS = {
+    insurance: {
+      uhc: {
+        eyebrow: 'Universal Insurance Modal',
+        title: 'You\'re heading to<br/><em>UnitedHealthcare</em>.',
+        body: 'We\'ll open UnitedHealthcare\'s official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.',
+        disclosuresLabel: 'Before you activate coverage',
+        disclosures: [
+          'CoverCapy is an <strong>independent guide</strong>. We\'re not a broker, agent, or affiliate of UnitedHealthcare.',
+          'We <strong>don\'t earn a commission</strong> or referral fee on any plan you activate through this site.',
+          'The destination is governed by <strong>UnitedHealthcare\'s terms</strong>, not ours. Pricing, eligibility, and plan details can change without notice.',
+          'We make <strong>no guarantees</strong> about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.',
+          'By continuing, you acknowledge that <strong>CoverCapy is not liable</strong> for outcomes, denials, billing decisions, or transactions that happen after you leave this site.'
+        ],
+        cancelLabel: 'Wait, tell me more',
+        continueLabel: 'Continue to UnitedHealthcare',
+        continueUrl: 'https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental',
+        trackingSlug: 'uhc-primary-dental',
+        provider: 'uhc'
+      }
+    },
+    booking: {
+      kyt: {
+        eyebrow: 'Universal Booking Modal',
+        title: 'You\'re booking with<br/><em>KYT Dental Services</em>.',
+        body: 'We\'ll open KYT Dental Services\' official booking page in a new tab. CoverCapy is an <strong>independent concierge directory</strong> — we help you discover and compare practices, but the schedule, accepted plans, fees, and treatment decisions are handled by the dental office.',
+        disclosuresLabel: 'Before you book',
+        disclosures: [
+          'CoverCapy is an <strong>independent concierge directory</strong>. We don\'t run the dental office, manage the schedule, or process payments.',
+          '<strong>Availability, accepted plans, fees, and treatment decisions</strong> are controlled by KYT Dental Services directly.',
+          'Insurance benefits remain subject to <strong>plan terms, eligibility, waiting periods, exclusions, and carrier rules</strong>.',
+          'We make <strong>no guarantees</strong> about in-network status or the price of any procedure quoted at the office.',
+          'Please <strong>confirm appointment, coverage, and out-of-pocket details</strong> with KYT Dental Services before any treatment.'
+        ],
+        cancelLabel: 'Stay on CoverCapy',
+        continueLabel: 'Continue to KYT Dental Services',
+        continueUrl: 'https://www.kytdentalservices.com/booking',
+        trackingSlug: 'kyt-dental-services-booking',
+        provider: 'kyt'
+      }
+    }
+  };
 
-    // Bottom line: if area already has a featured dentist, show "Featured area ✓"
-    // otherwise show "Spot open · Be first" to drive dentist signups
-    const statusHtml = areaHasFeatured
-      ? `<span class="city-spot-featured">✓ Featured area</span>`
-      : `<a class="city-spot-open" href="/get-featured/capy-accredited" onclick="event.stopPropagation();megaGo('accreditation');return false;">Open spot — apply</a>`;
+  window.COVER_CAPY_UNIVERSAL_MODALS = COVER_CAPY_UNIVERSAL_MODALS;
 
-    return `
-      <a class="find-city${active}" data-city="${slug}" href="${seoDentistUrl(activeArea, slug)}" onclick="event.stopPropagation();event.preventDefault();selectCity('${slug}','${c.name.replace(/'/g,"\\'")}');">
-        <span class="find-city-pin">📍</span>
-        <span class="find-city-name">${c.name}</span>
-        <span class="city-demand-wrap">
-          <span class="city-demand-stat">${searches.toLocaleString()}<em> searches/mo</em></span>
-          ${statusHtml}
-        </span>
-      </a>
-    `;
-  }).join('');
-  const lbl = document.getElementById('find-cities-area');
-  if(lbl) lbl.textContent = area.name;
-  const tag = document.getElementById('find-cities-tag');
-  if(tag) tag.textContent = cities.length + ' cities';
-}
+  var slot=function(name){return modal.querySelector('[data-modal-slot="' + name + '"]');};
+  var eyebrowEl=slot('eyebrow');
+  var titleEl=slot('title');
+  var bodyEl=slot('body');
+  var disclosuresLbl=slot('disclosures-label');
+  var disclosuresWrap=slot('disclosures');
+  var cancelLabelEl=slot('cancel-label');
+  var continueLabelEl=slot('continue-label');
+  var continueEl=modal.querySelector('.cc-universal-modal-continue');
+  var lastFocus=null;
 
-/* v208 — tracks the closest panel's current mode.
-   v211 — added 'zip' mode for ZIP-aware city picking. */
-let closestMode = 'area';
+  function closeMega(){
+    document.querySelectorAll('.cc-link.is-open').forEach(function(el){el.classList.remove('is-open');});
+    var bd=document.querySelector('.cc-backdrop'); if(bd) bd.classList.remove('show');
+  }
 
-function renderClosest(mode){
-  const area = AREAS[activeArea];
-  if(!area) return;
-  if(mode === 'city' || mode === 'area' || mode === 'zip') closestMode = mode;
+  function getConfig(type, provider){
+    return COVER_CAPY_UNIVERSAL_MODALS[type] && provider && COVER_CAPY_UNIVERSAL_MODALS[type][provider];
+  }
 
-  const closestEl = document.getElementById('find-closest');
-  const labelEl   = document.getElementById('find-closest-label');
-  const nameEl    = document.getElementById('find-closest-name');
-  const countEl   = document.getElementById('find-closest-count');
-  const cta       = document.getElementById('find-closest-cta');
-  const pillsEl   = document.getElementById('find-zip-pills');
-  const fallbackEl= document.getElementById('find-zip-fallback');
+  function textFrom(el, fallback){
+    return (el && el.textContent ? el.textContent.replace(/\s+/g,' ').trim() : '') || fallback;
+  }
 
-  if(closestEl) closestEl.dataset.mode = closestMode;
+  function cleanUrl(url){
+    return url || '#';
+  }
 
-  /* ── ZIP mode: pills + closest-indexed fallback line ── */
-  if(closestMode === 'zip'){
-    const cities = findCitiesAtZip(activeZipCluster);
-    if(labelEl) labelEl.textContent = 'At ZIP ' + (activeZipCluster || '—');
-    if(pillsEl){
-      pillsEl.innerHTML = cities.map(c => {
-        const active = (selectedZipCity && selectedZipCity.slug === c.slug) ? ' is-active' : '';
-        const safeName = String(c.name).replace(/'/g, "\\'");
-        return `<button type="button" class="zip-city${active}" data-slug="${c.slug}" data-indexed="${c.indexed}" onclick="event.stopPropagation();selectZipCity('${c.slug}','${safeName}',${c.indexed});">${c.name}</button>`;
+  function slugify(s){
+    return String(s || 'booking').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'booking';
+  }
+
+  function getPracticeName(trigger){
+    if(!trigger) return 'the dental office';
+    var card = trigger.closest('.featured-card, .dentist-feature-card, [data-cc-booking-card]');
+    var fromData = trigger.getAttribute('data-cc-booking-practice') ||
+                   trigger.getAttribute('data-practice-name') ||
+                   trigger.getAttribute('data-provider-name') ||
+                   (card && (card.getAttribute('data-cc-booking-practice') || card.getAttribute('data-practice-name')));
+    if(fromData) return fromData;
+    var nameEl = card && card.querySelector('.featured-name, .practice-name, [data-practice-name]');
+    return textFrom(nameEl, 'the dental office');
+  }
+
+  function buildGenericBookingConfig(trigger, provider){
+    var practice = getPracticeName(trigger);
+    var href = trigger && trigger.getAttribute('href') ? trigger.getAttribute('href') : '#';
+    var providerKey = provider || slugify(practice);
+    var tracking = (trigger && trigger.getAttribute('data-track-outbound')) || ('booking-' + providerKey);
+    return {
+      eyebrow: 'Universal Booking Modal',
+      title: 'You\'re booking with<br/><em>' + practice + '</em>.',
+      body: 'We\'ll open ' + practice + '\'s booking page in a new tab. CoverCapy is an <strong>independent concierge directory</strong> — we help you discover and compare practices, but the schedule, accepted plans, fees, and treatment decisions are handled by the dental office.',
+      disclosuresLabel: 'Before you book',
+      disclosures: [
+        'CoverCapy is an <strong>independent concierge directory</strong>. We don\'t run the dental office, manage the schedule, or process payments.',
+        '<strong>Availability, accepted plans, fees, and treatment decisions</strong> are controlled by ' + practice + ' directly.',
+        'Insurance benefits remain subject to <strong>plan terms, eligibility, waiting periods, exclusions, and carrier rules</strong>.',
+        'We make <strong>no guarantees</strong> about in-network status or the price of any procedure quoted at the office.',
+        'Please <strong>confirm appointment, coverage, and out-of-pocket details</strong> with the dental office before any treatment.'
+      ],
+      cancelLabel: 'Stay on CoverCapy',
+      continueLabel: 'Continue to ' + practice,
+      continueUrl: cleanUrl(href),
+      trackingSlug: tracking,
+      provider: providerKey
+    };
+  }
+
+  function isFeatureBookingButton(el){
+    if(!el || !el.matches) return false;
+    if(el.getAttribute('data-cc-modal') === 'booking') return true;
+    if(!el.closest('.dentist-feature-card, [data-cc-booking-card]')) return false;
+    var label = textFrom(el, '');
+    return /book|appointment|schedule/i.test(label);
+  }
+
+  function openUniversalModal(type, provider, override){
+    var config = override || getConfig(type, provider);
+    if(!config) return false;
+
+    if(eyebrowEl) eyebrowEl.innerHTML=config.eyebrow || (type === 'booking' ? 'Universal Booking Modal' : 'Universal Insurance Modal');
+    if(titleEl) titleEl.innerHTML=config.title || '';
+    if(bodyEl) bodyEl.innerHTML=config.body || '';
+    if(disclosuresLbl) disclosuresLbl.textContent=config.disclosuresLabel || 'A note before you go';
+    if(cancelLabelEl) cancelLabelEl.textContent=config.cancelLabel || 'Stay on CoverCapy';
+    if(continueLabelEl) continueLabelEl.textContent=config.continueLabel || 'Continue';
+
+    if(disclosuresWrap && Array.isArray(config.disclosures)){
+      var roman=['i.','ii.','iii.','iv.','v.','vi.','vii.','viii.'];
+      disclosuresWrap.innerHTML=config.disclosures.map(function(item,idx){
+        return '<div class="cc-universal-modal-disclosure"><span class="num">' + (roman[idx] || ((idx+1)+'.')) + '</span><span>' + item + '</span></div>';
       }).join('');
     }
-    if(fallbackEl){
-      const closest = CITIES[activeCity];
-      if(closest){
-        const closestZip = firstZip(closest.zip);
-        fallbackEl.innerHTML = 'Closest indexed PPO city: <strong>' + closest.name + '</strong>'
-          + (closestZip ? ' · ' + closestZip : '')
-          + ' · ' + area.name;
-      } else {
-        fallbackEl.innerHTML = 'Nearest indexed area: <strong>' + area.name + '</strong>';
-      }
+
+    if(continueEl){
+      if(config.continueUrl) continueEl.href=config.continueUrl;
+      if(config.provider) continueEl.dataset.provider=config.provider;
+      if(type) continueEl.dataset.modalType=type;
+      if(config.trackingSlug) continueEl.dataset.trackOutbound=config.trackingSlug;
     }
-    if(cta){
-      cta.setAttribute('href', zipModeRoute());
-      cta.textContent = 'Find Nearby Dentists';
-    }
-    return;
+
+    lastFocus=document.activeElement;
+    closeMega();
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('cc-universal-modal-open');
+    var closeBtn=modal.querySelector('[data-modal-close]');
+    if(closeBtn) setTimeout(function(){closeBtn.focus();},40);
+    return true;
   }
 
-  /* ── CITY mode (v208): single nearby city, no pills ── */
-  const city = CITIES[activeCity];
-  if(closestMode === 'city' && city){
-    if(labelEl) labelEl.textContent = 'Closest Nearby City';
-    if(nameEl)  nameEl.textContent  = city.name;
-    if(countEl){
-      const ns = networkStatus(area.count);
-      countEl.innerHTML = `<span class="net-status ${ns.key}">${ns.label}</span>&ensp;<span style="color:var(--ink-soft);font-size:10.5px;font-weight:500;">${area.name}</span>`;
-    }
-    if(cta){
-      const href = activeZipCluster
-        ? seoZipUrl(activeCity, activeZipCluster)
-        : seoCityUrl(activeArea, activeCity);
-      cta.setAttribute('href', href);
-      cta.textContent = 'Find Nearby Dentists';
-    }
-    return;
+  function closeUniversalModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('cc-universal-modal-open');
+    if(lastFocus && typeof lastFocus.focus==='function') lastFocus.focus();
   }
 
-  /* ── AREA mode: default browsing, no ZIP context ── */
-  if(labelEl) labelEl.textContent = 'Closest Nearby Area';
-  if(nameEl)  nameEl.textContent  = area.name;
-  if(countEl){
-    const ns = networkStatus(area.count);
-    countEl.innerHTML = `<span class="net-status ${ns.key}">${ns.label}</span>&ensp;<span style="color:var(--ink-soft);font-size:10.5px;font-weight:500;">${area.count} dentists in directory</span>`;
-  }
-  if(cta){
-    cta.setAttribute('href', seoAreaUrl(activeArea, { canonical: true }));
-    cta.textContent = 'Find Nearby Dentists';
-  }
-}
-
-/* v211 — route for ZIP mode honoring the user's pill pick.
-   - If the picked city is indexed, use the canonical SEO city slug path.
-   - Otherwise keep the city + zip query form so dentists.html can run
-     a proximity search around the chosen non-indexed city. */
-function zipModeRoute(){
-  const sel = selectedZipCity;
-  const zip = activeZipCluster;
-  if(sel && sel.indexed){
-    return seoZipUrl(sel.slug, zip);
-  }
-  if(sel){
-    const params = ['city=' + sel.slug];
-    if(zip) params.push('zip=' + zip);
-    return '/dentists.html?' + params.join('&');
-  }
-  // Fallback: just the ZIP, no city
-  return '/dentists.html?zip=' + (zip || '');
-}
-
-/* v211 — pill click handler. Toggles which city the user has picked
-   and updates the pills + CTA href in place. */
-function selectZipCity(slug, name, indexed){
-  selectedZipCity = { slug: slug, name: name, indexed: !!indexed };
-  renderClosest('zip');
-  toast('City picked', name);
-}
-
-/* v208 — ZIP proximity scoring across the entire CITIES inventory.
-   Tier 1 (score 0):        exact ZIP match
-   Tier 2 (numeric):        same first 3 digits → numeric distance is the score
-   Tier 3 (1M+):            same first 2 digits → broad metro match, AREA mode
-   Tier 4 (10M+):           same first 1 digit  → coarse, AREA mode
-   Lower score = better. Tiers 1-2 trigger CITY mode; tiers 3-4 only AREA. */
-function findClosestByZip(input){
-  if(!/^\d{5}$/.test(input)) return null;
-  const inputN = parseInt(input, 10);
-  const p3 = input.slice(0,3), p2 = input.slice(0,2), p1 = input.slice(0,1);
-  let best = null;
-  Object.keys(CITIES).forEach(cityKey => {
-    const c = CITIES[cityKey];
-    const zips = String(c.zip || '').split('·').map(s => s.trim()).filter(Boolean);
-    zips.forEach(zip => {
-      if(!/^\d{5}$/.test(zip)) return;
-      const zn = parseInt(zip, 10);
-      let score;
-      if(zip === input)                 score = 0;
-      else if(zip.slice(0,3) === p3)    score = Math.abs(zn - inputN);
-      else if(zip.slice(0,2) === p2)    score =  1000000 + Math.abs(zn - inputN);
-      else if(zip.slice(0,1) === p1)    score = 10000000 + Math.abs(zn - inputN);
-      else return;
-      const areaKey = Object.keys(AREAS).find(a => (AREAS[a].cities || []).indexOf(cityKey) !== -1);
-      if(!areaKey) return;
-      if(!best || score < best.score){
-        best = { cityKey, areaKey, zip, score };
-      }
-    });
-  });
-  return best;
-}
-
-/* v207 — keep the hierarchy step-rail in sync with the deepest active level.
-   v214 — Step 5 (Find) is the action step; it keeps .is-action even when not current. */
-function renderStepRail(level){
-  const ids = ['step-region','step-location','step-area','step-city','step-find'];
-  ids.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if(!el) return;
-    if(i === level) el.classList.add('is-current');
-    else el.classList.remove('is-current');
-  });
-}
-
-function slugify(value){
-  return String(value || '')
-    .toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-/* ════════════════════════════════════════════════════════════════
-   v207 SEO SLUG SYSTEM — Region → Location → Area → City/ZIP
-   Returns real future-ready hrefs for dentists.html.
-   Long-tail variants are deterministic per city so they're stable
-   across paints (good for SEO crawlers, sitemaps, link-share).
-   ════════════════════════════════════════════════════════════════ */
-const STATE_BY_LOC = {
-  'southern-california':'california',
-  'northern-california':'california',
-  'central-california':'california',
-  'washington':'washington',
-  'oregon':'oregon',
-  'nevada':'nevada',
-  'arizona':'arizona',
-  'illinois':'illinois',
-  'michigan':'michigan',
-  'ohio':'ohio',
-  'texas':'texas',
-  'georgia':'georgia',
-  'north-carolina':'north-carolina',
-  'greater-new-orleans':'louisiana',
-  'new-york':'new-york',
-  'new-jersey':'new-jersey',
-  'florida':'florida',
-  'dmv-area':'dmv'
-};
-
-/* Long-tail "near me" variants used to give dentists.html SEO depth.
-   v214 — exact slug set, future-ready for programmatic page templates.
-   We pick one deterministically based on city slug character sum so a city
-   always lands on the same long-tail variant (stable for crawlers + sitemaps). */
-const SEO_LONGTAILS = [
-  'best-ppo-dentists-near-me',
-  'best-dentists-near-me-that-accept-ppo-insurance',
-  'best-in-network-ppo-dentists-near-me',
-  'best-ppo-friendly-dentists-near-me',
-  'best-dentists-that-accept-ppo-insurance-near-me',
-  'best-reviewed-ppo-dentists-near-me',
-  'featured-ppo-dentists',
-  'capy-accredited-dentists',
-  'implant-dentist-with-ppo',
-  'cosmetic-dentist-with-ppo'
-];
-function pickLongtail(seed){
-  const s = String(seed || '');
-  let sum = 0;
-  for(let i = 0; i < s.length; i++) sum += s.charCodeAt(i);
-  return SEO_LONGTAILS[sum % SEO_LONGTAILS.length];
-}
-
-function firstZip(zipString){
-  return String(zipString || '').split('·')[0].trim();
-}
-
-/* Level 1 — Region: dentists.html?region=west-coast */
-function seoRegionUrl(regionKey){
-  const r = REGIONS[regionKey];
-  if(!r) return '/dentists';
-  return '/dentists.html?region=' + slugify(regionKey);
-}
-
-/* Level 2 — Location (state): dentists.html?region=X&location=Y */
-function seoLocationUrl(locKey){
-  const loc = LOCATIONS[locKey];
-  if(!loc) return '/dentists';
-  // Find region that contains this location
-  let regionKey = null;
-  for(const rk of REGION_ORDER){
-    if(REGIONS[rk].locations.indexOf(locKey) !== -1){ regionKey = rk; break; }
-  }
-  const stateSlug = STATE_BY_LOC[locKey] || slugify(locKey);
-  const params = ['region=' + slugify(regionKey || activeRegion), 'location=' + stateSlug];
-  return '/dentists.html?' + params.join('&');
-}
-
-/* Level 3 — Area (county): dentists.html?area=orange-county
-   OR canonical path: /dentists/california/orange-county */
-function seoAreaUrl(areaKey, opts){
-  const a = AREAS[areaKey];
-  if(!a) return '/dentists';
-  const stateSlug = STATE_BY_LOC[a.loc] || slugify(a.loc);
-  if(opts && opts.canonical){
-    return '/dentists/' + stateSlug + '/' + slugify(areaKey);
-  }
-  return '/dentists.html?area=' + slugify(areaKey) + '&location=' + stateSlug;
-}
-
-/* Level 4 — City + ZIP: canonical long-slug path
-   /dentists/california/orange-county/irvine/best-ppo-dentists-near-me
-   OR query form: dentists.html?city=irvine&zip=92612 */
-function seoCityUrl(areaKey, cityKey, opts){
-  const area = AREAS[areaKey] || {};
-  const city = CITIES[cityKey] || {};
-  const stateSlug = STATE_BY_LOC[area.loc] || slugify(area.loc || activeLocation);
-  const zip = firstZip(city.zip);
-  if(opts && opts.queryForm){
-    const params = ['city=' + slugify(cityKey)];
-    if(zip) params.push('zip=' + zip);
-    return '/dentists.html?' + params.join('&');
-  }
-  // Canonical long-slug form (SEO-friendly)
-  const longtail = (opts && opts.longtail) || pickLongtail(cityKey);
-  return '/dentists/' + [
-    stateSlug,
-    slugify(areaKey),
-    slugify(cityKey),
-    longtail
-  ].filter(Boolean).join('/');
-}
-
-/* ZIP search: dentists.html?city=irvine&zip=92612 */
-function seoZipUrl(cityKey, zip){
-  const params = [];
-  if(cityKey) params.push('city=' + slugify(cityKey));
-  if(zip) params.push('zip=' + zip);
-  return '/dentists.html?' + params.join('&');
-}
-
-/* v214 — targeted long-tail helpers for future page templates.
-   These build on seoCityUrl with a specific longtail slug. Use them when
-   you know the user's intent (e.g. clicking the City Featured CTA, the
-   Accreditation CTA, or a specialty card). */
-function seoFeaturedDentistsUrl(areaKey, cityKey){
-  return seoCityUrl(areaKey, cityKey, { longtail: 'featured-ppo-dentists' });
-}
-function seoAccreditedDentistsUrl(areaKey, cityKey){
-  return seoCityUrl(areaKey, cityKey, { longtail: 'capy-accredited-dentists' });
-}
-function seoImplantDentistsUrl(areaKey, cityKey){
-  return seoCityUrl(areaKey, cityKey, { longtail: 'implant-dentist-with-ppo' });
-}
-function seoCosmeticDentistsUrl(areaKey, cityKey){
-  return seoCityUrl(areaKey, cityKey, { longtail: 'cosmetic-dentist-with-ppo' });
-}
-
-/* Back-compat shim — old call site still works */
-function seoDentistUrl(areaKey, cityKey){
-  return seoCityUrl(areaKey, cityKey);
-}
-
-/* ════════════════════════════════════════════════════════════════
-   v211 — ZIP-AWARE CITY RECOGNITION
-   ZIP_NEIGHBORHOODS lists real cities at a ZIP that aren't yet in our
-   PPO dentist inventory (CITIES). Combined with the indexed cities,
-   the merged ZIP_INDEX gives us a "what cities live at this ZIP"
-   lookup so the user can pick which city they're in — even if we
-   don't have PPO dentists there yet (we'll route them to dentists.html
-   with that city + ZIP, where proximity search takes over).
-   ════════════════════════════════════════════════════════════════ */
-const ZIP_NEIGHBORHOODS = {
-  // ── San Gabriel Valley (LA County) — most cities here aren't yet PPO-indexed
-  '91745': ['Hacienda Heights', 'City of Industry'],
-  '91744': ['La Puente', 'City of Industry'],
-  '91746': ['La Puente', 'City of Industry'],
-  '91748': ['City of Industry'],
-  '91792': ['City of Industry'],
-  '91722': ['Covina'],
-  '91723': ['Covina'],
-  '91724': ['Covina'],
-  '91706': ['Baldwin Park'],
-  '91773': ['San Dimas'],
-  '91775': ['San Gabriel'],
-  '91776': ['San Gabriel'],
-  '91754': ['Monterey Park'],
-  '91755': ['Monterey Park'],
-  '91801': ['Alhambra'],
-  '91803': ['Alhambra'],
-  '91789': ['Walnut'],
-  '91709': ['Chino Hills'],
-  '91710': ['Chino'],
-  '91711': ['Claremont'],
-  '91767': ['Pomona'],
-  '91768': ['Pomona'],
-
-  // ── LA Westside / Hollywood
-  '90028': ['Hollywood'],
-  '90046': ['West Hollywood', 'Hollywood Hills'],
-  '90069': ['West Hollywood'],
-  '90291': ['Venice'],
-  '90292': ['Marina del Rey'],
-  '90049': ['Brentwood'],
-  '90272': ['Pacific Palisades'],
-  '90064': ['West Los Angeles'],
-  '90025': ['West Los Angeles'],
-
-  // ── South Bay / OC adjacencies
-  '92692': ['Mission Viejo'],
-  '92691': ['Mission Viejo'],
-  '92630': ['Lake Forest'],
-  '92614': ['Irvine'],
-  '92604': ['Irvine'],
-  '92653': ['Aliso Viejo', 'Laguna Hills'],
-  '92677': ['Laguna Niguel'],
-
-  // ── NYC neighborhoods not yet PPO-indexed
-  '10003': ['East Village', 'NoHo'],
-  '10009': ['East Village', 'Alphabet City'],
-  '10014': ['West Village', 'Greenwich Village'],
-  '10004': ['Financial District'],
-  '10005': ['Financial District'],
-  '10128': ['Carnegie Hill'],
-  '10075': ['Upper East Side'],
-  '10024': ['Upper West Side'],
-  '10025': ['Upper West Side']
-};
-
-/* Build the merged ZIP → cities index.
-   Each city is { name, slug, indexed }. Indexed cities come from CITIES
-   (we have PPO dentists there). Non-indexed cities come from
-   ZIP_NEIGHBORHOODS (we know the city exists, but no inventory yet). */
-const ZIP_INDEX = (function(){
-  const idx = {};
-  function add(zip, entry){
-    if(!idx[zip]) idx[zip] = [];
-    if(idx[zip].some(c => c.slug === entry.slug)) return;
-    idx[zip].push(entry);
-  }
-  // 1) Indexed cities → derived from CITIES.zip clusters
-  Object.keys(CITIES).forEach(cityKey => {
-    const c = CITIES[cityKey];
-    String(c.zip || '').split('·').map(s => s.trim()).filter(Boolean).forEach(zip => {
-      if(/^\d{5}$/.test(zip)){
-        add(zip, { name: c.name, slug: cityKey, indexed: true });
-      }
-    });
-  });
-  // 2) Neighborhood cities (real but not yet indexed for PPO inventory)
-  //    NB: if the slug coincides with an indexed CITIES key, we still mark
-  //    it indexed=true — the city has PPO dentists, just not at this ZIP.
-  Object.keys(ZIP_NEIGHBORHOODS).forEach(zip => {
-    ZIP_NEIGHBORHOODS[zip].forEach(name => {
-      const slug = slugify(name);
-      const isIndexed = !!CITIES[slug];
-      add(zip, { name: name, slug: slug, indexed: isIndexed });
-    });
-  });
-  return idx;
-})();
-
-function findCitiesAtZip(zip){
-  return ZIP_INDEX[zip] ? ZIP_INDEX[zip].slice() : [];
-}
-
-/* v211 state — the user's pick from the ZIP pills.
-   selectedZipCity = { name, slug, indexed } | null */
-let selectedZipCity = null;
-
-/* v223 — deterministic patient demand signals for Get Featured.
-   Demand is stable per market, saved locally, and only trends upward once per day. */
-const FEATURED_DEMAND_RANGES = {
-  'area:los-angeles':       [3200, 6200],
-  'area:orange-county':     [1800, 3900],
-  'area:san-diego':         [1400, 2800],
-  'area:inland-empire':     [900, 2100],
-  'city:irvine':            [420, 950],
-  'city:newport-beach':     [260, 720],
-  'city:costa-mesa':        [240, 650],
-  'city:plano':             [350, 850],
-  'area:austin':            [900, 2100],
-  'area:houston':           [2200, 4400],
-  'area:dallas':            [2400, 4700],
-  'location:texas':         [3800, 7200]
-};
-const FEATURED_PREMIUM_MARKETS = new Set(['newport-beach','irvine','beverly-hills','scottsdale']);
-const FEATURED_FAMILY_AREAS = new Set(['orange-county','inland-empire','san-diego','houston','dallas','austin','phoenix','raleigh','charlotte','naperville','fairfax','montgomery']);
-const FEATURED_DEFAULT_CHIPS = ['Implants','Crowns','Emergency','Invisalign','Cosmetic'];
-const FEATURED_PREMIUM_CHIPS = ['Cosmetic','Veneers','Invisalign','Whitening','TMJ Botox'];
-const FEATURED_FAMILY_CHIPS = ['Implants','Crowns','Emergency','Family Dentistry','Invisalign'];
-
-function stableHash(value){
-  const s = String(value || '');
-  let h = 2166136261;
-  for(let i = 0; i < s.length; i++){
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function todayKey(){
-  const d = new Date();
-  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-}
-
-function daysBetween(fromKey, toKey){
-  const from = new Date(fromKey + 'T00:00:00');
-  const to = new Date(toKey + 'T00:00:00');
-  const days = Math.floor((to - from) / 86400000);
-  return Number.isFinite(days) ? Math.max(0, days) : 0;
-}
-
-function inferDemandRange(scope, key){
-  const exact = FEATURED_DEMAND_RANGES[scope + ':' + key];
-  if(exact) return exact;
-
-  const area = AREAS[key];
-  const city = CITIES[key];
-  const loc = LOCATIONS[key];
-  const region = REGIONS[key];
-  const countValue = area ? parseInt(String(area.count || '').replace(/\D/g, ''), 10) : 0;
-  if(region || loc || countValue >= 500) return [900, 1900];
-  if(area || countValue >= 180) return [450, 1100];
-  if(city) return [180, 520];
-  return [450, 1100];
-}
-
-function currentDemandMarket(){
-  if(activeCity && CITIES[activeCity]){
-    return {
-      scope: 'city',
-      key: activeCity,
-      name: CITIES[activeCity].name,
-      context: 'PPO searches in ' + CITIES[activeCity].name + ' this month'
-    };
-  }
-  if(activeArea && AREAS[activeArea]){
-    return {
-      scope: 'area',
-      key: activeArea,
-      name: AREAS[activeArea].name,
-      context: 'PPO searches across ' + AREAS[activeArea].name + ' this month'
-    };
-  }
-  if(activeLocation && LOCATIONS[activeLocation]){
-    const locationName = /california/.test(activeLocation) ? 'California' : LOCATIONS[activeLocation].name;
-    return {
-      scope: 'location',
-      key: activeLocation,
-      name: locationName,
-      context: 'PPO searches across ' + locationName + ' markets this month'
-    };
-  }
-  return {
-    scope: 'region',
-    key: activeRegion,
-    name: (REGIONS[activeRegion] && REGIONS[activeRegion].name) || 'your market',
-    context: 'PPO searches across your market this month'
+  window.CoverCapyUniversalModal = {
+    open: openUniversalModal,
+    close: closeUniversalModal,
+    configs: COVER_CAPY_UNIVERSAL_MODALS,
+    buildBookingConfig: buildGenericBookingConfig
   };
-}
 
-function storedDemandForMarket(market){
-  const range = inferDemandRange(market.scope, market.key);
-  const storageKey = 'covercapy:featuredDemand:' + market.scope + ':' + market.key;
-  const now = todayKey();
-  let record = null;
-  try{
-    record = JSON.parse(localStorage.getItem(storageKey) || 'null');
-  }catch(_e){
-    record = null;
-  }
+  document.addEventListener('click',function(e){
+    var trigger=e.target.closest('[data-cc-modal], .dentist-feature-card .featured-btn.primary, [data-cc-booking-card] .featured-btn.primary');
+    if(trigger){
+      var type=trigger.getAttribute('data-cc-modal');
+      var provider=trigger.getAttribute('data-cc-modal-provider') || trigger.getAttribute('data-cc-booking-provider');
+      var config=null;
 
-  if(!record || typeof record.currentDemand !== 'number' || !record.lastUpdated){
-    const hash = stableHash(storageKey);
-    const start = range[0] + (hash % (range[1] - range[0] + 1));
-    record = { currentDemand: start, lastUpdated: now };
-  }else if(record.lastUpdated !== now){
-    const elapsed = daysBetween(record.lastUpdated, now);
-    if(elapsed > 0){
-      for(let i = 0; i < elapsed; i++){
-        const seed = stableHash(storageKey + ':' + record.lastUpdated + ':' + i);
-        const pct = 0.003 + ((seed % 10) / 1000); // 0.3% to 1.2%
-        const fixed = 1 + (seed % 9);
-        const dailyGrowth = Math.max(fixed, Math.round(record.currentDemand * pct));
-        record.currentDemand += dailyGrowth;
+      if(type === 'insurance'){
+        config = getConfig(type, provider);
+      } else if(type === 'booking' || isFeatureBookingButton(trigger)){
+        type = 'booking';
+        config = getConfig(type, provider) || buildGenericBookingConfig(trigger, provider);
       }
-      record.lastUpdated = now;
+
+      if(config){
+        e.preventDefault();
+        e.stopPropagation();
+        openUniversalModal(type, provider, config);
+        return;
+      }
     }
-  }
+    if(e.target.closest('[data-modal-close]')){e.preventDefault(); closeUniversalModal();}
+  });
 
-  try{
-    localStorage.setItem(storageKey, JSON.stringify(record));
-  }catch(_e){}
-  return record.currentDemand;
-}
-
-function demandChipsForMarket(market){
-  if(market.scope === 'city' && FEATURED_PREMIUM_MARKETS.has(market.key)) return FEATURED_PREMIUM_CHIPS;
-  if(market.scope === 'area' && FEATURED_FAMILY_AREAS.has(market.key)) return FEATURED_FAMILY_CHIPS;
-  if(activeArea && FEATURED_FAMILY_AREAS.has(activeArea)) return FEATURED_FAMILY_CHIPS;
-  return FEATURED_DEFAULT_CHIPS;
-}
-
-function updateFeaturedDemand(){
-  const countEl = document.getElementById('feat-demand-count');
-  const contextEl = document.getElementById('feat-demand-context');
-  const chipsEl = document.getElementById('feat-demand-chips');
-  if(!countEl || !contextEl || !chipsEl) return;
-
-  const market = currentDemandMarket();
-  const demand = storedDemandForMarket(market);
-  countEl.textContent = demand.toLocaleString();
-  contextEl.textContent = market.context;
-  chipsEl.innerHTML = demandChipsForMarket(market)
-    .map(chip => '<span class="feat-demand-chip">' + chip + '</span>')
-    .join('');
-}
-
-function renderAwaiting(){
-  const r = REGIONS[activeRegion];
-  if(!r) return;
-  const numEl = document.getElementById('find-awaiting-num');
-  const regionEl = document.getElementById('find-awaiting-region');
-  if(numEl) numEl.innerHTML = '<em>~</em>' + r.awaiting;
-  if(regionEl) regionEl.textContent = r.name;
-}
-
-function renderFeatured(){
-  const featuredEl = document.getElementById('find-featured');
-  if(!featuredEl) return;
-
-  const area = AREAS[activeArea];
-  const areaName = (area && area.name) || 'this area';
-  const f = AREA_FEATURED[activeArea];
-
-  if(f){
-    // ── FILLED state: v224 prestige effects — same as feat-city-hero ──
-    const tier = f.tier || 'verified';
-    const tierLabel = { 'platinum-elite':'Platinum Elite', 'capy-accredited':'Capy Accredited', 'verified':'Verified' }[tier];
-    const tierIcon  = { 'platinum-elite':'💎', 'capy-accredited':'🦫', 'verified':'✓' }[tier];
-
-    // Same bloom + shimmer + sweep as feat-city-hero on ALL tiers
-    const bgEffects = `<span class="feat-city-bloom" aria-hidden="true"></span>
-      <span class="feat-city-shimmer" aria-hidden="true"></span>
-      <span class="feat-city-sweep" aria-hidden="true"></span>`;
-
-    // Same orbiting sparks as feat-city-medal on platinum + capy-accredited
-    const hasSparks = (tier === 'platinum-elite' || tier === 'capy-accredited');
-    const sparksHtml = hasSparks
-      ? `<span class="feat-city-spark feat-city-spark-1" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-2" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-3" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-4" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-5" aria-hidden="true"></span><span class="feat-city-spark feat-city-spark-6" aria-hidden="true"></span>`
-      : '';
-
-    const avatarGlow = (tier !== 'verified')
-      ? `<span class="ff-avatar-glow" aria-hidden="true"></span>`
-      : '';
-
-    featuredEl.setAttribute('data-state', 'filled');
-    featuredEl.setAttribute('data-tier', tier);
-    featuredEl.setAttribute('href', f.href || '/dentists/featured');
-    featuredEl.setAttribute('onclick', "event.stopPropagation();return false;");
-
-    featuredEl.innerHTML = `
-      ${bgEffects}
-      <div class="ff-avatar" data-tier="${tier}">
-        ${avatarGlow}
-        <span class="ff-avatar-shine" aria-hidden="true"></span>
-        <span class="ff-avatar-icon">${f.icon || '🦷'}</span>
-        ${sparksHtml}
-      </div>
-      <div class="ff-info">
-        <span class="ff-tier-badge ${tier}">${tierIcon} ${tierLabel}</span>
-        <a class="ff-name" href="${f.href || '/dentists/featured'}" onclick="event.stopPropagation();megaGo('featured-dentist');return false;">${f.name}</a>
-        <div class="ff-meta">
-          <span>📍 ${f.loc}</span>
-          <span class="ff-meta-dot"></span>
-          <span>⭐ ${f.rating} <span class="ff-reviews">(${(f.reviews || 0).toLocaleString()} reviews)</span></span>
-        </div>
-      </div>
-      <div class="ff-actions">
-        <button class="ff-btn-book" onclick="event.stopPropagation();megaGo('book-appointment');">Book Appointment</button>
-        <button class="ff-btn-call" onclick="event.stopPropagation();megaGo('book-featured');">Call Office</button>
-      </div>
-    `;
-    return;
-  }
-
-  // ── EMPTY state: open featured spot CTA ──
-  featuredEl.setAttribute('data-state', 'empty');
-  featuredEl.setAttribute('data-tier', 'empty');
-  featuredEl.setAttribute('href', '/get-featured/capy-accredited');
-  featuredEl.setAttribute('onclick', "event.stopPropagation();megaGo('accreditation');return false;");
-  featuredEl.innerHTML = `
-    <div class="ff-avatar" data-tier="verified">
-      <span class="ff-avatar-shine" aria-hidden="true"></span>
-      <span class="ff-avatar-icon">✨</span>
-    </div>
-    <div class="ff-info">
-      <span class="ff-tier-badge empty">Featured Spot · Available</span>
-      <div class="ff-name-plain">Your practice could be here.</div>
-      <div class="ff-meta">Become the featured PPO dentist in ${areaName}</div>
-    </div>
-    <div class="ff-actions">
-      <button class="ff-btn-book" onclick="event.stopPropagation();megaGo('accreditation');">Apply Now</button>
-      <button class="ff-btn-call" onclick="event.stopPropagation();megaGo('city-featured');">See City Featured</button>
-    </div>
-  `;
-}
-
-/* ── CASCADE ── */
-function selectRegion(key){
-  if(!REGIONS[key]) return;
-  closestMode = 'area';
-  selectedZipCity = null;
-  activeRegion = key;
-  // Default to the first location in this region
-  activeLocation = REGIONS[key].locations[0];
-  // Default to the first area in this location
-  const firstArea = Object.keys(AREAS).find(aKey => AREAS[aKey].loc === activeLocation);
-  if(firstArea) activeArea = firstArea;
-  const firstCity = activeArea && AREAS[activeArea] && AREAS[activeArea].cities && AREAS[activeArea].cities[0];
-  if(firstCity) activeCity = firstCity;
-  renderRegions();
-  renderLocations();
-  renderAreas();
-  renderCities();
-  renderClosest();
-  renderAwaiting();
-  renderFeatured();
-  updateFeaturedDemand();
-  renderStepRail(0);
-  toast('Region', REGIONS[key].name);
-}
-
-function selectLocation(key){
-  if(!LOCATIONS[key]) return;
-  closestMode = 'area';
-  selectedZipCity = null;
-  activeLocation = key;
-  // Default to the first area in this location
-  const firstArea = Object.keys(AREAS).find(aKey => AREAS[aKey].loc === key);
-  if(firstArea) activeArea = firstArea;
-  const firstCity = activeArea && AREAS[activeArea] && AREAS[activeArea].cities && AREAS[activeArea].cities[0];
-  if(firstCity) activeCity = firstCity;
-  renderLocations();
-  renderAreas();
-  renderCities();
-  renderClosest();
-  renderFeatured();
-  updateFeaturedDemand();
-  renderStepRail(1);
-  toast('Location', LOCATIONS[key].name);
-}
-
-function selectArea(key){
-  if(!AREAS[key]) return;
-  closestMode = 'area';
-  selectedZipCity = null;
-  activeArea = key;
-  const firstCity = AREAS[key].cities && AREAS[key].cities[0];
-  if(firstCity) activeCity = firstCity;
-  renderAreas();
-  renderCities();
-  renderClosest();
-  renderFeatured();
-  updateFeaturedDemand();
-  renderStepRail(2);
-  toast('Area', AREAS[key].name);
-}
-
-function selectCity(slug, name){
-  activeCity = slug;
-  const c = CITIES[slug];
-  if(c) activeZipCluster = (c.zip || '').split('·')[0].trim();
-  renderCities();
-  updateFeaturedDemand();
-  renderStepRail(3);
-  toast('City', name);
-}
-
-function findClosestDentists(){
-  const area = AREAS[activeArea];
-  const city = CITIES[activeCity];
-  let label;
-  if(closestMode === 'zip' && selectedZipCity){
-    label = selectedZipCity.name;
-  } else if(closestMode === 'city' && city){
-    label = city.name;
-  } else {
-    label = area ? area.name : 'nearby';
-  }
-  renderStepRail(4);  // Step 5 = Find (zero-indexed at 4)
-  toast('Find Dentists', label);
-  closeNav();
-}
-
-/* Initial paint */
-renderRegions();
-renderLocations();
-renderAreas();
-renderCities();
-renderClosest();
-renderAwaiting();
-renderFeatured();
-updateFeaturedDemand();
-
-/* ════════════════════════════════════════════════════════════════
-   TOAST — visual feedback for every click
-   ════════════════════════════════════════════════════════════════ */
-let toastEl = null;
-let toastTimer = null;
-function toast(label, route){
-  if(!toastEl){
-    toastEl = document.createElement('div');
-    toastEl.className = 'cc-toast';
-    toastEl.innerHTML = `
-      <span class="cc-toast-arrow">→</span>
-      <span><span class="cc-toast-label"></span><span class="cc-toast-route"></span></span>
-      <button class="cc-toast-close" aria-label="Dismiss">×</button>
-    `;
-    document.body.appendChild(toastEl);
-    toastEl.querySelector('.cc-toast-close').addEventListener('click', () => {
-      toastEl.classList.remove('show');
-    });
-  }
-  toastEl.querySelector('.cc-toast-label').textContent = label + ' · ';
-  toastEl.querySelector('.cc-toast-route').textContent = route;
-  toastEl.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600);
-}
-
-function closeNav(){
-  document.querySelectorAll('.cc-link.is-open').forEach(l => l.classList.remove('is-open'));
-}
-
-/* ════════════════════════════════════════════════════════════════
-   v207 ROUTING TABLE — real, future-ready production hrefs.
-   Replaces the v206 toast-only demo: every <a> already has a real
-   href attribute, and the toast reflects exactly where the link
-   would navigate in production.
-   ════════════════════════════════════════════════════════════════ */
-const MEGA_ROUTES = {
-  // PPO Plans
-  'match':           { label:'Smart Match',                 href:'/ppo-plans/smart-match' },
-  'compare':         { label:'Compare Plans',               href:'/ppo-plans/compare' },
-  'ppo-guide':       { label:'How PPO Works',               href:'/ppo-plans/how-it-works' },
-  'cheapest-plans':  { label:'Cheapest Plans',              href:'/ppo-plans/cheapest' },
-  'plans':           { label:'Coverage',                    href:'/ppo-plans' },
-  'need-implants':   { label:'Implant Planning',            href:'/ppo-plans/implant-planning' },
-  'need-crowns':     { label:'Crowns & Root Canals',        href:'/ppo-plans/crowns-root-canals' },
-  'need-invisalign': { label:'Invisalign',                  href:'/ppo-plans/invisalign' },
-  'need-emergency':  { label:'Emergency Dental',            href:'/ppo-plans/emergency-dental' },
-  'need-preventive': { label:'Cleaning & Preventive',       href:'/ppo-plans/cleaning-preventive' },
-  'need-veneers':    { label:'Veneers & Cosmetic',          href:'/ppo-plans/veneers-cosmetic' },
-  'plan-uhc':        { label:'UHC Primary PPO',             href:'/ppo-plans/uhc-primary-ppo' },
-  'plan-aetna':      { label:'Aetna Direct',                href:'/ppo-plans/aetna-direct' },
-  'plan-ameritas':   { label:'Ameritas PrimeStar',          href:'/ppo-plans/ameritas-primestar' },
-  'plan-guardian':   { label:'Guardian Premier',            href:'/ppo-plans/guardian-premier' },
-  'plan-moo':        { label:'Mutual Preferred',            href:'/ppo-plans/mutual-of-omaha' },
-  'plan-humana':     { label:'Humana',                      href:'/ppo-plans/humana' },
-  'plan-cheapest':   { label:'Cheapest PPO',                href:'/ppo-plans/cheapest' },
-
-  // Cost Calculator
-  'calc':            { label:'Estimates',                   href:'/cost-calculator' },
-  'cost-implant':    { label:'Implant Cost',                href:'/cost-calculator/implant' },
-  'cost-crown':      { label:'Crown Cost',                  href:'/cost-calculator/crown' },
-  'cost-invisalign': { label:'Invisalign Cost',             href:'/cost-calculator/invisalign' },
-  'cost-emergency':  { label:'Emergency Cost',              href:'/cost-calculator/emergency' },
-  'smart-timing':    { label:'Smart Timing Strategy',       href:'/guides/smart-timing-strategy' },
-  'cost-guide':      { label:'Full Cost Guide',             href:'/guides/full-cost-guide' },
-
-  // Find Dentist
-  'directory':       { label:'Dentists',                    href:'/dentists' },
-  'featured-dentist':{ label:'Featured Dentist',            href:'/dentists/featured' },
-  'book-featured':   { label:'View Featured Profile',       href:'/dentists/featured' },
-  'book-appointment':{ label:'Book Featured Appointment',   href:'/dentists/featured/book' },
-
-  // Patient Rewards (v216 economy)
-  'rewards':           { label:'Capy Crowns',                                 href:'/rewards' },
-  'earn-create':       { label:'Earn · Create Account',                       href:'/rewards/earn/create-account' },
-  'earn-activate':     { label:'Earn · Activate a PPO Plan',                  href:'/rewards/earn/activate-ppo' },
-  'earn-book':         { label:'Earn · Book a PPO Dentist',                   href:'/rewards/earn/book-ppo-dentist' },
-  'earn-refer':        { label:'Earn · Refer Friends & Family',               href:'/rewards/earn/refer-friends' },
-  'redeem-whitening':  { label:'Redeem · In-Office Whitening',                href:'/rewards/redeem/in-office-whitening' },
-  'redeem-invisalign': { label:'Redeem · Invisalign at Platinum Elite',       href:'/rewards/redeem/invisalign-platinum' },
-  'redeem-tmj':        { label:'Redeem · Botox · TMJ',                        href:'/rewards/redeem/tmj-botox' },
-  'refer':             { label:'Refer a Friend',                              href:'/rewards/refer-a-friend' },
-
-  // Get Featured — for dentists
-  'claim-profile':   { label:'Claim Free Profile',          href:'/dentist-portal/claim-profile' },
-  'city-featured':   { label:'City Featured (paid)',        href:'/get-featured/city-featured' },
-  'accreditation':   { label:'Capy Accredited',             href:'/get-featured/capy-accredited' },
-  'platinum-elite':  { label:'Platinum Elite',              href:'/get-featured/platinum-elite' },
-  'portal':          { label:'Dentist Portal',              href:'/dentist-portal' },
-
-  // Shop
-  'shop':            { label:'Shop',                        href:'/shop' },
-  'shop-brushes':    { label:'Electric Toothbrushes',       href:'/shop/electric-toothbrushes' },
-  'shop-whitening':  { label:'Whitening',                   href:'/shop/whitening' },
-  'shop-gums':       { label:'Gum Health',                  href:'/shop/gum-health' },
-  'shop-implants':   { label:'Crown & Implant Care',        href:'/shop/crown-implant-care' },
-  'shop-ortho':      { label:'Invisalign & Braces',         href:'/shop/invisalign-braces' },
-  'shop-sensitive':  { label:'Sensitive & Enamel',          href:'/shop/sensitive-enamel' },
-  'shop-grinding':   { label:'Grinding & TMJ',              href:'/shop/grinding-tmj' },
-  'shop-kids':       { label:'Kids & Family',               href:'/shop/kids-family' },
-
-  // About + account
-  'home':            { label:'CoverCapy Home',              href:'/' },
-  'signin':          { label:'Sign In',                     href:'/sign-in' },
-  'join':            { label:'Join Free',                   href:'/join' },
-  'how-it-works':    { label:'How It Works',                href:'/about/how-it-works' },
-  'why-free':        { label:'Why It’s Free',               href:'/about/why-its-free' },
-  'founder':         { label:'Meet the Team',               href:'/about/team' },
-  'win-win-model':   { label:'The Win-Win Model',           href:'/about/win-win-model' },
-  'three-paths':     { label:'3 Paths to a Dentist',        href:'/about/three-paths-to-a-dentist' },
-  'whywin':          { label:'What Makes Us Different',     href:'/about/what-makes-us-different' },
-  'faq':             { label:'FAQ',                         href:'/about/faq' }
-};
-
-function megaGo(slug){
-  const r = MEGA_ROUTES[slug] || { label: slug, href: '/' + slug };
-  toast('Route', r.label);
-  closeNav();
-  // In production: window.location.assign(r.href);
-}
-function gotoTab(slug){ megaGo(slug); }
-function goHome(){ megaGo('home'); }
-function openPortalModal(){ toast('Modal', 'Dentist Portal'); closeNav(); }
-function openSignupModal(){ toast('Modal', 'Join Free'); closeNav(); }
-
-function rmgFindByZip(){
-  const inputEl = document.getElementById('rmg-zip-input');
-  const z = inputEl ? inputEl.value : '';
-  const clean = (z || '').replace(/\D/g, '').slice(0, 5);
-  if(clean.length !== 5){
-    toast('ZIP Search', 'enter a 5-digit ZIP');
-    return;
-  }
-  activeZipCluster = clean;
-
-  // v211 — what real cities live at this ZIP? (Indexed + non-indexed)
-  const recognized = findCitiesAtZip(clean);
-  // Closest indexed city by numeric proximity (v208 logic).
-  const best = findClosestByZip(clean);
-
-  // Cascade area context from the closest indexed proximity result.
-  // This ensures the cascade lands on a sensible metro even when the
-  // recognized cities themselves aren't yet PPO-indexed.
-  if(best){
-    const area = AREAS[best.areaKey];
-    if(area){
-      activeArea = best.areaKey;
-      activeLocation = area.loc;
-      const newRegion = REGION_ORDER.find(rk => REGIONS[rk].locations.indexOf(area.loc) !== -1);
-      if(newRegion) activeRegion = newRegion;
-    }
-    // If the proximity match is a close indexed city, also set activeCity
-    // (used as the "closest indexed" fallback hint in ZIP mode).
-    if(best.score < 1000000){
-      activeCity = best.cityKey;
-    }
-  }
-
-  // Decide display mode.
-  // - 2+ recognized cities at this ZIP → ZIP MODE (pills)
-  // - 1 recognized indexed city OR proximity score < 1M → CITY MODE
-  // - Otherwise → AREA MODE
-  let mode;
-  if(recognized.length >= 2){
-    mode = 'zip';
-    // Default-select the first recognized city (typically the most populated).
-    selectedZipCity = recognized[0];
-    // If the default pick is indexed, surface it as activeCity too.
-    if(recognized[0].indexed){
-      activeCity = recognized[0].slug;
-    }
-  } else if(recognized.length === 1){
-    // Single recognized city. If indexed, City mode with that city.
-    // If non-indexed, ZIP mode with a single pill (still selectable).
-    if(recognized[0].indexed){
-      mode = 'city';
-      activeCity = recognized[0].slug;
-      selectedZipCity = recognized[0];
-    } else {
-      mode = 'zip';
-      selectedZipCity = recognized[0];
-    }
-  } else if(best && best.score < 1000000){
-    mode = 'city';
-    selectedZipCity = null;
-  } else if(best){
-    mode = 'area';
-    selectedZipCity = null;
-  } else {
-    toast('ZIP ' + clean, 'no PPO dentists indexed nearby');
-    return;
-  }
-
-  // Repaint the whole cascade.
-  renderRegions();
-  renderLocations();
-  renderAreas();
-  renderCities();
-  renderAwaiting();
-  renderFeatured();
-  updateFeaturedDemand();
-  renderClosest(mode);
-  renderStepRail(mode === 'area' ? 2 : 3);
-
-  // Toast: just what got recognized, no URL trail.
-  let label;
-  if(mode === 'zip'){
-    label = selectedZipCity.name
-            + (recognized.length > 1 ? ' (' + recognized.length + ' cities)' : '');
-  } else if(mode === 'city'){
-    const c = CITIES[activeCity];
-    label = c ? c.name : activeCity;
-  } else {
-    const a = AREAS[activeArea];
-    label = a ? a.name : activeArea;
-  }
-  toast('ZIP ' + clean, label);
-}
-function rmgGoArea(slug, name){
-  toast('Area', name || slug);
-  closeNav();
-}
-
-/* Crown balance count-up on first reveal */
-(function(){
-  const bal = document.getElementById('mega-crown-bal');
-  if(!bal) return;
-  const target = 300;
-  let cur = 0;
-  const step = Math.max(1, Math.floor(target / 40));
-  let started = false;
-  function start(){
-    if(started) return;
-    started = true;
-    const t = setInterval(() => {
-      cur = Math.min(cur + step, target);
-      bal.textContent = cur.toLocaleString();
-      if(cur >= target) clearInterval(t);
-    }, 30);
-  }
-  const rewardsLink = document.querySelector('[data-link="rewards"]');
-  if(rewardsLink) rewardsLink.addEventListener('mouseenter', start, { once: true });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && modal.classList.contains('is-open')) closeUniversalModal();
+  });
 })();
 
-/* ──────────── v514: ABOUT v2 slider removed (body-only) ──────────── */
-/* V500.1 below restored — powers mega-nav dropdown interactivity:    */
-/* Estimates treatment selector, calc tabs, Capy Crowns progress &    */
-/* accordions, Dentists ZIP search.                                   */
-
-/* ════════════════════════════════════════════════════════════════
-   V500.1 — CALC TABS · TREATMENT SELECTOR · CROWN TRACKER · ACCORDION
-   ════════════════════════════════════════════════════════════════ */
-
-// CALC TABS
-function switchCalcTab(tab, btn){
-  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('is-active'));
-  document.querySelectorAll('.calc-tab-panel').forEach(p => p.classList.remove('is-active'));
-  if(btn) btn.classList.add('is-active');
-  const panel = document.getElementById('calc-panel-' + tab);
-  if(panel) panel.classList.add('is-active');
-}
-
-// TREATMENT SELECTOR
-function selectTreatment(el){
-  document.querySelectorAll('.calc-treat').forEach(t => {
-    t.classList.remove('is-active');
-    t.style.borderColor = '';
-    t.style.background = '';
-  });
-  el.classList.add('is-active');
-  el.style.borderColor = 'var(--g)';
-  el.style.background = 'var(--gll)';
-  const retail = parseInt(el.dataset.retail);
-  const ppo    = parseInt(el.dataset.ppo);
-  const save   = parseInt(el.dataset.save);
-  const pct    = Math.round((ppo / retail) * 100);
-  const fmt = n => '$' + n.toLocaleString();
-  const retailEl  = document.getElementById('calc-retail');
-  const ppoEl     = document.getElementById('calc-ppo');
-  const saveEl    = document.getElementById('calc-save');
-  const barEl     = document.getElementById('calc-bar');
-  if(retailEl) retailEl.textContent = fmt(retail);
-  if(ppoEl)    ppoEl.textContent    = ppo === 0 ? 'Free (covered)' : 'from ' + fmt(ppo);
-  if(saveEl)   saveEl.textContent   = fmt(save);
-  if(barEl)    barEl.style.width    = Math.max(5, pct) + '%';
-}
-
-// CROWN PROGRESS
-function updateCrownProgress(crowns){
-  const total = 2000;
-  const pct   = Math.min(100, Math.round((crowns / total) * 100));
-  const fill   = document.getElementById('crown-progress-fill');
-  const marker = document.getElementById('crown-progress-marker');
-  const balloon= document.getElementById('crown-progress-balloon');
-  const balD   = document.getElementById('crown-bal-display');
-  const needD  = document.getElementById('crown-need-display');
-  if(fill)   fill.style.width  = pct + '%';
-  if(marker) marker.style.left = Math.min(94, pct) + '%';
-  if(balloon) balloon.textContent = crowns.toLocaleString() + ' 👑';
-  if(balD)   balD.textContent  = crowns.toLocaleString();
-  if(needD)  needD.textContent = Math.max(0, total - crowns).toLocaleString();
-}
-
-// CROWN ACCORDION TOGGLE
-function toggleCrownAcc(which){
-  const body    = document.getElementById('crown-' + which + '-body');
-  const chevron = document.getElementById('crown-' + which + '-chevron');
-  const toggle  = document.getElementById('crown-' + which + '-toggle');
-  if(!body) return;
-  const isOpen = body.classList.contains('is-open');
-  body.classList.toggle('is-open', !isOpen);
-  if(chevron) chevron.textContent = isOpen ? '▾' : '▴';
-  if(toggle)  toggle.setAttribute('aria-expanded', String(!isOpen));
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-  // Init crown progress at 300 (just joined)
-  updateCrownProgress(300);
-
-  // Pre-select first treatment card
-  const firstTreat = document.querySelector('.calc-treat');
-  if(firstTreat){
-    firstTreat.style.borderColor = 'var(--g)';
-    firstTreat.style.background  = 'var(--gll)';
-    firstTreat.classList.add('is-active');
-  }
-});
-
-
-// CALC TABS
-function switchCalcTab(tab, btn){
-  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('is-active'));
-  document.querySelectorAll('.calc-tab-panel').forEach(p => p.classList.remove('is-active'));
-  if(btn) btn.classList.add('is-active');
-  const panel = document.getElementById('calc-panel-' + tab);
-  if(panel) panel.classList.add('is-active');
-}
-
-// TREATMENT SELECTOR
-function selectTreatment(el){
-  document.querySelectorAll('.calc-treat').forEach(t => {
-    t.classList.remove('is-active');
-    t.style.borderColor = '';
-    t.style.background = '';
-  });
-  el.classList.add('is-active');
-  el.style.borderColor = 'var(--g)';
-  el.style.background = 'var(--gll)';
-
-  const retail = parseInt(el.dataset.retail);
-  const ppo = parseInt(el.dataset.ppo);
-  const save = parseInt(el.dataset.save);
-  const pct = Math.round((ppo / retail) * 100);
-
-  const fmt = n => '$' + n.toLocaleString();
-
-  const retailEl = document.getElementById('calc-retail');
-  const ppoEl = document.getElementById('calc-ppo');
-  const saveEl = document.getElementById('calc-save');
-  const barEl = document.getElementById('calc-bar');
-
-  if(retailEl) retailEl.textContent = fmt(retail);
-  if(ppoEl) ppoEl.textContent = ppo === 0 ? 'Free (covered)' : 'from ' + fmt(ppo);
-  if(saveEl) saveEl.textContent = fmt(save);
-  if(barEl) barEl.style.width = Math.max(5, pct) + '%';
-}
-
-// CROWN PROGRESS INTERACTIVE
-function updateCrownProgress(crowns){
-  const total = 2000;
-  const pct = Math.min(100, Math.round((crowns / total) * 100));
-  const fill = document.getElementById('crown-progress-fill');
-  const marker = document.getElementById('crown-progress-marker');
-  const balloon = document.getElementById('crown-progress-balloon');
-  const balDisplay = document.getElementById('crown-bal-display');
-  const needDisplay = document.getElementById('crown-need-display');
-  if(fill) fill.style.width = pct + '%';
-  if(marker) marker.style.left = pct + '%';
-  if(balloon) balloon.textContent = crowns.toLocaleString() + ' 👑';
-  if(balDisplay) balDisplay.textContent = crowns.toLocaleString();
-  if(needDisplay) needDisplay.textContent = Math.max(0, total - crowns).toLocaleString();
-}
-
-// CROWN STEP INTERACTIVE — check off steps on hover for demo
-document.addEventListener('DOMContentLoaded', function(){
-  updateCrownProgress(300);
-  
-  // Animate crown steps on rewards hover to show earning
-  const rewardsLink = document.querySelector('[data-link="rewards"]');
-  if(rewardsLink){
-    let demoTimeout;
-    rewardsLink.addEventListener('mouseenter', function(){
-      clearTimeout(demoTimeout);
-    });
-  }
-
-  // Calculator — pre-select implant
-  const firstTreat = document.querySelector('.calc-treat');
-  if(firstTreat) {
-    firstTreat.style.borderColor = 'var(--g)';
-    firstTreat.style.background = 'var(--gll)';
-    firstTreat.classList.add('is-active');
-  }
-});
-
-
-// DENTIST ZIP SEARCH (claim profile lookup)
-function dentZipKey(ev){
-  const input = ev.target;
-  input.value = input.value.replace(/\D/g, '');
-  if(input.value.length === 5){
-    dentZipSearch(ev);
-  }
-}
-function dentZipSearch(ev){
-  if(ev && ev.preventDefault) ev.preventDefault();
-  const input = document.getElementById('dent-zip-input');
-  const meta  = document.getElementById('dent-zip-meta');
-  if(!input || !meta) return;
-  const zip = (input.value || '').replace(/\D/g,'');
-  if(zip.length !== 5){
-    meta.textContent = 'Enter a 5-digit ZIP to search';
-    meta.classList.remove('is-found');
-    return;
-  }
-  meta.textContent = 'Searching our dentist index for ZIP ' + zip + '...';
-  meta.classList.remove('is-found');
-  setTimeout(function(){
-    meta.textContent = "Found 14 practices near " + zip + " · Continue to claim yours";
-    meta.classList.add('is-found');
-    setTimeout(function(){
-      if(typeof openPortalModal === 'function'){
-        openPortalModal();
-      } else if(typeof toast === 'function'){
-        toast('Claim Profile', 'ZIP ' + zip);
-      }
-    }, 600);
-  }, 700);
-}
+})();
