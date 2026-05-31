@@ -272,6 +272,14 @@
 /* Shell mounts for shared mega nav + hero slider */
 #cc-nav-mount{ min-height:72px; }
 #cc-hero-mount{ min-height:80vh; }
+#page-start{
+  display:block;
+  height:0;
+  scroll-margin-top:96px;
+}
+@media (max-width:760px){
+  #page-start{ scroll-margin-top:82px; }
+}
 .cc-page-shell{ position:relative; z-index:1; }
 
 /* ════════════════════════════════════════════════════════════════
@@ -1822,12 +1830,75 @@ img,svg{ max-width:100%; display:block; }
 
 /* SR only */
 .sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   HERO SLIDER ISOLATION FIX
+   This compare page has its own themed .btn / .btn-primary rules.
+   Those rules used to repaint the shared hero slider after clicking
+   into this page. These higher-specificity rules restore the hero
+   button palette without changing page-content buttons.
+   ════════════════════════════════════════════════════════════════ */
+.hero-wrap .btn-primary,
+.hero .btn-primary{
+  background:linear-gradient(180deg, #0E3F44 0%, #082A30 100%) !important;
+  color:#FFFDF7 !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.16) inset,
+    0 -1px 0 rgba(0,0,0,.18) inset,
+    0 8px 24px rgba(8,42,48,.26),
+    0 2px 6px rgba(8,42,48,.16) !important;
+}
+.hero-wrap .btn-primary:hover,
+.hero .btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.20) inset,
+    0 -1px 0 rgba(0,0,0,.22) inset,
+    0 14px 34px rgba(8,42,48,.34),
+    0 2px 8px rgba(8,42,48,.20) !important;
+}
+.hero-wrap .btn-quiet,
+.hero .btn-quiet{
+  background:transparent !important;
+  box-shadow:none !important;
+  color:#3C5560 !important;
+  border-bottom-color:transparent !important;
+}
+.hero-wrap .btn-quiet:hover,
+.hero .btn-quiet:hover{
+  color:#0E3F44 !important;
+  border-bottom-color:#1B5E5A !important;
+}
+.hero-wrap .btn,
+.hero .btn{
+  font-family:var(--font-body, 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif) !important;
+}
+
 </style>
 </head>
 <body class="theme-now">
 
 <div id="cc-nav-mount"></div>
 <div id="cc-hero-mount"></div>
+<div id="page-start" aria-hidden="true"></div>
+
+<script id="cc-page-start-fresh-load-fix">
+(function(){
+  'use strict';
+  if (window.location.hash !== '#page-start') return;
+  function land(){
+    var target = document.getElementById('page-start');
+    if (target) target.scrollIntoView({ behavior:'auto', block:'start' });
+  }
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', land, { once:true });
+  else land();
+  window.addEventListener('load', function(){ setTimeout(land, 80); setTimeout(land, 450); });
+})();
+</script>
+
 
 
 <!-- ════════════════════════════════════════════════════════════════
@@ -1838,7 +1909,7 @@ img,svg{ max-width:100%; display:block; }
      existing site header when integrating.
      ════════════════════════════════════════════════════════════════ -->
 
-<main itemscope itemtype="https://schema.org/WebPage">
+<main id="main-content" class="cc-page-shell" itemscope itemtype="https://schema.org/WebPage">
 
   <meta itemprop="name" content="Compare PPO Dental Plans — CoverCapy" />
   <meta itemprop="url" content="https://www.covercapy.com/compare-ppo-dental-plans.html" />
