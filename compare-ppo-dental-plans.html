@@ -266,6 +266,7 @@
 <link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
 <link rel="stylesheet" href="assets/css/hero-slider.css">
 <link rel="stylesheet" href="assets/css/hero-slider-mobile.css">
+<link rel="stylesheet" href="assets/css/footer.css">
 
 <style>
 
@@ -277,8 +278,14 @@
   height:0;
   scroll-margin-top:96px;
 }
+#main-content{
+  scroll-margin-top:96px;
+}
 @media (max-width:760px){
-  #page-start{ scroll-margin-top:82px; }
+  #page-start,
+  #main-content{
+    scroll-margin-top:82px;
+  }
 }
 .cc-page-shell{ position:relative; z-index:1; }
 
@@ -1833,47 +1840,43 @@ img,svg{ max-width:100%; display:block; }
 
 
 /* ════════════════════════════════════════════════════════════════
-   HERO SLIDER ISOLATION FIX
-   This compare page has its own themed .btn / .btn-primary rules.
-   Those rules used to repaint the shared hero slider after clicking
-   into this page. These higher-specificity rules restore the hero
-   button palette without changing page-content buttons.
+   HERO ISOLATION FIX
+   This compare page uses global .btn / .btn-primary styles for its own
+   themed UI. These higher-specificity rules keep the injected hero slider
+   from inheriting the compare-page button color tokens.
    ════════════════════════════════════════════════════════════════ */
-.hero-wrap .btn-primary,
-.hero .btn-primary{
-  background:linear-gradient(180deg, #0E3F44 0%, #082A30 100%) !important;
-  color:#FFFDF7 !important;
-  border:1px solid rgba(255,255,255,.10) !important;
+.hero-wrap .btn{
+  font-family:var(--font-body, var(--ff-sans));
+}
+.hero-wrap .btn-primary{
+  background:linear-gradient(180deg, var(--teal-deep, #214E48) 0%, var(--teal-night, #102F2D) 100%);
+  color:var(--paper, #FFFDF8);
+  border:1px solid rgba(255,255,255,.10);
   box-shadow:
     0 1px 0 rgba(255,255,255,.16) inset,
     0 -1px 0 rgba(0,0,0,.18) inset,
-    0 8px 24px rgba(8,42,48,.26),
-    0 2px 6px rgba(8,42,48,.16) !important;
+    0 8px 24px rgba(16,47,45,.26),
+    0 2px 6px rgba(16,47,45,.16);
 }
-.hero-wrap .btn-primary:hover,
-.hero .btn-primary:hover{
+.hero-wrap .btn-primary:hover{
   transform:translateY(-2px);
   box-shadow:
     0 1px 0 rgba(255,255,255,.20) inset,
     0 -1px 0 rgba(0,0,0,.22) inset,
-    0 14px 34px rgba(8,42,48,.34),
-    0 2px 8px rgba(8,42,48,.20) !important;
+    0 14px 34px rgba(16,47,45,.34),
+    0 2px 8px rgba(16,47,45,.20);
 }
-.hero-wrap .btn-quiet,
-.hero .btn-quiet{
-  background:transparent !important;
-  box-shadow:none !important;
-  color:#3C5560 !important;
-  border-bottom-color:transparent !important;
+.hero-wrap .btn-quiet{
+  color:var(--ink-soft, #3F5B55);
+  border-bottom-color:transparent;
 }
-.hero-wrap .btn-quiet:hover,
-.hero .btn-quiet:hover{
-  color:#0E3F44 !important;
-  border-bottom-color:#1B5E5A !important;
+.hero-wrap .btn-quiet:hover{
+  color:var(--teal-deep, #214E48);
+  border-bottom-color:var(--teal, #2F6F64);
 }
-.hero-wrap .btn,
-.hero .btn{
-  font-family:var(--font-body, 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif) !important;
+.hero-wrap .pc-activate{
+  background:linear-gradient(180deg, var(--teal-deep, #214E48), var(--teal-night, #102F2D));
+  color:var(--paper, #FFFDF8);
 }
 
 </style>
@@ -1884,28 +1887,12 @@ img,svg{ max-width:100%; display:block; }
 <div id="cc-hero-mount"></div>
 <div id="page-start" aria-hidden="true"></div>
 
-<script id="cc-page-start-fresh-load-fix">
-(function(){
-  'use strict';
-  if (window.location.hash !== '#page-start') return;
-  function land(){
-    var target = document.getElementById('page-start');
-    if (target) target.scrollIntoView({ behavior:'auto', block:'start' });
-  }
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', land, { once:true });
-  else land();
-  window.addEventListener('load', function(){ setTimeout(land, 80); setTimeout(land, 450); });
-})();
-</script>
-
-
 
 <!-- ════════════════════════════════════════════════════════════════
      NOTE FOR FUTURE INTEGRATION
      This page sits UNDER the existing CoverCapy mega nav / header.
      No homepage hero is rendered here — the page opens with the
-     editorial intro section directly. Mount this <main> below the
+     editorial intro section directly. Mount this <main id="main-content" class="cc-page-shell"> below the
      existing site header when integrating.
      ════════════════════════════════════════════════════════════════ -->
 
@@ -3067,7 +3054,36 @@ runSim();
 })();
 </script>
 
-  <!-- Footer mount -->
+  
+<script>
+/* CoverCapy compare page #page-start fresh-load correction */
+(function(){
+  function shouldLand(){ return window.location.hash === '#page-start'; }
+  function land(){
+    if (!shouldLand()) return;
+    var target = document.getElementById('page-start');
+    if (target) target.scrollIntoView({ behavior:'auto', block:'start' });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){
+      land();
+      setTimeout(land, 250);
+      setTimeout(land, 900);
+    }, { once:true });
+  } else {
+    land();
+    setTimeout(land, 250);
+    setTimeout(land, 900);
+  }
+  window.addEventListener('load', function(){
+    land();
+    setTimeout(land, 500);
+  });
+})();
+</script>
+
+
+<!-- Footer mount -->
 <div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
 <script>
@@ -3117,7 +3133,6 @@ runSim();
 })();
 </script>
 
-  <link rel="stylesheet" href="assets/css/footer.css" />
 
   
 </body>
