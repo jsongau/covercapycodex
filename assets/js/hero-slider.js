@@ -102,7 +102,7 @@
     if (!ch3) return;
     const el = ch3.querySelector('.ch3-amount');
     if (!el) return;
-    const target = parseInt(el.dataset.countTarget || '3411', 10);
+    const target = parseInt(el.dataset.countTarget || '2811', 10);
 
     if (reduce){
       el.textContent = '$' + target.toLocaleString();
@@ -234,7 +234,7 @@
     // Show savings amount immediately at full value
     const el = document.querySelector('.ch3-amount');
     if (el){
-      el.textContent = '$' + parseInt(el.dataset.countTarget || '3411', 10).toLocaleString();
+      el.textContent = '$' + parseInt(el.dataset.countTarget || '2811', 10).toLocaleString();
     }
   } else {
     // 60s grace before autoplay so the user can browse freely first.
@@ -501,4 +501,3 @@
     });
   }
 })();
-
