@@ -46,16 +46,25 @@
   <!-- CoverCapy shared navigation + hero assets -->
   <link rel="stylesheet" href="/assets/css/mega-nav.css">
   <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
-  <link rel="stylesheet" href="/assets/css/hero-slider.css">
-  <link rel="stylesheet" href="/assets/css/hero-slider-mobile.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+<style>
 
-  <style>
-
-  /* Shared CoverCapy header mounts */
-  #cc-nav-mount{ min-height:72px; }
-  #cc-hero-mount{ min-height:72vh; }
-  @media (max-width: 780px){ #cc-hero-mount{ min-height:64vh; } }
+  /* Shared CoverCapy header + footer mounts */
+  #cc-nav-mount{ min-height:72px; position:relative; z-index:5000; }
+  #page-start{
+    display:block;
+    height:0;
+    scroll-margin-top:96px;
+  }
+  #cc-footer-mount{
+    min-height:420px;
+    display:block;
+    position:relative;
+    z-index:2;
+  }
+  @media (max-width: 780px){
+    #page-start{ scroll-margin-top:82px; }
+  }
   /* CoverCapy · PPO dentist discovery page · slots into the existing
      mega-nav design system. All tokens mirror mega-nav.css. */
   :root{
@@ -458,132 +467,12 @@
     .ppo-hero{ padding: 40px 0 40px; }
     .ppo-section-head{ margin-bottom: 18px; }
   }
-  
-
-  #page-start{
-    display:block;
-    height:0;
-    scroll-margin-top:96px;
-  }
-  [data-main-content],
-  #main-content{
-    scroll-margin-top:96px;
-  }
-  #cc-footer-mount{
-    min-height:420px;
-    display:block;
-    position:relative;
-    z-index:2;
-  }
-  @media (max-width:760px){
-    #page-start,
-    [data-main-content],
-    #main-content{
-      scroll-margin-top:82px;
-    }
-  }
-
-
-
-/* ════════════════════════════════════════════════════════════════
-   HERO ISOLATION FIX
-   Keeps this PPO dentists page styles from repainting the injected
-   global hero slider buttons/cards.
-   ════════════════════════════════════════════════════════════════ */
-.hero-wrap .btn{
-  font-family:var(--font-body, var(--ff-sans));
-}
-.hero-wrap .btn-primary{
-  background:linear-gradient(180deg, var(--teal-deep, #214E48) 0%, var(--teal-night, #102F2D) 100%);
-  color:var(--paper, #FFFDF8);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.16) inset,
-    0 -1px 0 rgba(0,0,0,.18) inset,
-    0 8px 24px rgba(16,47,45,.26),
-    0 2px 6px rgba(16,47,45,.16);
-}
-.hero-wrap .btn-primary:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.20) inset,
-    0 -1px 0 rgba(0,0,0,.22) inset,
-    0 14px 34px rgba(16,47,45,.34),
-    0 2px 8px rgba(16,47,45,.20);
-}
-.hero-wrap .btn-quiet{
-  color:var(--ink-soft, #3F5B55);
-  border-bottom-color:transparent;
-}
-.hero-wrap .btn-quiet:hover{
-  color:var(--teal-deep, #214E48);
-  border-bottom-color:var(--teal, #2F6F64);
-}
-.hero-wrap .pc-activate{
-  background:linear-gradient(180deg, var(--teal-deep, #214E48), var(--teal-night, #102F2D));
-  color:var(--paper, #FFFDF8);
-}
-
-</style>
+  </style>
 </head>
 <body>
 
 <div id="cc-nav-mount"></div>
-<div id="cc-hero-mount"></div>
 <div id="page-start" aria-hidden="true"></div>
-
-<script>
-(async function(){
-  const loadScript = src => new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = src;
-    s.onload = resolve;
-    s.onerror = () => reject(new Error('Failed to load ' + src));
-    document.body.appendChild(s);
-  });
-
-  const injectComponent = async (mountId, url) => {
-    const mount = document.getElementById(mountId);
-    if (!mount) return;
-
-    try {
-      const res = await fetch(url, { cache: 'no-cache' });
-      if (!res.ok) throw new Error(url + ' returned ' + res.status);
-      const html = await res.text();
-
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = html;
-
-      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
-      const parent = mount.parentNode;
-
-      while (wrapper.firstChild) {
-        parent.insertBefore(wrapper.firstChild, mount);
-      }
-
-      parent.removeChild(mount);
-
-      injectedScripts.forEach(old => {
-        const fresh = document.createElement('script');
-        for (const attr of old.attributes) {
-          fresh.setAttribute(attr.name, attr.value);
-        }
-        fresh.textContent = old.textContent;
-        if (old.parentNode) old.parentNode.replaceChild(fresh, old);
-      });
-    } catch (err) {
-      console.error('[CoverCapy component loader] failed:', url, err);
-    }
-  };
-
-  await injectComponent('cc-nav-mount', '/components/mega-nav.html');
-  await injectComponent('cc-hero-mount', '/components/hero-slider.html');
-
-  await loadScript('/assets/js/mega-nav.js');
-  await loadScript('/assets/js/hero-slider.js');
-})();
-</script>
-
 <div class="ppo-sticky-search" id="ppo-sticky-search">
   <div class="ppo-shell">
     <form class="ppo-sticky-search-row" id="ppo-sticky-form" onsubmit="return false;">
@@ -853,12 +742,7 @@
   </div>
 </section>
 
-<footer class="ppo-foot">
-  <div class="ppo-shell ppo-foot-row">
-    <span>&copy; 2026 CoverCapy. Concierge dental network &mdash; not a dental practice, not an insurance company.</span>
-    <span><a href="/about/privacy-trust">Privacy</a> &middot; <a href="/about/faq">FAQ</a> &middot; <a href="/dentist-portal">For dentists</a></span>
-  </div>
-</footer>
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
 <div class="ppo-toast" id="ppo-toast" role="status" aria-live="polite">
   <span class="ppo-toast-arr">&rarr;</span>
@@ -1988,28 +1872,89 @@ window.CoverCapyPPO = {
   
 
 <script>
-/* CoverCapy PPO dentists page #page-start fresh-load correction */
+/* CoverCapy shared mega nav + footer loader · no hero slider on this page */
 (function(){
-  function shouldLand(){ return window.location.hash === '#page-start'; }
-  function land(){
-    if (!shouldLand()) return;
+  'use strict';
+
+  function ready(fn){
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn, { once:true });
+    } else {
+      fn();
+    }
+  }
+
+  function loadScript(src){
+    return new Promise(function(resolve){
+      if (!src) return resolve(false);
+      if (document.querySelector('script[src="' + src.replace(/"/g, '\\"') + '"]')) return resolve(true);
+
+      var s = document.createElement('script');
+      s.src = src;
+      s.defer = true;
+      s.onload = function(){ resolve(true); };
+      s.onerror = function(){ s.remove(); resolve(false); };
+      document.body.appendChild(s);
+    });
+  }
+
+  async function injectComponent(mountId, url){
+    var mount = document.getElementById(mountId);
+    if (!mount) return false;
+
+    try {
+      var res = await fetch(url, { cache:'no-cache', credentials:'same-origin' });
+      if (!res.ok) throw new Error(url + ' returned ' + res.status);
+
+      var wrapper = document.createElement('div');
+      wrapper.innerHTML = await res.text();
+
+      wrapper.querySelectorAll('script').forEach(function(old){
+        var fresh = document.createElement('script');
+        Array.from(old.attributes).forEach(function(attr){
+          fresh.setAttribute(attr.name, attr.value);
+        });
+        fresh.textContent = old.textContent || '';
+        old.replaceWith(fresh);
+      });
+
+      var parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      return true;
+    } catch (err) {
+      console.error('[CoverCapy component loader] failed:', url, err);
+      return false;
+    }
+  }
+
+  function landToPageStart(){
+    if (window.location.hash !== '#page-start') return;
     var target = document.getElementById('page-start');
-    if (target) target.scrollIntoView({ behavior:'auto', block:'start' });
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior:'auto',
+      block:'start'
+    });
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function(){
-      land();
-      setTimeout(land, 250);
-      setTimeout(land, 900);
-    }, { once:true });
-  } else {
-    land();
-    setTimeout(land, 250);
-    setTimeout(land, 900);
-  }
+
+  ready(async function(){
+    await injectComponent('cc-nav-mount', '/components/mega-nav.html');
+    await loadScript('/assets/js/mega-nav.js');
+
+    /* Since this page no longer uses the shared hero slider, #page-start is native HTML now. */
+    landToPageStart();
+    setTimeout(landToPageStart, 150);
+    setTimeout(landToPageStart, 600);
+
+    await injectComponent('cc-footer-mount', '/components/footer.html');
+    await loadScript('/assets/js/footer.js');
+  });
+
+  window.addEventListener('hashchange', landToPageStart);
   window.addEventListener('load', function(){
-    land();
-    setTimeout(land, 500);
+    setTimeout(landToPageStart, 100);
   });
 })();
 </script>
