@@ -8,5 +8,67 @@
       "source": "/best-ppo-dentists/:area",
       "destination": "/ppodentists.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/finance",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/payment-plans",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-payment-plans",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/monthly-payments",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-monthly-payments",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/0-apr",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/0-apr-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/0-apr-dental-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/zero-percent-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/zero-percent-dental-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    }
   ]
 }
