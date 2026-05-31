@@ -310,3 +310,11 @@ MOBILE FLOW FIX · 31MAY26
     padding:9px 6px !important;
   }
 }
+
+
+
+@media (max-width: 760px){
+  #page-start{
+    scroll-margin-top:82px;
+  }
+}
