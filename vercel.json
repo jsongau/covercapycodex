@@ -72,3 +72,63 @@
     }
   ]
 }
+{
+  "source": "/compare",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/compare-ppo",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/compare-ppo-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/compare-dental-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/compare-dental-insurance",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/ppo-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/ppo-dental-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/ppo-dental-insurance",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/dental-ppo-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/dental-insurance-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/best-ppo-dental-plans",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+},
+{
+  "source": "/dental-insurance",
+  "destination": "/compare-ppo-dental-plans.html",
+  "permanent": true
+}
