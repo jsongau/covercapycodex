@@ -1,261 +1,63 @@
-/* ════════════════════════════════════════════════════════════════
-   CoverCapy · MEGA NAV MOBILE
-   Load AFTER mega-nav.css in index.html.
-   Adds: hamburger button, slide-in drawer, tap accordions.
-   ════════════════════════════════════════════════════════════════ */
+/* CoverCapy Mega Nav Mobile CSS
+   Loaded after assets/css/mega-nav.css.
+   Contains mobile drawer, mobile accordions, mobile nav switching, and small-screen overrides.
+*/
 
+.cc-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:42px;height:42px;border:none;background:transparent;cursor:pointer;border-radius:10px;flex-shrink:0;transition:background .15s}
+.cc-burger:hover{background:rgba(20,36,42,.05)}
+.cc-burger-bar{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .28s var(--ease),opacity .2s,width .2s}
+.cc-burger.is-open .cc-burger-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.cc-burger.is-open .cc-burger-bar:nth-child(2){opacity:0;width:0}
+.cc-burger.is-open .cc-burger-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.cc-drawer{position:fixed;inset:0;z-index:10000;background:var(--ivory);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);transition:transform .34s var(--ease);visibility:hidden}
+.cc-drawer.is-open{transform:translateX(0);visibility:visible}
+.cc-drawer-head{padding:20px 22px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--ivory);z-index:3;flex-shrink:0}
+.cc-drawer-head-row{display:flex;align-items:center;justify-content:space-between}
+.cc-drawer-brand{display:flex;flex-direction:column;line-height:1.1}
+.cc-drawer-brand-top{font-family:var(--ff-serif);font-size:19px;font-weight:500;color:var(--ink)}
+.cc-drawer-brand-bot{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+.cc-drawer-close{width:38px;height:38px;border:none;background:transparent;color:var(--ink);font-size:20px;cursor:pointer;border-radius:10px;transition:background .15s}
+.cc-drawer-close:hover{background:rgba(20,36,42,.06)}
+.cc-drawer-tagline{margin-top:14px;padding:12px 14px;border-radius:var(--r-md);background:linear-gradient(135deg,var(--emerald-soft),var(--gold-soft));font-size:12.5px;color:var(--emerald-deep);font-weight:500;line-height:1.45}
+.cc-drawer-nav{flex:1;padding:8px 0 20px}
+.cc-dacc{border-bottom:1px solid var(--line-soft)}
+.cc-dacc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:transparent;border:none;text-align:left;font-family:var(--ff-sans);font-size:15.5px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .15s}
+.cc-dacc-btn:hover{background:rgba(231,240,236,.5)}
+.cc-dacc-btn.is-active{color:var(--emerald)}
+.cc-dacc-caret{font-size:17px;color:var(--ink-soft);transition:transform .25s var(--ease)}
+.cc-dacc-btn.is-active .cc-dacc-caret{transform:rotate(90deg);color:var(--emerald)}
+.cc-dacc-body{max-height:0;overflow:hidden;transition:max-height .3s var(--ease);background:var(--cream)}
+.cc-dacc-body-inner{padding:4px 0 10px}
+.cc-dacc-link{display:block;padding:11px 26px;font-size:14px;color:var(--ink-mid);text-decoration:none;transition:color .15s,background .15s}
+.cc-dacc-link:hover{color:var(--emerald);background:rgba(231,240,236,.6)}
+.cc-dacc-link.feature{font-weight:600;color:var(--emerald);border-bottom:1px solid var(--line-soft);padding-bottom:13px;margin-bottom:3px}
+.cc-drawer-foot{position:sticky;bottom:0;background:var(--ivory);border-top:1px solid var(--line);padding:18px 22px;display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.cc-drawer-join{padding:15px;border-radius:var(--r-md);text-align:center;text-decoration:none;background:linear-gradient(135deg,var(--emerald),var(--emerald-deep));color:var(--ivory);font-size:15px;font-weight:600;box-shadow:0 2px 10px rgba(14,63,68,.24)}
+.cc-drawer-sign{padding:14px;border-radius:var(--r-md);text-align:center;text-decoration:none;background:transparent;border:1px solid var(--gold);color:var(--ink);font-size:15px;font-weight:500}
 
-/* ── HAMBURGER BUTTON ───────────────────────────────────────────
-   Hidden on desktop. Revealed at ≤980px.
-   Three bars animate into an X when open.
-   ─────────────────────────────────────────────────────────────── */
-.cc-burger{
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:5px;
-  width:40px; height:40px;
-  border:none;
-  background:transparent;
-  cursor:pointer;
-  padding:0;
-  margin-left:4px;
-  border-radius:8px;
-  transition:background .15s;
-  flex-shrink:0;
-}
-.cc-burger:hover{ background:rgba(0,0,0,.05); }
+@media (max-width:1080px){.cc-links{display:none}.cc-burger{display:flex}.cc-signin{display:none}.cc-backdrop,.cc-mega{display:none}}
+@media (max-width:420px){.cc-join{font-size:13px;padding:9px 15px}.cc-nav-row{padding:0 18px}}
+body.cc-locked{overflow:hidden}
 
-.cc-burger-bar{
-  display:block;
-  width:22px; height:2px;
-  background:var(--ink, #14242A);
-  border-radius:2px;
-  transition:transform .25s cubic-bezier(.22,1,.36,1),
-             opacity   .2s,
-             width     .2s;
-}
-
-/* X state */
-.cc-burger.is-open .cc-burger-bar:nth-child(1){
-  transform:translateY(7px) rotate(45deg);
-}
-.cc-burger.is-open .cc-burger-bar:nth-child(2){
-  opacity:0; width:0;
-}
-.cc-burger.is-open .cc-burger-bar:nth-child(3){
-  transform:translateY(-7px) rotate(-45deg);
-}
-
-
-/* ── MOBILE DRAWER ──────────────────────────────────────────────
-   Full-screen panel that slides in from the right.
-   ─────────────────────────────────────────────────────────────── */
-.cc-drawer{
-  position:fixed;
-  inset:0;
-  z-index:10000;
-  background:#FAF7F1;
-  display:flex;
-  flex-direction:column;
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-  /* Start off-screen */
-  transform:translateX(100%);
-  transition:transform .3s cubic-bezier(.22,1,.36,1);
-  /* Hidden from assistive tech until open */
-  visibility:hidden;
-}
-.cc-drawer.is-open{
-  transform:translateX(0);
-  visibility:visible;
+/* Universal modal mobile tightening */
+@media (max-width:560px){
+  .cc-universal-modal{padding:16px}
+  .cc-universal-modal-card{padding:26px 20px 22px;border-radius:20px}
+  .cc-universal-modal-actions{flex-direction:column-reverse;align-items:stretch}
+  .cc-universal-modal-actions .btn-primary,
+  .cc-universal-modal-actions .btn-quiet{width:100%;justify-content:center}
 }
 
-
-/* ── DRAWER HEAD ────────────────────────────────────────────── */
-.cc-drawer-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 20px 16px;
-  border-bottom:1px solid #E6DDC8;
-  position:sticky;
-  top:0;
-  background:#FAF7F1;
-  z-index:2;
-  flex-shrink:0;
-}
-.cc-drawer-brand{
-  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
-  font-size:17px;
-  font-weight:600;
-  color:#14242A;
-  letter-spacing:-.01em;
-}
-.cc-drawer-close{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:36px; height:36px;
-  border:none;
-  background:transparent;
-  color:#14242A;
-  font-size:18px;
-  cursor:pointer;
-  border-radius:8px;
-  transition:background .15s;
-  padding:0;
-}
-.cc-drawer-close:hover{ background:rgba(0,0,0,.06); }
-
-
-/* ── DRAWER NAV (accordion list) ────────────────────────────── */
-.cc-drawer-nav{
-  flex:1;
-  padding:8px 0 24px;
+/* Mobile-specific safety */
+@media (max-width:1080px){
+  html,body{overflow-x:hidden}
+  .cc-nav-row{height:var(--nav-h)}
+  .cc-left{min-width:0}
+  .cc-logo{min-width:0}
+  .cc-edition{display:none}
+  .cc-join{white-space:nowrap}
 }
 
-/* Each accordion item */
-.cc-dacc{
-  border-bottom:1px solid #E6DDC8;
-}
-
-/* Accordion trigger button */
-.cc-dacc-btn{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 20px;
-  background:transparent;
-  border:none;
-  text-align:left;
-  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
-  font-size:15px;
-  font-weight:500;
-  color:#14242A;
-  cursor:pointer;
-  transition:background .15s;
-}
-.cc-dacc-btn:hover{ background:rgba(0,0,0,.04); }
-.cc-dacc-btn.is-active{ color:#1B5E5A; background:rgba(27,94,90,.04); }
-
-.cc-dacc-caret{
-  font-size:18px;
-  color:#97A4A9;
-  transition:transform .22s;
-  line-height:1;
-}
-.cc-dacc-btn.is-active .cc-dacc-caret{
-  transform:rotate(90deg);
-  color:#1B5E5A;
-}
-
-/* Accordion body — collapsed by default */
-.cc-dacc-body{
-  display:none;
-  flex-direction:column;
-  background:#F4F1E9;
-  padding:4px 0 8px;
-}
-.cc-dacc-body.is-open{
-  display:flex;
-}
-
-/* Links inside accordion body */
-.cc-dacc-link{
-  display:block;
-  padding:11px 24px;
-  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
-  font-size:14px;
-  font-weight:400;
-  color:#3D5057;
-  text-decoration:none;
-  transition:color .15s, background .15s;
-}
-.cc-dacc-link:hover{
-  color:#1B5E5A;
-  background:rgba(27,94,90,.06);
-}
-/* Featured link — bolder, teal */
-.cc-dacc-link-feature{
-  font-weight:600;
-  color:#1B5E5A;
-  padding-bottom:14px;
-  border-bottom:1px solid #E6DDC8;
-  margin-bottom:4px;
-}
-.cc-dacc-link-feature:hover{ color:#0E3F44; }
-
-
-/* ── DRAWER FOOTER ──────────────────────────────────────────── */
-.cc-drawer-foot{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  padding:20px;
-  border-top:1px solid #E6DDC8;
-  position:sticky;
-  bottom:0;
-  background:#FAF7F1;
-  flex-shrink:0;
-}
-.cc-drawer-join-btn{
-  width:100%;
-  padding:14px;
-  background:#1B5E5A;
-  color:#FAF7F1;
-  border:none;
-  border-radius:10px;
-  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
-  font-size:15px;
-  font-weight:600;
-  cursor:pointer;
-  letter-spacing:.01em;
-  transition:background .2s;
-}
-.cc-drawer-join-btn:hover{ background:#0E3F44; }
-
-.cc-drawer-sign-btn{
-  width:100%;
-  padding:13px;
-  background:transparent;
-  color:#14242A;
-  border:1px solid #C9B98F;
-  border-radius:10px;
-  font-family:'Inter Tight','Helvetica Neue',system-ui,sans-serif;
-  font-size:15px;
-  font-weight:500;
-  cursor:pointer;
-  transition:background .2s, border-color .2s;
-}
-.cc-drawer-sign-btn:hover{ background:rgba(0,0,0,.04); }
-
-
-/* ════════════════════════════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-   Show hamburger, hide desktop links.
-   ════════════════════════════════════════════════════════════════ */
-
-/* Tablet and below — where the 6-menu desktop bar gets crowded */
-@media (max-width:980px){
-  /* Hide full desktop menu bar */
-  .cc-links{ display:none !important; }
-
-  /* Show the hamburger */
-  .cc-burger{ display:flex; }
-
-  /* Optionally hide Sign In on mobile to keep the nav bar tidy —
-     the drawer footer has it. Remove this rule to keep it visible. */
-  .cc-action-link:not(.cc-action-join){ display:none; }
-}
-
-/* On very small phones, shrink the Join Free pill slightly */
-@media (max-width:400px){
-  .cc-action-join{
-    font-size:12px;
-    padding:6px 12px;
-  }
+@media (max-width:420px){
+  .cc-logo-img{width:42px;height:42px}
 }
