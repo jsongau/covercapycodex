@@ -48,6 +48,7 @@
   <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
   <link rel="stylesheet" href="/assets/css/hero-slider.css">
   <link rel="stylesheet" href="/assets/css/hero-slider-mobile.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
 
   <style>
 
@@ -457,12 +458,79 @@
     .ppo-hero{ padding: 40px 0 40px; }
     .ppo-section-head{ margin-bottom: 18px; }
   }
-  </style>
+  
+
+  #page-start{
+    display:block;
+    height:0;
+    scroll-margin-top:96px;
+  }
+  [data-main-content],
+  #main-content{
+    scroll-margin-top:96px;
+  }
+  #cc-footer-mount{
+    min-height:420px;
+    display:block;
+    position:relative;
+    z-index:2;
+  }
+  @media (max-width:760px){
+    #page-start,
+    [data-main-content],
+    #main-content{
+      scroll-margin-top:82px;
+    }
+  }
+
+
+
+/* ════════════════════════════════════════════════════════════════
+   HERO ISOLATION FIX
+   Keeps this PPO dentists page styles from repainting the injected
+   global hero slider buttons/cards.
+   ════════════════════════════════════════════════════════════════ */
+.hero-wrap .btn{
+  font-family:var(--font-body, var(--ff-sans));
+}
+.hero-wrap .btn-primary{
+  background:linear-gradient(180deg, var(--teal-deep, #214E48) 0%, var(--teal-night, #102F2D) 100%);
+  color:var(--paper, #FFFDF8);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.16) inset,
+    0 -1px 0 rgba(0,0,0,.18) inset,
+    0 8px 24px rgba(16,47,45,.26),
+    0 2px 6px rgba(16,47,45,.16);
+}
+.hero-wrap .btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.20) inset,
+    0 -1px 0 rgba(0,0,0,.22) inset,
+    0 14px 34px rgba(16,47,45,.34),
+    0 2px 8px rgba(16,47,45,.20);
+}
+.hero-wrap .btn-quiet{
+  color:var(--ink-soft, #3F5B55);
+  border-bottom-color:transparent;
+}
+.hero-wrap .btn-quiet:hover{
+  color:var(--teal-deep, #214E48);
+  border-bottom-color:var(--teal, #2F6F64);
+}
+.hero-wrap .pc-activate{
+  background:linear-gradient(180deg, var(--teal-deep, #214E48), var(--teal-night, #102F2D));
+  color:var(--paper, #FFFDF8);
+}
+
+</style>
 </head>
 <body>
 
 <div id="cc-nav-mount"></div>
 <div id="cc-hero-mount"></div>
+<div id="page-start" aria-hidden="true"></div>
 
 <script>
 (async function(){
@@ -1918,5 +1986,33 @@ window.CoverCapyPPO = {
 </script>
 <script type="module" src="/assets/js/ppodentists-page.js"></script>
   
+
+<script>
+/* CoverCapy PPO dentists page #page-start fresh-load correction */
+(function(){
+  function shouldLand(){ return window.location.hash === '#page-start'; }
+  function land(){
+    if (!shouldLand()) return;
+    var target = document.getElementById('page-start');
+    if (target) target.scrollIntoView({ behavior:'auto', block:'start' });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){
+      land();
+      setTimeout(land, 250);
+      setTimeout(land, 900);
+    }, { once:true });
+  } else {
+    land();
+    setTimeout(land, 250);
+    setTimeout(land, 900);
+  }
+  window.addEventListener('load', function(){
+    land();
+    setTimeout(land, 500);
+  });
+})();
+</script>
+
 </body>
 </html>
