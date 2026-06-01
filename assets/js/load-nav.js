@@ -1,4 +1,4 @@
-/* CoverCapy load-nav.js
+/* CoverCapy load-nav.js — v91 package
    Loads the modular mega nav from /components/mega-nav.html.
    Use on pages that do NOT already have the inline component loader.
 
