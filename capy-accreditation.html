@@ -731,19 +731,24 @@ footer.site .flinks a:hover{color:#fff}
   .rung{opacity:1; transform:none}
 }
 
-/* CoverCapy fix: keep the in-page section menu pinned below the site mega navigation. */
+/* CoverCapy fix: keep the in-page section menu locked directly under the site mega navigation with no visual gap. */
 :root{ --cc-sticky-nav-offset:72px; }
 .sectionnav{
   position:-webkit-sticky !important;
   position:sticky !important;
-  top:var(--cc-sticky-nav-offset) !important;
+  top:calc(var(--cc-sticky-nav-offset) - 1px) !important;
   z-index:9990 !important;
-  background:rgba(251,250,254,.92) !important;
+  margin-top:0 !important;
+  border-top:0 !important;
+  background:rgba(251,250,254,.96) !important;
   -webkit-backdrop-filter:blur(14px) saturate(145%) !important;
   backdrop-filter:blur(14px) saturate(145%) !important;
   box-shadow:0 10px 28px rgba(42,35,66,.07);
 }
-section{scroll-margin-top:calc(var(--cc-sticky-nav-offset) + 72px) !important;}
+.sectionnav .inner{ margin-top:0 !important; }
+#cc-nav-mount{ margin:0 !important; padding:0 !important; }
+main{ margin-top:0 !important; }
+section{scroll-margin-top:calc(var(--cc-sticky-nav-offset) + 62px) !important;}
 @media (max-width:760px){
   :root{ --cc-sticky-nav-offset:64px; }
   .sectionnav .inner{height:50px;}
@@ -1557,19 +1562,24 @@ document.getElementById('quizSubmit').addEventListener('click', () => {
 <script>
 (function(){
   function updateStickySubnavOffset(){
-    const candidates = [
-      document.querySelector('.cc-mega-nav'),
-      document.querySelector('.mega-nav'),
-      document.querySelector('[data-covercapy-mega-nav]'),
-      document.querySelector('header[role="banner"]'),
-      document.querySelector('header.site')
-    ].filter(Boolean);
-    let h = 72;
-    for (const el of candidates){
+    const selectors = [
+      '.cc-mega-nav',
+      '.mega-nav',
+      '[data-covercapy-mega-nav]',
+      'header[role="banner"]',
+      'header.site',
+      '#cc-nav-mount + header',
+      'body > header'
+    ];
+    let offset = 72;
+    for (const selector of selectors){
+      const el = document.querySelector(selector);
+      if (!el) continue;
       const r = el.getBoundingClientRect();
-      if (r.height > 40){ h = Math.round(r.height); break; }
+      /* Use the actual bottom edge, not just height, so the subnav touches the mega nav even if the nav CSS changes. */
+      if (r.height > 40 && r.bottom > 40){ offset = Math.round(r.bottom); break; }
     }
-    document.documentElement.style.setProperty('--cc-sticky-nav-offset', h + 'px');
+    document.documentElement.style.setProperty('--cc-sticky-nav-offset', offset + 'px');
   }
   window.addEventListener('load', updateStickySubnavOffset);
   window.addEventListener('resize', updateStickySubnavOffset);
