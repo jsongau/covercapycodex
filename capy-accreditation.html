@@ -10,13 +10,14 @@
 
      QUICK-EDIT GUIDE
      - Embeddable block: no site header or footer (drop into your own page).
-     - Theme colors / fonts: see  :root  at the top of <style>. Palette is purple-primary
+     - Theme colors / fonts: see  :root  at the top of <style>
+/* Page CSS is scoped to .capy-accreditation-page so it cannot recolor or resize the sitewide mega nav/footer. */
+.capy-accreditation-page . Palette is purple-primary
        + gold accent (legacy var names --emerald*/--violet*/--orange* now hold the
        purple/gold values, so editing those vars recolors the whole page).
      - Pricing: edit the CONFIG object at the top of <script> (priceAnnual / priceMonthly).
-     - Review pillars, tech list, Platinum list, FAQ: edit the HTML directly,
-       each block is labelled with a comment.
-     - In-page section nav: edit the .sectionnav links near the top of <body>.
+     - Review pillars, .capy-accreditation-page tech list, .capy-accreditation-page Platinum list, .capy-accreditation-page FAQ: edit the HTML directly, .capy-accreditation-page each block is labelled with a comment.
+     - In-page section nav: edit the .sectionnav links near the top of <body class="capy-accreditation-shell">.
      - Swap CTA links (marked  href="#apply" / "/membership" etc).
      - Paste your existing Google Analytics snippet where indicated in <head>.
      ========================================================= -->
@@ -44,12 +45,20 @@
 <!-- CoverCapy Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8699915070570206" crossorigin="anonymous"></script>
 
-<!-- Sitewide CoverCapy shell presets: these load BEFORE this page's CSS so nav/footer keep their own palette. -->
-<link rel="stylesheet" href="/mega-nav.css">
-<link rel="stylesheet" href="/footer.css">
-<!-- Optional fallbacks if your repo keeps shared assets inside /assets/. 404s are harmless. -->
+<!-- CoverCapy shared component styles. Load before this page CSS so nav/footer presets win first. -->
 <link rel="stylesheet" href="/assets/css/mega-nav.css">
+<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
+
+<style id="cc-shared-shell-mount-guards">
+  html, body { margin:0; padding:0; min-height:100%; overflow-x:hidden; }
+  body { max-width:100vw; }
+  #mega-nav-container { min-height:72px; position:relative; z-index:10000; }
+  #site-footer-container { display:block; position:relative; z-index:2; }
+  #mega-nav-container:empty, #site-footer-container:empty { display:none; }
+  body > header.site,
+  body > footer.site { display:none !important; }
+</style>
 
 <!-- Fonts: distinctive editorial serif + clean modern sans -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,8 +66,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ====================== STRUCTURED DATA ====================== -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CoverCapy",
@@ -67,8 +75,7 @@
   "brand": { "@type": "Brand", "name": "Capy Accreditation" }
 }
 </script>
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -77,8 +84,7 @@
   ]
 }
 </script>
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -113,16 +119,16 @@
 </script>
 
 <style>
-/* Page CSS is scoped to .capy-accreditation-page so it cannot recolor or resize the sitewide mega nav/footer. */
 /* ============================ THEME ============================ */
-.capy-accreditation-page{--bg:#F6F3FC; --bg-soft:#FBFAFE; --panel:#FFFFFF;
+.capy-accreditation-page{
+  --bg:#F6F3FC; --bg-soft:#FBFAFE; --panel:#FFFFFF;
   --ink:#2A2342; --ink-soft:#544B6E; --ink-faint:#6F6788;
   --emerald:#6B4FD8; --emerald-deep:#4A359E; --emerald-700:#3C2A86;
   --emerald-soft:#ECE6FB; --emerald-mist:#E1D7F6; --mint:#C8B6F0;
   --orange:#B8973F; --orange-deep:#8E7430; --orange-bright:#D7B65C; --orange-soft:#F0E7C9;
   --violet:#6B4FD8; --violet-deep:#4A359E; --violet-soft:#ECE6FB; --violet-mist:#E1D7F6; --lav:#EDE7FB; --violet-line:rgba(74,53,158,.30);
   --cream:#F6F3FC; --ivory:#FBFAFE; --sand:#E1D7F6; --cream-deep:#ECE6FB; --ink-mid:#544B6E; --gold-deep:#8E7430; --line-soft:rgba(74,53,158,.06);
-  --r-lg:18px; --r-md:13px; --r-sm:9px; --r-pill:999px; --ease:cubic-bezier(.22,1,.36,1); --ff-serif:"Fraunces",Georgia,serif;
+  --r-lg:18px; --r-md:13px; --r-sm:9px; --r-pill:999px; --ease:cubic-bezier(.22,1,.36,1); --ff-serif:'Fraunces',Georgia,serif;
   --gold:#B8973F; --gold-bright:#D7B65C; --gold-soft:#E7D6A4; --slate:#5B6472;
   --line:rgba(74,53,158,.12); --line-strong:rgba(74,53,158,.20);
   --glass:rgba(255,255,255,.62); --glass-strong:rgba(255,255,255,.82);
@@ -130,30 +136,37 @@
   --shadow-md:0 14px 44px rgba(74,53,158,.10);
   --shadow-lg:0 36px 90px rgba(74,53,158,.18);
   --radius:22px; --radius-sm:14px;
-  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
-  --font-body:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,sans-serif;
-  --maxw:1180px;}
+  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --font-body:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;
+  --maxw:1180px;
+}
 .capy-accreditation-page, .capy-accreditation-page *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-.capy-accreditation-page{margin:0; position:relative; isolation:isolate; font-family:var(--font-body); color:var(--ink);
+.capy-accreditation-page{
+  margin:0; min-height:100vh; position:relative; isolation:isolate; font-family:var(--font-body); color:var(--ink);
   background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;}
+  overflow-x:hidden;
+}
 /* atmospheric background */
-.capy-accreditation-page::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+.capy-accreditation-page::before{
+  content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:
     radial-gradient(60% 50% at 12% 0%, rgba(200,182,240,.16), transparent 60%),
     radial-gradient(50% 45% at 92% 8%, rgba(215,182,92,.12), transparent 60%),
     radial-gradient(70% 60% at 50% 100%, rgba(107,79,216,.08), transparent 60%),
-    linear-gradient(180deg,#FBFAFE 0%, #F6F3FC 55%, #EFEAF9 100%);}
+    linear-gradient(180deg,#FBFAFE 0%, #F6F3FC 55%, #EFEAF9 100%);
+}
 /* subtle grain */
-.capy-accreditation-page::after{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.capy-accreditation-page::after{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 .capy-accreditation-page .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
 .capy-accreditation-page img{max-width:100%}
 .capy-accreditation-page a{color:inherit}
 
 /* reading progress bar */
-.capy-accreditation-page #progressbar{position:fixed; top:0; left:0; height:3px; width:0; z-index:120;
+.capy-accreditation-page #progressbar{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
   background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transition:width .1s linear}
 
 /* ============================ TYPE ============================ */
@@ -468,7 +481,7 @@ html{scroll-behavior:smooth}
 .capy-accreditation-page h1, .capy-accreditation-page h2, .capy-accreditation-page h3, .capy-accreditation-page h4{text-wrap:balance}
 .capy-accreditation-page p, .capy-accreditation-page li{text-wrap:pretty}
 /* ── sticky section sub-nav ── */
-.capy-accreditation-page .sectionnav{position:sticky; top:var(--cc-site-nav-offset, 76px); z-index:90; background:rgba(251,246,236,.86); -webkit-backdrop-filter:blur(12px) saturate(140%); backdrop-filter:blur(12px) saturate(140%); border-bottom:1px solid var(--line)}
+.capy-accreditation-page .sectionnav{position:sticky; top:var(--covercapy-nav-height, 0px); z-index:90; background:rgba(251,246,236,.86); -webkit-backdrop-filter:blur(12px) saturate(140%); backdrop-filter:blur(12px) saturate(140%); border-bottom:1px solid var(--line)}
 .capy-accreditation-page .sectionnav .inner{max-width:var(--maxw); margin:0 auto; padding:0 24px; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; height:52px; align-items:center}
 .capy-accreditation-page .sectionnav .inner::-webkit-scrollbar{display:none}
 .capy-accreditation-page .sectionnav a{flex:0 0 auto; font-size:.85rem; font-weight:600; color:var(--ink-soft); text-decoration:none; padding:8px 14px; border-radius:100px; white-space:nowrap; transition:color .15s, background .15s}
@@ -698,18 +711,18 @@ html{scroll-behavior:smooth}
 .capy-accreditation-page .reveal.in{opacity:1; transform:none}
 
 /* ============================ RESPONSIVE ============================ */
-@media (max-width:980px){
-  .capy-accreditation-page .hero-grid{grid-template-columns:1fr; gap:20px}
-  .capy-accreditation-page .seal-stage{order:-1; min-height:320px; margin-bottom:8px}
-  .capy-accreditation-page .console{grid-template-columns:1fr}
-  .capy-accreditation-page .meter-card{position:static}
-  .capy-accreditation-page .two-col{grid-template-columns:1fr}
-  .capy-accreditation-page .elig-grid{grid-template-columns:1fr}
-  .capy-accreditation-page .timeline{grid-template-columns:1fr; gap:0}
-  .capy-accreditation-page .timeline::before{top:0; bottom:0; left:23px; right:auto; width:2px; height:auto}
-  .capy-accreditation-page .tnode{display:grid; grid-template-columns:46px 1fr; text-align:left; gap:16px; padding:10px 0; align-items:start}
-  .capy-accreditation-page .tnode .dot{margin:0}
-  .capy-accreditation-page .gap-list{grid-template-columns:1fr}
+.capy-accreditation-page @media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr; gap:20px}
+  .seal-stage{order:-1; min-height:320px; margin-bottom:8px}
+  .console{grid-template-columns:1fr}
+  .meter-card{position:static}
+  .two-col{grid-template-columns:1fr}
+  .elig-grid{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr; gap:0}
+  .timeline::before{top:0; bottom:0; left:23px; right:auto; width:2px; height:auto}
+  .tnode{display:grid; grid-template-columns:46px 1fr; text-align:left; gap:16px; padding:10px 0; align-items:start}
+  .tnode .dot{margin:0}
+  .gap-list{grid-template-columns:1fr}
 }
 @media (max-width:760px){
   .capy-accreditation-page .nav-links{display:none}
@@ -733,12 +746,13 @@ html{scroll-behavior:smooth}
   .capy-accreditation-page .reveal{opacity:1; transform:none}
   .capy-accreditation-page .rung{opacity:1; transform:none}
 }
+
 </style>
 </head>
 
 <body>
-<!-- CoverCapy sitewide mega navigation mount. This loads outside the page wrapper so its palette/scripts stay isolated. -->
-<div id="covercapy-mega-nav" data-include="/mega-nav.html"></div>
+<!-- CoverCapy sitewide mega navigation mount -->
+<div id="mega-nav-container" aria-label="CoverCapy mega navigation mount"></div>
 
 <!-- Page wrapper: all accreditation CSS/JS is scoped here so it cannot bleed into the mega nav or footer. -->
 <div id="capy-accreditation-page" class="capy-accreditation-page">
@@ -1307,73 +1321,195 @@ html{scroll-behavior:smooth}
 <div class="page-legal reveal">
   <p><b>Disclaimer.</b> Capy Accreditation is a private credential offered by CoverCapy. It is not affiliated with, endorsed by, or a substitute for any government body, dental licensing board, professional association, or third party certification organization. Accreditation reflects CoverCapy's review of specific practice markers and is not a guarantee of clinical outcomes, a specific search ranking position, or patient volume. Featured Member placement is a paid membership benefit and is labeled as such within CoverCapy search. Patients should continue to verify a provider's licensure and credentials independently when making care decisions.</p>
 </div>
-
 </div><!-- /#capy-accreditation-page -->
 
-<!-- Sitewide footer mount. Kept outside page scope so footer presets cannot be overwritten by this page. -->
-<div id="covercapy-footer" data-include="/footer.html"></div>
+<!-- CoverCapy sitewide footer mount -->
+<div id="site-footer-container" aria-label="CoverCapy footer mount"></div>
 
 <!-- ============================ SITEWIDE SHELL LOADER ============================ -->
-<script>
+<script id="cc-shared-component-loader">
 (function(){
-  const includes = [
-    {
-      mount: 'covercapy-mega-nav',
-      html: ['/mega-nav.html', '/assets/includes/mega-nav.html', '/includes/mega-nav.html'],
-      scripts: ['/mega-nav.js', '/assets/js/mega-nav.js', '/assets/js/load-nav.js', '/load-nav.js']
-    },
-    {
-      mount: 'covercapy-footer',
-      html: ['/footer.html', '/assets/includes/footer.html', '/includes/footer.html'],
-      scripts: ['/footer.js', '/assets/js/footer.js']
-    }
-  ];
+  "use strict";
 
-  function firstWorkingFetch(urls){
-    let chain = Promise.reject();
-    urls.forEach(function(url){
-      chain = chain.catch(function(){
-        return fetch(url, { credentials: 'same-origin' }).then(function(res){
-          if (!res.ok) throw new Error(url + ' returned ' + res.status);
-          return res.text();
+  function reviveScripts(container) {
+    container.querySelectorAll('script').forEach(function (oldScript) {
+      var newScript = document.createElement('script');
+      Array.prototype.slice.call(oldScript.attributes).forEach(function (attr) {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      newScript.text = oldScript.textContent;
+      oldScript.replaceWith(newScript);
+    });
+  }
+
+  function loadHtmlInto(mountId, paths, successClass) {
+    var mount = document.getElementById(mountId);
+    if (!mount) return Promise.resolve(false);
+
+    return paths.reduce(function (chain, path) {
+      return chain.catch(function () {
+        return fetch(path, { cache: 'no-cache', credentials: 'same-origin' }).then(function (response) {
+          if (!response.ok) throw new Error('Missing partial: ' + path);
+          return response.text();
+        }).then(function (html) {
+          mount.innerHTML = html;
+          reviveScripts(mount);
+          document.body.classList.add(successClass);
+          return true;
         });
       });
+    }, Promise.reject()).catch(function () {
+      return false;
     });
-    return chain;
   }
 
-  function loadHtml(item){
-    const el = document.getElementById(item.mount);
-    if (!el) return Promise.resolve();
-    return firstWorkingFetch(item.html)
-      .then(function(markup){ el.innerHTML = markup; })
-      .catch(function(err){
-        console.warn('[CoverCapy shell] Could not load include for #' + item.mount, err);
-      });
-  }
-
-  function loadScriptOnce(src){
-    if (!src || document.querySelector('script[src="' + src + '"]')) return Promise.resolve();
+  function loadScriptOnce(src) {
     return new Promise(function(resolve){
-      const s = document.createElement('script');
-      s.src = src;
-      s.defer = true;
-      s.onload = resolve;
-      s.onerror = resolve; // fallback scripts may 404; keep page working.
-      document.body.appendChild(s);
+      if (!src || document.querySelector('script[src="' + src + '"]')) return resolve(true);
+      var script = document.createElement('script');
+      script.src = src;
+      script.defer = true;
+      script.onload = function(){ resolve(true); };
+      script.onerror = function(){ resolve(false); };
+      document.body.appendChild(script);
     });
   }
 
-  function loadScriptFallbacks(urls){
-    return urls.reduce(function(promise, src){
-      return promise.then(function(){ return loadScriptOnce(src); });
-    }, Promise.resolve());
+  function bindMegaNavRescue() {
+    if (window.__CoverCapyNavRescueBound) return;
+    window.__CoverCapyNavRescueBound = true;
+
+    var nav = document.getElementById('cc-nav') || document.querySelector('.cc-nav');
+    var backdrop = document.getElementById('cc-backdrop') || document.querySelector('.cc-backdrop');
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cc-link'));
+    if (!links.length) return;
+
+    document.documentElement.style.overflowY = 'auto';
+    if (!document.querySelector('.cc-mobile-drawer.is-open, #cc-drawer.is-open')) {
+      document.body.style.overflow = '';
+      document.body.style.overflowY = 'auto';
+    }
+
+    var openTimer = null;
+    var closeTimer = null;
+    var activeLink = null;
+    var DESKTOP = function(){ return window.matchMedia('(min-width:1081px)').matches; };
+
+    function setExpanded(link, expanded){
+      var trigger = link.querySelector('.cc-link-trigger, .cc-link-anchor');
+      if (trigger) trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    function closeMega(){
+      links.forEach(function(link){ link.classList.remove('is-open'); setExpanded(link, false); });
+      activeLink = null;
+      if (backdrop) backdrop.classList.remove('show','is-open');
+      if (nav) nav.classList.remove('dimmed','is-open');
+    }
+
+    function openMega(link){
+      clearTimeout(closeTimer);
+      links.forEach(function(other){ if (other !== link) { other.classList.remove('is-open'); setExpanded(other, false); } });
+      link.classList.add('is-open');
+      setExpanded(link, true);
+      activeLink = link;
+      if (backdrop) backdrop.classList.add('show');
+      if (nav) nav.classList.add('dimmed');
+    }
+
+    function scheduleClose(){ clearTimeout(closeTimer); closeTimer = setTimeout(closeMega, 180); }
+
+    links.forEach(function(link){
+      var trigger = link.querySelector('.cc-link-trigger, .cc-link-anchor');
+      var caret = link.querySelector('[data-toggle], .cc-caret, .cc-link-caret');
+      var panel = link.querySelector('.cc-dropdown, .cc-mega');
+      var hasPanel = !!panel;
+      if (!trigger || !hasPanel) return;
+
+      link.addEventListener('mouseenter', function(){ if(!DESKTOP()) return; clearTimeout(closeTimer); openTimer = setTimeout(function(){ openMega(link); }, 55); });
+      link.addEventListener('mouseleave', function(){ if(!DESKTOP()) return; clearTimeout(openTimer); scheduleClose(); });
+      panel.addEventListener('mouseenter', function(){ if(!DESKTOP()) return; clearTimeout(closeTimer); });
+      panel.addEventListener('mouseleave', function(){ if(!DESKTOP()) return; scheduleClose(); });
+
+      trigger.addEventListener('click', function(e){
+        if (!hasPanel) return;
+        if (DESKTOP() || trigger.getAttribute('aria-haspopup') === 'true') {
+          e.preventDefault();
+          e.stopPropagation();
+          link.classList.contains('is-open') ? closeMega() : openMega(link);
+        }
+      });
+      if (caret) caret.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); link.classList.contains('is-open') ? closeMega() : openMega(link); });
+      link.addEventListener('focusin', function(){ if(DESKTOP()) openMega(link); });
+      trigger.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMega(); trigger.focus(); } });
+    });
+
+    if (backdrop) backdrop.addEventListener('click', closeMega);
+    document.addEventListener('click', function(e){ if(!e.target.closest('.cc-link') && !e.target.closest('.cc-dropdown') && !e.target.closest('.cc-mega')) closeMega(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMega(); });
+    window.addEventListener('scroll', function(){ if(activeLink) closeMega(); }, {passive:true});
+
+    var mobileToggle = document.querySelector('.cc-mobile-toggle, #cc-burger');
+    var mobileDrawer = document.getElementById('cc-mobile-drawer') || document.getElementById('cc-drawer') || document.querySelector('.cc-mobile-drawer');
+    var mobileClose = document.querySelector('.cc-mobile-close');
+    function openDrawer(){
+      if(!mobileDrawer) return;
+      mobileDrawer.classList.add('is-open');
+      mobileDrawer.setAttribute('aria-hidden','false');
+      if(mobileToggle){ mobileToggle.classList.add('is-open'); mobileToggle.setAttribute('aria-expanded','true'); }
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer(){
+      if(!mobileDrawer) return;
+      mobileDrawer.classList.remove('is-open');
+      mobileDrawer.setAttribute('aria-hidden','true');
+      if(mobileToggle){ mobileToggle.classList.remove('is-open'); mobileToggle.setAttribute('aria-expanded','false'); }
+      document.body.style.overflow = '';
+      document.body.style.overflowY = 'auto';
+    }
+    if (mobileToggle) mobileToggle.addEventListener('click', function(e){ e.preventDefault(); mobileDrawer && mobileDrawer.classList.contains('is-open') ? closeDrawer() : openDrawer(); });
+    if (mobileClose) mobileClose.addEventListener('click', function(e){ e.preventDefault(); closeDrawer(); });
+    if (mobileDrawer) mobileDrawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeDrawer); });
+
+    document.querySelectorAll('[data-acc], .cc-dacc-btn').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        var body = btn.nextElementSibling;
+        if(!body) return;
+        e.preventDefault();
+        var open = body.classList.contains('is-open');
+        document.querySelectorAll('.cc-dacc-body.is-open').forEach(function(el){ el.classList.remove('is-open'); });
+        document.querySelectorAll('.cc-dacc-btn.is-active').forEach(function(el){ el.classList.remove('is-active'); });
+        if(!open){ body.classList.add('is-open'); btn.classList.add('is-active'); }
+      });
+    });
   }
 
-  window.CoverCapyShellReady = Promise.all(includes.map(loadHtml))
-    .then(function(){
-      return Promise.all(includes.map(function(item){ return loadScriptFallbacks(item.scripts); }));
-    });
+  window.CoverCapyShellReady = loadHtmlInto('mega-nav-container', [
+    '/mega-nav.html',
+    '/assets/html/mega-nav.html',
+    '/assets/components/mega-nav.html',
+    '/components/mega-nav.html'
+  ], 'has-external-nav').then(function (loaded) {
+    if (loaded) {
+      return loadScriptOnce('/assets/js/load-nav.js')
+        .then(function(){ return loadScriptOnce('/assets/js/mega-nav.js'); })
+        .then(function(){ return loadScriptOnce('/mega-nav.js'); })
+        .then(function(){ setTimeout(bindMegaNavRescue, 0); return true; });
+    }
+    return false;
+  }).then(function(){
+    return loadHtmlInto('site-footer-container', [
+      '/footer.html',
+      '/assets/html/footer.html',
+      '/assets/components/footer.html',
+      '/components/footer.html'
+    ], 'has-external-footer');
+  }).then(function(footerLoaded){
+    if (footerLoaded) return loadScriptOnce('/assets/js/footer.js').then(function(){ return loadScriptOnce('/footer.js'); });
+  }).then(function(){
+    document.dispatchEvent(new CustomEvent('covercapy:components-ready'));
+    return true;
+  });
 })();
 </script>
 
