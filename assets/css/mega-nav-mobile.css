@@ -61,3 +61,103 @@ body.cc-locked{overflow:hidden}
 @media (max-width:420px){
   .cc-logo-img{width:42px;height:42px}
 }
+
+
+/* v59 mobile language status */
+@media (max-width:1080px){
+  .cc-lang-status-pill{display:none !important}
+}
+
+
+/* v60 mobile translation widget */
+@media (max-width:560px){
+  .cc-translation-widget{
+    left:18px;
+    right:18px;
+    bottom:18px;
+    justify-content:center;
+    border-radius:18px;
+  }
+  .cc-translation-widget-text{
+    white-space:normal;
+    text-align:center;
+  }
+}
+
+
+/* v61 mobile translation widget */
+@media (max-width:560px){
+  .cc-translation-widget{
+    left:16px;
+    right:16px;
+    bottom:18px;
+    width:auto;
+    padding:13px 14px;
+    gap:12px;
+    border-radius:18px;
+  }
+  .cc-translation-bot{
+    flex-basis:50px;
+    width:50px;
+    height:50px;
+  }
+  .cc-translation-widget-text{
+    font-size:14px;
+  }
+}
+
+
+/* v62 mobile under-nav translation widget */
+@media (max-width:560px){
+  .cc-translation-widget{
+    top:calc(var(--nav-h, 74px) + 10px) !important;
+    left:16px !important;
+    right:auto !important;
+    bottom:auto !important;
+    width:auto !important;
+    min-width:245px;
+    max-width:calc(100vw - 32px);
+    justify-content:flex-start;
+    border-radius:18px;
+  }
+  .cc-translation-copy{
+    min-width:170px;
+  }
+  .cc-translation-language{
+    font-size:16px;
+  }
+}
+
+
+/* v63 mobile compact translation widget */
+@media (max-width:560px){
+  .cc-translation-widget{
+    top:calc(var(--nav-h, 74px) + 10px) !important;
+    left:12px !important;
+    right:auto !important;
+    bottom:auto !important;
+    width:148px !important;
+    min-width:148px !important;
+    max-width:148px !important;
+    padding:11px 11px 12px !important;
+  }
+  .cc-translation-language{
+    font-size:16px !important;
+  }
+}
+
+
+/* v64 mobile: compact centered translation popup */
+@media (max-width:560px){
+  .cc-translation-widget{
+    left:10px !important;
+    top:calc(var(--nav-h, 74px) + 8px) !important;
+    width:118px !important;
+    min-width:118px !important;
+    max-width:118px !important;
+    padding:9px 8px 10px !important;
+  }
+  .cc-translation-language{
+    font-size:14.5px !important;
+  }
+}
