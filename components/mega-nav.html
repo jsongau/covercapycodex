@@ -1,480 +1,231 @@
-<nav aria-label="Primary" class="cc-nav" id="cc-nav">
-<div class="cc-nav-row">
-<div class="cc-left"><a aria-label="CoverCapy home" class="cc-logo" href="/">
-<img alt="CoverCapy" class="cc-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="/assets/images/covercapy-logo.svg"/>
-<svg aria-hidden="true" class="cc-logo-fallback" height="46" viewbox="0 0 64 64" width="46" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><ellipse cx="42" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><rect fill="#0E3F44" height="32" rx="16" width="36" x="14" y="20"></rect><ellipse cx="32" cy="44" fill="#123F52" rx="9" ry="6"></ellipse><circle cx="25" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="39" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="25" cy="33" fill="#0E3F44" r="1"></circle><circle cx="39" cy="33" fill="#0E3F44" r="1"></circle><circle cx="29" cy="44" fill="#FCFAF4" r="1.1"></circle><circle cx="35" cy="44" fill="#FCFAF4" r="1.1"></circle></svg>
-<span class="cc-edition"><span class="cc-edition-top">CoverCapy</span><span class="cc-edition-bottom">Concierge Dental Network</span></span>
-</a>
-<div class="cc-lang" data-i18n-skip="" id="cc-lang">
-<button aria-expanded="false" aria-haspopup="true" aria-label="Change language" class="cc-lang-btn" id="cc-lang-btn" type="button">
-<svg aria-hidden="true" class="cc-lang-globe" fill="none" height="15" stroke="currentColor" stroke-width="1.7" viewbox="0 0 24 24" width="15"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"></path></svg>
-<span class="cc-lang-cur" id="cc-lang-cur">EN</span>
-<span aria-hidden="true" class="cc-lang-caret">▾</span>
-</button>
-<div class="cc-lang-menu" id="cc-lang-menu" role="menu">
-<button class="cc-lang-opt is-active" data-lang="en" role="menuitem"><span class="cc-lang-name">English</span><span class="cc-lang-tag">EN</span></button>
-<button class="cc-lang-opt" data-lang="zh" role="menuitem"><span class="cc-lang-name">中文</span><span class="cc-lang-tag">Mandarin</span></button>
-<button class="cc-lang-opt" data-lang="es" role="menuitem"><span class="cc-lang-name">Español</span><span class="cc-lang-tag">Spanish</span></button>
-<div class="cc-lang-foot">Instant AI translation</div>
-</div>
-</div>
-</div>
-<div class="cc-links" role="menubar">
-<!-- ABOUT -->
-<div class="cc-link" data-link="about" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/" role="menuitem">About <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-about" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead">
-<div class="mega-eyebrow">Concierge Dental Network</div>
-<h3 class="mega-title" data-i18n-html="about_title">Dental care, guided from coverage to <em>booking.</em></h3>
-<p class="mega-sub">CoverCapy helps patients understand PPO coverage, estimate treatment costs, and find trusted dentists before they book.</p>
-</div>
-<!-- ===== PROMO SLOT · About · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="promo-quote mr-bara-quote">
-<div class="promo-quote-text"><span class="promo-quote-mark open">“</span>We kept hearing the same story: a <span class="promo-money promo-money-high">$3,000</span> dental bill that might’ve been closer to <span class="promo-money promo-money-low">$300</span>. <span class="promo-brand">CoverCapy</span> helps you check the plan, the network, and the dentist <span class="promo-em">before the surprise</span>.<span class="promo-quote-mark end">”</span></div>
-<div class="promo-quote-sig">Mr. Bara</div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">New here?</div><div class="mega-aside-text" data-i18n-html="about_video">A quick two minute concierge overview of how CoverCapy guides you from <em>coverage</em> to cost clarity, dentist discovery, and confident care.</div><a class="mega-aside-cta" href="/how-covercapy-works.html">See how it works</a></div>
-</div>
-<div class="mega-cols">
-<div class="ppo-toggle">
-<div class="ppo-toggle-head">PPO vs HMO at a glance</div>
-<div class="ppo-switch" id="ppo-switch">
-<button class="ppo-opt is-on" data-plan="ppo" type="button">PPO</button>
-<button class="ppo-opt" data-plan="hmo" type="button">HMO</button>
-<span class="ppo-thumb"></span>
-</div>
-<ul class="ppo-points good" data-for="ppo">
-<li><span class="ic">✓</span>See any dentist with no referral needed</li>
-<li><span class="ic">✓</span>Direct access to specialists</li>
-<li><span class="ic">✓</span>Higher annual maximums</li>
-<li><span class="ic">✓</span>Some coverage outside the network</li>
-</ul>
-<ul class="ppo-points lim" data-for="hmo" hidden="">
-<li><span class="ic">!</span>Assigned to one network dentist</li>
-<li><span class="ic">!</span>Referral required to see specialists</li>
-<li><span class="ic">!</span>No coverage outside the network</li>
-<li><span class="ic">!</span>Lower premiums, less flexibility</li>
-</ul>
-</div>
-<div>
-<div class="mega-group-title">The Network</div>
-<a class="mega-link" href="/how-covercapy-works.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">How CoverCapy Works</span><span class="mega-link-sub">Coverage, cost, then dentist</span></span></a>
-<a class="mega-link" href="/dental-concierge-network.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental Concierge Network</span><span class="mega-link-sub">What makes us different</span></span></a>
-<a class="mega-link" href="/dental-insurance-carriers.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Insurance We Work With</span><span class="mega-link-sub">Carriers and networks</span></span></a>
-</div>
-<div>
-<div class="mega-group-title">Guides &amp; Trust</div>
-<a class="mega-link" href="/hmo-vs-ppo-dental-insurance.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">PPO vs HMO Guide</span></span></a>
-<a class="mega-link" href="/dental-insurance-glossary.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental Insurance Glossary</span></span></a>
-<a class="mega-link" href="/forum.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Community Forum</span></span></a>
-<a class="mega-link" href="/patient-reviews.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Patient Reviews</span></span></a>
-</div>
-<div class="mega-ctas">
-<a class="featured-card" href="/dental-concierge-network.html">
-<div class="featured-banner">★ Why CoverCapy</div>
-<div class="featured-body"><div class="featured-avatar">🛟</div><div><div class="featured-name">The Concierge Difference</div><div class="featured-meta">Coverage, cost, then trusted care</div></div></div>
-<div class="featured-actions single-action"><span class="featured-btn primary">Explore the Network</span></div>
-</a>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>$0 to patients</span><span>Privacy-first guidance</span><span>Guided journey</span></div><a class="mega-foot-link" href="/how-covercapy-works.html">Learn more</a></div></div>
-</div>
-</div>
-<!-- GET COVERAGE -->
-<div class="cc-link" data-link="coverage" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/compare-ppo-dental-plans.html" role="menuitem">Get Coverage <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-cov" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">PPO Coverage Guidance</div><h3 class="mega-title" data-i18n-html="cov_title">Activate PPO coverage with <em>confidence.</em></h3><p class="mega-sub">Compare PPO dental plans by treatment needs, waiting periods, annual maximums, and dentist flexibility.</p></div>
-<!-- ===== PROMO SLOT · Get Coverage · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="featured-card promo-action-card plan-feature-card" style="margin-top:0">
-<div class="featured-banner plan-feature-banner"><span class="bolt-mark">⚡</span> Fastest Activation · Featured Plan</div>
-<div class="featured-body"><div class="featured-avatar">🛡️</div><div class="featured-copy"><div class="featured-name">UnitedHealthcare Primary Dental</div><div class="featured-meta">Coverage active as early as 1 business day</div><div class="feature-lines feature-lines-vertical"><span>100% diagnostic &amp; preventive</span><span>Eligible for patients under 65</span></div></div></div>
-<div class="featured-actions"><a class="featured-btn primary" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" data-cc-modal="insurance" data-cc-modal-provider="uhc" data-track-outbound="uhc-primary-dental">Activate Coverage</a><a class="featured-btn secondary" href="/ppo-plans/uhc-primary-ppo.html">Plan Details</a></div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Not sure which plan?</div><div class="mega-aside-text" data-i18n-html="cov_sub">Get <em>matched</em> to PPO coverage that fits your treatment and timing.</div><a class="mega-aside-cta" href="/compare-ppo-dental-plans.html">Compare &amp; match</a></div>
-</div>
-<div class="mega-cols">
-<div>
-<div class="plan-finder">
-<div class="pf-eyebrow">Plan finder</div>
-<div class="pf-q">Who's it for?</div>
-<div class="pf-pills">
-<button class="pf-pill on" data-plan="me" type="button">Individual</button>
-<button class="pf-pill" data-plan="family" type="button">Family</button>
-<button class="pf-pill" data-plan="senior" type="button">65+</button>
-<button class="pf-pill" data-plan="ortho" type="button">Child Orthodontics</button>
-</div>
-<div class="pf-result">
-<div class="pf-result-label">Best starting point</div>
-<div class="pf-name" id="pf-name">UnitedHealthcare Primary Dental</div>
-<div class="pf-benefit" id="pf-benefit">Fast activation, coverage in days</div>
-<a class="pf-go" href="/ppo-plans/uhc-primary-ppo.html" id="pf-go">View plan</a>
-</div>
-</div>
-</div>
-<div>
-<div class="mega-group-title">By treatment</div>
-<a class="mega-link" href="/ppo-plans/crowns-root-canals.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Crowns &amp; Root Canals</span></span></a>
-<a class="mega-link" href="/ppo-plans/implant-planning.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental Implants</span></span></a>
-<a class="mega-link" href="/ppo-plans/emergency-dental.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Emergency Dental</span></span></a>
-<a class="mega-link" href="/ppo-plans/cleaning-preventive.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Cleaning &amp; Preventive</span></span></a>
-<a class="mega-link mega-link-all" href="/compare-ppo-dental-plans.html"><span><span class="mega-link-text">Compare all plans</span></span></a>
-</div>
-<div>
-<div class="mega-group-title">PPO insurance</div>
-<a class="carrier-link" href="/dental-insurance/aetna.html"><span class="carrier-badge">Ae</span><span class="carrier-name">Aetna Dental PPO</span></a>
-<a class="carrier-link" href="/dental-insurance/ameritas.html"><span class="carrier-badge">Am</span><span class="carrier-name">Ameritas Dental PPO</span></a>
-<a class="carrier-link" href="/dental-insurance/guardian.html"><span class="carrier-badge">Gu</span><span class="carrier-name">Guardian Dental PPO</span></a>
-<a class="carrier-link" href="/dental-insurance/mutual-of-omaha.html"><span class="carrier-badge">MO</span><span class="carrier-name">Mutual of Omaha Dental PPO</span></a>
-<a class="carrier-link" href="/dental-insurance/humana.html"><span class="carrier-badge">Hu</span><span class="carrier-name">Humana Dental PPO</span></a>
-<a class="mega-link mega-link-all" href="/dental-insurance-carriers.html"><span><span class="mega-link-text">All carriers</span></span></a>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Trusted PPO carriers</span><span>No assigned dentist</span><span>Coverage by carrier</span></div><a class="mega-foot-link" href="/compare-ppo-dental-plans.html">Compare all PPO plans</a></div></div>
-</div>
-</div>
-<!-- ESTIMATE COSTS -->
-<div class="cc-link" data-link="estimate" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/dental-treatment-cost-estimator.html" role="menuitem">Estimate Costs <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-est" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">Treatment Cost Guidance</div><h3 class="mega-title" data-i18n-html="est_title">Know your dental cost <em>before</em> you book.</h3><p class="mega-sub">Estimate common treatments, compare PPO savings, and plan monthly payments before your appointment.</p></div>
-<!-- ===== PROMO SLOT · Estimate · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="featured-card promo-action-card estimator-feature-card" style="margin-top:0">
-<div class="featured-banner plan-feature-banner"><span class="bolt-mark">◈</span> Featured Tool · Cost Estimator</div>
-<div class="featured-body"><div class="featured-avatar">🧮</div><div class="featured-copy"><div class="featured-name">Treatment Cost Estimator</div><div class="featured-meta">Implants, crowns, bridges and more</div><div class="feature-lines feature-lines-vertical"><span>Compare cash fee versus PPO in-network rates</span><span>Time major treatments around benefits</span></div></div></div>
-<div class="featured-actions"><a class="featured-btn primary" href="/dental-treatment-cost-estimator.html">Run My Estimate</a><a class="featured-btn secondary two-line" href="/dental-financing-monthly-payments.html"><span>Financing</span><span>Options</span></a></div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">See your number</div><div class="mega-aside-text" data-i18n-html="est_aside">Build your <em>own</em> treatment plan and cost estimate first, so you walk in informed before any financing conversation.</div><a class="mega-aside-cta" href="/dental-treatment-cost-estimator.html">Plan my treatment</a></div>
-</div>
-<div class="mega-cols">
-<div>
-<div class="est-card">
-<div class="est-eyebrow">◷ Estimated Savings</div>
-<div class="est-name">Zirconia crown</div>
-<div class="est-qrow"><span class="est-qlabel">How many?</span><span class="est-stepper"><button aria-label="Fewer crowns" class="est-step" id="est-minus" type="button">−</button><span class="est-qval" id="est-qval">×1</span><button aria-label="More crowns" class="est-step" id="est-plus" type="button">+</button></span></div>
-<input aria-label="Number of crowns" class="est-slider" id="est-slider" max="6" min="1" step="1" type="range" value="1"/>
-<div class="est-ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
-<div class="est-out">
-<div class="est-grid">
-<div><div class="est-cell-l">Typical cost</div><div class="est-full" id="est-full">$1,800</div></div>
-<div class="est-arrow">→</div>
-<div><div class="est-cell-l">With PPO</div><div class="est-ppo" id="est-ppo">$675</div></div>
-<div class="est-save"><div class="est-save-l">You save</div><div class="est-save-v" id="est-save">$1,125</div></div>
-</div>
-<a class="est-link" href="/dental-treatment-cost-estimator.html">See your full breakdown</a>
-</div>
-</div>
-</div>
-<div>
-<div class="mega-group-title">Cost guides</div>
-<a class="mega-link" href="/guides/what-ppo-dental-covers.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">What does PPO dental insurance cover?</span><span class="mega-link-sub">Preventive, basic &amp; major</span></span></a>
-<a class="mega-link" href="/guides/dental-costs-with-without-insurance.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental costs: with vs without insurance</span><span class="mega-link-sub">See the savings</span></span></a>
-<a class="mega-link" href="/guides/zero-apr-dental-financing.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">How 0% dental financing works</span><span class="mega-link-sub">Spread the cost, no interest</span></span></a>
-<a class="mega-link" href="/guides/dental-insurance-waiting-periods.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental insurance waiting periods</span><span class="mega-link-sub">Major work, and when it's covered</span></span></a>
-</div>
-<div>
-<div class="mega-group-title">Plan ahead</div>
-<div class="plan-tips">
-<a class="plan-tip" href="/guides/smart-timing-strategy.html"><span class="plan-tip-n">01</span><span class="plan-tip-tx"><span class="plan-tip-t">Time it around your benefits</span><span class="plan-tip-s">Use your annual maximum before it resets.</span></span></a>
-<a class="plan-tip" href="/guides/preventive-first.html"><span class="plan-tip-n">02</span><span class="plan-tip-tx"><span class="plan-tip-t">Start with the basics</span><span class="plan-tip-s">Preventive care now prevents major work later.</span></span></a>
-<a class="plan-tip" href="/guides/stage-major-treatment.html"><span class="plan-tip-n">03</span><span class="plan-tip-tx"><span class="plan-tip-t">Stage major treatment</span><span class="plan-tip-s">Split big cases across benefit years.</span></span></a>
-</div>
-<div class="est-bytx">
-<span class="est-bytx-l">Estimate by treatment</span>
-<div class="est-bytx-chips">
-<a class="est-chip" href="/cost-calculator/implant.html">Implants</a>
-<a class="est-chip" href="/cost-calculator/crown.html">Crowns</a>
-<a class="est-chip" href="/cost-calculator/bridge.html">Bridges</a>
-<a class="est-chip" href="/cost-calculator/dentures.html">Dentures</a>
-</div>
-</div>
-</div>
-<div class="mega-ctas estimate-partner-only">
-<a class="fin-mini fin-mini-expanded" href="/partners/financing.html">
-<span class="fin-mini-eye">Partner Invitation</span>
-<span class="fin-mini-title">Seeking a trusted financing partner</span>
-<span class="fin-mini-sub">CoverCapy is evaluating reputable patient financing partners for responsible monthly payment options.</span>
-<span class="fin-mini-sub fin-mini-sub-2">The goal: help patients move forward with care while keeping costs transparent for participating dentists.</span>
-<span class="fin-mini-cta">Inquire within</span>
-</a>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Dentist informed</span><span>Educational estimates</span><span>Educational planning</span></div><a class="mega-foot-link" href="/dental-treatment-cost-estimator.html">Full calculator</a></div></div>
-</div>
-</div>
-<!-- FIND MY DENTIST · FEATURED HERO -->
-<div class="cc-link featured" data-link="find" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/ppodentists.html" role="menuitem">Find My Dentist <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-find" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">PPO Dentist Discovery</div><h3 class="mega-title" data-i18n-html="find_title">Find a trusted PPO dentist <em>near you.</em></h3><p class="mega-sub">Browse Capy Accredited offices by ZIP, region, or city, curated like a concierge recommendation.</p></div>
-<!-- ===== PROMO SLOT · Find My Dentist · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="featured-card promo-action-card dentist-feature-card" id="find-featured" style="margin-top:0">
-<div class="featured-banner">◆ Platinum Elite · Featured Dentist</div>
-<div class="featured-body">
-<div class="featured-avatar cc-symbol-avatar">◆</div>
-<div class="featured-copy">
-<a class="featured-name feature-practice-link" href="/dentists/kyt-dental-services.html">KYT Dental Services</a>
-<div class="featured-meta"><span class="featured-stars">★★★★★</span> 4.9 · 212 reviews</div>
-<a class="featured-loc feature-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=KYT%20Dental%20Services%2011180%20Warner%20Ave%20%23251%20Fountain%20Valley%20CA%2092708" target="_blank" rel="noopener">11180 Warner Ave #251<br><span class="featured-address-line2">Fountain Valley, CA 92708<span class="featured-mi" id="feat-mi"></span></span></a>
-<a class="feature-phone" href="tel:+18335983368">(833) 598-3368</a>
-</div>
-</div>
-<div class="featured-actions">
-<a class="featured-btn primary" href="https://www.kytdentalservices.com/booking" data-cc-modal="booking" data-cc-modal-provider="kyt" data-cc-booking-practice="KYT Dental Services" data-track-outbound="kyt-dental-services-booking">Book Appointment</a>
-<a class="featured-btn secondary" href="tel:+18335983368">Call Office</a>
-</div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Modern care standard</div><div class="mega-aside-text" data-i18n-html="find_aside">Capy Accreditation recognizes dental offices that pair advanced diagnostics, digital workflows, PPO-friendly access, and organized patient communication.</div><a class="mega-aside-cta" href="/capy-accreditation-v4.html">View accreditation</a></div>
-</div>
-<div class="mega-cols">
-<div class="find-browse-panel">
-<div class="find-browse-kicker">Start by need</div>
-<div class="find-browse-title">Browse trusted PPO care paths.</div>
-<div class="find-browse-sub">Patients sometimes search by treatment first, then choose a dentist nearby.</div>
-<div class="find-care-links">
-<a class="find-care-link" href="/ppodentists.html?tag=implants">Implant PPO dentists <span>→</span></a>
-<a class="find-care-link" href="/ppodentists.html?tag=emergency">Emergency PPO dentists <span>→</span></a>
-<a class="find-care-link" href="/ppodentists.html?tag=cosmetic">Cosmetic PPO dentists <span>→</span></a>
-</div>
-</div>
-<div>
-<div class="find-zip">
-<div aria-hidden="true" class="find-zip-radar"><i></i><i></i><i></i></div>
-<div class="find-zip-eyebrow">◎ Find by ZIP</div>
-<div class="find-zip-h">Find a PPO dentist near you.</div>
-<div class="find-zip-sub">Enter your ZIP. We'll search your area to see if there are any Platinum Elite dentists nearby, then you can browse dentists in your city.</div>
-<div class="find-zip-row">
-<input autocomplete="off" class="find-zip-input" id="nav-zip" inputmode="numeric" maxlength="5" placeholder="ZIP code, e.g. 92708" type="text"/>
-<button class="find-zip-btn" id="nav-zip-btn" type="button">Search</button>
-</div>
-</div>
-</div>
-<div class="find-right"><div class="find-tag-wrap show" id="nav-zip-tag"><div class="find-tag-eyebrow">Your local results</div><span class="find-tag find-tag-ghost"><span class="find-tag-pin">📍</span>Enter a ZIP</span><div class="find-tag-meta">We'll show your city and the dentists nearby.</div></div>
-<div class="mega-ctas" style="margin-top:18px">
-<a class="mega-cta-p cta-live" href="/ppodentists.html?city=los-angeles-county/rowland-heights" id="nav-find-cta">Browse Dentists Near Rowland Heights</a>
-<a class="mega-cta-s cta-region" href="/ppodentists.html" id="nav-find-all">Region Search</a>
-</div>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Capy Accredited network</span><span>No assigned dentists</span><span>Always free for patients</span></div><a class="mega-foot-link" href="/ppodentists.html">Full directory</a></div></div>
-</div>
-</div>
-<!-- PATIENT REWARDS -->
-<div class="cc-link" data-link="rewards" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/covercapy-join.html" role="menuitem">Patient Rewards <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-rew" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">Capy Crowns Membership</div><h3 class="mega-title" data-i18n-html="port_alt">A smarter way to <em>own your dentistry.</em></h3><p class="mega-sub">Earn Crowns just for being informed, then redeem them at participating Capy Accredited offices. Your first 300 are already yours.</p></div>
-<!-- ===== PROMO SLOT · Patient Rewards · featured reward (swap freely) ===== -->
-<div class="mega-promo">
-<div class="featured-card promo-action-card reward-feature-card">
-<div class="featured-banner plan-feature-banner"><span class="bolt-mark">♔</span> Featured Reward · Capy Accredited</div>
-<div class="featured-body">
-<div class="featured-avatar cc-symbol-avatar">♔</div>
-<div class="featured-copy">
-<div class="featured-name" data-i18n-html="rew_title">Free Whitening <em>Session</em></div>
-<div class="featured-meta">MSRP <s>$600</s> · unlocks at 2,000 ♔</div>
-<div class="feature-lines feature-lines-vertical"><span>Your balance: <strong>300 ♔</strong></span><span>1,700 to go</span></div>
-</div>
-</div>
-<div class="featured-actions">
-<a class="featured-btn primary" href="/covercapy-join.html"><span>Claim 300</span><span>Crowns</span></a>
-<a class="featured-btn secondary" href="/rewards/refer-a-friend.html"><span>Refer</span><span>Friend</span></a>
-</div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Why join</div><div class="rw-checks"><div class="rw-check"><span class="ck">✓</span>Free to join</div><div class="rw-check"><span class="ck">✓</span>300 Crowns on signup</div><div class="rw-check"><span class="ck">✓</span>Crowns never expire</div></div></div>
-</div>
-<div class="mega-cols">
-<div class="rw-grid">
-<div>
-<div class="rw-sec-title">Your path to free whitening · 4 steps</div>
-<div class="rw-sec-sub">Sign up, activate, book, and refer one friend. That is exactly 2,000 Crowns.</div>
-<div class="rw-steps">
-<div class="rw-step done"><div class="rw-step-num">✓</div><div class="rw-step-body"><div class="rw-step-t">Create your account</div><div class="rw-step-s">Earned automatically on signup</div></div><div class="rw-step-meta"><div class="rw-step-pts">+300 ♔</div><div class="rw-step-run">300 / 2,000</div></div></div>
-<div class="rw-step"><div class="rw-step-num">2</div><div class="rw-step-body"><div class="rw-step-t">Activate a PPO plan</div><div class="rw-step-s">Compare and choose your best fit</div></div><div class="rw-step-meta"><div class="rw-step-pts">+500 ♔</div><div class="rw-step-run">800 / 2,000</div></div></div>
-<div class="rw-step"><div class="rw-step-num">3</div><div class="rw-step-body"><div class="rw-step-t">Book a PPO dentist</div><div class="rw-step-s">Schedule at a Capy Accredited office</div></div><div class="rw-step-meta"><div class="rw-step-pts">+500 ♔</div><div class="rw-step-run">1,300 / 2,000</div></div></div>
-<div class="rw-step"><div class="rw-step-num">4</div><div class="rw-step-body"><div class="rw-step-t">Refer a friend or family member</div><div class="rw-step-s">One referral takes you to exactly 2,000</div></div><div class="rw-step-meta"><div class="rw-step-pts">+700 ♔</div><div class="rw-step-run">2,000 / 2,000</div></div></div>
-</div>
-<div class="rw-note">Claim it at any participating <strong>Capy Accredited office</strong> near you. A vetted, premium experience.</div>
-</div>
-<div>
-<div class="rw-sec-title">Redeem across the network</div>
-<div class="rw-sec-sub">Crowns work at every participating Capy Accredited office.</div>
-<div class="rw-redeem">
-<a class="rw-rc" href="/rewards/redeem/in-office-whitening.html"><span class="rw-rc-ic">🦷</span><span><span class="rw-rc-name">Free Whitening Session</span><span class="rw-rc-sub">MSRP $600</span></span><span class="rw-rc-cost">2,000 ♔</span></a>
-<a class="rw-rc" href="/rewards/redeem/invisalign-platinum.html"><span class="rw-rc-ic">😁</span><span><span class="rw-rc-name">Invisalign Promo</span><span class="rw-rc-sub">Member-exclusive rate</span></span><span class="rw-rc-cost">2,500 ♔</span></a>
-<a class="rw-rc" href="/rewards/redeem/tmj-botox.html"><span class="rw-rc-ic">💆</span><span><span class="rw-rc-name">Therapeutic Botox</span><span class="rw-rc-sub">For TMJ &amp; jaw tension</span></span><span class="rw-rc-cost">3,000 ♔</span></a>
-</div>
-<a class="rw-refer" href="/rewards/refer-a-friend.html"><span class="rw-refer-ic">💌</span><span class="rw-refer-copy"><span class="rw-refer-t">Refer a friend</span><span class="rw-refer-s">A welcome bonus for them</span></span><span class="rw-refer-bonus">+700 ♔</span></a>
-</div>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Claim at participating Capy Accredited offices</span><span>Crowns never expire</span><span>Free to join</span></div><a class="mega-foot-link" href="/rewards.html">All rewards</a></div></div>
-</div>
-</div>
-<!-- DENTIST PORTAL -->
-<div class="cc-link" data-link="portal" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/dentist-portal.html" role="menuitem">Dentist Portal <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-port" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">Practice Growth</div><h3 class="mega-title" data-i18n-html="port_title">Get discovered by PPO-ready <em>patients.</em></h3><p class="mega-sub">Serve patients who are actively comparing PPO coverage, estimating costs, and choosing trusted offices nearby.</p></div>
-<!-- ===== PROMO SLOT · Dentist Portal · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="promo-search">
-<div class="promo-search-label">Is your practice listed?</div>
-<div class="promo-search-row">
-<input autocomplete="off" class="promo-search-in" id="portal-zip" inputmode="numeric" maxlength="5" placeholder="Practice ZIP" type="text"/>
-<button class="promo-search-btn" id="portal-zip-btn" type="button">Search</button>
-</div>
-<div class="promo-note">Free claim · 3-day review</div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Curated network</div><div class="mega-aside-text" data-i18n-html="port_aside">Every Tier 02 and up membership is reviewed by our team. <em>Curated</em>, credentials verified.</div><a class="mega-aside-cta" href="/dentist-portal.html#capy-accredited">Accreditation</a></div>
-</div>
-<div class="mega-cols">
-<div class="tiers">
-<div class="tier"><div class="tier-label">Tier 01</div><div class="tier-name">Listed</div><div class="tier-sub">Verified, indexed, findable.</div><ul class="tier-feats"><li>Verified practice page</li><li>PPO acceptance visibility</li><li>Booking link</li></ul><a class="tier-cta ghost" href="/claim-dentist-listing-profile.html">Claim Free Profile</a><div class="tier-status">Free · 3-day review</div></div>
-<div class="tier featured-tier"><span class="tier-flag">Most Popular</span><div class="tier-label">Tier 02</div><div class="tier-name">Capy Accredited</div><div class="tier-sub">The badge patients recognize first.</div><ul class="tier-feats"><li>Capy Accredited badge</li><li>Featured in local city searches</li><li>Priority placement</li></ul><a class="tier-cta solid" href="/dentist-portal.html#capy-accredited">Apply for Capy Accreditation</a><div class="tier-status">Where patients look first</div></div>
-<div class="tier"><div class="tier-label">Tier 03</div><div class="tier-name">Platinum Elite</div><div class="tier-sub">Priority visibility for ready patients.</div><ul class="tier-feats"><li>Concierge matching</li><li>Territory exclusivity</li><li>Patient rewards visibility</li></ul><a class="tier-cta ghost" href="/dentist-portal.html#platinum-elite">Apply for Platinum Elite</a><div class="tier-status">One practice per area</div></div>
-</div>
-<div class="mega-ctas">
-<a class="mega-cta-p cta-sheen" href="/claim-dentist-listing-profile.html">Claim Free Profile</a>
-<a class="mega-cta-s" href="/dentist-portal.html">Dentist Portal</a>
-<a class="port-promo" href="/get-featured/promote-to-ppo-patients.html">
-<span class="port-promo-eye">Featured Promotion</span>
-<span class="port-promo-title">Feature your promotion to PPO patients</span>
-<span class="port-promo-sub">Share a patient-friendly offer with people planning care.</span>
-<span class="port-promo-req">Requires Capy Accreditation</span>
-</a>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Curated and vetted</span><span>Reviewed by our team</span><span>Cancel anytime</span></div><a class="mega-foot-link" href="/dentist-portal.html">Advertising disclosure</a></div></div>
-</div>
-</div>
-</div>
-<div class="cc-actions">
-<a class="cc-signin" href="/sign-in.html">Sign in</a>
-<a class="cc-join" href="/covercapy-join.html">Join Free</a>
-</div>
-<button aria-expanded="false" aria-label="Open menu" class="cc-burger" id="cc-burger"><span class="cc-burger-bar"></span><span class="cc-burger-bar"></span><span class="cc-burger-bar"></span></button>
-</div>
-</nav>
-<div class="cc-backdrop" id="cc-backdrop"></div>
-<button aria-label="Close menu" class="cc-curtain" id="cc-curtain" type="button">
-<span aria-hidden="true" class="cc-curtain-rope"></span>
-<span aria-hidden="true" class="cc-curtain-knob">✕</span>
-<span class="cc-curtain-txt">Close</span>
-</button>
-<div aria-hidden="true" class="cc-stage" id="cc-stage"><span class="cc-stage-l"></span><span class="cc-stage-r"></span></div>
-<!-- MOBILE DRAWER -->
-<div aria-hidden="true" class="cc-drawer" id="cc-drawer">
-<div class="cc-drawer-head">
-<div class="cc-drawer-head-row">
-<div class="cc-drawer-brand"><span class="cc-drawer-brand-top">CoverCapy</span><span class="cc-drawer-brand-bot">Concierge Dental Network</span></div>
-<button aria-label="Close menu" class="cc-drawer-close" id="cc-drawer-close">✕</button>
-</div>
-<div class="cc-drawer-tagline">Unlock 300 Capy Crowns and find PPO-friendly dentists near you.</div>
-</div>
-<div class="cc-drawer-nav">
-<div class="cc-dacc featured-acc"><button class="cc-dacc-btn" data-acc="">Find My Dentist<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/ppodentists.html">Find My Dentist</a>
-<a class="cc-dacc-link" href="/best-ppo-dentists-by-city.html">Best PPO Dentists by City</a>
-<a class="cc-dacc-link" href="/ppo-dentists-by-state.html">PPO Dentists by State</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Patient Rewards<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/covercapy-join.html">Claim 300 Crowns</a>
-<a class="cc-dacc-link" href="/rewards/refer-a-friend.html">Refer a Friend</a>
-<a class="cc-dacc-link" href="/rewards/redeem/in-office-whitening.html">Redeem Free Whitening</a>
-<a class="cc-dacc-link" href="/rewards/local.html">Local Rewards</a>
-<a class="cc-dacc-link" href="/sign-in.html">Patient Login</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Estimate Costs<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/dental-treatment-cost-estimator.html">Run Treatment Estimate</a>
-<a class="cc-dacc-link" href="/dental-financing-monthly-payments.html">Monthly Payment Options</a>
-<a class="cc-dacc-link" href="/guides/dental-insurance-waiting-periods.html">Dental Waiting Periods</a>
-<a class="cc-dacc-link" href="/cost-calculator/implant.html">Implant Cost</a>
-<a class="cc-dacc-link" href="/cost-calculator/crown.html">Crown Cost</a>
-<a class="cc-dacc-link" href="/cost-calculator/bridge.html">Bridge Cost</a>
-<a class="cc-dacc-link" href="/cost-calculator/dentures.html">Denture Cost</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Get Coverage<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/compare-ppo-dental-plans.html">Compare PPO Plans</a>
-<a class="cc-dacc-link" href="/fast-ppo-activation.html">Fast PPO Activation</a>
-<a class="cc-dacc-link" href="/ppo-plans/crowns-root-canals.html">Crowns &amp; Root Canals</a>
-<a class="cc-dacc-link" href="/ppo-plans/implant-planning.html">Implants</a>
-<a class="cc-dacc-link" href="/ppo-plans/emergency-dental.html">Emergency Dental</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">About<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link" href="/how-covercapy-works.html">How CoverCapy Works</a>
-<a class="cc-dacc-link" href="/dental-concierge-network.html">Dental Concierge Network</a>
-<a class="cc-dacc-link" href="/hmo-vs-ppo-dental-insurance.html">PPO vs HMO</a>
-<a class="cc-dacc-link" href="/upgrade-your-work-ppo.html">Upgrade Work PPO</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Dentist Portal<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/claim-dentist-listing-profile.html">Claim Free Profile</a>
-<a class="cc-dacc-link" href="/dentist-portal.html#capy-accredited">Capy Accreditation</a>
-<a class="cc-dacc-link" href="/dentist-portal.html#platinum-elite">Platinum Elite</a>
-<a class="cc-dacc-link" href="/dentist-portal.html">Dentist Portal</a>
-</div></div></div>
-</div>
-<div class="cc-drawer-foot"><a class="cc-drawer-join" href="/covercapy-join.html">Join Free</a><a class="cc-drawer-sign" href="/sign-in.html">Sign in</a></div>
-</div>
+￼ CoverCapyConcierge Dental Network
+EN â–¾
+EnglishEnglish EspaÃ±olEspaÃ±ol ç®€ä½“ä¸­æ–‡ç®€ä½“ä¸­æ–‡ ç¹é«”ä¸­æ–‡ç¹é«”ä¸­æ–‡
+Choose site language
+About â–¾
+Concierge Dental Network
+Dental care, guided from coverage to booking.
+CoverCapy helps patients understand PPO coverage, estimate treatment costs, and find trusted dentists before they book.
+â€œWe kept hearing the same story: a $3,000 dental bill that mightâ€™ve been closer to $300. CoverCapy helps you check the plan, the network, and the dentist before the surprise.â€
+Mr. Bara
+New here?
+A quick two minute concierge overview of how CoverCapy guides you from coverage to cost clarity, dentist discovery, and confident care.
+See how it works
+PPO vs HMO at a glance
+PPO HMO
+	•	âœ“See any dentist with no referral needed
+	•	âœ“Direct access to specialists
+	•	âœ“Higher annual maximums
+	•	âœ“Some coverage outside the network
+The Network
+How CoverCapy WorksCoverage, cost, then dentist Dental Concierge NetworkWhat makes us different Insurance We Work WithCarriers and networks
+Guides & Trust
+PPO vs HMO Guide Dental Insurance Glossary Community Forum Patient Reviews
+â˜… Why CoverCapy
+ðŸ›Ÿ
+The Concierge Difference
+Coverage, cost, then trusted care
+Explore the Network
+$0 to patientsPrivacy-first guidanceGuided journey
+Learn more
+Get Coverage â–¾
+PPO Coverage Guidance
+Activate PPO coverage with confidence.
+Compare PPO dental plans by treatment needs, waiting periods, annual maximums, and dentist flexibility.
+âš¡ Fastest Activation Â· Featured Plan
+ðŸ›¡ï¸
+UnitedHealthcare Primary Dental
+Coverage active as early as 1 business day
+100% diagnostic & preventiveEligible for patients under 65
+Activate CoveragePlan Details
+Not sure which plan?
+Get matched to PPO coverage that fits your treatment and timing.
+Compare & match
+Plan finder
+Who's it for?
+Individual Family 65+ Child Orthodontics
+Best starting point
+UnitedHealthcare Primary Dental
+Fast activation, coverage in days
+View plan
+By treatment
+Crowns & Root Canals Dental Implants Emergency Dental Cleaning & Preventive Compare all plans
+PPO insurance
+AeAetna Dental PPO AmAmeritas Dental PPO GuGuardian Dental PPO MOMutual of Omaha Dental PPO HuHumana Dental PPO All carriers
+Trusted PPO carriersNo assigned dentistCoverage by carrier
+Compare all PPO plans
+Estimate Costs â–¾
+Treatment Cost Guidance
+Know your dental cost before you book.
+Estimate common treatments, compare PPO savings, and plan monthly payments before your appointment.
+â—ˆ Featured Tool Â· Cost Estimator
+ðŸ§®
+Treatment Cost Estimator
+Implants, crowns, bridges and more
+Compare cash fee versus PPO in-network ratesTime major treatments around benefits
+Run My EstimateFinancingOptions
+See your number
+Build your own treatment plan and cost estimate first, so you walk in informed before any financing conversation.
+Plan my treatment
+â—· Estimated Savings
+Zirconia crown
+How many?âˆ’Ã—1+
+123456
+Typical cost
+$1,800
+â†’
+With PPO
+$675
+You save
+$1,125
+See your full breakdown
+Cost guides
+What does PPO dental insurance cover?Preventive, basic & major Dental costs: with vs without insuranceSee the savings How 0% dental financing worksSpread the cost, no interest Dental insurance waiting periodsMajor work, and when it's covered
+Plan ahead
+01Time it around your benefitsUse your annual maximum before it resets. 02Start with the basicsPreventive care now prevents major work later. 03Stage major treatmentSplit big cases across benefit years.
+Estimate by treatment
+Implants Crowns Bridges Dentures
+Partner Invitation Seeking a trusted financing partner CoverCapy is evaluating reputable patient financing partners for responsible monthly payment options. The goal: help patients move forward with care while keeping costs transparent for participating dentists. Inquire within
+Dentist informedEducational estimatesEducational planning
+Full calculator
+Find My Dentist â–¾
+PPO Dentist Discovery
+Find a trusted PPO dentist near you.
+Browse Capy Accredited offices by ZIP, region, or city, curated like a concierge recommendation.
+â—† Platinum Elite Â· Featured Dentist
+â—†
+KYT Dental Services
+â˜…â˜…â˜…â˜…â˜… 4.9 Â· 212 reviews
+11180 Warner Ave #251
+Fountain Valley, CA 92708 (833) 598-3368
+Book Appointment Call Office
+Modern care standard
+Capy Accreditation recognizes dental offices that pair advanced diagnostics, digital workflows, PPO-friendly access, and organized patient communication.
+View accreditation
+Start by need
+Browse trusted PPO care paths.
+Patients sometimes search by treatment first, then choose a dentist nearby.
+Implant PPO dentists â†’ Emergency PPO dentists â†’ Cosmetic PPO dentists â†’
 
-<!-- CoverCapy Universal Insurance Modal + Universal Booking Modal shell -->
-<div class="cc-universal-modal" id="covercapy-universal-modal" role="dialog" aria-modal="true" aria-labelledby="cc-universal-modal-title" aria-hidden="true">
-  <div class="cc-universal-modal-backdrop" data-modal-close aria-hidden="true"></div>
-  <div class="cc-universal-modal-card" role="document">
-    <button class="cc-universal-modal-close" type="button" data-modal-close aria-label="Close">
-      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
-    </button>
-    <div class="cc-universal-modal-eyebrow"><span class="cc-universal-modal-eyebrow-dot" aria-hidden="true"></span><span data-modal-slot="eyebrow">Leaving CoverCapy</span></div>
-    <h2 class="cc-universal-modal-title" id="cc-universal-modal-title" data-modal-slot="title">You're heading to<br/><em>UnitedHealthcare</em>.</h2>
-    <p class="cc-universal-modal-lede" data-modal-slot="body">We'll open UnitedHealthcare's official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.</p>
-    <div class="cc-universal-modal-disclosures" aria-label="Disclosures">
-      <span class="cc-universal-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
-      <div data-modal-slot="disclosures">
-        <div class="cc-universal-modal-disclosure"><span class="num">i.</span><span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of UnitedHealthcare.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">ii.</span><span>We <strong>don't earn a commission</strong> or referral fee on any plan you activate through this site.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">iii.</span><span>The destination is governed by <strong>UnitedHealthcare's terms</strong>, not ours. Pricing, eligibility, and plan details can change without notice.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">iv.</span><span>We make <strong>no guarantees</strong> about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">v.</span><span>By continuing, you acknowledge that <strong>CoverCapy is not liable</strong> for outcomes, denials, billing decisions, or transactions that happen after you leave this site.</span></div>
-      </div>
-    </div>
-    <div class="cc-universal-modal-actions">
-      <button class="btn-quiet cc-universal-modal-stay" type="button" data-modal-close><span data-modal-slot="cancel-label">Wait, tell me more</span><span class="arr" aria-hidden="true">→</span></button>
-      <a class="btn btn-primary cc-universal-modal-continue" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" target="_blank" rel="noopener noreferrer" data-track-outbound="uhc-primary-dental" data-carrier="uhc"><span data-modal-slot="continue-label">Continue to UnitedHealthcare</span><span class="arr" aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</div>
+â—Ž Find by ZIP
+Find a PPO dentist near you.
+Enter your ZIP. We'll search your area to see if there are any Platinum Elite dentists nearby, then you can browse dentists in your city.
+Search
+Your local results
+ðŸ“Enter a ZIP
+We'll show your city and the dentists nearby.
+Browse Dentists Near Rowland Heights Region Search
+Capy Accredited networkNo assigned dentistsAlways free for patients
+Full directory
+Patient Rewards â–¾
+Capy Crowns Membership
+A smarter way to own your dentistry.
+Earn Crowns just for being informed, then redeem them at participating Capy Accredited offices. Your first 300 are already yours.
+â™” Featured Reward Â· Capy Accredited
+â™”
+Free Whitening Session
+MSRP $600 Â· unlocks at 2,000 â™”
+Your balance: 300 â™”1,700 to go
+Claim 300Crowns ReferFriend
+Why join
+âœ“Free to join
+âœ“300 Crowns on signup
+âœ“Crowns never expire
+Your path to free whitening Â· 4 steps
+Sign up, activate, book, and refer one friend. That is exactly 2,000 Crowns.
+âœ“
+Create your account
+Earned automatically on signup
++300 â™”
+300 / 2,000
+2
+Activate a PPO plan
+Compare and choose your best fit
++500 â™”
+800 / 2,000
+3
+Book a PPO dentist
+Schedule at a Capy Accredited office
++500 â™”
+1,300 / 2,000
+4
+Refer a friend or family member
+One referral takes you to exactly 2,000
++700 â™”
+2,000 / 2,000
+Claim it at any participating Capy Accredited office near you. A vetted, premium experience.
+Redeem across the network
+Crowns work at every participating Capy Accredited office.
+ðŸ¦·Free Whitening SessionMSRP $6002,000 â™” ðŸ˜Invisalign PromoMember-exclusive rate2,500 â™” ðŸ’†Therapeutic BotoxFor TMJ & jaw tension3,000 â™”
+ðŸ’ŒRefer a friendA welcome bonus for them+700 â™”
+Claim at participating Capy Accredited officesCrowns never expireFree to join
+All rewards
+Dentist Portal â–¾
+Practice Growth
+Get discovered by PPO-ready patients.
+Serve patients who are actively comparing PPO coverage, estimating costs, and choosing trusted offices nearby.
+Is your practice listed?
+Search
+Free claim Â· 3-day review
+Curated network
+Every Tier 02 and up membership is reviewed by our team. Curated, credentials verified.
+Accreditation
+Tier 01
+Listed
+Verified, indexed, findable.
+	•	Verified practice page
+	•	PPO acceptance visibility
+	•	Booking link
+Claim Free Profile
+Free Â· 3-day review
+Most Popular
+Tier 02
+Capy Accredited
+The badge patients recognize first.
+	•	Capy Accredited badge
+	•	Featured in local city searches
+	•	Priority placement
+Apply for Capy Accreditation
+Where patients look first
+Tier 03
+Platinum Elite
+Priority visibility for ready patients.
+	•	Concierge matching
+	•	Territory exclusivity
+	•	Patient rewards visibility
+Apply for Platinum Elite
+One practice per area
+Claim Free Profile Dentist Portal Featured Promotion Feature your promotion to PPO patients Share a patient-friendly offer with people planning care. Requires Capy Accreditation
+Curated and vettedReviewed by our teamCancel anytime
+Advertising disclosure
+Sign in Join Free
+
+âœ• Close
+
+CoverCapyConcierge Dental Network
+âœ•
+Unlock 300 Capy Crowns and find PPO-friendly dentists near you.
+Find My Dentistâ–¶
+Find My Dentist Best PPO Dentists by City PPO Dentists by State
+Patient Rewardsâ–¶
+Claim 300 Crowns Refer a Friend Redeem Free Whitening Local Rewards Patient Login
+Estimate Costsâ–¶
+Run Treatment Estimate Monthly Payment Options Dental Waiting Periods Implant Cost Crown Cost Bridge Cost Denture Cost
+Get Coverageâ–¶
+Compare PPO Plans Fast PPO Activation Crowns & Root Canals Implants Emergency Dental
+Aboutâ–¶
+How CoverCapy Works Dental Concierge Network PPO vs HMO Upgrade Work PPO
+Dentist Portalâ–¶
+Claim Free Profile Capy Accreditation Platinum Elite Dentist Portal
+Join FreeSign in
+
+Before you continue
+You're heading to UnitedHealthcare.
+We'll open UnitedHealthcare's official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. CoverCapy never sees or stores your payment, insurance, or login details.
+A note before you go
+i.CoverCapy is an independent guide. We're not a broker, agent, or affiliate of UnitedHealthcare.
+ii.We don't earn a commission or referral fee on any plan you activate through this site.
+iii.The destination is governed by UnitedHealthcare's terms, not ours. Pricing, eligibility, and plan details can change without notice.
+iv.We make no guarantees about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.
+v.By continuing, you acknowledge that CoverCapy is not liable for outcomes, denials, billing decisions, or transactions that happen after you leave this site.
+Wait, tell me moreâ†’ Continue to UnitedHealthcareâ†’
