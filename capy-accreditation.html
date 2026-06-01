@@ -733,9 +733,9 @@ footer.site .flinks a:hover{color:#fff}
 </style>
 
 <!-- CoverCapy shared component styles -->
-<link rel="stylesheet" href="assets/css/mega-nav.css">
-<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
-<link rel="stylesheet" href="assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/mega-nav.css">
+<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="/assets/css/footer.css">
 
 <style>
   #cc-nav-mount { min-height: 72px; }
@@ -1319,11 +1319,11 @@ footer.site .flinks a:hover{color:#fff}
 
 <div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
-<script>
+<script id="cc-component-loader">
 (function(){
   const components = [
-    { mountId: 'cc-nav-mount', html: 'components/mega-nav.html', script: 'assets/js/mega-nav.js' },
-    { mountId: 'cc-footer-mount', html: 'components/footer.html', script: 'assets/js/footer.js' }
+    { mountId: 'cc-nav-mount', html: ['/components/mega-nav.html','components/mega-nav.html'], script: '/assets/js/mega-nav.js' },
+    { mountId: 'cc-footer-mount', html: ['/components/footer.html','components/footer.html'], script: '/assets/js/footer.js' }
   ];
 
   const loadScript = (src) => new Promise(resolve => {
@@ -1331,42 +1331,52 @@ footer.site .flinks a:hover{color:#fff}
     const s = document.createElement('script');
     s.src = src;
     s.defer = true;
-    s.onload = () => resolve();
+    s.onload = resolve;
     s.onerror = () => { console.warn('[CoverCapy loader] script failed:', src); resolve(); };
     document.body.appendChild(s);
   });
 
-  const replayScripts = (scripts) => {
-    scripts.forEach(old => {
-      if (!old.parentNode) return;
+  const replayScripts = (root) => {
+    root.querySelectorAll('script').forEach(old => {
       const fresh = document.createElement('script');
       for (const attr of old.attributes) fresh.setAttribute(attr.name, attr.value);
       fresh.textContent = old.textContent;
-      old.parentNode.replaceChild(fresh, old);
+      old.replaceWith(fresh);
     });
   };
 
-  const injectComponent = async ({ mountId, html: url }) => {
+  const fetchFirst = async (urls) => {
+    let lastError;
+    for (const url of urls) {
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`${url} returned ${res.status}`);
+        return await res.text();
+      } catch (err) {
+        lastError = err;
+      }
+    }
+    throw lastError;
+  };
+
+  const injectComponent = async ({ mountId, html }) => {
     const mount = document.getElementById(mountId);
     if (!mount) return;
     try {
-      const res = await fetch(url, { cache: 'no-cache' });
-      if (!res.ok) throw new Error(`${url} returned ${res.status}`);
       const wrapper = document.createElement('div');
-      wrapper.innerHTML = await res.text();
-      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
-      const parent = mount.parentNode;
-      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
-      parent.removeChild(mount);
-      replayScripts(injectedScripts);
+      wrapper.innerHTML = await fetchFirst(Array.isArray(html) ? html : [html]);
+      replayScripts(wrapper);
+      mount.replaceWith(...Array.from(wrapper.childNodes));
     } catch (err) {
-      console.warn('[CoverCapy loader] component failed:', url, err);
+      console.warn('[CoverCapy loader] component failed:', mountId, err);
+      mount.hidden = true;
     }
   };
 
   const init = async () => {
     for (const c of components) await injectComponent(c);
     for (const c of components) await loadScript(c.script);
+    document.documentElement.classList.add('cc-components-loaded');
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
