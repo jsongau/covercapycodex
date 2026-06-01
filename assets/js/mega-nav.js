@@ -159,11 +159,46 @@
 (function(){
   var DICT = {"What does PPO dental insurance cover?": {"zh": "PPO 牙科保险保障哪些项目？", "es": "¿Qué cubre el seguro dental PPO?"}, "Dental costs: with vs without insurance": {"zh": "牙科费用：有保险与无保险对比", "es": "Costos dentales: con y sin seguro"}, "See the savings": {"zh": "看看能省多少", "es": "Vea el ahorro"}, "How to lower your dental costs": {"zh": "如何降低您的牙科费用", "es": "Cómo reducir sus costos dentales"}, "Proven ways to save": {"zh": "经过验证的省钱方法", "es": "Formas comprobadas de ahorrar"}, "Is dental insurance worth it?": {"zh": "牙科保险值得买吗？", "es": "¿Vale la pena el seguro dental?"}, "When it pays off": {"zh": "何时划算", "es": "Cuándo conviene"}, "Free Whitening Session": {"zh": "免费美白疗程", "es": "Sesión de blanqueamiento gratis"}, "Invisalign Promo": {"zh": "Invisalign 优惠", "es": "Promo Invisalign"}, "Member-exclusive rate": {"zh": "会员专属价格", "es": "Tarifa exclusiva para miembros"}, "Botox for TMJ": {"zh": "TMJ 肉毒治疗", "es": "Bótox para ATM"}, "Therapeutic jaw relief": {"zh": "缓解颉部紧张", "es": "Alivio terapéutico de mandíbula"}, "+700 Crowns for you, a welcome bonus for them": {"zh": "您获得 +700 皇冠，对方获得欢迎奖励", "es": "+700 Crowns para usted, un bono de bienvenida para ellos"}, "Your local results": {"zh": "您的本地结果", "es": "Sus resultados locales"}, "Enter a ZIP": {"zh": "输入邮编", "es": "Ingrese un código postal"}, "We'll show your city and the dentists nearby.": {"zh": "我们会显示您的城市以及附近的牙医。", "es": "Le mostraremos su ciudad y los dentistas cercanos."}, "Platinum Elite · Featured Dentist": {"zh": "白金尊享 · 特色牙医", "es": "Platinum Elite · Dentista destacado"}, "General & Cosmetic Dentistry": {"zh": "综合与美容牙科", "es": "Odontología general y estética"}, "212 Google reviews": {"zh": "212 条谷歌评价", "es": "212 reseñas de Google"}, "Call": {"zh": "致电", "es": "Llamar"}, "Apply for Capy Accreditation": {"zh": "激活会员", "es": "Activar membresía"}, "Find a PPO dentist near you.": {"zh": "查找您附近接受 PPO 的牙医。", "es": "Encuentre un dentista PPO cerca de usted."}, "Enter your ZIP. We'll find your city, the areas nearby, and the PPO dentists around you.": {"zh": "输入您的邮编。我们会找到您所在的城市、附近区域，以及您周边接受 PPO 的牙医。", "es": "Ingrese su código postal. Encontraremos su ciudad, las áreas cercanas y los dentistas PPO a su alrededor."}, "Accepts your PPO": {"zh": "接受您的 PPO", "es": "Acepta su PPO"}, "Compare PPO Plans": {"zh": "激活保障", "es": "Activar cobertura"}, "Where patients look first": {"zh": "患者最先看到的地方", "es": "Donde los pacientes miran primero"}, "Patient rewards visibility": {"zh": "患者奖励可见度", "es": "Visibilidad de recompensas para pacientes"}, "By application": {"zh": "需申请", "es": "Por solicitud"}, "Cost guides": {"zh": "费用指南", "es": "Guías de costos"}, "Preventive, basic & major": {"zh": "预防、基础与重大项目", "es": "Preventivo, básico y mayor"}, "How 0% dental financing works": {"zh": "0% 牙科分期如何运作", "es": "Cómo funciona el financiamiento dental al 0%"}, "Spread the cost, no interest": {"zh": "分摊费用，零利息", "es": "Reparta el costo, sin intereses"}, "How it works": {"zh": "使用流程", "es": "Cómo funciona"}, "Enter your ZIP": {"zh": "输入您的邮编", "es": "Ingrese su código postal"}, "Plan ahead": {"zh": "提前规划", "es": "Planifique con tiempo"}, "Time it around your benefits": {"zh": "围绕您的福利安排时间", "es": "Planéelo según sus beneficios"}, "Use your annual maximum before it resets.": {"zh": "在年度额度重置前充分利用。", "es": "Use su máximo anual antes de que se reinicie."}, "Start with the basics": {"zh": "从基础项目开始", "es": "Comience por lo básico"}, "Preventive care now prevents major work later.": {"zh": "现在做好预防，避免日后的大型治疗。", "es": "El cuidado preventivo ahora evita trabajos mayores después."}, "Stage major treatment": {"zh": "分阶段进行大型治疗", "es": "Escalone los tratamientos mayores"}, "Split big cases across benefit years.": {"zh": "将大型病例分摄到不同福利年度。", "es": "Reparta los casos grandes entre años de beneficios."}, "Estimate by treatment": {"zh": "按治疗项目估算", "es": "Estimar por tratamiento"}, "Crown": {"zh": "牙冠", "es": "Corona"}, "Implant": {"zh": "种植牙", "es": "Implante"}, "Root canal": {"zh": "根管", "es": "Endodoncia"}, "Monthly Payment Options": {"zh": "月供方案", "es": "Opciones de Pago Mensual"}, "Smart Timing Strategy": {"zh": "智慧时机策略", "es": "Estrategia de Tiempo Inteligente"}, "Exclusive placement · 1 of 1": {"zh": "独家展位 · 仅此一席", "es": "Espacio exclusivo · 1 de 1"}, "Become our financing partner": {"zh": "成为我们的融资合作伙伴", "es": "Conviértase en nuestro socio de financiamiento"}, "One brand, featured inside every estimate a patient sees.": {"zh": "一个品牌，呈现在患者看到的每一份费用估算中。", "es": "Una marca, presente en cada estimación que ve el paciente."}, "By application · reserved for one": {"zh": "需申请 · 仅留一席", "es": "Por solicitud · reservado para uno"}, "Basic": {"zh": "基础", "es": "Básico"}, "Major": {"zh": "大型", "es": "Mayor"}, "Crowns, implants, root canals": {"zh": "牙冠、种植牙、根管", "es": "Coronas, implantes, endodoncias"}, "Treatment": {"zh": "治疗费用", "es": "Tratamiento"}, "Insurance covers": {"zh": "保险报销", "es": "El seguro cubre"}, "You pay": {"zh": "您支付", "es": "Usted paga"}, "Spread at 0% APR": {"zh": "0% 年利率分期", "es": "Reparta al 0% de interés"}, "/mo": {"zh": "/月", "es": "/mes"}, "Insurance knocks it down. 0% financing spreads the rest.": {"zh": "保险先减一笔，0% 分期再摊余款。", "es": "El seguro lo reduce. El financiamiento al 0% reparte el resto."}, "Showing offices near": {"zh": "正在显示附近诊所", "es": "Mostrando consultorios cerca de"}, "Searching near": {"zh": "正在搜索附近", "es": "Buscando cerca de"}, "Find dentists nearby": {"zh": "查找附近牙医", "es": "Buscar dentistas cercanos"}, "See all dentists nearby": {"zh": "查看附近所有牙医", "es": "Ver todos los dentistas cercanos"}, "See all dentists": {"zh": "查看所有牙医", "es": "Ver todos los dentistas"}, "Nearby cities": {"zh": "周边城市", "es": "Ciudades cercanas"}, "Search": {"zh": "搜索", "es": "Buscar"}, "See featured dentists": {"zh": "查看精选牙医", "es": "Ver dentistas destacados"}, "Enter your ZIP. We'll pinpoint your city, show the cities around it, and surface the Capy Accredited offices nearby.": {"zh": "输入您的邮编。我们将定位您所在的城市、显示周边城市，并呈现附近的 Capy 认证诊所。", "es": "Ingrese su código postal. Localizaremos su ciudad, mostraremos las ciudades cercanas y presentaremos los consultorios Capy Acreditados cercanos."}, "No paid placement": {"zh": "无付费排名", "es": "Sin posiciones pagadas"}, "Real patient reviews": {"zh": "真实患者评价", "es": "Reseñas de pacientes reales"}, "Capy Accredited": {"zh": "Capy 认证", "es": "Capy Acreditado"}, "Capy Accredited badge": {"zh": "Capy 认证徽章", "es": "Insignia Capy Acreditado"}, "Featured in local city searches": {"zh": "在本地城市搜索中精选展示", "es": "Destacado en búsquedas de la ciudad"}, "Priority placement": {"zh": "优先展示", "es": "Posición prioritaria"}, "The badge patients recognize first.": {"zh": "患者会按此徽章筛选。", "es": "La insignia que los pacientes filtran."}, "The Standard": {"zh": "标准版", "es": "El Estándar"}, "Apply": {"zh": "立即申请", "es": "Solicitar"}, "Listed": {"zh": "已收录", "es": "Listado"}, "Verified, indexed, findable.": {"zh": "已验证、已索引、可查找。", "es": "Verificado, indexado, localizable."}, "Apply for Platinum Elite": {"zh": "申请铂金精英", "es": "Solicitar Platinum Elite"}, "Featured Promotion": {"zh": "精选推广", "es": "Promoción Destacada"}, "Feature your promotion to PPO patients": {"zh": "向 PPO 患者展示您的优惠", "es": "Destaque su promoción ante pacientes PPO"}, "Share a patient-friendly offer with people planning care.": {"zh": "把优惠展示给刚刚激活保障的患者。", "es": "Muestre una oferta a los pacientes que acaban de activar su cobertura."}, "Requires Capy Accreditation": {"zh": "需要 Capy 认证", "es": "Requiere Acreditación Capy"}, "About": {"zh": "关于我们", "es": "Nosotros"}, "Get Coverage": {"zh": "获取保障", "es": "Obtener Cobertura"}, "Estimate Costs": {"zh": "费用估算", "es": "Estimar Costos"}, "Find My Dentist": {"zh": "查找牙医", "es": "Buscar Dentista"}, "Patient Rewards": {"zh": "患者奖励", "es": "Recompensas"}, "Dentist Portal": {"zh": "牙医门户", "es": "Portal Dentistas"}, "Sign in": {"zh": "登录", "es": "Iniciar Sesión"}, "Join Free": {"zh": "免费加入", "es": "Únete Gratis"}, "Concierge Dental Network": {"zh": "尊享牙科网络", "es": "Red Dental Concierge"}, "Compare coverage, estimate cost, and find a trusted PPO dentist before the chair reclines, so fewer surprises follow you home.": {"zh": "不再有账单冲击，也没有来自网络之外的意外收费。在就诊之前，比较保障、估算费用，并找到值得信赖的 PPO 牙医。", "es": "Sin sustos en la factura ni cargos sorpresa fuera de su red. Compare la cobertura, estime el costo y encuentre un dentista PPO de confianza antes de reclinar la silla."}, "PPO Coverage Guidance": {"zh": "PPO 保障指南", "es": "Guía de Cobertura PPO"}, "PPO Dentist Discovery": {"zh": "PPO 牙医发现", "es": "Descubrir Dentistas PPO"}, "Treatment Cost Guidance": {"zh": "牙科费用指南", "es": "Guía de Costos de Tratamiento"}, "PPO insurance": {"zh": "PPO 牙科保险", "es": "Seguro PPO"}, "By treatment": {"zh": "按治疗项目", "es": "Por Tratamiento"}, "Plan & pay": {"zh": "方案与支付", "es": "Plan y Pago"}, "Local Rewards": {"zh": "本地奖励", "es": "Recompensas Locales"}, "Practice Growth": {"zh": "诊所增长", "es": "Crecimiento del Consultorio"}, "What makes us different": {"zh": "我们的不同之处", "es": "Lo que nos diferencia"}, "Carriers and networks": {"zh": "承保公司与网络", "es": "Aseguradoras y redes"}, "Guides & Trust": {"zh": "指南与信任", "es": "Guías y Confianza"}, "Why patients trust us": {"zh": "患者为何信赖我们", "es": "Por qué los pacientes confían en nosotros"}, "See your number": {"zh": "查看您的数字", "es": "Vea su cifra"}, "Who's it for?": {"zh": "适合谁？", "es": "¿Para quién es?"}, "Plan finder": {"zh": "方案查找器", "es": "Buscador de planes"}, "New here?": {"zh": "初次来访？", "es": "¿Nuevo aquí?"}, "Why join": {"zh": "为何加入", "es": "Por qué unirse"}, "Individual": {"zh": "个人", "es": "Individual"}, "Family": {"zh": "家庭", "es": "Familia"}, "Child Orthodontics": {"zh": "儿童正畸", "es": "Ortodoncia Infantil"}, "Fast PPO Activation": {"zh": "快速激活 PPO", "es": "Activación Rápida de PPO"}, "Fast activation, coverage in days": {"zh": "快速激活，数日内生效", "es": "Activación rápida, cobertura en días"}, "Not sure which plan?": {"zh": "不确定选哪个方案？", "es": "¿No sabe qué plan elegir?"}, "Crowns & Root Canals": {"zh": "牙冠与根管", "es": "Coronas y Endodoncias"}, "Dental Implants": {"zh": "种植牙", "es": "Implantes Dentales"}, "Emergency Dental": {"zh": "急诊牙科", "es": "Dental de Emergencia"}, "Cleaning & Preventive": {"zh": "洁牙与预防", "es": "Limpieza y Prevención"}, "Aetna Dental PPO": {"zh": "Aetna 牙科 PPO", "es": "Aetna PPO Dental"}, "Ameritas Dental PPO": {"zh": "Ameritas 牙科 PPO", "es": "Ameritas PPO Dental"}, "Guardian Dental PPO": {"zh": "Guardian 牙科 PPO", "es": "Guardian PPO Dental"}, "Mutual of Omaha Dental PPO": {"zh": "Mutual of Omaha 牙科 PPO", "es": "Mutual of Omaha PPO Dental"}, "Humana Dental PPO": {"zh": "Humana 牙科 PPO", "es": "Humana PPO Dental"}, "UnitedHealthcare Primary PPO": {"zh": "UnitedHealthcare 首选 PPO", "es": "UnitedHealthcare PPO Principal"}, "Estimate common treatments, compare PPO savings, and plan monthly payments before your appointment.": {"zh": "估算常见治疗费用，比较 PPO 节省，并在就诊前规划月供。", "es": "Estime tratamientos comunes, compare el ahorro PPO y planifique pagos mensuales antes de su cita."}, "Treatment Cost Estimator": {"zh": "牙科费用估算器", "es": "Estimador de Costos de Tratamiento"}, "Crowns, implants, root canals and more": {"zh": "牙冠、种植牙、根管治疗等", "es": "Coronas, implantes, endodoncias y más"}, "How it works": {"zh": "了解原理", "es": "Cómo funciona"}, "How many?": {"zh": "数量？", "es": "¿Cuántas?"}, "Typical cost": {"zh": "常规费用", "es": "Costo típico"}, "with PPO": {"zh": "使用 PPO", "es": "con PPO"}, "You save": {"zh": "为您节省", "es": "Usted ahorra"}, "See your full breakdown": {"zh": "查看完整明细", "es": "Vea el desglose completo"}, "Crown Cost": {"zh": "牙冠费用", "es": "Costo de Corona"}, "Implant Cost": {"zh": "种植牙费用", "es": "Costo de Implante"}, "Root Canal Cost": {"zh": "根管治疗费用", "es": "Costo de Endodoncia"}, "Run My Estimate": {"zh": "开始估算", "es": "Calcular mi Estimado"}, "Monthly Payments": {"zh": "月供支付", "es": "Pagos Mensuales"}, "Dentist informed": {"zh": "牙医审核", "es": "Revisado por dentistas"}, "Educational estimates": {"zh": "仅供参考估算", "es": "Estimaciones educativas"}, "Updated 2026": {"zh": "2026 年更新", "es": "Actualizado 2026"}, "Full calculator": {"zh": "完整计算器", "es": "Calculadora completa"}, "Plan my treatment": {"zh": "规划我的治疗", "es": "Planear mi tratamiento"}, "Compare all PPO plans": {"zh": "比较所有 PPO 方案", "es": "Comparar todos los planes PPO"}, "Compare all plans": {"zh": "比较所有方案", "es": "Comparar todos los planes"}, "All carriers": {"zh": "所有承保公司", "es": "Todas las aseguradoras"}, "All rewards": {"zh": "所有奖励", "es": "Todas las recompensas"}, "Full directory": {"zh": "完整目录", "es": "Directorio completo"}, "Compare & match": {"zh": "比较并匹配", "es": "Comparar y combinar"}, "See How It Works": {"zh": "了解运作方式", "es": "Vea Cómo Funciona"}, "Explore the Network": {"zh": "探索网络", "es": "Explore la Red"}, "Browse PPO Dentists": {"zh": "浏览 PPO 牙医", "es": "Explorar Dentistas PPO"}, "Claim Free Profile": {"zh": "领取免费档案", "es": "Reclamar Perfil Gratis"}, "Redeem Free Whitening": {"zh": "兑换免费美白", "es": "Canjear Blanqueamiento Gratis"}, "West Coast": {"zh": "西海岸", "es": "Costa Oeste"}, "Southwest": {"zh": "西南部", "es": "Suroeste"}, "Midwest": {"zh": "中西部", "es": "Medio Oeste"}, "South": {"zh": "南部", "es": "Sur"}, "East Coast": {"zh": "东海岸", "es": "Costa Este"}, "Refer a Friend": {"zh": "推荐好友", "es": "Refiera a un Amigo"}, "Refer a friend": {"zh": "推荐好友", "es": "Refiera a un amigo"}, "Your balance:": {"zh": "您的余额：", "es": "Su saldo:"}, "Capy Crowns Membership": {"zh": "Capy Crowns 会员", "es": "Membresía Capy Crowns"}, "Platinum Elite": {"zh": "铂金精英", "es": "Platinum Elite"}, "Is your practice listed?": {"zh": "您的诊所已收录了吗？", "es": "¿Está su consultorio en la lista?"}, "The Concierge Difference": {"zh": "尊享式的不同", "es": "La Diferencia Concierge"}, "How CoverCapy Works": {"zh": "CoverCapy 如何运作", "es": "Cómo Funciona CoverCapy"}, "Inquire": {"zh": "咨询", "es": "Consultar"}, "Close": {"zh": "关闭", "es": "Cerrar"}};
   var HTML = {"hero_h1": {"zh": "看清您的牙科保险<em>实际</em>能报销多少。", "es": "Vea lo que su seguro dental <em>realmente</em> paga."}, "est_title": {"zh": "<em>预约前</em>先了解您的牙科费用。", "es": "Conozca el costo dental <em>antes</em> de reservar."}, "cov_title": {"zh": "<em>安心</em>激活 PPO 保障。", "es": "Active su cobertura PPO con <em>confianza.</em>"}, "about_title": {"zh": "牙科护理，从保障到<em>预约</em>全程指引。", "es": "Atención dental, guiada desde la cobertura hasta la <em>reserva.</em>"}, "find_title": {"zh": "在<em>您附近</em>找到值得信赖的 PPO 牙医。", "es": "Encuentre un dentista PPO de confianza <em>cerca de usted.</em>"}, "est_aside": {"zh": "先制定您<em>自己</em>的治疗方案和费用估算，做到心中有数，再与诊所谈付款。", "es": "Arme primero su <em>propio</em> plan de tratamiento y estimación de costos, para llegar informado antes de cualquier conversación sobre financiamiento."}, "rew_title": {"zh": "免费美白 <em>疗程</em>", "es": "Sesión de Blanqueamiento <em>Gratis</em>"}, "port_title": {"zh": "让新的 PPO <em>患者</em>发现您。", "es": "Sea descubierto por nuevos <em>pacientes</em> PPO."}, "port_alt": {"zh": "更聪明地<em>经营您的牙科诊所。</em>", "es": "Una forma más inteligente de <em>gestionar su consultorio.</em>"}, "cov_sub": {"zh": "为您<em>匹配</em>契合治疗需求与时机的 PPO 保障。", "es": "Le <em>conectamos</em> con la cobertura PPO ideal para su tratamiento y momento."}, "find_aside": {"zh": "每一家精选诊所都经我们团队审核，并由<em>真实患者</em>评分。", "es": "Cada consultorio destacado es revisado por nuestro equipo y calificado por <em>pacientes reales.</em>"}, "port_aside": {"zh": "Tier 02 及以上的每个会员资格都经我们团队审核。<em>精心甄选</em>，绝非众包。", "es": "Cada membresía de Nivel 02 o superior es revisada por nuestro equipo. <em>Seleccionada</em>, nunca por la multitud."}, "about_video": {"zh": "两分钟快速了解 CoverCapy 如何引导您从<em>获得保障</em>走向就诊。", "es": "Un resumen rápido de dos minutos sobre cómo CoverCapy le guía desde la <em>cobertura</em> hasta la silla."}};
-  var LANGS = {en:"EN", zh:"\u4e2d\u6587", es:"ES"};
-  var MMPAIR = {zh:"en|zh-CN", es:"en|es"};
-  var MEMO = {zh:{}, es:{}};
-  try{ var sv=JSON.parse(localStorage.getItem("ccI18nMemo")||"{}"); MEMO.zh=sv.zh||{}; MEMO.es=sv.es||{}; }catch(e){}
+  var LANGS = {en:"English", es:"Español", "zh-hans":"简体中文", "zh-hant":"繁體中文"};
+  var MMPAIR = {es:"en|es", "zh-hans":"en|zh-CN", "zh-hant":"en|zh-TW"};
+  var MEMO = {es:{}, "zh-hans":{}, "zh-hant":{}};
+  try{ var sv=JSON.parse(localStorage.getItem("ccI18nMemo")||"{}"); MEMO.es=sv.es||{}; MEMO["zh-hans"]=sv["zh-hans"]||sv.zh||{}; MEMO["zh-hant"]=sv["zh-hant"]||{}; }catch(e){}
   function saveMemo(){ try{ localStorage.setItem("ccI18nMemo", JSON.stringify(MEMO)); }catch(e){} }
+  function dictLang(lang){ return (lang==="zh-hans" || lang==="zh-hant") ? "zh" : lang; }
+  function langName(lang){
+    return {
+      en:"English",
+      es:"Spanish",
+      "zh-hans":"Simplified Mandarin Chinese",
+      "zh-hant":"Traditional Mandarin Chinese"
+    }[lang] || "English";
+  }
+  function shortLangName(lang){
+    return {
+      en:"English",
+      es:"Español",
+      "zh-hans":"简体中文",
+      "zh-hant":"繁體中文"
+    }[lang] || "English";
+  }
+  function setLangFoot(lang, busy){
+    var foot=document.getElementById("cc-lang-foot");
+    var widget=document.getElementById("cc-translation-widget");
+    var widgetText=document.getElementById("cc-translation-widget-text");
+    if(foot) foot.textContent = lang === "en" ? "Choose site language" : "Language selected: " + shortLangName(lang);
+    if(widget && widgetText){
+      if(busy && lang && lang !== "en"){
+        widgetText.innerHTML = '<span class="cc-translation-line">Translating to</span><span class="cc-translation-language">' + shortLangName(lang) + '</span>';
+        widget.hidden = false;
+        widget.setAttribute("aria-hidden","false");
+        requestAnimationFrame(function(){ widget.classList.add("show"); });
+      } else {
+        widget.classList.remove("show");
+        widget.setAttribute("aria-hidden","true");
+        setTimeout(function(){ if(!widget.classList.contains("show")) widget.hidden = true; }, 320);
+      }
+    }
+  }
   var origT=[], origH=[];
   function translatable(s){
     s=s.trim();
@@ -204,7 +239,7 @@
   function applyHTML(lang){
     document.querySelectorAll("[data-i18n-html]").forEach(function(el){
       if(el.__en===undefined){ el.__en=el.innerHTML; origH.push({el:el, en:el.innerHTML}); }
-      var k=el.getAttribute("data-i18n-html"), t=HTML[k] && HTML[k][lang];
+      var k=el.getAttribute("data-i18n-html"), dk=dictLang(lang), t=HTML[k] && (HTML[k][lang] || HTML[k][dk]);
       if(t) el.innerHTML=t;
     });
   }
@@ -237,23 +272,25 @@
       pump();
     });
   }
-  function setBusy(b){ var w=document.getElementById("cc-lang"); if(w) w.classList.toggle("translating", b); }
+  function setBusy(b){ var w=document.getElementById("cc-lang"); if(w) w.classList.toggle("translating", b); setLangFoot(window.ccLang || "en", b); }
   async function setLang(lang){
+    if(lang==="zh") lang="zh-hans";
     restoreEN();
     window.ccLang=lang;
     document.documentElement.setAttribute("lang", lang);
     var cur=document.getElementById("cc-lang-cur"); if(cur) cur.textContent=LANGS[lang]||"EN";
+    setLangFoot(lang, false);
     document.querySelectorAll(".cc-lang-opt").forEach(function(o){ o.classList.toggle("is-active", o.getAttribute("data-lang")===lang); });
     try{ localStorage.setItem("cc-lang", lang); }catch(e){}
-    if(lang==="en") return;
+    if(lang==="en"){ setLangFoot(lang, false); return; }
     applyHTML(lang);
     var byKey=buildIndex();
     Object.keys(byKey).forEach(function(key){
-      var t=(DICT[key] && DICT[key][lang]) || MEMO[lang][key];
+      var dk=dictLang(lang), t=(DICT[key] && (DICT[key][lang] || DICT[key][dk])) || MEMO[lang][key];
       if(t) byKey[key].forEach(function(n){ setNode(n, t); });
     });
     var list=Object.keys(byKey).filter(function(key){
-      return translatable(key) && !(DICT[key] && DICT[key][lang]) && !MEMO[lang][key];
+      var dk=dictLang(lang); return translatable(key) && !(DICT[key] && (DICT[key][lang] || DICT[key][dk])) && !MEMO[lang][key];
     });
     setBusy(true);
     await fetchPool(list, lang, byKey);
@@ -274,7 +311,7 @@
     document.addEventListener("click", function(e){ if(!wrap.contains(e.target)) wrap.classList.remove("open"); });
     document.addEventListener("keydown", function(e){ if(e.key==="Escape") wrap.classList.remove("open"); });
   }
-  try{ var s=localStorage.getItem("cc-lang"); if(s && s!=="en") setLang(s); }catch(e){}
+  try{ var s=localStorage.getItem("cc-lang"); if(s==="zh") s="zh-hans"; if(s && s!=="en") setLang(s); else setLangFoot("en", false); }catch(e){}
 })();
 
 (function(){
@@ -284,7 +321,7 @@
   var COVER_CAPY_UNIVERSAL_MODALS = {
     insurance: {
       uhc: {
-        eyebrow: 'Universal Insurance Modal',
+        eyebrow: 'Before you activate coverage',
         title: 'You\'re heading to<br/><em>UnitedHealthcare</em>.',
         body: 'We\'ll open UnitedHealthcare\'s official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.',
         disclosuresLabel: 'Before you activate coverage',
@@ -304,7 +341,7 @@
     },
     booking: {
       kyt: {
-        eyebrow: 'Universal Booking Modal',
+        eyebrow: 'Before you book',
         title: 'You\'re booking with<br/><em>KYT Dental Services</em>.',
         body: 'We\'ll open KYT Dental Services\' official booking page in a new tab. CoverCapy is an <strong>independent concierge directory</strong> — we help you discover and compare practices, but the schedule, accepted plans, fees, and treatment decisions are handled by the dental office.',
         disclosuresLabel: 'Before you book',
@@ -376,7 +413,7 @@
     var providerKey = provider || slugify(practice);
     var tracking = (trigger && trigger.getAttribute('data-track-outbound')) || ('booking-' + providerKey);
     return {
-      eyebrow: 'Universal Booking Modal',
+      eyebrow: 'Before you book',
       title: 'You\'re booking with<br/><em>' + practice + '</em>.',
       body: 'We\'ll open ' + practice + '\'s booking page in a new tab. CoverCapy is an <strong>independent concierge directory</strong> — we help you discover and compare practices, but the schedule, accepted plans, fees, and treatment decisions are handled by the dental office.',
       disclosuresLabel: 'Before you book',
@@ -407,7 +444,7 @@
     var config = override || getConfig(type, provider);
     if(!config) return false;
 
-    if(eyebrowEl) eyebrowEl.innerHTML=config.eyebrow || (type === 'booking' ? 'Universal Booking Modal' : 'Universal Insurance Modal');
+    if(eyebrowEl) eyebrowEl.innerHTML=config.eyebrow || (type === 'booking' ? 'Before you book' : 'Before you activate coverage');
     if(titleEl) titleEl.innerHTML=config.title || '';
     if(bodyEl) bodyEl.innerHTML=config.body || '';
     if(disclosuresLbl) disclosuresLbl.textContent=config.disclosuresLabel || 'A note before you go';
