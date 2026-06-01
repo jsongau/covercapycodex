@@ -44,9 +44,12 @@
 <!-- CoverCapy Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8699915070570206" crossorigin="anonymous"></script>
 
-<!-- Sitewide CoverCapy shell presets: load before this page's CSS so nav/footer palette wins globally -->
+<!-- Sitewide CoverCapy shell presets: these load BEFORE this page's CSS so nav/footer keep their own palette. -->
 <link rel="stylesheet" href="/mega-nav.css">
 <link rel="stylesheet" href="/footer.css">
+<!-- Optional fallbacks if your repo keeps shared assets inside /assets/. 404s are harmless. -->
+<link rel="stylesheet" href="/assets/css/mega-nav.css">
+<link rel="stylesheet" href="/assets/css/footer.css">
 
 <!-- Fonts: distinctive editorial serif + clean modern sans -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,17 +114,15 @@
 
 <style>
 /* Page CSS is scoped to .capy-accreditation-page so it cannot recolor or resize the sitewide mega nav/footer. */
-
 /* ============================ THEME ============================ */
-.capy-accreditation-page{
-  --bg:#F6F3FC; --bg-soft:#FBFAFE; --panel:#FFFFFF;
+.capy-accreditation-page{--bg:#F6F3FC; --bg-soft:#FBFAFE; --panel:#FFFFFF;
   --ink:#2A2342; --ink-soft:#544B6E; --ink-faint:#6F6788;
   --emerald:#6B4FD8; --emerald-deep:#4A359E; --emerald-700:#3C2A86;
   --emerald-soft:#ECE6FB; --emerald-mist:#E1D7F6; --mint:#C8B6F0;
   --orange:#B8973F; --orange-deep:#8E7430; --orange-bright:#D7B65C; --orange-soft:#F0E7C9;
   --violet:#6B4FD8; --violet-deep:#4A359E; --violet-soft:#ECE6FB; --violet-mist:#E1D7F6; --lav:#EDE7FB; --violet-line:rgba(74,53,158,.30);
   --cream:#F6F3FC; --ivory:#FBFAFE; --sand:#E1D7F6; --cream-deep:#ECE6FB; --ink-mid:#544B6E; --gold-deep:#8E7430; --line-soft:rgba(74,53,158,.06);
-  --r-lg:18px; --r-md:13px; --r-sm:9px; --r-pill:999px; --ease:cubic-bezier(.22,1,.36,1); --ff-serif:'Fraunces',Georgia,serif;
+  --r-lg:18px; --r-md:13px; --r-sm:9px; --r-pill:999px; --ease:cubic-bezier(.22,1,.36,1); --ff-serif:"Fraunces",Georgia,serif;
   --gold:#B8973F; --gold-bright:#D7B65C; --gold-soft:#E7D6A4; --slate:#5B6472;
   --line:rgba(74,53,158,.12); --line-strong:rgba(74,53,158,.20);
   --glass:rgba(255,255,255,.62); --glass-strong:rgba(255,255,255,.82);
@@ -129,37 +130,30 @@
   --shadow-md:0 14px 44px rgba(74,53,158,.10);
   --shadow-lg:0 36px 90px rgba(74,53,158,.18);
   --radius:22px; --radius-sm:14px;
-  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
-  --font-body:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;
-  --maxw:1180px;
-}
+  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,sans-serif;
+  --maxw:1180px;}
 .capy-accreditation-page, .capy-accreditation-page *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-.capy-accreditation-page{
-  margin:0; min-height:100vh; position:relative; isolation:isolate; font-family:var(--font-body); color:var(--ink);
+.capy-accreditation-page{margin:0; position:relative; isolation:isolate; font-family:var(--font-body); color:var(--ink);
   background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+  overflow-x:hidden;}
 /* atmospheric background */
-.capy-accreditation-page::before{
-  content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+.capy-accreditation-page::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:
     radial-gradient(60% 50% at 12% 0%, rgba(200,182,240,.16), transparent 60%),
     radial-gradient(50% 45% at 92% 8%, rgba(215,182,92,.12), transparent 60%),
     radial-gradient(70% 60% at 50% 100%, rgba(107,79,216,.08), transparent 60%),
-    linear-gradient(180deg,#FBFAFE 0%, #F6F3FC 55%, #EFEAF9 100%);
-}
+    linear-gradient(180deg,#FBFAFE 0%, #F6F3FC 55%, #EFEAF9 100%);}
 /* subtle grain */
-.capy-accreditation-page::after{
-  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.capy-accreditation-page::after{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .capy-accreditation-page .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
 .capy-accreditation-page img{max-width:100%}
 .capy-accreditation-page a{color:inherit}
 
 /* reading progress bar */
-.capy-accreditation-page #progressbar{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
+.capy-accreditation-page #progressbar{position:fixed; top:0; left:0; height:3px; width:0; z-index:120;
   background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transition:width .1s linear}
 
 /* ============================ TYPE ============================ */
@@ -474,7 +468,7 @@ html{scroll-behavior:smooth}
 .capy-accreditation-page h1, .capy-accreditation-page h2, .capy-accreditation-page h3, .capy-accreditation-page h4{text-wrap:balance}
 .capy-accreditation-page p, .capy-accreditation-page li{text-wrap:pretty}
 /* ── sticky section sub-nav ── */
-.capy-accreditation-page .sectionnav{position:sticky; top:var(--covercapy-nav-height, 0px); z-index:90; background:rgba(251,246,236,.86); -webkit-backdrop-filter:blur(12px) saturate(140%); backdrop-filter:blur(12px) saturate(140%); border-bottom:1px solid var(--line)}
+.capy-accreditation-page .sectionnav{position:sticky; top:var(--cc-site-nav-offset, 76px); z-index:90; background:rgba(251,246,236,.86); -webkit-backdrop-filter:blur(12px) saturate(140%); backdrop-filter:blur(12px) saturate(140%); border-bottom:1px solid var(--line)}
 .capy-accreditation-page .sectionnav .inner{max-width:var(--maxw); margin:0 auto; padding:0 24px; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; height:52px; align-items:center}
 .capy-accreditation-page .sectionnav .inner::-webkit-scrollbar{display:none}
 .capy-accreditation-page .sectionnav a{flex:0 0 auto; font-size:.85rem; font-weight:600; color:var(--ink-soft); text-decoration:none; padding:8px 14px; border-radius:100px; white-space:nowrap; transition:color .15s, background .15s}
@@ -704,18 +698,18 @@ html{scroll-behavior:smooth}
 .capy-accreditation-page .reveal.in{opacity:1; transform:none}
 
 /* ============================ RESPONSIVE ============================ */
-.capy-accreditation-page @media (max-width:980px){
-  .hero-grid{grid-template-columns:1fr; gap:20px}
-  .seal-stage{order:-1; min-height:320px; margin-bottom:8px}
-  .console{grid-template-columns:1fr}
-  .meter-card{position:static}
-  .two-col{grid-template-columns:1fr}
-  .elig-grid{grid-template-columns:1fr}
-  .timeline{grid-template-columns:1fr; gap:0}
-  .timeline::before{top:0; bottom:0; left:23px; right:auto; width:2px; height:auto}
-  .tnode{display:grid; grid-template-columns:46px 1fr; text-align:left; gap:16px; padding:10px 0; align-items:start}
-  .tnode .dot{margin:0}
-  .gap-list{grid-template-columns:1fr}
+@media (max-width:980px){
+  .capy-accreditation-page .hero-grid{grid-template-columns:1fr; gap:20px}
+  .capy-accreditation-page .seal-stage{order:-1; min-height:320px; margin-bottom:8px}
+  .capy-accreditation-page .console{grid-template-columns:1fr}
+  .capy-accreditation-page .meter-card{position:static}
+  .capy-accreditation-page .two-col{grid-template-columns:1fr}
+  .capy-accreditation-page .elig-grid{grid-template-columns:1fr}
+  .capy-accreditation-page .timeline{grid-template-columns:1fr; gap:0}
+  .capy-accreditation-page .timeline::before{top:0; bottom:0; left:23px; right:auto; width:2px; height:auto}
+  .capy-accreditation-page .tnode{display:grid; grid-template-columns:46px 1fr; text-align:left; gap:16px; padding:10px 0; align-items:start}
+  .capy-accreditation-page .tnode .dot{margin:0}
+  .capy-accreditation-page .gap-list{grid-template-columns:1fr}
 }
 @media (max-width:760px){
   .capy-accreditation-page .nav-links{display:none}
@@ -739,19 +733,16 @@ html{scroll-behavior:smooth}
   .capy-accreditation-page .reveal{opacity:1; transform:none}
   .capy-accreditation-page .rung{opacity:1; transform:none}
 }
-
 </style>
 </head>
 
-<body class="capy-accreditation-shell">
-<!-- Sitewide mega nav mount. /mega-nav.css and /footer.css are already loaded in <head>. -->
+<body>
+<!-- CoverCapy sitewide mega navigation mount. This loads outside the page wrapper so its palette/scripts stay isolated. -->
 <div id="covercapy-mega-nav" data-include="/mega-nav.html"></div>
 
+<!-- Page wrapper: all accreditation CSS/JS is scoped here so it cannot bleed into the mega nav or footer. -->
 <div id="capy-accreditation-page" class="capy-accreditation-page">
 <div id="progressbar" aria-hidden="true"></div>
-
-<!-- ============================ HEADER (replace with real mega-nav) ============================ -->
-
 
 <main>
 <!-- ============================ HERO ============================ -->
@@ -1316,6 +1307,7 @@ html{scroll-behavior:smooth}
 <div class="page-legal reveal">
   <p><b>Disclaimer.</b> Capy Accreditation is a private credential offered by CoverCapy. It is not affiliated with, endorsed by, or a substitute for any government body, dental licensing board, professional association, or third party certification organization. Accreditation reflects CoverCapy's review of specific practice markers and is not a guarantee of clinical outcomes, a specific search ranking position, or patient volume. Featured Member placement is a paid membership benefit and is labeled as such within CoverCapy search. Patients should continue to verify a provider's licensure and credentials independently when making care decisions.</p>
 </div>
+
 </div><!-- /#capy-accreditation-page -->
 
 <!-- Sitewide footer mount. Kept outside page scope so footer presets cannot be overwritten by this page. -->
@@ -1325,21 +1317,38 @@ html{scroll-behavior:smooth}
 <script>
 (function(){
   const includes = [
-    { mount: 'covercapy-mega-nav', html: '/mega-nav.html', script: '/mega-nav.js' },
-    { mount: 'covercapy-footer', html: '/footer.html', script: '/footer.js' }
+    {
+      mount: 'covercapy-mega-nav',
+      html: ['/mega-nav.html', '/assets/includes/mega-nav.html', '/includes/mega-nav.html'],
+      scripts: ['/mega-nav.js', '/assets/js/mega-nav.js', '/assets/js/load-nav.js', '/load-nav.js']
+    },
+    {
+      mount: 'covercapy-footer',
+      html: ['/footer.html', '/assets/includes/footer.html', '/includes/footer.html'],
+      scripts: ['/footer.js', '/assets/js/footer.js']
+    }
   ];
 
-  function loadHtml({ mount, html }){
-    const el = document.getElementById(mount);
+  function firstWorkingFetch(urls){
+    let chain = Promise.reject();
+    urls.forEach(function(url){
+      chain = chain.catch(function(){
+        return fetch(url, { credentials: 'same-origin' }).then(function(res){
+          if (!res.ok) throw new Error(url + ' returned ' + res.status);
+          return res.text();
+        });
+      });
+    });
+    return chain;
+  }
+
+  function loadHtml(item){
+    const el = document.getElementById(item.mount);
     if (!el) return Promise.resolve();
-    return fetch(html, { credentials: 'same-origin' })
-      .then(function(res){
-        if (!res.ok) throw new Error(html + ' returned ' + res.status);
-        return res.text();
-      })
+    return firstWorkingFetch(item.html)
       .then(function(markup){ el.innerHTML = markup; })
       .catch(function(err){
-        console.warn('[CoverCapy shell] Could not load', html, err);
+        console.warn('[CoverCapy shell] Could not load include for #' + item.mount, err);
       });
   }
 
@@ -1350,16 +1359,21 @@ html{scroll-behavior:smooth}
       s.src = src;
       s.defer = true;
       s.onload = resolve;
-      s.onerror = function(){
-        console.warn('[CoverCapy shell] Could not load', src);
-        resolve();
-      };
+      s.onerror = resolve; // fallback scripts may 404; keep page working.
       document.body.appendChild(s);
     });
   }
 
+  function loadScriptFallbacks(urls){
+    return urls.reduce(function(promise, src){
+      return promise.then(function(){ return loadScriptOnce(src); });
+    }, Promise.resolve());
+  }
+
   window.CoverCapyShellReady = Promise.all(includes.map(loadHtml))
-    .then(function(){ return Promise.all(includes.map(function(item){ return loadScriptOnce(item.script); })); });
+    .then(function(){
+      return Promise.all(includes.map(function(item){ return loadScriptFallbacks(item.scripts); }));
+    });
 })();
 </script>
 
