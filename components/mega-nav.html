@@ -94,7 +94,7 @@
 <div class="featured-card promo-action-card plan-feature-card" style="margin-top:0">
 <div class="featured-banner plan-feature-banner"><span class="bolt-mark">⚡</span> Fastest Activation · Featured Plan</div>
 <div class="featured-body"><div class="featured-avatar">🛡️</div><div class="featured-copy"><div class="featured-name">UnitedHealthcare Primary Dental</div><div class="featured-meta">Coverage active as early as 1 business day</div><div class="feature-lines feature-lines-vertical"><span>100% diagnostic &amp; preventive</span><span>Eligible for patients under 65</span></div></div></div>
-<div class="featured-actions"><a class="featured-btn primary" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" data-cc-modal="insurance" data-cc-modal-provider="uhc" data-track-outbound="uhc-primary-dental">Activate Coverage</a><a class="featured-btn secondary" href="/ppo-plans/uhc-primary-ppo.html">Plan Details</a></div>
+<div class="featured-actions"><a class="featured-btn primary" data-cc-modal="insurance" data-cc-modal-provider="uhc" data-track-outbound="uhc-primary-dental" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental">Activate Coverage</a><a class="featured-btn secondary" href="/ppo-plans/uhc-primary-ppo.html">Plan Details</a></div>
 </div>
 </div>
 <!-- ===== /PROMO SLOT ===== -->
@@ -154,7 +154,7 @@
 <div>
 <div class="est-card">
 <div class="est-eyebrow">◷ Estimated Savings</div>
-<div class="est-head"><div class="est-name">Zirconia crown + buildup</div><span class="est-stepper"><button class="est-step" id="est-minus" type="button" aria-label="Fewer crowns">−</button><span class="est-qval" id="est-qval">×1</span><button class="est-step" id="est-plus" type="button" aria-label="More crowns">+</button></span></div>
+<div class="est-head"><div class="est-name">Zirconia crown + buildup</div><span class="est-stepper"><button aria-label="Fewer crowns" class="est-step" id="est-minus" type="button">−</button><span class="est-qval" id="est-qval">×1</span><button aria-label="More crowns" class="est-step" id="est-plus" type="button">+</button></span></div>
 <input aria-label="Number of crowns" class="est-slider" id="est-slider" max="6" min="1" step="1" type="range" value="1"/>
 <div class="est-ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
 <div class="est-out">
@@ -219,12 +219,12 @@
 <div class="featured-copy">
 <a class="featured-name feature-practice-link" href="/dentists/kyt-dental-services.html">KYT Dental Services</a>
 <div class="featured-meta"><span class="featured-stars">★★★★★</span> 4.9 · 212 reviews</div>
-<a class="featured-loc feature-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=KYT%20Dental%20Services%2011180%20Warner%20Ave%20%23251%20Fountain%20Valley%20CA%2092708" target="_blank" rel="noopener">11180 Warner Ave #251<br><span class="featured-address-line2">Fountain Valley, CA 92708<span class="featured-mi" id="feat-mi"></span></span></a>
+<a class="featured-loc feature-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=KYT%20Dental%20Services%2011180%20Warner%20Ave%20%23251%20Fountain%20Valley%20CA%2092708" rel="noopener" target="_blank">11180 Warner Ave #251<br/><span class="featured-address-line2">Fountain Valley, CA 92708<span class="featured-mi" id="feat-mi"></span></span></a>
 <a class="feature-phone" href="tel:+18335983368">(833) 598-3368</a>
 </div>
 </div>
 <div class="featured-actions">
-<a class="featured-btn primary" href="https://www.kytdentalservices.com/booking" data-cc-modal="booking" data-cc-modal-provider="kyt" data-cc-booking-practice="KYT Dental Services" data-track-outbound="kyt-dental-services-booking">Book Appointment</a>
+<a class="featured-btn primary" data-cc-booking-practice="KYT Dental Services" data-cc-modal="booking" data-cc-modal-provider="kyt" data-track-outbound="kyt-dental-services-booking" href="https://www.kytdentalservices.com/booking">Book Appointment</a>
 <a class="featured-btn secondary" href="tel:+18335983368">Call Office</a>
 </div>
 </div>
@@ -249,7 +249,7 @@
 </div>
 <div>
 <div class="find-step-eyebrow">Step 3 · Browse dentists</div>
-<div class="find-ready" id="nav-find-ready" hidden><span class="find-ready-tx">You’re all set. Browse below</span><span class="find-ready-arrow">↓</span></div>
+<div class="find-ready" hidden="" id="nav-find-ready"><span class="find-ready-tx">You’re all set. Browse below</span><span class="find-ready-arrow">↓</span></div>
 <div class="mega-ctas">
 <a class="mega-cta-p cta-idle" href="/ppodentists.html?city=los-angeles-county/rowland-heights" id="nav-find-cta">Browse Dentists Near You</a>
 <a class="mega-cta-s cta-region" href="/ppodentists.html" id="nav-find-all">Region Search</a>
@@ -374,7 +374,6 @@
 <span class="cc-curtain-txt">Close</span>
 </button>
 <div aria-hidden="true" class="cc-stage" id="cc-stage"><span class="cc-stage-l"></span><span class="cc-stage-r"></span></div>
-<!-- MOBILE DRAWER -->
 <div aria-hidden="true" class="cc-drawer" id="cc-drawer">
 <div class="cc-drawer-head">
 <div class="cc-drawer-head-row">
@@ -427,46 +426,42 @@
 </div>
 <div class="cc-drawer-foot"><a class="cc-drawer-join" href="/covercapy-join.html">Join Free</a><a class="cc-drawer-sign" href="/sign-in.html">Sign in</a></div>
 </div>
-
-<!-- CoverCapy Translation Status Widget -->
-<div class="cc-translation-widget" id="cc-translation-widget" aria-live="polite" aria-hidden="true" hidden>
-  <div class="cc-translation-bot" aria-hidden="true">
-    <span class="cc-translation-bot-antenna"></span>
-    <span class="cc-translation-bot-head">
-      <span class="cc-translation-bot-eye"></span>
-      <span class="cc-translation-bot-eye"></span>
-    </span>
-    <span class="cc-translation-bot-ring"></span>
-  </div>
-  <div class="cc-translation-copy">
-    <div class="cc-translation-kicker"><span>CoverCapy translation</span><span>in progress</span></div>
-    <div class="cc-translation-widget-text" id="cc-translation-widget-text"><span class="cc-translation-line">Translating to</span><span class="cc-translation-language">简体中文</span></div>
-  </div>
+<div aria-hidden="true" aria-live="polite" class="cc-translation-widget" hidden="" id="cc-translation-widget">
+<div aria-hidden="true" class="cc-translation-bot">
+<span class="cc-translation-bot-antenna"></span>
+<span class="cc-translation-bot-head">
+<span class="cc-translation-bot-eye"></span>
+<span class="cc-translation-bot-eye"></span>
+</span>
+<span class="cc-translation-bot-ring"></span>
 </div>
-
-<!-- CoverCapy Universal Insurance Modal + Universal Booking Modal shell -->
-<div class="cc-universal-modal" id="covercapy-universal-modal" role="dialog" aria-modal="true" aria-labelledby="cc-universal-modal-title" aria-hidden="true">
-  <div class="cc-universal-modal-backdrop" data-modal-close aria-hidden="true"></div>
-  <div class="cc-universal-modal-card" role="document">
-    <button class="cc-universal-modal-close" type="button" data-modal-close aria-label="Close">
-      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
-    </button>
-    <div class="cc-universal-modal-eyebrow"><span class="cc-universal-modal-eyebrow-dot" aria-hidden="true"></span><span data-modal-slot="eyebrow">Before you continue</span></div>
-    <h2 class="cc-universal-modal-title" id="cc-universal-modal-title" data-modal-slot="title">You're heading to<br/><em>UnitedHealthcare</em>.</h2>
-    <p class="cc-universal-modal-lede" data-modal-slot="body">We'll open UnitedHealthcare's official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.</p>
-    <div class="cc-universal-modal-disclosures" aria-label="Disclosures">
-      <span class="cc-universal-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
-      <div data-modal-slot="disclosures">
-        <div class="cc-universal-modal-disclosure"><span class="num">i.</span><span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of UnitedHealthcare.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">ii.</span><span>We <strong>don't earn a commission</strong> or referral fee on any plan you activate through this site.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">iii.</span><span>The destination is governed by <strong>UnitedHealthcare's terms</strong>, not ours. Pricing, eligibility, and plan details can change without notice.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">iv.</span><span>We make <strong>no guarantees</strong> about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.</span></div>
-        <div class="cc-universal-modal-disclosure"><span class="num">v.</span><span>By continuing, you acknowledge that <strong>CoverCapy is not liable</strong> for outcomes, denials, billing decisions, or transactions that happen after you leave this site.</span></div>
-      </div>
-    </div>
-    <div class="cc-universal-modal-actions">
-      <button class="btn-quiet cc-universal-modal-stay" type="button" data-modal-close><span data-modal-slot="cancel-label">Wait, tell me more</span><span class="arr" aria-hidden="true">→</span></button>
-      <a class="btn btn-primary cc-universal-modal-continue" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" target="_blank" rel="noopener noreferrer" data-track-outbound="uhc-primary-dental" data-carrier="uhc"><span data-modal-slot="continue-label">Continue to UnitedHealthcare</span><span class="arr" aria-hidden="true">→</span></a>
-    </div>
-  </div>
+<div class="cc-translation-copy">
+<div class="cc-translation-kicker"><span>CoverCapy translation</span><span>in progress</span></div>
+<div class="cc-translation-widget-text" id="cc-translation-widget-text"><span class="cc-translation-line">Translating to</span><span class="cc-translation-language">简体中文</span></div>
+</div>
+</div>
+<div aria-hidden="true" aria-labelledby="cc-universal-modal-title" aria-modal="true" class="cc-universal-modal" id="covercapy-universal-modal" role="dialog">
+<div aria-hidden="true" class="cc-universal-modal-backdrop" data-modal-close=""></div>
+<div class="cc-universal-modal-card" role="document">
+<button aria-label="Close" class="cc-universal-modal-close" data-modal-close="" type="button">
+<svg aria-hidden="true" height="14" viewbox="0 0 24 24" width="14"><path d="M6 6 L18 18 M18 6 L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="cc-universal-modal-eyebrow"><span aria-hidden="true" class="cc-universal-modal-eyebrow-dot"></span><span data-modal-slot="eyebrow">Before you continue</span></div>
+<h2 class="cc-universal-modal-title" data-modal-slot="title" id="cc-universal-modal-title">You're heading to<br><em>UnitedHealthcare</em>.</br></h2>
+<p class="cc-universal-modal-lede" data-modal-slot="body">We'll open UnitedHealthcare's official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.</p>
+<div aria-label="Disclosures" class="cc-universal-modal-disclosures">
+<span class="cc-universal-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
+<div data-modal-slot="disclosures">
+<div class="cc-universal-modal-disclosure"><span class="num">i.</span><span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of UnitedHealthcare.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">ii.</span><span>We <strong>don't earn a commission</strong> or referral fee on any plan you activate through this site.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">iii.</span><span>The destination is governed by <strong>UnitedHealthcare's terms</strong>, not ours. Pricing, eligibility, and plan details can change without notice.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">iv.</span><span>We make <strong>no guarantees</strong> about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">v.</span><span>By continuing, you acknowledge that <strong>CoverCapy is not liable</strong> for outcomes, denials, billing decisions, or transactions that happen after you leave this site.</span></div>
+</div>
+</div>
+<div class="cc-universal-modal-actions">
+<button class="btn-quiet cc-universal-modal-stay" data-modal-close="" type="button"><span data-modal-slot="cancel-label">Wait, tell me more</span><span aria-hidden="true" class="arr">→</span></button>
+<a class="btn btn-primary cc-universal-modal-continue" data-carrier="uhc" data-track-outbound="uhc-primary-dental" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" rel="noopener noreferrer" target="_blank"><span data-modal-slot="continue-label">Continue to UnitedHealthcare</span><span aria-hidden="true" class="arr">→</span></a>
+</div>
+</div>
 </div>
