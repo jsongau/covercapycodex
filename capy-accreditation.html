@@ -730,6 +730,25 @@ footer.site .flinks a:hover{color:#fff}
   .reveal{opacity:1; transform:none}
   .rung{opacity:1; transform:none}
 }
+
+/* CoverCapy fix: keep the in-page section menu pinned below the site mega navigation. */
+:root{ --cc-sticky-nav-offset:72px; }
+.sectionnav{
+  position:-webkit-sticky !important;
+  position:sticky !important;
+  top:var(--cc-sticky-nav-offset) !important;
+  z-index:9990 !important;
+  background:rgba(251,250,254,.92) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(145%) !important;
+  backdrop-filter:blur(14px) saturate(145%) !important;
+  box-shadow:0 10px 28px rgba(42,35,66,.07);
+}
+section{scroll-margin-top:calc(var(--cc-sticky-nav-offset) + 72px) !important;}
+@media (max-width:760px){
+  :root{ --cc-sticky-nav-offset:64px; }
+  .sectionnav .inner{height:50px;}
+}
+
 </style>
 
 <!-- CoverCapy shared component styles -->
@@ -1535,5 +1554,30 @@ document.getElementById('quizSubmit').addEventListener('click', () => {
 
 
 </script>
+<script>
+(function(){
+  function updateStickySubnavOffset(){
+    const candidates = [
+      document.querySelector('.cc-mega-nav'),
+      document.querySelector('.mega-nav'),
+      document.querySelector('[data-covercapy-mega-nav]'),
+      document.querySelector('header[role="banner"]'),
+      document.querySelector('header.site')
+    ].filter(Boolean);
+    let h = 72;
+    for (const el of candidates){
+      const r = el.getBoundingClientRect();
+      if (r.height > 40){ h = Math.round(r.height); break; }
+    }
+    document.documentElement.style.setProperty('--cc-sticky-nav-offset', h + 'px');
+  }
+  window.addEventListener('load', updateStickySubnavOffset);
+  window.addEventListener('resize', updateStickySubnavOffset);
+  document.addEventListener('DOMContentLoaded', updateStickySubnavOffset);
+  setTimeout(updateStickySubnavOffset, 350);
+  setTimeout(updateStickySubnavOffset, 1200);
+})();
+</script>
+
 </body>
 </html>
