@@ -161,3 +161,10 @@ body.cc-locked{overflow:hidden}
     font-size:14.5px !important;
   }
 }
+
+
+/* v91 drawer polish overrides */
+.cc-drawer-tagline{background:linear-gradient(135deg,rgba(231,240,236,.9),rgba(248,230,192,.62));}
+.cc-dacc-btn{padding:15px 22px;font-size:15.25px;}
+.cc-dacc-link{padding:10.5px 26px;font-size:13.75px;}
+.cc-drawer-foot{padding:16px 22px;}
