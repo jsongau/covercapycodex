@@ -537,14 +537,18 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .lside{display:flex; flex-direction:column; align-items:flex-end; gap:7px; min-width:128px; position:relative}
 .lside .ratebox{flex-direction:column; align-items:flex-end; gap:2px; text-align:right; padding:0}
 .lside .la{width:100%; text-align:center; padding:8px 12px; font-size:12.5px; border-radius:10px}
+.lside .lsmall{width:100%; margin-top:2px}
 .lside .savebtn{position:static; width:30px; height:30px; align-self:flex-end; margin-top:1px}
 .lcard .savebtn{top:auto; right:auto}
 @media(max-width:620px){
+  .lcard{position:relative}
   .lrow{grid-template-columns:auto minmax(0,1fr); grid-template-areas:"av main" "side side"; row-gap:11px}
-  .lcard .av-wrap{grid-area:av} .lmain{grid-area:main} .lside{grid-area:side; min-width:0; align-items:stretch; flex-direction:row; flex-wrap:wrap; gap:8px}
+  .lcard .lavcol{grid-area:av} .lmain{grid-area:main} .lside{grid-area:side; min-width:0; align-items:stretch; flex-direction:row; flex-wrap:wrap; gap:8px; position:static}
   .lside .ratebox{align-items:flex-start; text-align:left; flex:1 1 100%}
-  .lside .la{flex:1; width:auto}
-  .lside .savebtn{order:-1; position:absolute; top:-46px; right:0}
+  .lside .la{flex:1 1 0; min-width:92px; width:auto}        /* primary CTAs share the row in equal widths */
+  .lside .lsmall{flex:1 1 100%; margin-top:1px}             /* Call Office · Website always drops to its own row */
+  .lside .savebtn{position:absolute; top:13px; right:14px; margin:0; order:0}  /* heart pinned to the card corner */
+  .lcard.feat .featrib{padding-right:40px}                  /* keep featured ribbon clear of the heart */
 }
 
 /* ---- RIGHT RAIL refinements ---- */
@@ -670,11 +674,18 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .lsl:hover{color:var(--teal-night); text-decoration:underline}
 .lsl-sep{color:var(--ink-faint); font-size:12px}
 /* premium claim box on public/unclaimed cards (subtle, prestigious, never dominant) */
-.claimbox-card{margin-top:12px; background:linear-gradient(180deg,#fff,var(--cream-2)); border:1px solid var(--line-2); border-radius:13px; padding:13px 15px; box-shadow:var(--sh-sm)}
-.claimbox-card .cbc-h{font-family:"Fraunces"; font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px}
-.claimbox-card .cbc-p{font-size:12.5px; color:var(--ink-soft); line-height:1.5; margin:0 0 10px}
-.claimbox-card .cbc-cta{display:inline-flex; align-items:center; gap:6px; background:none; border:1px solid var(--gold-2); color:var(--gold); font-weight:700; font-size:13px; padding:8px 14px; border-radius:10px; cursor:pointer; transition:.14s}
-.claimbox-card .cbc-cta:hover{background:var(--gold); color:#1c1407; border-color:var(--gold)}
+/* claim nudge: luxury upgrade pill placed in the status row beside the pending badge */
+.claim-nudge{position:relative; display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:var(--gold); background:linear-gradient(180deg,#FFFBF1,#FBF1DC); border:1px solid var(--gold-2); border-radius:999px; padding:3px 11px 3px 9px; cursor:pointer; letter-spacing:.01em; line-height:1.4; white-space:nowrap; transition:.15s}
+.claim-nudge:hover, .claim-nudge:focus-visible{background:linear-gradient(180deg,var(--gold),var(--gold-2)); color:#241a06; border-color:var(--gold); box-shadow:0 4px 13px rgba(184,146,79,.32); outline:none}
+.claim-nudge .cn-spark{font-size:10px; line-height:1}
+/* clickable member-office address that opens the map */
+.geo.geo-link{display:inline; cursor:pointer; text-decoration:underline; text-decoration-style:dotted; text-decoration-color:var(--gold-2); text-underline-offset:2px; transition:color .15s, text-decoration-color .15s}
+.geo.geo-link:hover, .geo.geo-link:focus-visible{color:var(--teal-700); text-decoration-color:var(--teal-300); outline:none}
+/* hover detail bubble — drops downward (the trigger sits high on the card) */
+.claim-tip{position:absolute; left:0; top:calc(100% + 9px); width:min(264px,76vw); background:var(--teal-night); color:#fff; font-size:11.5px; line-height:1.5; font-weight:400; text-transform:none; letter-spacing:0; text-align:left; padding:11px 13px; border-radius:11px; box-shadow:0 12px 30px rgba(8,42,48,.26); opacity:0; visibility:hidden; transform:translateY(-5px); transition:.16s; z-index:40; pointer-events:none}
+.claim-tip b{display:block; color:var(--mint); font-weight:700; font-size:12px; margin-bottom:3px; font-family:"Fraunces"}
+.claim-tip::after{content:""; position:absolute; bottom:100%; left:22px; border:6px solid transparent; border-bottom-color:var(--teal-night)}
+.claim-nudge:hover .claim-tip, .claim-nudge:focus-within .claim-tip{opacity:1; visibility:visible; transform:translateY(0)}
 /* avatar is a clickable entry to the profile modal */
 .av-wrap[role="button"]{cursor:pointer}
 /* modal form grid + textarea/select */
@@ -691,6 +702,42 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   .modal .fgrid{grid-template-columns:1fr}
   .pactions{flex-direction:column}
   .pactions .la{width:100%}
+}
+/* ---- v32: CTA grouping + save heart in the badge row ---- */
+/* heart sits at the right end of the tier-badge row, aligned with the badge (overrides the old corner-pin) */
+/* save heart docked beneath the avatar (applies to every card) */
+.lavcol{display:flex; flex-direction:column; align-items:center; gap:9px; flex:none}
+.lavcol .savebtn{position:static; top:auto; right:auto; margin:0; width:30px; height:30px; border-radius:50%; background:var(--cream-2); border:1px solid var(--line-2); display:grid; place-items:center; font-size:14px; color:var(--ink-soft); cursor:pointer; flex:none; box-shadow:none; transition:.15s}
+.lavcol .savebtn:hover{color:var(--danger); transform:scale(1.08)}
+.lavcol .savebtn.on{background:var(--danger); color:#fff; border-color:transparent}
+/* member offices: full address + phone contact lines */
+.lmeta-line{margin-top:3px; font-size:12.5px; align-items:flex-start}
+.lmeta-line .geo{align-items:flex-start; line-height:1.35}
+.lphone{display:inline-flex; align-items:center; gap:5px; color:var(--teal-700); font-weight:600; cursor:pointer; text-decoration:none}
+.lphone:hover{color:var(--teal-night)}
+/* ---- tiered card framing: Platinum Elite stands clearly above Capy / Verified / public ---- */
+.lcard.lc-accr{position:relative; border:1.5px solid #9FE0BE; background:linear-gradient(180deg,#FBFFFD,#EBF9F1); box-shadow:0 11px 30px rgba(31,138,91,.15); transition:box-shadow .22s, transform .22s, border-color .22s}
+.lcard.lc-accr::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:linear-gradient(120deg,#BFEFD6,#1F8A5B,#BFEFD6); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:1}
+.lcard.lc-accr::after{content:"🦫"; position:absolute; top:-11px; right:16px; width:27px; height:27px; border-radius:50%; background:linear-gradient(135deg,#5BE0A0,#1F8A5B); font-size:14px; display:grid; place-items:center; box-shadow:0 4px 13px rgba(31,138,91,.42); border:1.5px solid #FBFFFD; pointer-events:none; z-index:3; line-height:1}
+.lcard.lc-accr:hover{transform:translateY(-2px); box-shadow:0 18px 44px rgba(31,138,91,.22)}
+.lcard.lc-ver{border-color:#C6DCF3; box-shadow:0 8px 22px rgba(45,94,150,.10)}
+.lcard.lc-plat{position:relative; border:1.5px solid #E4CB8E; background:linear-gradient(180deg,#FFFDF6,#FBF3E2); box-shadow:0 14px 38px rgba(184,146,79,.20), inset 0 1px 0 rgba(255,255,255,.65); transition:box-shadow .22s, transform .22s, border-color .22s}
+.lcard.lc-plat::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:linear-gradient(120deg,#F4E2AE,#C79A4E,#F4E2AE,#C79A4E); background-size:300% 300%; background-position:0% 50%; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:1}
+.lcard.lc-plat::after{content:"♛"; position:absolute; top:-11px; right:16px; width:27px; height:27px; border-radius:50%; background:linear-gradient(135deg,#E4CB8E,#B8924F); color:#3a2c0c; font-size:13px; display:grid; place-items:center; box-shadow:0 4px 13px rgba(184,146,79,.42); border:1.5px solid #FFFDF6; pointer-events:none; z-index:3}
+.lcard.lc-plat:hover{transform:translateY(-3px); box-shadow:0 24px 54px rgba(184,146,79,.30), inset 0 1px 0 rgba(255,255,255,.65)}
+.lcard.lc-plat:hover::before{animation:platFlow 2.4s linear infinite}
+.lcard.lc-plat .lname{font-size:18px}
+@keyframes platFlow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+@media(prefers-reduced-motion:reduce){ .lcard.lc-plat:hover::before{animation:none} }
+/* two action groups in the CTA column: booking/contact (primary) separated from profile/coverage (secondary) */
+.lside{justify-content:flex-start}
+.lside .cta-primary, .lside .cta-secondary{display:flex; flex-direction:column; gap:7px; width:100%}
+.lside .cta-primary .la, .lside .cta-secondary .la{width:100%}
+.lside .cta-secondary.has-divider{margin-top:10px; padding-top:10px; border-top:1px solid var(--line-2)}
+@media(max-width:620px){
+  .lside .cta-primary, .lside .cta-secondary{flex-direction:row; flex-wrap:wrap; gap:8px; flex:1 1 100%}
+  .lside .cta-primary .la, .lside .cta-secondary .la{flex:1 1 0; min-width:96px; width:auto}
+  .lside .cta-secondary.has-divider{margin-top:9px; padding-top:9px}
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -898,7 +945,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   <div class="howline"><span class="n">4</span><div><b>Public listings are always shown</b><span>Unclaimed offices remain visible so you see the whole market. Always confirm final PPO details with the office.</span></div></div>
 </div></div></div>
 
-<div class="scrim" id="m-verify"><div class="modal"><div class="mh"><h3 id="v-title">Check your PPO with this office</h3><button class="x" onclick="closeModal('m-verify')">×</button></div><div class="mb">
+<div class="scrim" id="m-verify"><div class="modal"><div class="mh"><h3 id="v-title">Check your coverage with this office</h3><button class="x" onclick="closeModal('m-verify')">×</button></div><div class="mb">
   <p id="v-intro">CoverCapy can help contact the office to confirm whether your PPO is accepted before you book.</p>
   <div class="fgrid">
     <input class="inp" id="v-name" placeholder="Your name">
@@ -911,7 +958,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   </div>
   <input class="inp" id="v-treat" placeholder="Treatment interest (e.g. cleaning, Invisalign)">
   <textarea class="inp" id="v-msg" rows="2" placeholder="Anything else? (optional)"></textarea>
-  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-verify')">Cancel</button><button class="btn-dark" onclick="submitPpoCheck()">Send PPO Check Request</button></div>
+  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-verify')">Cancel</button><button class="btn-dark" onclick="submitPpoCheck()">Send Coverage Request</button></div>
 </div></div></div>
 
 <div class="scrim" id="m-avail"><div class="modal"><div class="mh"><h3 id="av-title">Request availability</h3><button class="x" onclick="closeModal('m-avail')">×</button></div><div class="mb">
@@ -950,8 +997,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-claim')">Cancel</button><button class="btn-dark" onclick="submitClaimProfile()">Request Free Claim Access</button></div>
 </div></div></div>
 
-<div class="scrim" id="m-disc"><div class="modal"><div class="mh"><h3>Before you book</h3><button class="x" onclick="closeModal('m-disc')">×</button></div><div class="mb">
-  <p>You're about to open this office's booking page on their own site. CoverCapy recommends confirming your PPO participation before your visit so there are no billing surprises.</p>
+<div class="scrim" id="m-disc"><div class="modal"><div class="mh"><h3 id="disc-title">Before you book</h3><button class="x" onclick="closeModal('m-disc')">×</button></div><div class="mb">
+  <p id="disc-body">You're about to open this office's booking page on their own site. CoverCapy recommends confirming your PPO participation before your visit so there are no billing surprises.</p>
   <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-disc')">Stay here</button><button class="btn-dark" id="disc-go">Continue to office</button></div>
 </div></div></div>
 
@@ -1221,12 +1268,24 @@ function processed(){
    No client-side label generation, rotation, inference, or hardcoded colors.
    getDisplayStatus + getBadgeStyle read accreditation_status / pending_display_label
    / badge_bg / badge_text / badge_border straight off the record. */
+/* Membership / accreditation tier is authoritative for premium offices. A Platinum Elite,
+   Capy Accredited, or Verified office must show its tier badge, never a pending / "Public
+   Directory Listing" label (the Supabase pending fields describe the unclaimed state only). */
+const TIER_STATUS = { platinum_elite:'Platinum Elite', capy_accredited:'Capy Accredited', verified:'Verified PPO' };
+const TIER_BADGE = {
+  platinum_elite:{ background:'#FBF1DD', color:'#92702E', border:'#E4CB8E' }, /* copper / gold */
+  capy_accredited:{ background:'#E6F7EE', color:'#1F8A5B', border:'#A9E1C6' }, /* green */
+  verified:{ background:'#E8F1FB', color:'#2D5E96', border:'#B9D4F0' }          /* blue */
+};
 function getDisplayStatus(dentist){
+  if(dentist && TIER_STATUS[dentist.tier]) return TIER_STATUS[dentist.tier];
   const premiumStatuses = ['Platinum Elite','Capy Accredited','Verified PPO','Verified Office'];
   if(premiumStatuses.includes(dentist.accreditation_status)) return dentist.accreditation_status;
   return dentist.pending_display_label || 'Public Directory Listing';
 }
 function getBadgeStyle(dentist){
+  const tb = dentist && TIER_BADGE[dentist.tier];
+  if(tb) return { background: tb.background, color: tb.color, border: `1px solid ${tb.border}` };
   return {
     background: dentist.badge_bg || '#F9FAFB',
     color: dentist.badge_text || '#6B7280',
@@ -1234,6 +1293,7 @@ function getBadgeStyle(dentist){
   };
 }
 function isPremiumStatus(dentist){
+  if(dentist && ['platinum_elite','capy_accredited','verified'].includes(dentist.tier)) return true;
   return ['Platinum Elite','Capy Accredited','Verified PPO','Verified Office'].includes(dentist && dentist.accreditation_status);
 }
 function badgeStyleAttr(d){ const s=getBadgeStyle(d); return 'background:'+s.background+';color:'+s.color+';border:'+s.border; }
@@ -1569,7 +1629,7 @@ function renderCapyAvatar(d){ return CapyAvatar.svg(d, AVATAR_MODE); }
 function avBadge(d){
   if(!isPremiumStatus(d)) return '';
   const s=getBadgeStyle(d);
-  const glyph = d.accreditation_status==='Platinum Elite' ? '♛' : '✓';
+  const glyph = d.tier==='platinum_elite' ? '♛' : '✓';
   return '<span class="av-badge" style="background:'+escapeAttr(s.background)+';color:'+escapeAttr(s.color)+'" title="'+escapeAttr(getDisplayStatus(d))+'">'+glyph+'</span>';
 }
 /* trading-card style stat strip */
@@ -1587,57 +1647,74 @@ function cardHtml(d, feat){
   const saved = state.compare.has(d.id);
   const claimed = isDentistClaimed(d), realImg = hasRealDentistImage(d);
   const tierCls = d.tier==="platinum_elite"?"t-plat":d.tier==="capy_accredited"?"t-accr":d.tier==="verified"?"t-ver":"t-pub";
+  const tierCard = d.tier==="platinum_elite"?"lc-plat":d.tier==="capy_accredited"?"lc-accr":d.tier==="verified"?"lc-ver":"lc-pub";
   const isPlat = d.tier==="platinum_elite";
   const isAccr = d.tier==="capy_accredited" || d.tier==="verified";
-  const isPublic = !isPlat && !isAccr;
+  const isVerifiedTier = isPlat || isAccr;     // member office: platinum, capy, or verified
+  const isPublic = !isVerifiedTier;
   const showClaim = isPublic && !claimed;
   const hasBooking = !!(d.booking && String(d.booking).trim());
-  const hasWebsite = !!(d.website && String(d.website).trim());
+  const hasPhone   = !!(d.phone && String(d.phone).trim());
+  const hasAddr    = !!(d.address && String(d.address).trim());
   const idj = jsq(d.id);
-  // CTA building blocks (one insurance CTA only: Check My PPO)
-  const cProfile = cls => '<button class="la '+cls+'" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View PPO Profile</button>';
-  const cCheck   = '<button class="la la-soft" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check My PPO</button>';
-  const cBook    = '<button class="la la-gold" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">Book Appointment</button>';
-  let primary;
-  if(isPlat){            // Platinum Elite: Book -> Check -> View
-    primary = cBook + cCheck + cProfile('la-link');
-  } else if(isAccr){     // Capy Accredited / Verified: View -> Check (+ Book if booking)
-    primary = cProfile('la-primary') + cCheck + (hasBooking?cBook:'');
-  } else {               // Public / Free / Unclaimed: View + Check (+ Book only if booking)
-    primary = cProfile('la-primary') + cCheck + (hasBooking?cBook:'');
+
+  /* GROUP A — booking + contact (primary, prominent). Verified offices lead with these. */
+  const aBook = hasBooking ? '<button class="la la-gold" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">Book Appointment</button>' : '';
+  const aCall = hasPhone   ? '<button class="la la-primary" onclick="event.stopPropagation();callOffice(\''+idj+'\')">Call Office</button>' : '';
+  const aAvail = (isVerifiedTier && !hasBooking && !hasPhone) ? '<button class="la la-primary" onclick="event.stopPropagation();openAvailability(\''+idj+'\')">Request Availability</button>' : '';
+  const primaryBtns = aBook + aCall + aAvail;
+
+  /* GROUP B — profile + coverage (grouped away). Check Coverage (email the office) shown for non-verified only. */
+  const bProfile = '<button class="la la-ghost" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View PPO Profile</button>';
+  const bCheck   = !isVerifiedTier ? '<button class="la la-soft" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check Coverage</button>' : '';
+  const secondaryBtns = bProfile + bCheck;
+
+  /* Member offices surface full contact details + two specialty tags; the address opens our map. */
+  let metaHtml, chipsHtml;
+  if(isVerifiedTier){
+    const addrTxt = hasAddr ? d.address : (d.city+', '+d.state);
+    metaHtml = '<div class="lmeta lmeta-line"><span class="geo geo-link" role="button" tabindex="0" aria-label="Show '+escapeAttr(d.practice)+' on the map" onclick="event.stopPropagation();openMapAt(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openMapAt(\''+idj+'\')">◍ '+escapeHtml(addrTxt)+'</span></div>'+
+               ((hasPhone || (d.dist!=null && d.dist<999))?
+                 '<div class="lmeta lmeta-line">'+
+                   (hasPhone?'<a class="lphone" role="button" tabindex="0" aria-label="Call '+escapeAttr(d.phone)+'" onclick="event.stopPropagation();callOffice(\''+idj+'\')">☎ '+escapeHtml(d.phone)+'</a>':'')+
+                   distMeta(d)+
+                 '</div>':'');
+    chipsHtml = '<div class="chips">'+specChips(d,2)+'</div>';
+  } else {
+    metaHtml = '<div class="lmeta"><span class="geo">◍ '+escapeHtml(d.city)+', '+escapeHtml(d.state)+'</span>'+distMeta(d)+'</div>';
+    chipsHtml = '<div class="chips">'+specChips(d,feat?4:3)+carrierChips(d,2)+'</div>';
   }
-  const smallLinks = '<div class="lsmall">'+
-    '<a class="lsl" role="button" tabindex="0" onclick="event.stopPropagation();callOffice(\''+idj+'\')">Call Office</a>'+
-    (hasWebsite?'<span class="lsl-sep">·</span><a class="lsl" role="button" tabindex="0" onclick="event.stopPropagation();openWebsite(\''+idj+'\')">Website</a>':'')+
-  '</div>';
-  const claimBox = showClaim ? '<div class="claimbox-card">'+
-      '<div class="cbc-h">Own this office?</div>'+
-      '<p class="cbc-p">Patients can already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.</p>'+
-      '<button class="cbc-cta" onclick="event.stopPropagation();openClaim(\''+idj+'\')">Claim Free Profile →</button>'+
-    '</div>' : '';
-  return '<article class="lcard'+(feat?' feat':'')+'" id="card-'+d.id+'" '+
+
+  /* Claim nudge sits in the status row, right in the eyeline of the pending verification badge. */
+  const claimTip = 'Own this office? Patients can already find this profile and request coverage checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.';
+  const claimNudge = showClaim ? '<button class="claim-nudge" aria-label="'+escapeAttr(claimTip)+'" onclick="event.stopPropagation();openClaim(\''+idj+'\')">'+
+      '<span class="cn-spark">✦</span>Claim profile'+
+      '<span class="claim-tip" role="tooltip"><b>Verify this office</b>Patients already find this profile and request coverage checks here. Claim it free to confirm PPO participation, add photos and booking links, and receive patient requests.</span>'+
+    '</button>' : '';
+
+  const heart = '<button class="savebtn'+(saved?' on':'')+'" title="Save / compare" aria-label="Save this office" onclick="event.stopPropagation();toggleCompare(\''+idj+'\',this)">♥</button>';
+
+  return '<article class="lcard '+tierCard+(feat?' feat':'')+'" id="card-'+d.id+'" '+
       'onmouseenter="highlightCard(\''+idj+'\',true)" onmouseleave="highlightCard(\''+idj+'\',false)">'+
     (feat?'<div class="featrib">♛ Featured Platinum partner · within 18 miles</div>':'')+
     '<div class="lrow">'+
-      '<div class="av-wrap '+tierCls+(claimed?' is-claimed':' is-unclaimed')+'" role="button" tabindex="0" aria-label="View '+escapeAttr(d.practice)+' profile" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+
-        '<div class="av">'+getDentistImageMarkup(d)+'</div>'+
-        avBadge(d)+
+      '<div class="lavcol">'+
+        '<div class="av-wrap '+tierCls+(claimed?' is-claimed':' is-unclaimed')+'" role="button" tabindex="0" aria-label="View '+escapeAttr(d.practice)+' profile" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+
+          '<div class="av">'+getDentistImageMarkup(d)+'</div>'+
+          avBadge(d)+
+        '</div>'+
+        heart+
       '</div>'+
       '<div class="lmain">'+
-        '<div class="tagrow">'+tierChip(d)+(d.offer?'<span class="chip-offer">★ '+escapeHtml(d.offer)+'</span>':'')+'</div>'+
+        '<div class="tagrow">'+tierChip(d)+claimNudge+(d.offer?'<span class="chip-offer">★ '+escapeHtml(d.offer)+'</span>':'')+'</div>'+
         '<span class="lname" role="link" tabindex="0" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+escapeHtml(d.practice)+'</span>'+
         '<div class="lrate">'+ratingHtml(d)+'</div>'+
-        '<div class="lmeta">'+
-          '<span class="geo">◍ '+escapeHtml(d.city)+', '+escapeHtml(d.state)+'</span>'+
-          distMeta(d)+
-        '</div>'+
-        '<div class="chips">'+specChips(d,feat?4:3)+carrierChips(d,2)+'</div>'+
-        claimBox+
+        metaHtml+
+        chipsHtml+
       '</div>'+
       '<div class="lside">'+
-        '<button class="savebtn'+(saved?' on':'')+'" title="Save / compare" onclick="event.stopPropagation();toggleCompare(\''+idj+'\',this)">♥</button>'+
-        primary+
-        smallLinks+
+        (primaryBtns?'<div class="cta-primary">'+primaryBtns+'</div>':'')+
+        '<div class="cta-secondary'+(primaryBtns?' has-divider':'')+'">'+secondaryBtns+'</div>'+
       '</div>'+
     '</div>'+
   '</article>';
@@ -2229,6 +2306,8 @@ function renderFsCard(d){
   const dist=(d.dist!=null&&d.dist<999)?d.dist.toFixed(1)+' mi':'';
   const rating=d.reviews?('★ '+d.rating.toFixed(1)+' ('+d.reviews.toLocaleString()+' reviews)'):'New · reviews pending';
   const saved=state.compare.has(d.id);
+  const isVerifiedTier=['platinum_elite','capy_accredited','verified'].includes(d.tier);
+  const hasBooking=!!(d.booking&&String(d.booking).trim());
   el.classList.add('show');
   el.innerHTML =
     '<div class="fsc-x" onclick="deselectDentist()" role="button" aria-label="Dismiss">✕</div>'+
@@ -2242,8 +2321,10 @@ function renderFsCard(d){
     '</div>'+
     '<div class="fsc-actions">'+
       '<button class="fsc-act" onclick="callOffice(\''+d.id+'\')"><span class="fsi">☎</span>Call</button>'+
-      '<button class="fsc-act" onclick="directionsTo(\''+d.id+'\')"><span class="fsi">◍</span>Directions</button>'+
-      '<button class="fsc-act" onclick="openVerify(\''+d.id+'\')"><span class="fsi">✓</span>Check PPO</button>'+
+      '<button class="fsc-act" onclick="mapsPrompt(\''+d.id+'\')"><span class="fsi">◍</span>Maps</button>'+
+      ((isVerifiedTier && hasBooking)
+        ? '<button class="fsc-act" onclick="bookAppointment(\''+d.id+'\')"><span class="fsi">◆</span>Book</button>'
+        : '<button class="fsc-act" onclick="openVerify(\''+d.id+'\')"><span class="fsi">✓</span>Coverage</button>')+
       '<button class="fsc-act" onclick="shareDentist(\''+d.id+'\')"><span class="fsi">↗</span>Share</button>'+
       '<button class="fsc-act'+(saved?' on':'')+'" onclick="fsSave(\''+d.id+'\')"><span class="fsi">♥</span>Save</button>'+
     '</div>'+
@@ -2276,6 +2357,26 @@ function setSelectedPin(id){
 function fsSave(id){ toggleCompare(id); const d=LAST.find(x=>x.id===id); if(d) renderFsCard(d); }
 function callOffice(id){ const d=fsGet(id); gtagSafe('call_office_click',{dentist_id:id}); if(d&&d.phone){ window.location.href='tel:'+String(d.phone).replace(/[^0-9+]/g,''); } else { openPpoCheck(id,{noPhone:true}); } }
 function directionsTo(id){ const d=fsGet(id); if(!d) return; const q=(d.lat!=null&&d.lng!=null)?(d.lat+','+d.lng):encodeURIComponent((d.address||d.practice||'')+' '+(d.city||'')); window.open('https://www.google.com/maps/dir/?api=1&destination='+q,'_blank','noopener'); }
+/* Generic "leaving CoverCapy" disclosure (shared by booking + maps). */
+function showDisclosure(opts){
+  opts=opts||{};
+  var t=document.getElementById('disc-title'); if(t) t.textContent=opts.title||'Before you continue';
+  var b=document.getElementById('disc-body'); if(b) b.textContent=opts.body||'';
+  var go=document.getElementById('disc-go'); if(go){ go.textContent=opts.goLabel||'Continue'; go.onclick=function(){ try{ if(opts.onGo) opts.onGo(); } finally { closeModal('m-disc'); } }; }
+  openModal('m-disc');
+}
+/* Open our in-app map focused on this office (used by the member-office address link). */
+function openMapAt(id){
+  if(typeof LAST!=='undefined' && LAST && LAST.some(function(x){return x.id===id;})) FS_SELECTED=id;
+  gtagSafe('map_open_from_address',{dentist_id:id});
+  openFsMap();
+  setTimeout(function(){ try{ selectDentist(id, true); }catch(e){} }, 280);
+}
+/* From the map, prompt before opening the location in Google Maps. */
+function mapsPrompt(id){ var d=fsGet(id); if(!d) return;
+  gtagSafe('maps_open_prompt',{dentist_id:id});
+  showDisclosure({title:'Open in Google Maps', body:'You are about to leave CoverCapy and open this office location in Google Maps.', goLabel:'Open Google Maps', onGo:function(){ directionsTo(id); }});
+}
 function shareDentist(id){ const d=fsGet(id); if(!d) return; const url=location.origin+getDentistProfileUrl(d); if(navigator.share){ navigator.share({title:d.practice, url:url}).catch(()=>{}); } else { try{ navigator.clipboard.writeText(url); toast('Link copied', d.practice+' profile link copied'); }catch(e){ toast('Share', url); } } }
 /* legacy aliases kept for any stale references */
 function miniCard(d){ return fsMiniCard(d); }
@@ -2343,8 +2444,7 @@ let PPO_CTX=null, AVAIL_CTX=null, CLAIM_CTX=null;
 function bookAppointment(id){ const d=find(id);
   if(d&&d.booking&&String(d.booking).trim()){
     gtagSafe('booking_click',{dentist_id:id});
-    document.getElementById('disc-go').onclick=()=>{ window.open(d.booking,'_blank','noopener'); closeModal('m-disc'); };
-    openModal('m-disc');
+    showDisclosure({title:'Before you book', body:"You're about to open this office's booking page on their own site. CoverCapy recommends confirming your PPO participation before your visit so there are no billing surprises.", goLabel:'Continue to office', onGo:function(){ window.open(d.booking,'_blank','noopener'); }});
   } else { openAvailability(id); }     // no booking_url -> Request Availability
 }
 function book(id){ return bookAppointment(id); } /* legacy alias */
@@ -2352,7 +2452,7 @@ function book(id){ return bookAppointment(id); } /* legacy alias */
 function openWebsite(id){ const d=find(id); if(d&&d.website&&String(d.website).trim()){ gtagSafe('website_click',{dentist_id:id}); window.open(d.website,'_blank','noopener'); } }
 
 function openPpoCheck(id, opts){ const d=id?find(id):null; PPO_CTX=d; opts=opts||{};
-  document.getElementById('v-title').textContent = d?('Check your PPO with '+d.practice):'Check your PPO with this office';
+  document.getElementById('v-title').textContent = d?('Check your coverage with '+d.practice):'Check your coverage with this office';
   const intro=document.getElementById('v-intro');
   if(intro) intro.textContent = opts.noPhone
     ? 'This office does not have a phone listed yet. CoverCapy can help contact the office to confirm whether your PPO is accepted.'
@@ -2460,6 +2560,8 @@ function openProfile(id){ const d=find(id); if(!d) return;
   const claimed=isDentistClaimed(d), realImg=hasRealDentistImage(d), url=getDentistProfileUrl(d), idj=jsq(d.id);
   const hasBooking=!!(d.booking&&String(d.booking).trim());
   const hasWebsite=!!(d.website&&String(d.website).trim());
+  const hasPhone=!!(d.phone&&String(d.phone).trim());
+  const isVerifiedTier=['platinum_elite','capy_accredited','verified'].includes(d.tier);
   const dist=(d.dist!=null&&d.dist<999)?' <span class="dot"></span> <span class="geo">'+d.dist.toFixed(1)+' mi away</span>':'';
   const langs=(d.languages&&d.languages.length)?'<h4 class="msub">Languages</h4><div class="chips" style="margin-bottom:12px">'+d.languages.map(l=>'<span class="chip">'+escapeHtml(l)+'</span>').join('')+'</div>':'';
   document.getElementById('profile-body').innerHTML =
@@ -2480,15 +2582,14 @@ function openProfile(id){ const d=find(id); if(!d) return;
       '<div class="chips" style="margin-bottom:14px">'+carrierChips(d,8)+'</div>'+
       langs+
       '<div class="lactions pactions">'+
-        (hasBooking
-          ? '<button class="la la-gold" onclick="bookAppointment(\''+idj+'\')">Book Appointment</button>'
-          : '<button class="la la-primary" onclick="openAvailability(\''+idj+'\')">Request Availability</button>')+
-        '<button class="la la-soft" onclick="openPpoCheck(\''+idj+'\')">Check My PPO</button>'+
+        (hasBooking?'<button class="la la-gold" onclick="bookAppointment(\''+idj+'\')">Book Appointment</button>':'')+
+        (hasPhone?'<button class="la la-primary" onclick="callOffice(\''+idj+'\')">Call Office</button>':'')+
+        ((isVerifiedTier && !hasBooking && !hasPhone)?'<button class="la la-primary" onclick="openAvailability(\''+idj+'\')">Request Availability</button>':'')+
+        (!isVerifiedTier?'<button class="la la-soft" onclick="openPpoCheck(\''+idj+'\')">Check Coverage</button>':'')+
       '</div>'+
       '<div class="lsmall pmsmall">'+
-        '<a class="lsl" role="button" tabindex="0" onclick="callOffice(\''+idj+'\')">Call Office</a>'+
-        (hasWebsite?'<span class="lsl-sep">·</span><a class="lsl" role="button" tabindex="0" onclick="openWebsite(\''+idj+'\')">Website</a>':'')+
-        '<span class="lsl-sep">·</span><a class="lsl" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile</a>'+
+        (hasWebsite?'<a class="lsl" role="button" tabindex="0" onclick="openWebsite(\''+idj+'\')">Website</a><span class="lsl-sep">·</span>':'')+
+        '<a class="lsl" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile</a>'+
       '</div>'+
       (!claimed?'<div class="claimbox"><b>Own this office?</b><p>Patients can already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.</p><button class="btn-dark" onclick="openClaim(\''+idj+'\')">Claim Free Profile</button></div>':'')+
     '</div>';
