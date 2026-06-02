@@ -663,6 +663,35 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* ensure mini-map card never appears on mobile (filters are hidden, but extra safety) */
 @media(max-width:980px){ .mapcard{display:none !important} }
 .radmore[hidden]{display:none}
+/* ---- v30 CTA + marketplace polish ---- */
+/* small link row under primary CTAs (Call Office · Website · View Full Profile) */
+.lsmall{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:2px}
+.lsl{font-size:12.5px; font-weight:600; color:var(--teal-700); cursor:pointer; white-space:nowrap}
+.lsl:hover{color:var(--teal-night); text-decoration:underline}
+.lsl-sep{color:var(--ink-faint); font-size:12px}
+/* premium claim box on public/unclaimed cards (subtle, prestigious, never dominant) */
+.claimbox-card{margin-top:12px; background:linear-gradient(180deg,#fff,var(--cream-2)); border:1px solid var(--line-2); border-radius:13px; padding:13px 15px; box-shadow:var(--sh-sm)}
+.claimbox-card .cbc-h{font-family:"Fraunces"; font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px}
+.claimbox-card .cbc-p{font-size:12.5px; color:var(--ink-soft); line-height:1.5; margin:0 0 10px}
+.claimbox-card .cbc-cta{display:inline-flex; align-items:center; gap:6px; background:none; border:1px solid var(--gold-2); color:var(--gold); font-weight:700; font-size:13px; padding:8px 14px; border-radius:10px; cursor:pointer; transition:.14s}
+.claimbox-card .cbc-cta:hover{background:var(--gold); color:#1c1407; border-color:var(--gold)}
+/* avatar is a clickable entry to the profile modal */
+.av-wrap[role="button"]{cursor:pointer}
+/* modal form grid + textarea/select */
+.modal .fgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.modal .fgrid .inp{margin-bottom:10px}
+.modal textarea.inp{resize:vertical; min-height:58px; line-height:1.45}
+.modal select.inp{appearance:auto; background:#fff; color:var(--ink)}
+/* profile modal: doctor line + action layout */
+.pdoc{font-size:14px; color:var(--ink-soft); margin-top:3px}
+.pactions{display:flex; gap:9px; flex-wrap:wrap; margin-top:4px}
+.pactions .la{flex:1 1 auto}
+.pmsmall{margin-top:11px}
+@media(max-width:620px){
+  .modal .fgrid{grid-template-columns:1fr}
+  .pactions{flex-direction:column}
+  .pactions .la{width:100%}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -869,28 +898,56 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   <div class="howline"><span class="n">4</span><div><b>Public listings are always shown</b><span>Unclaimed offices remain visible so you see the whole market. Always confirm final PPO details with the office.</span></div></div>
 </div></div></div>
 
-<div class="scrim" id="m-verify"><div class="modal"><div class="mh"><h3 id="v-title">Ask CoverCapy to check an office</h3><button class="x" onclick="closeModal('m-verify')">×</button></div><div class="mb">
-  <p>We'll contact the office to confirm PPO participation, then email you what we find. No pressure to book.</p>
-  <input class="inp" id="v-name" placeholder="Your name">
-  <input class="inp" id="v-email" placeholder="Email">
-  <input class="inp" id="v-ppo" placeholder="Your PPO carrier (optional)">
-  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-verify')">Cancel</button><button class="btn-dark" onclick="submitVerify()">Request PPO check</button></div>
+<div class="scrim" id="m-verify"><div class="modal"><div class="mh"><h3 id="v-title">Check your PPO with this office</h3><button class="x" onclick="closeModal('m-verify')">×</button></div><div class="mb">
+  <p id="v-intro">CoverCapy can help contact the office to confirm whether your PPO is accepted before you book.</p>
+  <div class="fgrid">
+    <input class="inp" id="v-name" placeholder="Your name">
+    <input class="inp" id="v-email" type="email" placeholder="Email">
+  </div>
+  <input class="inp" id="v-ppo" placeholder="PPO carrier (e.g. Delta Dental PPO)">
+  <div class="fgrid">
+    <input class="inp" id="v-plan" placeholder="Plan name (optional)">
+    <input class="inp" id="v-member" placeholder="Member ID (optional)">
+  </div>
+  <input class="inp" id="v-treat" placeholder="Treatment interest (e.g. cleaning, Invisalign)">
+  <textarea class="inp" id="v-msg" rows="2" placeholder="Anything else? (optional)"></textarea>
+  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-verify')">Cancel</button><button class="btn-dark" onclick="submitPpoCheck()">Send PPO Check Request</button></div>
 </div></div></div>
 
-<div class="scrim" id="m-claim"><div class="modal"><div class="mh"><h3>Claim your CoverCapy profile</h3><button class="x" onclick="closeModal('m-claim')">×</button></div><div class="mb">
-  <p>Replace the temporary avatar with real office photos, verify PPO details, and make your profile easier for patients to trust. Your public CoverCapy profile is already live; claiming simply helps patients see the official version.</p>
+<div class="scrim" id="m-avail"><div class="modal"><div class="mh"><h3 id="av-title">Request availability</h3><button class="x" onclick="closeModal('m-avail')">×</button></div><div class="mb">
+  <p>Tell us when works for you and CoverCapy can help route this availability request to the office.</p>
+  <div class="fgrid">
+    <input class="inp" id="av-name" placeholder="Your name">
+    <input class="inp" id="av-email" type="email" placeholder="Email">
+  </div>
+  <div class="fgrid">
+    <input class="inp" id="av-date" type="date" aria-label="Preferred date">
+    <select class="inp" id="av-window" aria-label="Preferred time window"><option value="">Preferred time window</option><option>Morning</option><option>Midday</option><option>Afternoon</option><option>Evening</option></select>
+  </div>
+  <input class="inp" id="av-treat" placeholder="Treatment interest (e.g. cleaning, Invisalign)">
+  <textarea class="inp" id="av-msg" rows="2" placeholder="Anything else? (optional)"></textarea>
+  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-avail')">Cancel</button><button class="btn-dark" onclick="submitAvailability()">Request Availability</button></div>
+</div></div></div>
+
+<div class="scrim" id="m-claim"><div class="modal"><div class="mh"><h3>Claim this CoverCapy profile</h3><button class="x" onclick="closeModal('m-claim')">×</button></div><div class="mb">
+  <p>Claiming lets your office update photos, PPO details, booking links, and profile information shown to patients.</p>
   <ul class="claimben">
-    <li>Upload official office and doctor photos</li>
-    <li>Confirm PPO carriers and booking links</li>
-    <li>Add specialties, offers, and patient rewards</li>
-    <li>Receive PPO-check inquiries from patients</li>
-    <li>Improve profile completeness and patient trust</li>
-    <li>Apply for Capy Accreditation or Platinum Elite later</li>
+    <li>Verify PPO participation shown to patients</li>
+    <li>Add official office photos and booking links</li>
+    <li>Receive PPO checks and availability requests</li>
+    <li>Improve local visibility and patient trust</li>
   </ul>
-  <p class="fineprint">Complete, verified profiles may receive stronger placement signals over time.</p>
+  <div class="fgrid">
+    <input class="inp" id="c-name" placeholder="Your name">
+    <input class="inp" id="c-email" type="email" placeholder="Work email">
+  </div>
+  <div class="fgrid">
+    <input class="inp" id="c-role" placeholder="Your role (e.g. Office Manager)">
+    <input class="inp" id="c-phone" placeholder="Phone">
+  </div>
   <input class="inp" id="c-office" placeholder="Practice name">
-  <input class="inp" id="c-email" placeholder="Work email">
-  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-claim')">Cancel</button><button class="btn-dark" onclick="submitClaim()">Claim profile</button></div>
+  <textarea class="inp" id="c-msg" rows="2" placeholder="Anything we should know? (optional)"></textarea>
+  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-claim')">Cancel</button><button class="btn-dark" onclick="submitClaimProfile()">Request Free Claim Access</button></div>
 </div></div></div>
 
 <div class="scrim" id="m-disc"><div class="modal"><div class="mh"><h3>Before you book</h3><button class="x" onclick="closeModal('m-disc')">×</button></div><div class="mb">
@@ -996,8 +1053,8 @@ function normalizeRow(r){
     avatarSeed: r.avatar_seed || r.slug || r.practice_name || r.name || "capy",
     avatarVersion: r.avatar_version || 1,
     avatarTraits: r.avatar_traits || null,
-    city: r.city, county: r.area || "Orange County", state: "CA", zip: r.zip || "",
-    address: r.address || ((r.city||"")+", CA"),
+    city: r.city, county: r.area || "Orange County", area: r.area || "Orange County", state: "CA", zip: r.zip || "",
+    address: r.address || ((r.city||"")+", CA"), website: r.website || "",
     lat, lng, phone: r.phone || "", booking: r.booking_url || "",
     carriers: (r.insurance_networks||[]).filter(Boolean),
     specialties: (r.specialties||[]).filter(Boolean),
@@ -1219,11 +1276,19 @@ const US_STATE={california:"ca",ca:"ca",nevada:"nv",arizona:"az",texas:"tx",flor
 function stateCode(s){ s=String(s==null?"":s).toLowerCase().trim(); if(s.length===2) return s; return US_STATE[s] || slugify(s) || "us"; }
 function stateSlugFull(s){ s=String(s==null?"":s).toLowerCase().trim(); if(s==="ca"||s==="california") return "california"; return slugify(s)||"california"; }
 function getDentistProfileUrl(d){
-  const st=stateSlugFull(d&&d.state);
-  const county=slugify((d&&d.county)||"orange-county")||"orange-county";
-  const city=slugify((d&&d.city)||"orange-county")||"orange-county";
-  const slug=(d&&d.slug)?slugify(d.slug):slugify(normalizeDentistName(d));
-  return "/dentists/"+st+"/"+county+"/"+city+"/"+(slug||"dental-office");
+  d = d || {};
+  // 1) Supabase profile_url wins when present.
+  if(d.profile_url && String(d.profile_url).trim()) return String(d.profile_url).trim();
+  // 2) Build /best-ppo-dentists/{area}/{city}/{practice}; drop empty segments; no undefined/null.
+  const base = "/best-ppo-dentists";
+  const areaSlug = slugify(d.area || d.county || "");
+  const citySlug = slugify(d.city || "");
+  const practiceSlug = slugify(d.slug || d.practice || d.practice_name || d.name || "") || "dental-office";
+  const parts = [base];
+  if(areaSlug) parts.push(areaSlug);   // 3) if area missing -> /best-ppo-dentists/{city}/{practice}
+  if(citySlug) parts.push(citySlug);
+  parts.push(practiceSlug);
+  return parts.join("/").replace(/\/{2,}/g,"/").replace(/\/+$/,"");
 }
 function avInitialsTile(d){ return '<div class="av-ini" style="background:'+tierGrad(d)+'">'+getDentistInitials(d)+'</div>'; }
 function getDentistImageMarkup(d){
@@ -1244,7 +1309,14 @@ function viewProfileClick(e,id){
   if(location.protocol==="file:"){ e.preventDefault(); e.stopPropagation(); openProfile(id); return false; }
   e.stopPropagation(); return true;
 }
-function openClaim(id){ const d=id?find(id):null; const f=document.getElementById('c-office'); if(f&&d) f.value=d.practice; openModal('m-claim'); track('claim_open',{id:id||''}); }
+/* "View Full Profile": go to the CoverCapy SEO profile URL (profile modal already showed the preview). */
+function goSeoProfile(e,id){
+  const d=find(id), url=getDentistProfileUrl(d);
+  gtagSafe('seo_profile_click',{dentist_id:id, url:url});
+  if(location.protocol==="file:"){ if(e&&e.preventDefault){ e.preventDefault(); e.stopPropagation(); } toast('Full profile','This opens the live CoverCapy profile page.','info'); return false; }
+  return true; // allow the anchor href to navigate on the live site
+}
+function openClaim(id){ const d=id?find(id):null; CLAIM_CTX=d; const f=document.getElementById('c-office'); if(f&&d) f.value=d.practice; openModal('m-claim'); gtagSafe('claim_profile_modal_open',{dentist_id:id||''}); }
 
 /* ---------- Capybara avatar engine (deterministic, trait-driven) ---------- */
 function hashSeed(str){ str=String(str); let hh=2166136261>>>0; for(let i=0;i<str.length;i++){ hh^=str.charCodeAt(i); hh=Math.imul(hh,16777619); } return hh>>>0; }
@@ -1513,32 +1585,59 @@ function pridebar(d){
 }
 function cardHtml(d, feat){
   const saved = state.compare.has(d.id);
-  const claimed = isDentistClaimed(d), realImg = hasRealDentistImage(d), url = getDentistProfileUrl(d);
+  const claimed = isDentistClaimed(d), realImg = hasRealDentistImage(d);
   const tierCls = d.tier==="platinum_elite"?"t-plat":d.tier==="capy_accredited"?"t-accr":d.tier==="verified"?"t-ver":"t-pub";
+  const isPlat = d.tier==="platinum_elite";
+  const isAccr = d.tier==="capy_accredited" || d.tier==="verified";
+  const isPublic = !isPlat && !isAccr;
+  const showClaim = isPublic && !claimed;
+  const hasBooking = !!(d.booking && String(d.booking).trim());
+  const hasWebsite = !!(d.website && String(d.website).trim());
+  const idj = jsq(d.id);
+  // CTA building blocks (one insurance CTA only: Check My PPO)
+  const cProfile = cls => '<button class="la '+cls+'" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View PPO Profile</button>';
+  const cCheck   = '<button class="la la-soft" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check My PPO</button>';
+  const cBook    = '<button class="la la-gold" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">Book Appointment</button>';
+  let primary;
+  if(isPlat){            // Platinum Elite: Book -> Check -> View
+    primary = cBook + cCheck + cProfile('la-link');
+  } else if(isAccr){     // Capy Accredited / Verified: View -> Check (+ Book if booking)
+    primary = cProfile('la-primary') + cCheck + (hasBooking?cBook:'');
+  } else {               // Public / Free / Unclaimed: View + Check (+ Book only if booking)
+    primary = cProfile('la-primary') + cCheck + (hasBooking?cBook:'');
+  }
+  const smallLinks = '<div class="lsmall">'+
+    '<a class="lsl" role="button" tabindex="0" onclick="event.stopPropagation();callOffice(\''+idj+'\')">Call Office</a>'+
+    (hasWebsite?'<span class="lsl-sep">·</span><a class="lsl" role="button" tabindex="0" onclick="event.stopPropagation();openWebsite(\''+idj+'\')">Website</a>':'')+
+  '</div>';
+  const claimBox = showClaim ? '<div class="claimbox-card">'+
+      '<div class="cbc-h">Own this office?</div>'+
+      '<p class="cbc-p">Patients can already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.</p>'+
+      '<button class="cbc-cta" onclick="event.stopPropagation();openClaim(\''+idj+'\')">Claim Free Profile →</button>'+
+    '</div>' : '';
   return '<article class="lcard'+(feat?' feat':'')+'" id="card-'+d.id+'" '+
-      'onmouseenter="highlightCard(\''+d.id+'\',true)" onmouseleave="highlightCard(\''+d.id+'\',false)">'+
+      'onmouseenter="highlightCard(\''+idj+'\',true)" onmouseleave="highlightCard(\''+idj+'\',false)">'+
     (feat?'<div class="featrib">♛ Featured Platinum partner · within 18 miles</div>':'')+
     '<div class="lrow">'+
-      '<div class="av-wrap '+tierCls+(claimed?' is-claimed':' is-unclaimed')+'">'+
+      '<div class="av-wrap '+tierCls+(claimed?' is-claimed':' is-unclaimed')+'" role="button" tabindex="0" aria-label="View '+escapeAttr(d.practice)+' profile" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+
         '<div class="av">'+getDentistImageMarkup(d)+'</div>'+
         avBadge(d)+
       '</div>'+
       '<div class="lmain">'+
         '<div class="tagrow">'+tierChip(d)+(d.offer?'<span class="chip-offer">★ '+escapeHtml(d.offer)+'</span>':'')+'</div>'+
-        '<span class="lname" role="link" tabindex="0" onclick="event.stopPropagation();openProfile(\''+d.id+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+d.id+'\')">'+escapeHtml(d.practice)+'</span>'+
+        '<span class="lname" role="link" tabindex="0" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+escapeHtml(d.practice)+'</span>'+
         '<div class="lrate">'+ratingHtml(d)+'</div>'+
         '<div class="lmeta">'+
           '<span class="geo">◍ '+escapeHtml(d.city)+', '+escapeHtml(d.state)+'</span>'+
           distMeta(d)+
         '</div>'+
         '<div class="chips">'+specChips(d,feat?4:3)+carrierChips(d,2)+'</div>'+
-        (!claimed ? `<div class="claimrow"><span class="claim-spark">✦</span><span class="claim-copy">Public listing. This office has not claimed its CoverCapy profile yet. <a onclick="event.stopPropagation();openClaim('${d.id}')">Claim this profile</a> to add photos, verify PPO details, and update booking info.</span></div>` : '')+
+        claimBox+
       '</div>'+
       '<div class="lside">'+
-        '<button class="savebtn'+(saved?' on':'')+'" title="Save / compare" onclick="event.stopPropagation();toggleCompare(\''+d.id+'\',this)">♥</button>'+
-        '<a class="la la-primary" href="'+escapeAttr(url)+'" onclick="return viewProfileClick(event,\''+d.id+'\')">View profile</a>'+
-        '<button class="la la-soft" onclick="event.stopPropagation();openVerify(\''+d.id+'\')">Check PPO fit</button>'+
-        '<button class="la '+(isPremiumStatus(d)?'la-gold':'la-soft')+'" onclick="event.stopPropagation();book(\''+d.id+'\')">Call / request visit</button>'+
+        '<button class="savebtn'+(saved?' on':'')+'" title="Save / compare" onclick="event.stopPropagation();toggleCompare(\''+idj+'\',this)">♥</button>'+
+        primary+
+        smallLinks+
       '</div>'+
     '</div>'+
   '</article>';
@@ -2004,7 +2103,7 @@ function renderMapPins(){
 }
 function popupHtml(d){
   return '<div class="cc-pop"><b>'+esc(d.practice)+'</b><div class="pr">'+statusBadgeHtml(d)+(d.reviews?' <span class="dot"></span> ★ '+d.rating.toFixed(1)+' ('+d.reviews+')':'')+'</div>'+
-    '<button onclick="openProfile(\''+d.id+'\')">View profile</button></div>';
+    '<button onclick="openProfile(\''+d.id+'\')">View PPO Profile</button></div>';
 }
 function fsOpen(){ const f=document.getElementById('fsmap'); return f && f.classList.contains('open'); }
 function radiusZoom(mi){ mi=+mi||8; if(mi<=5)return 13; if(mi<=8)return 12; if(mi<=15)return 11; if(mi<=25)return 10; return 9; }
@@ -2144,11 +2243,11 @@ function renderFsCard(d){
     '<div class="fsc-actions">'+
       '<button class="fsc-act" onclick="callOffice(\''+d.id+'\')"><span class="fsi">☎</span>Call</button>'+
       '<button class="fsc-act" onclick="directionsTo(\''+d.id+'\')"><span class="fsi">◍</span>Directions</button>'+
-      '<button class="fsc-act" onclick="openVerify(\''+d.id+'\')"><span class="fsi">✓</span>PPO fit</button>'+
+      '<button class="fsc-act" onclick="openVerify(\''+d.id+'\')"><span class="fsi">✓</span>Check PPO</button>'+
       '<button class="fsc-act" onclick="shareDentist(\''+d.id+'\')"><span class="fsi">↗</span>Share</button>'+
       '<button class="fsc-act'+(saved?' on':'')+'" onclick="fsSave(\''+d.id+'\')"><span class="fsi">♥</span>Save</button>'+
     '</div>'+
-    '<button class="fsc-view" onclick="openProfile(\''+d.id+'\')">View profile</button>';
+    '<button class="fsc-view" onclick="openProfile(\''+d.id+'\')">View PPO Profile</button>';
 }
 function panToVisible(latlng){
   if(!fullMap) return;
@@ -2175,7 +2274,7 @@ function setSelectedPin(id){
   (pinIndex[id]||[]).forEach(m=>{ const el=m.getElement&&m.getElement(); if(el){ const p=el.querySelector('.cc-pin'); if(p) p.classList.add('cc-sel'); } if(m.setZIndexOffset) m.setZIndexOffset(2000); });
 }
 function fsSave(id){ toggleCompare(id); const d=LAST.find(x=>x.id===id); if(d) renderFsCard(d); }
-function callOffice(id){ const d=fsGet(id); if(d&&d.phone){ window.location.href='tel:'+String(d.phone).replace(/[^0-9+]/g,''); } else { openVerify(id); } }
+function callOffice(id){ const d=fsGet(id); gtagSafe('call_office_click',{dentist_id:id}); if(d&&d.phone){ window.location.href='tel:'+String(d.phone).replace(/[^0-9+]/g,''); } else { openPpoCheck(id,{noPhone:true}); } }
 function directionsTo(id){ const d=fsGet(id); if(!d) return; const q=(d.lat!=null&&d.lng!=null)?(d.lat+','+d.lng):encodeURIComponent((d.address||d.practice||'')+' '+(d.city||'')); window.open('https://www.google.com/maps/dir/?api=1&destination='+q,'_blank','noopener'); }
 function shareDentist(id){ const d=fsGet(id); if(!d) return; const url=location.origin+getDentistProfileUrl(d); if(navigator.share){ navigator.share({title:d.practice, url:url}).catch(()=>{}); } else { try{ navigator.clipboard.writeText(url); toast('Link copied', d.practice+' profile link copied'); }catch(e){ toast('Share', url); } } }
 /* legacy aliases kept for any stale references */
@@ -2235,21 +2334,134 @@ function updateSearchSummary(){
 
 /* ---------- CTAs ---------- */
 function find(id){ return loadDentistsFromSupabase().find(d=>d.id===id); }
-function book(id){ const d=find(id); track('book_click',{id});
-  if(d&&d.booking){ document.getElementById('disc-go').onclick=()=>{ window.open(d.booking,'_blank'); closeModal('m-disc'); }; openModal('m-disc'); }
-  else if(d&&d.phone){ toast('Call '+d.practice, d.phone); }
-  else openVerify(id);
+/* ---------- event tracking (gtag + dataLayer, guarded) ---------- */
+function gtagSafe(ev,p){ try{ window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:ev,...(p||{})}); if(typeof window.gtag==='function') window.gtag('event',ev,p||{}); }catch(e){} }
+
+/* ---------- patient + office actions ---------- */
+let PPO_CTX=null, AVAIL_CTX=null, CLAIM_CTX=null;
+
+function bookAppointment(id){ const d=find(id);
+  if(d&&d.booking&&String(d.booking).trim()){
+    gtagSafe('booking_click',{dentist_id:id});
+    document.getElementById('disc-go').onclick=()=>{ window.open(d.booking,'_blank','noopener'); closeModal('m-disc'); };
+    openModal('m-disc');
+  } else { openAvailability(id); }     // no booking_url -> Request Availability
 }
-function openVerify(id){ const d=id?find(id):null;
-  document.getElementById('v-title').textContent = d?('Ask about '+d.practice):'Ask CoverCapy to check an office';
-  if(state.carrier) document.getElementById('v-ppo').value=state.carrier;
-  openModal('m-verify'); }
-function submitVerify(){ const e=document.getElementById('v-email').value; if(!e){ toast('Email needed','Add an email so we can send results.'); return; } closeModal('m-verify'); toast('PPO check requested','We\'ll confirm with the office and email you.'); track('verify_submit',{}); }
-function submitClaim(){ const e=document.getElementById('c-email').value; if(!e){ toast('Work email needed',''); return; } closeModal('m-claim'); toast('Claim started','Check your email to verify ownership.'); }
+function book(id){ return bookAppointment(id); } /* legacy alias */
+
+function openWebsite(id){ const d=find(id); if(d&&d.website&&String(d.website).trim()){ gtagSafe('website_click',{dentist_id:id}); window.open(d.website,'_blank','noopener'); } }
+
+function openPpoCheck(id, opts){ const d=id?find(id):null; PPO_CTX=d; opts=opts||{};
+  document.getElementById('v-title').textContent = d?('Check your PPO with '+d.practice):'Check your PPO with this office';
+  const intro=document.getElementById('v-intro');
+  if(intro) intro.textContent = opts.noPhone
+    ? 'This office does not have a phone listed yet. CoverCapy can help contact the office to confirm whether your PPO is accepted.'
+    : 'CoverCapy can help contact the office to confirm whether your PPO is accepted before you book.';
+  const p=document.getElementById('v-ppo'); if(p && !p.value && state.carrier) p.value=state.carrier;
+  openModal('m-verify'); gtagSafe('ppo_check_modal_open',{dentist_id:id||''});
+}
+function openVerify(id){ return openPpoCheck(id); } /* legacy alias */
+function submitPpoCheck(){
+  const email=(document.getElementById('v-email').value||'').trim();
+  if(!email){ toast('Email needed','Add an email so CoverCapy can send results.','warn'); return; }
+  const formData={
+    patient_name:(document.getElementById('v-name').value||'').trim(),
+    patient_email:email,
+    ppo_carrier:(document.getElementById('v-ppo').value||'').trim(),
+    plan_name:(document.getElementById('v-plan').value||'').trim(),
+    member_id:(document.getElementById('v-member').value||'').trim(),
+    treatment_interest:(document.getElementById('v-treat').value||'').trim(),
+    message:(document.getElementById('v-msg').value||'').trim()
+  };
+  submitPpoCheckRequest(PPO_CTX, formData);
+  closeModal('m-verify');
+  toast('Request prepared','CoverCapy will contact the office and help confirm PPO compatibility.');
+  gtagSafe('ppo_check_submit',{dentist_id:PPO_CTX?PPO_CTX.id:''});
+}
+
+function openAvailability(id){ const d=id?find(id):null; AVAIL_CTX=d;
+  document.getElementById('av-title').textContent = d?('Request availability at '+d.practice):'Request availability';
+  openModal('m-avail'); gtagSafe('availability_request_modal_open',{dentist_id:id||''});
+}
+function submitAvailability(){
+  const email=(document.getElementById('av-email').value||'').trim();
+  if(!email){ toast('Email needed','Add an email so the office can reply.','warn'); return; }
+  const formData={
+    patient_name:(document.getElementById('av-name').value||'').trim(),
+    patient_email:email,
+    preferred_date:(document.getElementById('av-date').value||'').trim(),
+    preferred_window:(document.getElementById('av-window').value||'').trim(),
+    treatment_interest:(document.getElementById('av-treat').value||'').trim(),
+    message:(document.getElementById('av-msg').value||'').trim()
+  };
+  submitAvailabilityRequest(AVAIL_CTX, formData);
+  closeModal('m-avail');
+  toast('Request prepared','CoverCapy can help route this availability request to the office.');
+  gtagSafe('availability_request_submit',{dentist_id:AVAIL_CTX?AVAIL_CTX.id:''});
+}
+function submitClaimProfile(){
+  const email=(document.getElementById('c-email').value||'').trim();
+  if(!email){ toast('Work email needed','Add your work email so CoverCapy can verify the office.','warn'); return; }
+  const formData={
+    rep_name:(document.getElementById('c-name').value||'').trim(),
+    work_email:email,
+    role:(document.getElementById('c-role').value||'').trim(),
+    phone:(document.getElementById('c-phone').value||'').trim(),
+    practice_name:(document.getElementById('c-office').value||'').trim(),
+    message:(document.getElementById('c-msg').value||'').trim()
+  };
+  submitClaimProfileRequest(CLAIM_CTX, formData);
+  closeModal('m-claim');
+  toast('Claim request prepared','CoverCapy will verify the office before granting access.');
+  gtagSafe('claim_profile_submit',{dentist_id:CLAIM_CTX?CLAIM_CTX.id:''});
+}
+
+/* ---------- service layer (Resend / Supabase Edge ready; no secrets in frontend) ----------
+   Each builds a clean payload and logs it. Swap the console.log for a fetch() to the matching
+   /api endpoint later without touching the UI:
+     /api/ppo-check-request   /api/availability-request   /api/claim-profile-request          */
+async function submitPpoCheckRequest(dentist, formData){
+  const d=dentist||{}, f=formData||{};
+  const payload={ type:'ppo_check_request',
+    dentist_id:d.uuid||d.id||'', practice_name:d.practice||'',
+    office_email:d.email||'', office_phone:d.phone||'', office_city:d.city||'', office_slug:d.slug||d.id||'',
+    patient_name:f.patient_name||'', patient_email:f.patient_email||'',
+    ppo_carrier:f.ppo_carrier||'', plan_name:f.plan_name||'', member_id:f.member_id||'',
+    treatment_interest:f.treatment_interest||'', message:f.message||'',
+    source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
+  try{ console.log('[CoverCapy] ppo-check-request', payload); /* await fetch('/api/ppo-check-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); */ }catch(e){ console.warn('ppo-check-request failed', e); }
+  return payload;
+}
+async function submitAvailabilityRequest(dentist, formData){
+  const d=dentist||{}, f=formData||{};
+  const payload={ type:'availability_request',
+    dentist_id:d.uuid||d.id||'', practice_name:d.practice||'',
+    office_email:d.email||'', office_phone:d.phone||'', office_city:d.city||'', office_slug:d.slug||d.id||'',
+    patient_name:f.patient_name||'', patient_email:f.patient_email||'',
+    preferred_date:f.preferred_date||'', preferred_window:f.preferred_window||'',
+    treatment_interest:f.treatment_interest||'', message:f.message||'',
+    source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
+  try{ console.log('[CoverCapy] availability-request', payload); /* await fetch('/api/availability-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); */ }catch(e){ console.warn('availability-request failed', e); }
+  return payload;
+}
+async function submitClaimProfileRequest(dentist, formData){
+  const d=dentist||{}, f=formData||{};
+  const payload={ type:'claim_profile_request',
+    dentist_id:d.uuid||d.id||'', practice_name:f.practice_name||d.practice||'',
+    office_city:d.city||'', office_slug:d.slug||d.id||'',
+    rep_name:f.rep_name||'', work_email:f.work_email||'', role:f.role||'', phone:f.phone||'', message:f.message||'',
+    source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
+  try{ console.log('[CoverCapy] claim-profile-request', payload); /* await fetch('/api/claim-profile-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); */ }catch(e){ console.warn('claim-profile-request failed', e); }
+  return payload;
+}
 
 /* ---------- PROFILE ---------- */
 function openProfile(id){ const d=find(id); if(!d) return;
-  const claimed=isDentistClaimed(d), realImg=hasRealDentistImage(d), url=getDentistProfileUrl(d);
+  const claimed=isDentistClaimed(d), realImg=hasRealDentistImage(d), url=getDentistProfileUrl(d), idj=jsq(d.id);
+  const hasBooking=!!(d.booking&&String(d.booking).trim());
+  const hasWebsite=!!(d.website&&String(d.website).trim());
+  const dist=(d.dist!=null&&d.dist<999)?' <span class="dot"></span> <span class="geo">'+d.dist.toFixed(1)+' mi away</span>':'';
+  const langs=(d.languages&&d.languages.length)?'<h4 class="msub">Languages</h4><div class="chips" style="margin-bottom:12px">'+d.languages.map(l=>'<span class="chip">'+escapeHtml(l)+'</span>').join('')+'</div>':'';
   document.getElementById('profile-body').innerHTML =
     '<div class="pimg'+(realImg?' has-photo':'')+'">'+
       getDentistImageMarkup(d)+
@@ -2259,25 +2471,35 @@ function openProfile(id){ const d=find(id); if(!d) return;
     '<div class="mb">'+
       '<div class="tagrow">'+tierChip(d)+'</div>'+
       '<h3 style="font-size:24px;margin:2px 0 0">'+escapeHtml(d.practice)+'</h3>'+
-      '<div class="lmeta" style="margin:6px 0 10px">'+(d.reviews?'<span class="rpill"><span class="st">★</span>'+d.rating.toFixed(1)+'</span> <span class="rcount">'+d.reviews.toLocaleString()+' reviews</span> <span class="dot"></span>':'')+'<span class="geo">◍ '+escapeHtml(d.address||d.city)+'</span></div>'+
+      (d.doctor?'<div class="pdoc">'+escapeHtml(d.doctor)+'</div>':'')+
+      '<div class="lmeta" style="margin:6px 0 10px">'+(d.reviews?'<span class="rpill"><span class="st">★</span>'+d.rating.toFixed(1)+'</span> <span class="rcount">'+d.reviews.toLocaleString()+' reviews</span> <span class="dot"></span>':'')+'<span class="geo">◍ '+escapeHtml(d.address||d.city)+'</span>'+dist+'</div>'+
       (d.why?'<p>'+escapeHtml(d.why)+'</p>':'')+
-      '<div class="chips" style="margin-bottom:12px">'+specChips(d,8)+'</div>'+
+      '<h4 class="msub">Treatments &amp; specialties</h4>'+
+      '<div class="chips" style="margin-bottom:12px">'+specChips(d,10)+'</div>'+
       '<h4 class="msub">Accepted PPO</h4>'+
       '<div class="chips" style="margin-bottom:14px">'+carrierChips(d,8)+'</div>'+
-      '<div class="lactions">'+
-        '<a class="la la-primary" href="'+escapeAttr(url)+'" onclick="return viewProfileClick(event,\''+d.id+'\')">View profile</a>'+
-        '<button class="la la-soft" onclick="openVerify(\''+d.id+'\')">Check PPO fit</button>'+
-        '<button class="la '+(isPremiumStatus(d)?'la-gold':'la-soft')+'" onclick="book(\''+d.id+'\')">Call / request visit</button>'+
+      langs+
+      '<div class="lactions pactions">'+
+        (hasBooking
+          ? '<button class="la la-gold" onclick="bookAppointment(\''+idj+'\')">Book Appointment</button>'
+          : '<button class="la la-primary" onclick="openAvailability(\''+idj+'\')">Request Availability</button>')+
+        '<button class="la la-soft" onclick="openPpoCheck(\''+idj+'\')">Check My PPO</button>'+
       '</div>'+
-      (!claimed?'<div class="claimbox"><b>Public listing</b><p>This office has not claimed its CoverCapy profile yet.</p><p>Claim this office to add photos, verify PPO details, and update booking info.</p><button class="btn-dark" onclick="openClaim(\''+d.id+'\')">Claim this profile</button></div>':'')+
+      '<div class="lsmall pmsmall">'+
+        '<a class="lsl" role="button" tabindex="0" onclick="callOffice(\''+idj+'\')">Call Office</a>'+
+        (hasWebsite?'<span class="lsl-sep">·</span><a class="lsl" role="button" tabindex="0" onclick="openWebsite(\''+idj+'\')">Website</a>':'')+
+        '<span class="lsl-sep">·</span><a class="lsl" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile</a>'+
+      '</div>'+
+      (!claimed?'<div class="claimbox"><b>Own this office?</b><p>Patients can already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.</p><button class="btn-dark" onclick="openClaim(\''+idj+'\')">Claim Free Profile</button></div>':'')+
     '</div>';
-  openModal('m-profile'); track('profile_view',{id});
+  openModal('m-profile'); gtagSafe('ppo_profile_modal_open',{dentist_id:id});
 }
 
 /* ---------- MODALS / TOAST ---------- */
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.scrim').forEach(s=> s.addEventListener('click', e=>{ if(e.target===s) s.classList.remove('open'); }));
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ let closed=false; document.querySelectorAll('.scrim.open').forEach(s=>{ s.classList.remove('open'); closed=true; }); const fs=document.getElementById('fsmap'); if(fs&&fs.classList.contains('open')){ closeFsMap(); closed=true; } } });
 document.getElementById('sheet').addEventListener('click', e=>{ if(e.target.id==='sheet') closeSheet(); });
 let toastT;
 function toast(t,s,kind){
@@ -2293,7 +2515,7 @@ function toast(t,s,kind){
 
 /* ---------- ANALYTICS STUB ---------- */
 window.dataLayer=window.dataLayer||[];
-function track(ev,p){ window.dataLayer.push({event:ev,...p}); }
+function track(ev,p){ try{ window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:ev,...(p||{})}); if(typeof window.gtag==='function') window.gtag('event',ev,p||{}); }catch(e){} }
 
 /* ===================== SEO / LOCATION ENGINE (v27_2) =====================
    Ported from ppodentists.html: clean slugs + canonical/title/meta sync +
