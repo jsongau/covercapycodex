@@ -272,6 +272,39 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fs-close:hover{background:#fff}
 .fs-redo{position:absolute; top:16px; left:50%; transform:translateX(-50%); z-index:700; display:inline-flex; align-items:center; gap:7px; background:var(--cream-card); color:var(--teal-night); font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:999px; box-shadow:var(--sh-md); border:1px solid var(--line-2); cursor:pointer; white-space:nowrap}
 .fs-redo .i{color:var(--mint-700)}
+/* ── v50: fullscreen-map radius search control ─────────────────────── */
+.fsmap-ctrl{position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:701; width:min(440px,calc(100% - 28px));
+  background:rgba(255,253,248,.95); -webkit-backdrop-filter:saturate(1.4) blur(12px); backdrop-filter:saturate(1.4) blur(12px);
+  border:1px solid var(--line-2); border-radius:18px; box-shadow:var(--sh-lg); padding:12px 13px; display:flex; flex-direction:column; gap:9px}
+.fmc-loc{display:flex; align-items:center; gap:8px; background:var(--cream-card); border:1px solid var(--line); border-radius:13px; padding:6px 7px 6px 12px; transition:.15s}
+.fmc-loc:focus-within{border-color:var(--teal-300); box-shadow:0 0 0 3px rgba(94,140,146,.12)}
+.fmc-loc .fmc-ico{color:var(--teal-700); font-size:15px; flex:none}
+.fmc-loc input{flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:inherit; font-size:14px; font-weight:600; color:var(--ink); padding:2px 0}
+.fmc-loc input::placeholder{color:var(--ink-faint); font-weight:500}
+.fmc-here{flex:none; display:inline-flex; align-items:center; gap:6px; background:var(--mint-soft); color:var(--mint-700); border:1px solid transparent; border-radius:10px; padding:7px 11px; font-size:12.5px; font-weight:700; white-space:nowrap; cursor:pointer; transition:.15s}
+.fmc-here:hover{background:#d8f2e4}
+.fmc-here .fmc-here-ico{font-size:14px; line-height:1}
+.fmc-rad{display:flex; flex-direction:column; gap:1px; padding:0 3px}
+.fmc-rad label{display:flex; align-items:baseline; justify-content:space-between; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint)}
+.fmc-rad .fmc-radval{font-family:"Fraunces",Georgia,serif; font-size:14px; font-weight:600; letter-spacing:0; text-transform:none; color:var(--teal-night)}
+.fmc-rad .rng{margin:5px 0 1px}
+.fmc-search{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; border-radius:13px; background:var(--teal-night); color:#fff; font-weight:600; font-size:14.5px; cursor:pointer; transition:.15s; box-shadow:0 8px 20px rgba(8,42,48,.22)}
+.fmc-search:hover{background:var(--teal-deep)}
+.fmc-search .i{color:var(--mint); font-size:16px}
+.fmc-hint{font-size:11.5px; color:var(--ink-soft); text-align:center; margin:-1px 0 0; line-height:1.35}
+@media(min-width:981px){
+  .fsmap-ctrl{left:calc(412px + 20px); right:auto; transform:none; width:380px}
+}
+@media(max-width:980px){
+  .fsmap-ctrl{top:12px; left:14px; right:auto; transform:none; width:calc(100% - 76px)}
+}
+/* draggable search-center pin (full map only) */
+.cc-dragpin{position:relative; width:28px; height:28px; cursor:grab}
+.cc-dragpin:active{cursor:grabbing}
+.cc-dragpin .dp-ring{position:absolute; left:50%; top:50%; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; border:2px solid rgba(91,224,160,.7); animation:ccpulse 1.9s ease-out infinite}
+.cc-dragpin .dp-dot{position:absolute; left:50%; top:50%; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 0 0 5px rgba(91,224,160,.30), 0 4px 10px rgba(8,42,48,.35)}
+.cc-dragpin .dp-lbl{position:absolute; left:50%; bottom:calc(100% + 5px); transform:translateX(-50%); white-space:nowrap; background:var(--teal-night); color:#fff; font-family:"Fraunces",Georgia,serif; font-size:11.5px; font-weight:600; padding:3px 9px; border-radius:8px; box-shadow:0 4px 10px rgba(8,42,48,.3); pointer-events:none}
+.cc-dragpin .dp-lbl::after{content:""; position:absolute; left:50%; top:100%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--teal-night)}
 /* bottom sheet */
 .fs-sheet{position:absolute; left:0; right:0; bottom:0; z-index:680; background:var(--cream-card); border-radius:22px 22px 0 0; box-shadow:0 -10px 34px rgba(8,42,48,.20); display:flex; flex-direction:column; max-height:58%; transition:max-height .28s ease}
 .fs-sheet.expanded{max-height:90%}
@@ -1123,7 +1156,19 @@ body.dd-lock{overflow:hidden}
   <div class="fs-map-pane">
     <div class="mapinner" id="fullmap"></div>
     <button class="fs-close" onclick="closeFsMap()" aria-label="Close map">✕</button>
-    <button class="fs-redo" id="mc-redo2" onclick="redoInArea()"><span class="i">⟳</span> Redo search in this area</button>
+    <div class="fsmap-ctrl" id="fsmap-ctrl">
+      <div class="fmc-loc">
+        <span class="fmc-ico" aria-hidden="true">◍</span>
+        <input id="fsmap-loc" type="text" placeholder="Center on a city, ZIP, or address" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();fsCenterOnLocation();}">
+        <button class="fmc-here" type="button" onclick="fsUseMyLocation()" aria-label="Center on my current location"><span class="fmc-here-ico" aria-hidden="true">⊕</span> My location</button>
+      </div>
+      <div class="fmc-rad">
+        <label for="fsmap-rad">Radius <span class="fmc-radval" id="fsmap-radval">10 mi</span></label>
+        <input class="rng" type="range" id="fsmap-rad" min="1" max="50" step="1" value="10" oninput="fsSetRadius(this.value)" aria-label="Search radius in miles">
+      </div>
+      <button class="fmc-search" type="button" onclick="fsSearchNearby()"><span class="i" aria-hidden="true">⌕</span> Search for dentists nearby</button>
+      <p class="fmc-hint" id="fmc-hint">Set a radius, then search — or drag the pin to move the center</p>
+    </div>
   </div>
   <div class="fs-sheet" id="fs-sheet">
     <div class="fs-grip" onclick="toggleFsSheet()" role="button" tabindex="0" aria-label="Expand or collapse the list"></div>
@@ -2365,12 +2410,29 @@ function updateSearchCenter(){
     if(!m) return;
     if(centerLayers[tag]){ try{ m.removeLayer(centerLayers[tag]); }catch(e){} centerLayers[tag]=null; }
     if(!state.mapCenter) return;
-    const c=state.mapCenter, r=(c.radius||state.distance||10)*1609.34;
+    const c=state.mapCenter, r=(c.radius||state.distance||10)*1609.34, isFull=(tag==='full');
     const g=L.layerGroup();
-    L.circle([c.lat,c.lng],{radius:r, color:'#5BE0A0', weight:1.5, opacity:.65, fillColor:'#5BE0A0', fillOpacity:.08}).addTo(g);
-    L.marker([c.lat,c.lng],{icon:centerIcon(c.label, tag!=='mini'), zIndexOffset:1200, interactive:false, keyboard:false}).addTo(g);
+    const circle=L.circle([c.lat,c.lng],{radius:r,
+      color:isFull?'#0C3A42':'#5BE0A0', weight:isFull?2:1.5, opacity:isFull?.9:.65,
+      dashArray:isFull?'7 7':null, fillColor:'#5BE0A0', fillOpacity:isFull?.12:.08}).addTo(g);
+    if(isFull){
+      // draggable center pin: the user can reposition the search center, circle follows live
+      const marker=L.marker([c.lat,c.lng],{icon:centerDragIcon(c.label), draggable:true, autoPan:true, zIndexOffset:1300, keyboard:false});
+      marker.on('drag', function(e){ try{ circle.setLatLng(e.latlng); }catch(_e){} });
+      marker.on('dragend', function(e){ const ll=e.target.getLatLng(); state.mapCenter.lat=ll.lat; state.mapCenter.lng=ll.lng; if(!state.mapCenter.label) state.mapCenter.label='Search area'; onFsCenterMoved(); });
+      marker.addTo(g);
+    } else {
+      L.marker([c.lat,c.lng],{icon:centerIcon(c.label, tag!=='mini'), zIndexOffset:1200, interactive:false, keyboard:false}).addTo(g);
+    }
     g.addTo(m); centerLayers[tag]=g;
   });
+}
+function centerDragIcon(label){
+  return L.divIcon({className:"", html:'<div class="cc-dragpin"><span class="dp-ring"></span><span class="dp-dot"></span>'+(label?'<span class="dp-lbl">'+esc(label)+'</span>':'')+'</div>', iconSize:[28,28], iconAnchor:[14,14]});
+}
+function onFsCenterMoved(){
+  const h=document.getElementById('fmc-hint'); if(h) h.textContent='Center moved — tap "Search for dentists nearby"';
+  const loc=document.getElementById('fsmap-loc'); if(loc) loc.value='';
 }
 function resolveCenter(name){
   if(state._center && state._center.lat!=null) return {lat:+state._center.lat, lng:+state._center.lng, label:state._center.label||name};
@@ -2397,6 +2459,120 @@ function redoInArea(map){
   renderFilters(); render();
 }
 function toggleMapMove(el){ state.mapMove=!state.mapMove; document.querySelectorAll('#mv-toggle,#mv-toggle2').forEach(t=>t.classList.toggle('on',state.mapMove)); }
+
+/* ── v50: fullscreen-map radius search (visible center pin + slider + recenter) ── */
+/* keep the in-map slider + label in step with the active radius */
+function fsCtrlSync(){
+  const v=Math.max(1, Math.min(RAD_MAX, Math.round(state.distance||10)));
+  const sl=document.getElementById('fsmap-rad');
+  if(sl){ sl.min="1"; sl.max=String(RAD_MAX); sl.value=String(v); const pct=Math.round((v-1)/(RAD_MAX-1)*100); sl.style.setProperty('--fill', pct+'%'); }
+  const lab=document.getElementById('fsmap-radval'); if(lab) lab.textContent=v+' mi';
+}
+/* always give the map a visible center pin + circle, even from the nationwide view */
+function fsSeedCenter(){
+  if(state.mapCenter && state.mapCenter.lat!=null){ if(state.mapCenter.radius==null) state.mapCenter.radius=state.distance||10; return; }
+  let ctr=null;
+  if(state._center && state._center.lat!=null) ctr={lat:+state._center.lat,lng:+state._center.lng,label:state._center.label||'Search area'};
+  else if(fullMap){ const m=fullMap.getCenter(); ctr={lat:m.lat,lng:m.lng,label:'Search area'}; }
+  else { const d=dataCentroid(); ctr={lat:d.lat,lng:d.lng,label:'Search area'}; }
+  ctr.radius=state.distance||10;
+  state.mapCenter=ctr;
+}
+/* slider: resize the circle live; no search until the button is pressed */
+function fsSetRadius(v){
+  v=Math.max(1, Math.min(RAD_MAX, Math.round(+v)||10));
+  state.distance=v;
+  if(state.mapCenter) state.mapCenter.radius=v;
+  const lab=document.getElementById('fsmap-radval'); if(lab) lab.textContent=v+' mi';
+  const sl=document.getElementById('fsmap-rad'); if(sl){ const pct=Math.round((v-1)/(RAD_MAX-1)*100); sl.style.setProperty('--fill', pct+'%'); }
+  setRadiusUI(v);          // keep the in-rail slider + labels in sync
+  updateSearchCenter();    // redraw the circle at the new radius
+  const h=document.getElementById('fmc-hint'); if(h) h.textContent='Tap "Search for dentists nearby" to use this radius';
+}
+/* fit the full map so the whole search circle is comfortably visible (clears the docked sheet) */
+function fsFitToCircle(){
+  if(!fullMap || !state.mapCenter) return;
+  const c=state.mapCenter, r=(c.radius||state.distance||10);
+  try{ fullMap.invalidateSize(); }catch(e){}
+  const desktop = window.innerWidth>=981;
+  const opts = desktop
+    ? {maxZoom:14, paddingTopLeft:[432,96], paddingBottomRight:[40,40]}
+    : {maxZoom:14, paddingTopLeft:[24,150], paddingBottomRight:[24,40]};
+  try{ fullMap.fitBounds(L.latLng(c.lat,c.lng).toBounds(r*1609.34*2), opts); }catch(e){}
+}
+/* PRIMARY: grab every office within the slider radius of the center pin */
+async function fsSearchNearby(){
+  fsSeedCenter();
+  const c=state.mapCenter; if(!c) return;
+  const radius=Math.max(1, Math.min(RAD_MAX, Math.round(state.distance||10)));
+  state.seoHome=false; state.allCounty=false; state.areaKeys=null; state.areaLabel=null; state._picked=null;
+  state._center={lat:c.lat,lng:c.lng,label:c.label||'this area'};
+  state._lastLoc=c.label||'this area'; state._title=c.label||'this area';
+  c.radius=radius;
+  const h=document.getElementById('fmc-hint'); if(h) h.textContent='Searching this area…';
+  if(sb && SB_READY){
+    try{
+      const { data, error } = await sb.rpc("search_dentists_near_coordinates", { in_lat:c.lat, in_lng:c.lng, radius_miles:Math.max(radius, PLAT_REACH) });
+      if(error) throw error;
+      SERVER_ORDER=(data||[]).map(r=>({ id:r.id, dist:+r.distance_miles, tier:r.tier }));
+      renderFilters(); render(); fsAfterSearch(); return;
+    }catch(e){ console.warn("fs coords RPC failed; client fallback", e); }
+  }
+  // client fallback (no Supabase): distances measured from the pin
+  SERVER_ORDER=null;
+  CITIES["__map__"]={lat:c.lat,lng:c.lng,label:c.label||'this area'}; state.city="__map__";
+  renderFilters(); render(); fsAfterSearch();
+}
+function fsAfterSearch(){
+  if(window.matchMedia && window.matchMedia('(max-width:980px)').matches){ peekFsSheet(); }
+  fsCtrlSync(); updateSearchCenter(); fsFitToCircle();
+  const n=LAST.length, mi=Math.round(state.distance||10);
+  const h=document.getElementById('fmc-hint');
+  if(h) h.textContent = n ? (n.toLocaleString()+' office'+(n===1?'':'s')+' within '+mi+' mi — drag the pin or change the radius to search again')
+                          : 'No offices in this radius — widen it or move the pin, then search again';
+  if(n) toast("Area updated", n.toLocaleString()+" PPO office"+(n===1?"":"s")+" within "+mi+" mi");
+  else  toast("No offices found", "Try a wider radius or move the center pin", 'warn');
+}
+/* recenter on the device's current location, then search */
+function fsUseMyLocation(){
+  const h=document.getElementById('fmc-hint');
+  if(!('geolocation' in navigator)){ if(h) h.textContent='Location unavailable — type a city or ZIP above'; toast("Location unavailable","Type a city or ZIP to set the center", 'warn'); return; }
+  if(location.protocol==='file:' || window.isSecureContext===false){ if(h) h.textContent='Location needs a secure (https) site — type a city or ZIP above'; toast("Location needs a secure site","On covercapy.com the browser will ask to share your location. For now, type a city or ZIP.", 'warn'); return; }
+  if(h) h.textContent='Finding your location…'; toast("Locating…","Centering the map on your location", 'info');
+  navigator.geolocation.getCurrentPosition(function(pos){
+    state.mapCenter={lat:pos.coords.latitude, lng:pos.coords.longitude, label:'Your location', radius:state.distance||10};
+    const loc=document.getElementById('fsmap-loc'); if(loc) loc.value='';
+    fsSearchNearby();
+  }, function(err){ if(h) h.textContent='Couldn\u2019t get your location — type a city or ZIP'; toast("Couldn\u2019t get your location", (err&&err.code===1)?"Location is turned off for this site. Type a city or ZIP instead.":"Type a city or ZIP to set the center", 'warn'); },
+  { enableHighAccuracy:false, timeout:8000, maximumAge:60000 });
+}
+/* recenter on a typed place (known city → instant; otherwise geocode), then search */
+async function fsCenterOnLocation(){
+  const inp=document.getElementById('fsmap-loc'); if(!inp) return;
+  const q=(inp.value||'').trim(); if(!q){ inp.focus(); return; }
+  const h=document.getElementById('fmc-hint');
+  const key=q.toLowerCase().replace(/,.*$/,'').trim();
+  if(CITIES[key] && CITIES[key].lat!=null){
+    state.mapCenter={lat:CITIES[key].lat, lng:CITIES[key].lng, label:CITIES[key].label||q, radius:state.distance||10};
+    fsSearchNearby(); return;
+  }
+  if(h) h.textContent='Finding "'+q+'"…';
+  const geo=await fsGeocode(q);
+  if(geo){ state.mapCenter={lat:geo.lat, lng:geo.lng, label:geo.label||q, radius:state.distance||10}; fsSearchNearby(); }
+  else { if(h) h.textContent='Couldn\u2019t find that place — try a nearby city or 5-digit ZIP'; toast("Place not found","Try a city name or 5-digit ZIP code", 'warn'); }
+}
+/* lightweight geocoder (OpenStreetMap Nominatim) — resolves ZIPs/addresses on the live https site.
+   Degrades quietly when offline or blocked; known cities never reach this path. */
+async function fsGeocode(q){
+  try{
+    const url='https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q='+encodeURIComponent(q);
+    const res=await fetch(url, {headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error('geocode http '+res.status);
+    const arr=await res.json();
+    if(arr && arr.length){ const r=arr[0]; return {lat:+r.lat, lng:+r.lon, label:(r.display_name||q).split(',')[0]}; }
+  }catch(e){ console.warn('geocode failed', e); }
+  return null;
+}
 
 /* card <-> pin interactions */
 function hoverPin(id,on){ (pinIndex[id]||[]).forEach(m=>{ const el=m.getElement&&m.getElement(); if(el){ const p=el.querySelector('.cc-pin'); if(p) p.style.transform = on?'rotate(-45deg) scale(1.35)':'rotate(-45deg) scale(1)'; } }); }
@@ -2425,10 +2601,12 @@ function openFsMap(){
   f.classList.add('open'); document.body.style.overflow='hidden';
   renderFsList();
   setTimeout(()=>{
-    ensureMaps(); renderMapPins();
+    ensureMaps();
     if(fullMap){ try{ fullMap.invalidateSize(); }catch(e){} fitMap(); }
+    fsSeedCenter(); fsCtrlSync(); renderMapPins();
     const feat = LAST.some(d=>d.id===FS_SELECTED) ? FS_SELECTED : (featuredForMap(LAST)||{}).id;
     if(feat) selectDentist(feat, false); else renderFsCard(null);
+    const h=document.getElementById('fmc-hint'); if(h) h.textContent='Set a radius, then search — or drag the pin to move the center';
   },90);
 }
 function closeFsMap(){ document.getElementById('fsmap').classList.remove('open'); document.body.style.overflow=''; }
