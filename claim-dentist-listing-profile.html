@@ -137,6 +137,11 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .distpills{display:flex; flex-wrap:wrap; gap:6px}
 .distpills button{font-size:12.5px; font-weight:600; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:6px 11px; transition:.12s}
 .distpills button.on{background:var(--teal-night); color:#fff; border-color:transparent}
+.ratefilter{padding:2px 0 0}
+.rate-head{display:flex; justify-content:space-between; align-items:baseline; font-size:12.5px; color:var(--ink-soft)}
+.rate-head .rate-val{font-weight:700; color:var(--teal-night); font-size:13.5px}
+.rate-scale{display:flex; justify-content:space-between; font-size:11px; color:var(--ink-faint); margin-top:2px}
+.raterng{margin:8px 0 2px}
 .opt{display:flex; align-items:center; gap:10px; padding:6px 2px; cursor:pointer; font-size:14px; color:var(--ink); border-radius:8px}
 .opt:hover{color:var(--teal-700)}
 .opt input{width:17px; height:17px; accent-color:var(--teal-night); cursor:pointer; flex:none}
@@ -1397,7 +1402,7 @@ const state = {
   city: "",
   spec: "", carrier: "", distance: 8, allCounty:true, seoHome:true,
   filters: { tier:new Set(), carrier:new Set(), spec:new Set(), lang:new Set() },
-  offers:false, newpat:false, online:false, minReviews:0,
+  offers:false, newpat:false, online:false, minReviews:0, minRating:0,
   compare:new Set(), _picked:null, mapMove:false,
   areaKeys:null, areaLabel:null
 };
@@ -1498,6 +1503,7 @@ function processed(){
   if(state.offers) list = list.filter(d=> d.offer);
   if(state.newpat) list = list.filter(d=> d.newPatients);
   if(state.minReviews>0) list = list.filter(d=> reviewCountOf(d) >= state.minReviews);
+  if(state.minRating>0) list = list.filter(d=> ratingValueOf(d) >= state.minRating);
   if(state.filters.carrier.size) list = list.filter(d=> [...state.filters.carrier].some(c=> officeAcceptsCarrier(d,c)));
   if(state.filters.spec.size) list = list.filter(d=> d.specialties.some(x=>state.filters.spec.has(x)));
   if(state.filters.lang.size) list = list.filter(d=> d.languages.some(x=>state.filters.lang.has(x)));
@@ -1564,11 +1570,25 @@ function specChips(d, max){
 function isPaidTier(d){ return d && ["platinum_elite","capy_accredited","verified"].includes(d.tier); }
 function num1(n){ n=parseFloat(n); return isFinite(n)?n.toFixed(1):"0.0"; }
 function reviewCountOf(d){ return (parseInt(d.wReviews)>0 ? parseInt(d.wReviews) : parseInt(d.reviews)) || 0; }
-function googleReviewsUrl(d){ return d.placeId ? 'https://search.google.com/local/reviews?placeid='+encodeURIComponent(d.placeId) : ''; }
+function googleReviewsUrl(d){
+  if(d.placeId) return 'https://search.google.com/local/reviews?placeid='+encodeURIComponent(d.placeId);
+  // No place_id stored: open the practice on Google Maps (reviews are one tap away).
+  const q=[normalizeDentistName(d), d.address||d.city||''].filter(Boolean).join(' ');
+  return q ? 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q) : '';
+}
+/* The rating value the filter compares against, mirroring what ratingHtml displays. */
+function ratingValueOf(d){
+  return isPaidTier(d) ? (parseFloat(d.wRating)>0?parseFloat(d.wRating):(parseFloat(d.rating)||0))
+                       : (parseFloat(d.gRating)||parseFloat(d.rating)||0);
+}
 function srcPill(cls, label, rating, count, href){
   const body='<b>'+label+'</b> '+num1(rating)+' · '+(parseInt(count)||0).toLocaleString();
   if(href) return '<a class="rsrc-pill '+cls+'" href="'+escapeAttr(href)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+body+'</a>';
   return '<span class="rsrc-pill '+cls+'">'+body+'</span>';
+}
+/* a source pill that links out but has no rating/count yet (e.g. Zocdoc URL with no numbers) */
+function srcLink(cls, label, href){
+  return '<a class="rsrc-pill '+cls+'" href="'+escapeAttr(href)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()"><b>'+label+'</b> ↗</a>';
 }
 function ratingHtml(d){
   if(!isPaidTier(d)){
@@ -1591,6 +1611,7 @@ function ratingHtml(d){
   if(parseInt(d.gReviews)>0) pills.push(srcPill('src-google','Google', d.gRating, d.gReviews, googleReviewsUrl(d)));         // linked to Google reviews
   if(parseInt(d.yReviews)>0) pills.push(srcPill('src-yelp','Yelp', d.yRating, d.yReviews, d.yelpUrl||''));                   // linked (Yelp terms)
   if(parseInt(d.zReviews)>0) pills.push(srcPill('src-zocdoc','Zocdoc', d.zRating, d.zReviews, d.zocdocUrl||d.booking||'')); // linked
+  else if(d.zocdocUrl) pills.push(srcLink('src-zocdoc','Zocdoc', d.zocdocUrl));                                            // URL only, no count yet
   if(parseInt(d.cReviews)>0) pills.push(srcPill('src-capy','CoverCapy', d.cRating, d.cReviews, ''));                        // internal
   return '<span class="rpill"><span class="st">★</span>'+num1(score)+'</span>'+
          '<span class="rcount">'+total.toLocaleString()+' reviews</span>'+
@@ -2072,6 +2093,13 @@ function renderFilters(){
   const tierCounts = t=> loadDentistsFromSupabase().filter(d=>d.tier===t).length;
   const html =
   '<div class="clearrow"><span class="ttl">Filters</span><button onclick="clearFilters()">Clear all</button></div>'+
+  '<div class="fcard"><h4>Patient reviews</h4>'+
+    reviewFilterPills()+
+    '<div class="rev-note">Members combine Google, Yelp, Zocdoc &amp; CoverCapy reviews.</div>'+
+  '</div>'+
+  '<div class="fcard"><h4>Rating</h4>'+
+    ratingFilterControl()+
+  '</div>'+
   '<div class="fcard"><h4>PPO carrier</h4>'+
     CARRIERS_ALL.map(c=>opt('carrier',c,carrierCount(c))).join('')+
   '</div>'+
@@ -2082,10 +2110,6 @@ function renderFilters(){
     sw('offers','Has an offer or reward')+
     sw('newpat','Accepting new patients')+
     sw('online','Online booking')+
-  '</div>'+
-  '<div class="fcard"><h4>Patient reviews</h4>'+
-    reviewFilterPills()+
-    '<div class="rev-note">Members combine Google, Yelp, Zocdoc &amp; CoverCapy reviews.</div>'+
   '</div>'+
   (LANGS_ALL.length>1?'<div class="fcard"><h4>Languages</h4>'+LANGS_ALL.map(l=>opt('lang',l)).join('')+'</div>':'');
 
@@ -2114,6 +2138,23 @@ function reviewFilterPills(){
   return '<div class="distpills revpills">'+opts.map(function(o){ return '<button data-rv="'+o[0]+'" class="'+(state.minReviews===o[0]?'on':'')+'" onclick="setMinReviews('+o[0]+')">'+o[1]+'</button>'; }).join('')+'</div>';
 }
 function setMinReviews(v){ state.minReviews=parseInt(v)||0; document.querySelectorAll('.revpills button').forEach(function(b){ b.classList.toggle('on', parseInt(b.getAttribute('data-rv'))===state.minReviews); }); render(); }
+/* Minimum-rating filter. A 0.1-step slider gives fine control, which matters because dental
+   ratings cluster tightly at the top (most are 4.5+), where coarse 1-5 star steps barely sort. */
+function ratingFilterLabel(v){ return v>0 ? (parseFloat(v).toFixed(1)+'+ ★') : 'Any'; }
+function ratingFilterControl(){
+  const v=state.minRating||0;
+  return '<div class="ratefilter">'+
+      '<div class="rate-head"><span>Minimum</span><span class="rate-val" id="rate-val">'+ratingFilterLabel(v)+'</span></div>'+
+      '<input class="rng raterng" type="range" min="0" max="5" step="0.1" value="'+v+'" oninput="setMinRating(this.value)" onchange="setMinRating(this.value)" aria-label="Minimum rating">'+
+      '<div class="rate-scale"><span>Any</span><span>5.0</span></div>'+
+    '</div>';
+}
+function setMinRating(v){
+  state.minRating=parseFloat(v)||0;
+  const el=document.getElementById('rate-val'); if(el) el.textContent=ratingFilterLabel(state.minRating);
+  document.querySelectorAll('.raterng').forEach(function(s){ if(s.value!=String(state.minRating)) s.value=state.minRating; });
+  clearTimeout(state._rateT); state._rateT=setTimeout(render, 150);
+}
 /* ---- v29 radius chip sync (no sliders; chips + OC toggle drive state.distance) ---- */
 /* ---- area helpers: the "all [area]" label is driven by Supabase (search_locations.county) ---- */
 function areaForCity(cityKey){ const c=CITIES[(cityKey||'').toLowerCase()]; return (c&&c.area)?c.area:""; }
@@ -2198,7 +2239,7 @@ function toggleFilter(k,v){ const s=state.filters[k]; s.has(v)?s.delete(v):s.add
 function toggleSwitch(k,el){ state[k]=!state[k]; el.classList.toggle('on',state[k]); render(); }
 function clearFilters(){
   state.filters.tier.clear(); state.filters.carrier.clear(); state.filters.spec.clear(); state.filters.lang.clear();
-  state.offers=false; state.newpat=false; state.online=false; state.minReviews=0; state.spec=""; state.carrier=""; state.distance=8; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
+  state.offers=false; state.newpat=false; state.online=false; state.minReviews=0; state.minRating=0; state.spec=""; state.carrier=""; state.distance=8; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
   document.getElementById('q-spec').value=""; document.getElementById('q-carrier').value=""; setRadiusUI(8);
   if(SB_READY && state._lastLoc){ fetchByLocation(state._lastLoc, 8); } else if(state.seoHome || !state._lastLoc){ showAllOffices(); } else { renderFilters(); render(); }
 }
@@ -2567,7 +2608,7 @@ function renderMapPins(){
     LAST.forEach(d=>{ if(d.lat==null) return;
       if(tag==='mini'){ L.marker([d.lat,d.lng],{icon:makeIcon(d),interactive:false,zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer); return; }
       const m=L.marker([d.lat,d.lng],{icon:makeIcon(d),zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer);
-      if(tag==='full'){ m.bindPopup(fsPinCard(d), {className:'cc-dpop', maxWidth:270, minWidth:250, autoPanPadding:[28,28], offset:[0,-6]}); m.on('click',()=>{ selectDentist(d.id,false); m.openPopup(); }); }
+      if(tag==='full'){ m.bindPopup(fsPinCard(d), {className:'cc-dpop', maxWidth:270, minWidth:250, autoPanPadding:[28,28], offset:[0,-6]}); m.on('click',()=>{ selectDentist(d.id); m.openPopup(); }); }
       else { m.on('click',()=>{ m.bindPopup(popupHtml(d)).openPopup(); scrollToCard(d.id); }); }
       m.on('mouseover',()=>highlightCard(d.id,true));
       m.on('mouseout',()=>highlightCard(d.id,false));
@@ -2926,11 +2967,9 @@ function renderFsCard(d){
 function panToVisible(latlng){
   if(!fullMap) return;
   try{
-    const p=fullMap.latLngToContainerPoint(latlng), size=fullMap.getSize();
-    let tx=size.x/2, ty=size.y/2;
-    if(window.innerWidth>=981){ tx = 412 + (size.x-412)/2; }   // sheet docked left
-    else { ty = size.y*0.26; }                                  // bottom sheet -> aim upper area
-    fullMap.panBy([p.x-tx, p.y-ty], {animate:true});
+    // land the clinic exactly under the center crosshair (the black dot)
+    const p=fullMap.latLngToContainerPoint(latlng), a=fsAnchorPx();
+    fullMap.panBy([p.x-a[0], p.y-a[1]], {animate:true});
   }catch(e){ try{ fullMap.panTo(latlng); }catch(_){} }
 }
 function selectDentist(id, doPan){
@@ -2939,7 +2978,15 @@ function selectDentist(id, doPan){
   const s=document.getElementById('fs-sheet'); if(s && s.classList.contains('peek')){ s.classList.remove('peek'); syncFsPeek(); fsInval(); }
   renderFsCard(d);
   setSelectedPin(id);
-  if(doPan!==false && d.lat!=null) panToVisible(L.latLng(d.lat,d.lng));
+  if(doPan!==false && d.lat!=null){
+    // fixate the search center on this clinic: black dot on the pin, radius circle around it
+    if(fsOpen()){
+      const hadCircle=!!fsCircle;
+      state.mapCenter={lat:d.lat, lng:d.lng, label:d.practice, radius:(state.mapCenter&&state.mapCenter.radius)||state.distance||10};
+      if(!hadCircle) updateSearchCenter();
+    }
+    panToVisible(L.latLng(d.lat,d.lng));
+  }
   document.querySelectorAll('.fs-mini.sel').forEach(c=>c.classList.remove('sel'));
   const lc=document.getElementById('fsmini-'+id); if(lc){ lc.classList.add('sel'); lc.scrollIntoView({block:'nearest'}); }
 }
