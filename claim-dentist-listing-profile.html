@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Find PPO Dentists in Orange County · CoverCapy</title>
-<meta name="description" content="Find PPO friendly dentists in Orange County. Compare nearby offices by distance, rating, and CoverCapy status, and check your PPO before you book.">
-<link id="seo-canonical" rel="canonical" href="https://www.covercapy.com/best-ppo-dentists/california/orange-county/fountain-valley">
-<meta id="seo-og-title" property="og:title" content="PPO friendly dentists in Orange County · CoverCapy">
-<meta id="seo-og-desc" property="og:description" content="Compare PPO friendly dentists near you, check your plan, and book with confidence.">
+<title>Find PPO Dentists Near You | CoverCapy</title>
+<meta name="description" content="Search PPO dentists nationwide by ZIP code, city, specialty, insurance carrier, and distance.">
+<link id="seo-canonical" rel="canonical" href="https://www.covercapy.com/find-my-dentist">
+<meta id="seo-og-title" property="og:title" content="Find PPO Dentists Near You | CoverCapy">
+<meta id="seo-og-desc" property="og:description" content="Search PPO dentists nationwide by ZIP code, city, specialty, insurance carrier, and distance.">
+<meta id="seo-og-url" property="og:url" content="https://www.covercapy.com/find-my-dentist">
+<meta id="seo-tw-title" name="twitter:title" content="Find PPO Dentists Near You | CoverCapy">
+<meta id="seo-tw-desc" name="twitter:description" content="Search PPO dentists nationwide by ZIP code, city, specialty, insurance carrier, and distance.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +33,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0; padding:0}
+html,body{overflow-x:clip; max-width:100%}
 body{font-family:"Inter Tight", system-ui, sans-serif; background:var(--cream); color:var(--ink); font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased}
 h1,h2,h3,.disp{font-family:"Fraunces", Georgia, serif; font-weight:500; letter-spacing:-.01em; line-height:1.06; margin:0}
 a{color:inherit; text-decoration:none}
@@ -96,7 +100,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .acct{margin-left:auto; flex:none; font-size:11.5px; font-weight:600; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:3px 8px}
 
 /* ============ RESULT BAR ============ */
-.resultbar{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 0 12px; flex-wrap:wrap}
+.resultbar{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:13px 0 12px; flex-wrap:wrap}
 .resultbar .rb-l h2{font-size:21px; font-weight:560}
 .resultbar .rb-l .sub{font-size:13px; color:var(--ink-soft); margin-top:2px}
 .resultbar .rb-l .sub a{color:var(--teal-700); border-bottom:1px solid var(--gold-2); font-weight:600}
@@ -241,7 +245,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-pop button{background:var(--teal-night); color:#fff; font-weight:600; font-size:12px; padding:6px 11px; border-radius:8px; border:none; cursor:pointer}
 
 /* ============ MODALS ============ */
-.scrim{position:fixed; inset:0; background:rgba(8,30,34,.5); backdrop-filter:blur(3px); z-index:90; display:none; align-items:center; justify-content:center; padding:20px}
+.scrim{position:fixed; inset:0; background:rgba(8,30,34,.5); backdrop-filter:blur(3px); z-index:130; display:none; align-items:center; justify-content:center; padding:20px}
 .scrim.open{display:flex}
 .modal{background:var(--cream-card); border-radius:20px; max-width:520px; width:100%; box-shadow:var(--sh-lg); max-height:90vh; overflow:auto}
 .modal .mh{padding:20px 22px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:14px}
@@ -271,8 +275,16 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* bottom sheet */
 .fs-sheet{position:absolute; left:0; right:0; bottom:0; z-index:680; background:var(--cream-card); border-radius:22px 22px 0 0; box-shadow:0 -10px 34px rgba(8,42,48,.20); display:flex; flex-direction:column; max-height:58%; transition:max-height .28s ease}
 .fs-sheet.expanded{max-height:90%}
-.fs-grip{flex:none; height:22px; cursor:pointer; display:flex; align-items:center; justify-content:center}
-.fs-grip::before{content:""; width:42px; height:5px; border-radius:999px; background:var(--line)}
+.fs-grip{flex:none; height:26px; cursor:pointer; display:flex; align-items:center; justify-content:center}
+.fs-grip::before{content:""; width:46px; height:5px; border-radius:999px; background:var(--line)}
+/* collapsed "peek" state: sheet shrinks to a slim bar so the map fills the screen for proximity browsing */
+.fs-peekbar{display:none; align-items:center; justify-content:center; gap:10px; width:100%; padding:2px 16px 18px; background:none; border:none; cursor:pointer; font:700 14.5px/1.1 "Inter Tight",sans-serif; color:var(--teal-night)}
+.fs-peekbar .fpb-chev{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--mint); color:var(--teal-night); font-size:13px; box-shadow:0 2px 8px rgba(91,224,160,.45)}
+@media(max-width:980px){
+  .fs-sheet.peek{max-height:none; box-shadow:0 -8px 26px rgba(8,42,48,.16)}
+  .fs-sheet.peek .fs-card, .fs-sheet.peek .fs-results{display:none}
+  .fs-sheet.peek .fs-peekbar{display:flex}
+}
 /* selected business card */
 .fs-card{flex:none; display:none; padding:2px 16px 14px; border-bottom:1px solid var(--line-2); position:relative}
 .fs-card.show{display:block}
@@ -315,7 +327,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-pin.cc-sel{transform:rotate(-45deg) scale(1.6)!important; box-shadow:0 6px 18px rgba(8,42,48,.5); z-index:1000}
 
 /* toast */
-.toast{position:fixed; top:0; right:20px; z-index:100; display:flex; gap:11px; align-items:center; background:rgba(8,42,48,.80); -webkit-backdrop-filter:blur(14px) saturate(150%); backdrop-filter:blur(14px) saturate(150%); color:#fff; padding:12px 16px 12px 13px; border-radius:15px; border:1px solid rgba(255,255,255,.13); box-shadow:0 16px 38px rgba(8,42,48,.32); max-width:340px; opacity:0; transform:translateY(-8px) scale(.97); transition:opacity .28s ease, transform .3s cubic-bezier(.2,.9,.3,1); pointer-events:none}
+.toast{position:fixed; top:0; right:20px; z-index:140; display:flex; gap:11px; align-items:center; background:rgba(8,42,48,.80); -webkit-backdrop-filter:blur(14px) saturate(150%); backdrop-filter:blur(14px) saturate(150%); color:#fff; padding:12px 16px 12px 13px; border-radius:15px; border:1px solid rgba(255,255,255,.13); box-shadow:0 16px 38px rgba(8,42,48,.32); max-width:340px; opacity:0; transform:translateY(-8px) scale(.97); transition:opacity .28s ease, transform .3s cubic-bezier(.2,.9,.3,1); pointer-events:none}
 .toast.show{opacity:1; transform:translateY(0) scale(1)}
 .toast-ico{flex:none; width:27px; height:27px; border-radius:50%; background:rgba(91,224,160,.18); color:var(--mint); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; line-height:1}
 .toast.warn .toast-ico{background:rgba(184,146,79,.20); color:var(--gold)}
@@ -341,6 +353,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 }
 @media(max-width:980px){
   .navlinks{display:none}
+  .menu-toggle{display:inline-flex}
   .layout{grid-template-columns:1fr}
   .filters{display:none}
   .resultbar .rb-r .sortwrap{display:none}
@@ -367,9 +380,15 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   .lcard, .lcard.feat{grid-template-columns:1fr}
   .limg{min-height:150px}
   .lcard.feat .limg{min-height:170px}
-  .menu-toggle{display:inline-flex}
-  .navright .btn-ghost{display:none}
+  .navright .btn-ghost:not(.menu-toggle){display:none}
 }
+/* hamburger dropdown: fixed sheet docked below the sticky nav, never on desktop */
+.mobile-menu{position:fixed; top:var(--nav-h); left:0; right:0; z-index:49; display:none; flex-direction:column; padding:8px 18px 16px; background:var(--cream-card); border-bottom:1px solid var(--line-2); box-shadow:0 16px 30px rgba(8,42,48,.16); max-height:calc(100vh - var(--nav-h)); overflow:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px; font-weight:600; color:var(--ink); padding:12px 6px; border-bottom:1px solid var(--line)}
+.mobile-menu .mm-actions{display:flex; gap:10px; margin-top:12px}
+.mobile-menu .mm-actions>*{flex:1; justify-content:center; text-align:center}
+@media(min-width:981px){ .mobile-menu{display:none !important} }
 
 /* ---- v19 avatar / prestige cards / promo rail ---- */
 .limg .capyfull{width:100%; height:100%; display:block}
@@ -382,6 +401,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .claimrow a{color:var(--teal-700); border-bottom:1px solid var(--gold-2); font-weight:600; cursor:pointer}
 .la-soft{background:var(--mint-soft); color:var(--teal-night); border:1px solid transparent}
 .la-soft:hover{background:#d6f0e2}
+.la-accepted{background:#EAF2FC; color:#2C5C95; border:1px solid #C4DAF1; cursor:default; display:flex; align-items:center; justify-content:center; gap:6px; font-weight:700}
+.la-accepted:hover{background:#EAF2FC}
 .la[href]{display:inline-flex; align-items:center; text-decoration:none}
 /* promo rail */
 .prail{position:sticky; top:calc(var(--nav-h) + var(--rail-h) + 14px); align-self:start; display:flex; flex-direction:column; gap:14px}
@@ -731,6 +752,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 @media(prefers-reduced-motion:reduce){ .lcard.lc-plat:hover::before{animation:none} }
 /* two action groups in the CTA column: booking/contact (primary) separated from profile/coverage (secondary) */
 .lside{justify-content:flex-start}
+.lcard.lc-accr .lside{justify-content:center}
 .lside .cta-primary, .lside .cta-secondary{display:flex; flex-direction:column; gap:7px; width:100%}
 .lside .cta-primary .la, .lside .cta-secondary .la{width:100%}
 .lside .cta-secondary.has-divider{margin-top:10px; padding-top:10px; border-top:1px solid var(--line-2)}
@@ -738,6 +760,75 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   .lside .cta-primary, .lside .cta-secondary{flex-direction:row; flex-wrap:wrap; gap:8px; flex:1 1 100%}
   .lside .cta-primary .la, .lside .cta-secondary .la{flex:1 1 0; min-width:96px; width:auto}
   .lside .cta-secondary.has-divider{margin-top:9px; padding-top:9px}
+}
+/* ---------- RIGHT-SIDE PROFILE DRAWER (quick view) ---------- */
+.lmain{cursor:pointer}
+.dd-backdrop{position:fixed; inset:0; background:rgba(8,42,48,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s ease; z-index:120}
+.dd-backdrop.open{opacity:1; visibility:visible}
+.dd-drawer{position:fixed; top:0; right:0; bottom:0; width:540px; max-width:100vw; background:var(--cream-card); border-left:1px solid var(--line-2); box-shadow:-26px 0 64px rgba(8,42,48,.30); transform:translateX(100%); transition:transform .3s cubic-bezier(.22,.61,.36,1); z-index:121; display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch}
+.dd-drawer.open{transform:translateX(0)}
+.dd-close{position:absolute; top:14px; right:14px; z-index:6; width:36px; height:36px; border-radius:50%; border:none; background:rgba(255,255,255,.92); color:var(--ink); font-size:22px; line-height:1; cursor:pointer; box-shadow:0 2px 12px rgba(8,42,48,.20); display:grid; place-items:center; transition:.15s}
+.dd-close:hover{background:#fff; transform:scale(1.06)}
+.dd-hero{position:relative; height:240px; background:var(--teal-night); overflow:hidden; flex:none}
+.dd-hero img,.dd-hero svg,.dd-hero .capyfull,.dd-hero .av-ini,.dd-hero .dimg{width:100%; height:100%; object-fit:cover; display:block}
+.dd-hero-grad{position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,42,48,0) 28%,rgba(8,42,48,.55) 70%,rgba(8,42,48,.86) 100%)}
+.dd-hero-info{position:absolute; left:20px; right:20px; bottom:16px; color:#fff}
+.dd-hero-info .dd-name{font-family:"Fraunces"; font-size:25px; font-weight:600; line-height:1.14; letter-spacing:-.01em; text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.dd-hero-meta{display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:8px; font-size:13px; color:rgba(255,255,255,.94)}
+.dd-hero-meta .st{color:var(--gold-2)}
+.dd-hero-meta .dd-mdot{opacity:.55}
+.dd-cap{position:absolute; top:15px; left:16px; background:rgba(8,42,48,.62); color:#fff; font-size:11px; font-weight:600; padding:4px 10px; border-radius:999px; backdrop-filter:blur(4px)}
+.dd-bodywrap{padding:18px 22px 30px}
+.dd-doc{color:var(--ink-soft); font-size:14px; margin:0 0 2px}
+.dd-why{font-size:14px; color:var(--ink-soft); line-height:1.5; margin:10px 0 0}
+.dd-sec{margin-top:16px}
+.dd-sec h4{font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 9px}
+.dd-line{display:flex; gap:11px; align-items:flex-start; font-size:14px; color:var(--ink); padding:8px 0; border-bottom:1px solid var(--line)}
+.dd-line:last-child{border-bottom:0}
+.dd-line .dd-ic{width:18px; text-align:center; color:var(--teal-700); flex:none}
+.dd-crowns{display:flex; gap:11px; align-items:flex-start; background:linear-gradient(180deg,#fffdf7,var(--cream-2)); border:1px solid var(--gold-2); border-radius:14px; padding:13px 15px; margin-top:18px}
+.dd-crowns .ddc-emoji{font-size:20px; line-height:1; color:var(--gold)}
+.dd-crowns b{font-family:"Fraunces"; font-weight:600; font-size:15px}
+.dd-crowns p{margin:3px 0 0; font-size:12.5px; color:var(--ink-soft); line-height:1.45}
+.dd-claim{background:var(--cream-2); border:1px solid var(--line-2); border-radius:14px; padding:15px 16px; margin-top:16px}
+.dd-claim b{font-family:"Fraunces"; font-weight:600; font-size:15px}
+.dd-claim p{margin:5px 0 12px; font-size:13px; color:var(--ink-soft); line-height:1.5}
+.dd-cta{display:flex; flex-direction:column; gap:10px; margin-top:20px}
+.dd-cta .la{width:100%; justify-content:center; padding:12px 14px; font-size:14px}
+.dd-cta-row{display:flex; gap:10px}
+.dd-cta-row .la{flex:1 1 0}
+.la-verify{background:var(--mint); color:var(--teal-night); border:1px solid transparent; font-weight:700}
+.la-verify:hover{background:#46cf8f}
+.dd-full{display:block; width:100%; text-align:center; margin-top:14px; padding:13px; border-radius:12px; background:var(--teal-night); color:#fff; font-weight:600; font-size:14px; text-decoration:none; cursor:pointer; transition:.15s}
+.dd-full:hover{background:var(--teal-deep)}
+body.dd-lock{overflow:hidden}
+@media(max-width:767px){
+  .dd-drawer{width:100%}
+  .dd-hero{height:220px}
+  .dd-hero-info .dd-name{font-size:22px}
+}
+/* On mobile the slide-in drawer is replaced by the centered profile modal, so keep the
+   off-screen drawer/backdrop fully out of layout (prevents iOS horizontal scroll). */
+@media(max-width:980px){
+  .dd-drawer, .dd-backdrop{display:none !important}
+}
+/* ---- mobile layout polish: no horizontal overflow, tighter spacing ---- */
+@media(max-width:640px){
+  .hero{padding:24px 0 14px}
+  /* search bar sits in its own cream band with even spacing above and below; no negative pull-up so it isn't jammed under the menu */
+  .searchrail{position:sticky; top:var(--nav-h); margin-top:0; padding:14px 14px 16px; background:var(--cream); border-bottom:1px solid var(--line-2); -webkit-backdrop-filter:none; backdrop-filter:none}
+  .searchinner{padding:11px; gap:8px}
+  .sfield{min-width:0}
+  .sfield.where{flex:1 1 100%; min-width:0}
+  .sfield.spec, .sfield.ppo{flex:1 1 calc(50% - 4px); min-width:0}
+  .sfield.rad{flex:1 1 100%; min-width:0}
+  .s-actions{flex:1 1 100%}
+  /* align the suggestions dropdown to the full width of the search field */
+  .acmenu{left:0; right:0; width:auto; max-width:none}
+  .wrap .seochips{padding-left:0; padding-right:0; padding-bottom:12px; margin-top:40px}
+  .resultbar{padding:14px 0 10px}
+  .seodisc{margin-top:22px}
+  .seonearby{margin-bottom:28px}
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -758,17 +849,28 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
     <div class="navright">
       <button class="btn-ghost" onclick="openModal('m-claim')">List your office</button>
       <button class="btn-dark">Sign in</button>
-      <button class="btn-ghost menu-toggle" aria-label="Menu">☰</button>
+      <button class="btn-ghost menu-toggle" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleNavMenu()">☰</button>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu">
+  <a href="#" onclick="closeNavMenu()">Find a dentist</a>
+  <a href="#" onclick="closeNavMenu()">PPO plans</a>
+  <a href="#" onclick="closeNavMenu()">Cost estimator</a>
+  <a href="#" onclick="closeNavMenu()">Capy Crowns</a>
+  <a href="#" onclick="closeNavMenu()">For dentists</a>
+  <div class="mm-actions">
+    <button class="btn-ghost" onclick="closeNavMenu();openModal('m-claim')">List your office</button>
+    <button class="btn-dark" onclick="closeNavMenu()">Sign in</button>
+  </div>
+</nav>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-inner">
     <span class="hero-eyebrow">CoverCapy · PPO Discovery</span>
     <h1>Find a PPO friendly dentist worth the chair.</h1>
-    <p>Compare Orange County offices, check PPO fit, and see CoverCapy reward eligible dentists before you book.</p>
+    <p>Search PPO friendly offices nationwide, check PPO fit, and see CoverCapy reward eligible dentists before you book.</p>
     <div class="hero-actions">
       <button class="hero-loc" onclick="useCurrentLocation()"><span>◍</span> Use my location</button>
       <span class="hero-chip">Capy Accredited offices</span>
@@ -784,7 +886,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
     <div class="search-summary" id="search-summary" onclick="toggleSearchCollapse()"></div>
     <div class="sfield where" id="where-field">
       <label>Where</label>
-      <input id="q-where" value="Fountain Valley, CA" placeholder="ZIP, city, area, or dentist" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ac-menu">
+      <input id="q-where" value="" placeholder="ZIP, city, state, or dentist" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ac-menu">
       <div id="ac-menu" class="acmenu" role="listbox" hidden></div>
     </div>
     <div class="sfield spec">
@@ -819,7 +921,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 <!-- ============ MAIN ============ -->
 <main class="wrap">
   <style id="seo-css">
-  .seochips{ display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:2px 0 12px; margin:0; scrollbar-width:none; }
+  .seochips{ display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:2px 0 1px; margin:19px 0 0; scrollbar-width:none; }
   .seochips::-webkit-scrollbar{ display:none; }
   .seochip{ flex:0 0 auto; display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:999px; background:var(--cream-card); border:1px solid var(--line); color:var(--ink); font:600 13px/1 'Inter Tight',sans-serif; white-space:nowrap; cursor:pointer; transition:.15s; text-decoration:none; }
   .seochip:hover{ border-color:var(--teal-700); color:var(--teal-700); transform:translateY(-1px); }
@@ -869,13 +971,13 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
     <aside class="filters" id="filters-slot">
       <!-- Search area mini-map card (desktop only; hidden on mobile via .filters{display:none}) -->
       <div class="fcard mapcard" id="mapcard">
-        <div class="mm-head"><h4>Search area</h4><span class="mm-sub" id="mm-sub">Fountain Valley · 8 mi radius</span></div>
+        <div class="mm-head"><h4>Search area</h4><span class="mm-sub" id="mm-sub">Nationwide · search to set area</span></div>
         <div class="minimap" id="minimap" onclick="openFsMap()" role="button" tabindex="0" aria-label="Open larger map" onkeypress="if(event.key==='Enter')openFsMap()">
           <span class="mm-label" id="mm-label"></span>
           <span class="mm-open">Open larger map</span>
           <div class="minimap-fallback" id="minimap-fallback">Map preview unavailable. You can still browse results below.</div>
         </div>
-        <button class="allocbtn" id="alloc-btn" onclick="setCounty()">Show all Orange County</button>
+        <button class="allocbtn" id="alloc-btn" onclick="setCounty()">Show all offices in area</button>
       </div>
       <div id="filters"></div>
     </aside>
@@ -893,9 +995,9 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   </div>
 </main>
 
-<section class="seodisc" id="seo-disc" aria-label="Browse PPO dentists in Orange County">
+<section class="seodisc" id="seo-disc" aria-label="Browse PPO dentists nationwide">
   <button class="seodisc-toggle" id="seo-disc-toggle" type="button" aria-expanded="true" aria-controls="seo-disc-body">
-    <span>Browse PPO dentists across Orange County</span><span class="chev" aria-hidden="true">⌃</span>
+    <span>Browse PPO dentists by city, specialty, and carrier</span><span class="chev" aria-hidden="true">⌃</span>
   </button>
   <div class="seodisc-body" id="seo-disc-body">
     <div class="seodisc-grid">
@@ -1003,6 +1105,11 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 </div></div></div>
 
 <div class="scrim" id="m-profile"><div class="modal" style="max-width:680px"><div id="profile-body"></div></div></div>
+<div class="dd-backdrop" id="dd-backdrop" onclick="closeDentistDrawer()"></div>
+<aside class="dd-drawer" id="dd-drawer" role="dialog" aria-modal="true" aria-label="Dentist profile" aria-hidden="true">
+  <button class="dd-close" type="button" aria-label="Close profile" onclick="closeDentistDrawer()">×</button>
+  <div id="dd-body"></div>
+</aside>
 
 <div class="scrim" id="m-loc"><div class="modal"><div class="mh"><h3 id="loc-title">Turn on location</h3><button class="x" onclick="closeModal('m-loc')">×</button></div><div class="mb">
   <p id="loc-msg"></p>
@@ -1020,6 +1127,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   </div>
   <div class="fs-sheet" id="fs-sheet">
     <div class="fs-grip" onclick="toggleFsSheet()" role="button" tabindex="0" aria-label="Expand or collapse the list"></div>
+    <button class="fs-peekbar" id="fs-peekbar" type="button" onclick="expandFsSheet()" aria-label="Show the list of offices"><span class="fpb-chev">▴</span><span id="fs-peeklabel">Browse offices nearby</span></button>
     <div class="fs-card" id="fs-card"></div>
     <div class="fs-results">
       <div class="fs-filters" id="fs-filters">
@@ -1100,8 +1208,8 @@ function normalizeRow(r){
     avatarSeed: r.avatar_seed || r.slug || r.practice_name || r.name || "capy",
     avatarVersion: r.avatar_version || 1,
     avatarTraits: r.avatar_traits || null,
-    city: r.city, county: r.area || "Orange County", area: r.area || "Orange County", state: "CA", zip: r.zip || "",
-    address: r.address || ((r.city||"")+", CA"), website: r.website || "",
+    city: r.city, county: r.area || "", area: r.area || "", state: r.state || "", location: stateFullName(r.state), zip: r.zip || "",
+    address: r.address || [r.city, r.state].filter(Boolean).join(", "), website: r.website || "",
     lat, lng, phone: r.phone || "", booking: r.booking_url || "",
     carriers: (r.insurance_networks||[]).filter(Boolean),
     specialties: (r.specialties||[]).filter(Boolean),
@@ -1122,7 +1230,7 @@ function normalizeRow(r){
 /* recompute cached lists after a live load */
 function refreshDerived(){
   CITY_COUNTS = computeCityCounts();
-  CARRIERS_ALL = uniqueVals("carriers");
+  CARRIERS_ALL = CARRIERS_CANONICAL.slice();
   SPECS_ALL = uniqueVals("specialties").slice(0,12);
   LANGS_ALL = uniqueVals("languages");
   PLAT = WORKING.find(d=>d.tier==="platinum_elite");
@@ -1135,7 +1243,7 @@ async function bootData(){
   try {
     const { data: locs } = await sb.from("search_locations").select("name,type,city,county,lat,lng,zip_codes").eq("active", true);
     if(locs && locs.length){
-      locs.forEach(l=>{ const k=(l.city||l.name).toLowerCase(); if(l.type==="city"){ CITIES[k]={lat:+l.lat,lng:+l.lng,label:l.name,area:l.county||"Orange County"}; CITY_ZIPS[k]=(l.zip_codes||[]).map(String); } });
+      locs.forEach(l=>{ const k=(l.city||l.name).toLowerCase(); if(l.type==="city"){ CITIES[k]={lat:+l.lat,lng:+l.lng,label:l.name,area:l.county||""}; CITY_ZIPS[k]=(l.zip_codes||[]).map(String); } });
       CITIES["orange county"] = CITIES["orange county"] || { lat:33.70, lng:-117.86, label:"Orange County", area:"Orange County" };
     }
     const cols = "id,slug,name,practice_name,city,area,state,zip,address,phone,website,booking_url,featured_tier,accreditation_status,is_sponsored,is_claimed,membership_tier,aggregate_rating,aggregate_review_count,google_rating,google_review_count,yelp_rating,yelp_review_count,capy_rating,capy_review_count,weighted_rating,weighted_review_count,rating_display,insurance_networks,specialties,languages,latitude,longitude,short_description,avatar_seed,avatar_version,avatar_traits,image_url,gallery_images,pending_display_label,badge_style,badge_bg,badge_text,badge_border,profile_url";
@@ -1151,8 +1259,8 @@ async function bootData(){
 
 /* ---------- STATE ---------- */
 const state = {
-  city: "fountain valley",
-  spec: "", carrier: "", distance: 8, allCounty:false,
+  city: "",
+  spec: "", carrier: "", distance: 8, allCounty:true, seoHome:true,
   filters: { tier:new Set(), carrier:new Set(), spec:new Set(), lang:new Set() },
   offers:false, newpat:false, online:false,
   compare:new Set(), _picked:null, mapMove:false,
@@ -1177,7 +1285,7 @@ function miles(a,b){
   const s=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)**2;
   return R*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
 }
-function centroid(){ return CITIES[state.city] || CITIES["fountain valley"]; }
+function centroid(){ return CITIES[state.city] || dataCentroid(); }
 
 /* ---------- AREAS (synthetic groupings over real cities) ---------- */
 const AREAS = {
@@ -1188,7 +1296,7 @@ const AREAS = {
 };
 function areaCentroid(keys){
   const pts = keys.map(k=>CITIES[k]).filter(Boolean);
-  if(!pts.length) return CITIES["fountain valley"];
+  if(!pts.length) return dataCentroid();
   return { lat: pts.reduce((s,p)=>s+p.lat,0)/pts.length, lng: pts.reduce((s,p)=>s+p.lng,0)/pts.length };
 }
 
@@ -1254,11 +1362,11 @@ function processed(){
   if(state.filters.tier.size) list = list.filter(d=> state.filters.tier.has(d.tier));
   if(state.offers) list = list.filter(d=> d.offer);
   if(state.newpat) list = list.filter(d=> d.newPatients);
-  if(state.filters.carrier.size) list = list.filter(d=> d.carriers.some(x=>state.filters.carrier.has(x)));
+  if(state.filters.carrier.size) list = list.filter(d=> [...state.filters.carrier].some(c=> officeAcceptsCarrier(d,c)));
   if(state.filters.spec.size) list = list.filter(d=> d.specialties.some(x=>state.filters.spec.has(x)));
   if(state.filters.lang.size) list = list.filter(d=> d.languages.some(x=>state.filters.lang.has(x)));
   if(state.spec) list = list.filter(d=> d.specialties.includes(state.spec) || ["platinum_elite","capy_accredited","verified"].includes(d.tier));
-  if(state.carrier) list = list.filter(d=> d.carriers.includes(state.carrier) || ["platinum_elite","capy_accredited","verified"].includes(d.tier));
+  if(state.carrier) list = list.filter(d=> officeAcceptsCarrier(d, state.carrier));
   // "Recommended" now uses the believable client score (both Supabase and local modes); explicit sorts handled in rankDentists.
   return rankDentists(list);
 }
@@ -1333,22 +1441,27 @@ function getDentistInitials(d){ const n=normalizeDentistName(d); return n.split(
 function isDentistClaimed(d){ return !!(d && (d.claimed || d.is_claimed)); }
 function hasRealDentistImage(d){ return !!(d && d.image && /^https?:\/\//i.test(String(d.image))); }
 const US_STATE={california:"ca",ca:"ca",nevada:"nv",arizona:"az",texas:"tx",florida:"fl","new york":"ny",washington:"wa",oregon:"or"};
+/* Abbreviation -> full state name. `location` (the URL segment) is derived from `state`
+   since Supabase has no separate location column. Unknown/blank states fall through cleanly. */
+const STATE_NAMES={al:"Alabama",ak:"Alaska",az:"Arizona",ar:"Arkansas",ca:"California",co:"Colorado",ct:"Connecticut",de:"Delaware",fl:"Florida",ga:"Georgia",hi:"Hawaii",id:"Idaho",il:"Illinois",in:"Indiana",ia:"Iowa",ks:"Kansas",ky:"Kentucky",la:"Louisiana",me:"Maine",md:"Maryland",ma:"Massachusetts",mi:"Michigan",mn:"Minnesota",ms:"Mississippi",mo:"Missouri",mt:"Montana",ne:"Nebraska",nv:"Nevada",nh:"New Hampshire",nj:"New Jersey",nm:"New Mexico",ny:"New York",nc:"North Carolina",nd:"North Dakota",oh:"Ohio",ok:"Oklahoma",or:"Oregon",pa:"Pennsylvania",ri:"Rhode Island",sc:"South Carolina",sd:"South Dakota",tn:"Tennessee",tx:"Texas",ut:"Utah",vt:"Vermont",va:"Virginia",wa:"Washington",wv:"West Virginia",wi:"Wisconsin",wy:"Wyoming",dc:"District of Columbia"};
 function stateCode(s){ s=String(s==null?"":s).toLowerCase().trim(); if(s.length===2) return s; return US_STATE[s] || slugify(s) || "us"; }
-function stateSlugFull(s){ s=String(s==null?"":s).toLowerCase().trim(); if(s==="ca"||s==="california") return "california"; return slugify(s)||"california"; }
+function stateFullName(s){ s=String(s==null?"":s).trim(); if(!s) return ""; const lc=s.toLowerCase(); if(STATE_NAMES[lc]) return STATE_NAMES[lc]; return s.replace(/\b\w/g,c=>c.toUpperCase()); }
+function stateSlugFull(s){ return slugify(stateFullName(s)); }
+/* defensive field accessors: never throw on bad/missing rows */
+function stateOf(d){ return (d&&d.state)?String(d.state).trim():""; }
+function locationOf(d){ if(d&&d.location&&String(d.location).trim()) return String(d.location).trim(); return stateFullName(stateOf(d)); }
+function areaOf(d){ return (d&&(d.area||d.county))?String(d.area||d.county).trim():""; }
+function cityOf(d){ return (d&&d.city)?String(d.city).trim():""; }
+/* slug builder: slugifies each part, drops null/undefined/blank, joins with single "/".
+   Guarantees no undefined/null, no blank or double slashes, no trailing slash. */
+function buildSlug(parts){ const segs=(parts||[]).map(p=>slugify(p)).filter(Boolean); return "/"+segs.join("/"); }
 function getDentistProfileUrl(d){
   d = d || {};
   // 1) Supabase profile_url wins when present.
   if(d.profile_url && String(d.profile_url).trim()) return String(d.profile_url).trim();
-  // 2) Build /best-ppo-dentists/{area}/{city}/{practice}; drop empty segments; no undefined/null.
-  const base = "/best-ppo-dentists";
-  const areaSlug = slugify(d.area || d.county || "");
-  const citySlug = slugify(d.city || "");
-  const practiceSlug = slugify(d.slug || d.practice || d.practice_name || d.name || "") || "dental-office";
-  const parts = [base];
-  if(areaSlug) parts.push(areaSlug);   // 3) if area missing -> /best-ppo-dentists/{city}/{practice}
-  if(citySlug) parts.push(citySlug);
-  parts.push(practiceSlug);
-  return parts.join("/").replace(/\/{2,}/g,"/").replace(/\/+$/,"");
+  // 2) Build /best-ppo-dentists/{location}/{area?}/{city}/{office-slug} from data; area omitted cleanly when blank.
+  const practiceSlug = slugify(d.slug || d.practice || d.practice_name || d.name) || "dental-office";
+  return buildSlug(["best-ppo-dentists", locationOf(d), areaOf(d), cityOf(d), practiceSlug]);
 }
 function avInitialsTile(d){ return '<div class="av-ini" style="background:'+tierGrad(d)+'">'+getDentistInitials(d)+'</div>'; }
 function getDentistImageMarkup(d){
@@ -1664,9 +1777,11 @@ function cardHtml(d, feat){
   const aAvail = (isVerifiedTier && !hasBooking && !hasPhone) ? '<button class="la la-primary" onclick="event.stopPropagation();openAvailability(\''+idj+'\')">Request Availability</button>' : '';
   const primaryBtns = aBook + aCall + aAvail;
 
-  /* GROUP B — profile + coverage (grouped away). Check Coverage (email the office) shown for non-verified only. */
-  const bProfile = '<button class="la la-ghost" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View PPO Profile</button>';
-  const bCheck   = !isVerifiedTier ? '<button class="la la-soft" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check Coverage</button>' : '';
+  /* GROUP B — profile + coverage (grouped away). Member tiers show a PPO-accepted confirmation; public listings get Check Coverage. */
+  const bProfile = '<button class="la la-ghost" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View Profile</button>';
+  const bCheck   = isPublic
+    ? '<button class="la la-soft" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check Coverage</button>'
+    : '<span class="la la-accepted" role="note" aria-label="PPO accepted at this office">✓ PPO Accepted Here</span>';
   const secondaryBtns = bProfile + bCheck;
 
   /* Member offices surface full contact details + two specialty tags; the address opens our map. */
@@ -1705,7 +1820,7 @@ function cardHtml(d, feat){
         '</div>'+
         heart+
       '</div>'+
-      '<div class="lmain">'+
+      '<div class="lmain" onclick="openProfile(\''+idj+'\')">'+
         '<div class="tagrow">'+tierChip(d)+claimNudge+(d.offer?'<span class="chip-offer">★ '+escapeHtml(d.offer)+'</span>':'')+'</div>'+
         '<span class="lname" role="link" tabindex="0" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+escapeHtml(d.practice)+'</span>'+
         '<div class="lrate">'+ratingHtml(d)+'</div>'+
@@ -1725,7 +1840,7 @@ let LAST=[];
 let FS_SELECTED=null, FS_FILTER='all';
 function render(){
   const list = processed(); LAST=list;
-  const c = state.areaKeys ? {label:state.areaLabel} : (state.allCounty ? {label:"Orange County"} : centroid());
+  const c = state.areaKeys ? {label:state.areaLabel} : (state.allCounty ? {label:(currentAreaLabel()||activeStateLabel()||"All offices")} : centroid());
   const locLabel = (SERVER_ORDER && state._title) ? state._title : c.label;
   document.getElementById('rb-title').textContent = seoHeading();
   document.getElementById('rb-count').textContent = list.length.toLocaleString()+" office"+(list.length===1?"":"s")+" found";
@@ -1734,7 +1849,7 @@ function render(){
   const root = document.getElementById('listings');
   if(!list.length){
     const emptyHint = (!state.allCounty && !state.areaKeys) ? ' <button class="la la-link" onclick="extendRadius()">Expand radius</button>' : '';
-    root.innerHTML = '<div style="padding:50px;text-align:center;color:var(--ink-soft);background:var(--cream-card);border:1px solid var(--line-2);border-radius:16px">No offices match these filters.'+emptyHint+' <button class="la la-link" onclick="clearFilters()">Clear filters</button></div>';
+    root.innerHTML = '<div style="padding:50px;text-align:center;color:var(--ink-soft);background:var(--cream-card);border:1px solid var(--line-2);border-radius:16px">No offices found. Try another ZIP code, city, specialty, or increase your search radius.'+emptyHint+' <button class="la la-link" onclick="clearFilters()">Clear filters</button></div>';
     renderMapPins(); return;
   }
   /* sparse results: soft guidance nudge */
@@ -1765,21 +1880,29 @@ function renderListings(){ return render(); }
 /* ---------- FILTERS UI ---------- */
 const RAD_STEPS=[5,8,15,25,50];
 function uniqueVals(key){ const s=new Set(); loadDentistsFromSupabase().forEach(d=> (d[key]||[]).forEach(v=> s.add(v))); return [...s].sort(); }
-let CARRIERS_ALL = uniqueVals('carriers');
+/* Major dental PPO carriers patients recognize. Live insurance_networks only stores PPO status
+   strings today, so a carrier matches an office that explicitly names it (e.g. Delta Dental) or
+   that works with PPO plans generally (member tiers + PPO Friendly). Offices still pending PPO
+   verification are not surfaced under a specific carrier. Real per-carrier data slots in later. */
+const CARRIERS_CANONICAL = ['Delta Dental','Cigna','MetLife','Aetna','Guardian','United Concordia','Anthem Blue Cross','Blue Shield of California','UnitedHealthcare','Humana','Principal','Ameritas','Careington'];
+const CARRIER_ALIASES = { 'Delta Dental':['delta'], 'United Concordia':['concordia'], 'Anthem Blue Cross':['anthem','blue cross'], 'Blue Shield of California':['blue shield'], 'UnitedHealthcare':['unitedhealthcare','united healthcare','uhc'], 'MetLife':['metlife','met life'] };
+function officeAcceptsCarrier(d, carrier){
+  if(!carrier) return true;
+  const nets = (d.carriers||[]).map(x=>String(x).toLowerCase());
+  const needles = (CARRIER_ALIASES[carrier]||[]).concat(carrier.toLowerCase());
+  if(nets.some(n=> needles.some(a=> n.indexOf(a)!==-1))) return true;   // carrier explicitly named in network data
+  const worksWithPpo = nets.some(n=> n.indexOf('ppo friendly')!==-1) || ['platinum_elite','capy_accredited','verified'].includes(d.tier);
+  return worksWithPpo;                                                  // PPO-friendly + member offices accept major carriers
+}
+let CARRIERS_ALL = CARRIERS_CANONICAL.slice();
 let SPECS_ALL = uniqueVals('specialties').slice(0,12);
 let LANGS_ALL = uniqueVals('languages');
-function carrierCount(c){ return loadDentistsFromSupabase().filter(d=>d.carriers.includes(c)).length; }
+function carrierCount(c){ return loadDentistsFromSupabase().filter(d=>officeAcceptsCarrier(d,c)).length; }
 
 function renderFilters(){
   const tierCounts = t=> loadDentistsFromSupabase().filter(d=>d.tier===t).length;
   const html =
   '<div class="clearrow"><span class="ttl">Filters</span><button onclick="clearFilters()">Clear all</button></div>'+
-  '<div class="fcard"><h4>Accreditation</h4>'+
-    tierOpt('platinum_elite','♛','b-plat','Platinum Elite',tierCounts('platinum_elite'))+
-    tierOpt('capy_accredited','✓','b-accr','Capy Accredited',tierCounts('capy_accredited'))+
-    tierOpt('verified','✓','b-ver','Verified PPO',tierCounts('verified'))+
-    tierOpt('public','◦','b-pub','Public listings',tierCounts('public'))+
-  '</div>'+
   '<div class="fcard"><h4>PPO carrier</h4>'+
     CARRIERS_ALL.map(c=>opt('carrier',c,carrierCount(c))).join('')+
   '</div>'+
@@ -1813,11 +1936,19 @@ function sw(key,label){
 }
 /* ---- v29 radius chip sync (no sliders; chips + OC toggle drive state.distance) ---- */
 /* ---- area helpers: the "all [area]" label is driven by Supabase (search_locations.county) ---- */
-function areaForCity(cityKey){ const c=CITIES[(cityKey||'').toLowerCase()]; return (c&&c.area)?c.area:"Orange County"; }
-function areaShort(area){ area=area||"Orange County"; return area.split(/\s+/).map(w=>w[0]).join('').toUpperCase(); }
+function areaForCity(cityKey){ const c=CITIES[(cityKey||'').toLowerCase()]; return (c&&c.area)?c.area:""; }
+function areaShort(area){ area=area||""; return area.split(/\s+/).filter(Boolean).map(w=>w[0]).join('').toUpperCase(); }
+/* Derived location context (no hardcoded Orange County). Reads the active results first,
+   then the full dataset, so state/area reflect whatever data is loaded. */
+function dataCentroid(){ let la=0,lo=0,n=0; loadDentistsFromSupabase().forEach(d=>{ if(typeof d.lat==="number"&&typeof d.lng==="number"){ la+=d.lat; lo+=d.lng; n++; } }); return n?{lat:la/n,lng:lo/n,label:""}:{lat:39.5,lng:-98.35,label:""}; }
+function rowsForCityKey(key){ key=(key||'').toLowerCase(); return loadDentistsFromSupabase().filter(d=> cityOf(d).toLowerCase()===key); }
+function activeStateLabel(){ const rows=(typeof LAST!=="undefined"&&LAST&&LAST.length)?LAST:loadDentistsFromSupabase(); for(const d of rows){ const s=stateFullName(stateOf(d)); if(s) return s; } return ""; }
+function currentAreaLabel(){ const rows=(typeof LAST!=="undefined"&&LAST&&LAST.length)?LAST:loadDentistsFromSupabase(); for(const d of rows){ if(areaOf(d)) return areaOf(d); } return ""; }
+function areaForCityKey(key){ const r=rowsForCityKey(key)[0]; if(r&&areaOf(r)) return areaOf(r); const c=CITIES[(key||'').toLowerCase()]; return (c&&c.area)?c.area:""; }
+function stateForCityKey(key){ const r=rowsForCityKey(key)[0]; return r?stateFullName(stateOf(r)):activeStateLabel(); }
 function currentArea(){
   const key = state.allCounty ? (state._preCountyLoc||state._lastLoc) : (state._lastLoc||state.city);
-  return areaForCity(key||"fountain valley");
+  return areaForCity(key);
 }
 function setRadiusUI(v){
   v = Math.max(1, Math.min(RAD_MAX, Math.round(+v)||8));
@@ -1855,11 +1986,11 @@ function setDist(v){
 }
 function setCounty(){
   if(state.allCounty){
-    // toggle back to a radius search on the last real city
-    const back = state._preCountyLoc || state._lastLoc || "Fountain Valley";
-    const city = (/\bcounty\b/i.test(back)) ? "Fountain Valley" : back;
-    state._lastLoc = city;
-    const wEl=document.getElementById('q-where'); if(wEl && /\bcounty\b/i.test(wEl.value)) wEl.value = city+", CA";
+    // toggle back to a radius search on the last real city; if none, stay on the all-offices view
+    const back = state._preCountyLoc || state._lastLoc || "";
+    if(!back || /\bcounty\b/i.test(back)){ return; }
+    state._lastLoc = back;
+    const wEl=document.getElementById('q-where'); if(wEl && /\bcounty\b/i.test(wEl.value)) wEl.value = back;
     setDist(8);
     return;
   }
@@ -1868,13 +1999,20 @@ function setCounty(){
   state.allCounty=true; state.areaKeys=null; state.areaLabel=null; state.mapCenter=null;
   setRadiusUI(RAD_MAX);
   updateSearchSummary();
-  if(SB_READY){ state._lastLoc=area; fetchByLocation(area, 60); }
-  else { state.city="orange county"; renderFilters(); render(); fitMap(); }
+  if(SB_READY && area){ state._lastLoc=area; fetchByLocation(area, 60); }
+  else { showAllOffices(); }
 }
 /* extendRadius: repurposed — bumps to the next radius step up, or all-OC at max */
 function extendRadius(){
   const next = RAD_STEPS.find(s=>s>state.distance);
   if(next) setDist(next); else setCounty();
+}
+/* Nationwide homepage default: show every loaded office, no location lock-in, SEO stays on /find-my-dentist. */
+function showAllOffices(){
+  SERVER_ORDER=null; state.seoHome=true; state.allCounty=true; state.areaKeys=null; state.areaLabel=null;
+  state.city=""; state._lastLoc=""; state._picked=null; state._center=null; state.mapCenter=null;
+  setRadiusUI(RAD_MAX);
+  renderFilters(); render(); fitMap();
 }
 function toggleFilter(k,v){ const s=state.filters[k]; s.has(v)?s.delete(v):s.add(v); renderFilters(); render(); }
 function toggleSwitch(k,el){ state[k]=!state[k]; el.classList.toggle('on',state[k]); render(); }
@@ -1882,7 +2020,7 @@ function clearFilters(){
   state.filters.tier.clear(); state.filters.carrier.clear(); state.filters.spec.clear(); state.filters.lang.clear();
   state.offers=false; state.newpat=false; state.online=false; state.spec=""; state.carrier=""; state.distance=8; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
   document.getElementById('q-spec').value=""; document.getElementById('q-carrier').value=""; setRadiusUI(8);
-  if(SB_READY){ fetchByLocation(state._lastLoc||"Orange County", 8); } else { renderFilters(); render(); }
+  if(SB_READY && state._lastLoc){ fetchByLocation(state._lastLoc, 8); } else if(state.seoHome || !state._lastLoc){ showAllOffices(); } else { renderFilters(); render(); }
 }
 
 /* ---------- SEARCH ---------- */
@@ -1896,14 +2034,20 @@ async function runSearch(){
   let locName=null, radius=state.distance;
   if(state._picked){
     const p=state._picked;
-    if(p.type==="treatment"){ state.spec=p.key; document.getElementById('q-spec').value=p.key; locName=state._lastLoc||"Orange County"; }
-    else if(p.type==="tier"){ state.filters.tier=new Set([p.key]); locName="Orange County"; radius=60; state._center=null; }
+    if(p.type==="treatment"){ state.spec=p.key; document.getElementById('q-spec').value=p.key; locName=state._lastLoc||""; }
+    else if(p.type==="office" && p._office){ const d=p._office; locName=cityOf(d)||p.name||""; state._center=(d.lat!=null&&d.lng!=null)?{lat:d.lat,lng:d.lng,label:cityOf(d)}:null; }
+    else if(p.type==="tier"){ state.seoHome=false; state.filters.tier=new Set([p.key]); state.allCounty=true; state.areaKeys=null; SERVER_ORDER=null; state._center=null; state._lastLoc=""; renderFilters(); render(); applySeo(); fitMap(); return; }
     else if(p.type==="current"){ useCurrentLocation(); return; }
     else { locName = p.name || p.key; if(p.type==="county") radius=60; state._center=(p.lat!=null&&p.lng!=null)?{lat:p.lat,lng:p.lng,label:p.name}:null; }
   } else {
-    locName = raw.replace(/,.*$/,"").trim() || (state._whereStash||"").replace(/,.*$/,"").trim() || state._lastLoc || "Orange County";
+    locName = raw.replace(/,.*$/,"").trim() || (state._whereStash||"").replace(/,.*$/,"").trim() || state._lastLoc || "";
     state._center=null;
   }
+  // Empty query with no filters -> nationwide all-offices view; stay on /find-my-dentist
+  if(!locName && !state.spec && !state.carrier && !(state.filters.tier&&state.filters.tier.size)){ showAllOffices(); return; }
+  // Treatment/carrier/tier-only (no place) -> filter across all offices, no location lock-in
+  if(!locName){ state.seoHome=false; state.allCounty=true; state.areaKeys=null; SERVER_ORDER=null; state._lastLoc=""; renderFilters(); render(); applySeo(); fitMap(); return; }
+  state.seoHome=false;
   state._lastLoc = locName;
   track('search_performed',{where:locName, spec:state.spec, carrier:state.carrier});
   await fetchByLocation(locName, radius);
@@ -1930,9 +2074,9 @@ async function fetchByLocation(name, radius){
   // client fallback (no Supabase): resolve to a centroid
   SERVER_ORDER=null;
   const key=name.toLowerCase();
-  if(countyWide){ state.city="orange county"; }
+  if(countyWide){ state.city=""; state.allCounty=true; }
   else if(CITIES[key]){ state.city=key; }
-  else { state.allCounty=true; state.city="orange county"; }
+  else { state.allCounty=true; state.city=""; }
   renderFilters(); render(); afterSearchUI(name);
 }
 
@@ -1969,15 +2113,22 @@ function locHelp(reason){
   }
   openModal('m-loc');
 }
-/* search_dentists_near_coordinates RPC for "use my current location", with city fallback */
-const FALLBACK_CITY = "Fountain Valley";
+/* search_dentists_near_coordinates RPC for "use my current location".
+   On failure: reuse the last searched city if we have one, otherwise drop to the
+   nationwide all-offices view. No hardcoded fallback city, no URL rewrite. */
 function cityFallback(reason){
   const last = (state._lastLoc||"").toLowerCase();
-  const label = CITIES[last] ? state._lastLoc : FALLBACK_CITY;
-  state._picked=null; state._center=null; state._title=label;
-  const inp=document.getElementById('q-where'); if(inp) inp.value=label+", CA";
-  toast("Showing "+label, "We couldn't use your location, so here are PPO offices near "+label+" instead.", 'warn');
-  fetchByLocation(label, state.distance);
+  if(CITIES[last]){
+    const label = state._lastLoc;
+    state._picked=null; state._center=null; state._title=label;
+    const inp=document.getElementById('q-where'); if(inp) inp.value=label;
+    toast("Showing "+label, "We couldn't use your location, so here are PPO offices near "+label+" instead.", 'warn');
+    fetchByLocation(label, state.distance);
+  } else {
+    const inp=document.getElementById('q-where'); if(inp) inp.value="";
+    toast("Showing all offices", "We couldn't use your location. Search any ZIP code or city to see PPO offices near you.", 'warn');
+    showAllOffices();
+  }
   if(reason==='denied') locHelp('denied');
 }
 function useCurrentLocation(){
@@ -2006,6 +2157,8 @@ function useCurrentLocation(){
 function computeCityCounts(){ const m={}; loadDentistsFromSupabase().forEach(d=>{ const k=d.city.toLowerCase(); m[k]=(m[k]||0)+1; }); return m; }
 let CITY_COUNTS=computeCityCounts();
 CITIES["orange county"] = CITIES["orange county"] || { lat:33.70, lng:-117.86, label:"Orange County" };
+/* Popular nationwide cities shown when the search box is empty (nationwide discovery). */
+const POPULAR_CITIES=[["Los Angeles","CA"],["San Diego","CA"],["Phoenix","AZ"],["Las Vegas","NV"],["Dallas","TX"],["Miami","FL"],["New York","NY"],["Chicago","IL"],["Seattle","WA"]];
 let PLAT = loadDentistsFromSupabase().find(d=>d.tier==="platinum_elite");
 let ACCR = loadDentistsFromSupabase().find(d=>d.tier==="capy_accredited");
 
@@ -2023,13 +2176,13 @@ function buildSuggestions(q){
     out.push({type:"tier",key:"capy_accredited",emoji:"💚",prem:"mint",title:"Capy Accredited near "+ACCR.city,sub:"Verified PPO friendly offices with elevated trust",ct:"✓"});
   // county
   if(!q || "orange county".includes(q))
-    out.push({type:"county",key:"orange county",emoji:"🗺️",title:"Orange County",sub:"All areas, California",ct:loadDentistsFromSupabase().length});
+    out.push({type:"county",key:"orange county",emoji:"🗺️",title:(currentAreaLabel()||"All offices"),sub:(activeStateLabel()||"Nationwide"),ct:loadDentistsFromSupabase().length});
   const isNum = /^[0-9]+$/.test(q);
   // cities first (match by name or ZIP prefix)
   Object.keys(CITIES).filter(k=>k!=="orange county")
     .sort((a,b)=>(CITY_COUNTS[b]||0)-(CITY_COUNTS[a]||0)||CITIES[a].label.localeCompare(CITIES[b].label))
     .forEach(k=>{ if(!q || CITIES[k].label.toLowerCase().includes(q) || (CITY_ZIPS[k]||[]).some(z=>z.startsWith(q)))
-      out.push({type:"city",key:k,emoji:"📍",title:CITIES[k].label,name:CITIES[k].label,sub:"Orange County, California",ct:CITY_COUNTS[k]||0}); });
+      out.push({type:"city",key:k,emoji:"📍",title:CITIES[k].label,name:CITIES[k].label,sub:([CITIES[k].area, activeStateLabel()].filter(Boolean).join(", ")||"PPO office"),ct:CITY_COUNTS[k]||0}); });
   // areas after cities, framed as "Dentists near ..."; hidden for numeric/ZIP queries
   if(!isNum) Object.keys(AREAS).forEach(k=>{ const a=AREAS[k];
     if(!q || a.label.toLowerCase().includes(q) || a.cities.some(c=>c.includes(q)))
@@ -2050,33 +2203,32 @@ async function acRender(qraw){
   const q=(qraw||'').toLowerCase().replace(/,.*$/,'').trim();
   let items=[];
   if(!q) items.push({type:"current",key:"__me__",emoji:"📍",title:"Use my current location",sub:"Find PPO offices near you right now",ct:""});
-  let locs=[];
-  if(sb && SB_READY){
-    try {
-      const { data } = await sb.rpc("search_locations", { search_text: qraw||"", result_limit: 7 });
-      locs = (data||[]).map(r=>{
-        const t = r.type==="county"?"county":(r.type==="city"?"city":"area");
-        const isArea = (t==="area");
-        return {
-          type: t, key: r.slug || r.name, name: r.name, emoji: r.emoji || "📍",
-          lat: r.lat, lng: r.lng,
-          title: isArea ? ("Dentists near "+r.name) : r.name,
-          sub: t==="city" ? "Orange County, California" : (isArea ? "Search offices in this area" : "All areas, California"),
-          ct: t==="city" ? (CITY_COUNTS[(r.city||r.name).toLowerCase()]||"") : (t==="county" ? loadDentistsFromSupabase().length : "")
-        };
-      });
-    } catch(e){ locs = buildSuggestions(qraw).filter(it=>["city","county","area"].includes(it.type)); }
+  if(!q){
+    // empty state: nationwide popular locations (not Orange County-specific)
+    POPULAR_CITIES.forEach(([city,st])=> items.push({type:"city",key:city.toLowerCase(),name:city,title:city,sub:(stateFullName(st)||st),ct:"",emoji:"📍"}));
   } else {
-    locs = buildSuggestions(qraw).filter(it=>["city","county","area"].includes(it.type));
+    // Only suggest cities (no streets, areas, offices, treatments, or carriers).
+    let locs=[];
+    if(sb && SB_READY){
+      try {
+        const { data } = await sb.rpc("search_locations", { search_text: qraw||"", result_limit: 8 });
+        locs = (data||[]).filter(r=> r.type==="city").map(r=>({
+          type:"city", key:r.slug || r.name, name:r.name, emoji:"📍",
+          lat:r.lat, lng:r.lng, title:r.name,
+          sub:(r.county || stateFullName(r.state||"") || "PPO offices nearby"),
+          ct:(CITY_COUNTS[(r.city||r.name).toLowerCase()]||"")
+        }));
+      } catch(e){ locs = buildSuggestions(qraw).filter(it=>it.type==="city"); }
+    } else {
+      locs = buildSuggestions(qraw).filter(it=>it.type==="city");
+    }
+    items = items.concat(locs);
   }
-  items = items.concat(locs);
-  const TREAT=[["Invisalign","😁"],["Implants","🔩"],["Emergency","🚑"],["Cosmetic","✨"],["Cleaning","🪥"],["Veneers","💎"]];
-  TREAT.forEach(([t,e])=>{ if(q && t.toLowerCase().includes(q)) items.push({type:"treatment",key:t,emoji:e,title:t+" dentists near you",sub:"Filter offices offering "+t,ct:""}); });
   acItems = items.slice(0,9); acIdx=-1;
   if(!acItems.length){ menu.hidden=true; inp.setAttribute('aria-expanded','false'); return; }
-  menu.innerHTML='<div class="achead">'+(q?'Matching places &amp; offices':'Browse Orange County')+'</div>'+
+  menu.innerHTML='<div class="achead">'+(q?'Matching cities':'Browse popular locations')+'</div>'+
     acItems.map((it,i)=>'<div class="acrow '+(it.prem?'prem '+(it.prem==='mint'?'mint':''):'')+'" role="option" data-i="'+i+'" onmousedown="event.preventDefault();acPick('+i+')">'+
-      '<span class="acemoji">'+it.emoji+'</span>'+
+      '<span class="acemoji">'+(it.emoji||'📍')+'</span>'+
       '<span class="actext"><span class="acname">'+acHL(it.title,q)+'</span><span class="acsub">'+it.sub+'</span></span>'+
       (it.ct!==''&&it.ct!=null?'<span class="acct">'+it.ct+'</span>':'')+
     '</div>').join('');
@@ -2088,7 +2240,7 @@ function acMove(d){ if(!acItems.length) return; acIdx=(acIdx+d+acItems.length)%a
 function acPick(i){
   const it=acItems[i]; if(!it) return;
   const inp=document.getElementById('q-where');
-  inp.value = it.type==="county"?"Orange County, CA" : it.type==="city"?((it.name||it.title)+", CA") : (it.name||it.title);
+  inp.value = it.name || it.title || "";
   state._picked = it;
   document.getElementById('ac-menu').hidden=true; inp.setAttribute('aria-expanded','false');
   runSearch();
@@ -2180,7 +2332,7 @@ function renderMapPins(){
 }
 function popupHtml(d){
   return '<div class="cc-pop"><b>'+esc(d.practice)+'</b><div class="pr">'+statusBadgeHtml(d)+(d.reviews?' <span class="dot"></span> ★ '+d.rating.toFixed(1)+' ('+d.reviews+')':'')+'</div>'+
-    '<button onclick="openProfile(\''+d.id+'\')">View PPO Profile</button></div>';
+    '<button onclick="openProfile(\''+d.id+'\')">View Profile</button></div>';
 }
 function fsOpen(){ const f=document.getElementById('fsmap'); return f && f.classList.contains('open'); }
 function radiusZoom(mi){ mi=+mi||8; if(mi<=5)return 13; if(mi<=8)return 12; if(mi<=15)return 11; if(mi<=25)return 10; return 9; }
@@ -2207,7 +2359,7 @@ function centerIcon(label, withLabel){
 }
 function updateSearchCenter(){
   if(!window.L) return;
-  const lbl = state.mapCenter ? state.mapCenter.label : (state.allCounty?"Orange County":(state.areaLabel||"Orange County"));
+  const lbl = state.mapCenter ? state.mapCenter.label : (state.allCounty ? (currentAreaLabel()||activeStateLabel()||"All offices") : (state.areaLabel||currentAreaLabel()||activeStateLabel()||""));
   const mm=document.getElementById('mm-label'); if(mm) mm.textContent = lbl;
   [['side',sideMap],['mini',miniMap],['full',fullMap]].forEach(([tag,m])=>{
     if(!m) return;
@@ -2280,13 +2432,25 @@ function openFsMap(){
   },90);
 }
 function closeFsMap(){ document.getElementById('fsmap').classList.remove('open'); document.body.style.overflow=''; }
-function toggleFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.toggle('expanded'); setTimeout(()=>{ if(fullMap){ try{ fullMap.invalidateSize(); }catch(e){} } },300); }
+/* mobile hamburger menu */
+function toggleNavMenu(){ const m=document.getElementById('mobile-menu'); if(!m) return; const open=m.classList.toggle('open'); const t=document.querySelector('.menu-toggle'); if(t) t.setAttribute('aria-expanded', open?'true':'false'); }
+function closeNavMenu(){ const m=document.getElementById('mobile-menu'); if(m) m.classList.remove('open'); const t=document.querySelector('.menu-toggle'); if(t) t.setAttribute('aria-expanded','false'); }
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNavMenu(); });
+function fsInval(){ setTimeout(()=>{ if(fullMap){ try{ fullMap.invalidateSize(); }catch(e){} } },300); }
+function syncFsPeek(){ const lbl=document.getElementById('fs-peeklabel'); if(!lbl) return; let n=0; try{ n=fsFiltered().length; }catch(e){} lbl.textContent=n.toLocaleString()+' office'+(n===1?'':'s')+' nearby — tap to browse'; }
+/* grip taps toggle between the open list and a slim "peek" bar that reveals the full map */
+function toggleFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.toggle('peek'); syncFsPeek(); fsInval(); }
+function peekFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.add('peek'); syncFsPeek(); fsInval(); }
+function expandFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('peek'); syncFsPeek(); fsInval(); }
+/* card X: close the selected profile AND drop the sheet to the map so you can browse pins by proximity */
+function dismissFsCard(){ deselectDentist(); if(window.matchMedia && window.matchMedia('(max-width:980px)').matches) peekFsSheet(); }
 function renderFsList(){
   const list=fsFiltered();
   const cnt=document.getElementById('fs-count');
   if(cnt) cnt.textContent = list.length.toLocaleString()+' office'+(list.length===1?'':'s')+(state.allCounty?(' across '+currentArea()):' nearby');
   const root=document.getElementById('fs-listings');
   if(root) root.innerHTML = list.length ? list.map(fsMiniCard).join('') : '<div class="fs-empty">No offices match this filter.</div>';
+  syncFsPeek();
 }
 function fsMiniCard(d){
   const dist=(d.dist!=null&&d.dist<999)?d.dist.toFixed(1)+' mi':'';
@@ -2310,7 +2474,7 @@ function renderFsCard(d){
   const hasBooking=!!(d.booking&&String(d.booking).trim());
   el.classList.add('show');
   el.innerHTML =
-    '<div class="fsc-x" onclick="deselectDentist()" role="button" aria-label="Dismiss">✕</div>'+
+    '<div class="fsc-x" onclick="dismissFsCard()" role="button" aria-label="Close and show map">✕</div>'+
     '<div class="fsc-top" onclick="openProfile(\''+d.id+'\')">'+
       '<div class="fsc-thumb">'+getDentistImageMarkup(d)+'</div>'+
       '<div class="fsc-info">'+
@@ -2328,7 +2492,7 @@ function renderFsCard(d){
       '<button class="fsc-act" onclick="shareDentist(\''+d.id+'\')"><span class="fsi">↗</span>Share</button>'+
       '<button class="fsc-act'+(saved?' on':'')+'" onclick="fsSave(\''+d.id+'\')"><span class="fsi">♥</span>Save</button>'+
     '</div>'+
-    '<button class="fsc-view" onclick="openProfile(\''+d.id+'\')">View PPO Profile</button>';
+    '<button class="fsc-view" onclick="openProfile(\''+d.id+'\')">View Profile</button>';
 }
 function panToVisible(latlng){
   if(!fullMap) return;
@@ -2343,6 +2507,7 @@ function panToVisible(latlng){
 function selectDentist(id, doPan){
   const d=LAST.find(x=>x.id===id); if(!d) return;
   FS_SELECTED=id;
+  const s=document.getElementById('fs-sheet'); if(s && s.classList.contains('peek')){ s.classList.remove('peek'); syncFsPeek(); fsInval(); }
   renderFsCard(d);
   setSelectedPin(id);
   if(doPan!==false && d.lat!=null) panToVisible(L.latLng(d.lat,d.lng));
@@ -2415,13 +2580,13 @@ function toggleSearchCollapse(){
 function updateSearchSummary(){
   const el=document.getElementById('search-summary'); if(!el) return;
   const wEl=document.getElementById('q-where');
-  const where=((wEl&&wEl.value)||'').replace(/,.*$/,'').trim() || (state._whereStash||'').replace(/,.*$/,'').trim() || 'Orange County';
+  const where=((wEl&&wEl.value)||'').replace(/,.*$/,'').trim() || (state._whereStash||'').replace(/,.*$/,'').trim() || currentAreaLabel() || activeStateLabel() || 'All offices';
   const spec  = (document.getElementById('q-spec')||{}).value  || state.spec  || '';
   const carrier=(document.getElementById('q-carrier')||{}).value || state.carrier || '';
   const miLabel = state.distance+' mi';
   let parts;
   if(state.allCounty){
-    parts = [where, 'All Orange County'];
+    parts = [where, ('All '+(currentAreaLabel()||activeStateLabel()||'offices'))];
   } else if(spec){
     parts = [where, spec, miLabel];
   } else {
@@ -2556,7 +2721,71 @@ async function submitClaimProfileRequest(dentist, formData){
 }
 
 /* ---------- PROFILE ---------- */
-function openProfile(id){ const d=find(id); if(!d) return;
+/* ---------- RIGHT-SIDE PROFILE DRAWER (quick view; SEO page stays behind "View Full Profile") ---------- */
+let DD_OPEN=false;
+function renderDentistDrawer(d){
+  if(!d) return;
+  const idj=jsq(d.id);
+  const claimed=isDentistClaimed(d);
+  const url=getDentistProfileUrl(d);
+  const hasBooking=!!(d.booking&&String(d.booking).trim());
+  const hasWebsite=!!(d.website&&String(d.website).trim());
+  const hasPhone=!!(d.phone&&String(d.phone).trim());
+  const isMember=['platinum_elite','capy_accredited','verified'].includes(d.tier);
+  const distTxt=(d.dist!=null&&d.dist<999)? d.dist.toFixed(1)+' mi away' : '';
+  const cityState=[cityOf(d), stateFullName(stateOf(d))].filter(Boolean).join(', ');
+  const ratingTxt = d.reviews ? ('<span class="st">★</span> '+(d.rating||0).toFixed(1)+' · '+d.reviews.toLocaleString()+' reviews') : 'New listing';
+  const meta=[ratingTxt]; if(cityState) meta.push('◍ '+escapeHtml(cityState)); if(distTxt) meta.push(escapeHtml(distTxt));
+  let info='';
+  if(d.address||cityState) info+='<div class="dd-line"><span class="dd-ic">◍</span><span>'+escapeHtml(d.address||cityState)+'</span></div>';
+  if(hasPhone) info+='<div class="dd-line"><span class="dd-ic">☎</span><a href="tel:'+escapeAttr(d.phone)+'" style="color:inherit;text-decoration:none">'+escapeHtml(d.phone)+'</a></div>';
+  const crowns='<div class="dd-crowns"><span class="ddc-emoji">✦</span><div><b>Earn 500 Capy Crowns</b><p>Book this office through CoverCapy to earn Capy Crowns toward free professional whitening.</p></div></div>';
+  const claimBlock = !claimed ? '<div class="dd-claim"><b>Own this office?</b><p>Patients already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.</p><button class="btn-dark" onclick="openClaim(\''+idj+'\')">Claim Free Profile</button></div>' : '';
+  const bookCTA = hasBooking ? '<button class="la la-gold" onclick="bookAppointment(\''+idj+'\')">Book Consultation</button>'
+                : (isMember ? '<button class="la la-gold" onclick="openAvailability(\''+idj+'\')">Request Availability</button>' : '');
+  let util=''; if(hasPhone) util+='<button class="la la-primary" onclick="callOffice(\''+idj+'\')">Call Office</button>'; if(hasWebsite) util+='<button class="la la-ghost" onclick="openWebsite(\''+idj+'\')">Website</button>';
+  document.getElementById('dd-body').innerHTML =
+    '<div class="dd-hero">'+getDentistImageMarkup(d)+'<div class="dd-hero-grad"></div>'+(!claimed?'<span class="dd-cap">Unclaimed</span>':'')+
+      '<div class="dd-hero-info"><div style="margin-bottom:8px">'+tierChip(d)+'</div><div class="dd-name">'+escapeHtml(d.practice)+'</div>'+
+      '<div class="dd-hero-meta">'+meta.join(' <span class="dd-mdot">·</span> ')+'</div></div>'+
+    '</div>'+
+    '<div class="dd-bodywrap">'+
+      (d.doctor?'<div class="dd-doc">'+escapeHtml(d.doctor)+'</div>':'')+
+      (d.why?'<p class="dd-why">'+escapeHtml(d.why)+'</p>':'')+
+      (info?'<div class="dd-sec">'+info+'</div>':'')+
+      '<div class="dd-sec"><h4>Treatments &amp; specialties</h4><div class="chips">'+specChips(d,10)+'</div></div>'+
+      '<div class="dd-sec"><h4>Accepted PPO</h4><div class="chips">'+carrierChips(d,10)+'</div></div>'+
+      ((d.languages&&d.languages.length)?'<div class="dd-sec"><h4>Languages</h4><div class="chips">'+d.languages.map(l=>'<span class="chip">'+escapeHtml(l)+'</span>').join('')+'</div></div>':'')+
+      crowns+claimBlock+
+      '<div class="dd-cta">'+
+        '<button class="la la-verify" onclick="openPpoCheck(\''+idj+'\')">Verify My PPO</button>'+
+        bookCTA+
+        (util?'<div class="dd-cta-row">'+util+'</div>':'')+
+      '</div>'+
+      '<a class="dd-full" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile →</a>'+
+    '</div>';
+}
+function openDentistDrawer(d){
+  if(!d) return;
+  renderDentistDrawer(d);
+  const bd=document.getElementById('dd-backdrop'), dr=document.getElementById('dd-drawer');
+  if(bd) bd.classList.add('open');
+  if(dr){ dr.classList.add('open'); dr.setAttribute('aria-hidden','false'); dr.scrollTop=0; }
+  document.body.classList.add('dd-lock'); DD_OPEN=true;
+  const c=dr&&dr.querySelector('.dd-close'); if(c){ try{ c.focus(); }catch(_e){} }
+  gtagSafe('ppo_profile_drawer_open',{dentist_id:d.id});
+}
+function openDentistDrawerById(id){ const d=find(id); if(d) openDentistDrawer(d); }
+function closeDentistDrawer(){
+  const bd=document.getElementById('dd-backdrop'), dr=document.getElementById('dd-drawer');
+  if(bd) bd.classList.remove('open');
+  if(dr){ dr.classList.remove('open'); dr.setAttribute('aria-hidden','true'); }
+  document.body.classList.remove('dd-lock'); DD_OPEN=false;
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape' && DD_OPEN && !document.querySelector('.scrim.open')){ closeDentistDrawer(); } });
+/* openProfile now opens the quick-view drawer; every card / name / avatar / map / fs-card entry point routes here. */
+function openProfile(id){ if(window.matchMedia && window.matchMedia('(max-width:980px)').matches){ openProfileModal(id); } else { openDentistDrawerById(id); } }
+function openProfileModal(id){ const d=find(id); if(!d) return;
   const claimed=isDentistClaimed(d), realImg=hasRealDentistImage(d), url=getDentistProfileUrl(d), idj=jsq(d.id);
   const hasBooking=!!(d.booking&&String(d.booking).trim());
   const hasWebsite=!!(d.website&&String(d.website).trim());
@@ -2622,7 +2851,7 @@ function track(ev,p){ try{ window.dataLayer=window.dataLayer||[]; window.dataLay
    Ported from ppodentists.html: clean slugs + canonical/title/meta sync +
    crawlable city / treatment / carrier links. Layered on top of v27 without
    touching the hero, map, modals, save/compare, GA4, or palette. */
-const SEO_STATE_SLUG = "california", SEO_COUNTY_SLUG = "orange-county", SEO_BASE = "/best-ppo-dentists";
+const SEO_BASE = "/best-ppo-dentists", HOME_PATH = "/find-my-dentist";
 const SEO_TREATMENTS = ["Invisalign","Implants","Emergency","Whitening","Veneers","Cosmetic","Orthodontics","Root Canal"];
 const SEO_CARRIERS   = ["Guardian","UnitedHealthcare","Delta PPO","MetLife","Cigna","Aetna","Anthem","Ameritas"];
 const SEO_CITY_KEYS  = ["fountain valley","irvine","huntington beach","costa mesa","newport beach","santa ana","anaheim","tustin","garden grove","orange","mission viejo","lake forest"];
@@ -2644,49 +2873,66 @@ const treatmentSlug = t => slugify(t);
 const carrierSlug = c => { const s=slugify(c); return /-ppo$/.test(s)?s:s+"-ppo"; };
 const jsq = s => String(s==null?"":s).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
 
-/* §9 slug builders */
-function buildLocationSlug(loc){ loc=loc||{}; const p=[SEO_BASE, loc.stateSlug||SEO_STATE_SLUG, loc.countySlug||SEO_COUNTY_SLUG]; if(loc.citySlug) p.push(loc.citySlug); return p.join("/").replace(/\/+$/,""); }
-function buildSearchSlug(f){ f=f||{}; let path=buildLocationSlug({citySlug:f.citySlug}); if(f.treatment) path+="/"+treatmentSlug(f.treatment); if(f.carrier) path+="/"+carrierSlug(f.carrier); return path.replace(/\/+$/,""); }
+/* §9 slug builders (location = full state name derived from data; area omitted cleanly when blank) */
+function buildLocationSlug(loc){ loc=loc||{}; return buildSlug([SEO_BASE.replace(/^\//,""), loc.stateLabel||loc.stateSlug, loc.areaLabel||loc.areaSlug, loc.cityLabel||loc.citySlug]); }
+function buildSearchSlug(f){ f=f||currentSeoFilters(); let path=buildLocationSlug(f); if(f.treatment) path+="/"+treatmentSlug(f.treatment); if(f.carrier) path+="/"+carrierSlug(f.carrier); return path; }
+/* canonical/URL path: nationwide homepage uses /find-my-dentist, located views use /best-ppo-dentists/... */
+function seoPath(f){ f=f||currentSeoFilters(); return seoPlace(f) ? buildSearchSlug(f) : HOME_PATH; }
 function buildDentistProfileUrl(d){ return getDentistProfileUrl(d); }
 
 function currentSeoFilters(){
-  if(state.allCounty || !state.city || state.city==="orange county")
-    return { citySlug:"", cityLabel:"Orange County", treatment:state.spec||"", carrier:state.carrier||"" };
-  return { citySlug:slugify(cityLabelFor(state.city)), cityLabel:cityLabelFor(state.city), treatment:state.spec||"", carrier:state.carrier||"" };
+  const treatment=state.spec||"", carrier=state.carrier||"";
+  const noResults = (typeof LAST!=="undefined" && LAST && LAST.length===0);
+  // Homepage or empty results -> nationwide (no place); keeps title + canonical on /find-my-dentist
+  if(state.seoHome || noResults) return { stateLabel:"", areaLabel:"", cityLabel:"", treatment, carrier };
+  if(state.allCounty || !state.city || state.city==="orange county" || state.city==="__me__")
+    return { stateLabel:activeStateLabel(), areaLabel:currentAreaLabel(), cityLabel:"", treatment, carrier };
+  return { stateLabel:stateForCityKey(state.city), areaLabel:areaForCityKey(state.city), cityLabel:cityLabelFor(state.city), treatment, carrier };
+}
+/* most specific place string available, or "" for the nationwide homepage */
+function seoPlace(f){ f=f||currentSeoFilters();
+  if(f.cityLabel) return f.stateLabel ? `${f.cityLabel}, ${f.stateLabel}` : f.cityLabel;
+  if(f.areaLabel) return f.stateLabel ? `${f.areaLabel}, ${f.stateLabel}` : f.areaLabel;
+  return f.stateLabel || "";
 }
 
-/* §6 SEO-aware heading + §2 title/description */
+/* §6 SEO-aware heading + §2 title/description (nationwide-aware) */
 function seoHeading(f){
-  f=f||currentSeoFilters(); const t=f.treatment, c=f.carrier, city=f.cityLabel;
+  f=f||currentSeoFilters(); const t=f.treatment, c=f.carrier, place=seoPlace(f);
   const lead = c&&t ? `${c} PPO ${t} dentists` : c ? `${c} PPO dentists` : t ? `${t} PPO dentists` : "PPO dentists";
-  return city ? `${lead} in ${city}` : "PPO friendly dentists near you";
+  return place ? `${lead} in ${place}` : "PPO dentists near you";
 }
 function seoTitle(f){
-  f=f||currentSeoFilters(); const t=f.treatment, c=f.carrier, city=f.cityLabel;
+  f=f||currentSeoFilters(); const t=f.treatment, c=f.carrier, place=seoPlace(f);
+  if(!place && !t && !c) return "Find PPO Dentists Near You | CoverCapy";
   const lead = c&&t ? `Best ${c} PPO ${t} Dentists` : c ? `Best ${c} PPO Dentists` : t ? `Best ${t} PPO Dentists` : "Best PPO Dentists";
-  return `${city?`${lead} in ${city}, CA`:`${lead} in Orange County, CA`} | CoverCapy`;
+  return place ? `${lead} in ${place} | CoverCapy` : `${lead} Near You | CoverCapy`;
 }
 function seoDesc(f){
-  f=f||currentSeoFilters(); const t=f.treatment, c=f.carrier;
-  const where = f.cityLabel ? `${f.cityLabel}, CA` : "Orange County";
+  f=f||currentSeoFilters(); const t=f.treatment, c=f.carrier, place=seoPlace(f);
+  if(!place) return "Search PPO dentists nationwide by ZIP code, city, specialty, insurance carrier, and distance.";
   const subj = `${c?c+" ":""}PPO ${t?t+" ":""}dentists`;
-  return `Compare ${subj} in ${where}. See distance, ratings, CoverCapy status, rewards, and insurance fit details before booking.`;
+  return `Compare ${subj} in ${place}. See distance, ratings, CoverCapy status, rewards, and insurance fit details before booking.`;
 }
 
-/* §2 meta + URL sync (no reload) */
+/* §2 meta + URL sync (no reload); og:url + twitter mirror canonical */
 function updateSeoMeta(f){
   f=f||currentSeoFilters();
   try{
-    document.title = seoTitle(f);
+    const title=seoTitle(f), desc=seoDesc(f), url="https://www.covercapy.com"+seoPath(f);
+    document.title = title;
     const set=(sel,attr,val)=>{ const el=(typeof sel==="string"&&sel[0]==="#")?document.getElementById(sel.slice(1)):document.querySelector(sel); if(el) el.setAttribute(attr,val); };
-    set("#seo-canonical","href","https://www.covercapy.com"+buildSearchSlug(f));
-    set('meta[name="description"]',"content",seoDesc(f));
-    set("#seo-og-title","content",seoHeading(f)+" · CoverCapy");
-    set("#seo-og-desc","content",seoDesc(f));
+    set("#seo-canonical","href",url);
+    set('meta[name="description"]',"content",desc);
+    set("#seo-og-title","content",title);
+    set("#seo-og-desc","content",desc);
+    set("#seo-og-url","content",url);
+    set("#seo-tw-title","content",title);
+    set("#seo-tw-desc","content",desc);
   }catch(_e){}
 }
-function updateUrlFromFilters(f){ f=f||currentSeoFilters(); try{ history.pushState({seo:true},"",buildSearchSlug(f)); }catch(_e){} }
-function applySeo(){ const f=currentSeoFilters(); updateSeoMeta(f); try{ history.replaceState({seo:true},"",buildSearchSlug(f)); }catch(_e){} renderSeo(); }
+function updateUrlFromFilters(f){ f=f||currentSeoFilters(); try{ history.pushState({seo:true},"",seoPath(f)); }catch(_e){} }
+function applySeo(){ const f=currentSeoFilters(); updateSeoMeta(f); try{ history.replaceState({seo:true},"",seoPath(f)); }catch(_e){} renderSeo(); }
 
 /* §1 parse deep links: /best-ppo-dentists/<state>/<county>/<city>[/<treatment>][/<carrier>] */
 const matchCityKey = slug => { slug=slugify(slug); for(const k in CITIES){ if(slugify(cityLabelFor(k))===slug) return k; } return null; };
@@ -2698,11 +2944,21 @@ function applyTreatmentOrCarrierSlug(seg){
 function parseFiltersFromUrl(){
   try{
     const segs=(location.pathname||"").split("/").filter(Boolean);
-    const i=segs.indexOf("best-ppo-dentists"); if(i<0) return;
-    const rest=segs.slice(i+1).filter(s=> s!==SEO_STATE_SLUG && s!==SEO_COUNTY_SLUG);
-    const citySeg=rest[0]||"", a=rest[1]||"", b=rest[2]||"";
-    if(citySeg){ const key=matchCityKey(citySeg); if(key){ state.city=key; state.allCounty=false; const w=document.getElementById('q-where'); if(w)w.value=cityLabelFor(key)+", CA"; } }
-    [a,b].forEach(seg=>{ if(seg) applyTreatmentOrCarrierSlug(seg); });
+    const i=segs.indexOf("best-ppo-dentists");
+    const rest = i>=0 ? segs.slice(i+1) : (segs[0]==="dentist" ? segs.slice(1) : []);
+    if(!rest.length) return;
+    // Find a segment that resolves to a known city; segments before it are location/area, after it are treatment/carrier.
+    let cityIdx=-1, cityKey=null;
+    for(let j=0;j<rest.length;j++){ const k=matchCityKey(rest[j]); if(k){ cityIdx=j; cityKey=k; break; } }
+    if(cityKey){
+      state.seoHome=false; state.city=cityKey; state.allCounty=false;
+      const w=document.getElementById('q-where'); if(w)w.value=cityLabelFor(cityKey);
+      rest.slice(cityIdx+1).forEach(seg=>{ if(seg) applyTreatmentOrCarrierSlug(seg); });
+    } else {
+      // location/area page (no specific city): keep nationwide list, still apply any treatment/carrier segs
+      rest.forEach(seg=>{ if(seg) applyTreatmentOrCarrierSlug(seg); });
+      if(state.spec||state.carrier) state.seoHome=false;
+    }
   }catch(_e){}
 }
 
@@ -2710,11 +2966,20 @@ function parseFiltersFromUrl(){
    only from Supabase. Missing fields are never used to infer a status. */
 
 /* §4 §5 §7 crawlable links — real <a href> for crawlers + SPA onclick for users */
-const seoHref = (citySlug, treatment, carrier) => buildSearchSlug({citySlug, treatment, carrier});
+function seoHref(citySlug, treatment, carrier){
+  let stateLabel="", areaLabel="", cityLabel="";
+  if(citySlug){
+    const key = matchCityKey(citySlug) || (CITIES[citySlug]?citySlug:null);
+    cityLabel = key ? cityLabelFor(key) : titleCaseCity(String(citySlug).replace(/-/g," "));
+    stateLabel = key ? (stateForCityKey(key)||activeStateLabel()) : activeStateLabel();
+    areaLabel = key ? areaForCityKey(key) : "";
+  } else { const f=currentSeoFilters(); stateLabel=f.stateLabel; areaLabel=f.areaLabel; }
+  return buildSearchSlug({ stateLabel, areaLabel, cityLabel, treatment, carrier });
+}
 function goSeo(cityArg, treatment, carrier, ev){
   if(ev&&ev.preventDefault) ev.preventDefault();
-  if(cityArg===""){ state.allCounty=true; state.city="orange county"; const w=document.getElementById('q-where'); if(w)w.value="Orange County, CA"; }
-  else if(cityArg!=null){ state.city=cityArg; state.allCounty=false; const w=document.getElementById('q-where'); if(w)w.value=cityLabelFor(cityArg)+", CA"; }
+  if(cityArg===""){ state.seoHome=false; state.allCounty=true; state.city=""; const w=document.getElementById('q-where'); if(w)w.value=""; }
+  else if(cityArg!=null){ state.seoHome=false; state.city=cityArg; state.allCounty=false; const w=document.getElementById('q-where'); if(w)w.value=cityLabelFor(cityArg); }
   const s=document.getElementById('q-spec'); if(s)s.value=treatment||""; state.spec=treatment||"";
   const cc=document.getElementById('q-carrier'); if(cc)cc.value=carrier||""; state.carrier=carrier||"";
   state.filters.carrier = carrier?new Set([carrier]):new Set();
@@ -2738,17 +3003,12 @@ function renderQuickChips(){
   ["fountain valley","irvine","huntington beach","costa mesa","newport beach"].forEach(k=>{
     h+=chipHtml(cityLabelFor(k), seoHref(slugify(cityLabelFor(k)), f.treatment, f.carrier), k, f.treatment, f.carrier, state.city===k);
   });
-  ["Invisalign","Emergency","Implants","Whitening"].forEach(t=>{
-    h+=chipHtml(t, seoHref(f.citySlug,t,f.carrier), null, state.spec===t?"":t, f.carrier, state.spec===t);
-  });
-  ["Guardian","UnitedHealthcare"].forEach(c=>{
-    h+=chipHtml(`${c} PPO`, seoHref(f.citySlug,f.treatment,c), null, f.treatment, state.carrier===c?"":c, state.carrier===c);
-  });
+  /* Quick-pick chips are cities only (plus "Near me") — no treatment or carrier chips. */
   host.innerHTML=h;
 }
 function renderSeoLinks(){
   const f=currentSeoFilters();
-  const facetCity = f.cityLabel || "Orange County";
+  const facetCity = f.cityLabel || seoPlace(f) || "your area";
   const cityHost=document.getElementById('seo-cities');
   if(cityHost) cityHost.innerHTML = SEO_CITY_KEYS.map(k=> linkHtml(`PPO dentists in ${cityLabelFor(k)}`, seoHref(slugify(cityLabelFor(k))), k, "", "")).join("");
   const tHost=document.getElementById('seo-treatments');
@@ -2778,14 +3038,18 @@ function renderSeo(){ renderQuickChips(); renderSeoLinks(); renderNearbyCityLink
 /* ---------- BOOT ---------- */
 parseFiltersFromUrl();            // deep-link: hydrate city/treatment/carrier from the URL
 // seed the initial map center so the circle renders on first paint (sandbox + live)
-const _fv = CITIES["fountain valley"] || {lat:33.71,lng:-117.95,label:"Fountain Valley"};
-state.mapCenter = { lat:_fv.lat, lng:_fv.lng, label:_fv.label, radius: state.distance };
+const _seed = (state.city && CITIES[state.city]) ? CITIES[state.city] : dataCentroid();
+state.mapCenter = { lat:_seed.lat, lng:_seed.lng, label:_seed.label||"", radius: state.distance };
 setRadiusUI(8);
 renderFilters();
 render();                         // instant first paint with baked data
 renderSeo();                      // build crawlable chips / discovery / nearby links
 // upgrade to live Supabase data, then drive the default search through the RPCs
-bootData().then(()=>{ if(SB_READY){ refreshDerived(); state._lastLoc="Fountain Valley"; fetchByLocation("Fountain Valley", 8); }
+bootData().then(()=>{ if(SB_READY){ refreshDerived();
+    if(state.city && CITIES[state.city]){ state._lastLoc=cityLabelFor(state.city); fetchByLocation(state._lastLoc, state.distance||8); }
+    else if(state.spec || state.carrier || (state.filters.tier && state.filters.tier.size)){ state.seoHome=false; state.allCounty=true; SERVER_ORDER=null; renderFilters(); render(); applySeo(); fitMap(); }
+    else { showAllOffices(); }
+  }
   // load the procedural mascot trait library in parallel; repaint cards once ready
   CapyAvatar.load().then(ok=>{ if(ok) render(); });
 });
