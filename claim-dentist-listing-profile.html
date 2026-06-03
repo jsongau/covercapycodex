@@ -239,7 +239,14 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* leaflet pin markers */
 .cc-pin{width:24px; height:24px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.3); display:grid; place-items:center}
 .cc-pin span{transform:rotate(45deg); font-size:11px; color:#fff}
-.cc-pin.plat{background:var(--gold)} .cc-pin.accr{background:var(--mint-700)} .cc-pin.ver{background:var(--verified)} .cc-pin.pub{background:#8a968f; width:18px; height:18px}
+.cc-pin.accr{background:var(--mint-700)} .cc-pin.ver{background:var(--verified)} .cc-pin.pub{background:#8a968f; width:18px; height:18px}
+/* Platinum Elite — larger luxury pin: gold gradient, metallic trim ring, pulsing glow */
+.cc-pin.plat{width:34px; height:34px; background:linear-gradient(135deg,#ECCB82 0%,#C9A24E 52%,#B8924F 100%); border:2.5px solid #fff; animation:platGlow 2.4s ease-in-out infinite}
+.cc-pin.plat span{font-size:15px; color:#fff; text-shadow:0 1px 2px rgba(80,55,10,.55)}
+@keyframes platGlow{
+  0%,100%{ box-shadow:0 0 0 2.5px rgba(184,146,79,.7), 0 5px 12px rgba(120,85,20,.42), 0 0 0 0 rgba(212,170,90,0) }
+  50%{ box-shadow:0 0 0 2.5px rgba(184,146,79,.7), 0 6px 14px rgba(120,85,20,.5), 0 0 18px 7px rgba(212,170,90,.72) }
+}
 .cc-pop b{font-family:"Fraunces"; font-size:14px}
 .cc-pop .pr{font-size:12px; color:#555; margin:2px 0 6px}
 .cc-pop button{background:var(--teal-night); color:#fff; font-weight:600; font-size:12px; padding:6px 11px; border-radius:8px; border:none; cursor:pointer}
@@ -1189,7 +1196,7 @@ body.dd-lock{overflow:hidden}
     <div class="fsmap-ctrl" id="fsmap-ctrl">
       <div class="fmc-loc">
         <span class="fmc-ico" aria-hidden="true">◍</span>
-        <input id="fsmap-loc" type="text" placeholder="Center on a city, ZIP, or address" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();fsCenterOnLocation();}">
+        <input id="fsmap-loc" type="text" placeholder="City, ZIP, or address" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();fsCenterOnLocation();}">
         <button class="fmc-here" type="button" onclick="fsUseMyLocation()" aria-label="Center on my current location"><span class="fmc-here-ico" aria-hidden="true">⊕</span> My location</button>
       </div>
       <div class="fmc-rad">
@@ -2355,6 +2362,7 @@ const TILE_ATTR='&copy; OpenStreetMap &copy; CARTO';
 function pinTier(d){ return d.tier==="platinum_elite"?"plat":d.tier==="capy_accredited"?"accr":d.tier==="verified"?"ver":"pub"; }
 function makeIcon(d){
   const t=pinTier(d), crown = t==="plat"?"<span>♛</span>":"";
+  if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat">'+crown+'</div>', iconSize:[34,34], iconAnchor:[17,31]});
   return L.divIcon({className:"", html:'<div class="cc-pin '+t+'">'+crown+'</div>', iconSize:[24,24], iconAnchor:[12,22]});
 }
 function ensureMaps(){
@@ -2393,8 +2401,8 @@ function renderMapPins(){
     else { if(miniLayer) map.removeLayer(miniLayer); miniLayer=L.layerGroup().addTo(map); }
     const layer = tag==='side'?sideLayer:(tag==='full'?fullLayer:miniLayer);
     LAST.forEach(d=>{ if(d.lat==null) return;
-      if(tag==='mini'){ L.marker([d.lat,d.lng],{icon:makeIcon(d),interactive:false}).addTo(layer); return; }
-      const m=L.marker([d.lat,d.lng],{icon:makeIcon(d)}).addTo(layer);
+      if(tag==='mini'){ L.marker([d.lat,d.lng],{icon:makeIcon(d),interactive:false,zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer); return; }
+      const m=L.marker([d.lat,d.lng],{icon:makeIcon(d),zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer);
       if(tag==='full'){ m.bindPopup(fsPinCard(d), {className:'cc-dpop', maxWidth:270, minWidth:250, autoPanPadding:[28,28], offset:[0,-6]}); m.on('click',()=>{ selectDentist(d.id,false); m.openPopup(); }); }
       else { m.on('click',()=>{ m.bindPopup(popupHtml(d)).openPopup(); scrollToCard(d.id); }); }
       m.on('mouseover',()=>highlightCard(d.id,true));
