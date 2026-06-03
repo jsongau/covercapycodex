@@ -308,7 +308,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fmc-search .i{color:var(--mint); font-size:16px}
 .fmc-hint{font-size:11.5px; color:var(--ink-soft); text-align:center; margin:-1px 0 0; line-height:1.35}
 @media(min-width:981px){
-  .fsmap-ctrl{right:18px; left:auto; bottom:116px; top:auto; transform:none; width:340px}
+  .fsmap-ctrl{right:18px; left:auto; bottom:18px; top:auto; transform:none; width:340px}
+  #fullmap .leaflet-control-zoom{ margin:0 370px 18px 0 }
 }
 @media(max-width:980px){
   .fsmap-ctrl{top:12px; left:14px; right:auto; bottom:auto; transform:none; width:calc(100% - 76px)}
@@ -426,6 +427,75 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .dd-mapwrap{position:relative; margin-bottom:14px}
 .dd-mapcta{position:absolute; right:10px; bottom:10px; z-index:500; background:var(--teal-night); color:#fff; border:none; border-radius:10px; padding:8px 13px; font-size:12px; font-weight:700; cursor:pointer; box-shadow:0 4px 14px rgba(8,42,48,.3); font-family:inherit; text-decoration:none}
 .dd-mapcta:hover{background:var(--teal-deep)}
+.dd-unverified{display:flex; align-items:flex-start; gap:7px; margin-top:11px; padding:9px 11px; border-radius:11px; background:#fbf3df; border:1px solid var(--gold-soft); color:#7a5e2a; font-size:11.5px; font-weight:600; line-height:1.35}
+.dd-unverified .ic{font-size:13px; line-height:1.1; flex:none}
+.dd-nvwrap{display:flex; flex-direction:column; gap:8px; margin-top:2px}
+.dd-nv{display:flex; align-items:center; gap:11px; padding:9px 11px; border:1px solid var(--line-2); border-radius:13px; background:var(--cream-card); text-decoration:none; transition:.14s}
+.dd-nv:hover{border-color:var(--mint-700); background:var(--mint-soft); transform:translateY(-1px)}
+.dd-nv-av{width:40px; height:40px; border-radius:11px; overflow:hidden; flex:none; background:var(--mint-soft); display:grid; place-items:center}
+.dd-nv-av svg,.dd-nv-av img,.dd-nv-av canvas{width:100%; height:100%; object-fit:cover}
+.dd-nv-meta{display:flex; flex-direction:column; min-width:0}
+.dd-nv-meta b{font-size:13px; color:var(--teal-night); font-weight:700; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.dd-nv-meta span{font-size:11.5px; color:var(--ink-soft); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.dd-ranks{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 15px}
+.dd-rank{display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg,#fbf3df,#f3e6c8); border:1px solid var(--gold-soft); color:#7a5e2a; border-radius:999px; padding:6px 12px; font-size:11.5px; font-weight:700}
+.dd-promo{background:linear-gradient(135deg,#0C3A42,#0a2f37); color:#eafaf2; border-radius:15px; padding:14px 16px; margin:2px 0 15px; position:relative; overflow:hidden}
+.dd-promo::after{content:""; position:absolute; right:-30px; top:-30px; width:120px; height:120px; border-radius:50%; background:radial-gradient(circle,rgba(184,146,79,.40),transparent 70%)}
+.dd-promo-tag{font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; position:relative}
+.dd-promo-main{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; position:relative}
+.dd-promo-main b{font-family:"Fraunces",Georgia,serif; font-size:18px; color:#fff}
+.dd-promo-val{font-size:12px; font-weight:700; color:#bfead2; background:rgba(91,224,160,.16); border:1px solid rgba(91,224,160,.30); border-radius:999px; padding:3px 9px}
+.dd-promo p{font-size:12px; color:#bcd9d0; margin:7px 0 0; position:relative; line-height:1.4}
+.dd-crowns{display:flex; flex-wrap:wrap; gap:7px}
+.dd-crown{display:inline-flex; align-items:center; background:var(--mint-soft); border:1px solid #cdeede; color:var(--mint-700); border-radius:999px; padding:6px 12px; font-size:12px; font-weight:700}
+.dd-strength{margin:2px 0 15px}
+.dd-strength-top{display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--ink-soft); font-weight:600; margin-bottom:6px}
+.dd-strength-top b{color:var(--teal-night); font-size:13px}
+.dd-strength-bar{height:8px; border-radius:999px; background:var(--line-2); overflow:hidden}
+.dd-strength-bar i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--mint),var(--mint-700))}
+/* Rowland Heights future expansion (luxury lavender) */
+.fx-card{background:linear-gradient(160deg,#f3f0fb,#ece7f8); border:1px solid #ddd4f3; position:relative; overflow:hidden}
+.fx-card::after{content:""; position:absolute; right:-26px; top:-26px; width:110px; height:110px; border-radius:50%; background:radial-gradient(circle,rgba(139,127,214,.22),transparent 70%)}
+.fx-tag{display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#6b5fb0; margin-bottom:7px; position:relative}
+.fx-card h5{color:#3b3170; position:relative; margin:0}
+.fx-sub{font-size:12px; font-weight:700; color:#7568b8; margin:2px 0 8px; position:relative}
+.fx-card p{position:relative; color:#52496f}
+.fx-meta{font-size:10.5px; color:#9a90c4; font-weight:600; margin-top:9px; position:relative}
+.fx-ctarow{display:flex; gap:8px; margin-top:12px; position:relative}
+.fx-cta{flex:1; text-align:center; padding:9px 10px; border-radius:10px; font-size:12.5px; font-weight:700; text-decoration:none; cursor:pointer; border:1px solid #d4c9f0; color:#5a4ea3; background:rgba(255,255,255,.6); transition:.14s}
+.fx-cta:hover{background:#fff}
+.fx-cta.primary{background:linear-gradient(135deg,#7c6fc9,#6b5fb0); color:#fff; border-color:transparent}
+.fx-cta.primary:hover{filter:brightness(1.06)}
+.cc-fx-pin{width:16px; height:16px; border-radius:50%; background:#8b7fd6; border:2.5px solid #fff; box-shadow:0 2px 8px rgba(91,72,160,.5)}
+.cc-fx-tip{background:#4a3f86 !important; color:#fff !important; border:none !important; font-weight:700; font-size:11px; border-radius:8px; padding:4px 9px; box-shadow:0 4px 12px rgba(74,63,134,.4)}
+.cc-fx-tip::before{border-top-color:#4a3f86 !important}
+/* ── nearby lifestyle layer (CCPets) ─────────────────────────────────── */
+.cc-lifestyle-label{display:inline-flex; align-items:center; gap:5px; max-width:150px; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.85); border:1px solid color-mix(in srgb, var(--cc-accent,#64748b), transparent 70%); box-shadow:0 8px 22px rgba(15,23,42,.10); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); font:600 11px/1.1 "Inter Tight",system-ui,sans-serif; color:#26352f; pointer-events:auto; cursor:pointer; transition:transform .14s ease, box-shadow .14s ease, background .14s ease; white-space:nowrap; overflow:hidden}
+.cc-lifestyle-label b{overflow:hidden; text-overflow:ellipsis}
+.cc-lifestyle-label-wrap{background:transparent; border:0}
+.cc-lifestyle-label:hover{background:rgba(255,255,255,.98); box-shadow:0 12px 28px rgba(15,23,42,.18); transform:translateY(-1px)}
+.cc-life-pop strong{display:block; font:700 13.5px/1.25 "Inter Tight",sans-serif; color:var(--teal-night)}
+.cc-life-meta{margin-top:2px; font:600 11.5px/1.3 "Inter Tight",sans-serif; color:var(--ink-soft); text-transform:capitalize}
+.cc-popup-actions{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+.cc-popup-ghost{flex:none; background:var(--cream-card); color:var(--teal-night); border:1px solid var(--line-2); border-radius:8px; padding:6px 10px; font:700 12px/1 "Inter Tight",sans-serif; cursor:pointer; transition:.15s}
+.cc-popup-ghost:hover{background:#fff; border-color:var(--teal-300)}
+.cc-popup-link{display:inline-flex; align-items:center; gap:5px; text-decoration:none; background:var(--teal-night); color:#fff; border:none; border-radius:8px; padding:7px 12px; font:700 12px/1 "Inter Tight",sans-serif; cursor:pointer}
+.cc-popup-link:hover{background:var(--teal-deep)}
+.fmc-life{margin-top:11px; border-top:1px solid var(--line-2); padding-top:10px}
+.fmc-life-head{display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; cursor:pointer; font-family:inherit; font-size:13px; font-weight:700; color:var(--teal-night); padding:2px 0}
+.fmc-life-chev{transition:transform .2s; color:var(--ink-soft); font-size:12px}
+.fmc-life-body{display:flex; flex-direction:column; gap:8px; margin-top:10px}
+.fmc-life-row{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:500; color:var(--ink); cursor:pointer}
+.fmc-life-row input{accent-color:var(--teal-night); width:15px; height:15px; cursor:pointer}
+.dd-life{display:flex; flex-direction:column}
+.dd-life-row{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--line-2)}
+.dd-life-row:last-child{border-bottom:none}
+.dd-life-ic{font-size:17px; flex:none; width:22px; text-align:center}
+.dd-life-meta{display:flex; flex-direction:column; min-width:0}
+.dd-life-meta b{font-size:13px; color:var(--teal-night); font-weight:700; line-height:1.2}
+.dd-life-meta span{font-size:11.5px; color:var(--ink-soft); margin-top:1px}
+.dd-ccpets{margin-top:13px; background:linear-gradient(135deg,#f3f0fb,#ece7f8); border:1px solid #ddd4f3; border-radius:14px; padding:13px 14px}
+.dd-ccpets p{margin:0 0 10px; font-size:12.5px; color:#52496f; line-height:1.45}
 /* dentist hover card popup (full-map pins) */
 .leaflet-popup.cc-dpop .leaflet-popup-content-wrapper{ background:var(--cream-card); border:1px solid var(--line-2); border-radius:16px; box-shadow:0 18px 44px rgba(8,42,48,.28); padding:0; overflow:hidden }
 .leaflet-popup.cc-dpop .leaflet-popup-content{ margin:0; width:250px!important; font-family:"Inter Tight",sans-serif }
@@ -706,6 +776,54 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .hero-loc span{font-size:15px}
 .hero-chip{display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:500; color:rgba(246,240,230,.9); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16); padding:9px 13px; border-radius:999px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
 .hero-chip::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--mint)}
+/* ── hero command center ───────────────────────────────────────────── */
+.hero-cmd{padding-bottom:96px}
+.hero-cmd-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start}
+.hero-left{min-width:0}
+.hero-cmd h1{font-size:clamp(28px,3.5vw,44px); max-width:18ch; margin-top:14px}
+.hero-cmd p{margin-top:11px; font-size:15.5px; max-width:52ch}
+.hj-label{margin:22px 0 9px; font-size:12px; font-weight:700; letter-spacing:.04em; color:rgba(246,240,230,.72)}
+.hjswitch{display:flex; flex-wrap:wrap; gap:8px}
+.hj{font-family:inherit; font-size:13.5px; font-weight:600; color:rgba(246,240,230,.9); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); padding:9px 15px; border-radius:999px; cursor:pointer; transition:.15s; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
+.hj:hover{background:rgba(255,255,255,.12)}
+.hj.on{background:var(--mint); color:var(--teal-night); border-color:transparent; font-weight:700; box-shadow:0 6px 18px rgba(91,224,160,.30)}
+.herosearch{display:flex; align-items:center; gap:10px; margin-top:16px; background:rgba(255,253,248,.97); border-radius:15px; padding:7px 7px 7px 16px; box-shadow:0 18px 44px rgba(8,42,48,.30)}
+.hs-ic{color:var(--teal-700); font-size:18px; flex:none}
+#hero-q{flex:1; min-width:0; border:none; outline:none; background:transparent; font-family:inherit; font-size:16px; font-weight:600; color:var(--ink); padding:8px 0}
+#hero-q::placeholder{color:var(--ink-faint); font-weight:500}
+.hs-btn{flex:none; background:var(--teal-night); color:#fff; border:none; border-radius:11px; padding:12px 22px; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; transition:.15s}
+.hs-btn:hover{background:var(--teal-deep)}
+.hs-hint{margin-top:9px; font-size:12.5px; color:rgba(246,240,230,.62)}
+.texplore{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+.tx{display:inline-flex; align-items:center; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:#FBF6EC; cursor:pointer; transition:.15s; text-align:left; font-family:inherit; font-size:13px; font-weight:600; line-height:1; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
+.tx:hover{background:rgba(255,255,255,.14); transform:translateY(-1px); border-color:rgba(91,224,160,.45)}
+.hero-right{align-self:stretch}
+.ac-card{background:rgba(255,253,248,.97); border-radius:20px; padding:18px 18px 20px; box-shadow:0 24px 60px rgba(8,42,48,.30)}
+.ac-h{font-family:"Fraunces",Georgia,serif; font-size:17px; color:var(--teal-night); margin-bottom:13px}
+.ac-stats{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:4px}
+.ac-stat{background:var(--cream-card); border:1px solid var(--line-2); border-radius:13px; padding:11px 13px}
+.ac-stat b{display:block; font-family:"Fraunces",Georgia,serif; font-size:21px; color:var(--teal-night); line-height:1}
+.ac-stat span{font-size:11px; color:var(--ink-soft); font-weight:600}
+.ac-sub{font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin:15px 0 8px}
+.ac-chips{display:flex; flex-wrap:wrap; gap:7px}
+.ac-chip{font-family:inherit; font-size:12px; font-weight:600; color:var(--teal-700); background:var(--cream-card); border:1px solid var(--line-2); border-radius:999px; padding:6px 11px; cursor:pointer; transition:.14s}
+.ac-chip:hover{border-color:var(--mint-700); background:var(--mint-soft); color:var(--mint-700)}
+.ac-feats{display:flex; flex-direction:column; gap:8px}
+.ac-feat{display:flex; align-items:center; gap:11px; padding:9px 11px; border:1px solid var(--line-2); border-radius:13px; background:var(--cream-card); text-decoration:none; transition:.14s}
+.ac-feat:hover{border-color:var(--gold); transform:translateY(-1px)}
+.ac-feat-av{width:38px; height:38px; border-radius:10px; overflow:hidden; flex:none; background:var(--mint-soft); display:grid; place-items:center}
+.ac-feat-av svg,.ac-feat-av img,.ac-feat-av canvas{width:100%; height:100%; object-fit:cover}
+.ac-feat-meta{display:flex; flex-direction:column; min-width:0; flex:1}
+.ac-feat-meta b{font-size:13px; color:var(--teal-night); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ac-feat-meta span{font-size:11px; color:var(--ink-soft)}
+.ac-feat-tag{font-size:10px; font-weight:800; letter-spacing:.04em; color:#7a5e2a; background:var(--gold-soft); border-radius:999px; padding:4px 9px; flex:none}
+@media(max-width:981px){
+  .hero-cmd-grid{grid-template-columns:1fr; gap:24px}
+  .hero-right{order:3}
+}
+@media(max-width:680px){
+  .hs-btn{padding:12px 16px}
+}
 
 /* ---- SEARCH RAIL (floats over hero, pins on scroll) ---- */
 .searchrail{background:transparent; border-bottom:none; margin-top:-58px; z-index:45; padding:0 22px}
@@ -1091,16 +1209,28 @@ body.dd-lock{overflow:hidden}
 </nav>
 
 <!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-inner">
-    <span class="hero-eyebrow">CoverCapy · PPO Discovery</span>
-    <h1>Find a PPO friendly dentist worth the chair.</h1>
-    <p>Search PPO friendly offices nationwide, check PPO fit, and see CoverCapy reward eligible dentists before you book.</p>
-    <div class="hero-actions">
-      <button class="hero-loc" onclick="useCurrentLocation()"><span>◍</span> Use my location</button>
-      <span class="hero-chip">Capy Accredited offices</span>
-      <span class="hero-chip">PPO check before treatment</span>
+<section class="hero hero-cmd">
+  <div class="hero-inner hero-cmd-grid">
+    <div class="hero-left">
+      <span class="hero-eyebrow">CoverCapy · PPO Dental Concierge</span>
+      <h1>Find the Right PPO Dentist Before the Surprise Bill</h1>
+      <p>Search PPO-friendly dental offices, verify coverage, explore treatments, and book with confidence.</p>
+      <div class="hj-label">What are you looking for today?</div>
+      <div class="hjswitch" id="hjswitch">
+        <button class="hj on" data-j="find" onclick="setJourney('find')">Find a Dentist</button>
+        <button class="hj" data-j="ppo" onclick="setJourney('ppo')">Verify My PPO</button>
+        <button class="hj" data-j="treat" onclick="setJourney('treat')">Explore Treatments</button>
+        <button class="hj" data-j="claim" onclick="setJourney('claim')">Claim My Practice</button>
+      </div>
+      <div class="herosearch">
+        <span class="hs-ic" aria-hidden="true">⌕</span>
+        <input id="hero-q" placeholder="Dental Implants Near Me" autocomplete="off" aria-label="Search PPO dentists and treatments" onkeydown="if(event.key==='Enter'){event.preventDefault();heroSearch();}">
+        <button class="hs-btn" id="hero-search-btn" onclick="heroSearch()">Search</button>
+      </div>
+      <div class="hs-hint" id="hs-hint">Search a city, ZIP, dentist, or treatment.</div>
+      <div class="texplore" id="texplore"></div>
     </div>
+    <aside class="hero-right" id="hero-right" aria-label="Marketplace activity"></aside>
   </div>
 </section>
 
@@ -1119,7 +1249,7 @@ body.dd-lock{overflow:hidden}
       <select id="q-spec" onchange="runSearch()">
         <option value="">Any reason</option>
         <option>General</option><option>Cleaning</option><option>Emergency</option>
-        <option>Invisalign</option><option>Implants</option><option>Veneers</option>
+        <option>Invisalign</option><option>Implants</option><option>Veneers</option><option>Crowns</option>
         <option>Whitening</option><option>Root Canal</option><option>Cosmetic</option>
         <option>Orthodontics</option><option>TMJ</option>
       </select>
@@ -1213,6 +1343,14 @@ body.dd-lock{overflow:hidden}
     <!-- RIGHT RAIL -->
     <aside class="prail">
       <div class="prail-h">More from CoverCapy</div>
+      <div class="pcard fx-card" id="prail-future" hidden>
+        <div class="fx-tag">◆ Future Expansion Site</div>
+        <h5>KYT Dental Services</h5>
+        <div class="fx-sub">Rowland Heights Future Expansion Site</div>
+        <p>CoverCapy is evaluating this area for future PPO concierge expansion. Join the waitlist for updates.</p>
+        <div class="fx-meta">Planned coverage area · not an active practice</div>
+        <div class="fx-ctarow"><a class="fx-cta primary" href="mailto:hello@covercapy.com?subject=Rowland%20Heights%20waitlist" onclick="track&&track('future_notify',{site:'rowland-heights'})">Notify Me</a><a class="fx-cta" href="javascript:void(0)" onclick="track&&track('future_learn_more',{site:'rowland-heights'});toast('Rowland Heights','A future CoverCapy PPO concierge market. Join the waitlist to hear when it opens.','info');return false;">Learn More</a></div>
+      </div>
       <div class="pcard dark"><div class="pi">🐾</div><h5>CoverCapy Pets is coming</h5><p>Dental and wellness protection for the whole family, pets included. Be first in line when it opens.</p><a class="pbtn" onclick="track('promo_pets',{});return false;">Preview pet protection →</a></div>
       <div class="pcard"><div class="pi">✦</div><h5>More coverage on the way</h5><p>Vision, life, and health concierge plans are joining CoverCapy. Tell us what you want covered next.</p><a class="pbtn" onclick="track('promo_future',{});return false;">Join the early list →</a></div>
       <div class="pcard gold"><div class="pi">♕</div><h5>Earn Capy Crowns</h5><p>Create a free account to earn rewards for PPO checks, bookings, and verified visits.</p><a class="pbtn" onclick="track('promo_crowns',{});return false;">Create account →</a></div>
@@ -1371,6 +1509,15 @@ body.dd-lock{overflow:hidden}
       </div>
       <button class="fmc-search" type="button" onclick="fsSearchNearby()"><span class="i" aria-hidden="true">⌕</span> Search for dentists nearby</button>
       <p class="fmc-hint" id="fmc-hint">Set your radius, then search. Drag the map to move the search area.</p>
+      <div class="fmc-life" id="fmc-life">
+        <button class="fmc-life-head" type="button" onclick="toggleLifestylePanel()" aria-expanded="false"><span>Nearby Lifestyle</span><span class="fmc-life-chev" id="fmc-life-chev">⌄</span></button>
+        <div class="fmc-life-body" id="fmc-life-body" hidden>
+          <label class="fmc-life-row"><input type="checkbox" id="life-dog_park" onchange="onLifeToggle()"> 🐕 Dog Parks</label>
+          <label class="fmc-life-row"><input type="checkbox" id="life-dog_friendly_park" onchange="onLifeToggle()"> 🌳 Dog-Friendly Parks</label>
+          <label class="fmc-life-row"><input type="checkbox" id="life-hiking_trail" onchange="onLifeToggle()"> 🥾 Hiking Trails</label>
+          <label class="fmc-life-row"><input type="checkbox" id="life-farmers_market" onchange="onLifeToggle()"> 🧺 Farmers Markets</label>
+        </div>
+      </div>
     </div>
   </div>
   <div class="fs-sheet" id="fs-sheet">
@@ -2169,6 +2316,8 @@ function render(){
 
   renderMapPins();
   updateSearchSummary();
+  ccFutureCard();
+  refreshActivityCenter();
   if(fsOpen()){
     renderFsList();
     if(!LAST.some(d=>d.id===FS_SELECTED)){ const fe=featuredForMap(LAST); FS_SELECTED=fe?fe.id:null; renderFsCard(fe); }
@@ -2179,6 +2328,78 @@ function render(){
 
 /* renderListings(): public name for the listings render pass (Supabase-ready) */
 function renderListings(){ return render(); }
+
+/* ── hero command center ─────────────────────────────────────────────── */
+let HJ='find', HERO_EX_CUR=[], _heroIdx=0, _heroTimer=null, _acLastN=-1;
+function matchTreatmentSpec(v){
+  v=(v||'').toLowerCase();
+  const map=[['implant','Implants'],['invisalign','Invisalign'],['veneer','Veneers'],['emergency','Emergency'],['crown','Crowns'],['root canal','Root Canal'],['endodon','Root Canal'],['cosmetic','Cosmetic'],['whiten','Whitening'],['clean','Cleaning'],['ortho','Orthodontics'],['tmj','TMJ'],['family','General']];
+  for(let i=0;i<map.length;i++){ if(v.indexOf(map[i][0])>=0) return map[i][1]; }
+  return '';
+}
+function scrollToResults(){ const t=document.getElementById('rb-title')||document.getElementById('listings'); if(t&&t.scrollIntoView){ try{ t.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ try{ t.scrollIntoView(); }catch(_){} } } }
+function heroSearch(){
+  const raw=((document.getElementById('hero-q')||{}).value||'').trim();
+  if(HJ==='ppo'){ if(typeof openPpoCheck==='function') openPpoCheck(); return; }
+  let where='', treat='';
+  const m=raw.match(/^(.*?)\bin\b(.*)$/i);
+  if(m && matchTreatmentSpec(m[1])){ treat=matchTreatmentSpec(m[1]); where=(m[2]||'').trim(); }
+  else { const s=matchTreatmentSpec(raw); if(s) treat=s; else where=raw; }
+  try{ state._picked=null; }catch(e){}
+  const wEl=document.getElementById('q-where'), sEl=document.getElementById('q-spec');
+  if(sEl) sEl.value=treat||'';
+  if(wEl) wEl.value=where;
+  if(typeof runSearch==='function') runSearch();
+  scrollToResults();
+}
+function heroQuick(q){ const el=document.getElementById('hero-q'); if(el) el.value=q; heroSearch(); }
+function heroPickTreatment(spec){
+  try{ state._picked=null; }catch(e){}
+  const wEl=document.getElementById('q-where'), sEl=document.getElementById('q-spec');
+  if(sEl) sEl.value=spec;
+  if(wEl) wEl.value='';
+  if(typeof runSearch==='function') runSearch();
+  scrollToResults();
+}
+function heroExSet(arr){ HERO_EX_CUR=arr||[]; _heroIdx=0; const q=document.getElementById('hero-q'); if(q && HERO_EX_CUR.length) q.placeholder=HERO_EX_CUR[0]; }
+function heroExTick(){ const q=document.getElementById('hero-q'); if(!q||!HERO_EX_CUR.length) return; if(document.activeElement===q || (q.value||'').length) return; _heroIdx=(_heroIdx+1)%HERO_EX_CUR.length; q.placeholder=HERO_EX_CUR[_heroIdx]; }
+function setJourney(j){
+  HJ=j;
+  document.querySelectorAll('#hjswitch .hj').forEach(b=>b.classList.toggle('on', b.getAttribute('data-j')===j));
+  const hint=document.getElementById('hs-hint'), tx=document.getElementById('texplore'), btn=document.getElementById('hero-search-btn');
+  if(j==='find'){ heroExSet(['Dental Implants Near Me','Invisalign in Irvine','Emergency Dentist','Guardian PPO Dentist','KYT Dental Services','Abri Dental']); if(hint)hint.textContent='Search a city, ZIP, dentist, or treatment.'; if(tx)tx.style.display=''; if(btn)btn.textContent='Search'; }
+  else if(j==='ppo'){ heroExSet(['UnitedHealthcare PPO','Delta Dental PPO','Guardian PPO','Aetna PPO']); if(hint)hint.textContent='Check whether an office works with your PPO before you book.'; if(tx)tx.style.display='none'; if(btn)btn.textContent='Verify PPO'; }
+  else if(j==='treat'){ heroExSet(['Dental Implants','Invisalign','Veneers','Root Canal']); if(hint)hint.textContent='Pick a treatment to see PPO-friendly offices.'; if(tx)tx.style.display=''; if(btn)btn.textContent='Explore'; }
+  else if(j==='claim'){ heroExSet(['KYT Dental Services','Abri Dental','Your practice name']); if(hint)hint.textContent='Search your practice name to claim your free profile.'; if(tx)tx.style.display='none'; if(btn)btn.textContent='Find my practice'; }
+}
+function buildTreatmentExplorer(){
+  const el=document.getElementById('texplore'); if(!el) return;
+  const items=[['Dental Implants','Implants','\uD83E\uDDB7'],['Invisalign','Invisalign','\u2728'],['Veneers','Veneers','\uD83D\uDE01'],['Emergency Dentist','Emergency','\uD83D\uDEA8'],['Crowns','Crowns','\uD83D\uDC51'],['Root Canal','Root Canal','\uD83E\uDE7A'],['Cosmetic Dentistry','Cosmetic','\uD83D\uDC8E'],['Family Dentist','General','\uD83D\uDC6A']];
+  el.innerHTML=items.map(it=>'<button class="tx" onclick="heroPickTreatment(\''+jsq(it[1])+'\')"><span class="tx-l">'+escapeHtml(it[0])+'</span></button>').join('');
+}
+function buildActivityCenter(){
+  const el=document.getElementById('hero-right'); if(!el) return;
+  const all=loadDentistsFromSupabase()||[];
+  _acLastN=all.length;
+  const cities=new Set(); all.forEach(d=>{ if(d.city) cities.add((d.city+','+(d.state||'')).toLowerCase()); });
+  const claimed=all.filter(d=>isPaidTier(d)||isDentistClaimed(d)).length;
+  const plat=all.filter(d=>d.tier==='platinum_elite').length;
+  const stat=(n,l)=>'<div class="ac-stat"><b>'+n+'</b><span>'+escapeHtml(l)+'</span></div>';
+  const pops=['Dental Implants','Invisalign in Irvine','Emergency Dentist','Veneers','Guardian PPO Dentist'];
+  const popHtml=pops.map(p=>'<button class="ac-chip" onclick="heroQuick(\''+jsq(p)+'\')">'+escapeHtml(p)+'</button>').join('');
+  const feat=all.filter(d=>d.tier==='platinum_elite').slice(0,2);
+  const featHtml=feat.map(d=>'<a class="ac-feat" href="javascript:void(0)" onclick="openProfile(\''+jsq(d.id)+'\')"><span class="ac-feat-av">'+getDentistImageMarkup(d)+'</span><span class="ac-feat-meta"><b>'+escapeHtml(d.practice)+'</b><span>'+escapeHtml((d.city||'')+(d.state?(', '+d.state):''))+'</span></span><span class="ac-feat-tag">Platinum</span></a>').join('');
+  el.innerHTML=
+    '<div class="ac-card">'+
+      '<div class="ac-h">Marketplace</div>'+
+      '<div class="ac-stats">'+stat(all.length.toLocaleString(),'Dentists listed')+stat(cities.size.toLocaleString(),'Cities')+stat(claimed.toLocaleString(),'Claimed')+stat(plat.toLocaleString(),'Platinum Elite')+'</div>'+
+      (popHtml?'<div class="ac-sub">Popular searches</div><div class="ac-chips">'+popHtml+'</div>':'')+
+      (featHtml?'<div class="ac-sub">Featured Platinum Elite</div><div class="ac-feats">'+featHtml+'</div>':'')+
+    '</div>';
+}
+function refreshActivityCenter(){ try{ const n=(loadDentistsFromSupabase()||[]).length; if(n!==_acLastN) buildActivityCenter(); }catch(e){} }
+function initHeroCmd(){ try{ buildActivityCenter(); buildTreatmentExplorer(); setJourney('find'); loadLifestyleAnchors(); if(!_heroTimer) _heroTimer=setInterval(heroExTick,2800); }catch(e){} }
+if(document.readyState!=='loading') initHeroCmd(); else document.addEventListener('DOMContentLoaded', initHeroCmd);
 
 /* ---------- FILTERS UI ---------- */
 const RAD_STEPS=[5,8,15,25,30];
@@ -2627,11 +2848,11 @@ function fsZoomFocusLatLng(){
   return (d && d.lat!=null) ? L.latLng(d.lat,d.lng) : null;
 }
 /* Smooth, calmer wheel zoom for the full map.
-   - Leaflet's native wheel zoom is replaced (scrollWheelZoom:false) so we can control the
-     sensitivity (PX_PER_ZOOM, higher = calmer) and ease toward the target zoom each frame.
-   - When an office is selected, the zoom stays locked on its coordinates; otherwise it
-     zooms toward the cursor like a normal map. The +/- buttons and keyboard follow the
-     same focus rule. */
+   - Native wheel + double-click zoom are replaced (scrollWheelZoom:false, doubleClickZoom:false)
+     so we control both the sensitivity (PX_PER_ZOOM, higher = calmer) and, crucially, the pivot.
+   - The pivot is ALWAYS the dot (the fixed search-center crosshair), never the cursor and never a
+     selected office. The spot under the dot stays glued through zoom in/out; panning the map is the
+     only way to move that spot. The pivot is locked for the whole scroll burst so it cannot drift. */
 function setupFsZoom(map){
   const PX_PER_ZOOM = 340, TAU = 120;   // higher PX = calmer; TAU(ms) = smoothing time constant (Google-like glide)
   const clampZ = z => Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), z));
@@ -2647,32 +2868,35 @@ function setupFsZoom(map){
     catch(e){ try{ map.setZoom(current,{animate:false}); }catch(_){} }
     if(current!==target) raf=requestAnimationFrame(tick); else { target=null; current=null; }
   }
-  function zoomAnchor(focus, e){
-    // selected office wins; otherwise hold the search-area center (the fixed crosshair),
-    // not the cursor, so zooming stays on the dot's location (e.g. Pomona).
-    if(focus) return focus;
+  function zoomAnchor(){
+    // Always pivot on the dot (the fixed crosshair) so the location under it stays put while zooming.
     try{ if(fsOpen()) return fsAnchorLatLng(); }catch(_){}
-    if(e){ try{ return map.containerPointToLatLng(map.mouseEventToContainerPoint(e)); }catch(__){} }
     return map.getCenter();
   }
   function onWheel(e){
     e.preventDefault();
+    const inProgress = (raf!=null || target!=null);   // already mid-zoom?
     const base = (target!=null) ? target : (current!=null?current:map.getZoom());
     const step = Math.max(-1.2, Math.min(1.2, -e.deltaY / PX_PER_ZOOM));  // clamp a single notch
     target = clampZ(base + step);
-    anchorLL = zoomAnchor(fsZoomFocusLatLng(), e);
+    if(!inProgress) anchorLL = zoomAnchor();   // lock the dot as pivot for the whole burst (no drift)
     if(!raf){ last=(window.performance&&performance.now)?performance.now():Date.now(); raf=requestAnimationFrame(tick); }
   }
   map.getContainer().addEventListener('wheel', onWheel, {passive:false});
-  // +/- control and keyboard route through here so they honor the same focus rule
+  // +/- control and keyboard route through here so they pivot on the dot too
   function fsStep(dz){
-    const z=clampZ(map.getZoom()+dz), anchor=zoomAnchor(fsZoomFocusLatLng(), null);
+    const z=clampZ(map.getZoom()+dz), anchor=zoomAnchor();
     try{ map.setZoomAround(anchor, z, {animate:true}); }
     catch(e){ try{ map.setZoom(z,{animate:true}); }catch(_){} }
     return map;
   }
   map.zoomIn  = function(d){ return fsStep(+(d||map.options.zoomDelta||0.6)); };
   map.zoomOut = function(d){ return fsStep(-(d||map.options.zoomDelta||0.6)); };
+  // double-click / double-tap also pivots on the dot (hold shift to zoom out), matching wheel + buttons
+  map.on('dblclick', function(e){
+    const out = !!(e && e.originalEvent && e.originalEvent.shiftKey);
+    fsStep(out ? -(map.options.zoomDelta||0.6) : +(map.options.zoomDelta||0.6));
+  });
 }
 /* "You are here" marker (distinct blue dot, separate from the teal search-center dot). */
 function userLocIcon(){ return L.divIcon({className:"", html:'<div class="cc-you"><span class="cc-you-dot"></span></div>', iconSize:[0,0], iconAnchor:[0,0]}); }
@@ -2695,11 +2919,11 @@ function ensureMaps(){
   }
   if(!fullMap){
     const el=document.getElementById('fullmap');
-    if(el){ fullMap=L.map(el,{zoomControl:false,attributionControl:false,scrollWheelZoom:false,zoomSnap:0,zoomDelta:0.6,wheelDebounceTime:30,zoomAnimation:true}).setView([33.68,-117.86],11);
+    if(el){ fullMap=L.map(el,{zoomControl:false,attributionControl:false,scrollWheelZoom:false,doubleClickZoom:false,zoomSnap:0,zoomDelta:0.6,wheelDebounceTime:30,zoomAnimation:true}).setView([33.68,-117.86],11);
       L.tileLayer(TILE,{attribution:TILE_ATTR,subdomains:'abcd',maxZoom:19}).addTo(fullMap);
       setupFsZoom(fullMap);
       L.control.zoom({position:'bottomright'}).addTo(fullMap);
-      fullMap.on('move', fsOnMove); fullMap.on('moveend', fsOnMoveEnd); }
+      fullMap.on('move', fsOnMove); fullMap.on('zoom', fsOnMove); fullMap.on('moveend', fsOnMoveEnd); }
   }
   if(!miniMap){
     const el=document.getElementById('minimap');
@@ -2709,6 +2933,102 @@ function ensureMaps(){
       setTimeout(()=>{ try{ miniMap.invalidateSize(); }catch(e){} },80); }
   }
 }
+/* ── Rowland Heights future expansion site (frontend-only; never a live practice, never in listings) ──
+   Coordinates are approximate for 1747 Fullerton Rd and easy to refine. */
+const FUTURE_SITE={ lat:33.97546, lng:-117.90083, name:'KYT Dental Services', label:'Rowland Heights Future Expansion Site', address:'1747 Fullerton Rd, Rowland Heights, CA 91748' };
+let futureLayers={};
+function futureIcon(){ return L.divIcon({className:'', html:'<div class="cc-fx-pin"></div>', iconSize:[16,16], iconAnchor:[8,8]}); }
+function ccCurrentCenter(){ if(state.mapCenter && state.mapCenter.lat!=null) return {lat:state.mapCenter.lat,lng:state.mapCenter.lng}; const c=centroid(); return (c && c.lat!=null)?{lat:c.lat,lng:c.lng}:null; }
+function futureSiteActive(){ const c=ccCurrentCenter(); if(!c) return false; return miles(c, FUTURE_SITE) <= 10; }
+function ccFutureCard(){ const el=document.getElementById('prail-future'); if(el) el.hidden=!futureSiteActive(); }
+function drawFutureSite(){
+  if(!window.L) return;
+  const on=futureSiteActive();
+  [['side',sideMap],['mini',miniMap],['full',fullMap]].forEach(([tag,m])=>{
+    if(!m) return;
+    if(futureLayers[tag]){ try{ m.removeLayer(futureLayers[tag]); }catch(e){} futureLayers[tag]=null; }
+    if(!on) return;
+    const g=L.layerGroup();
+    L.circle([FUTURE_SITE.lat,FUTURE_SITE.lng],{radius:1609.34, color:'#8B7FD6', weight:1.5, opacity:.55, fillColor:'#B7AEE8', fillOpacity:.15, dashArray:'2 8', interactive:false}).addTo(g);
+    const mk=L.marker([FUTURE_SITE.lat,FUTURE_SITE.lng],{icon:futureIcon(), zIndexOffset:500, keyboard:false}).addTo(g);
+    try{ mk.bindTooltip('Future Coverage Area',{direction:'top',offset:[0,-9],className:'cc-fx-tip'}); }catch(e){}
+    g.addTo(m); futureLayers[tag]=g;
+  });
+}
+/* ── Nearby Lifestyle layer (CCPets): optional, dental-first, soft circles + labels only ── */
+const LIFE_STYLES = {
+  dog_park:          { emoji:"🐕", color:"#a855f7", radius:170 },
+  dog_friendly_park: { emoji:"🌳", color:"#22c55e", radius:145 },
+  hiking_trail:      { emoji:"🥾", color:"#84cc16", radius:130 },
+  farmers_market:    { emoji:"🧺", color:"#f59e0b", radius:120 }
+};
+const LIFE_CATS = ['dog_park','dog_friendly_park','hiking_trail','farmers_market'];
+let LIFESTYLE=[], LIFE_LOADED=false, LIFE_LOADING=null, lifestyleLayer=null, _lifeMoveHooked=false;
+function distanceMiles(lat1,lon1,lat2,lon2){ const R=3958.8; const dLat=(lat2-lat1)*Math.PI/180; const dLon=(lon2-lon1)*Math.PI/180; const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2; return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); }
+async function loadLifestyleAnchors(){
+  if(LIFE_LOADED) return LIFESTYLE;
+  if(LIFE_LOADING) return LIFE_LOADING;
+  if(!sb){ LIFE_LOADED=true; return LIFESTYLE; }
+  LIFE_LOADING=(async()=>{
+    try{
+      const { data, error } = await sb.from('map_anchors').select('*').eq('is_active',true).in('category',LIFE_CATS);
+      if(!error && Array.isArray(data)){
+        LIFESTYLE = data.map(a=>Object.assign({},a,{_lat:+a.latitude,_lng:+a.longitude})).filter(a=>isFinite(a._lat)&&isFinite(a._lng));
+      }
+    }catch(e){ console.warn('lifestyle load failed', e); }
+    LIFE_LOADED=true; return LIFESTYLE;
+  })();
+  return LIFE_LOADING;
+}
+function lifeActiveCats(){ return LIFE_CATS.filter(c=>{ const el=document.getElementById('life-'+c); return el && el.checked; }); }
+function toggleLifestylePanel(){
+  const b=document.getElementById('fmc-life-body'), h=document.getElementById('fmc-life-chev'), head=document.querySelector('.fmc-life-head');
+  if(!b) return; const opening=b.hidden; b.hidden=!opening;
+  if(h) h.style.transform=opening?'rotate(180deg)':'';
+  if(head) head.setAttribute('aria-expanded', opening?'true':'false');
+  if(opening) loadLifestyleAnchors();
+}
+async function onLifeToggle(){ await loadLifestyleAnchors(); renderLifestyle(); }
+function ensureLifestyleLayer(){
+  if(!window.L || !fullMap) return null;
+  if(!lifestyleLayer) lifestyleLayer=L.layerGroup();
+  if(!fullMap.hasLayer(lifestyleLayer)) lifestyleLayer.addTo(fullMap);
+  if(!_lifeMoveHooked){ fullMap.on('moveend', ()=>{ if(lifeActiveCats().length) renderLifestyle(); }); _lifeMoveHooked=true; }
+  return lifestyleLayer;
+}
+function renderLifestyle(){
+  if(!window.L || !fullMap) return;
+  const layer=ensureLifestyleLayer(); if(!layer) return;
+  layer.clearLayers();
+  const cats=lifeActiveCats(); if(!cats.length) return;
+  let bounds=null; try{ bounds=fullMap.getBounds(); }catch(e){}
+  LIFESTYLE.forEach(a=>{ if(cats.indexOf(a.category)<0) return; if(bounds && !bounds.contains([a._lat,a._lng])) return; addLifestyleAnchor(a, layer); });
+}
+function addLifestyleAnchor(anchor, layer){
+  const lat=anchor._lat, lng=anchor._lng; if(!isFinite(lat)||!isFinite(lng)) return;
+  const style=LIFE_STYLES[anchor.category] || { emoji:anchor.icon||"\u2022", color:anchor.color||"#64748b", radius:120 };
+  const color=anchor.color||style.color;
+  const emoji=anchor.icon||style.emoji;
+  const cat=String(anchor.category||'').replace(/_/g,' ');
+  const where=[anchor.city,anchor.state].filter(Boolean).join(', ');
+  // Google Maps directions to the place (named place when we have it, else exact coordinates)
+  const dest=[anchor.name,anchor.address,anchor.city,anchor.state].filter(Boolean).join(', ') || (lat+','+lng);
+  const gdir='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(dest);
+  const popup='<div class="cc-life-pop">'
+    +'<strong>'+escapeHtml(emoji+' '+(anchor.name||'Nearby place'))+'</strong>'
+    +'<div class="cc-life-meta">'+escapeHtml(cat)+(where?(' \u00b7 '+escapeHtml(where)):'')+'</div>'
+    +'<div class="cc-popup-actions">'
+      +'<a class="cc-popup-link" href="'+escapeAttr(gdir)+'" target="_blank" rel="noopener">Open in Google Maps \u2197</a>'
+      +'<button class="cc-popup-ghost" onclick="window.findNearbyDentistsFromLifestyle&&window.findNearbyDentistsFromLifestyle('+lat+','+lng+')">Dentists nearby</button>'
+    +'</div></div>';
+  // faint tint ring (decorative only; the pill below is the click target)
+  L.circle([lat,lng],{ radius:style.radius, color:color, fillColor:color, fillOpacity:0.075, opacity:0.3, weight:1, interactive:false }).addTo(layer);
+  // the visible pill is now clickable -> opens directions / Google Maps + nearby dentists
+  L.marker([lat,lng],{ interactive:true, keyboard:false, riseOnHover:true, icon:L.divIcon({ className:'cc-lifestyle-label-wrap', html:'<div class="cc-lifestyle-label" style="--cc-accent:'+color+'"><span>'+escapeHtml(emoji)+'</span><b>'+escapeHtml(anchor.name||'')+'</b></div>', iconSize:[150,26], iconAnchor:[75,13] }) })
+    .bindPopup(popup, {className:'cc-life-popwrap', maxWidth:240, minWidth:190, offset:[0,-6], autoPanPadding:[24,24]})
+    .addTo(layer);
+}
+window.findNearbyDentistsFromLifestyle=function(lat,lng){ try{ state.mapCenter={lat:+lat,lng:+lng,label:'this area',radius:state.distance||10}; if(typeof render==='function') render(); if(typeof fitMap==='function') fitMap(); }catch(e){} };
 function renderMapPins(){
   ensureMaps(); if(!window.L){
     const fb=document.getElementById('minimap-fallback'); if(fb) fb.style.display='flex';
@@ -2786,6 +3106,8 @@ function updateSearchCenter(){
     }
     g.addTo(m); centerLayers[tag]=g;
   });
+  drawFutureSite();
+  ccFutureCard();
 }
 /* the full-map search center is the viewport anchor (visible-region center, marked by the crosshair) */
 function fsAnchorPx(){
@@ -3482,6 +3804,48 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape' && DD_OPEN
    specialties, booking, website, phone, lat/lng). TODO future Supabase JSON:
    office_hours, gallery_urls, amenities, accessibility, payment_options,
    services_offered, faqs, reviews_summary, availability, promotions, google_place_id. */
+/* DEMO-ONLY enhanced profiles. Frontend object for the two flagship offices only.
+   No global fake data; everything here is clearly demo content for KYT and Abri. */
+const DEMO_ENHANCED_PROFILES = {
+  'kyt-dental-services': {
+    rankings: ['Top PPO Dentist','Most Viewed','Top Rated'],
+    whyChoose: ['PPO Friendly','Modern Technology','Emergency Availability','Cosmetic Expertise'],
+    highlights: [
+      ['\u21A9','Patients often return','Many return for ongoing PPO care'],
+      ['\u2605','Highly recommended','Consistently strong patient ratings'],
+      ['\u2726','Modern technology','Digital scanning and imaging on site'],
+      ['\uD83D\uDDD3','New patient availability','Accepting new PPO patients']
+    ],
+    services: ['General Dentistry','Cosmetic Dentistry','Endodontics','Implants','Crowns','Cleanings','Emergency Dentistry'],
+    amenities: ['Parking','Accessibility','Payment Plans','Modern Technology'],
+    promotion: { title:'Free CBCT Scan', value:'$350', note:'Available through CoverCapy' },
+    crowns: ['Verify PPO','Book Consultation','Review Experience','Refer Friend'],
+    profileStrength: 92
+  },
+  'abri-dental': {
+    rankings: ['Top Rated','Most PPO Requests'],
+    locations: ['Beverly Hills','Burbank'],
+    whyChoose: ['Invisalign Friendly','Cosmetic Expertise','Multi-location Practice','Smile Design'],
+    highlights: [
+      ['\u2728','Invisalign friendly','Clear aligner planning and treatment'],
+      ['\u25C7','Smile transformation','Cosmetic smile design planning'],
+      ['\u25CD','Multi-location practice','Beverly Hills and Burbank']
+    ],
+    services: ['Cosmetic Dentistry','Smile Design','Invisalign','General Dentistry'],
+    amenities: ['Modern Office','Payment Options','Convenient Location','Appointment Requests'],
+    crowns: ['Verify PPO','Book Consultation','Review Experience','Refer Friend'],
+    profileStrength: 88
+  }
+};
+function enhancedFor(d){
+  if(!d) return null;
+  if(DEMO_ENHANCED_PROFILES[d.id]) return DEMO_ENHANCED_PROFILES[d.id];
+  if(d.slug && DEMO_ENHANCED_PROFILES[d.slug]) return DEMO_ENHANCED_PROFILES[d.slug];
+  const p=(d.practice||'').toLowerCase();
+  if(/\bkyt\b/.test(p)) return DEMO_ENHANCED_PROFILES['kyt-dental-services'];
+  if(/\babri\b/.test(p)) return DEMO_ENHANCED_PROFILES['abri-dental'];
+  return null;
+}
 let DD_ID=null, ddMap=null, DD_LL=null, DD_D=null, DD_PREV=null;
 function openProfile(id){ openDentistDrawer(id); }
 function closeDentistDrawer(){ ddDestroyMap(); const s=document.getElementById('dd-scrim'), d=document.getElementById('ddrawer'); if(s)s.classList.remove('open'); if(d)d.classList.remove('open'); if(!document.querySelector('.scrim.open')) document.body.style.overflow=''; if(DD_PREV&&DD_PREV.focus){ try{ DD_PREV.focus(); }catch(e){} } DD_PREV=null; DD_ID=null; }
@@ -3501,6 +3865,37 @@ function ddInitMap(){
 function ddTab(name){ document.querySelectorAll('#ddrawer .dd-tab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-t')===name)); document.querySelectorAll('#ddrawer .dd-panel').forEach(p=>p.classList.toggle('on', p.getAttribute('data-p')===name)); const b=document.querySelector('#ddrawer .dd-body'); if(b) b.scrollTop=0; if(name==='location') setTimeout(ddInitMap,30); }
 function ddPatient(btn,which){ const w=btn.parentElement; w.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('on', i===which)); }
 function ddRequest(){ const id=DD_ID; if(!id) return; const d=find(id); if(d&&d.booking&&String(d.booking).trim()) bookAppointment(id); else openPpoCheck(id); }
+function ddLifestyle(d){
+  if(!d || typeof d.lat!=='number' || typeof d.lng!=='number') return '';
+  if(!LIFESTYLE || !LIFESTYLE.length) return '';
+  const here={lat:d.lat,lng:d.lng};
+  const near=LIFESTYLE.map(a=>({a, mi:miles(here,{lat:a._lat,lng:a._lng})})).filter(o=>o.mi<=10).sort((x,y)=>x.mi-y.mi).slice(0,5);
+  if(!near.length) return '';
+  const lbl={dog_park:'Dog Park',dog_friendly_park:'Dog-Friendly Park',hiking_trail:'Hiking Trail',farmers_market:'Farmers Market'};
+  const rows=near.map(o=>{ const a=o.a, ic=a.icon||((LIFE_STYLES[a.category]||{}).emoji)||'\u2022', cat=lbl[a.category]||String(a.category).replace(/_/g,' ');
+    return '<div class="dd-life-row"><span class="dd-life-ic">'+escapeHtml(ic)+'</span><span class="dd-life-meta"><b>'+escapeHtml(a.name)+'</b><span>'+escapeHtml(cat)+' \u00b7 '+o.mi.toFixed(1)+' mi</span></span></div>'; }).join('');
+  return '<h4 class="dd-h4">Nearby lifestyle</h4><div class="dd-life">'+rows+'</div>'+
+    '<div class="dd-ccpets"><p>Have a dog? CCPets is mapping pet-friendly places near your favorite dentists.</p><a class="dd-btn soft" href="javascript:void(0)" onclick="track&&track(\'ccpets_explore\',{});toast(\'CCPets\',\'Pet-friendly places near your dentists are coming soon.\',\'info\');return false;">Explore CCPets Nearby</a></div>';
+}
+function ddNearbyVerified(d){
+  try{
+    if(d && d.tier==='platinum_elite') return ''; // Platinum Elite paid for exclusivity; never promote others on their profile
+    const all=loadDentistsFromSupabase()||[];
+    const here=(typeof d.lat==='number'&&typeof d.lng==='number')?{lat:d.lat,lng:d.lng}:null;
+    let list=all.filter(x=> x && x.id!==d.id && isPaidTier(x));
+    if(here && typeof miles==='function'){
+      list=list.map(x=>({x, m:(typeof x.lat==='number'&&typeof x.lng==='number')?miles(here,{lat:x.lat,lng:x.lng}):9999}))
+               .sort((a,b)=>a.m-b.m).slice(0,4).map(o=>o.x);
+    } else { list=list.slice(0,4); }
+    if(!list.length) return '';
+    const rows=list.map(x=>{
+      const ij=jsq(x.id), rv=ratingValueOf(x);
+      const sub=escapeHtml((x.city||'')+(x.state?(', '+x.state):''))+(rv?('  \u00b7  \u2605 '+rv.toFixed(1)):'');
+      return '<a class="dd-nv" href="javascript:void(0)" onclick="openDentistDrawer(\''+ij+'\')"><span class="dd-nv-av">'+getDentistImageMarkup(x)+'</span><span class="dd-nv-meta"><b>'+escapeHtml(x.practice)+'</b><span>'+sub+'</span></span></a>';
+    }).join('');
+    return '<h4 class="dd-h4">Verified providers nearby</h4><div class="dd-nvwrap">'+rows+'</div>';
+  }catch(e){ return ''; }
+}
 function openProfileModalLegacy(id){ return openProfileModal(id); }
 function openDentistDrawer(id){
   const d=find(id); if(!d) return;
@@ -3522,7 +3917,7 @@ function openDentistDrawer(id){
   const q=[];
   q.push('<a class="dd-q" href="javascript:void(0)" onclick="mapsPrompt(\''+idj+'\')"><span class="ic">\u25CD</span>Directions</a>');
   if(hasPhone) q.push('<a class="dd-q" href="javascript:void(0)" onclick="callOffice(\''+idj+'\')"><span class="ic">\u260E</span>Call</a>');
-  if(hasWebsite) q.push('<a class="dd-q" href="javascript:void(0)" onclick="openWebsite(\''+idj+'\')"><span class="ic">\u2316</span>Website</a>');
+  if(hasWebsite && claimed) q.push('<a class="dd-q" href="javascript:void(0)" onclick="openWebsite(\''+idj+'\')"><span class="ic">\u2316</span>Website</a>');
   q.push('<a class="dd-q" href="javascript:void(0)" onclick="shareDentist(\''+idj+'\')"><span class="ic">\u2197</span>Share</a>');
   q.push('<a class="dd-q" href="javascript:void(0)" onclick="fsSave(\''+idj+'\')"><span class="ic">\u2661</span>Save</a>');
 
@@ -3532,7 +3927,9 @@ function openDentistDrawer(id){
   if(reviews>0 && rv>=4.7) hl.push(['\u2605','Highly rated','\u2605 '+rv.toFixed(1)+' across '+reviews.toLocaleString()+' reviews']);
   if(isPaidTier(d)) hl.push(['\u2726','Concierge support','PPO guidance and priority assistance']);
   while(hl.length<4) hl.push(['\u25CD',(d.city||'Local')+' office','Serving '+escapeHtml(d.county||((d.city||'the')+' area'))]);
-  const hlHtml=hl.slice(0,4).map(h=>'<div class="it"><span class="ic">'+h[0]+'</span><div><b>'+escapeHtml(h[1])+'</b><span>'+escapeHtml(h[2])+'</span></div></div>').join('');
+  const enh=enhancedFor(d);
+  const hlSrc=(enh&&enh.highlights&&enh.highlights.length)?enh.highlights:hl;
+  const hlHtml=hlSrc.slice(0,4).map(h=>'<div class="it"><span class="ic">'+h[0]+'</span><div><b>'+escapeHtml(h[1])+'</b><span>'+escapeHtml(h[2])+'</span></div></div>').join('');
 
   const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat']; let av=''; const now=new Date();
   for(let i=1;i<=7;i++){ const dt=new Date(now.getTime()+i*864e5); av+='<div class="day"><div class="d">'+dn[dt.getDay()]+'</div><div class="n">'+dt.getDate()+'</div></div>'; }
@@ -3541,8 +3938,19 @@ function openDentistDrawer(id){
   const specs=(d.specialties&&d.specialties.length)?specChips(d,18):'<span class="dd-note">Service list coming soon.</span>';
   const knownFor=(d.specialties&&d.specialties.length)?('<div class="dd-keys">'+specChips(d,8)+'</div>'):'';
   const reqLabel=hasBooking?'Request Appointment':'Verify PPO &amp; Request';
+  const verifyStrip = claimed ? '' : '<div class="dd-unverified"><span class="ic">\u24D8</span><span>Listed from public information. Not yet verified by this office.</span></div>';
 
+  let enhRankings='', enhWhy='', enhPromo='', enhCrowns='', enhStrength='', enhLocations='';
+  if(enh){
+    if(enh.rankings&&enh.rankings.length) enhRankings='<div class="dd-ranks">'+enh.rankings.map(r=>'<span class="dd-rank">\u2726 '+escapeHtml(r)+'</span>').join('')+'</div>';
+    if(enh.whyChoose&&enh.whyChoose.length) enhWhy='<h4 class="dd-h4">Why patients choose this office</h4><div class="dd-keys">'+enh.whyChoose.map(w=>'<span class="dd-key">'+escapeHtml(w)+'</span>').join('')+'</div>';
+    if(enh.promotion) enhPromo='<div class="dd-promo"><div class="dd-promo-tag">CoverCapy offer</div><div class="dd-promo-main"><b>'+escapeHtml(enh.promotion.title)+'</b>'+(enh.promotion.value?'<span class="dd-promo-val">Value '+escapeHtml(enh.promotion.value)+'</span>':'')+'</div>'+(enh.promotion.note?'<p>'+escapeHtml(enh.promotion.note)+'</p>':'')+'</div>';
+    if(enh.crowns&&enh.crowns.length) enhCrowns='<h4 class="dd-h4">Earn Capy Crowns \uD83D\uDC51</h4><div class="dd-crowns">'+enh.crowns.map(c=>'<span class="dd-crown">'+escapeHtml(c)+'</span>').join('')+'</div><p class="dd-note" style="margin-top:8px">Create a CoverCapy account to start earning toward rewards like professional whitening.</p>';
+    if(typeof enh.profileStrength==='number') enhStrength='<div class="dd-strength"><div class="dd-strength-top"><span>Profile strength</span><b>'+enh.profileStrength+'%</b></div><div class="dd-strength-bar"><i style="width:'+enh.profileStrength+'%"></i></div></div>';
+    if(enh.locations&&enh.locations.length) enhLocations='<h4 class="dd-h4">Locations</h4><div class="dd-rows">'+enh.locations.map(l=>'<div class="dd-row"><span class="ic">\u25CD</span><span>'+escapeHtml(l)+'</span></div>').join('')+'</div>';
+  }
   const overview='<div class="dd-panel on" data-p="overview">'+
+      enhRankings+
       '<div class="dd-card dd-book">'+
         '<h4>Request an appointment</h4>'+
         '<div class="sub">CoverCapy confirms PPO compatibility before anything is booked.</div>'+
@@ -3555,8 +3963,10 @@ function openDentistDrawer(id){
         '<button class="dd-btn gold" style="margin-top:11px" onclick="ddRequest()">'+reqLabel+'</button>'+
       '</div>'+
       '<div class="dd-hl">'+hlHtml+'</div>'+
+      enhWhy+enhStrength+enhPromo+enhCrowns+
       (d.why?'<h4 class="dd-h4">About this office</h4><p class="dd-why">'+escapeHtml(d.why)+'</p>':'')+
       (knownFor?'<h4 class="dd-h4">Known for</h4>'+knownFor+'<a class="dd-link" onclick="ddTab(\'services\')">See all services \u2192</a>':'')+
+      enhLocations+
     '</div>';
   const insurance='<div class="dd-panel" data-p="insurance">'+
       '<h4 class="dd-h4">PPO carriers</h4><div class="dd-keys">'+carriers+'</div>'+
@@ -3588,9 +3998,10 @@ function openDentistDrawer(id){
       '<div class="dd-faq"><b>Are new patients accepted?</b><p>'+(d.newPatients?'Yes, this office is accepting new patients. Request a time and the office confirms it with you.':'New-patient availability varies. Request a time and the office will confirm.')+'</p></div>'+
       '<div class="dd-faq"><b>How does booking work?</b><p>Request an appointment here. Nothing is finalized until the office confirms the exact time with you.</p></div>'+
     '</div>';
+  const corrMail='mailto:hello@covercapy.com?subject='+encodeURIComponent('Correction for '+(d.practice||'this listing'));
   const claimBlock=!claimed
-    ? '<div class="dd-claim"><b>Own this practice?</b><p>Patients already find this office on CoverCapy. Claim your free profile to verify PPO participation, add photos, list services, and receive patient requests.</p><button class="dd-btn gold" onclick="openClaim(\''+idj+'\')">Claim Free Profile</button></div>'
-    : '<div class="dd-claim"><b>Verified by the practice \u2726</b><p>This office manages its CoverCapy profile. Platinum Elite unlocks priority placement, booking tools, and patient PPO requests.</p><button class="dd-btn soft" onclick="ddRequest()">Request an appointment</button></div>';
+    ? '<div class="dd-claim"><b>Is this your practice?</b><p>This is the public CoverCapy listing for '+escapeHtml(d.practice)+'. Claim your free profile to verify your PPO plans and add your website, online booking, photos, and hours. Your profile is what patients see when they search your practice name.</p><button class="dd-btn gold" onclick="openClaim(\''+idj+'\')">Claim this profile, free</button><a class="dd-link" style="display:block;margin-top:11px" href="'+corrMail+'">Not the owner? Suggest a correction</a></div>'
+    : '<div class="dd-claim"><b>Verified by the practice \u2726</b><p>This office manages its CoverCapy profile, including its website, booking, and PPO details. Platinum Elite unlocks priority placement and patient PPO requests.</p><button class="dd-btn soft" onclick="ddRequest()">Request an appointment</button></div>';
 
   document.getElementById('ddrawer').innerHTML=
     '<div class="dd-head"><div class="dd-cover'+coverCls+'">'+cover+'<button class="dd-x" onclick="closeDentistDrawer()" aria-label="Close">\u00d7</button></div>'+
@@ -3600,6 +4011,7 @@ function openDentistDrawer(id){
         (d.doctor?'<div class="dd-doc">'+escapeHtml(d.doctor)+'</div>':'')+
         '<div class="dd-rate">'+ratingHtml(d)+'</div>'+
         '<div class="dd-addr"><span>\u25CD</span><span>'+addr+distTxt+'</span></div>'+
+        verifyStrip+
         '<div class="dd-quick">'+q.join('')+'</div></div></div>'+
     '<div class="dd-tabs">'+
       '<button class="dd-tab on" data-t="overview" onclick="ddTab(\'overview\')">Overview</button>'+
@@ -3608,7 +4020,7 @@ function openDentistDrawer(id){
       '<button class="dd-tab" data-t="location" onclick="ddTab(\'location\')">Location</button>'+
       '<button class="dd-tab" data-t="reviews" onclick="ddTab(\'reviews\')">Reviews</button>'+
       '<button class="dd-tab" data-t="faqs" onclick="ddTab(\'faqs\')">FAQs</button></div>'+
-    '<div class="dd-body">'+overview+insurance+services+location+reviewsP+faqs+claimBlock+'</div>'+
+    '<div class="dd-body">'+overview+insurance+services+location+reviewsP+faqs+ddLifestyle(d)+claimBlock+ddNearbyVerified(d)+'</div>'+
     '<div class="dd-foot"><a class="vfp" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View full profile \u2192</a><button class="cta" onclick="ddRequest()">'+(hasBooking?'Request Appointment':'Verify PPO')+'</button></div>';
 
   document.getElementById('dd-scrim').classList.add('open');
