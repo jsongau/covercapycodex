@@ -125,6 +125,9 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-center{position:relative}
 .ccc-dot{position:absolute; left:0; top:0; width:15px; height:15px; margin:-7.5px 0 0 -7.5px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 0 0 5px rgba(91,224,160,.30), 0 4px 10px rgba(8,42,48,.35)}
 .ccc-dot::after{content:""; position:absolute; left:50%; top:50%; width:15px; height:15px; margin:-7.5px 0 0 -7.5px; border-radius:50%; border:2px solid rgba(91,224,160,.6); animation:ccpulse 1.9s ease-out infinite}
+.cc-you{position:relative}
+.cc-you-dot{position:absolute; left:0; top:0; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; background:#1d74ff; border:3px solid #fff; box-shadow:0 0 0 6px rgba(29,116,255,.22), 0 4px 12px rgba(8,42,48,.35)}
+.cc-you-dot::after{content:""; position:absolute; left:50%; top:50%; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; border:2px solid rgba(29,116,255,.55); animation:ccpulse 1.9s ease-out infinite}
 @keyframes ccpulse{0%{transform:scale(1); opacity:.7} 100%{transform:scale(3.4); opacity:0}}
 .ccc-lbl{position:absolute; left:0; bottom:14px; transform:translateX(-50%); white-space:nowrap; background:var(--teal-night); color:#fff; font-family:"Fraunces"; font-size:12px; font-weight:600; padding:3px 9px; border-radius:8px; box-shadow:0 4px 10px rgba(8,42,48,.3)}
 .ccc-lbl::after{content:""; position:absolute; left:50%; top:100%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--teal-night)}
@@ -529,6 +532,37 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   .lcard.feat .av{width:64px; height:64px}
 }
 .pclose{position:absolute; top:12px; right:14px; background:rgba(255,255,255,.92); border-radius:50%; width:34px; height:34px; font-size:20px; display:grid; place-items:center; box-shadow:0 2px 8px rgba(0,0,0,.14)}
+/* ===== v56 Facebook-style profile header (cover band + small lower-left avatar) ===== */
+.pf{display:flex; flex-direction:column}
+.pf-cover{position:relative; height:180px; background:linear-gradient(120deg,#CFE7DD 0%,#E9F2EC 50%,#F2E6CA 100%); overflow:hidden; border-radius:20px 20px 0 0}
+.pf-cover.has-img{background:var(--cream-2)}
+.pf-cover-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+.pf-cover-edit{position:absolute; right:14px; bottom:12px; z-index:3; display:inline-flex; align-items:center; gap:6px; background:rgba(8,42,48,.6); color:#fff; border:1px solid rgba(255,255,255,.3); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); font:600 12.5px/1 "Inter Tight",sans-serif; padding:8px 12px; border-radius:10px; cursor:pointer; transition:.15s}
+.pf-cover-edit:hover{background:rgba(8,42,48,.82)}
+.pf-close{position:absolute; top:12px; right:12px; z-index:4; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.92); color:var(--ink); border:1px solid var(--line-2); font-size:20px; line-height:1; display:grid; place-items:center; box-shadow:0 2px 8px rgba(0,0,0,.16); cursor:pointer}
+.pf-close:hover{background:#fff}
+.pf-headrow{display:flex; align-items:flex-end; gap:15px; padding:0 22px; margin-top:-46px; position:relative; z-index:2}
+.pf-avwrap{position:relative; width:88px; height:88px; flex:none}
+.pf-avatar{width:100%; height:100%; border-radius:50%; overflow:hidden; background:var(--cream-2); border:4px solid var(--cream-card); box-shadow:0 4px 16px rgba(8,42,48,.22)}
+.pf-avatar .capyfull, .pf-avatar .dimg, .pf-avatar .av-ini{width:100%; height:100%; object-fit:cover; display:block}
+.pf-avatar .av-ini{font-size:30px}
+.pf-av-edit{position:absolute; right:-2px; bottom:-2px; z-index:3; width:28px; height:28px; border-radius:50%; background:var(--teal-night); color:#fff; border:2px solid var(--cream-card); font-size:12px; line-height:1; display:grid; place-items:center; cursor:pointer; box-shadow:0 2px 6px rgba(8,42,48,.3); transition:.15s}
+.pf-av-edit:hover{background:var(--teal-deep)}
+.pf-id{flex:1; min-width:0; padding-bottom:3px}
+.pf-id .tagrow{margin:0 0 5px}
+.pf-name{font-family:"Fraunces",Georgia,serif; font-size:23px; font-weight:600; line-height:1.14; letter-spacing:-.01em; margin:0}
+.pf-doc{font-size:13.5px; color:var(--ink-soft); margin-top:2px}
+.pf-rate{margin-top:6px}
+.pf-body{padding:16px 22px 22px}
+.pf-why{font-size:14px; color:var(--ink-soft); line-height:1.55; margin:0 0 14px}
+.zoc-powered{flex-basis:100%; font-size:11px; color:var(--ink-faint); margin-top:5px; letter-spacing:.01em}
+@media(max-width:600px){
+  .pf-cover{height:140px}
+  .pf-headrow{margin-top:-40px; padding:0 16px; gap:12px}
+  .pf-avwrap{width:76px; height:76px}
+  .pf-name{font-size:20px}
+  .pf-body{padding:14px 16px 20px}
+}
 .msub{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 7px}
 .claimbox{margin-top:15px; background:var(--cream-2); border:1px solid var(--line-2); border-radius:14px; padding:15px 16px}
 .claimbox b{font-family:"Fraunces"; font-size:15.5px}
@@ -735,6 +769,20 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .lrate{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:2px 0 0}
 .lrate .rpill{display:inline-flex; align-items:center; gap:3px}
 .rsrc{font-size:11px; font-weight:500; color:var(--ink-faint)}
+/* v55 reviews: clickable unclaimed Google rating + multi-source pills (paid) */
+.lrate-link{display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:inherit; cursor:pointer}
+.lrate-link:hover .rcount{text-decoration:underline; text-decoration-color:var(--gold-2)}
+.rsrc-pills{display:flex; flex-wrap:wrap; gap:5px; flex-basis:100%; margin-top:3px}
+.rsrc-pill{display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; line-height:1.3; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:3px 9px; text-decoration:none; white-space:nowrap}
+.rsrc-pill b{font-weight:700; color:var(--ink)}
+a.rsrc-pill{transition:.12s}
+a.rsrc-pill:hover{border-color:var(--teal-300); color:var(--ink)}
+.rsrc-pill.src-google b{color:#3A7BE0}
+.rsrc-pill.src-yelp b{color:#C8392B}
+.rsrc-pill.src-zocdoc b{color:#1E7C8C}
+.rsrc-pill.src-capy b{color:var(--mint-700)}
+.revpills{flex-wrap:wrap; gap:6px}
+.rev-note{font-size:11px; color:var(--ink-faint); line-height:1.4; margin-top:9px}
 .newtag{font-size:11.5px; font-weight:600; color:var(--mint-700); background:var(--mint-soft); padding:4px 9px; border-radius:8px}
 .lcard .lrate{margin:1px 0 0}
 /* .b-pending removed: pending labels use Supabase badge colors applied inline. */
@@ -1286,6 +1334,9 @@ function normalizeRow(r){
     badge_border: r.badge_border || "",
     profile_url: r.profile_url || "",
     image: r.image_url || ((r.gallery_images && r.gallery_images.length) ? r.gallery_images[0] : "") || "",
+    imageRaw: r.image_url || "",
+    coverImage: r.cover_image_url || "",
+    claimedBy: r.claimed_by || null,
     gallery: r.gallery_images || [],
     avatarSeed: r.avatar_seed || r.slug || r.practice_name || r.name || "capy",
     avatarVersion: r.avatar_version || 1,
@@ -1293,13 +1344,15 @@ function normalizeRow(r){
     city: r.city, county: r.area || "", area: r.area || "", state: r.state || "", location: stateFullName(r.state), zip: r.zip || "",
     address: r.address || [r.city, r.state].filter(Boolean).join(", "), website: r.website || "",
     lat, lng, phone: r.phone || "", booking: r.booking_url || "",
+    zocdocUrl: r.zocdoc_url || "", yelpUrl: r.yelp_url || "", placeId: r.google_place_id || "",
     carriers: (r.insurance_networks||[]).filter(Boolean),
     specialties: (r.specialties||[]).filter(Boolean),
     languages: (r.languages||[]).filter(Boolean),
     rating: parseFloat(r.weighted_rating)>0 ? parseFloat(r.weighted_rating) : (parseFloat(r.aggregate_rating)||parseFloat(r.google_rating)||0),
-    reviews: parseInt(r.weighted_review_count)>0 ? parseInt(r.weighted_review_count) : (parseInt(r.aggregate_review_count)|| ((parseInt(r.google_review_count)||0)+(parseInt(r.yelp_review_count)||0)+(parseInt(r.capy_review_count)||0)) || 0),
+    reviews: parseInt(r.weighted_review_count)>0 ? parseInt(r.weighted_review_count) : (parseInt(r.aggregate_review_count)|| ((parseInt(r.google_review_count)||0)+(parseInt(r.yelp_review_count)||0)+(parseInt(r.zocdoc_review_count)||0)+(parseInt(r.capy_review_count)||0)) || 0),
     gRating: parseFloat(r.google_rating)||0, gReviews: parseInt(r.google_review_count)||0,
     yRating: parseFloat(r.yelp_rating)||0, yReviews: parseInt(r.yelp_review_count)||0,
+    zRating: parseFloat(r.zocdoc_rating)||0, zReviews: parseInt(r.zocdoc_review_count)||0,
     cRating: parseFloat(r.capy_rating)||0, cReviews: parseInt(r.capy_review_count)||0,
     wRating: parseFloat(r.weighted_rating)||0, wReviews: parseInt(r.weighted_review_count)||0,
     ratingDisplay: r.rating_display||"",
@@ -1328,7 +1381,7 @@ async function bootData(){
       locs.forEach(l=>{ const k=(l.city||l.name).toLowerCase(); if(l.type==="city"){ CITIES[k]={lat:+l.lat,lng:+l.lng,label:l.name,area:l.county||""}; CITY_ZIPS[k]=(l.zip_codes||[]).map(String); } });
       CITIES["orange county"] = CITIES["orange county"] || { lat:33.70, lng:-117.86, label:"Orange County", area:"Orange County" };
     }
-    const cols = "id,slug,name,practice_name,city,area,state,zip,address,phone,website,booking_url,featured_tier,accreditation_status,is_sponsored,is_claimed,membership_tier,aggregate_rating,aggregate_review_count,google_rating,google_review_count,yelp_rating,yelp_review_count,capy_rating,capy_review_count,weighted_rating,weighted_review_count,rating_display,insurance_networks,specialties,languages,latitude,longitude,short_description,avatar_seed,avatar_version,avatar_traits,image_url,gallery_images,pending_display_label,badge_style,badge_bg,badge_text,badge_border,profile_url";
+    const cols = "id,slug,name,practice_name,city,area,state,zip,address,phone,website,booking_url,featured_tier,accreditation_status,is_sponsored,is_claimed,membership_tier,aggregate_rating,aggregate_review_count,google_rating,google_review_count,yelp_rating,yelp_review_count,capy_rating,capy_review_count,weighted_rating,weighted_review_count,rating_display,zocdoc_rating,zocdoc_review_count,zocdoc_url,yelp_url,google_place_id,insurance_networks,specialties,languages,latitude,longitude,short_description,avatar_seed,avatar_version,avatar_traits,image_url,gallery_images,cover_image_url,claimed_by,pending_display_label,badge_style,badge_bg,badge_text,badge_border,profile_url";
     const { data: rows, error } = await sb.from("dentists").select(cols);
     if(error) throw error;
     if(rows && rows.length){
@@ -1344,7 +1397,7 @@ const state = {
   city: "",
   spec: "", carrier: "", distance: 8, allCounty:true, seoHome:true,
   filters: { tier:new Set(), carrier:new Set(), spec:new Set(), lang:new Set() },
-  offers:false, newpat:false, online:false,
+  offers:false, newpat:false, online:false, minReviews:0,
   compare:new Set(), _picked:null, mapMove:false,
   areaKeys:null, areaLabel:null
 };
@@ -1444,6 +1497,7 @@ function processed(){
   if(state.filters.tier.size) list = list.filter(d=> state.filters.tier.has(d.tier));
   if(state.offers) list = list.filter(d=> d.offer);
   if(state.newpat) list = list.filter(d=> d.newPatients);
+  if(state.minReviews>0) list = list.filter(d=> reviewCountOf(d) >= state.minReviews);
   if(state.filters.carrier.size) list = list.filter(d=> [...state.filters.carrier].some(c=> officeAcceptsCarrier(d,c)));
   if(state.filters.spec.size) list = list.filter(d=> d.specialties.some(x=>state.filters.spec.has(x)));
   if(state.filters.lang.size) list = list.filter(d=> d.languages.some(x=>state.filters.lang.has(x)));
@@ -1499,18 +1553,48 @@ function carrierChips(d, max){
 function specChips(d, max){
   return d.specialties.slice(0,max).map(s=>'<span class="chip spec">'+esc(s)+'</span>').join('');
 }
-function unifiedRating(d){
-  const g=d.gReviews||0, y=d.yReviews||0, c=d.cReviews||0;
-  const total = (d.wReviews>0 ? d.wReviews : (g+y+c)) || d.reviews || 0;
-  const score = (d.wRating>0 ? d.wRating : (d.rating || d.gRating || 0)) || 0;
-  const srcs=[]; if(g)srcs.push('Google'); if(y)srcs.push('Yelp'); if(c)srcs.push('CoverCapy');
-  return {score, total, srcs};
+/* ---- Reviews: tier-aware (Supabase weighted_* is already tier-aware) ----
+   Unclaimed / free:  Google rating ONLY. The rating is clickable and opens the practice's
+   real Google reviews page (deep link via google_place_id).
+   Paid (Platinum Elite / Capy Accredited / Verified): the four-source weighted aggregate
+   as the hero number + total, with Google / Yelp / ZocDoc / CoverCapy source pills.
+   Google, Yelp and ZocDoc pills all link out to the source; CoverCapy is internal.
+   Aggregating four platforms lifts paid totals, so the 100/250/500 review filter surfaces
+   them more often, which is the intended paid perk. */
+function isPaidTier(d){ return d && ["platinum_elite","capy_accredited","verified"].includes(d.tier); }
+function num1(n){ n=parseFloat(n); return isFinite(n)?n.toFixed(1):"0.0"; }
+function reviewCountOf(d){ return (parseInt(d.wReviews)>0 ? parseInt(d.wReviews) : parseInt(d.reviews)) || 0; }
+function googleReviewsUrl(d){ return d.placeId ? 'https://search.google.com/local/reviews?placeid='+encodeURIComponent(d.placeId) : ''; }
+function srcPill(cls, label, rating, count, href){
+  const body='<b>'+label+'</b> '+num1(rating)+' · '+(parseInt(count)||0).toLocaleString();
+  if(href) return '<a class="rsrc-pill '+cls+'" href="'+escapeAttr(href)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+body+'</a>';
+  return '<span class="rsrc-pill '+cls+'">'+body+'</span>';
 }
 function ratingHtml(d){
-  const u=unifiedRating(d);
-  if(!u.total || !u.score) return '<span class="newtag">New · reviews pending</span>';
-  const src = u.srcs.length ? '<span class="rsrc">'+u.srcs.join(' · ')+'</span>' : '';
-  return '<span class="rpill"><span class="st">★</span>'+u.score.toFixed(1)+'</span><span class="rcount">'+u.total.toLocaleString()+' reviews</span>'+src;
+  if(!isPaidTier(d)){
+    // unclaimed / free: Google rating only; the rating links straight to Google's reviews
+    const gr = (parseFloat(d.gRating)||parseFloat(d.rating)||0);
+    const gn = (parseInt(d.gReviews)||parseInt(d.reviews)||0);
+    if(!gn || !gr) return '<span class="newtag">New · reviews pending</span>';
+    const gUrl = googleReviewsUrl(d);
+    const inner = '<span class="rpill"><span class="st">★</span>'+num1(gr)+'</span>'+
+                  '<span class="rcount">'+gn.toLocaleString()+' Google reviews'+(gUrl?' ↗':'')+'</span>';
+    return gUrl
+      ? '<a class="lrate-link" href="'+escapeAttr(gUrl)+'" target="_blank" rel="noopener" title="See these reviews on Google" onclick="event.stopPropagation()">'+inner+'</a>'
+      : inner;
+  }
+  // paid: four-source weighted aggregate + per-source pills (all sources link out)
+  const score = (parseFloat(d.wRating)>0 ? parseFloat(d.wRating) : (parseFloat(d.rating)||0));
+  const total = reviewCountOf(d);
+  if(!total || !score) return '<span class="newtag">New · reviews pending</span>';
+  const pills=[];
+  if(parseInt(d.gReviews)>0) pills.push(srcPill('src-google','Google', d.gRating, d.gReviews, googleReviewsUrl(d)));         // linked to Google reviews
+  if(parseInt(d.yReviews)>0) pills.push(srcPill('src-yelp','Yelp', d.yRating, d.yReviews, d.yelpUrl||''));                   // linked (Yelp terms)
+  if(parseInt(d.zReviews)>0) pills.push(srcPill('src-zocdoc','Zocdoc', d.zRating, d.zReviews, d.zocdocUrl||d.booking||'')); // linked
+  if(parseInt(d.cReviews)>0) pills.push(srcPill('src-capy','CoverCapy', d.cRating, d.cReviews, ''));                        // internal
+  return '<span class="rpill"><span class="st">★</span>'+num1(score)+'</span>'+
+         '<span class="rcount">'+total.toLocaleString()+' reviews</span>'+
+         (pills.length?'<span class="rsrc-pills">'+pills.join('')+'</span>':'');
 }
 function distLabel(d){ return d.dist>=999 ? "" : d.dist.toFixed(1)+" mi"; }
 function distMeta(d){ if(d.dist==null || d.dist>=999) return ''; if(d.dist<0.5) return '<span class="dot"></span><span>Nearby</span>'; return '<span class="dot"></span><span>'+d.dist.toFixed(1)+' mi away</span>'; }
@@ -1547,10 +1631,9 @@ function getDentistProfileUrl(d){
 }
 function avInitialsTile(d){ return '<div class="av-ini" style="background:'+tierGrad(d)+'">'+getDentistInitials(d)+'</div>'; }
 function getDentistImageMarkup(d){
-  // 1) claimed + real photo -> show it. 2) claimed, no photo -> initials.
-  // 3) unclaimed -> procedural Supabase mascot. 4) engine not ready -> initials.
+  // Custom uploaded photo wins; otherwise always the CoverCapy animal avatar.
+  // Initials appear only transiently before the avatar engine finishes loading.
   if(hasRealDentistImage(d)) return '<img class="dimg" src="'+escapeAttr(d.image)+'" alt="'+escapeAttr(normalizeDentistName(d))+'" loading="lazy">';
-  if(isDentistClaimed(d)) return avInitialsTile(d);
   const svg = renderCapyAvatar(d);
   return svg ? svg : avInitialsTile(d);
 }
@@ -1853,10 +1936,14 @@ function cardHtml(d, feat){
   const hasAddr    = !!(d.address && String(d.address).trim());
   const idj = jsq(d.id);
 
-  /* GROUP A — booking + contact (primary, prominent). Verified offices lead with these. */
-  const aBook = hasBooking ? '<button class="la la-gold" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">Book Appointment</button>' : '';
+  /* GROUP A — booking + contact (primary, prominent). Verified offices lead with these.
+     Paid offices with a booking_url get a "Book Now" button; if that link is ZocDoc we
+     show a "Powered by Zocdoc" caption beneath it. */
+  const isZocBooking = hasBooking && /zocdoc\.com/i.test(d.booking);
+  const aBook = hasBooking ? '<button class="la la-gold" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">'+(isVerifiedTier?'Book Now':'Book Appointment')+'</button>' : '';
   const aCall = hasPhone   ? '<button class="la la-primary" onclick="event.stopPropagation();callOffice(\''+idj+'\')">Call Office</button>' : '';
   const aAvail = (isVerifiedTier && !hasBooking && !hasPhone) ? '<button class="la la-primary" onclick="event.stopPropagation();openAvailability(\''+idj+'\')">Request Availability</button>' : '';
+  const zocCap = (isVerifiedTier && isZocBooking) ? '<div class="zoc-powered">Powered by Zocdoc</div>' : '';
   const primaryBtns = aBook + aCall + aAvail;
 
   /* GROUP B — profile + coverage (grouped away). Member tiers show a PPO-accepted confirmation; public listings get Check Coverage. */
@@ -1910,7 +1997,7 @@ function cardHtml(d, feat){
         chipsHtml+
       '</div>'+
       '<div class="lside">'+
-        (primaryBtns?'<div class="cta-primary">'+primaryBtns+'</div>':'')+
+        (primaryBtns?'<div class="cta-primary">'+primaryBtns+zocCap+'</div>':'')+
         '<div class="cta-secondary'+(primaryBtns?' has-divider':'')+'">'+secondaryBtns+'</div>'+
       '</div>'+
     '</div>'+
@@ -1996,6 +2083,10 @@ function renderFilters(){
     sw('newpat','Accepting new patients')+
     sw('online','Online booking')+
   '</div>'+
+  '<div class="fcard"><h4>Patient reviews</h4>'+
+    reviewFilterPills()+
+    '<div class="rev-note">Members combine Google, Yelp, Zocdoc &amp; CoverCapy reviews.</div>'+
+  '</div>'+
   (LANGS_ALL.length>1?'<div class="fcard"><h4>Languages</h4>'+LANGS_ALL.map(l=>opt('lang',l)).join('')+'</div>':'');
 
   document.getElementById('filters').innerHTML = html;
@@ -2016,6 +2107,13 @@ function opt(kind,val,ct){
 function sw(key,label){
   return '<div class="swrow"><span>'+label+'</span><span class="toggle'+(state[key]?' on':'')+'" onclick="toggleSwitch(\''+key+'\',this)"></span></div>';
 }
+/* Minimum-review-count filter (reads weighted_review_count). Higher tiers aggregate four
+   platforms, so they clear these thresholds more often, which is the intended paid perk. */
+function reviewFilterPills(){
+  const opts=[[0,'Any'],[100,'100+'],[250,'250+'],[500,'500+']];
+  return '<div class="distpills revpills">'+opts.map(function(o){ return '<button data-rv="'+o[0]+'" class="'+(state.minReviews===o[0]?'on':'')+'" onclick="setMinReviews('+o[0]+')">'+o[1]+'</button>'; }).join('')+'</div>';
+}
+function setMinReviews(v){ state.minReviews=parseInt(v)||0; document.querySelectorAll('.revpills button').forEach(function(b){ b.classList.toggle('on', parseInt(b.getAttribute('data-rv'))===state.minReviews); }); render(); }
 /* ---- v29 radius chip sync (no sliders; chips + OC toggle drive state.distance) ---- */
 /* ---- area helpers: the "all [area]" label is driven by Supabase (search_locations.county) ---- */
 function areaForCity(cityKey){ const c=CITIES[(cityKey||'').toLowerCase()]; return (c&&c.area)?c.area:""; }
@@ -2100,7 +2198,7 @@ function toggleFilter(k,v){ const s=state.filters[k]; s.has(v)?s.delete(v):s.add
 function toggleSwitch(k,el){ state[k]=!state[k]; el.classList.toggle('on',state[k]); render(); }
 function clearFilters(){
   state.filters.tier.clear(); state.filters.carrier.clear(); state.filters.spec.clear(); state.filters.lang.clear();
-  state.offers=false; state.newpat=false; state.online=false; state.spec=""; state.carrier=""; state.distance=8; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
+  state.offers=false; state.newpat=false; state.online=false; state.minReviews=0; state.spec=""; state.carrier=""; state.distance=8; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
   document.getElementById('q-spec').value=""; document.getElementById('q-carrier').value=""; setRadiusUI(8);
   if(SB_READY && state._lastLoc){ fetchByLocation(state._lastLoc, 8); } else if(state.seoHome || !state._lastLoc){ showAllOffices(); } else { renderFilters(); render(); }
 }
@@ -2356,14 +2454,79 @@ function acPick(i){
 
 /* ---------- MAP (Leaflet) ---------- */
 let sideMap=null, fullMap=null, miniMap=null, sideLayer=null, fullLayer=null, miniLayer=null, pinIndex={};
-let centerLayers={side:null,mini:null,full:null}, fsCircle=null;
+let centerLayers={side:null,mini:null,full:null}, fsCircle=null, userLocLatLng=null;
 const TILE="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
 const TILE_ATTR='&copy; OpenStreetMap &copy; CARTO';
 function pinTier(d){ return d.tier==="platinum_elite"?"plat":d.tier==="capy_accredited"?"accr":d.tier==="verified"?"ver":"pub"; }
 function makeIcon(d){
-  const t=pinTier(d), crown = t==="plat"?"<span>♛</span>":"";
-  if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat">'+crown+'</div>', iconSize:[34,34], iconAnchor:[17,31]});
-  return L.divIcon({className:"", html:'<div class="cc-pin '+t+'">'+crown+'</div>', iconSize:[24,24], iconAnchor:[12,22]});
+  // Pins are a teardrop (border-radius 50% 50% 50% 0) rotated -45deg, so the visual tip
+  // is at (size/2, ~1.207*size) from the icon's top-left. Anchor there for accuracy.
+  const t=pinTier(d);
+  if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat"><span>♛</span></div>', iconSize:[34,34], iconAnchor:[17,41]});
+  if(t==="pub")  return L.divIcon({className:"", html:'<div class="cc-pin pub"></div>', iconSize:[18,18], iconAnchor:[9,22]});
+  return L.divIcon({className:"", html:'<div class="cc-pin '+t+'"></div>', iconSize:[24,24], iconAnchor:[12,29]});
+}
+/* The latlng the full-map zoom should converge on: the selected office, if one is active. */
+function fsZoomFocusLatLng(){
+  if(!FS_SELECTED || !window.L) return null;
+  const d = (typeof LAST!=='undefined' && LAST) ? LAST.find(x=>x.id===FS_SELECTED) : null;
+  return (d && d.lat!=null) ? L.latLng(d.lat,d.lng) : null;
+}
+/* Smooth, calmer wheel zoom for the full map.
+   - Leaflet's native wheel zoom is replaced (scrollWheelZoom:false) so we can control the
+     sensitivity (PX_PER_ZOOM, higher = calmer) and ease toward the target zoom each frame.
+   - When an office is selected, the zoom stays locked on its coordinates; otherwise it
+     zooms toward the cursor like a normal map. The +/- buttons and keyboard follow the
+     same focus rule. */
+function setupFsZoom(map){
+  const PX_PER_ZOOM = 300, EASE = 0.30;
+  const clampZ = z => Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), z));
+  let target=null, current=null, anchorLL=null, raf=null;
+  function tick(){
+    raf=null; if(target==null) return;
+    if(current==null) current=map.getZoom();
+    current += (target-current)*EASE;
+    if(Math.abs(target-current) < 0.012) current=target;
+    try{ map.setZoomAround(anchorLL, current, {animate:false}); }
+    catch(e){ try{ map.setZoom(current,{animate:false}); }catch(_){} }
+    if(current!==target) raf=requestAnimationFrame(tick); else { target=null; current=null; }
+  }
+  function zoomAnchor(focus, e){
+    // selected office wins; otherwise hold the search-area center (the fixed crosshair),
+    // not the cursor, so zooming stays on the dot's location (e.g. Pomona).
+    if(focus) return focus;
+    try{ if(fsOpen()) return fsAnchorLatLng(); }catch(_){}
+    if(e){ try{ return map.containerPointToLatLng(map.mouseEventToContainerPoint(e)); }catch(__){} }
+    return map.getCenter();
+  }
+  function onWheel(e){
+    e.preventDefault();
+    const base = (target!=null) ? target : map.getZoom();
+    target = clampZ(base + (-e.deltaY / PX_PER_ZOOM));
+    anchorLL = zoomAnchor(fsZoomFocusLatLng(), e);
+    if(!raf) raf=requestAnimationFrame(tick);
+  }
+  map.getContainer().addEventListener('wheel', onWheel, {passive:false});
+  // +/- control and keyboard route through here so they honor the same focus rule
+  function fsStep(dz){
+    const z=clampZ(map.getZoom()+dz), anchor=zoomAnchor(fsZoomFocusLatLng(), null);
+    try{ map.setZoomAround(anchor, z, {animate:true}); }
+    catch(e){ try{ map.setZoom(z,{animate:true}); }catch(_){} }
+    return map;
+  }
+  map.zoomIn  = function(d){ return fsStep(+(d||map.options.zoomDelta||0.6)); };
+  map.zoomOut = function(d){ return fsStep(-(d||map.options.zoomDelta||0.6)); };
+}
+/* "You are here" marker (distinct blue dot, separate from the teal search-center dot). */
+function userLocIcon(){ return L.divIcon({className:"", html:'<div class="cc-you"><span class="cc-you-dot"></span></div>', iconSize:[0,0], iconAnchor:[0,0]}); }
+function dropUserLocation(lat,lng){
+  if(!window.L) return;
+  userLocLatLng=L.latLng(lat,lng);
+  [fullMap,sideMap,miniMap].forEach(m=>{
+    if(!m) return;
+    if(m.__youMarker){ try{ m.removeLayer(m.__youMarker); }catch(e){} m.__youMarker=null; }
+    m.__youMarker=L.marker([lat,lng],{icon:userLocIcon(), zIndexOffset:1500, interactive:false, keyboard:false}).addTo(m);
+  });
 }
 function ensureMaps(){
   if(!window.L) return;
@@ -2375,8 +2538,9 @@ function ensureMaps(){
   }
   if(!fullMap){
     const el=document.getElementById('fullmap');
-    if(el){ fullMap=L.map(el,{zoomControl:true,attributionControl:false}).setView([33.68,-117.86],11);
+    if(el){ fullMap=L.map(el,{zoomControl:true,attributionControl:false,scrollWheelZoom:false,zoomSnap:0,zoomDelta:0.6,wheelDebounceTime:30,zoomAnimation:true}).setView([33.68,-117.86],11);
       L.tileLayer(TILE,{attribution:TILE_ATTR,subdomains:'abcd',maxZoom:19}).addTo(fullMap);
+      setupFsZoom(fullMap);
       fullMap.on('move', fsOnMove); fullMap.on('moveend', fsOnMoveEnd); }
   }
   if(!miniMap){
@@ -2610,18 +2774,28 @@ function fsAfterSearch(){
   if(n) toast("Area updated", n.toLocaleString()+" PPO office"+(n===1?"":"s")+" within "+mi+" mi");
   else  toast("No offices found", "Try a wider radius or pan the map", 'warn');
 }
-/* recenter on the device's current location, then search */
+/* recenter on the device's current location, drop a "you are here" pin, then search */
 function fsUseMyLocation(){
   const h=document.getElementById('fmc-hint');
   if(!('geolocation' in navigator)){ if(h) h.textContent='Location unavailable — type a city or ZIP above'; toast("Location unavailable","Type a city or ZIP to set the center", 'warn'); return; }
-  if(location.protocol==='file:' || window.isSecureContext===false){ if(h) h.textContent='Location needs a secure (https) site — type a city or ZIP above'; toast("Location needs a secure site","On covercapy.com the browser will ask to share your location. For now, type a city or ZIP.", 'warn'); return; }
-  if(h) h.textContent='Finding your location…'; toast("Locating…","Centering the map on your location", 'info');
+  const insecure = (location.protocol==='file:' || window.isSecureContext===false);
+  if(h) h.textContent='Finding your location…'; toast("Locating…","Asking your browser to share your location", 'info');
   navigator.geolocation.getCurrentPosition(function(pos){
-    state.mapCenter={lat:pos.coords.latitude, lng:pos.coords.longitude, label:'Your location', radius:state.distance||10};
+    const lat=pos.coords.latitude, lng=pos.coords.longitude;
+    state.mapCenter={lat:lat, lng:lng, label:'Your location', radius:state.distance||10};
     const loc=document.getElementById('fsmap-loc'); if(loc) loc.value='';
+    dropUserLocation(lat,lng);
     fsSearchNearby();
-  }, function(err){ if(h) h.textContent='Couldn\u2019t get your location — type a city or ZIP'; toast("Couldn\u2019t get your location", (err&&err.code===1)?"Location is turned off for this site. Type a city or ZIP instead.":"Type a city or ZIP to set the center", 'warn'); },
-  { enableHighAccuracy:false, timeout:8000, maximumAge:60000 });
+    if(fullMap){ try{ fullMap.setView([lat,lng], Math.max(fullMap.getZoom(), radiusZoom(state.distance||10)), {animate:true}); }catch(e){} }
+    toast("Location found","Centered on your current location");
+  }, function(err){
+    let msg;
+    if(insecure) msg="Location needs a secure (https) page. It will work on covercapy.com; for now type a city or ZIP.";
+    else if(err && err.code===1) msg="Location is blocked for this site. Allow it in your browser settings, or type a city or ZIP.";
+    else msg="Type a city or ZIP to set the center instead.";
+    if(h) h.textContent='Couldn\u2019t get your location — type a city or ZIP';
+    toast("Couldn\u2019t get your location", msg, 'warn');
+  }, { enableHighAccuracy:true, timeout:9000, maximumAge:60000 });
 }
 /* recenter on a typed place (known city → instant; otherwise geocode), then search */
 async function fsCenterOnLocation(){
@@ -2869,6 +3043,47 @@ function bookAppointment(id){ const d=find(id);
 }
 function book(id){ return bookAppointment(id); } /* legacy alias */
 
+/* ---------- profile media uploads (paid/claimed owners) ----------
+   Cover photo + avatar upload to the Supabase Storage bucket "dentist-media" and the public
+   URL is saved to cover_image_url / image_url. Storage write + the dentists update are both
+   gated by RLS to the authenticated owner (claimed_by = auth.uid()). The sign-in / claim flow
+   is separate and not built yet, so without a session the upload UI shows but won't persist. */
+function pickImageFile(){
+  return new Promise(function(resolve){
+    const inp=document.createElement('input');
+    inp.type='file'; inp.accept='image/*'; inp.style.display='none';
+    inp.addEventListener('change', function(){ const f=(inp.files&&inp.files[0])?inp.files[0]:null; if(inp.parentNode) inp.parentNode.removeChild(inp); resolve(f); });
+    document.body.appendChild(inp); inp.click();
+  });
+}
+async function uploadDentistMedia(id, kind){   // kind: 'cover' | 'avatar'
+  const d=find(id); if(!d) return;
+  const what = kind==='cover' ? 'cover photo' : 'avatar';
+  if(!sb){ toast('Not connected','Image uploads run on the live site.','warn'); return; }
+  let session=null;
+  try{ const r=await sb.auth.getSession(); session=(r&&r.data)?r.data.session:null; }catch(e){}
+  if(!session){ toast('Sign in to edit','Sign in as the office owner to upload your '+what+'. The owner sign-in flow is coming soon.','warn'); return; }
+  const file=await pickImageFile(); if(!file) return;
+  const uid=(session.user&&session.user.id)?session.user.id:'owner';
+  const ext=((file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,''))||'jpg';
+  const path=uid+'/'+(d.slug||d.uuid||id)+'-'+kind+'-'+Date.now()+'.'+ext;
+  toast('Uploading…', (kind==='cover'?'Cover photo':'Avatar')+' is uploading.', 'info');
+  try{
+    const up=await sb.storage.from('dentist-media').upload(path, file, { upsert:true, cacheControl:'3600' });
+    if(up.error) throw up.error;
+    const pub=sb.storage.from('dentist-media').getPublicUrl(path);
+    const url=(pub&&pub.data)?pub.data.publicUrl:'';
+    const patch={}; patch[kind==='cover'?'cover_image_url':'image_url']=url;
+    const upd=await sb.from('dentists').update(patch).eq('id', d.uuid);
+    if(upd.error) throw upd.error;
+    if(kind==='cover'){ d.coverImage=url; } else { d.image=url; d.imageRaw=url; }
+    gtagSafe('profile_media_upload',{dentist_id:id, kind:kind});
+    toast('Saved', (kind==='cover'?'Cover photo':'Avatar')+' updated.');
+    openProfileModal(id);   // re-render the profile with the new image
+    render();               // refresh the cards
+  }catch(e){ console.warn('media upload failed', e); toast('Could not save', (e&&e.message)?e.message:'Make sure you are signed in as the office owner.', 'warn'); }
+}
+
 function openWebsite(id){ const d=find(id); if(d&&d.website&&String(d.website).trim()){ gtagSafe('website_click',{dentist_id:id}); window.open(d.website,'_blank','noopener'); } }
 
 function openPpoCheck(id, opts){ const d=id?find(id):null; PPO_CTX=d; opts=opts||{};
@@ -3041,41 +3256,68 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape' && DD_OPEN
 /* openProfile now opens the quick-view drawer; every card / name / avatar / map / fs-card entry point routes here. */
 function openProfile(id){ openProfileModal(id); }
 function openProfileModal(id){ const d=find(id); if(!d) return;
-  const claimed=isDentistClaimed(d), realImg=hasRealDentistImage(d), url=getDentistProfileUrl(d), idj=jsq(d.id);
+  // A paying member office is inherently claimed/owned, so it gets the edit controls and
+  // never the claim box, even if is_claimed hasn't been set on the record yet.
+  const claimed=isPaidTier(d)||isDentistClaimed(d), url=getDentistProfileUrl(d), idj=jsq(d.id);
   const hasBooking=!!(d.booking&&String(d.booking).trim());
+  const isZocBooking = hasBooking && /zocdoc\.com/i.test(d.booking);
   const hasWebsite=!!(d.website&&String(d.website).trim());
   const hasPhone=!!(d.phone&&String(d.phone).trim());
-  const isVerifiedTier=['platinum_elite','capy_accredited','verified'].includes(d.tier);
+  const isVerifiedTier=isPaidTier(d);
   const dist=(d.dist!=null&&d.dist<999)?' <span class="dot"></span> <span class="geo">'+d.dist.toFixed(1)+' mi away</span>':'';
   const langs=(d.languages&&d.languages.length)?'<h4 class="msub">Languages</h4><div class="chips" style="margin-bottom:12px">'+d.languages.map(l=>'<span class="chip">'+escapeHtml(l)+'</span>').join('')+'</div>':'';
+
+  /* cover band: uploaded cover_image_url, else teal gradient */
+  const cover = (d.coverImage && String(d.coverImage).trim())
+    ? '<img class="pf-cover-img" src="'+escapeAttr(d.coverImage)+'" alt="">' : '';
+  /* edit affordances appear once the office is claimed (the owner can then upload) */
+  const coverEdit = claimed
+    ? '<button class="pf-cover-edit" onclick="event.stopPropagation();uploadDentistMedia(\''+idj+'\',\'cover\')">✦ Edit cover</button>' : '';
+  const avEdit = claimed
+    ? '<button class="pf-av-edit" title="Change avatar" aria-label="Change avatar" onclick="event.stopPropagation();uploadDentistMedia(\''+idj+'\',\'avatar\')">✎</button>' : '';
+
+  /* booking: Book Now for paid offices, with a Powered by Zocdoc caption on zocdoc links */
+  const bookBtn = hasBooking
+    ? '<button class="la la-gold" onclick="bookAppointment(\''+idj+'\')">'+(isVerifiedTier?'Book Now':'Book Appointment')+'</button>' : '';
+  const availBtn = (isVerifiedTier && !hasBooking && !hasPhone)
+    ? '<button class="la la-primary" onclick="openAvailability(\''+idj+'\')">Request Availability</button>' : '';
+  const callBtn = hasPhone ? '<button class="la la-primary" onclick="callOffice(\''+idj+'\')">Call Office</button>' : '';
+  const checkBtn = !isVerifiedTier ? '<button class="la la-soft" onclick="openPpoCheck(\''+idj+'\')">Check Coverage</button>' : '';
+  const zocCap = (isVerifiedTier && isZocBooking) ? '<div class="zoc-powered">Powered by Zocdoc</div>' : '';
+
   document.getElementById('profile-body').innerHTML =
-    '<div class="pimg'+(realImg?' has-photo':'')+'">'+
-      getDentistImageMarkup(d)+
-      (!claimed?'<span class="capcap">Unclaimed</span>':'')+
-      '<button class="x pclose" onclick="closeModal(\'m-profile\')">×</button>'+
-    '</div>'+
-    '<div class="mb">'+
-      '<div class="tagrow">'+tierChip(d)+'</div>'+
-      '<h3 style="font-size:24px;margin:2px 0 0">'+escapeHtml(d.practice)+'</h3>'+
-      (d.doctor?'<div class="pdoc">'+escapeHtml(d.doctor)+'</div>':'')+
-      '<div class="lmeta" style="margin:6px 0 10px">'+(d.reviews?'<span class="rpill"><span class="st">★</span>'+d.rating.toFixed(1)+'</span> <span class="rcount">'+d.reviews.toLocaleString()+' reviews</span> <span class="dot"></span>':'')+'<span class="geo">◍ '+escapeHtml(d.address||d.city)+'</span>'+dist+'</div>'+
-      (d.why?'<p>'+escapeHtml(d.why)+'</p>':'')+
-      '<h4 class="msub">Treatments &amp; specialties</h4>'+
-      '<div class="chips" style="margin-bottom:12px">'+specChips(d,10)+'</div>'+
-      '<h4 class="msub">Accepted PPO</h4>'+
-      '<div class="chips" style="margin-bottom:14px">'+carrierChips(d,8)+'</div>'+
-      langs+
-      '<div class="lactions pactions">'+
-        (hasBooking?'<button class="la la-gold" onclick="bookAppointment(\''+idj+'\')">Book Appointment</button>':'')+
-        (hasPhone?'<button class="la la-primary" onclick="callOffice(\''+idj+'\')">Call Office</button>':'')+
-        ((isVerifiedTier && !hasBooking && !hasPhone)?'<button class="la la-primary" onclick="openAvailability(\''+idj+'\')">Request Availability</button>':'')+
-        (!isVerifiedTier?'<button class="la la-soft" onclick="openPpoCheck(\''+idj+'\')">Check Coverage</button>':'')+
+    '<div class="pf">'+
+      '<div class="pf-cover'+(cover?' has-img':'')+'">'+
+        cover+
+        coverEdit+
+        '<button class="pf-close" onclick="closeModal(\'m-profile\')" aria-label="Close profile">×</button>'+
       '</div>'+
-      '<div class="lsmall pmsmall">'+
-        (hasWebsite?'<a class="lsl" role="button" tabindex="0" onclick="openWebsite(\''+idj+'\')">Website</a><span class="lsl-sep">·</span>':'')+
-        '<a class="lsl" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile</a>'+
+      '<div class="pf-headrow">'+
+        '<div class="pf-avwrap">'+
+          '<div class="pf-avatar">'+getDentistImageMarkup(d)+'</div>'+
+          avEdit+
+        '</div>'+
+        '<div class="pf-id">'+
+          '<div class="tagrow">'+tierChip(d)+'</div>'+
+          '<h3 class="pf-name">'+escapeHtml(d.practice)+'</h3>'+
+          (d.doctor?'<div class="pf-doc">'+escapeHtml(d.doctor)+'</div>':'')+
+          '<div class="pf-rate lrate">'+ratingHtml(d)+'</div>'+
+        '</div>'+
       '</div>'+
-      (!claimed?'<div class="claimbox"><b>Own this office?</b><p>Patients can already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, add photos and booking links, and receive patient requests.</p><button class="btn-dark" onclick="openClaim(\''+idj+'\')">Claim Free Profile</button></div>':'')+
+      '<div class="pf-body">'+
+        '<div class="lmeta" style="margin:0 0 14px"><span class="geo">◍ '+escapeHtml(d.address||d.city)+'</span>'+dist+'</div>'+
+        (d.why?'<p class="pf-why">'+escapeHtml(d.why)+'</p>':'')+
+        (d.specialties&&d.specialties.length?'<h4 class="msub">Treatments &amp; specialties</h4><div class="chips" style="margin-bottom:12px">'+specChips(d,12)+'</div>':'')+
+        '<h4 class="msub">Accepted PPO</h4>'+
+        '<div class="chips" style="margin-bottom:12px">'+carrierChips(d,8)+'</div>'+
+        langs+
+        '<div class="lactions pactions">'+bookBtn+availBtn+callBtn+checkBtn+zocCap+'</div>'+
+        '<div class="lsmall pmsmall">'+
+          (hasWebsite?'<a class="lsl" role="button" tabindex="0" onclick="openWebsite(\''+idj+'\')">Website</a><span class="lsl-sep">·</span>':'')+
+          '<a class="lsl" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile</a>'+
+        '</div>'+
+        (!claimed?'<div class="claimbox"><b>Own this office?</b><p>Patients can already find this profile and request PPO checks through CoverCapy. Claim your free profile to verify PPO participation, choose your own cover photo and avatar, add booking links, and receive patient requests.</p><button class="btn-dark" onclick="openClaim(\''+idj+'\')">Claim Free Profile</button></div>':'')+
+      '</div>'+
     '</div>';
   openModal('m-profile'); gtagSafe('ppo_profile_modal_open',{dentist_id:id});
 }
