@@ -479,6 +479,26 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-popup-actions{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
 .cc-popup-ghost{flex:none; background:var(--cream-card); color:var(--teal-night); border:1px solid var(--line-2); border-radius:8px; padding:6px 10px; font:700 12px/1 "Inter Tight",sans-serif; cursor:pointer; transition:.15s}
 .cc-popup-ghost:hover{background:#fff; border-color:var(--teal-300)}
+/* ── v76: refined lifestyle dots, hover pills, count clusters, legend ── */
+.cc-life-dot-wrap{background:transparent; border:0}
+.cc-life-dot{display:block; width:12px; height:12px; margin:2px; border-radius:50%; background:var(--cc-accent,#64748b); border:2px solid #fff; box-shadow:0 0 0 1px color-mix(in srgb, var(--cc-accent,#64748b), transparent 35%), 0 3px 8px rgba(15,23,42,.28); transition:transform .14s ease, box-shadow .14s ease; cursor:pointer}
+.cc-life-dot-wrap:hover .cc-life-dot{transform:scale(1.4); box-shadow:0 0 0 4px color-mix(in srgb, var(--cc-accent,#64748b), transparent 78%), 0 6px 14px rgba(15,23,42,.32)}
+.leaflet-tooltip.cc-life-tipwrap{background:transparent; border:0; box-shadow:none; padding:0}
+.leaflet-tooltip.cc-life-tipwrap:before{display:none}
+.cc-life-tip{display:inline-flex; align-items:center; gap:5px; max-width:210px; padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.97); border:1px solid color-mix(in srgb, var(--cc-accent,#64748b), transparent 62%); box-shadow:0 10px 26px rgba(15,23,42,.18); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); font:700 11.5px/1.1 "Inter Tight",system-ui,sans-serif; color:#22302b; white-space:nowrap}
+.cc-life-tip b{font-weight:700; overflow:hidden; text-overflow:ellipsis}
+.leaflet-tooltip.cc-life-tipwrap.plain{background:rgba(8,42,48,.92); color:#fff; border:0; border-radius:999px; padding:5px 11px; box-shadow:0 8px 20px rgba(8,42,48,.3); font:700 11px/1.1 "Inter Tight",sans-serif; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
+.cc-life-cluster-wrap{background:transparent; border:0}
+.cc-life-cluster{position:relative; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,253,248,.96); border:1.5px solid var(--gold,#B8924F); box-shadow:0 10px 26px rgba(15,23,42,.22), inset 0 0 0 3px rgba(255,255,255,.7); -webkit-backdrop-filter:saturate(1.2) blur(6px); backdrop-filter:saturate(1.2) blur(6px); cursor:pointer; transition:transform .14s ease}
+.cc-life-cluster:hover{transform:scale(1.06)}
+.cc-life-cluster b{font:800 14px/1 "Fraunces",Georgia,serif; color:var(--teal-night,#082A30)}
+.cc-life-cdots{position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); display:flex; gap:2px}
+.cc-life-cdots i{width:6px; height:6px; border-radius:50%; border:1px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.cc-life-legend{position:absolute; top:16px; left:16px; z-index:702; display:none; align-items:center; gap:12px; padding:8px 13px; border-radius:13px; background:rgba(255,253,248,.92); border:1px solid var(--line-2); box-shadow:var(--sh-md); -webkit-backdrop-filter:saturate(1.3) blur(10px); backdrop-filter:saturate(1.3) blur(10px); font:600 11.5px/1 "Inter Tight",sans-serif; color:var(--ink); pointer-events:none; max-width:calc(100% - 96px); flex-wrap:wrap}
+.cc-life-legend .cc-leg-title{font:700 10.5px/1 "Inter Tight",sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint)}
+.cc-life-legend .cc-leg-item{display:inline-flex; align-items:center; gap:5px; white-space:nowrap}
+.cc-life-legend .cc-leg-item i{width:9px; height:9px; border-radius:50%; border:1.5px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+@media(max-width:980px){ .cc-life-legend{top:auto; bottom:96px; left:14px} }
 .cc-popup-link{display:inline-flex; align-items:center; gap:5px; text-decoration:none; background:var(--teal-night); color:#fff; border:none; border-radius:8px; padding:7px 12px; font:700 12px/1 "Inter Tight",sans-serif; cursor:pointer}
 .cc-popup-link:hover{background:var(--teal-deep)}
 .fmc-life{margin-top:11px; border-top:1px solid var(--line-2); padding-top:10px}
@@ -1496,6 +1516,7 @@ body.dd-lock{overflow:hidden}
   <div class="fs-map-pane">
     <div class="mapinner" id="fullmap"></div>
     <div class="fsmap-cross" id="fsmap-cross" aria-hidden="true"><span class="fx-dot"></span></div>
+    <div class="cc-life-legend" id="cc-life-legend" aria-hidden="true" style="display:none"></div>
     <button class="fs-close" onclick="closeFsMap()" aria-label="Close map">✕</button>
     <div class="fsmap-ctrl" id="fsmap-ctrl">
       <div class="fmc-loc">
@@ -2991,42 +3012,103 @@ function toggleLifestylePanel(){
 async function onLifeToggle(){ await loadLifestyleAnchors(); renderLifestyle(); }
 function ensureLifestyleLayer(){
   if(!window.L || !fullMap) return null;
+  // dedicated pane BELOW the dentist markers so dentists always win the visual hierarchy
+  try{ if(!fullMap.getPane('lifestyle')){ const p=fullMap.createPane('lifestyle'); p.style.zIndex=580; } }catch(e){}
   if(!lifestyleLayer) lifestyleLayer=L.layerGroup();
   if(!fullMap.hasLayer(lifestyleLayer)) lifestyleLayer.addTo(fullMap);
-  if(!_lifeMoveHooked){ fullMap.on('moveend', ()=>{ if(lifeActiveCats().length) renderLifestyle(); }); _lifeMoveHooked=true; }
+  if(!_lifeMoveHooked){ fullMap.on('moveend', scheduleLifestyleRender); _lifeMoveHooked=true; }
   return lifestyleLayer;
+}
+let _lifeRenderT=null;
+function scheduleLifestyleRender(){
+  clearTimeout(_lifeRenderT);
+  _lifeRenderT=setTimeout(function(){
+    if(lifeActiveCats().length) renderLifestyle();
+    else { if(lifestyleLayer) lifestyleLayer.clearLayers(); updateLifestyleLegend([]); }
+  }, 110);
+}
+/* greedy pixel-distance clustering at the current zoom, so the map stays calm when zoomed out */
+function clusterLifestyle(items, projectFn, px){
+  const pts=items.map(function(it){ return { it:it, p:projectFn(it.lat,it.lng), used:false }; });
+  const out=[]; const t2=px*px;
+  for(let i=0;i<pts.length;i++){
+    if(pts[i].used) continue; pts[i].used=true;
+    const g=[pts[i].it];
+    for(let j=i+1;j<pts.length;j++){
+      if(pts[j].used) continue;
+      const dx=pts[j].p.x-pts[i].p.x, dy=pts[j].p.y-pts[i].p.y;
+      if(dx*dx+dy*dy<=t2){ pts[j].used=true; g.push(pts[j].it); }
+    }
+    out.push(g);
+  }
+  return out;
 }
 function renderLifestyle(){
   if(!window.L || !fullMap) return;
   const layer=ensureLifestyleLayer(); if(!layer) return;
   layer.clearLayers();
-  const cats=lifeActiveCats(); if(!cats.length) return;
+  const cats=lifeActiveCats(); updateLifestyleLegend(cats);
+  if(!cats.length) return;
   let bounds=null; try{ bounds=fullMap.getBounds(); }catch(e){}
-  LIFESTYLE.forEach(a=>{ if(cats.indexOf(a.category)<0) return; if(bounds && !bounds.contains([a._lat,a._lng])) return; addLifestyleAnchor(a, layer); });
+  const items=[];
+  LIFESTYLE.forEach(function(a){
+    if(cats.indexOf(a.category)<0) return;
+    if(!isFinite(a._lat)||!isFinite(a._lng)) return;
+    if(bounds && !bounds.contains([a._lat,a._lng])) return;
+    items.push({ a:a, lat:a._lat, lng:a._lng });
+  });
+  if(!items.length) return;
+  const project=function(lat,lng){ return fullMap.latLngToContainerPoint([lat,lng]); };
+  const groups=clusterLifestyle(items, project, 46);
+  groups.forEach(function(g){ if(g.length===1) addLifestyleDot(g[0].a, layer); else addLifestyleCluster(g, layer); });
 }
-function addLifestyleAnchor(anchor, layer){
-  const lat=anchor._lat, lng=anchor._lng; if(!isFinite(lat)||!isFinite(lng)) return;
-  const style=LIFE_STYLES[anchor.category] || { emoji:anchor.icon||"\u2022", color:anchor.color||"#64748b", radius:120 };
-  const color=anchor.color||style.color;
+function lifePopupHtml(anchor){
+  const style=LIFE_STYLES[anchor.category] || { emoji:anchor.icon||"\u2022", color:anchor.color||"#64748b" };
   const emoji=anchor.icon||style.emoji;
   const cat=String(anchor.category||'').replace(/_/g,' ');
   const where=[anchor.city,anchor.state].filter(Boolean).join(', ');
-  // Google Maps directions to the place (named place when we have it, else exact coordinates)
+  const lat=anchor._lat, lng=anchor._lng;
   const dest=[anchor.name,anchor.address,anchor.city,anchor.state].filter(Boolean).join(', ') || (lat+','+lng);
   const gdir='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(dest);
-  const popup='<div class="cc-life-pop">'
+  return '<div class="cc-life-pop">'
     +'<strong>'+escapeHtml(emoji+' '+(anchor.name||'Nearby place'))+'</strong>'
     +'<div class="cc-life-meta">'+escapeHtml(cat)+(where?(' \u00b7 '+escapeHtml(where)):'')+'</div>'
     +'<div class="cc-popup-actions">'
       +'<a class="cc-popup-link" href="'+escapeAttr(gdir)+'" target="_blank" rel="noopener">Open in Google Maps \u2197</a>'
       +'<button class="cc-popup-ghost" onclick="window.findNearbyDentistsFromLifestyle&&window.findNearbyDentistsFromLifestyle('+lat+','+lng+')">Dentists nearby</button>'
     +'</div></div>';
-  // faint tint ring (decorative only; the pill below is the click target)
-  L.circle([lat,lng],{ radius:style.radius, color:color, fillColor:color, fillOpacity:0.075, opacity:0.3, weight:1, interactive:false }).addTo(layer);
-  // the visible pill is now clickable -> opens directions / Google Maps + nearby dentists
-  L.marker([lat,lng],{ interactive:true, keyboard:false, riseOnHover:true, icon:L.divIcon({ className:'cc-lifestyle-label-wrap', html:'<div class="cc-lifestyle-label" style="--cc-accent:'+color+'"><span>'+escapeHtml(emoji)+'</span><b>'+escapeHtml(anchor.name||'')+'</b></div>', iconSize:[150,26], iconAnchor:[75,13] }) })
-    .bindPopup(popup, {className:'cc-life-popwrap', maxWidth:240, minWidth:190, offset:[0,-6], autoPanPadding:[24,24]})
-    .addTo(layer);
+}
+/* quiet, category-colored dot; name pill on hover, full details + directions on click */
+function addLifestyleDot(anchor, layer){
+  const lat=anchor._lat, lng=anchor._lng; if(!isFinite(lat)||!isFinite(lng)) return;
+  const style=LIFE_STYLES[anchor.category] || { emoji:anchor.icon||"\u2022", color:anchor.color||"#64748b" };
+  const color=anchor.color||style.color;
+  const emoji=anchor.icon||style.emoji;
+  const m=L.marker([lat,lng],{ pane:'lifestyle', interactive:true, keyboard:false, riseOnHover:true,
+    icon:L.divIcon({ className:'cc-life-dot-wrap', html:'<span class="cc-life-dot" style="--cc-accent:'+color+'"></span>', iconSize:[16,16], iconAnchor:[8,8] }) });
+  try{ m.bindTooltip('<span class="cc-life-tip" style="--cc-accent:'+color+'"><span>'+escapeHtml(emoji)+'</span><b>'+escapeHtml(anchor.name||'')+'</b></span>', { direction:'top', offset:[0,-9], opacity:1, className:'cc-life-tipwrap' }); }catch(e){}
+  m.bindPopup(lifePopupHtml(anchor), { className:'cc-life-popwrap', maxWidth:240, minWidth:190, offset:[0,-8], autoPanPadding:[24,24] });
+  m.addTo(layer);
+}
+/* frosted count bubble for a tight pixel-cluster; tap to zoom in and split it apart */
+function addLifestyleCluster(group, layer){
+  let la=0, lo=0; group.forEach(function(it){ la+=it.lat; lo+=it.lng; }); la/=group.length; lo/=group.length;
+  const n=group.length;
+  const cols=[]; group.forEach(function(it){ const s=LIFE_STYLES[it.a.category]||{}; const c=it.a.color||s.color||'#64748b'; if(cols.indexOf(c)<0 && cols.length<3) cols.push(c); });
+  const dots=cols.map(function(c){ return '<i style="background:'+c+'"></i>'; }).join('');
+  const size = n>=25?50 : n>=10?42 : 34;
+  const m=L.marker([la,lo],{ pane:'lifestyle', interactive:true, keyboard:false,
+    icon:L.divIcon({ className:'cc-life-cluster-wrap', html:'<span class="cc-life-cluster" style="width:'+size+'px;height:'+size+'px"><b>'+n+'</b><em class="cc-life-cdots">'+dots+'</em></span>', iconSize:[size,size], iconAnchor:[size/2,size/2] }) });
+  try{ m.bindTooltip(n+' nearby spots \u00b7 tap to expand', { direction:'top', offset:[0,-(size/2+3)], opacity:1, className:'cc-life-tipwrap plain' }); }catch(e){}
+  m.on('click', function(){ try{ const z=Math.min(fullMap.getMaxZoom(), (fullMap.getZoom()||11)+2); if(fullMap.flyTo) fullMap.flyTo([la,lo], z, {duration:.45}); else fullMap.setView([la,lo], z); }catch(e){} });
+  m.addTo(layer);
+}
+function updateLifestyleLegend(cats){
+  const el=document.getElementById('cc-life-legend'); if(!el) return;
+  if(!cats || !cats.length){ el.style.display='none'; el.setAttribute('aria-hidden','true'); el.innerHTML=''; return; }
+  const labels={ dog_park:'Dog parks', dog_friendly_park:'Dog-friendly', hiking_trail:'Trails', farmers_market:'Markets' };
+  el.innerHTML='<span class="cc-leg-title">Nearby</span>'+cats.map(function(c){ const s=LIFE_STYLES[c]||{}; const col=s.color||'#64748b'; return '<span class="cc-leg-item"><i style="background:'+col+'"></i>'+escapeHtml(labels[c]||String(c).replace(/_/g,' '))+'</span>'; }).join('');
+  el.style.display='flex'; el.setAttribute('aria-hidden','false');
 }
 window.findNearbyDentistsFromLifestyle=function(lat,lng){ try{ state.mapCenter={lat:+lat,lng:+lng,label:'this area',radius:state.distance||10}; if(typeof render==='function') render(); if(typeof fitMap==='function') fitMap(); }catch(e){} };
 function renderMapPins(){
