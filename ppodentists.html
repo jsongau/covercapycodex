@@ -99,6 +99,44 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .acsub{font-size:12px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .acct{margin-left:auto; flex:none; font-size:11.5px; font-weight:600; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:3px 8px}
 
+/* v85 sticky search menu — locate button, inline refined radius, responsive */
+.searchrail{box-shadow:0 6px 20px rgba(8,42,48,.05)}
+.searchinner{align-items:stretch}
+.sf-inrow{display:flex; align-items:center; gap:8px}
+.sf-inrow input{flex:1 1 auto; min-width:0}
+.sf-loc{flex:none; width:30px; height:30px; border-radius:8px; display:grid; place-items:center; border:1px solid var(--line); background:var(--cream-2); color:var(--teal-night); cursor:pointer; transition:.15s; padding:0}
+.sf-loc:hover{border-color:var(--gold-2); background:var(--cream-card)}
+.sf-loc svg{width:15px; height:15px}
+.searchinner .sfield.rad{flex:1.1 1 150px; min-width:140px; justify-content:center}
+.railrad > label{display:flex; align-items:center; gap:6px}
+.railrad-val{font:700 11.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-night); background:var(--mint-soft); border:1px solid var(--line-2); border-radius:999px; padding:2px 8px; letter-spacing:0; text-transform:none}
+.railrad input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:5px; margin-top:7px; border-radius:999px; outline:none; cursor:pointer; background:linear-gradient(90deg,var(--mint-700) 0,var(--mint-700) var(--fill,24%),var(--line) var(--fill,24%),var(--line) 100%)}
+.railrad input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 2px 6px rgba(8,42,48,.3); cursor:pointer; transition:transform .12s}
+.railrad input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.1)}
+.railrad input[type=range]::-moz-range-thumb{width:18px; height:18px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 2px 6px rgba(8,42,48,.3); cursor:pointer}
+.searchrail .acmenu{width:min(440px,86vw)}
+@media (max-width:900px){
+  .searchinner{flex-wrap:wrap; gap:8px}
+  .searchinner .sfield.where{flex:1 1 100%}
+  .searchinner .sfield.spec, .searchinner .sfield.ppo, .searchinner .sfield.rad{flex:1 1 calc(50% - 4px)}
+  .s-actions{flex:1 1 100%}
+  .s-actions .s-search{width:100%; justify-content:center; padding:12px}
+}
+@media (max-width:760px){
+  .searchrail{position:static}   /* don't pin on phones — it would eat the viewport */
+}
+
+/* v85 framing band between the two search lanes (spacing + purpose label) */
+.rail-intro{background:linear-gradient(180deg,var(--cream),var(--cream-2)); padding:22px 22px 16px}
+.rail-intro-in{max-width:1480px; margin:0 auto; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding-top:6px; border-top:1px solid var(--line-2)}
+.ri-eyebrow{font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); padding-top:14px}
+.ri-text{font:500 14.5px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); padding-top:8px}
+@media (max-width:760px){
+  .rail-intro{padding:16px 16px 12px}
+  .rail-intro-in{gap:4px}
+  .ri-text{font-size:13.5px}
+}
+
 /* ============ RESULT BAR ============ */
 .resultbar{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:13px 0 12px; flex-wrap:wrap}
 .resultbar .rb-l h2{font-size:21px; font-weight:560}
@@ -196,14 +234,15 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .chip.spec{background:#fff; color:var(--teal-700); border-color:var(--line)}
 .lblurb{font-size:13px; color:var(--ink-soft); margin-top:10px; line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
 .lactions{display:flex; gap:8px; margin-top:auto; padding-top:13px; flex-wrap:wrap}
-.la{font-size:13px; font-weight:600; padding:9px 14px; border-radius:10px; transition:.15s; border:1px solid transparent}
-.la-primary{background:var(--teal-night); color:#fff}
-.la-primary:hover{background:var(--teal-deep)}
-.la-gold{background:var(--gold); color:#1c1407}
-.la-gold:hover{background:var(--gold-2)}
-.la-ghost{background:var(--cream-card); color:var(--ink); border-color:var(--line)}
-.la-ghost:hover{border-color:var(--teal-300)}
-.la-link{background:none; color:var(--teal-700); padding:9px 6px}
+.la{font:600 13px/1 "Inter Tight",system-ui,sans-serif; padding:10px 15px; border-radius:11px; border:1px solid transparent; transition:transform .14s, box-shadow .14s, background .14s, border-color .14s; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; letter-spacing:.005em}
+.la:active{transform:translateY(0)}
+.la-primary{background:var(--teal-night); color:#fff; box-shadow:0 2px 9px rgba(8,42,48,.20)}
+.la-primary:hover{background:var(--teal-deep); box-shadow:0 7px 18px rgba(8,42,48,.28); transform:translateY(-1px)}
+.la-gold{background:linear-gradient(135deg,#C9A461,#B2883E); color:#251904; box-shadow:0 2px 9px rgba(160,120,50,.30); border-color:rgba(120,90,30,.22)}
+.la-gold:hover{background:linear-gradient(135deg,#D3B073,#BD9447); box-shadow:0 7px 18px rgba(160,120,50,.38); transform:translateY(-1px)}
+.la-ghost{background:var(--cream-card); color:var(--teal-night); border-color:var(--line)}
+.la-ghost:hover{border-color:var(--teal-300); background:#fff; transform:translateY(-1px)}
+.la-link{background:none; color:var(--teal-700); padding:9px 6px; border:0}
 .la-link:hover{color:var(--teal-night)}
 
 /* badges */
@@ -288,7 +327,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fs-redo{position:absolute; top:16px; left:50%; transform:translateX(-50%); z-index:700; display:inline-flex; align-items:center; gap:7px; background:var(--cream-card); color:var(--teal-night); font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:999px; box-shadow:var(--sh-md); border:1px solid var(--line-2); cursor:pointer; white-space:nowrap}
 .fs-redo .i{color:var(--mint-700)}
 /* ── v50: fullscreen-map radius search control ─────────────────────── */
-.fsmap-ctrl{position:absolute; right:18px; bottom:18px; top:auto; left:auto; transform:none; z-index:701; width:min(360px,calc(100% - 76px));
+.fsmap-ctrl{position:absolute; right:18px; top:70px; bottom:auto; left:auto; transform:none; z-index:701; width:min(360px,calc(100% - 76px)); max-height:calc(100% - 88px); overflow-y:auto; overscroll-behavior:contain;
   background:rgba(255,253,248,.95); -webkit-backdrop-filter:saturate(1.4) blur(12px); backdrop-filter:saturate(1.4) blur(12px);
   border:1px solid var(--line-2); border-radius:18px; box-shadow:var(--sh-lg); padding:12px 13px; display:flex; flex-direction:column; gap:9px}
 .fmc-loc{display:flex; align-items:center; gap:8px; background:var(--cream-card); border:1px solid var(--line); border-radius:13px; padding:6px 7px 6px 12px; transition:.15s}
@@ -308,8 +347,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fmc-search .i{color:var(--mint); font-size:16px}
 .fmc-hint{font-size:11.5px; color:var(--ink-soft); text-align:center; margin:-1px 0 0; line-height:1.35}
 @media(min-width:981px){
-  .fsmap-ctrl{right:18px; left:auto; bottom:18px; top:auto; transform:none; width:340px}
-  #fullmap .leaflet-control-zoom{ margin:0 370px 18px 0 }
+  .fsmap-ctrl{right:18px; left:auto; top:70px; bottom:auto; transform:none; width:340px; max-height:calc(100% - 88px); overflow-y:auto}
+  #fullmap .leaflet-control-zoom{ margin:0 18px 18px 0 }
 }
 @media(max-width:980px){
   .fsmap-ctrl{top:12px; left:14px; right:auto; bottom:auto; transform:none; width:calc(100% - 76px)}
@@ -695,10 +734,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .tagrow{display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-bottom:7px}
 .claimrow{margin-top:11px; font-size:12.5px; color:var(--ink-soft)}
 .claimrow a{color:var(--teal-700); border-bottom:1px solid var(--gold-2); font-weight:600; cursor:pointer}
-.la-soft{background:var(--mint-soft); color:var(--teal-night); border:1px solid transparent}
-.la-soft:hover{background:#d6f0e2}
-.la-accepted{background:#EAF2FC; color:#2C5C95; border:1px solid #C4DAF1; cursor:default; display:flex; align-items:center; justify-content:center; gap:6px; font-weight:700}
-.la-accepted:hover{background:#EAF2FC}
+.la-soft{background:#EAF3F1; color:var(--teal-700); border:1px solid #C3DBD7}
+.la-soft:hover{background:#DEEDEA; border-color:var(--teal-300); transform:translateY(-1px)}
+.la-accepted{background:var(--verified-soft); color:var(--verified); border:1px solid #BFE3CD; cursor:default; display:flex; align-items:center; justify-content:center; gap:6px; font-weight:700}
+.la-accepted:hover{background:var(--verified-soft)}
 .la[href]{display:inline-flex; align-items:center; text-decoration:none}
 /* promo rail */
 .prail{position:sticky; top:calc(var(--nav-h) + var(--rail-h) + 14px); align-self:start; display:flex; flex-direction:column; gap:14px}
@@ -1254,70 +1293,197 @@ body.dd-lock{overflow:hidden}
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero hero-cmd">
-  <div class="hero-inner hero-cmd-grid">
-    <div class="hero-left">
-      <span class="hero-eyebrow">CoverCapy · PPO Dental Concierge</span>
-      <h1>Find the Right PPO Dentist Before the Surprise Bill</h1>
-      <p>Search PPO-friendly dental offices, verify coverage, explore treatments, and book with confidence.</p>
-      <div class="hj-label">What are you looking for today?</div>
-      <div class="hjswitch" id="hjswitch">
-        <button class="hj on" data-j="find" onclick="setJourney('find')">Find a Dentist</button>
-        <button class="hj" data-j="ppo" onclick="setJourney('ppo')">Verify My PPO</button>
-        <button class="hj" data-j="treat" onclick="setJourney('treat')">Explore Treatments</button>
-        <button class="hj" data-j="claim" onclick="setJourney('claim')">Claim My Practice</button>
+<!-- ============ MINIMAL DISCOVERY HEADER (v80) ============ -->
+<style id="dh-css">
+/* v80 minimal discovery header + universal command search */
+:root{ --rail-h:76px; }                 /* v85: sticky search rail restored; JS measures the exact height */
+.dh-compat{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+/* quieter nav */
+.topnav{background:rgba(251,247,240,.82)}
+.navlinks a{color:var(--ink-soft); font-weight:500}
+.navlinks a:hover{color:var(--ink)}
+.topnav .navright .btn-ghost{background:transparent;border-color:transparent;color:var(--ink-soft);padding:8px 10px;font-weight:600}
+.topnav .navright .btn-ghost:hover{color:var(--ink)}
+.topnav .navright .btn-dark{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:600}
+.topnav .navright .btn-dark:hover{background:transparent;border-color:var(--gold-2);color:var(--teal-night)}
+
+/* editorial header */
+.dh-header{background:linear-gradient(180deg,var(--cream-2),var(--cream)); border-bottom:1px solid var(--line-2)}
+.dh-inner{max-width:1040px; margin:0 auto; padding:64px 24px 46px; display:flex; flex-direction:column; align-items:center; text-align:center}
+.dh-title{font-family:"Fraunces",Georgia,serif; font-weight:480; letter-spacing:-.022em; font-size:clamp(29px,4.6vw,48px); line-height:1.05; color:var(--teal-night); max-width:22ch; margin:0 auto; text-wrap:balance}
+.dh-eyebrow{display:inline-flex; align-items:center; gap:7px; font:700 12px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin:0 0 15px}
+.dh-sub{margin:14px auto 28px; font-size:clamp(14.5px,1.5vw,17px); color:var(--ink-soft); max-width:46ch; line-height:1.5; text-align:center}
+
+/* universal command bar */
+.ucmd{position:relative; max-width:780px; width:100%; margin:0 auto}
+.ucmd-bar{display:flex; align-items:center; gap:12px; height:64px; padding:0 10px 0 20px; background:rgba(255,253,248,.86); -webkit-backdrop-filter:saturate(1.3) blur(12px); backdrop-filter:saturate(1.3) blur(12px); border:1px solid var(--line); border-radius:999px; transition:box-shadow .22s, border-color .22s, background .22s}
+.ucmd-bar:focus-within{border-color:var(--gold-2); background:var(--cream-card); box-shadow:0 18px 50px rgba(8,42,48,.14)}
+.ucmd-ic{flex:none; width:22px; height:22px; color:var(--ink-faint); display:grid; place-items:center}
+.ucmd-ic svg{width:20px;height:20px}
+.ucmd-input{flex:1 1 auto; min-width:0; border:0; background:transparent; outline:none; font-family:"Inter Tight",system-ui,sans-serif; font-size:clamp(15px,1.7vw,18px); font-weight:500; color:var(--ink)}
+.ucmd-input::placeholder{color:var(--ink-faint); font-weight:450}
+.ucmd-rad{flex:none; display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 14px; border-radius:999px; border:1px solid var(--line); background:var(--cream-2); color:var(--ink-soft); font-size:13px; font-weight:700; letter-spacing:.01em; cursor:pointer; transition:.15s; white-space:nowrap}
+.ucmd-rad:hover{border-color:var(--gold-2); color:var(--teal-night)}
+.ucmd-loc{flex:none; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--line); background:var(--cream-2); color:var(--teal-night); cursor:pointer; transition:.15s}
+.ucmd-loc:hover{border-color:var(--gold-2); background:var(--cream-card)}
+.ucmd-loc svg{width:18px;height:18px}
+
+/* command palette dropdown (Raycast / Arc / Spotlight feel) */
+.ucmd-menu{position:absolute; top:calc(100% + 12px); left:0; right:0; background:var(--cream-card); border:1px solid var(--line-2); border-radius:24px; box-shadow:var(--sh-lg); padding:10px; z-index:90; max-height:min(64vh,560px); overflow:auto; overscroll-behavior:contain}
+.ucmd-sec{font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); padding:12px 12px 6px}
+.ucmd-row{display:flex; align-items:center; gap:13px; padding:11px 12px; border-radius:15px; cursor:pointer; transition:background .12s}
+.ucmd-row:hover, .ucmd-row.active{background:var(--cream-2)}
+.ucmd-row.best{background:var(--gold-soft)}
+.ucmd-row.best:hover, .ucmd-row.best.active{background:#efe0c4}
+.ucmd-ico{flex:none; width:38px; height:38px; border-radius:11px; display:grid; place-items:center; background:var(--cream); border:1px solid var(--line-2); color:var(--teal-700)}
+.ucmd-row.best .ucmd-ico{background:#fff; border-color:transparent; color:var(--gold)}
+.ucmd-ico svg{width:19px;height:19px}
+.ucmd-txt{min-width:0; flex:1 1 auto}
+.ucmd-ttl{font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ucmd-ttl .hl{color:var(--teal-700)}
+.ucmd-sub2{font-size:12.5px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:1px}
+.ucmd-act{flex:none; display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:5px 11px}
+.ucmd-row.best .ucmd-act{background:#fff; border-color:#e7d6ac; color:#8a6a2e}
+.ucmd-act svg{width:12px;height:12px; opacity:.8}
+.ucmd-empty{padding:22px 14px; color:var(--ink-faint); font-size:14px; text-align:center}
+
+/* v85 — collapsible refined search (area · specialty · insurance · radius) ── the power-user lane */
+.dh-advanced{width:100%; max-width:780px; margin:14px auto 0}
+.dh-adv-toggle{display:inline-flex; align-items:center; gap:9px; width:100%; justify-content:center; background:transparent; border:0; cursor:pointer; padding:9px 4px; font:600 13px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); transition:.15s}
+.dh-adv-toggle:hover{color:var(--teal-night)}
+.dh-adv-toggle .ti{flex:none; width:17px; height:17px; color:var(--gold); display:grid; place-items:center}
+.dh-adv-toggle .ti svg{width:17px; height:17px}
+.dh-adv-toggle .th{font-weight:500; color:var(--ink-faint); letter-spacing:.01em}
+.dh-adv-chev{flex:none; font-size:12px; color:var(--ink-faint); transition:transform .22s}
+.dh-advanced.open .dh-adv-chev{transform:rotate(180deg)}
+.dh-adv-panel{margin-top:12px; background:var(--cream-card); border:1px solid var(--line-2); border-radius:20px; box-shadow:var(--sh-sm); padding:16px; text-align:left; animation:advIn .22s ease}
+.dh-adv-panel[hidden]{display:none}
+@keyframes advIn{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
+.dh-adv-grid{display:flex; gap:10px; align-items:stretch; flex-wrap:wrap}
+.dh-adv-grid .sfield{flex:1 1 auto}
+.dh-adv-grid .sfield.where{flex:1.6 1 220px}
+.dh-adv-grid .sfield select{cursor:pointer; -webkit-appearance:none; appearance:none; padding-right:18px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none' stroke='%237a8a86' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 2px center}
+.dh-adv-grid .s-search{align-self:stretch; height:auto; min-height:54px; cursor:pointer; border:0}
+/* refined radius bar */
+.dh-adv-row2{display:flex; align-items:flex-end; gap:18px; margin-top:15px; padding-top:15px; border-top:1px solid var(--line-2); flex-wrap:wrap}
+.advrad{flex:1 1 320px; min-width:230px}
+.advrad-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+.advrad-top .l{font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint)}
+.advrad-val{font:700 13.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-night); background:var(--mint-soft); border:1px solid var(--line-2); border-radius:999px; padding:5px 11px}
+.advrad input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:999px; outline:none; cursor:pointer; background:linear-gradient(90deg,var(--mint-700) 0,var(--mint-700) var(--fill,24%),var(--line) var(--fill,24%),var(--line) 100%)}
+.advrad input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:22px; height:22px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 2px 8px rgba(8,42,48,.3); cursor:pointer; transition:transform .12s}
+.advrad input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.09)}
+.advrad input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 2px 8px rgba(8,42,48,.3); cursor:pointer}
+.advrad-ticks{display:flex; justify-content:space-between; margin-top:7px; font:600 10.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
+.advrad-all{flex:none; display:inline-flex; align-items:center; justify-content:center; height:40px; padding:0 16px; border-radius:999px; border:1px solid var(--line); background:var(--cream-2); color:var(--ink-soft); font:600 13px/1 "Inter Tight",system-ui,sans-serif; cursor:pointer; transition:.15s; white-space:nowrap}
+.advrad-all:hover{border-color:var(--gold-2); color:var(--teal-night)}
+.advrad-all.on{background:var(--teal-night); border-color:var(--teal-night); color:#fff}
+/* near-me + nearby quick chips */
+.dh-adv-quick{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:15px}
+.dh-adv-quick > span{font:600 11px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint); letter-spacing:.05em; text-transform:uppercase; margin-right:2px}
+.dh-adv-quick button{font:600 13px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:7px 13px; cursor:pointer; transition:.15s; display:inline-flex; align-items:center; gap:6px}
+.dh-adv-quick button:hover{border-color:var(--gold-2); color:var(--teal-night)}
+.dh-adv-quick button.nearme{color:var(--teal-700); background:var(--mint-soft); border-color:transparent}
+.dh-adv-quick button.nearme:hover{border-color:var(--mint-700)}
+.dh-adv-quick button.nearme svg{width:13px; height:13px}
+/* the WHERE autocomplete dropdown, scoped to the panel */
+.dh-adv-panel .acmenu{width:min(440px,calc(100% + 2px)); left:0}
+@media (max-width:760px){
+  .dh-adv-grid{flex-direction:column}
+  .dh-adv-grid .sfield, .dh-adv-grid .sfield.where, .dh-adv-grid .s-search{width:100%; flex-basis:auto}
+  .dh-adv-row2{flex-direction:column; align-items:stretch}
+  .advrad-all{width:100%}
+  .dh-adv-panel .acmenu{width:100%}
+}
+
+/* example links */
+.dh-examples{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 10px; margin-top:22px; font-size:13px; color:var(--ink-faint)}
+.dh-examples > span{font-weight:600; letter-spacing:.02em; margin-right:1px}
+.dh-examples button{font:inherit; font-size:13px; font-weight:600; color:var(--ink-soft); background:transparent; border:0; border-bottom:1px solid var(--line); padding:2px 1px; cursor:pointer; transition:.15s}
+.dh-examples button:hover{color:var(--teal-night); border-color:var(--gold-2)}
+
+@media (max-width:760px){
+  .dh-inner{padding:30px 16px 26px}
+  .ucmd-bar{height:56px; padding:0 8px 0 15px; gap:8px}
+  .ucmd-rad{height:34px; padding:0 11px; font-size:12.5px}
+  .ucmd-loc{width:36px;height:36px}
+  .ucmd-menu{border-radius:20px}
+  .dh-title{max-width:none}
+}
+
+/* v81 lifestyle cluster chooser popup */
+.cc-life-choices strong{display:block;font:700 13px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--teal-night);margin-bottom:6px}
+.cc-life-choice{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:11px;text-decoration:none;color:var(--ink);transition:background .12s}
+.cc-life-choice:hover{background:var(--cream-2)}
+.cc-life-choice-emoji{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--cream);border:1px solid var(--line-2);font-size:14px}
+.cc-life-choice-txt{min-width:0;flex:1 1 auto;display:flex;flex-direction:column}
+.cc-life-choice-txt b{font:600 13px/1.25 "Inter Tight",system-ui,sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-life-choice-txt span{font:600 11px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--ink-faint);text-transform:capitalize;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-life-choice-arw{flex:none;color:var(--ink-faint);font-weight:700}
+.cc-life-choice-more{font:600 11px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--ink-faint);padding:6px 8px 2px}
+</style>
+
+<section class="dh-header">
+  <div class="dh-inner">
+    <div class="dh-eyebrow">Check your dentist</div>
+    <h1 class="dh-title">See if your dentist takes your PPO.</h1>
+    <p class="dh-sub">Search your dentist by name to check if they're in our directory and accept PPO. New here? Start with a ZIP or city.</p>
+    <div class="ucmd" id="ucmd">
+      <div class="ucmd-bar" id="ucmd-bar">
+        <span class="ucmd-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span>
+        <input id="ucmd-input" class="ucmd-input" type="text" autocomplete="off" spellcheck="false"
+               role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ucmd-menu"
+               aria-label="Search dentists, places, treatments, and insurance"
+               placeholder="Search your dentist's name, ZIP, or city"
+               oninput="ucmdInput(this.value)" onkeydown="ucmdKey(event)" onfocus="ucmdFocus()">
+        <button class="ucmd-rad" id="ucmd-rad" type="button" onclick="ucmdCycleRadius()" aria-label="Change search radius"><span id="ucmd-rad-val">8 mi</span></button>
+        <button class="ucmd-loc" id="ucmd-loc" type="button" onclick="ucmdUseLocation()" aria-label="Use my current location" title="Use my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
       </div>
-      <div class="herosearch">
-        <span class="hs-ic" aria-hidden="true">⌕</span>
-        <input id="hero-q" placeholder="Dental Implants Near Me" autocomplete="off" aria-label="Search PPO dentists and treatments" onkeydown="if(event.key==='Enter'){event.preventDefault();heroSearch();}">
-        <button class="hs-btn" id="hero-search-btn" onclick="heroSearch()">Search</button>
-      </div>
-      <div class="hs-hint" id="hs-hint">Search a city, ZIP, dentist, or treatment.</div>
-      <div class="texplore" id="texplore"></div>
+      <div class="ucmd-menu" id="ucmd-menu" role="listbox" aria-label="Search suggestions" hidden></div>
     </div>
-    <aside class="hero-right" id="hero-right" aria-label="Marketplace activity"></aside>
   </div>
 </section>
 
-<!-- ============ SEARCH RAIL (floats over hero, sticky on scroll) ============ -->
-<div class="searchrail">
-  <button class="search-toggle" id="search-toggle" onclick="toggleSearchCollapse()" aria-label="Collapse search" aria-expanded="true"><span class="chev">⌃</span></button>
+<!-- v85: framing band that separates the two search lanes and labels the sticky rail. Scrolls away; the rail pins. -->
+<div class="rail-intro">
+  <div class="rail-intro-in">
+    <span class="ri-eyebrow">Already have PPO?</span>
+    <span class="ri-text">Find a PPO-friendly dentist near you and book — filter by treatment, plan, and distance.</span>
+  </div>
+</div>
+
+<!-- v85: sticky search menu — the detailed lane (WHERE · TREATMENT · YOUR PPO · RADIUS), pinned under the nav while you browse the listings. -->
+<div class="searchrail" id="searchrail">
   <div class="searchinner">
-    <div class="search-summary" id="search-summary" onclick="toggleSearchCollapse()"></div>
     <div class="sfield where" id="where-field">
-      <label>Where</label>
-      <input id="q-where" value="" placeholder="ZIP, city, state, or dentist" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ac-menu">
-      <div id="ac-menu" class="acmenu" role="listbox" hidden></div>
+      <label for="q-where">Where</label>
+      <div class="sf-inrow">
+        <input id="q-where" type="text" placeholder="City, ZIP, dentist, or area" autocomplete="off">
+        <button class="sf-loc" type="button" onclick="useCurrentLocation()" aria-label="Use my current location" title="Use my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
+      </div>
+      <div id="ac-menu" class="acmenu" role="listbox" aria-label="Location suggestions" hidden></div>
     </div>
     <div class="sfield spec">
-      <label>Treatment</label>
-      <select id="q-spec" onchange="runSearch()">
-        <option value="">Any reason</option>
-        <option>General</option><option>Cleaning</option><option>Emergency</option>
-        <option>Invisalign</option><option>Implants</option><option>Veneers</option><option>Crowns</option>
-        <option>Whitening</option><option>Root Canal</option><option>Cosmetic</option>
-        <option>Orthodontics</option><option>TMJ</option>
-      </select>
+      <label for="q-spec">Treatment</label>
+      <select id="q-spec"><option value="">Any reason</option><option>General</option><option>Cleaning</option><option>Emergency</option><option>Invisalign</option><option>Implants</option><option>Veneers</option><option>Crowns</option><option>Whitening</option><option>Root Canal</option><option>Cosmetic</option><option>Orthodontics</option><option>TMJ</option></select>
     </div>
     <div class="sfield ppo">
-      <label>Your PPO</label>
-      <select id="q-carrier" onchange="runSearch()">
-        <option value="">Any PPO</option>
-        <option>UnitedHealthcare</option><option>Guardian</option><option>Delta PPO</option>
-        <option>MetLife</option><option>Cigna</option><option>Aetna</option>
-        <option>Humana</option><option>Ameritas</option><option>Principal</option><option>Anthem</option>
-      </select>
+      <label for="q-carrier">Your PPO</label>
+      <select id="q-carrier"><option value="">Any PPO</option><option>UnitedHealthcare</option><option>Guardian</option><option>Delta Dental</option><option>MetLife</option><option>Cigna</option><option>Aetna</option><option>Humana</option><option>Ameritas</option><option>Principal</option><option>Anthem Blue Cross</option></select>
     </div>
-    <div class="sfield rad">
-      <label>Within <span class="mi" id="rad-val">8 mi</span> <a id="rad-more" class="radmore" onclick="event.stopPropagation();setCounty()">· all OC</a></label>
-      <input class="rng" type="range" id="q-rad" min="1" max="30" step="1" value="8" oninput="onRadInput(this.value)" onchange="onRadChange(this.value)" aria-label="Search radius in miles">
+    <div class="sfield rad railrad">
+      <label>Within <span class="railrad-val" id="adv-rad-val">8 mi</span></label>
+      <input id="q-rad" type="range" min="1" max="30" step="1" value="8" style="--fill:24%" oninput="advRadPreview(this.value)" onchange="advRadCommit(this.value)" aria-label="Search radius in miles">
     </div>
     <div class="s-actions">
-      <button class="s-search" onclick="runSearch()"><span class="i">⌕</span> Search</button>
+      <button class="s-search" type="button" onclick="advSearch()"><span class="i" aria-hidden="true">⌕</span> Search</button>
     </div>
   </div>
 </div>
+
+<!-- v85: detailed-search inputs (#q-where / #q-spec / #q-carrier / #q-rad / #ac-menu) now live in the visible collapsible panel above. -->
+
+
 
 <!-- ============ MAIN ============ -->
 <main class="wrap">
@@ -1348,7 +1514,22 @@ body.dd-lock{overflow:hidden}
   @media(max-width:760px){ .seodisc-grid{ grid-template-columns:1fr; gap:16px; } .seonearby-grid{ grid-template-columns:1fr 1fr; } }
   /* completeness-meter styles removed with the completeness UI */
   </style>
-  <nav class="seochips" id="seo-chips" aria-label="Quick PPO dentist searches"></nav>
+  <!-- v85: removed the Near-me/city quick-chip rail per request -->
+  <!-- v90 compact luxury micro-hero: emotional context above the results -->
+  <section class="microhero" aria-label="PPO dentist marketplace">
+    <div class="mh-in">
+      <div class="mh-copy">
+        <h2 class="mh-title">Find PPO dentists that fit your insurance</h2>
+        <p class="mh-sub">Browse offices nationwide and discover which practices patients choose most often — for PPO value, family care, cosmetic treatment, and convenience.</p>
+      </div>
+      <div class="mh-trust">
+        <div class="mh-stat"><b>400+</b><span>PPO-friendly offices</span></div>
+        <div class="mh-stat"><b>4.8★</b><span>avg. patient rating</span></div>
+        <div class="mh-stat"><b>Capy Crowns</b><span>rewards every visit</span></div>
+      </div>
+    </div>
+  </section>
+
   <div class="resultbar">
     <div class="rb-l">
       <h2 id="rb-title">Loading offices…</h2>
@@ -1356,6 +1537,12 @@ body.dd-lock{overflow:hidden}
     </div>
     <div class="rb-r">
       <button class="rb-map" onclick="openFsMap()"><span class="i">◴</span> Map</button>
+      <div class="view-switch" id="view-switch" role="group" aria-label="Choose how to browse offices">
+        <button type="button" data-view="cur" class="on" onclick="setView('cur')" title="Comfortable view" aria-label="Comfortable view"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3.5" width="14" height="5" rx="1.4"/><rect x="3" y="11.5" width="14" height="5" rx="1.4"/></svg></button>
+        <button type="button" data-view="list" onclick="setView('list')" title="List view" aria-label="List view"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg></button>
+        <button type="button" data-view="grid" onclick="setView('grid')" title="Grid view" aria-label="Grid view"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg></button>
+        <button type="button" data-view="market" onclick="setView('market')" title="Marketplace view" aria-label="Marketplace view"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="2.5" width="4" height="4" rx="1"/><rect x="8" y="2.5" width="4" height="4" rx="1"/><rect x="13.5" y="2.5" width="4" height="4" rx="1"/><rect x="2.5" y="8" width="4" height="4" rx="1"/><rect x="8" y="8" width="4" height="4" rx="1"/><rect x="13.5" y="8" width="4" height="4" rx="1"/><rect x="2.5" y="13.5" width="4" height="4" rx="1"/><rect x="8" y="13.5" width="4" height="4" rx="1"/><rect x="13.5" y="13.5" width="4" height="4" rx="1"/></svg></button>
+      </div>
       <div class="sortwrap">Sort
         <select id="sort" onchange="render()">
           <option value="rec">Recommended</option>
@@ -1388,7 +1575,6 @@ body.dd-lock{overflow:hidden}
 
     <!-- RIGHT RAIL -->
     <aside class="prail">
-      <div class="prail-h">More from CoverCapy</div>
       <div class="pcard fx-card" id="prail-future" hidden role="button" tabindex="0" onclick="if(event.target.closest('.fx-cta'))return; openFutureExpansionDrawer();" onkeydown="if((event.key==='Enter'||event.key===' ')&&!event.target.closest('.fx-cta')){event.preventDefault();openFutureExpansionDrawer();}">
         <div class="fx-tag">◆ Future Expansion Interest Area</div>
         <h5>KYT Dental Services · Future Expansion Interest</h5>
@@ -1397,9 +1583,33 @@ body.dd-lock{overflow:hidden}
         <div class="fx-meta">Planned coverage area · not an active practice location</div>
         <div class="fx-ctarow"><button class="fx-cta primary" type="button" onclick="event.stopPropagation(); openKytProfile();">View KYT Fountain Valley</button><a class="fx-cta" href="mailto:hello@covercapy.com?subject=KYT%20Rowland%20Heights%20expansion%20updates" onclick="event.stopPropagation(); track&&track('future_notify',{site:'rowland-heights'})">Expansion updates</a></div>
       </div>
-      <div class="pcard dark"><div class="pi">🐾</div><h5>CoverCapy Pets is coming</h5><p>Dental and wellness protection for the whole family, pets included. Be first in line when it opens.</p><a class="pbtn" onclick="track('promo_pets',{});return false;">Preview pet protection →</a></div>
-      <div class="pcard"><div class="pi">✦</div><h5>More coverage on the way</h5><p>Vision, life, and health concierge plans are joining CoverCapy. Tell us what you want covered next.</p><a class="pbtn" onclick="track('promo_future',{});return false;">Join the early list →</a></div>
-      <div class="pcard gold"><div class="pi">♕</div><h5>Earn Capy Crowns</h5><p>Create a free account to earn rewards for PPO checks, bookings, and verified visits.</p><a class="pbtn" onclick="track('promo_crowns',{});return false;">Create account →</a></div>
+      <div class="eco-card">
+        <div class="eco-eyebrow">The CoverCapy network</div>
+        <h3 class="eco-title">Discover the CoverCapy network</h3>
+        <p class="eco-intro">One concierge membership across the categories that matter — with Capy Crowns rewards on every step.</p>
+        <div class="eco-rows">
+          <div class="eco-row eco-on">
+            <span class="eco-ic">🦷</span>
+            <span class="eco-tx"><b>CoverCapy Dental</b><span>PPO discovery, cost estimates &amp; booking — you’re here.</span></span>
+            <span class="eco-state">Live</span>
+          </div>
+          <a class="eco-row" href="javascript:void(0)" onclick="track('promo_pets',{});return false;">
+            <span class="eco-ic">🐾</span>
+            <span class="eco-tx"><b>CoverCapy Pets</b><span>Dental &amp; wellness for the whole family, pets included.</span></span>
+            <span class="eco-state soon">Soon</span>
+          </a>
+          <a class="eco-row" href="javascript:void(0)" onclick="track('promo_future',{});return false;">
+            <span class="eco-ic">✦</span>
+            <span class="eco-tx"><b>Future protection</b><span>Vision, life &amp; health concierge plans on the way.</span></span>
+            <span class="eco-state soon">Soon</span>
+          </a>
+          <a class="eco-row eco-crowns" href="javascript:void(0)" onclick="track('promo_crowns',{});return false;">
+            <span class="eco-ic">♕</span>
+            <span class="eco-tx"><b>Capy Crowns rewards</b><span>Earn on PPO checks, bookings &amp; verified visits.</span></span>
+            <span class="eco-state cta">Create account →</span>
+          </a>
+        </div>
+      </div>
     </aside>
   </div>
 </main>
@@ -1621,6 +1831,8 @@ let WORKING = DEMO_DENTISTS.slice();   // enriched card records the UI reads
 let BY_UUID = {};                      // dentists.id (uuid) -> record, for RPC result joins
 let SERVER_ORDER = null;               // [{id,dist,tier}] from an RPC, or null => client geo
 let CITY_ZIPS = {};                    // cityLower -> [zips], for client-side ZIP autocomplete fallback
+let LOCATION_ROWS = [];                // every active search_locations row (all types), for resolver + suggestions
+let LOCATION_INDEX = Object.create(null); // normalized key -> {row,strength,spec}; built by buildLocationIndex()
 let SB_READY = false;
 
 /* sync accessor the rest of the UI calls */
@@ -1688,8 +1900,9 @@ function refreshDerived(){
 async function bootData(){
   if(!sb) return;
   try {
-    const { data: locs } = await sb.from("search_locations").select("name,type,city,county,lat,lng,zip_codes").eq("active", true);
+    const { data: locs } = await sb.from("search_locations").select("name,type,city,county,state,lat,lng,zip_codes,aliases,slug,priority,description,emoji,active").eq("active", true);
     if(locs && locs.length){
+      buildLocationIndex(locs);                       // index EVERY active row (city/county/area/landmark) by name/city/slug/zip/alias/county/type+name
       locs.forEach(l=>{ const k=(l.city||l.name).toLowerCase(); if(l.type==="city"){ CITIES[k]={lat:+l.lat,lng:+l.lng,label:l.name,area:l.county||""}; CITY_ZIPS[k]=(l.zip_codes||[]).map(String); } });
       CITIES["orange county"] = CITIES["orange county"] || { lat:33.70, lng:-117.86, label:"Orange County", area:"Orange County" };
     }
@@ -2104,6 +2317,189 @@ function pridebar(d){
   if(!out.length) return "";
   return '<div class="pridebar">'+out.slice(0,3).map(s=>'<span class="prow"><i>◆</i>'+escapeHtml(s)+'</span>').join('')+'</div>';
 }
+/* ============================================================
+   v90 MARKETPLACE LAYER
+   - ccTags(d): 1–2 curated "experience" tags (data-derived)
+   - ccWhyChoose(d): story-driven "Why patients choose this office"
+   - view modes (Comfortable / List / Grid / Marketplace) + localStorage
+   All derived from existing Supabase fields; nothing fabricated.
+   ============================================================ */
+function ccSignals(d){
+  var sp=(d.specialties||[]).map(function(s){return String(s).toLowerCase();});
+  var carr=(d.carriers||[]).map(function(c){return String(c).toLowerCase();});
+  return {
+    sp:sp, carr:carr,
+    ppo: carr.some(function(c){return c.indexOf('ppo friendly')>=0;}),
+    cosmetic: sp.some(function(s){return s.indexOf('cosmetic')>=0||s.indexOf('veneer')>=0;}),
+    family: sp.some(function(s){return s.indexOf('family')>=0;}),
+    implant: sp.some(function(s){return s.indexOf('implant')>=0;}),
+    ortho: sp.some(function(s){return s.indexOf('invisalign')>=0||s.indexOf('ortho')>=0;}),
+    emergency: sp.some(function(s){return s.indexOf('emergency')>=0;}),
+    rating: +d.rating||0, reviews: +d.reviews||0,
+    booking: !!(d.booking && String(d.booking).trim()),
+    newPt: d.newPatients!==false,
+    recent: d.ctx==='Recently Added'
+  };
+}
+function ccTags(d){
+  var s=ccSignals(d), t=[];
+  if(s.rating>=4.9 && s.reviews>=80) t.push(['★','Patient Favorite','fav']);
+  if(s.reviews>=250) t.push(['❝','Most Reviewed Nearby','rev']);
+  if(s.ppo) t.push(['◆','High PPO Compatibility','ppo']);
+  if(s.cosmetic) t.push(['✦','Top Cosmetic Choice','cos']);
+  if(s.implant) t.push(['⌖','Implant Expertise','imp']);
+  if(s.ortho) t.push(['◷','Invisalign & Ortho','ort']);
+  if(s.family) t.push(['♡','Family Friendly','fam']);
+  if(s.emergency) t.push(['＋','Emergency Care','emg']);
+  if(s.booking) t.push(['⚡','Fast Online Booking','fast']);
+  if(s.newPt) t.push(['＋','New Patient Friendly','new']);
+  if(s.recent) t.push(['✦','New to CoverCapy','recent']);
+  if(!t.length) return '';
+  return '<div class="xtags">'+t.slice(0,2).map(function(x){return '<span class="xtag xt-'+x[2]+'"><i aria-hidden="true">'+x[0]+'</i>'+x[1]+'</span>';}).join('')+'</div>';
+}
+function ccWhyChoose(d, feat){
+  var s=ccSignals(d), R=[];
+  if(d.tier==='platinum_elite') R.push('Platinum Elite \u2014 CoverCapy\u2019s invitation-only, most-trusted tier');
+  else if(d.tier==='capy_accredited'||d.tier==='verified') R.push('Capy Accredited \u2014 reviewed by CoverCapy for PPO value');
+  if(s.rating>=4.7 && s.reviews>0) R.push(s.rating+'\u2605 from '+s.reviews.toLocaleString()+' patient reviews');
+  if(s.ppo) R.push('PPO-friendly \u2014 built to maximize your in-network benefits');
+  if(s.cosmetic) R.push('Popular for cosmetic & smile design');
+  else if(s.implant) R.push('Known for implant & restorative care');
+  else if(s.family) R.push('A go-to for family dentistry');
+  else if(s.ortho) R.push('Frequently booked for Invisalign & orthodontics');
+  if(s.booking) R.push('Book online in seconds \u2014 skip the phone tag');
+  if(s.newPt) R.push('Accepting new PPO patients now');
+  var seen={}, reasons=[];
+  for(var i=0;i<R.length;i++){ if(!seen[R[i]]){ seen[R[i]]=1; reasons.push(R[i]); } }
+  reasons = reasons.slice(0, feat?4:3);
+  if(!reasons.length){
+    var w=(d.why||'').trim();
+    reasons=[ w || 'PPO-friendly office \u2014 verify your coverage and book through CoverCapy.' ];
+  }
+  return '<div class="whychoose'+(feat?' wc-feat':'')+'">'+
+      '<div class="wc-h">'+(feat?'Why this is a Featured PPO Partner':'Why patients choose this office')+'</div>'+
+      '<ul class="wc-list">'+reasons.map(function(r){return '<li>'+escapeHtml(r)+'</li>';}).join('')+'</ul>'+
+    '</div>';
+}
+/* ---- View modes ---- */
+var CC_VIEWS=['cur','list','grid','market'];
+function setView(mode){
+  if(CC_VIEWS.indexOf(mode)<0) mode='cur';
+  try{ localStorage.setItem('cc_view', mode); }catch(e){}
+  ccApplyView(mode);
+}
+function ccApplyView(mode){
+  if(CC_VIEWS.indexOf(mode)<0) mode='cur';
+  var root=document.getElementById('listings');
+  if(root){ CC_VIEWS.forEach(function(m){ root.classList.remove('view-'+m); }); root.classList.add('view-'+mode); }
+  var layout=document.querySelector('.layout');
+  if(layout) layout.classList.toggle('market', mode==='market');
+  var sw=document.getElementById('view-switch');
+  if(sw){ Array.prototype.forEach.call(sw.querySelectorAll('button'), function(b){ b.classList.toggle('on', b.getAttribute('data-view')===mode); }); }
+}
+function ccInitView(){
+  var mode='cur';
+  try{ mode=localStorage.getItem('cc_view')||'cur'; }catch(e){}
+  ccApplyView(mode);
+}
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', ccInitView); } else { ccInitView(); }
+setTimeout(ccInitView, 500);
+
+/* ============================================================
+   v91 STATUS-AWARE CTA + CLAIM STRATEGY
+   Unclaimed/public offices read as claimable (dentist FOMO), never
+   patient-ready. Verified / Capy Accredited / Platinum Elite stay
+   patient-facing with data-safe trust copy. Maps to the live `tier`
+   + `booking` fields; degrades gracefully if fields are null.
+   (These ccTags / module / CTA fns intentionally override the v90 layer.)
+   ============================================================ */
+function ccTier(d){ return (d && d.tier) ? String(d.tier) : 'public'; }
+function isPlatinumEliteDentist(d){ return ccTier(d)==='platinum_elite'; }
+function isCapyAccreditedDentist(d){ return ccTier(d)==='capy_accredited'; }
+function isVerifiedDentist(d){ return ccTier(d)==='verified'; }
+function isMemberDentist(d){ return isPlatinumEliteDentist(d)||isCapyAccreditedDentist(d)||isVerifiedDentist(d); }
+function isUnclaimedDentist(d){ return !isMemberDentist(d); }   /* public / pending / unclaimed */
+function ccHasBooking(d){ return !!(d && d.booking && String(d.booking).trim()); }
+
+/* ---- Experience tags: data-safe, category-based only (no sentiment / review claims) ---- */
+function ccTags(d){
+  var s=ccSignals(d), t=[];
+  if(s.ppo) t.push(['◆','PPO Friendly','ppo']);
+  if(s.cosmetic) t.push(['✦','Cosmetic Care','cos']);
+  if(s.implant) t.push(['⌖','Implant Care','imp']);
+  if(s.ortho) t.push(['◷','Invisalign & Ortho','ort']);
+  if(s.family) t.push(['♡','Family Dentistry','fam']);
+  if(s.emergency) t.push(['＋','Emergency Care','emg']);
+  if(s.booking) t.push(['⚡','Online Booking','fast']);
+  if(!t.length) return '';
+  return '<div class="xtags">'+t.slice(0,2).map(function(x){return '<span class="xtag xt-'+x[2]+'"><i aria-hidden="true">'+x[0]+'</i>'+x[1]+'</span>';}).join('')+'</div>';
+}
+
+/* ---- Unclaimed: "Profile Not Claimed Yet" — limited, claimable, tasteful (no danger styling) ---- */
+function getRestrictionModule(d){
+  var idj=jsq(d.id);
+  return '<div class="restrict">'+
+      '<div class="rs-h"><i class="rs-dot" aria-hidden="true"></i>Profile Not Claimed Yet</div>'+
+      '<p class="rs-copy">This office appears in CoverCapy\u2019s public PPO directory, but the practice hasn\u2019t claimed or verified its profile.</p>'+
+      '<ul class="rs-list">'+
+        '<li>Appointment link not added</li>'+
+        '<li>PPO details not verified</li>'+
+        '<li>Practice photos not uploaded</li>'+
+        '<li>Doctor information not confirmed</li>'+
+      '</ul>'+
+      '<div class="rs-claim">Own this practice? <a role="button" tabindex="0" onclick="event.stopPropagation();openClaim(\''+idj+'\')" onkeypress="if(event.key===\'Enter\'){event.stopPropagation();openClaim(\''+idj+'\')}">Claim your profile</a> to update details, add photos, verify PPO participation, and improve patient trust.</div>'+
+    '</div>';
+}
+
+/* ---- Member tiers: data-safe trust module (no fabricated reviews / booking / new-patient claims) ---- */
+function getTrustModule(d, feat){
+  var s=ccSignals(d), R=[], head;
+  if(isPlatinumEliteDentist(d)){
+    head='Featured PPO Partner';
+    R.push('Priority CoverCapy listing'); R.push('Enhanced practice profile'); R.push('PPO guidance available');
+    if(s.booking) R.push('Online booking available');
+  } else if(isCapyAccreditedDentist(d)){
+    head='Verified practice details';
+    R.push('Profile reviewed by CoverCapy'); R.push('Enhanced PPO profile'); R.push('Eligible for CoverCapy patient guidance');
+    if(s.booking) R.push('Online booking available');
+  } else {
+    head='Practice details reviewed';
+    R.push('Office information reviewed for patient browsing'); R.push('Public insurance information available'); R.push('Confirm PPO compatibility before booking');
+  }
+  if(s.sp && s.sp.length>1 && R.length<4) R.push('Multiple treatment categories listed');
+  var seen={}, reasons=[];
+  for(var i=0;i<R.length;i++){ if(!seen[R[i]]){ seen[R[i]]=1; reasons.push(R[i]); } }
+  reasons=reasons.slice(0, feat?4:3);
+  return '<div class="whychoose'+(feat?' wc-feat':'')+'">'+
+      '<div class="wc-h">'+escapeHtml(head)+'</div>'+
+      '<ul class="wc-list">'+reasons.map(function(r){return '<li>'+escapeHtml(r)+'</li>';}).join('')+'</ul>'+
+    '</div>';
+}
+function ccModules(d, feat){
+  if(isUnclaimedDentist(d)) return '';   /* v92: unclaimed cards stay clean & patient-usable; claim/PPO details live in the profile drawer */
+  return ccTags(d) + getTrustModule(d, feat);
+}
+
+/* ---- Status-aware CTAs ---- */
+function ccPpoLink(idj, label){ return '<button class="la la-link" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">'+escapeHtml(label)+'</button>'; }
+function getPrimaryCTA(d, idj){
+  if(isUnclaimedDentist(d)) return '<button class="la la-claim" onclick="event.stopPropagation();openClaim(\''+idj+'\')"><i class="cc-ci" aria-hidden="true">✦</i>Claim This Profile</button>';
+  if(ccHasBooking(d)) return '<button class="la la-book" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">Book Appointment</button>';
+  return '<button class="la la-book" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View Profile</button>';  /* member, no booking */
+}
+function getSecondaryCTA(d, idj){
+  if(isUnclaimedDentist(d)) return '<button class="la la-ghost" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View Public Listing</button>';
+  if(isVerifiedDentist(d)) return '<button class="la la-ghost" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check PPO Compatibility</button>';
+  if(ccHasBooking(d)) return '<button class="la la-ghost" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View Profile</button>';
+  return '<button class="la la-ghost" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check PPO Compatibility</button>';  /* capy/plat, no booking */
+}
+function getTertiaryCTA(d, idj){
+  if(isUnclaimedDentist(d)) return ccPpoLink(idj,'Check PPO Compatibility');
+  if(isVerifiedDentist(d)) return '';                 /* Check PPO already the secondary */
+  if(!ccHasBooking(d)) return '';                     /* Check PPO already the secondary */
+  return ccPpoLink(idj, isPlatinumEliteDentist(d)?'Check PPO Coverage':'Check PPO Compatibility');
+}
+
 function cardHtml(d, feat){
   const saved = state.compare.has(d.id);
   const claimed = isDentistClaimed(d), realImg = hasRealDentistImage(d);
@@ -2119,22 +2515,16 @@ function cardHtml(d, feat){
   const hasAddr    = !!(d.address && String(d.address).trim());
   const idj = jsq(d.id);
 
-  /* GROUP A — booking + contact (primary, prominent). Verified offices lead with these.
-     Paid offices with a booking_url get a "Book Now" button; if that link is ZocDoc we
-     show a "Powered by Zocdoc" caption beneath it. */
+  /* v92 — patient-first CTAs across ALL tiers. Top pair: Book Appointment (left) + Call Office (right).
+     Wide bottom button: Verify Insurance Acceptance (unclaimed) / View Profile (verified/member). */
   const isZocBooking = hasBooking && /zocdoc\.com/i.test(d.booking);
-  const aBook = hasBooking ? '<button class="la la-gold" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">'+(isVerifiedTier?'Book Now':'Book Appointment')+'</button>' : '';
-  const aCall = hasPhone   ? '<button class="la la-primary" onclick="event.stopPropagation();callOffice(\''+idj+'\')">Call Office</button>' : '';
-  const aAvail = (isVerifiedTier && !hasBooking && !hasPhone) ? '<button class="la la-primary" onclick="event.stopPropagation();openAvailability(\''+idj+'\')">Request Availability</button>' : '';
   const zocCap = (isVerifiedTier && isZocBooking) ? '<div class="zoc-powered">Powered by Zocdoc</div>' : '';
-  const primaryBtns = aBook + aCall + aAvail;
-
-  /* GROUP B — profile + coverage (grouped away). Member tiers show a PPO-accepted confirmation; public listings get Check Coverage. */
-  const bProfile = '<button class="la la-ghost" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View Profile</button>';
-  const bCheck   = isPublic
-    ? '<button class="la la-soft" onclick="event.stopPropagation();openPpoCheck(\''+idj+'\')">Check Coverage</button>'
-    : '<span class="la la-accepted" role="note" aria-label="PPO accepted at this office">✓ PPO Accepted Here</span>';
-  const secondaryBtns = bProfile + bCheck;
+  const ccBookBtn = hasBooking ? '<button class="la la-book" onclick="event.stopPropagation();bookAppointment(\''+idj+'\')">Book Appointment</button>' : '';
+  const ccCallBtn = hasPhone ? '<button class="la la-ghost la-call" onclick="event.stopPropagation();callOffice(\''+idj+'\')"><i class="cc-ph" aria-hidden="true">\u260E</i>Call Office</button>' : '';
+  const ccPairN = (ccBookBtn?1:0)+(ccCallBtn?1:0);
+  const ccWideBtn = isUnclaimedDentist(d)
+    ? '<button class="la la-verifyins" onclick="event.stopPropagation();openInsuranceVerify(\''+idj+'\')"><i class="cc-vi" aria-hidden="true">\u2726</i>Verify Insurance Acceptance</button>'
+    : '<button class="la la-ghost la-wide" onclick="event.stopPropagation();openProfile(\''+idj+'\')">View Profile</button>';
 
   /* Member offices surface full contact details + two specialty tags; the address opens our map. */
   let metaHtml, chipsHtml;
@@ -2178,10 +2568,11 @@ function cardHtml(d, feat){
         '<div class="lrate">'+ratingHtml(d)+'</div>'+
         metaHtml+
         chipsHtml+
+        ccModules(d,feat)+
       '</div>'+
       '<div class="lside">'+
-        (primaryBtns?'<div class="cta-primary">'+primaryBtns+zocCap+'</div>':'')+
-        '<div class="cta-secondary'+(primaryBtns?' has-divider':'')+'">'+secondaryBtns+'</div>'+
+        (ccPairN?'<div class="cta-pair'+(ccPairN===1?' cta-pair-1':'')+'">'+ccBookBtn+ccCallBtn+'</div>'+zocCap:'')+
+        '<div class="cta-wide">'+ccWideBtn+'</div>'+
       '</div>'+
     '</div>'+
   '</article>';
@@ -2422,6 +2813,8 @@ function setRadiusUI(v){
   // "· all <area> / · radius" link in the search rail
   const more=document.getElementById('rad-more'); if(more){ more.textContent = state.allCounty ? '· radius' : ('· all '+areaAbbr); more.hidden=false; }
   // mini-map subtitle
+  try{ var _ucr=document.getElementById('ucmd-rad-val'); if(_ucr) _ucr.textContent = state.allCounty ? ('All '+areaAbbr) : (v+' mi'); }catch(e){}
+  try{ var _arv=document.getElementById('adv-rad-val'); if(_arv) _arv.textContent = state.allCounty ? ('All '+(areaAbbr||'area')) : (v+' mi'); }catch(e){}
   const sub=document.getElementById('mm-sub');
   if(sub){
     const wEl=document.getElementById('q-where');
@@ -2509,7 +2902,19 @@ async function runSearch(){
   state.seoHome=false;
   state._lastLoc = locName;
   track('search_performed',{where:locName, spec:state.spec, carrier:state.carrier});
-  await fetchByLocation(locName, radius);
+  // v83: resolve raw input to a location object first, then search by COORDINATES (don't rely on name-string matching).
+  let _loc = (state._picked && state._picked.lat!=null && state._picked.lng!=null)
+       ? {lat:+state._picked.lat, lng:+state._picked.lng, label:state._picked.name||locName, type:state._picked.type}
+       : (state._center && state._center.lat!=null)
+       ? {lat:+state._center.lat, lng:+state._center.lng, label:state._center.label||locName, type:'center'}
+       : resolveToLoc(locName);
+  if(!_loc){ try{ const g=await fsGeocode(locName); if(g) _loc={lat:g.lat, lng:g.lng, label:g.label||locName, type:'geocode'}; }catch(e){} }
+  if(_loc && isFinite(_loc.lat) && isFinite(_loc.lng)){
+    const r=(_loc.type==='county') ? Math.max(radius, 45) : radius;
+    await runCoordSearch(_loc.lat, _loc.lng, _loc.label||locName, r);
+    return;
+  }
+  await fetchByLocation(locName, radius);   // final fallback: name RPC
 }
 
 /* PRIMARY result path: search_dentists_near_location RPC */
@@ -2541,7 +2946,7 @@ async function fetchByLocation(name, radius){
 
 function afterSearchUI(label){
   fitMap();
-  window.scrollTo({top: document.querySelector('.searchrail').offsetHeight + 40, behavior:'smooth'});
+  try{ var _rail=document.querySelector('.searchrail'); var _dh=document.querySelector('.dh-header'); var _off=(_rail?_rail.offsetHeight:(_dh?_dh.offsetHeight:0)); window.scrollTo({top:_off+40, behavior:'smooth'}); }catch(e){}
   const n = LAST.length, where = label || state._title || "your search";
   if(n) toast("Results updated", n.toLocaleString()+" PPO office"+(n===1?"":"s")+" near "+where+" loaded");
   else  toast("No offices found", "Try a wider radius or a different area near "+where, 'warn');
@@ -2663,30 +3068,46 @@ async function acRender(qraw){
   let items=[];
   if(!q) items.push({type:"current",key:"__me__",emoji:"📍",title:"Use my current location",sub:"Find PPO offices near you right now",ct:""});
   if(!q){
-    // empty state: nationwide popular locations (not Orange County-specific)
-    POPULAR_CITIES.forEach(([city,st])=> items.push({type:"city",key:city.toLowerCase(),name:city,title:city,sub:(stateFullName(st)||st),ct:"",emoji:"📍"}));
+    // v85: lead with nearby cities (by office density) so "near me" feels local, then a few nationwide picks
+    const _localKeys = Object.keys(CITY_COUNTS||{})
+      .filter(k=>k!=='orange county' && CITIES[k] && CITIES[k].lat!=null && (CITY_COUNTS[k]||0)>0)
+      .sort((a,b)=>(CITY_COUNTS[b]||0)-(CITY_COUNTS[a]||0)).slice(0,5);
+    _localKeys.forEach(k=>{ const c=CITIES[k]; items.push({type:"city",key:k,name:c.label,title:c.label,sub:([c.area,activeStateLabel()].filter(Boolean).join(", ")||"PPO offices"),ct:CITY_COUNTS[k]||"",emoji:"📍",lat:c.lat,lng:c.lng}); });
+    const _seenLocal=new Set(_localKeys);
+    POPULAR_CITIES.forEach(([city,st])=>{ if(items.length<8 && !_seenLocal.has(city.toLowerCase())) items.push({type:"city",key:city.toLowerCase(),name:city,title:city,sub:(stateFullName(st)||st),ct:"",emoji:"📍"}); });
   } else {
-    // Only suggest cities (no streets, areas, offices, treatments, or carriers).
+    // v83: suggest cities, ZIPs, counties, areas, and landmarks (local LOCATION_INDEX first, RPC fallback, geocode last).
     let locs=[];
-    if(sb && SB_READY){
+    if(LOCATION_ROWS && LOCATION_ROWS.length){
+      locs = locationSuggest(qraw, 8);
+    } else if(sb && SB_READY){
       try {
         const { data } = await sb.rpc("search_locations", { search_text: qraw||"", result_limit: 8 });
-        locs = (data||[]).filter(r=> r.type==="city").map(r=>({
-          type:"city", key:r.slug || r.name, name:r.name, emoji:"📍",
-          lat:r.lat, lng:r.lng, title:r.name,
-          sub:(r.county || stateFullName(r.state||"") || "PPO offices nearby"),
-          ct:(CITY_COUNTS[(r.city||r.name).toLowerCase()]||"")
-        }));
-      } catch(e){ locs = buildSuggestions(qraw).filter(it=>it.type==="city"); }
+        locs = (data||[]).map(r=>{
+          const word = r.type==="county"?"County":r.type==="area"?"Area":r.type==="landmark"?"Landmark":"";
+          const place = r.county || stateFullName(r.state||"") || "";
+          return { type:r.type, key:r.slug || r.name, name:r.name, title:r.name,
+                   emoji:(r.emoji || (r.type==="county"?"🗺️":r.type==="area"?"🏞️":"📍")),
+                   lat:r.lat, lng:r.lng, county:r.county,
+                   sub:(word ? (place?word+" · "+place:word) : (place||"PPO offices nearby")),
+                   ct:(CITY_COUNTS[(r.city||r.name).toLowerCase()]||"") };
+        });
+      } catch(e){ locs = buildSuggestions(qraw); }
     } else {
-      locs = buildSuggestions(qraw).filter(it=>it.type==="city");
+      locs = buildSuggestions(qraw);
     }
     items = items.concat(locs);
+    // Always offer a fallback so ANY typed place / SoCal ZIP can resolve via geocode.
+    if(!locs.length){
+      const _isNum=/^[0-9]+$/.test(q);
+      items.push({ type:'geo', name:qraw.trim(), title:(_isNum?('ZIP '+qraw.trim()):('Search "'+qraw.trim()+'"')),
+                   sub:'Search this location', emoji:'🔎', __geo:true });
+    }
   }
   acItems = items.slice(0,9); acIdx=-1;
   try{ const _loc=localLocationSuggestions(qraw); if(_loc.length){ const seen=new Set(_loc.map(x=>x.title)); acItems=_loc.concat(acItems.filter(x=>!seen.has(x.title))).slice(0,9); } }catch(e){}
   if(!acItems.length){ menu.hidden=true; inp.setAttribute('aria-expanded','false'); return; }
-  menu.innerHTML='<div class="achead">'+(q?'Matching cities':'Browse popular locations')+'</div>'+
+  menu.innerHTML='<div class="achead">'+(q?'Matching locations':'Browse popular locations')+'</div>'+
     acItems.map((it,i)=>'<div class="acrow '+(it.prem?'prem '+(it.prem==='mint'?'mint':''):'')+'" role="option" data-i="'+i+'" onmousedown="event.preventDefault();acPick('+i+')">'+
       '<span class="acemoji">'+(it.emoji||'📍')+'</span>'+
       '<span class="actext"><span class="acname">'+acHL(it.title,q)+'</span><span class="acsub">'+it.sub+'</span></span>'+
@@ -2703,6 +3124,12 @@ function acPick(i){
   inp.value = it.name || it.title || "";
   document.getElementById('ac-menu').hidden=true; inp.setAttribute('aria-expanded','false');
   if(it.__resolved){ state._picked=null; searchResolvedLocation(it); return; }
+  if(it.__geo){ state._picked=null; state._center=null; fsGeocodeThenSearch(it.name); return; }
+  if(it.lat!=null && it.lng!=null && isFinite(+it.lat)){
+    state._picked=null; state._center=null;
+    const r=(it.type==='county') ? Math.max(state.distance||8, 45) : (state.distance||8);
+    runCoordSearch(+it.lat, +it.lng, it.name||it.title, r); return;
+  }
   state._picked = it;
   runSearch();
 }
@@ -2858,6 +3285,120 @@ const LOCATION_ALIASES = [
     lat:33.9761, lng:-117.9053, radiusDefault:8 }
 ];
 function normLoc(s){ return (s==null?'':String(s)).toLowerCase().replace(/[.,]/g,' ').replace(/\s+/g,' ').trim(); }
+/* ============================================================
+   v83 LOCATION RESOLVER  (every SoCal city / ZIP / county / area /
+   landmark / alias -> coordinates). Built from EVERY active
+   search_locations row, not just type="city".
+   ZIP ownership is decided by specificity: the city whose zip_codes
+   list is shortest wins a shared ZIP (so 91745 -> Hacienda Heights,
+   not the 5-ZIP City of Industry; 91744/91746 -> La Puente; 91748 ->
+   Rowland Heights). resolveToLoc() is the single entry point.
+   ============================================================ */
+function lidxInsert(key, row, strength, spec){
+  key = normLoc(key); if(!key) return;
+  const cur = LOCATION_INDEX[key];
+  if(!cur){ LOCATION_INDEX[key] = { row:row, strength:strength, spec:spec }; return; }
+  if(strength > cur.strength){ LOCATION_INDEX[key] = { row:row, strength:strength, spec:spec }; return; }
+  if(strength === cur.strength){
+    if(spec > cur.spec){ LOCATION_INDEX[key] = { row:row, strength:strength, spec:spec }; return; }
+    if(spec === cur.spec && (+row.priority||0) > (+cur.row.priority||0)){ LOCATION_INDEX[key] = { row:row, strength:strength, spec:spec }; }
+  }
+}
+function buildLocationIndex(rows){
+  LOCATION_ROWS = (rows||[]).map(function(r){
+    return {
+      name:r.name||'', type:r.type||'city', city:r.city||'', county:r.county||'', state:r.state||'',
+      lat:+r.lat, lng:+r.lng, slug:r.slug||'', priority:+(r.priority||0), description:r.description||'',
+      zips:(r.zip_codes||[]).map(String), aliases:(r.aliases||[]).map(String), emoji:r.emoji||''
+    };
+  }).filter(function(r){ return isFinite(r.lat) && isFinite(r.lng); });
+  LOCATION_INDEX = Object.create(null);
+  LOCATION_ROWS.forEach(function(r){
+    if(r.name) lidxInsert(r.name, r, 5, 1);
+    if(r.city) lidxInsert(r.city, r, 5, 1);
+    if(r.slug) lidxInsert(r.slug, r, 5, 1);
+    if(r.name) lidxInsert(r.type+':'+r.name, r, 5, 1);
+    if(r.county) lidxInsert(r.county, r, 1, 1);                 // explicit county rows (str5 via name) outrank this
+    (r.aliases||[]).forEach(function(a){ lidxInsert(a, r, 2, 1); });
+    if(r.type==='city' || r.type==='county'){
+      const zlen=(r.zips||[]).length||1;                        // fewer ZIPs => more specific owner of a shared ZIP
+      (r.zips||[]).forEach(function(z){ lidxInsert(z, r, 3, 1/zlen); });
+    }
+  });
+}
+function locOf(r){ return r ? { lat:+r.lat, lng:+r.lng, label:r.name, type:r.type, county:r.county, slug:r.slug, state:r.state } : null; }
+const _LOC_TPREC = { city:0, county:1, area:2, landmark:3 };
+/* score every row against the query; returns sorted [{r,rank,spec}] */
+function locationScored(raw){
+  const q=normLoc(raw); if(!q) return [];
+  const numeric=/^[0-9]+$/.test(q);
+  const out=[];
+  LOCATION_ROWS.forEach(function(r){
+    let rank=99, spec=0;
+    if(numeric){
+      let hit=false;
+      (r.zips||[]).forEach(function(z){
+        if(z===q){ rank=Math.min(rank,0); hit=true; }
+        else if(q.length>=2 && z.indexOf(q)===0){ rank=Math.min(rank,1); hit=true; }
+      });
+      if(hit) spec = 1/((r.zips||[]).length||1);
+    } else {
+      const nm=normLoc(r.name), cy=normLoc(r.city);
+      if(nm===q || cy===q) rank=0;
+      else if(nm.indexOf(q)===0 || cy.indexOf(q)===0) rank=1;
+      else if((r.aliases||[]).some(function(a){ return normLoc(a).indexOf(q)===0; })) rank=2;
+      else if(nm.indexOf(q)>=0 || (r.aliases||[]).some(function(a){ return normLoc(a).indexOf(q)>=0; })) rank=3;
+    }
+    if(rank<99) out.push({ r:r, rank:rank, spec:spec });
+  });
+  out.sort(function(a,b){
+    return a.rank-b.rank
+        || (b.spec-a.spec)
+        || ((_LOC_TPREC[a.r.type]==null?4:_LOC_TPREC[a.r.type]) - (_LOC_TPREC[b.r.type]==null?4:_LOC_TPREC[b.r.type]))
+        || ((+b.r.priority||0) - (+a.r.priority||0))
+        || String(a.r.name).localeCompare(String(b.r.name));
+  });
+  return out;
+}
+/* single best match: exact index hit first (handles ZIP specificity), then fuzzy scorer */
+function resolveToLoc(raw){
+  const q=normLoc(raw); if(!q) return null;
+  if(LOCATION_INDEX[q]) return locOf(LOCATION_INDEX[q].row);
+  const q2=q.replace(/\s+(ca|california|usa|us)$/,'').trim();
+  if(q2 && q2!==q && LOCATION_INDEX[q2]) return locOf(LOCATION_INDEX[q2].row);
+  const sc=locationScored(raw);
+  return sc.length ? locOf(sc[0].r) : null;
+}
+function locEmoji(r){ if(r.emoji) return r.emoji; return r.type==='county'?'🗺️':r.type==='area'?'🏞️':'📍'; }
+function locSub(r){
+  const word = r.type==='county'?'County':r.type==='area'?'Area':r.type==='landmark'?'Landmark':'';
+  const place = r.county || stateFullName(r.state||'') || '';
+  if(word) return place ? (word+' · '+place) : word;
+  return place || 'PPO offices nearby';
+}
+function locItem(r){
+  return { type:r.type, key:r.slug||r.name, name:r.name, title:r.name, emoji:locEmoji(r),
+           lat:+r.lat, lng:+r.lng, county:r.county, priority:+r.priority||0,
+           sub:locSub(r), ct:(CITY_COUNTS[(r.city||r.name||'').toLowerCase()]||'') };
+}
+/* ranked suggestion list across all types (city, ZIP, county, area, landmark) */
+function locationSuggest(raw, limit){
+  const sc=locationScored(raw); const seen={}; const out=[];
+  for(let i=0;i<sc.length && out.length<(limit||8);i++){
+    const r=sc[i].r; const k=(r.type+'|'+(r.slug||r.name)).toLowerCase();
+    if(seen[k]) continue; seen[k]=1; out.push(locItem(r));
+  }
+  return out;
+}
+/* geocode an unknown place/ZIP, then run a coordinate search at the current radius */
+async function fsGeocodeThenSearch(q){
+  try{
+    const g = await fsGeocode(q);
+    if(g){ runCoordSearch(g.lat, g.lng, g.label||q, state.distance||8); return; }
+  }catch(e){}
+  toast("Place not found","Try a city name or 5-digit ZIP code", 'warn');
+}
+
 /* PART 1/2: one resolver for the search rail, autocomplete, fullscreen + radius search.
    Order: exact alias -> exact ZIP -> ZIP prefix -> city/address keyword. Returns {lat,lng,label,radiusDefault,future} or null.
    Never strips a comma address down to the street number before trying. */
@@ -2928,6 +3469,7 @@ async function searchResolvedLocation(loc){
   state.seoHome=false; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
   state._center={lat:loc.lat,lng:loc.lng,label:label};
   state.mapCenter={lat:loc.lat,lng:loc.lng,label:label,radius:radius};
+  state._lastCoord={lat:loc.lat,lng:loc.lng,label:label};
   ROWLAND_ACTIVE=true;
   console.debug('Resolved location:', label, '(local alias)');
   console.debug('Search center:', loc.lat, loc.lng, '· radius', radius);
@@ -3025,6 +3567,7 @@ async function loadLifestyleAnchors(){
       const { data, error } = await sb.from('map_anchors').select('*').eq('is_active',true).in('category',LIFE_CATS);
       if(!error && Array.isArray(data)){
         LIFESTYLE = data.map(a=>Object.assign({},a,{_lat:+a.latitude,_lng:+a.longitude})).filter(a=>isFinite(a._lat)&&isFinite(a._lng));
+        _LIFE_PLACES=null;
       }
     }catch(e){ console.warn('lifestyle load failed', e); }
     LIFE_LOADED=true; return LIFESTYLE;
@@ -3073,6 +3616,39 @@ function clusterLifestyle(items, projectFn, px){
   }
   return out;
 }
+/* ---- v81: merge same-place anchors so one physical spot = one clickable marker ----
+   A place that is tagged as several lifestyle types (e.g. Schabarum: dog park +
+   dog-friendly park + hiking trail) used to render as N coincident points, so the
+   cluster could never split and you could not open it. We now collapse anchors that
+   share a name (or sit on the same point) into a single multi-category place. */
+let _LIFE_PLACES=null;
+function ccLifeNorm(s){ return (s==null?'':String(s)).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
+function lifeCatLabel(c){ return ({dog_park:'Dog park',dog_friendly_park:'Dog-friendly park',hiking_trail:'Hiking trail',farmers_market:'Farmers market'})[c] || String(c||'').replace(/_/g,' '); }
+function lifestylePlaces(){
+  if(_LIFE_PLACES) return _LIFE_PLACES;
+  const map={};
+  (LIFESTYLE||[]).forEach(function(a){
+    if(!isFinite(a._lat)||!isFinite(a._lng)) return;
+    const nm=ccLifeNorm(a.name);
+    const key = nm || (a._lat.toFixed(4)+','+a._lng.toFixed(4));   // same name OR same point = same place
+    let p=map[key];
+    if(!p){ p=map[key]={ name:a.name||'', address:a.address||'', city:a.city||'', state:a.state||'', cats:[], _slat:0, _slng:0, _n:0 }; }
+    if(p.cats.indexOf(a.category)<0) p.cats.push(a.category);
+    p._slat+=a._lat; p._slng+=a._lng; p._n++;
+    if(!p.name && a.name) p.name=a.name;
+    if(!p.address && a.address) p.address=a.address;
+    if(!p.city && a.city) p.city=a.city;
+    if(!p.state && a.state) p.state=a.state;
+  });
+  _LIFE_PLACES=Object.keys(map).map(function(k){ const p=map[k]; p._lat=p._slat/p._n; p._lng=p._slng/p._n; return p; });
+  return _LIFE_PLACES;
+}
+function lifePlacePrimaryCat(p, activeCats){
+  if(activeCats && activeCats.length){ for(let i=0;i<p.cats.length;i++){ if(activeCats.indexOf(p.cats[i])>=0) return p.cats[i]; } }
+  return p.cats[0];
+}
+function lifePlaceColor(p, activeCats){ const s=LIFE_STYLES[lifePlacePrimaryCat(p,activeCats)]||{}; return p.color||s.color||'#64748b'; }
+function lifePlaceEmoji(p, activeCats){ const s=LIFE_STYLES[lifePlacePrimaryCat(p,activeCats)]||{}; return p.icon||s.emoji||'\u2022'; }
 function renderLifestyle(){
   if(!window.L || !fullMap) return;
   const layer=ensureLifestyleLayer(); if(!layer) return;
@@ -3081,56 +3657,84 @@ function renderLifestyle(){
   if(!cats.length) return;
   let bounds=null; try{ bounds=fullMap.getBounds(); }catch(e){}
   const items=[];
-  LIFESTYLE.forEach(function(a){
-    if(cats.indexOf(a.category)<0) return;
-    if(!isFinite(a._lat)||!isFinite(a._lng)) return;
-    if(bounds && !bounds.contains([a._lat,a._lng])) return;
-    items.push({ a:a, lat:a._lat, lng:a._lng });
+  lifestylePlaces().forEach(function(p){
+    if(!p.cats.some(function(c){ return cats.indexOf(c)>=0; })) return;   // show if ANY of its types is active
+    if(!isFinite(p._lat)||!isFinite(p._lng)) return;
+    if(bounds && !bounds.contains([p._lat,p._lng])) return;
+    items.push({ p:p, lat:p._lat, lng:p._lng });
   });
   if(!items.length) return;
   const project=function(lat,lng){ return fullMap.latLngToContainerPoint([lat,lng]); };
   const groups=clusterLifestyle(items, project, 46);
-  groups.forEach(function(g){ if(g.length===1) addLifestyleDot(g[0].a, layer); else addLifestyleCluster(g, layer); });
+  groups.forEach(function(g){ if(g.length===1) addLifestyleDot(g[0].p, layer, cats); else addLifestyleCluster(g, layer, project, cats); });
 }
-function lifePopupHtml(anchor){
-  const style=LIFE_STYLES[anchor.category] || { emoji:anchor.icon||"\u2022", color:anchor.color||"#64748b" };
-  const emoji=anchor.icon||style.emoji;
-  const cat=String(anchor.category||'').replace(/_/g,' ');
-  const where=[anchor.city,anchor.state].filter(Boolean).join(', ');
-  const lat=anchor._lat, lng=anchor._lng;
-  const dest=[anchor.name,anchor.address,anchor.city,anchor.state].filter(Boolean).join(', ') || (lat+','+lng);
+function lifePopupHtml(place, activeCats){
+  const emoji=lifePlaceEmoji(place, activeCats);
+  const catList = place.cats.map(function(c){ return escapeHtml(lifeCatLabel(c)); }).join(' \u00b7 ');
+  const where=[place.city,place.state].filter(Boolean).join(', ');
+  const lat=place._lat, lng=place._lng;
+  const dest=[place.name,place.address,place.city,place.state].filter(Boolean).join(', ') || (lat+','+lng);
   const gdir='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(dest);
+  const meta=catList+(where?(' \u00b7 '+escapeHtml(where)):'');
   return '<div class="cc-life-pop">'
-    +'<strong>'+escapeHtml(emoji+' '+(anchor.name||'Nearby place'))+'</strong>'
-    +'<div class="cc-life-meta">'+escapeHtml(cat)+(where?(' \u00b7 '+escapeHtml(where)):'')+'</div>'
+    +'<strong>'+escapeHtml(emoji+' '+(place.name||'Nearby place'))+'</strong>'
+    +'<div class="cc-life-meta">'+meta+'</div>'
     +'<div class="cc-popup-actions">'
       +'<a class="cc-popup-link" href="'+escapeAttr(gdir)+'" target="_blank" rel="noopener">Open in Google Maps \u2197</a>'
       +'<button class="cc-popup-ghost" onclick="window.findNearbyDentistsFromLifestyle&&window.findNearbyDentistsFromLifestyle('+lat+','+lng+')">Dentists nearby</button>'
     +'</div></div>';
 }
 /* quiet, category-colored dot; name pill on hover, full details + directions on click */
-function addLifestyleDot(anchor, layer){
-  const lat=anchor._lat, lng=anchor._lng; if(!isFinite(lat)||!isFinite(lng)) return;
-  const style=LIFE_STYLES[anchor.category] || { emoji:anchor.icon||"\u2022", color:anchor.color||"#64748b" };
-  const color=anchor.color||style.color;
-  const emoji=anchor.icon||style.emoji;
+function addLifestyleDot(place, layer, activeCats){
+  const lat=place._lat, lng=place._lng; if(!isFinite(lat)||!isFinite(lng)) return;
+  const color=lifePlaceColor(place, activeCats);
+  const emoji=lifePlaceEmoji(place, activeCats);
   const m=L.marker([lat,lng],{ pane:'lifestyle', interactive:true, keyboard:false, riseOnHover:true,
     icon:L.divIcon({ className:'cc-life-dot-wrap', html:'<span class="cc-life-dot" style="--cc-accent:'+color+'"></span>', iconSize:[16,16], iconAnchor:[8,8] }) });
-  try{ m.bindTooltip('<span class="cc-life-tip" style="--cc-accent:'+color+'"><span>'+escapeHtml(emoji)+'</span><b>'+escapeHtml(anchor.name||'')+'</b></span>', { direction:'top', offset:[0,-9], opacity:1, className:'cc-life-tipwrap' }); }catch(e){}
-  m.bindPopup(lifePopupHtml(anchor), { className:'cc-life-popwrap', maxWidth:240, minWidth:190, offset:[0,-8], autoPanPadding:[24,24] });
+  const tipName = (place.name||'') + (place.cats.length>1 ? (' \u00b7 '+place.cats.length+' types') : '');
+  try{ m.bindTooltip('<span class="cc-life-tip" style="--cc-accent:'+color+'"><span>'+escapeHtml(emoji)+'</span><b>'+escapeHtml(tipName)+'</b></span>', { direction:'top', offset:[0,-9], opacity:1, className:'cc-life-tipwrap' }); }catch(e){}
+  m.bindPopup(lifePopupHtml(place, activeCats), { className:'cc-life-popwrap', maxWidth:250, minWidth:190, offset:[0,-8], autoPanPadding:[24,24] });
   m.addTo(layer);
 }
-/* frosted count bubble for a tight pixel-cluster; tap to zoom in and split it apart */
-function addLifestyleCluster(group, layer){
+/* chooser popup for a cluster that cannot be split apart (coincident points / max zoom) */
+function lifeClusterPopupHtml(group, activeCats){
+  const rows=group.slice(0,8).map(function(it){
+    const p=it.p; const emoji=lifePlaceEmoji(p,activeCats);
+    const dest=[p.name,p.address,p.city,p.state].filter(Boolean).join(', ') || (p._lat+','+p._lng);
+    const gdir='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(dest);
+    const cat=p.cats.map(function(c){ return escapeHtml(lifeCatLabel(c)); }).join(' \u00b7 ');
+    return '<a class="cc-life-choice" href="'+escapeAttr(gdir)+'" target="_blank" rel="noopener">'
+      +'<span class="cc-life-choice-emoji">'+escapeHtml(emoji)+'</span>'
+      +'<span class="cc-life-choice-txt"><b>'+escapeHtml(p.name||'Nearby place')+'</b><span>'+cat+'</span></span>'
+      +'<span class="cc-life-choice-arw">\u2197</span></a>';
+  }).join('');
+  const more = group.length>8 ? ('<div class="cc-life-choice-more">+'+(group.length-8)+' more in this spot</div>') : '';
+  return '<div class="cc-life-pop cc-life-choices"><strong>'+group.length+' spots here</strong>'+rows+more+'</div>';
+}
+/* frosted count bubble for a tight pixel-cluster. If the members can be separated by
+   zooming, tap zooms in; if they are coincident (or we are at max zoom) tap opens a
+   chooser so you can still reach each place in Google Maps. */
+function addLifestyleCluster(group, layer, project, activeCats){
   let la=0, lo=0; group.forEach(function(it){ la+=it.lat; lo+=it.lng; }); la/=group.length; lo/=group.length;
   const n=group.length;
-  const cols=[]; group.forEach(function(it){ const s=LIFE_STYLES[it.a.category]||{}; const c=it.a.color||s.color||'#64748b'; if(cols.indexOf(c)<0 && cols.length<3) cols.push(c); });
+  const cols=[]; group.forEach(function(it){ const c=lifePlaceColor(it.p, activeCats); if(cols.indexOf(c)<0 && cols.length<3) cols.push(c); });
   const dots=cols.map(function(c){ return '<i style="background:'+c+'"></i>'; }).join('');
   const size = n>=25?50 : n>=10?42 : 34;
+  let canSplit=false;
+  try{
+    const atMax = (fullMap.getZoom()||11) >= (fullMap.getMaxZoom()||19)-0.01;
+    let spread=false; const ps=group.map(function(it){ return project(it.lat,it.lng); });
+    for(let i=1;i<ps.length;i++){ const dx=ps[i].x-ps[0].x, dy=ps[i].y-ps[0].y; if(dx*dx+dy*dy>100){ spread=true; break; } }
+    canSplit = spread && !atMax;
+  }catch(e){ canSplit=true; }
   const m=L.marker([la,lo],{ pane:'lifestyle', interactive:true, keyboard:false,
     icon:L.divIcon({ className:'cc-life-cluster-wrap', html:'<span class="cc-life-cluster" style="width:'+size+'px;height:'+size+'px"><b>'+n+'</b><em class="cc-life-cdots">'+dots+'</em></span>', iconSize:[size,size], iconAnchor:[size/2,size/2] }) });
-  try{ m.bindTooltip(n+' nearby spots \u00b7 tap to expand', { direction:'top', offset:[0,-(size/2+3)], opacity:1, className:'cc-life-tipwrap plain' }); }catch(e){}
-  m.on('click', function(){ try{ const z=Math.min(fullMap.getMaxZoom(), (fullMap.getZoom()||11)+2); if(fullMap.flyTo) fullMap.flyTo([la,lo], z, {duration:.45}); else fullMap.setView([la,lo], z); }catch(e){} });
+  if(!canSplit){ m.bindPopup(lifeClusterPopupHtml(group, activeCats), { className:'cc-life-popwrap', maxWidth:268, minWidth:206, offset:[0,-(size/2+2)], autoPanPadding:[24,24] }); }
+  try{ m.bindTooltip(n+' nearby spots \u00b7 tap to '+(canSplit?'expand':'open'), { direction:'top', offset:[0,-(size/2+3)], opacity:1, className:'cc-life-tipwrap plain' }); }catch(e){}
+  m.on('click', function(){
+    if(!canSplit){ try{ m.openPopup(); }catch(e){} return; }
+    try{ const z=Math.min(fullMap.getMaxZoom(), (fullMap.getZoom()||11)+2); if(fullMap.flyTo) fullMap.flyTo([la,lo], z, {duration:.45}); else fullMap.setView([la,lo], z); }catch(e){}
+  });
   m.addTo(layer);
 }
 function updateLifestyleLegend(cats){
@@ -3273,6 +3877,7 @@ function fsPinCard(d){
 }
 function resolveCenter(name){
   if(state._center && state._center.lat!=null) return {lat:+state._center.lat, lng:+state._center.lng, label:state._center.label||name};
+  const _loc=resolveToLoc(name); if(_loc && isFinite(_loc.lat)) return {lat:_loc.lat, lng:_loc.lng, label:_loc.label||name};
   const k=(name||'').toLowerCase();
   if(CITIES[k]) return {lat:CITIES[k].lat, lng:CITIES[k].lng, label:CITIES[k].label||name};
   return null;
@@ -3375,7 +3980,7 @@ function fsAfterSearch(){
 /* recenter on the device's current location, drop a "you are here" pin, then search */
 function fsUseMyLocation(){
   const h=document.getElementById('fmc-hint');
-  if(!('geolocation' in navigator)){ if(h) h.textContent='Location unavailable — type a city or ZIP above'; toast("Location unavailable","Type a city or ZIP to set the center", 'warn'); return; }
+  if(!('geolocation' in navigator)){ if(h) h.textContent='Location unavailable · type a city or ZIP above'; toast("Location unavailable","Type a city or ZIP to set the center", 'warn'); return; }
   const insecure = (location.protocol==='file:' || window.isSecureContext===false);
   if(h) h.textContent='Finding your location…'; toast("Locating…","Asking your browser to share your location", 'info');
   navigator.geolocation.getCurrentPosition(function(pos){
@@ -3391,7 +3996,7 @@ function fsUseMyLocation(){
     if(insecure) msg="Location needs a secure (https) page. It will work on covercapy.com; for now type a city or ZIP.";
     else if(err && err.code===1) msg="Location is blocked for this site. Allow it in your browser settings, or type a city or ZIP.";
     else msg="Type a city or ZIP to set the center instead.";
-    if(h) h.textContent='Couldn\u2019t get your location — type a city or ZIP';
+    if(h) h.textContent='Couldn\u2019t get your location · type a city or ZIP';
     toast("Couldn\u2019t get your location", msg, 'warn');
   }, { enableHighAccuracy:true, timeout:9000, maximumAge:60000 });
 }
@@ -3408,6 +4013,13 @@ async function fsCenterOnLocation(){
     ROWLAND_ACTIVE=true; console.debug('Resolved location:', _rl.label, '(local alias)'); console.debug('Search center:', _rl.lat, _rl.lng);
     fsSearchNearby(); return;
   }
+  // v83: resolve any indexed city/ZIP/county/area/landmark/alias to coordinates, then search this area.
+  const _loc=resolveToLoc(q);
+  if(_loc && isFinite(_loc.lat)){
+    state.distance = state.distance || 10;
+    state.mapCenter = {lat:_loc.lat, lng:_loc.lng, label:_loc.label||q, radius:state.distance};
+    fsSearchNearby(); return;
+  }
   const key=q.toLowerCase().replace(/,.*$/,'').trim();
   if(CITIES[key] && CITIES[key].lat!=null){
     state.mapCenter={lat:CITIES[key].lat, lng:CITIES[key].lng, label:CITIES[key].label||q, radius:state.distance||10};
@@ -3416,7 +4028,7 @@ async function fsCenterOnLocation(){
   if(h) h.textContent='Finding "'+q+'"…';
   const geo=await fsGeocode(q);
   if(geo){ state.mapCenter={lat:geo.lat, lng:geo.lng, label:geo.label||q, radius:state.distance||10}; fsSearchNearby(); }
-  else { if(h) h.textContent='Couldn\u2019t find that place — try a nearby city or 5-digit ZIP'; toast("Place not found","Try a city name or 5-digit ZIP code", 'warn'); }
+  else { if(h) h.textContent='Couldn\u2019t find that place · try a nearby city or 5-digit ZIP'; toast("Place not found","Try a city name or 5-digit ZIP code", 'warn'); }
 }
 /* lightweight geocoder (OpenStreetMap Nominatim) — resolves ZIPs/addresses on the live https site.
    Degrades quietly when offline or blocked; known cities never reach this path. */
@@ -3472,7 +4084,7 @@ function toggleNavMenu(){ const m=document.getElementById('mobile-menu'); if(!m)
 function closeNavMenu(){ const m=document.getElementById('mobile-menu'); if(m) m.classList.remove('open'); const t=document.querySelector('.menu-toggle'); if(t) t.setAttribute('aria-expanded','false'); }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNavMenu(); });
 function fsInval(){ setTimeout(()=>{ if(fullMap){ try{ fullMap.invalidateSize(); }catch(e){} } },300); }
-function syncFsPeek(){ const lbl=document.getElementById('fs-peeklabel'); if(!lbl) return; let n=0; try{ n=fsFiltered().length; }catch(e){} lbl.textContent=n.toLocaleString()+' office'+(n===1?'':'s')+' nearby — tap to browse'; }
+function syncFsPeek(){ const lbl=document.getElementById('fs-peeklabel'); if(!lbl) return; let n=0; try{ n=fsFiltered().length; }catch(e){} lbl.textContent=n.toLocaleString()+' office'+(n===1?'':'s')+' nearby · tap to browse'; }
 /* grip taps toggle between the open list and a slim "peek" bar that reveals the full map */
 function toggleFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.toggle('peek'); syncFsPeek(); fsInval(); }
 function peekFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.add('peek'); syncFsPeek(); fsInval(); }
@@ -4120,8 +4732,12 @@ function openDentistDrawer(id){
     '</div>';
   const corrMail='mailto:hello@covercapy.com?subject='+encodeURIComponent('Correction for '+(d.practice||'this listing'));
   const claimBlock=!claimed
-    ? '<div class="dd-claim"><b>Is this your practice?</b><p>This is the public CoverCapy listing for '+escapeHtml(d.practice)+'. Claim your free profile to verify your PPO plans and add your website, online booking, photos, and hours. Your profile is what patients see when they search your practice name.</p><button class="dd-btn gold" onclick="openClaim(\''+idj+'\')">Claim this profile, free</button><a class="dd-link" style="display:block;margin-top:11px" href="'+corrMail+'">Not the owner? Suggest a correction</a></div>'
+    ? '<div class="dd-claim dd-claim-unclaimed"><b>Is this your dental office?</b><p>Claiming lets your team update office details, add doctor information, add PPO notes, upload photos, and unlock better profile presentation \u2014 it\u2019s also what patients see when they search '+escapeHtml(d.practice)+'.</p><button class="dd-btn cc-claim-btn" onclick="openClaim(\''+idj+'\')"><i class="cc-ci" aria-hidden="true">\u2726</i>Claim This Profile</button><a class="dd-link" style="display:block;margin-top:11px" href="#" onclick="openModal(\'m-claim\');return false;">Learn about CoverCapy for Dentists</a><a class="dd-link" style="display:block;margin-top:7px;font-size:12px;color:var(--ink-faint)" href="'+corrMail+'">Not the owner? Suggest a correction</a></div>'
     : '<div class="dd-claim"><b>Verified by the practice \u2726</b><p>This office manages its CoverCapy profile, including its website, booking, and PPO details. Platinum Elite unlocks priority placement and patient PPO requests.</p><button class="dd-btn soft" onclick="ddRequest()">Request an appointment</button></div>';
+
+  const verifyPanel = !claimed
+    ? '<div class="dd-verify"><b>Not sure they take your PPO?</b><p>Ask '+escapeHtml(d.practice)+' to confirm they\u2019re in-network for your plan \u2014 CoverCapy sends the request for you and notifies you when they reply. This public listing hasn\u2019t verified the details below:</p><ul class="dd-vmiss"><li>Appointment link not added</li><li>PPO details not verified</li><li>Practice photos not uploaded</li><li>Doctor info not confirmed</li></ul><button class="dd-btn cc-claim-btn" onclick="openInsuranceVerify(\''+idj+'\')"><i class="cc-ci" aria-hidden="true">\u2726</i>Verify Insurance Acceptance</button></div>'
+    : '';
 
   document.getElementById('ddrawer').innerHTML=
     '<div class="dd-head"><div class="dd-cover'+coverCls+'">'+cover+'<button class="dd-x" onclick="closeDentistDrawer()" aria-label="Close">\u00d7</button></div>'+
@@ -4140,7 +4756,7 @@ function openDentistDrawer(id){
       '<button class="dd-tab" data-t="location" onclick="ddTab(\'location\')">Location</button>'+
       '<button class="dd-tab" data-t="reviews" onclick="ddTab(\'reviews\')">Reviews</button>'+
       '<button class="dd-tab" data-t="faqs" onclick="ddTab(\'faqs\')">FAQs</button></div>'+
-    '<div class="dd-body">'+overview+insurance+services+location+reviewsP+faqs+ddLifestyle(d)+claimBlock+ddNearbyVerified(d)+'</div>'+
+    '<div class="dd-body">'+overview+insurance+services+location+reviewsP+faqs+ddLifestyle(d)+verifyPanel+claimBlock+ddNearbyVerified(d)+'</div>'+
     '<div class="dd-foot"><a class="vfp" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View full profile \u2192</a><button class="cta" onclick="ddRequest()">'+(hasBooking?'Request Appointment':'Verify PPO')+'</button></div>';
 
   document.getElementById('dd-scrim').classList.add('open');
@@ -4427,6 +5043,437 @@ function renderSeo(){ renderQuickChips(); renderSeoLinks(); renderNearbyCityLink
   if(window.matchMedia && window.matchMedia('(max-width:760px)').matches){ sec.classList.add('collapsed'); t.setAttribute('aria-expanded','false'); }
 })();
 
+/* ============================================================
+   v80 UNIVERSAL COMMAND SEARCH
+   One bar -> resolver -> command palette -> existing backend.
+   Drives the proven search functions through the hidden inputs
+   (#q-where / #q-spec / #q-carrier / #q-rad), the coordinate RPC,
+   searchResolvedLocation, openProfile and openFutureExpansionDrawer.
+   ============================================================ */
+const UCMD_ICONS = {
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"></path><circle cx="12" cy="11" r="2.2"></circle></svg>',
+  tooth:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.6C5.6 3.6 4.2 5 4.2 7.3c0 1.6.5 2.6.9 4.1.3 1.1.3 2.1.6 3.5.3 1.6.6 4.4 1.7 4.4 1.2 0 1.1-2.5 1.8-4 .3-.7.7-1 1.3-1s1 .3 1.3 1c.7 1.5.6 4 1.8 4 1.1 0 1.4-2.8 1.7-4.4.3-1.4.3-2.4.6-3.5.4-1.5.9-2.5.9-4.1 0-2.3-1.4-3.7-3.3-3.7-1.5 0-2.4.9-4.3.9s-2.8-.9-4.3-.9z"></path></svg>',
+  park:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l5 7h-3l3 4.5h-4V21h-2v-6.5H7L10 10H7l5-7z"></path></svg>',
+  paw:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="6.6" cy="11" r="1.8"></circle><circle cx="10" cy="7.6" r="1.8"></circle><circle cx="14" cy="7.6" r="1.8"></circle><circle cx="17.4" cy="11" r="1.8"></circle><path d="M12 12.6c-2.4 0-4.4 1.8-4.4 3.8 0 1.5 1.2 2.2 2.5 2.2.9 0 1.3-.3 1.9-.3s1 .3 1.9.3c1.3 0 2.5-.7 2.5-2.2 0-2-2-3.8-4.4-3.8z"></path></svg>',
+  trail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-11 4 6 2-3 6 8z"></path></svg>',
+  basket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14l-1.2 9.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 10z"></path><path d="M9 10l3-6 3 6"></path></svg>',
+  zip:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2z"></path><path d="M9 4v14M15 6v14"></path></svg>',
+  spark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.2 6.2l2.6 2.6M15.2 15.2l2.6 2.6M17.8 6.2l-2.6 2.6M8.8 15.2l-2.6 2.6"></path></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"></path><path d="M9.4 12l1.8 1.8L15 10"></path></svg>',
+  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"></path></svg>'
+};
+
+/* local landmark + location fallbacks (used when not present in Supabase) */
+const UCMD_LANDMARKS = [
+  { name:'Schabarum Regional Park', type:'landmark', category:'Regional park',
+    aliases:['schabarum','schabarum park','schabarum regional park','peter f schabarum regional park','schabarum regional county park'],
+    near:'Rowland Heights', city:'Rowland Heights / Hacienda Heights', lat:33.9936, lng:-117.9414 }
+];
+const UCMD_LOCS = [
+  { type:'location', label:'Rowland Heights, CA 91748', city:'Rowland Heights', cityKey:'rowland heights', zip:'91748', county:'Los Angeles County', lat:33.9761, lng:-117.9053, aliases:['rowland heights','rowland heights ca','rowland heights ca 91748','91748'] },
+  { type:'location', label:'Hacienda Heights, CA 91745', city:'Hacienda Heights', cityKey:'hacienda heights', zip:'91745', county:'Los Angeles County', lat:33.9936, lng:-117.9687, aliases:['hacienda heights','hacienda heights ca','hacienda heights ca 91745','91745'] }
+];
+const UCMD_TREATMENTS = [
+  ['Invisalign','invisalign'],['Implants','implant'],['Veneers','veneer'],['Crowns','crown'],
+  ['Root Canal','root canal'],['Emergency','emergency'],['Cosmetic','cosmetic'],['Whitening','whiten'],
+  ['Cleaning','clean'],['Orthodontics','ortho'],['TMJ','tmj'],['General','family']
+];
+const UCMD_RADII = [5,8,15,25,30];
+
+function ucmdNorm(s){ return (s==null?'':String(s)).toLowerCase().replace(/[.,]/g,' ').replace(/\s+/g,' ').trim(); }
+function ucmdEsc(s){ try{ if(typeof esc==='function') return esc(s); }catch(e){} return String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];}); }
+function ucmdTierLabel(d){ return ({platinum_elite:'Platinum Elite',capy_accredited:'Capy Accredited',verified:'Verified PPO'})[d.tier] || 'Dental office'; }
+function ucmdCatLabel(c){ return ({dog_park:'Dog park',dog_friendly_park:'Dog-friendly park',hiking_trail:'Hiking trail',farmers_market:'Farmers market'})[c] || String(c||'').replace(/_/g,' '); }
+function ucmdCatIcon(c){ return ({dog_park:'paw',dog_friendly_park:'park',hiking_trail:'trail',farmers_market:'basket'})[c] || 'pin'; }
+
+/* coordinate search: center map on lat/lng and list PPO dentists nearby.
+   Reuses the same coordinate RPC + centroid fallback as "use my location". */
+async function runCoordSearch(lat,lng,label,radius){
+  radius = radius || state.distance || 8;
+  state.distance = radius;
+  try{ const r=document.getElementById('q-rad'); if(r) r.value=radius; }catch(e){}
+  try{ setRadiusUI(radius); }catch(e){}
+  const w=document.getElementById('q-where'); if(w) w.value=label||'';
+  state._picked=null; state._whereStash=label; state._lastLoc=label; state._title=label;
+  state.seoHome=false; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
+  state._center={lat:lat,lng:lng,label:label};
+  state.mapCenter={lat:lat,lng:lng,label:label,radius:radius};
+  state._lastCoord={lat:lat,lng:lng,label:label};
+  if(typeof sb!=='undefined' && sb && SB_READY){
+    try{
+      const { data, error } = await sb.rpc('search_dentists_near_coordinates', { in_lat:lat, in_lng:lng, radius_miles:Math.max(radius, PLAT_REACH) });
+      if(error) throw error;
+      SERVER_ORDER=(data||[]).map(function(r){ return { id:r.id, dist:+r.distance_miles, tier:r.tier }; });
+      renderFilters(); render(); afterSearchUI(label); return;
+    }catch(e){ console.warn('ucmd coord search failed; centroid fallback', e); }
+  }
+  SERVER_ORDER=null; CITIES['__ucmd__']={lat:lat,lng:lng,label:label}; state.city='__ucmd__';
+  renderFilters(); render(); afterSearchUI(label);
+}
+
+/* dispatch helpers (by result type) */
+function ucmdCenterSearch(lat,lng,label,radius){ ucmdClose(); runCoordSearch(lat,lng,label,radius||state.distance||8); }
+function ucmdOpenDentist(id){ ucmdClose(); try{ if(typeof openProfile==='function'){ openProfile(id); return; } }catch(e){} }
+function ucmdFilterAll(){
+  state._picked=null; state._lastCoord=null; state.seoHome=false; state.allCounty=true;
+  state.areaKeys=null; state.areaLabel=null; SERVER_ORDER=null; state._lastLoc=''; state._center=null; state.mapCenter=null;
+  renderFilters(); render(); try{ if(typeof applySeo==='function') applySeo(); }catch(e){} try{ fitMap(); }catch(e){}
+}
+function ucmdApplyTreatment(spec, loc){
+  ucmdClose(); state._picked=null;
+  state.spec=spec; try{ const s=document.getElementById('q-spec'); if(s) s.value=spec; }catch(e){}
+  if(loc){ runCoordSearch(loc.lat,loc.lng,loc.label,state.distance||8); }
+  else { ucmdFilterAll(); }
+}
+function ucmdApplyCarrier(carrier, loc){
+  ucmdClose(); state._picked=null;
+  state.carrier=carrier; state.filters.carrier=new Set([carrier]);
+  try{ const c=document.getElementById('q-carrier'); if(c) c.value=carrier; }catch(e){}
+  if(loc){ runCoordSearch(loc.lat,loc.lng,loc.label,state.distance||8); }
+  else { ucmdFilterAll(); }
+}
+function ucmdFuture(loc){
+  ucmdClose();
+  try{ if(typeof searchResolvedLocation==='function'){ searchResolvedLocation({lat:loc.lat,lng:loc.lng,label:loc.label,radiusDefault:state.distance||8}); } }catch(e){}
+  state._lastCoord={lat:loc.lat,lng:loc.lng,label:loc.label};
+  setTimeout(function(){ try{ if(typeof openFutureExpansionDrawer==='function') openFutureExpansionDrawer(); }catch(e){} }, 380);
+}
+function ucmdAllOffices(q){
+  ucmdClose(); state._picked=null; state._lastCoord=null;
+  try{ const s=document.getElementById('q-spec'); if(s) s.value=''; }catch(e){} state.spec='';
+  try{ const c=document.getElementById('q-carrier'); if(c) c.value=''; }catch(e){} state.carrier=''; state.filters.carrier=new Set();
+  const w=document.getElementById('q-where'); if(w) w.value=q||'';
+  if(typeof runSearch==='function') runSearch();
+}
+
+/* ZIP (exact or prefix) -> city, via CITY_ZIPS then the local locations */
+function ucmdZipCityMatch(zipQ){
+  let hit=null;
+  try{
+    Object.keys(CITY_ZIPS||{}).forEach(function(k){
+      (CITY_ZIPS[k]||[]).forEach(function(z){
+        if(!hit && (z===zipQ || (zipQ.length>=3 && String(z).indexOf(zipQ)===0))){
+          const c=CITIES[k]; if(c) hit={label:c.label+', CA '+z, lat:c.lat, lng:c.lng, county:(c.area||'California'), zip:z};
+        }
+      });
+    });
+  }catch(e){}
+  if(!hit){ UCMD_LOCS.forEach(function(L){ if(!hit && (L.zip===zipQ || (zipQ.length>=3 && L.zip.indexOf(zipQ)===0))) hit={label:L.label, lat:L.lat, lng:L.lng, county:L.county, zip:L.zip}; }); }
+  return hit;
+}
+
+/* resolve a location-ish remainder string to {lat,lng,label} using local data */
+function ucmdResolveLoc(rem){
+  rem=ucmdNorm(rem); if(!rem) return null;
+  for(const L of UCMD_LOCS){ const al=(L.aliases||[]).map(ucmdNorm); if(al.some(function(a){ return a===rem || a.indexOf(rem)>=0 || rem.indexOf(a)>=0; })) return {lat:L.lat,lng:L.lng,label:L.label}; }
+  try{ const keys=Object.keys(CITIES||{}); for(const k of keys){ if(k==='__me__'||k==='__rowland__'||k==='__ucmd__') continue; const c=CITIES[k]; if(!c||c.lat==null) continue; const lbl=ucmdNorm(c.label); if(lbl && (lbl.indexOf(rem)>=0 || rem.indexOf(lbl)>=0)) return {lat:c.lat,lng:c.lng,label:c.label}; } }catch(e){}
+  if(/^[0-9]{3,5}$/.test(rem)){ const z=ucmdZipCityMatch(rem); if(z) return {lat:z.lat,lng:z.lng,label:z.label}; }
+  for(const lm of UCMD_LANDMARKS){ const al=(lm.aliases||[]).map(ucmdNorm); if(al.some(function(a){ return a.indexOf(rem)>=0 || rem.indexOf(a)>=0; })) return {lat:lm.lat,lng:lm.lng,label:lm.name}; }
+  try{ if(typeof resolveLocation==='function'){ const r=resolveLocation(rem); if(r) return {lat:r.lat,lng:r.lng,label:r.label}; } }catch(e){}
+  return null;
+}
+
+function ucmdDentistItem(d){
+  return { type:'dentist', id:d.id, label:d.practice, subtitle:ucmdTierLabel(d)+(d.city?(' \u00b7 '+d.city):''),
+    icon:'tooth', action:'Open profile', source:'dentists', lat:d.lat, lng:d.lng,
+    run:function(){ ucmdOpenDentist(d.id); } };
+}
+
+/* ---- the resolver ---- */
+function resolveUniversalSearch(query){
+  const out = { query:query, best:null, dentists:[], places:[], cities:[], treatments:[], carriers:[] };
+  const q = (query||'').trim(); if(!q) return out;
+  const ql = ucmdNorm(q);
+  const isNum = /^[0-9]+$/.test(ql);
+  const dents = (typeof loadDentistsFromSupabase==='function' ? loadDentistsFromSupabase() : []) || [];
+
+  /* DENTISTS: practice / doctor / slug / city / address / zip / specialties */
+  const dExact=[], dStrong=[], dWeak=[];
+  if(ql.length>=2){
+    dents.forEach(function(d){
+      const name=ucmdNorm(d.practice); if(!name) return;
+      const slug=ucmdNorm(d.slug), doc=ucmdNorm(d.doctor);
+      const fields=[name, slug, doc, ucmdNorm(d.city), ucmdNorm(d.address), ucmdNorm(d.zip)];
+      const specs=(d.specialties||[]).map(ucmdNorm);
+      if(name===ql || slug===ql){ dExact.push(d); }
+      else if(name.indexOf(ql)===0 || (ql.split(' ')[0]===name.split(' ')[0] && ql.length>=3) || (doc && doc.indexOf(ql)===0)){ dStrong.push(d); }
+      else if(fields.some(function(f){ return f && f.indexOf(ql)>=0; }) || specs.some(function(f){ return f.indexOf(ql)>=0; })){ dWeak.push(d); }
+    });
+  }
+  const dRanked = dExact.concat(dStrong, dWeak);
+  out.dentists = dRanked.slice(0,5).map(function(d){ return ucmdDentistItem(d); });
+
+  /* PLACES: curated large landmarks only (e.g. regional parks). Lifestyle anchors
+     (dog parks, dog-friendly parks, hiking trails, farmers markets) are intentionally
+     NOT suggested here — extend UCMD_LANDMARKS with curated landmarks as they're added. */
+  const places=[];
+  UCMD_LANDMARKS.forEach(function(lm){
+    const al=(lm.aliases||[]).map(ucmdNorm);
+    const exact = al.indexOf(ql)>=0 || ucmdNorm(lm.name)===ql;
+    const partial = !exact && ql.length>=3 && (al.some(function(a){ return a.indexOf(ql)>=0; }) || ucmdNorm(lm.name).indexOf(ql)>=0);
+    if(exact||partial){
+      places.push({ type:'landmark', label:lm.name, subtitle:(lm.category||'Place')+(lm.near?(' \u00b7 near '+lm.near):''),
+        icon:'park', action:'Find dentists nearby', source:'landmark', lat:lm.lat, lng:lm.lng, _exact:exact, _landmark:lm,
+        run:(function(la,ln,nm){ return function(){ ucmdCenterSearch(la,ln,nm,state.distance||8); }; })(lm.lat,lm.lng,lm.name) });
+    }
+  });
+
+
+  /* CITIES & ZIPs */
+  const cities=[]; const seenCity={};
+  function pushCity(label, lat, lng, county, isZipRow){
+    const key=ucmdNorm(String(label).split(',')[0]); if(seenCity[key]) return; seenCity[key]=1;
+    cities.push({ type:'location', label:label, subtitle:(isZipRow?'ZIP code':'City')+' \u00b7 '+(county||'California'),
+      icon:(isZipRow?'zip':'pin'), action:'Search this area', source:'cities', lat:lat, lng:lng,
+      run:(function(la,ln,lb){ return function(){ ucmdCenterSearch(la,ln,lb,state.distance||8); }; })(lat,lng,label) });
+  }
+  if(isNum && ql.length>=3){ const z=ucmdZipCityMatch(ql); if(z) pushCity(z.label, z.lat, z.lng, z.county, true); }
+  if(ql.length>=2){
+    try{
+      Object.keys(CITIES||{}).forEach(function(k){
+        if(k==='__me__'||k==='__rowland__'||k==='__ucmd__') return;
+        const c=CITIES[k]; if(!c||c.lat==null) return;
+        const lbl=ucmdNorm(c.label);
+        const zipHit=(CITY_ZIPS[k]||[]).some(function(z){ return isNum && ql.length>=3 && String(z).indexOf(ql)===0; });
+        if(lbl.indexOf(ql)>=0 || zipHit) pushCity(c.label, c.lat, c.lng, c.area||'California', false);
+      });
+    }catch(e){}
+    UCMD_LOCS.forEach(function(L){ const al=(L.aliases||[]).map(ucmdNorm); if(al.some(function(a){ return a.indexOf(ql)>=0 || ql.indexOf(a)>=0; }) || ucmdNorm(L.city).indexOf(ql)>=0) pushCity(L.label, L.lat, L.lng, L.county, isNum); });
+  }
+  out.cities = cities.slice(0,5);
+
+  /* TREATMENT (+ optional location in the same query) */
+  let treatSpec=null, treatRemainder='';
+  for(let i=0;i<UCMD_TREATMENTS.length;i++){ const kw=UCMD_TREATMENTS[i][1]; if(ql.indexOf(kw)>=0){ treatSpec=UCMD_TREATMENTS[i][0]; treatRemainder=ucmdNorm(ql.replace(kw,' ')); break; } }
+  let treatLoc=null;
+  if(treatSpec && treatRemainder.length>=3) treatLoc=ucmdResolveLoc(treatRemainder);
+  if(treatSpec){
+    out.treatments.push({ type:'treatment',
+      label: treatLoc ? (treatSpec+' near '+treatLoc.label) : (treatSpec+' dentists'),
+      subtitle: treatLoc ? ('Treatment search \u00b7 '+(state.distance||8)+' mi radius') : 'Treatment search',
+      icon:'spark', action:'Search dentists', source:'treatments', lat:treatLoc?treatLoc.lat:null, lng:treatLoc?treatLoc.lng:null, _hasLoc:!!treatLoc,
+      run:(function(sp,lo){ return function(){ ucmdApplyTreatment(sp, lo); }; })(treatSpec, treatLoc) });
+  }
+
+  /* (Lifestyle category intent — "dog park near X", "farmers market", "trail" — intentionally
+     removed from search suggestions per product direction; the map's Nearby Lifestyle layer is unaffected.) */
+  out.places = places.concat(out.places.filter(function(p){ return places.indexOf(p)<0; }));
+  out.places = out.places.slice(0,4);
+
+  /* CARRIER (+ optional location) */
+  let carrierHit=null;
+  try{
+    (CARRIERS_CANONICAL||[]).forEach(function(c){
+      if(carrierHit) return;
+      const needles=((typeof CARRIER_ALIASES!=='undefined' && CARRIER_ALIASES[c])||[]).concat(c.toLowerCase());
+      if(needles.some(function(a){ return ql.indexOf(a)>=0; })) carrierHit=c;
+    });
+  }catch(e){}
+  if(carrierHit){
+    out.carriers.push({ type:'carrier', label:carrierHit+' PPO dentists', subtitle:'Insurance \u00b7 PPO friendly', icon:'shield', action:'Apply PPO', source:'carriers',
+      run:(function(cr){ return function(){ ucmdApplyCarrier(cr, null); }; })(carrierHit) });
+  }
+
+  /* FUTURE EXPANSION (the specific Rowland Heights future address) */
+  let futureItem=null;
+  if(ql.indexOf('fullerton rd')>=0 || ql.indexOf('1747 fullerton')>=0){
+    const floc={ lat:33.9761, lng:-117.9053, label:'Rowland Heights, CA 91748' };
+    futureItem={ type:'future_expansion', label:'KYT Dental Services (future area)', subtitle:'Future expansion interest area \u00b7 Rowland Heights', icon:'pin', action:'View expansion', source:'future', lat:floc.lat, lng:floc.lng,
+      run:(function(lo){ return function(){ ucmdFuture(lo); }; })(floc) };
+  }
+
+  /* ---- choose BEST by priority ---- */
+  let best=null;
+  const placeExact = out.places.find(function(p){ return p._exact; });
+  const cityFirst = out.cities[0];
+  const cityExact = cityFirst && ucmdNorm(String(cityFirst.label).split(',')[0])===ql;
+  if(dExact.length) best = ucmdDentistItem(dExact[0]);
+  else if(placeExact) best = placeExact;
+  else if(cityFirst && (isNum || cityExact)) best = cityFirst;
+  else if(dStrong.length) best = ucmdDentistItem(dStrong[0]);
+  else if(out.places.length) best = out.places[0];
+  else if(out.treatments.length && out.treatments[0]._hasLoc) best = out.treatments[0];
+  else if(carrierHit && /\b(in|near)\b/.test(ql)) best = out.carriers[0];
+  else if(cityFirst) best = cityFirst;
+  else if(dWeak.length) best = ucmdDentistItem(dWeak[0]);
+  else if(out.treatments.length) best = out.treatments[0];
+  else if(out.carriers.length) best = out.carriers[0];
+  else if(futureItem) best = futureItem;
+  if(futureItem && (ql.indexOf('fullerton rd')>=0 || ql.indexOf('1747 fullerton')>=0)) best = futureItem;
+  if(!best){ best = { type:'location', label:'Search "'+q+'"', subtitle:'Search PPO dentists', icon:'search', action:'Search', source:'fallback', run:(function(qq){ return function(){ ucmdAllOffices(qq); }; })(q) }; }
+  out.best = best;
+
+  /* related extras when the best match is the landmark (Schabarum) */
+  if(best && best.type==='landmark' && best._landmark){
+    const lm=best._landmark;
+    UCMD_LOCS.forEach(function(L){
+      if(out.cities.some(function(c){ return ucmdNorm(String(c.label).split(',')[0])===ucmdNorm(L.city); })) return;
+      out.cities.push({ type:'location', label:L.city+' dentists', subtitle:'City \u00b7 '+(L.county||'California'), icon:'pin', action:'Search this area', source:'cities', lat:L.lat, lng:L.lng,
+        run:(function(la,ln,lb){ return function(){ ucmdCenterSearch(la,ln,lb,state.distance||8); }; })(L.lat,L.lng,L.label) });
+    });
+    /* (Removed: auto "Dog-friendly parks / Hiking trails nearby" lifestyle sub-suggestions.) */
+    out.places = out.places.slice(0,4);
+    out.cities = out.cities.slice(0,4);
+  }
+  return out;
+}
+
+/* ---- palette rendering + interaction ---- */
+let ucmdItems=[], ucmdIdx=-1, ucmdT=null;
+function ucmdHL(title,q){ const t=ucmdEsc(title); const qn=ucmdNorm(q); if(!qn) return t; const i=ucmdNorm(title).indexOf(qn); if(i<0) return t; return ucmdEsc(title.slice(0,i))+'<span class="hl">'+ucmdEsc(title.slice(i,i+qn.length))+'</span>'+ucmdEsc(title.slice(i+qn.length)); }
+function ucmdRowHtml(it, q, cls){
+  const ico = UCMD_ICONS[it.icon] || UCMD_ICONS.pin;
+  const idx = ucmdItems.length;
+  return '<div class="ucmd-row'+(cls||'')+'" role="option" data-k="'+idx+'" onmousedown="event.preventDefault();ucmdRun('+idx+')">'
+    +'<span class="ucmd-ico">'+ico+'</span>'
+    +'<span class="ucmd-txt"><span class="ucmd-ttl">'+ucmdHL(it.label,q)+'</span><span class="ucmd-sub2">'+ucmdEsc(it.subtitle||'')+'</span></span>'
+    +'<span class="ucmd-act">'+ucmdEsc(it.action||'Open')+UCMD_ICONS.arrow+'</span>'
+  +'</div>';
+}
+function ucmdSection(title){ return '<div class="ucmd-sec">'+ucmdEsc(title)+'</div>'; }
+function ucmdRender(q){
+  const menu=document.getElementById('ucmd-menu'), inp=document.getElementById('ucmd-input'); if(!menu||!inp) return;
+  q=(q||'').trim();
+  ucmdItems=[]; ucmdIdx=-1;
+  if(!q){ menu.hidden=true; inp.setAttribute('aria-expanded','false'); return; }
+  const r=resolveUniversalSearch(q);
+  let html='';
+  const bk = r.best ? (r.best.type+'|'+ucmdNorm(r.best.label)) : '';
+  if(r.best){ html+=ucmdSection('Best match'); html+=ucmdRowHtml(r.best,q,' best'); ucmdItems.push(r.best); }
+  function add(list, label){
+    const rows=(list||[]).filter(function(it){ return (it.type+'|'+ucmdNorm(it.label))!==bk; });
+    if(!rows.length) return;
+    html+=ucmdSection(label);
+    rows.forEach(function(it){ html+=ucmdRowHtml(it,q,''); ucmdItems.push(it); });
+  }
+  add(r.dentists,'Dentists');
+  add(r.places,'Places');
+  add(r.cities,'Cities & ZIPs');
+  add(r.treatments,'Treatments');
+  add(r.carriers,'Insurance');
+  if(!ucmdItems.length){ menu.innerHTML='<div class="ucmd-empty">No matches. Try a city, ZIP, dentist, treatment, or landmark.</div>'; menu.hidden=false; inp.setAttribute('aria-expanded','true'); return; }
+  menu.innerHTML=html; menu.hidden=false; inp.setAttribute('aria-expanded','true');
+}
+function ucmdActivePaint(){ const rows=document.querySelectorAll('#ucmd-menu .ucmd-row'); rows.forEach(function(r,i){ r.classList.toggle('active', i===ucmdIdx); }); const el=document.querySelector('#ucmd-menu .ucmd-row.active'); if(el) el.scrollIntoView({block:'nearest'}); }
+function ucmdMove(d){ if(!ucmdItems.length) return; ucmdIdx=(ucmdIdx+d+ucmdItems.length)%ucmdItems.length; ucmdActivePaint(); }
+function ucmdRun(i){ const it=ucmdItems[i]; if(!it) return; ucmdClose(); try{ it.run(); }catch(e){ console.warn('ucmd run failed', e); } }
+function ucmdClose(){ const menu=document.getElementById('ucmd-menu'), inp=document.getElementById('ucmd-input'); if(menu) menu.hidden=true; if(inp) inp.setAttribute('aria-expanded','false'); }
+function ucmdInput(v){ clearTimeout(ucmdT); ucmdT=setTimeout(function(){ ucmdRender(v); }, 110); }
+function ucmdFocus(){ const inp=document.getElementById('ucmd-input'); if(inp && inp.value.trim()) ucmdRender(inp.value); }
+function ucmdKey(e){
+  const menu=document.getElementById('ucmd-menu');
+  if(e.key==='ArrowDown'){ if(menu && menu.hidden) ucmdRender(e.target.value); e.preventDefault(); ucmdMove(1); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); ucmdMove(-1); }
+  else if(e.key==='Enter'){
+    e.preventDefault();
+    if(ucmdIdx>=0){ ucmdRun(ucmdIdx); return; }
+    const q=(e.target.value||'').trim(); if(!q){ ucmdClose(); return; }
+    const r=resolveUniversalSearch(q);
+    if(r.best){ ucmdClose(); try{ r.best.run(); }catch(_){} } else { ucmdAllOffices(q); }
+  }
+  else if(e.key==='Escape'){ ucmdClose(); }
+}
+function ucmdExample(q){ const inp=document.getElementById('ucmd-input'); if(inp){ inp.value=q; inp.focus(); } ucmdRender(q); }
+function ucmdCycleRadius(){
+  const cur=state.distance||8; const i=UCMD_RADII.indexOf(cur); const next=UCMD_RADII[(i<0?1:(i+1))%UCMD_RADII.length];
+  state.distance=next; state.allCounty=false;
+  try{ const r=document.getElementById('q-rad'); if(r) r.value=next; }catch(e){}
+  const el=document.getElementById('ucmd-rad-val'); if(el) el.textContent=next+' mi';
+  if(state._lastCoord){ runCoordSearch(state._lastCoord.lat,state._lastCoord.lng,state._lastCoord.label,next); }
+  else if(SB_READY && state._lastLoc && !state.seoHome){ if(typeof setDist==='function') setDist(next); }
+  else { try{ setRadiusUI(next); }catch(e){} }
+}
+function ucmdUseLocation(){ ucmdClose(); try{ if(typeof useCurrentLocation==='function'){ useCurrentLocation(); return; } }catch(e){} }
+
+/* ============================================================
+   v85 — collapsible refined search (the second lane)
+   Drives the SAME backend (#q-where/#q-spec/#q-carrier/#q-rad -> runSearch),
+   so the casual hero bar and the structured panel stay in lockstep.
+   ============================================================ */
+function toggleAdvanced(){
+  const wrap=document.getElementById('dh-advanced'),
+        panel=document.getElementById('dh-adv-panel'),
+        btn=document.getElementById('dh-adv-toggle');
+  if(!wrap||!panel) return;
+  const opening = panel.hasAttribute('hidden');
+  if(opening){
+    panel.removeAttribute('hidden'); wrap.classList.add('open');
+    if(btn) btn.setAttribute('aria-expanded','true');
+    try{ setRadiusUI(state.distance||8); }catch(e){}      // sync slider fill + value with current state
+  } else {
+    panel.setAttribute('hidden',''); wrap.classList.remove('open');
+    if(btn) btn.setAttribute('aria-expanded','false');
+    try{ const m=document.getElementById('ac-menu'); if(m){ m.hidden=true; const i=document.getElementById('q-where'); if(i) i.setAttribute('aria-expanded','false'); } }catch(e){}
+  }
+}
+/* refined radius bar: cheap live preview while dragging, commit + re-search on release */
+function advRadPreview(v){
+  v=Math.max(1,Math.min(RAD_MAX,Math.round(+v)||8));
+  const sl=document.getElementById('q-rad'); if(sl){ const pct=Math.round((v-1)/(RAD_MAX-1)*100); sl.style.setProperty('--fill',pct+'%'); }
+  const arv=document.getElementById('adv-rad-val'); if(arv) arv.textContent=v+' mi';
+  const ucr=document.getElementById('ucmd-rad-val'); if(ucr) ucr.textContent=v+' mi';
+  state.allCounty=false;
+  const allBtn=document.getElementById('adv-rad-all'); if(allBtn) allBtn.classList.remove('on');
+}
+function advRadCommit(v){ try{ setDist(+v||8); }catch(e){ try{ setRadiusUI(+v||8); }catch(_){} } }
+/* Search button: reuse the proven resolver (location + treatment + insurance + radius) */
+function advSearch(){
+  try{ const m=document.getElementById('ac-menu'); if(m) m.hidden=true; }catch(e){}
+  try{ if(typeof runSearch==='function'){ runSearch(); return; } }catch(e){ console.warn('advSearch failed', e); }
+}
+function advNearMe(){ try{ if(typeof useCurrentLocation==='function') useCurrentLocation(); }catch(e){} }
+function advCity(name){
+  const w=document.getElementById('q-where'); if(w) w.value=name;
+  state._picked=null; state._center=null; state._whereStash=name;
+  try{ const m=document.getElementById('ac-menu'); if(m) m.hidden=true; }catch(e){}
+  try{ if(typeof runSearch==='function') runSearch(); }catch(e){}
+}
+/* seed the panel's "Near you" chips with the densest nearby cities once data is ready */
+function advSeedQuickChips(){
+  const wrap=document.getElementById('dh-adv-quick'); if(!wrap) return;
+  try{
+    const counts=(typeof CITY_COUNTS!=='undefined'?CITY_COUNTS:{})||{};
+    const keys=Object.keys(counts)
+      .filter(function(k){ return k!=='orange county' && CITIES[k] && CITIES[k].lat!=null && (counts[k]||0)>0; })
+      .sort(function(a,b){ return (counts[b]||0)-(counts[a]||0); }).slice(0,5);
+    wrap.querySelectorAll('button.citychip').forEach(function(b){ b.remove(); });
+    keys.forEach(function(k){
+      const c=CITIES[k]; const b=document.createElement('button');
+      b.type='button'; b.className='citychip'; b.textContent=c.label;
+      b.addEventListener('click', function(){ advCity(c.label); });
+      wrap.appendChild(b);
+    });
+  }catch(e){}
+}
+
+/* close on outside click; warm up lifestyle anchors; sync the radius pill */
+(function(){
+  try{ document.addEventListener('click', function(e){ if(e.target && e.target.closest && !e.target.closest('#ucmd')) ucmdClose(); }); }catch(e){}
+  try{ if(typeof loadLifestyleAnchors==='function') loadLifestyleAnchors(); }catch(e){}
+  try{ const el=document.getElementById('ucmd-rad-val'); if(el) el.textContent=(state.distance||8)+' mi'; }catch(e){}
+  try{ syncRailH(); }catch(e){}
+})();
+
+/* v85 — keep --rail-h equal to the sticky search rail's real height so the sticky
+   filter/listing/map columns always sit just below it (and 0 on phones, where the
+   rail isn't pinned and the side columns are hidden). */
+function syncRailH(){
+  try{
+    var r=document.getElementById('searchrail'); if(!r) return;
+    var mob = window.matchMedia && window.matchMedia('(max-width:760px)').matches;
+    var h = mob ? 0 : (r.offsetHeight||0);
+    document.documentElement.style.setProperty('--rail-h', h+'px');
+  }catch(e){}
+}
+(function(){
+  window.addEventListener('resize', syncRailH);
+  window.addEventListener('load', syncRailH);
+  try{ syncRailH(); }catch(e){}
+  try{ setTimeout(syncRailH, 300); }catch(e){}
+})();
+/* ============================================================ */
+
 /* ---------- BOOT ---------- */
 parseFiltersFromUrl();            // deep-link: hydrate city/treatment/carrier from the URL
 // seed the initial map center so the circle renders on first paint (sandbox + live)
@@ -4446,5 +5493,348 @@ bootData().then(()=>{ if(SB_READY){ refreshDerived();
   CapyAvatar.load().then(ok=>{ if(ok) render(); });
 });
 </script>
+<style id="cc-v90-redesign">
+/* ============================================================
+   COVERCAPY v90 — LUXURY MARKETPLACE LAYER (last stylesheet, wins cascade)
+   ============================================================ */
+
+/* ---------- 1. CTA HIERARCHY: emerald primary · ivory secondary · text tertiary ---------- */
+.la{font:600 13px/1 "Inter Tight",system-ui,sans-serif; padding:11px 16px; border-radius:12px; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; gap:7px; white-space:nowrap; letter-spacing:.01em; transition:transform .15s, box-shadow .15s, background .15s, border-color .15s}
+.la:active{transform:translateY(0)}
+.la-book, .la-gold{background:linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-night) 100%); color:#fff; border-color:rgba(8,42,48,.35); box-shadow:0 3px 12px rgba(8,42,48,.22)}
+.la-book:hover, .la-gold:hover{background:linear-gradient(135deg,#11505b 0%, var(--teal-deep) 100%); box-shadow:0 9px 22px rgba(8,42,48,.30); transform:translateY(-1px)}
+.la-ghost{background:var(--cream-card); color:var(--teal-night); border-color:var(--line); box-shadow:none}
+.la-ghost:hover{border-color:var(--teal-300); background:#fff; transform:translateY(-1px)}
+.la-link{background:none; color:var(--teal-700); border:0; padding:9px 4px}
+.la-link:hover{color:var(--teal-night)}
+/* drawer book button also emerald, never gold */
+.dpop-book{background:linear-gradient(135deg, var(--teal-deep), var(--teal-night)) !important; color:#fff !important; border:1px solid rgba(8,42,48,.35) !important}
+.dpop-book:hover{background:linear-gradient(135deg,#11505b,var(--teal-deep)) !important}
+
+/* ---------- 2. CARD BREATHING ROOM + HIERARCHY ---------- */
+.lcard{padding:20px 22px 18px; border-radius:18px; box-shadow:0 1px 2px rgba(8,42,48,.04), 0 10px 30px rgba(8,42,48,.05); transition:box-shadow .2s, border-color .2s, transform .2s}
+.lcard:hover{box-shadow:0 4px 10px rgba(8,42,48,.07), 0 22px 50px rgba(8,42,48,.12); border-color:var(--teal-300); transform:translateY(-2px)}
+.lrow{gap:17px}
+.lmain{gap:7px}
+.lname{font-size:20px; letter-spacing:-.015em}
+.lcard .chips{margin-top:9px}
+
+/* ---------- 3. AVATAR AS IDENTITY (kept, never replaced — only elevated) ---------- */
+.av{width:68px; height:68px; box-shadow:0 4px 16px rgba(8,42,48,.16)}
+.av-wrap::after{inset:-4px; border-width:2px}
+.av-wrap.t-plat::after{border-color:var(--gold-2); box-shadow:0 0 0 1px rgba(184,146,79,.30), 0 0 22px rgba(184,146,79,.30)}
+.av-wrap.t-accr::after{border-color:var(--mint); box-shadow:0 0 0 1px rgba(91,224,160,.25), 0 0 18px rgba(91,224,160,.22)}
+.av-wrap.t-ver::after{border-color:var(--verified); box-shadow:0 0 0 1px rgba(47,143,102,.20)}
+.lcard.feat .av{width:88px; height:88px}
+
+/* ---------- 4. EXPERIENCE TAGS (curated, max 2) ---------- */
+.xtags{display:flex; flex-wrap:wrap; gap:7px; margin-top:11px}
+.xtag{display:inline-flex; align-items:center; gap:6px; font:700 11.5px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.01em; padding:5px 11px 5px 9px; border-radius:999px; background:var(--cream-2); color:var(--teal-700); border:1px solid var(--line)}
+.xtag i{font-style:normal; font-size:11px; line-height:1; color:var(--gold)}
+.xtag.xt-fav{background:linear-gradient(180deg,#FFFBF1,#FBF1DC); border-color:var(--gold-2); color:#7a5e22}
+.xtag.xt-fav i{color:var(--gold)}
+.xtag.xt-ppo{background:#EAF3F1; border-color:#C3DBD7; color:var(--teal-700)}
+.xtag.xt-ppo i{color:var(--teal-700)}
+.xtag.xt-rev{background:var(--mint-soft); border-color:#bfe9d3; color:var(--mint-700)}
+.xtag.xt-rev i{color:var(--mint-700)}
+
+/* ---------- 5. WHY PATIENTS CHOOSE (story-driven, strong visual element) ---------- */
+.whychoose{margin-top:13px; padding:13px 15px; border:1px solid var(--line-2); border-radius:14px; background:linear-gradient(180deg, #FCFAF3, var(--cream-2))}
+.wc-h{font:700 10.5px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 9px}
+.wc-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px}
+.wc-list li{position:relative; padding-left:22px; font:500 13.5px/1.4 "Inter Tight",system-ui,sans-serif; color:var(--ink)}
+.wc-list li::before{content:"✓"; position:absolute; left:0; top:0; width:15px; height:15px; border-radius:50%; display:grid; place-items:center; font-size:9px; font-weight:800; color:#fff; background:var(--mint-700)}
+
+/* ---------- 6. MICRO-HERO ---------- */
+.microhero{margin:18px 0 16px; padding:22px 26px; border-radius:20px; background:linear-gradient(120deg, #082A30 0%, #0C3A42 55%, #14525B 100%); color:#fff; box-shadow:0 16px 44px rgba(8,42,48,.22); position:relative; overflow:hidden}
+.microhero::after{content:""; position:absolute; right:-60px; top:-60px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(184,146,79,.30), transparent 70%); pointer-events:none}
+.mh-in{display:flex; align-items:center; justify-content:space-between; gap:26px; flex-wrap:wrap; position:relative}
+.mh-copy{flex:1 1 420px; min-width:0}
+.mh-title{font-family:"Fraunces",Georgia,serif; font-weight:500; font-size:25px; line-height:1.1; letter-spacing:-.01em; margin:0}
+.mh-sub{font:400 14px/1.5 "Inter Tight",system-ui,sans-serif; color:rgba(255,255,255,.82); margin:8px 0 0; max-width:60ch}
+.mh-trust{display:flex; gap:14px; flex:0 0 auto}
+.mh-stat{display:flex; flex-direction:column; gap:2px; padding:10px 16px; border-radius:13px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); min-width:96px}
+.mh-stat b{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:19px; color:var(--gold-2)}
+.mh-stat span{font:600 11px/1.2 "Inter Tight",system-ui,sans-serif; letter-spacing:.02em; color:rgba(255,255,255,.78)}
+
+/* ---------- 7. VIEW SWITCHER (segmented control) ---------- */
+.view-switch{display:inline-flex; align-items:center; gap:2px; padding:3px; border-radius:11px; background:var(--cream-2); border:1px solid var(--line)}
+.view-switch button{width:32px; height:30px; border-radius:8px; display:grid; place-items:center; color:var(--ink-faint); background:none; border:none; cursor:pointer; transition:.14s; padding:0}
+.view-switch button svg{width:18px; height:18px}
+.view-switch button:hover{color:var(--teal-700); background:#fff}
+.view-switch button.on{color:#fff; background:var(--teal-night); box-shadow:0 2px 6px rgba(8,42,48,.22)}
+
+/* ---------- 8. VIEW MODES ---------- */
+/* LIST: compact, high density */
+.listings.view-list .whychoose{display:none}
+.listings.view-list .lcard{padding:13px 17px}
+.listings.view-list .av{width:50px; height:50px}
+.listings.view-list .lcard.feat .av{width:62px; height:62px}
+.listings.view-list .lname{font-size:16.5px}
+.listings.view-list .xtags{margin-top:7px}
+.listings.view-list .lrow{gap:13px}
+
+/* GRID (2-col) + MARKET (4-col): vertical luxury cards */
+.listings.view-grid, .listings.view-market{display:grid; align-items:start}
+.listings.view-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.listings.view-market{grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+.listings.view-grid .promo, .listings.view-grid .soft-note, .listings.view-grid .lcard.feat,
+.listings.view-market .promo, .listings.view-market .soft-note, .listings.view-market .lcard.feat{grid-column:1 / -1}
+.listings.view-grid .lrow, .listings.view-market .lrow{display:flex; flex-direction:column; align-items:stretch; gap:13px}
+.listings.view-grid .lavcol, .listings.view-market .lavcol{flex-direction:row; align-items:center; align-self:flex-start}
+.listings.view-grid .lside, .listings.view-market .lside{flex-direction:column; align-items:stretch; min-width:0; position:static; gap:8px}
+.listings.view-grid .lside .cta-primary, .listings.view-grid .lside .cta-secondary,
+.listings.view-market .lside .cta-primary, .listings.view-market .lside .cta-secondary{width:100%; display:flex; flex-direction:column; gap:8px}
+.listings.view-grid .lside .la, .listings.view-market .lside .la{width:100%}
+.listings.view-grid .lcard.feat .lrow, .listings.view-market .lcard.feat .lrow{flex-direction:row}  /* featured stays a hero row */
+/* MARKET density */
+.listings.view-market .whychoose{display:none}
+.listings.view-market .chips{display:none}
+.listings.view-market .lname{font-size:16px}
+.listings.view-market .av{width:54px; height:54px}
+.listings.view-market .lcard{padding:16px 16px 15px}
+.listings.view-market .lcard.feat .whychoose{display:block}
+.listings.view-market .lcard.feat .chips{display:flex}
+/* Marketplace hides the right rail + widens content */
+.layout.market{grid-template-columns:264px minmax(0,1fr)}
+.layout.market .prail{display:none}
+
+/* ---------- 9. ECOSYSTEM CARD (replaces ad-like rail) ---------- */
+.eco-card{background:linear-gradient(180deg,#FFFDF8,var(--cream-2)); border:1px solid var(--line-2); border-radius:18px; padding:18px 17px; box-shadow:0 10px 30px rgba(8,42,48,.06)}
+.eco-eyebrow{font:700 10px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold)}
+.eco-title{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:18px; letter-spacing:-.01em; margin:7px 0 4px; color:var(--ink)}
+.eco-intro{font:400 12.5px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); margin:0 0 13px}
+.eco-rows{display:flex; flex-direction:column; gap:8px}
+.eco-row{display:flex; align-items:center; gap:11px; padding:11px 12px; border-radius:13px; border:1px solid var(--line-2); background:var(--cream-card); text-decoration:none; transition:.15s}
+a.eco-row:hover{border-color:var(--teal-300); transform:translateY(-1px); box-shadow:0 6px 16px rgba(8,42,48,.07)}
+.eco-row.eco-on{border-color:#C3DBD7; background:#EAF3F1}
+.eco-ic{flex:none; width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-size:17px; background:var(--cream-2); border:1px solid var(--line)}
+.eco-tx{min-width:0; flex:1; display:flex; flex-direction:column; gap:2px}
+.eco-tx b{font:600 13.5px/1.2 "Inter Tight",system-ui,sans-serif; color:var(--ink)}
+.eco-tx span{font:500 11.5px/1.35 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
+.eco-state{flex:none; font:700 10px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.04em; text-transform:uppercase; color:var(--mint-700); background:var(--mint-soft); border:1px solid #bfe9d3; padding:4px 8px; border-radius:999px}
+.eco-state.soon{color:var(--ink-faint); background:var(--cream-2); border-color:var(--line)}
+.eco-state.cta{color:var(--teal-700); background:none; border:none; padding:0; text-transform:none; font-size:12px; white-space:nowrap}
+.eco-crowns .eco-ic{background:var(--gold-soft); border-color:var(--gold-2); color:var(--gold)}
+
+/* ---------- 10. FEATURED / PLATINUM — dramatically elevated (sophisticated, no flashing) ---------- */
+.lcard.feat{border:1.5px solid var(--gold-2); background:linear-gradient(180deg,#FFFDF7 0%, var(--cream-card) 60%); box-shadow:0 3px 10px rgba(184,146,79,.12), 0 26px 60px rgba(184,146,79,.20); position:relative; overflow:hidden}
+.lcard.feat::before{content:""; position:absolute; inset:0; background:radial-gradient(120% 80% at 85% -10%, rgba(184,146,79,.16), transparent 55%); pointer-events:none}
+.lcard.feat .featrib{display:flex; align-items:center; gap:8px; margin:-20px -22px 16px; padding:11px 22px; background:linear-gradient(100deg, var(--teal-night), var(--teal-deep)); color:var(--gold-2); font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; position:relative; overflow:hidden}
+.lcard.feat .featrib::after{content:""; position:absolute; inset:0; background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,.16) 48%, transparent 66%); transform:translateX(-120%); animation:ccShimmer 6.5s ease-in-out infinite}
+@keyframes ccShimmer{0%,55%{transform:translateX(-120%)} 80%,100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion: reduce){ .lcard.feat .featrib::after{animation:none; opacity:0} }
+.lcard.feat .whychoose, .whychoose.wc-feat{background:linear-gradient(180deg,#FFFBF1,#FBF3E2); border-color:var(--gold-2)}
+.whychoose.wc-feat .wc-h{color:var(--gold)}
+.whychoose.wc-feat .wc-list li::before{background:var(--gold)}
+
+/* ---------- 11. FILTERS — cleaner, Apple-like ---------- */
+.fcard{background:var(--cream-card); border:1px solid var(--line-2); border-radius:17px; padding:17px 18px; margin-bottom:13px; box-shadow:0 1px 2px rgba(8,42,48,.03), 0 8px 22px rgba(8,42,48,.04)}
+.fcard h4{font:700 10.5px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 13px}
+
+/* ---------- 12. SEARCH — elite focus/hover states ---------- */
+.searchrail .sfield input:focus, .searchrail .sfield select:focus, .ucmd-bar:focus-within{outline:none}
+.ucmd-bar{transition:box-shadow .18s, border-color .18s}
+.ucmd-bar:focus-within{border-color:var(--teal-300); box-shadow:0 0 0 4px rgba(94,140,146,.16), 0 12px 30px rgba(8,42,48,.12)}
+.sf-inrow:focus-within{border-radius:10px}
+.searchrail .sfield.where:focus-within label{color:var(--teal-700)}
+
+/* ---------- 13. MOBILE ---------- */
+@media (max-width:1200px){ .listings.view-market{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:980px){
+  .listings.view-grid, .listings.view-market{grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
+  .layout.market{grid-template-columns:1fr}
+  .layout.market .prail{display:none}
+  .mh-in{flex-direction:column; align-items:flex-start; gap:16px}
+  .mh-trust{width:100%}
+  .mh-stat{flex:1}
+}
+@media (max-width:760px){
+  .view-switch{overflow-x:auto}
+  .microhero{padding:18px 18px; border-radius:16px}
+  .mh-title{font-size:21px}
+}
+@media (max-width:620px){
+  .listings.view-grid, .listings.view-market{grid-template-columns:1fr}
+  .mh-trust{flex-wrap:wrap}
+}
+</style>
+<style id="cc-v91-status">
+/* ============================================================
+   v91 — STATUS-AWARE CTAs + UNCLAIMED CLAIM STRATEGY
+   ============================================================ */
+/* Claim CTA: deep teal/emerald fill, white text, mint accent icon */
+.la-claim{background:linear-gradient(135deg, var(--teal-deep), var(--teal-night)); color:#fff; border-color:rgba(8,42,48,.35); box-shadow:0 3px 12px rgba(8,42,48,.22)}
+.la-claim:hover{background:linear-gradient(135deg,#11505b,var(--teal-deep)); box-shadow:0 9px 22px rgba(8,42,48,.30); transform:translateY(-1px)}
+.la-claim .cc-ci{color:var(--mint); font-style:normal; font-size:12px; line-height:1}
+.cc-claim-btn{background:linear-gradient(135deg, var(--teal-deep), var(--teal-night)) !important; color:#fff !important}
+.cc-claim-btn:hover{filter:brightness(1.07)}
+.cc-claim-btn .cc-ci{color:var(--mint); font-style:normal; font-size:13px; margin-right:2px}
+
+/* Tertiary text-link CTA row on cards */
+.cta-tertiary{margin-top:8px; display:flex; justify-content:center}
+.cta-tertiary .la-link{padding:6px 4px; font-size:12.5px; color:var(--teal-700)}
+.listings.view-grid .cta-tertiary, .listings.view-market .cta-tertiary{justify-content:flex-start}
+
+/* v92: unclaimed offices are now patient-usable (book/call). Show their real Google rating;
+   tier distinction is carried by the member trust module + tier chip, not by muting. */
+
+/* "Profile Not Claimed Yet" — limited, claimable, tasteful (ivory / soft teal / graphite; no danger) */
+.restrict{margin-top:13px; padding:14px 15px; border:1px solid var(--line-2); border-radius:14px; background:linear-gradient(180deg,#FCFBF7,#F3F1EA)}
+.rs-h{display:flex; align-items:center; gap:8px; font:700 12px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.04em; color:var(--ink-soft); margin:0 0 8px}
+.rs-dot{width:8px; height:8px; border-radius:50%; background:var(--teal-300); box-shadow:0 0 0 3px rgba(94,140,146,.16); flex:none}
+.rs-copy{font:500 12.5px/1.45 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); margin:0 0 11px}
+.rs-list{list-style:none; margin:0 0 11px; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 14px}
+.rs-list li{position:relative; padding-left:18px; font:500 12px/1.3 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
+.rs-list li::before{content:""; position:absolute; left:0; top:4px; width:9px; height:9px; border-radius:3px; border:1.5px solid var(--line); background:#fff}
+.rs-claim{font:500 12px/1.45 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); padding-top:10px; border-top:1px solid var(--line-2)}
+.rs-claim a{color:var(--teal-700); font-weight:700; cursor:pointer}
+.rs-claim a:hover{color:var(--teal-night)}
+.listings.view-market .rs-list{grid-template-columns:1fr}
+.listings.view-market .restrict{display:none}  /* 4-grid stays dense; Claim CTA still leads */
+@media(max-width:620px){ .rs-list{grid-template-columns:1fr} }
+
+/* Drawer claim panel: emerald button, neutral panel (no gold/yellow) */
+.dd-claim-unclaimed{background:linear-gradient(180deg,#FCFBF7,var(--cream-2)); border:1px solid var(--line-2)}
+</style>
+
+<!-- ============================================================
+     v92 — VERIFY INSURANCE ACCEPTANCE (patient → dentist growth loop)
+     ============================================================ -->
+<div class="scrim" id="m-insverify"><div class="modal iv-modal"><div class="mh"><h3 id="iv-title">Verify PPO acceptance</h3><button class="x" onclick="closeModal('m-insverify')" aria-label="Close">×</button></div><div class="mb"><p class="iv-sub" id="iv-sub"></p><div id="iv-body"></div></div></div></div>
+
+<script>
+(function(){
+  /* The six carriers CoverCapy features across the site */
+  var CC_FEATURED_CARRIERS=['UnitedHealthcare','Aetna','Ameritas','Guardian','Mutual of Omaha','Humana'];
+  var insState={id:null, status:'buying', carrier:null};
+  function esc(x){ return (typeof escapeHtml==='function')?escapeHtml(x):String(x==null?'':x); }
+  function dz(){ return (typeof find==='function')?find(insState.id):null; }
+
+  window.openInsuranceVerify=function(id){
+    var d=(typeof find==='function')?find(id):null; if(!d) return;
+    insState={id:id, status:'buying', carrier:null};
+    var t=document.getElementById('iv-title'); if(t) t.textContent='Verify PPO at '+(d.practice||'this office');
+    var sub=document.getElementById('iv-sub'); if(sub) sub.textContent='Ask '+(d.practice||'this office')+' to confirm they\u2019re in-network for your PPO. CoverCapy sends the request for you and notifies you when they reply.';
+    renderInsBody(d);
+    if(typeof openModal==='function') openModal('m-insverify');
+    if(typeof track==='function') track('insurance_verify_open',{dentist_id:id});
+  };
+  window.insSetStatus=function(s){ insState.status=s; var d=dz(); if(d) renderInsBody(d); };
+  window.insSetCarrier=function(c){ insState.carrier=c; var d=dz(); if(d) renderInsBody(d); };
+
+  function insEmailText(d){
+    var verb=insState.status==='buying' ? 'I\u2019m purchasing' : 'I currently have';
+    var carrier=insState.carrier || '[choose your PPO plan above]';
+    return 'Hi '+(d.practice||'there')+',\n\n'+
+      'I found your practice on CoverCapy (covercapy.com) and I\u2019d like to book a visit. '+verb+' '+carrier+' PPO dental coverage.\n\n'+
+      'Could you confirm whether your office is in-network for this plan and accepting new patients?\n\nThank you!';
+  }
+  function renderInsBody(d){
+    var body=document.getElementById('iv-body'); if(!body) return;
+    var buying=insState.status==='buying';
+    var chips=CC_FEATURED_CARRIERS.map(function(c){
+      var on=insState.carrier===c;
+      return '<button class="iv-carrier'+(on?' on':'')+'" onclick="insSetCarrier(\''+c.replace(/'/g,"\\'")+'\')">'+esc(c)+'</button>';
+    }).join('');
+    var canSend=!!insState.carrier;
+    body.innerHTML=
+      '<div class="iv-step"><span class="iv-step-n">1</span>Your PPO plan</div>'+
+      '<div class="iv-toggle">'+
+        '<button class="iv-tg'+(buying?' on':'')+'" onclick="insSetStatus(\'buying\')"><b>I\u2019m getting PPO through CoverCapy</b><span>Pick a plan we feature</span></button>'+
+        '<button class="iv-tg'+(!buying?' on':'')+'" onclick="insSetStatus(\'have\')"><b>I already have PPO</b><span>Choose your carrier</span></button>'+
+      '</div>'+
+      '<div class="iv-carrier-lbl">'+(buying?'Plans you can enroll in through CoverCapy':'Select your current PPO carrier')+'</div>'+
+      '<div class="iv-carriers">'+chips+'</div>'+
+      '<div class="iv-step"><span class="iv-step-n">2</span>Preview your message</div>'+
+      '<pre class="iv-email">'+esc(insEmailText(d))+'</pre>'+
+      '<button class="iv-send'+(canSend?'':' off')+'" '+(canSend?'':'disabled ')+'onclick="insSend()">Send verification request</button>'+
+      '<p class="iv-note">CoverCapy emails the office on your behalf. <b>Create a free account</b> to be notified when they reply &amp; earn Capy Crowns toward free whitening.</p>';
+  }
+  window.insSend=function(){
+    if(!insState.carrier) return;
+    var d=dz(), body=document.getElementById('iv-body');
+    if(typeof track==='function') track('insurance_verify_send',{dentist_id:insState.id, status:insState.status, carrier:insState.carrier});
+    if(body) body.innerHTML=
+      '<div class="iv-done">'+
+        '<div class="iv-check">\u2713</div>'+
+        '<h4>Request on its way to '+esc(d?d.practice:'the office')+'</h4>'+
+        '<p>We\u2019ll email the office to confirm they\u2019re in-network for '+esc(insState.carrier)+' and let you know the moment they respond.</p>'+
+        '<button class="iv-send" onclick="insCreateAccount()">Create free account to track responses</button>'+
+        '<button class="iv-later" onclick="closeModal(\'m-insverify\')">Maybe later</button>'+
+      '</div>';
+  };
+  window.insCreateAccount=function(){
+    if(typeof track==='function') track('insurance_verify_signup',{dentist_id:insState.id});
+    var d=dz(), body=document.getElementById('iv-body');
+    if(body) body.innerHTML=
+      '<div class="iv-done">'+
+        '<div class="iv-check">\u2713</div>'+
+        '<h4>You\u2019re all set</h4>'+
+        '<p>We\u2019ll notify you here and by email the moment '+esc(d?d.practice:'the office')+' confirms your PPO. Track every request from your CoverCapy dashboard.</p>'+
+        '<button class="iv-send" onclick="closeModal(\'m-insverify\')">Done</button>'+
+      '</div>';
+  };
+})();
+</script>
+
+<style id="cc-v92">
+/* ============================================================
+   v92 — PATIENT-FIRST CTAs (Book + Call pair, wide Verify/View) + INSURANCE VERIFY MODAL
+   ============================================================ */
+/* Card CTA cluster: top pair (Book | Call) + full-width bottom button */
+.lside{min-width:236px; align-items:stretch}
+.cta-pair{display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:stretch; width:100%}
+.cta-pair.cta-pair-1{grid-template-columns:1fr}
+.cta-pair .la{width:100%; padding:11px 6px; font-size:12.5px; line-height:1.2; min-width:0}
+.cta-wide{margin-top:8px; width:100%}
+.cta-wide .la{width:100%}
+.la-call{gap:6px}
+.la-call .cc-ph{font-style:normal; font-size:12px; line-height:1}
+/* Verify Insurance Acceptance — distinct teal-night patient CTA with mint accent */
+.la-verifyins{background:linear-gradient(135deg,#0E454E,var(--teal-night)); color:#fff; border:1px solid rgba(8,42,48,.30); box-shadow:0 3px 12px rgba(8,42,48,.18)}
+.la-verifyins:hover{filter:brightness(1.09); transform:translateY(-1px)}
+.la-verifyins .cc-vi{color:var(--mint); font-style:normal; font-size:12px; margin-right:2px}
+/* Full-width CTA cluster on mobile + compact grids */
+@media(max-width:980px){ .lside{flex-direction:column; align-items:stretch; min-width:0; width:100%} }
+.listings.view-grid .lside, .listings.view-market .lside{min-width:0; width:100%}
+
+/* ---- Verify Insurance Acceptance modal ---- */
+.iv-modal{max-width:560px}
+.iv-sub{font:500 13px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); margin:0 0 18px}
+.iv-step{display:flex; align-items:center; gap:9px; font:700 13px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink); margin:20px 0 11px}
+.iv-step-n{display:inline-flex; align-items:center; justify-content:center; width:21px; height:21px; border-radius:50%; background:var(--teal-night); color:#fff; font-size:11px; font-weight:700; flex:none}
+.iv-toggle{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px}
+.iv-tg{display:flex; flex-direction:column; gap:3px; text-align:left; padding:12px 13px; border:1.5px solid var(--line); border-radius:13px; background:var(--cream-card); cursor:pointer; transition:.15s}
+.iv-tg b{font:700 12.5px/1.2 "Inter Tight",system-ui,sans-serif; color:var(--ink)}
+.iv-tg span{font:500 11px/1.3 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
+.iv-tg.on{border-color:var(--teal-700); background:#fff; box-shadow:0 0 0 3px rgba(20,82,91,.10)}
+.iv-tg:hover{border-color:var(--teal-300)}
+.iv-carrier-lbl{font:600 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.03em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 9px}
+.iv-carriers{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:4px}
+.iv-carrier{padding:8px 13px; border:1.5px solid var(--line); border-radius:999px; background:var(--cream-card); font:600 12.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-night); cursor:pointer; transition:.15s}
+.iv-carrier:hover{border-color:var(--teal-300)}
+.iv-carrier.on{background:var(--teal-night); color:#fff; border-color:var(--teal-night)}
+.iv-email{white-space:pre-wrap; font:500 12.5px/1.55 "Inter Tight",ui-monospace,system-ui,sans-serif; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:13px; padding:14px 15px; margin:0 0 14px}
+.iv-send{display:block; width:100%; padding:13px; border:none; border-radius:13px; background:linear-gradient(135deg,var(--teal-deep),var(--teal-night)); color:#fff; font:700 14px/1 "Inter Tight",system-ui,sans-serif; cursor:pointer; transition:.15s; margin-bottom:10px}
+.iv-send:hover{filter:brightness(1.07)}
+.iv-send.off,.iv-send:disabled{opacity:.45; cursor:not-allowed; filter:none}
+.iv-later{display:block; width:100%; padding:11px; border:1px solid var(--line); border-radius:13px; background:var(--cream-card); color:var(--ink-soft); font:600 13px/1 "Inter Tight",system-ui,sans-serif; cursor:pointer}
+.iv-note{font:500 12px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint); margin:2px 0 0; text-align:center}
+.iv-note b{color:var(--teal-700)}
+.iv-done{text-align:center; padding:8px 4px 4px}
+.iv-check{width:54px; height:54px; margin:0 auto 14px; border-radius:50%; background:var(--mint-soft); color:var(--mint-700); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:700}
+.iv-done h4{font:600 18px/1.25 "Fraunces",Georgia,serif; color:var(--teal-night); margin:0 0 8px}
+.iv-done p{font:500 13px/1.55 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); margin:0 0 16px}
+
+/* ---- Drawer: patient PPO-verify panel for unclaimed offices ---- */
+.dd-verify{background:linear-gradient(180deg,#FFFFFF,var(--mint-soft)); border:1px solid var(--mint-soft); border-radius:14px; padding:15px 16px; margin-top:16px}
+.dd-verify b{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:15px; color:var(--teal-night)}
+.dd-verify p{margin:5px 0 12px; font-size:13px; color:var(--ink-soft); line-height:1.5}
+.dd-vmiss{list-style:none; margin:0 0 13px; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 14px}
+.dd-vmiss li{position:relative; padding-left:18px; font:500 12px/1.3 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
+.dd-vmiss li::before{content:""; position:absolute; left:0; top:4px; width:9px; height:9px; border-radius:3px; border:1.5px solid var(--line); background:#fff}
+@media(max-width:520px){ .dd-vmiss{grid-template-columns:1fr} }
+</style>
 </body>
 </html>
