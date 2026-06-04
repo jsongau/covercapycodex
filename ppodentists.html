@@ -469,6 +469,32 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-fx-pin{width:16px; height:16px; border-radius:50%; background:#8b7fd6; border:2.5px solid #fff; box-shadow:0 2px 8px rgba(91,72,160,.5)}
 .cc-fx-tip{background:#4a3f86 !important; color:#fff !important; border:none !important; font-weight:700; font-size:11px; border-radius:8px; padding:4px 9px; box-shadow:0 4px 12px rgba(74,63,134,.4)}
 .cc-fx-tip::before{border-top-color:#4a3f86 !important}
+/* v77: KYT future-expansion drawer (premium lavender, reuses the right-drawer shell) */
+.fx-card{cursor:pointer; transition:transform .14s ease, box-shadow .14s ease}
+.fx-card:hover{transform:translateY(-2px)}
+.fxd-x{position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%; border:1px solid var(--line-2); background:rgba(255,255,255,.85); color:var(--ink); font-size:15px; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center}
+.fxd-x:hover{background:#fff}
+.fxd{display:flex; flex-direction:column; gap:14px; padding:22px 22px 26px}
+.fxd-hero{margin:-22px -22px 2px; padding:30px 22px 20px; background:linear-gradient(150deg, #efeaff 0%, #f7f4ff 55%, #fbf9ff 100%); border-bottom:1px solid #e6def8}
+.fxd-badge{display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(139,127,214,.16); border:1px solid rgba(139,127,214,.4); color:#5a4eaa; font:700 11px/1 "Inter Tight",sans-serif; letter-spacing:.04em; text-transform:uppercase}
+.fxd-title{margin:12px 0 2px; font:600 26px/1.12 "Fraunces",Georgia,serif; color:var(--teal-night)}
+.fxd-sub{font:600 13px/1.2 "Inter Tight",sans-serif; color:#6a5fb0}
+.fxd-body{margin:0; font:400 14.5px/1.6 "Inter Tight",sans-serif; color:var(--ink)}
+.fxd-note{padding:11px 13px; border-radius:12px; background:#fff7ed; border:1px solid #fed7aa; font:500 12.5px/1.5 "Inter Tight",sans-serif; color:#9a3412}
+.fxd-worth{font:600 13.5px/1.5 "Inter Tight",sans-serif; color:#5a4eaa}
+.fxd-details{margin:2px 0 0; display:flex; flex-direction:column; gap:0; border:1px solid var(--line-2); border-radius:14px; overflow:hidden}
+.fxd-details>div{display:flex; justify-content:space-between; gap:14px; padding:11px 14px; border-bottom:1px solid var(--line)}
+.fxd-details>div:last-child{border-bottom:0}
+.fxd-details dt{font:600 11.5px/1.3 "Inter Tight",sans-serif; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); flex:none; max-width:42%}
+.fxd-details dd{margin:0; text-align:right; font:500 13px/1.4 "Inter Tight",sans-serif; color:var(--ink)}
+.fxd-details dd a{color:var(--teal-deep); text-decoration:none}
+.fxd-cta{display:flex; flex-direction:column; gap:9px; margin-top:4px}
+.fxd-btn{display:flex; align-items:center; justify-content:center; gap:6px; width:100%; padding:13px; border-radius:13px; font:700 14px/1 "Inter Tight",sans-serif; cursor:pointer; text-decoration:none; border:1px solid var(--line-2); background:#fff; color:var(--teal-night); transition:.15s}
+.fxd-btn:hover{background:var(--cream-card)}
+.fxd-btn.primary{background:var(--teal-night); color:#fff; border-color:var(--teal-night); box-shadow:0 8px 20px rgba(8,42,48,.22)}
+.fxd-btn.primary:hover{background:var(--teal-deep)}
+.fxd-btn.ghost{background:transparent; color:#5a4eaa; border-color:rgba(139,127,214,.45)}
+.fxd-btn.ghost:hover{background:rgba(139,127,214,.1)}
 /* ── nearby lifestyle layer (CCPets) ─────────────────────────────────── */
 .cc-lifestyle-label{display:inline-flex; align-items:center; gap:5px; max-width:150px; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.85); border:1px solid color-mix(in srgb, var(--cc-accent,#64748b), transparent 70%); box-shadow:0 8px 22px rgba(15,23,42,.10); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); font:600 11px/1.1 "Inter Tight",system-ui,sans-serif; color:#26352f; pointer-events:auto; cursor:pointer; transition:transform .14s ease, box-shadow .14s ease, background .14s ease; white-space:nowrap; overflow:hidden}
 .cc-lifestyle-label b{overflow:hidden; text-overflow:ellipsis}
@@ -1363,13 +1389,13 @@ body.dd-lock{overflow:hidden}
     <!-- RIGHT RAIL -->
     <aside class="prail">
       <div class="prail-h">More from CoverCapy</div>
-      <div class="pcard fx-card" id="prail-future" hidden>
-        <div class="fx-tag">◆ Future Expansion Site</div>
-        <h5>KYT Dental Services</h5>
-        <div class="fx-sub">Rowland Heights Future Expansion Site</div>
-        <p>CoverCapy is evaluating this area for future PPO concierge expansion. Join the waitlist for updates.</p>
-        <div class="fx-meta">Planned coverage area · not an active practice</div>
-        <div class="fx-ctarow"><a class="fx-cta primary" href="mailto:hello@covercapy.com?subject=Rowland%20Heights%20waitlist" onclick="track&&track('future_notify',{site:'rowland-heights'})">Notify Me</a><a class="fx-cta" href="javascript:void(0)" onclick="track&&track('future_learn_more',{site:'rowland-heights'});toast('Rowland Heights','A future CoverCapy PPO concierge market. Join the waitlist to hear when it opens.','info');return false;">Learn More</a></div>
+      <div class="pcard fx-card" id="prail-future" hidden role="button" tabindex="0" onclick="if(event.target.closest('.fx-cta'))return; openFutureExpansionDrawer();" onkeydown="if((event.key==='Enter'||event.key===' ')&&!event.target.closest('.fx-cta')){event.preventDefault();openFutureExpansionDrawer();}">
+        <div class="fx-tag">◆ Future Expansion Interest Area</div>
+        <h5>KYT Dental Services · Future Expansion Interest</h5>
+        <div class="fx-sub">Rowland Heights demand area</div>
+        <p>CoverCapy is tracking local demand near Rowland Heights. Patients can view KYT Dental Services in Fountain Valley now and request updates if KYT explores this area.</p>
+        <div class="fx-meta">Planned coverage area · not an active practice location</div>
+        <div class="fx-ctarow"><button class="fx-cta primary" type="button" onclick="event.stopPropagation(); openKytProfile();">View KYT Fountain Valley</button><a class="fx-cta" href="mailto:hello@covercapy.com?subject=KYT%20Rowland%20Heights%20expansion%20updates" onclick="event.stopPropagation(); track&&track('future_notify',{site:'rowland-heights'})">Expansion updates</a></div>
       </div>
       <div class="pcard dark"><div class="pi">🐾</div><h5>CoverCapy Pets is coming</h5><p>Dental and wellness protection for the whole family, pets included. Be first in line when it opens.</p><a class="pbtn" onclick="track('promo_pets',{});return false;">Preview pet protection →</a></div>
       <div class="pcard"><div class="pi">✦</div><h5>More coverage on the way</h5><p>Vision, life, and health concierge plans are joining CoverCapy. Tell us what you want covered next.</p><a class="pbtn" onclick="track('promo_future',{});return false;">Join the early list →</a></div>
@@ -1966,151 +1992,6 @@ function safeTrait(traits,key,n,seedInt){
   else v=hashSeed((seedInt>>>0)+":"+key);
   return n>0 ? (v % n) : v;
 }
-/* ---------- CoverCapy Pets avatar engine (deterministic, multi-animal) ---------- */
-const PETBG=[["#E9F6EF","#CDEBDD"],["#F4EAD2","#E7D3A8"],["#E0EDF2","#C7DEE8"],["#EAF3EE","#D2E7DB"],["#F6F0E6","#ECDFC8"],["#E3F1EC","#C9E2D9"],["#ECF3F5","#CFE4E8"],["#F1ECF6","#DCD2E9"],["#E8F4F1","#C6E3DC"],["#F3EEE6","#E4D6BE"]];
-// coat = [main, shadow, belly/muzzle, accent(ear-inner/pink), nose]
-const ANIMALS=[
-  {key:"dog",coats:[["#E3B978","#C89A4E","#F4E6C9","#E7C48D","#2E2118"],["#8E6647","#6E4A30","#CBB096","#A67A52","#241813"],["#B3ABA0","#928A7F","#E9E4DC","#C9C2B8","#2E2A26"]]},
-  {key:"cat",coats:[["#E2A864","#CE8C44","#F4E6CF","#F2C9CE","#C77E84"],["#9AA2A6","#7C858A","#E6EBED","#F2C9CE","#C58A86"],["#52525C","#3A3A44","#CFCFD7","#6E6E78","#3A3A40"]]},
-  {key:"rabbit",coats:[["#F1ECE6","#D8CFC4","#FBF8F4","#F3CDD2","#C98D93"],["#D7B68C","#BE9A6B","#EFE0CB","#F3CDD2","#9A6E52"],["#B8B2AA","#969084","#E7E2DB","#F3CDD2","#8A7A6A"]]},
-  {key:"hamster",coats:[["#E9C488","#CFA75F","#F7EDD7","#F3CDD2","#3A2A1C"],["#EAD9B6","#CDB98F","#F8F2E3","#F3CDD2","#3A2A1C"],["#C49A6C","#A77F4F","#E8DAC2","#F3CDD2","#3A2A1C"]]},
-  {key:"capybara",coats:[["#A2825F","#82643F","#CFB89A","#8A6A4A","#2A1C10"],["#B08D69","#8C6A47","#D8C4A8","#977152","#2A1C10"],["#946F4F","#6F5135","#C6AE92","#7A5A3F","#241813"]]},
-  {key:"fox",coats:[["#E08A4E","#C66B30","#F7EFE3","#FFFFFF","#2A1C14"],["#9C8E80","#7D7064","#EFE9E1","#FFFFFF","#2A1C14"],["#D2703A","#AE5A28","#F4E7D6","#FFFFFF","#241813"]]}
-];
-function petDefs(uid,bg,c){
-  return '<defs>'+
-   '<linearGradient id="pg'+uid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+bg[0]+'"/><stop offset="1" stop-color="'+bg[1]+'"/></linearGradient>'+
-   '<radialGradient id="mg'+uid+'" cx="0.5" cy="0.4" r="0.62"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>'+
-   '<linearGradient id="fg'+uid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+c[0]+'"/><stop offset="1" stop-color="'+c[1]+'"/></linearGradient>'+
-   '<clipPath id="cl'+uid+'"><circle cx="120" cy="114" r="94"/></clipPath>'+
-  '</defs>';
-}
-function petBackground(uid,bg){
-  return '<rect x="0" y="0" width="240" height="232" fill="url(#pg'+uid+')"/>'+
-   '<circle cx="120" cy="114" r="94" fill="'+bg[0]+'"/>'+
-   '<circle cx="120" cy="114" r="94" fill="url(#mg'+uid+')"/>';
-}
-function petMotif(t,uid){
-  const m=t.motif;
-  if(m===0) return '<circle cx="178" cy="52" r="26" fill="rgba(184,146,79,0.16)"/>';
-  if(m===1) return '<path d="M30 176 q26 -12 52 0 t52 0 t52 0 t52 0 V210 H30 Z" fill="rgba(31,138,91,0.10)"/><path d="M30 188 q26 -10 52 0 t52 0 t52 0 t52 0 V210 H30 Z" fill="rgba(20,82,91,0.10)"/>';
-  if(m===2) return '<g fill="none" stroke="rgba(31,138,91,0.16)" stroke-width="3" stroke-linecap="round"><path d="M58 50 q22 4 36 24"/><path d="M58 50 q4 20 -4 40"/><path d="M58 50 q22 -2 42 6"/></g>';
-  if(m===3){ let s=""; for(let i=0;i<4;i++) s+='<circle cx="'+(72+i*32)+'" cy="44" r="3" fill="rgba(8,42,48,0.07)"/>'; return s; }
-  return "";
-}
-function petFrame(t,uid){
-  const f=t.frame;
-  if(f===0) return '<circle cx="120" cy="114" r="94" fill="none" stroke="rgba(8,42,48,0.12)" stroke-width="2"/>';
-  if(f===1) return '<circle cx="120" cy="114" r="93" fill="none" stroke="#B8924F" stroke-width="3" opacity="0.9"/>';
-  if(f===2) return '<circle cx="120" cy="114" r="93" fill="none" stroke="#0C3A42" stroke-width="3" opacity="0.72"/>';
-  return '<circle cx="120" cy="114" r="93" fill="none" stroke="#1F8A5B" stroke-width="2.5" opacity="0.7"/><circle cx="120" cy="114" r="87" fill="none" stroke="#B8924F" stroke-width="1.4" opacity="0.65"/>';
-}
-function petBody(uid,c){
-  return '<ellipse cx="120" cy="252" rx="112" ry="84" fill="url(#fg'+uid+')"/>'+
-   '<ellipse cx="120" cy="220" rx="38" ry="30" fill="'+c[2]+'" opacity="0.85"/>';
-}
-function petAccessory(t,uid){
-  const a=t.accessory;
-  if(a===1) return '<g><path d="M120 197 l-19 -10 v20 Z" fill="#0C3A42"/><path d="M120 197 l19 -10 v20 Z" fill="#0C3A42"/><circle cx="120" cy="197" r="6" fill="#14525B"/></g>';
-  if(a===2) return '<path d="M84 195 q36 18 72 0" fill="none" stroke="#B8924F" stroke-width="7" stroke-linecap="round"/><circle cx="120" cy="206" r="5.5" fill="#D7B675" stroke="#fff" stroke-width="1.2"/>';
-  if(a===3) return '<path d="M86 192 q34 17 68 0 l-7 17 q-27 12 -54 0 Z" fill="#1F8A5B" opacity="0.92"/>';
-  if(a===4) return '<path d="M82 196 q38 20 76 0 l0 14 q-38 18 -76 0 Z" fill="#14525B" opacity="0.92"/>';
-  if(a===5) return '<g transform="translate(151,99)" fill="#D7B675"><circle cx="0" cy="-6" r="4.5"/><circle cx="6" cy="0" r="4.5"/><circle cx="-6" cy="0" r="4.5"/><circle cx="0" cy="6" r="4.5"/><circle cx="0" cy="0" r="3.4" fill="#B8924F"/></g>';
-  return "";
-}
-function petProp(t,uid){ if(t.prop===1) return '<g fill="#B8924F" opacity="0.85"><path d="M176 62 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z"/></g>'; return ""; }
-function petEyes(t,x1,x2,y,r){
-  if(t.eye===3){
-    return '<path d="M'+(x1-r)+' '+y+' q'+r+' -'+(r*1.15)+' '+(2*r)+' 0" fill="none" stroke="#241910" stroke-width="4" stroke-linecap="round"/>'+
-           '<path d="M'+(x2-r)+' '+y+' q'+r+' -'+(r*1.15)+' '+(2*r)+' 0" fill="none" stroke="#241910" stroke-width="4" stroke-linecap="round"/>';
-  }
-  const ry=(t.eye===1?r*1.18:r);
-  return '<ellipse cx="'+x1+'" cy="'+y+'" rx="'+r+'" ry="'+ry+'" fill="#241910"/>'+
-         '<ellipse cx="'+x2+'" cy="'+y+'" rx="'+r+'" ry="'+ry+'" fill="#241910"/>'+
-         '<circle cx="'+(x1+r*0.36)+'" cy="'+(y-ry*0.42)+'" r="'+(r*0.34)+'" fill="#fff"/>'+
-         '<circle cx="'+(x2+r*0.36)+'" cy="'+(y-ry*0.42)+'" r="'+(r*0.34)+'" fill="#fff"/>';
-}
-function animalDog(t,uid,c){
-  return '<g>'+
-   '<ellipse cx="78" cy="138" rx="17" ry="33" fill="'+c[1]+'" transform="rotate(-12 78 138)"/>'+
-   '<ellipse cx="162" cy="138" rx="17" ry="33" fill="'+c[1]+'" transform="rotate(12 162 138)"/>'+
-   '<ellipse cx="120" cy="120" rx="52" ry="49" fill="url(#fg'+uid+')"/>'+
-   '<ellipse cx="120" cy="143" rx="30" ry="23" fill="'+c[2]+'"/>'+
-   petEyes(t,103,137,113,9)+
-   '<ellipse cx="120" cy="134" rx="9" ry="7" fill="'+c[4]+'"/>'+
-   '<ellipse cx="116" cy="132" rx="2.4" ry="1.8" fill="rgba(255,255,255,0.35)"/>'+
-   '<path d="M120 141 v6 M120 147 q-8 6 -15 1 M120 147 q8 6 15 1" fill="none" stroke="#5a3f28" stroke-width="2.4" stroke-linecap="round"/>'+
-  '</g>';
-}
-function animalCat(t,uid,c){
-  return '<g>'+
-   '<path d="M92 96 L74 58 L116 88 Z" fill="url(#fg'+uid+')"/>'+
-   '<path d="M148 96 L166 58 L124 88 Z" fill="url(#fg'+uid+')"/>'+
-   '<path d="M95 92 L83 70 L111 88 Z" fill="'+c[3]+'"/>'+
-   '<path d="M145 92 L157 70 L129 88 Z" fill="'+c[3]+'"/>'+
-   '<ellipse cx="120" cy="123" rx="50" ry="46" fill="url(#fg'+uid+')"/>'+
-   petEyes(t,102,138,116,9)+
-   '<path d="M120 135 l-6 -5 h12 Z" fill="'+c[4]+'"/>'+
-   '<path d="M120 137 v5 M120 142 q-7 5 -13 1 M120 142 q7 5 13 1" fill="none" stroke="#6b4a2e" stroke-width="2.2" stroke-linecap="round"/>'+
-   '<g stroke="rgba(60,45,30,0.38)" stroke-width="1.5" stroke-linecap="round"><path d="M104 138 q-22 -2 -34 -6"/><path d="M104 144 q-22 4 -34 7"/><path d="M136 138 q22 -2 34 -6"/><path d="M136 144 q22 4 34 7"/></g>'+
-  '</g>';
-}
-function animalRabbit(t,uid,c){
-  return '<g>'+
-   '<ellipse cx="104" cy="56" rx="12" ry="40" fill="url(#fg'+uid+')" transform="rotate(-7 104 56)"/>'+
-   '<ellipse cx="136" cy="56" rx="12" ry="40" fill="url(#fg'+uid+')" transform="rotate(7 136 56)"/>'+
-   '<ellipse cx="104" cy="58" rx="6" ry="30" fill="'+c[3]+'" transform="rotate(-7 104 58)"/>'+
-   '<ellipse cx="136" cy="58" rx="6" ry="30" fill="'+c[3]+'" transform="rotate(7 136 58)"/>'+
-   '<ellipse cx="120" cy="126" rx="45" ry="42" fill="url(#fg'+uid+')"/>'+
-   petEyes(t,104,136,120,8.5)+
-   '<path d="M120 136 l-5 -4 h10 Z" fill="'+c[4]+'"/>'+
-   '<path d="M120 138 v4 M120 142 q-6 4 -11 1 M120 142 q6 4 11 1" fill="none" stroke="#6b4a2e" stroke-width="2" stroke-linecap="round"/>'+
-   '<rect x="116" y="146" width="3.6" height="7" rx="1" fill="#fff" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>'+
-   '<rect x="120.4" y="146" width="3.6" height="7" rx="1" fill="#fff" stroke="rgba(0,0,0,0.08)" stroke-width="0.5"/>'+
-  '</g>';
-}
-function animalHamster(t,uid,c){
-  return '<g>'+
-   '<circle cx="94" cy="92" r="12" fill="url(#fg'+uid+')"/>'+
-   '<circle cx="146" cy="92" r="12" fill="url(#fg'+uid+')"/>'+
-   '<circle cx="94" cy="92" r="6" fill="'+c[3]+'"/>'+
-   '<circle cx="146" cy="92" r="6" fill="'+c[3]+'"/>'+
-   '<ellipse cx="120" cy="124" rx="52" ry="46" fill="url(#fg'+uid+')"/>'+
-   '<circle cx="86" cy="142" r="20" fill="'+c[2]+'"/>'+
-   '<circle cx="154" cy="142" r="20" fill="'+c[2]+'"/>'+
-   '<ellipse cx="120" cy="139" rx="22" ry="18" fill="'+c[2]+'"/>'+
-   petEyes(t,103,137,118,9)+
-   '<ellipse cx="120" cy="135" rx="6" ry="4.5" fill="'+c[4]+'"/>'+
-   '<path d="M120 139 v5 M120 144 q-6 4 -11 1 M120 144 q6 4 11 1" fill="none" stroke="#6b4a2e" stroke-width="2" stroke-linecap="round"/>'+
-  '</g>';
-}
-function animalCapy(t,uid,c){
-  return '<g>'+
-   '<ellipse cx="86" cy="98" rx="11" ry="10" fill="url(#fg'+uid+')"/>'+
-   '<ellipse cx="154" cy="98" rx="11" ry="10" fill="url(#fg'+uid+')"/>'+
-   '<ellipse cx="86" cy="100" rx="5" ry="4.5" fill="'+c[3]+'"/>'+
-   '<ellipse cx="154" cy="100" rx="5" ry="4.5" fill="'+c[3]+'"/>'+
-   '<rect x="74" y="92" width="92" height="96" rx="42" fill="url(#fg'+uid+')"/>'+
-   '<ellipse cx="120" cy="152" rx="38" ry="27" fill="'+c[2]+'"/>'+
-   petEyes(t,102,138,116,8)+
-   '<rect x="106" y="140" width="28" height="14" rx="7" fill="'+c[4]+'"/>'+
-   '<circle cx="114" cy="147" r="2" fill="rgba(255,255,255,0.25)"/><circle cx="126" cy="147" r="2" fill="rgba(255,255,255,0.25)"/>'+
-   '<path d="M120 156 q-8 6 -15 1 M120 156 q8 6 15 1" fill="none" stroke="#5a3f28" stroke-width="2.4" stroke-linecap="round"/>'+
-  '</g>';
-}
-function animalFox(t,uid,c){
-  return '<g>'+
-   '<path d="M94 98 L78 56 L120 90 Z" fill="url(#fg'+uid+')"/>'+
-   '<path d="M146 98 L162 56 L120 90 Z" fill="url(#fg'+uid+')"/>'+
-   '<path d="M97 94 L87 70 L115 90 Z" fill="#2A1C14"/>'+
-   '<path d="M143 94 L153 70 L125 90 Z" fill="#2A1C14"/>'+
-   '<ellipse cx="120" cy="118" rx="48" ry="44" fill="url(#fg'+uid+')"/>'+
-   '<path d="M120 112 q-28 6 -32 38 q-2 17 32 25 q34 -8 32 -25 q-4 -32 -32 -38 Z" fill="'+c[2]+'"/>'+
-   petEyes(t,103,137,114,8.5)+
-   '<path d="M120 154 l-6 -7 h12 Z" fill="'+c[4]+'"/>'+
-   '<path d="M120 156 q-7 4 -12 0 M120 156 q7 4 12 0" fill="none" stroke="#3a281c" stroke-width="2" stroke-linecap="round"/>'+
-  '</g>';
-}
 /* ====================================================================
    CoverCapy procedural mascot engine (Supabase trait-library driven)
    Loads modular trait layers from Supabase and deterministically
@@ -2603,6 +2484,8 @@ function clearFilters(){
 async function runSearch(){
   const inp = document.getElementById('q-where');
   const raw = inp.value.trim();
+  ROWLAND_ACTIVE=false;
+  if(!state._picked){ const _rl=resolveLocation(raw); if(_rl){ searchResolvedLocation(_rl); return; } }
   state.spec = document.getElementById('q-spec').value;
   state.carrier = document.getElementById('q-carrier').value;
   state.distance = state.distance || 8;
@@ -2801,6 +2684,7 @@ async function acRender(qraw){
     items = items.concat(locs);
   }
   acItems = items.slice(0,9); acIdx=-1;
+  try{ const _loc=localLocationSuggestions(qraw); if(_loc.length){ const seen=new Set(_loc.map(x=>x.title)); acItems=_loc.concat(acItems.filter(x=>!seen.has(x.title))).slice(0,9); } }catch(e){}
   if(!acItems.length){ menu.hidden=true; inp.setAttribute('aria-expanded','false'); return; }
   menu.innerHTML='<div class="achead">'+(q?'Matching cities':'Browse popular locations')+'</div>'+
     acItems.map((it,i)=>'<div class="acrow '+(it.prem?'prem '+(it.prem==='mint'?'mint':''):'')+'" role="option" data-i="'+i+'" onmousedown="event.preventDefault();acPick('+i+')">'+
@@ -2817,8 +2701,9 @@ function acPick(i){
   const it=acItems[i]; if(!it) return;
   const inp=document.getElementById('q-where');
   inp.value = it.name || it.title || "";
-  state._picked = it;
   document.getElementById('ac-menu').hidden=true; inp.setAttribute('aria-expanded','false');
+  if(it.__resolved){ state._picked=null; searchResolvedLocation(it); return; }
+  state._picked = it;
   runSearch();
 }
 (function(){
@@ -2956,7 +2841,151 @@ function ensureMaps(){
 }
 /* ── Rowland Heights future expansion site (frontend-only; never a live practice, never in listings) ──
    Coordinates are approximate for 1747 Fullerton Rd and easy to refine. */
-const FUTURE_SITE={ lat:33.97546, lng:-117.90083, name:'KYT Dental Services', label:'Rowland Heights Future Expansion Site', address:'1747 Fullerton Rd, Rowland Heights, CA 91748' };
+/* ── v77: Rowland Heights + ZIP resolver and KYT expansion lead-gen bridge ── */
+// The only ACTIVE KYT office (Platinum Elite, Fountain Valley). Never presented as a Rowland Heights location.
+const KYT_REF = { id:'kyt-dental-services', name:'KYT Dental Services',
+  address:'11180 Warner Ave Suite 251, Fountain Valley, CA 92708', phone:'(833) 598-3368',
+  lat:33.71064779901594, lng:-117.9522969673314,
+  url:'https://www.covercapy.com/best-ppo-dentists/orange-county/fountain-valley/kyt-dental-services' };
+let ROWLAND_ACTIVE = false;
+// resolve Rowland Heights through the EXISTING CITIES / ZIP machinery (autocomplete, centroid, fallback)
+CITIES["rowland heights"] = { lat:33.9761, lng:-117.9053, label:"Rowland Heights", area:"Los Angeles County" };
+CITY_ZIPS["rowland heights"] = ["91748","91745"];
+const LOCATION_ALIASES = [
+  { type:'future_expansion_area', label:'Rowland Heights, CA 91748', city:'Rowland Heights', county:'Los Angeles County', state:'CA',
+    zips:['91748','91745','91789'],
+    aliases:['rowland heights','rowland heights ca','rowland heights ca 91748','91748','9174','1747 fullerton rd','1747 fullerton road','1747 fullerton rd rowland heights','1747 fullerton rd rowland heights ca 91748','fullerton rd rowland heights'],
+    lat:33.9761, lng:-117.9053, radiusDefault:8 }
+];
+function normLoc(s){ return (s==null?'':String(s)).toLowerCase().replace(/[.,]/g,' ').replace(/\s+/g,' ').trim(); }
+/* PART 1/2: one resolver for the search rail, autocomplete, fullscreen + radius search.
+   Order: exact alias -> exact ZIP -> ZIP prefix -> city/address keyword. Returns {lat,lng,label,radiusDefault,future} or null.
+   Never strips a comma address down to the street number before trying. */
+function resolveLocation(raw){
+  const q=normLoc(raw); if(!q) return null;
+  const numeric=/^[0-9]+$/.test(q);
+  for(const a of LOCATION_ALIASES){
+    const aliases=(a.aliases||[]).map(normLoc);
+    const zips=(a.zips||[]).map(String);
+    const cityN=normLoc(a.city);
+    if( aliases.indexOf(q)>=0
+     || zips.indexOf(q)>=0
+     || (numeric && zips.some(z=>z.startsWith(q)) && q.length>=2)
+     || (q.length>=4 && aliases.some(al=>al.indexOf(q)>=0))
+     || (q.length>=3 && cityN.indexOf(q)>=0)
+     || q.indexOf('fullerton rd')>=0 ){
+      return { lat:a.lat, lng:a.lng, label:a.label, radiusDefault:a.radiusDefault||8, future:true, alias:a };
+    }
+  }
+  return null;
+}
+/* PART 1/9: autocomplete suggestions for partial ZIP / city / address typed in the box */
+function localLocationSuggestions(raw){
+  const q=normLoc(raw); if(!q) return [];
+  const out=[];
+  for(const a of LOCATION_ALIASES){
+    const zips=(a.zips||[]).map(String);
+    const cityN=normLoc(a.city);
+    const numeric=/^[0-9]+$/.test(q);
+    const hitZip  = numeric && q.length>=2 && zips.some(z=>z.startsWith(q));
+    const hitCity = q.length>=3 && cityN.indexOf(q)>=0;
+    const hitAddr = q.length>=3 && (a.aliases||[]).some(al=>normLoc(al).indexOf(q)>=0);
+    if(hitZip || hitCity || hitAddr){
+      out.push({ type:'future', key:a.label, name:a.label, title:a.label, emoji:'◆',
+        sub:(a.county||'CA')+' · future expansion area', lat:a.lat, lng:a.lng,
+        radiusDefault:a.radiusDefault||8, future:true, __resolved:true, ct:'' });
+    }
+  }
+  return out;
+}
+function kytRecord(){
+  try{ if(typeof find==='function'){ const d=find(KYT_REF.id); if(d) return d; } }catch(e){}
+  try{ const arr=(typeof LAST!=='undefined'&&LAST)?LAST:[]; const d=arr.find(x=>x.id===KYT_REF.id || /kyt dental services/i.test(x.practice||'')); if(d) return d; }catch(e){}
+  return null;
+}
+/* PART 7: open the REAL KYT Fountain Valley profile (drawer if loaded, else its profile URL) */
+function openKytProfile(){
+  console.debug('KYT expansion card active');
+  try{ const d=kytRecord(); if(d && typeof openProfile==='function'){ openProfile(d.id); return; } }catch(e){}
+  let url=KYT_REF.url;
+  try{ const d=kytRecord(); if(d && typeof getDentistProfileUrl==='function'){ const u=getDentistProfileUrl(d); if(u) url=u; } }catch(e){}
+  window.open(url,'_blank','noopener');
+}
+function kytDirectionsUrl(){ return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(KYT_REF.address); }
+/* honest drive distance from the current search center to the active KYT office */
+function kytDriveMiles(){ try{ const c=(typeof ccCurrentCenter==='function')&&ccCurrentCenter(); if(c && typeof miles==='function') return miles(c,{lat:KYT_REF.lat,lng:KYT_REF.lng}); }catch(e){} return null; }
+/* PART 3/8: center on a resolved location (default 8mi), run a COORDINATE search (name RPC can't find
+   Rowland Heights), with a coordinate/centroid fallback, and light up the KYT expansion bridge. */
+async function searchResolvedLocation(loc){
+  if(!loc) return;
+  const label=loc.label||'Rowland Heights, CA 91748';
+  const radius=loc.radiusDefault||state.distance||8;
+  state.distance=radius;
+  try{ const rad=document.getElementById('q-rad'); if(rad) rad.value=radius; }catch(e){}
+  try{ setRadiusUI(radius); }catch(e){}
+  const inp=document.getElementById('q-where'); if(inp) inp.value=label;
+  state._picked=null; state._whereStash=label; state._lastLoc=label; state._title=label;
+  state.seoHome=false; state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
+  state._center={lat:loc.lat,lng:loc.lng,label:label};
+  state.mapCenter={lat:loc.lat,lng:loc.lng,label:label,radius:radius};
+  ROWLAND_ACTIVE=true;
+  console.debug('Resolved location:', label, '(local alias)');
+  console.debug('Search center:', loc.lat, loc.lng, '· radius', radius);
+  try{ const m=document.getElementById('ac-menu'); if(m){ m.hidden=true; } }catch(e){}
+  if(sb && SB_READY){
+    try{
+      const { data, error } = await sb.rpc('search_dentists_near_coordinates', { in_lat:loc.lat, in_lng:loc.lng, radius_miles:Math.max(radius, PLAT_REACH) });
+      if(error) throw error;
+      SERVER_ORDER=(data||[]).map(r=>({ id:r.id, dist:+r.distance_miles, tier:r.tier }));
+      console.debug('Using Supabase location');
+      if(typeof track==='function') track('search_performed',{where:label, rowland:true});
+      renderFilters(); render(); afterSearchUI(label); return;
+    }catch(e){ console.warn('search_dentists_near_coordinates failed; coordinate fallback', e); }
+  }
+  SERVER_ORDER=null; CITIES['__rowland__']={lat:loc.lat,lng:loc.lng,label:label}; state.city='__rowland__'; state.allCounty=false;
+  console.debug('Using geocode fallback');
+  renderFilters(); render(); afterSearchUI(label);
+}
+/* PART 5: premium KYT future-expansion drawer (reuses the existing right-drawer shell) */
+function futureExpansionHtml(){
+  const dm=kytDriveMiles();
+  const drive = dm!=null ? (dm.toFixed(dm<10?1:0)+' mi from your current search center') : 'Fountain Valley, Orange County';
+  return ''
+  +'<button class="fxd-x" aria-label="Close" onclick="closeDentistDrawer()">\u2715</button>'
+  +'<div class="fxd">'
+  +'  <div class="fxd-hero">'
+  +'    <span class="fxd-badge">\u25C6 Future Expansion Interest Area</span>'
+  +'    <h2 class="fxd-title">KYT Dental Services</h2>'
+  +'    <div class="fxd-sub">Rowland Heights demand area</div>'
+  +'  </div>'
+  +'  <p class="fxd-body">CoverCapy is monitoring Rowland Heights demand for a possible KYT Dental Services expansion. Until then, patients searching near Rowland Heights can view KYT Dental Services in Fountain Valley and decide if the drive is worth it.</p>'
+  +'  <div class="fxd-note"><b>This is not an active KYT Dental Services location.</b> The active office is in Fountain Valley.</div>'
+  +'  <div class="fxd-worth">Worth considering if you are open to driving to Fountain Valley.</div>'
+  +'  <dl class="fxd-details">'
+  +'    <div><dt>Future interest area</dt><dd>Rowland Heights, CA 91748</dd></div>'
+  +'    <div><dt>Active KYT office</dt><dd>'+escapeHtml(KYT_REF.address)+'</dd></div>'
+  +'    <div><dt>Phone</dt><dd><a href="tel:'+KYT_REF.phone.replace(/[^0-9+]/g,'')+'">'+escapeHtml(KYT_REF.phone)+'</a></dd></div>'
+  +'    <div><dt>Approximate drive</dt><dd>'+escapeHtml(drive)+'</dd></div>'
+  +'    <div><dt>Status</dt><dd>Demand testing / future expansion consideration</dd></div>'
+  +'  </dl>'
+  +'  <div class="fxd-cta">'
+  +'    <button class="fxd-btn primary" type="button" onclick="openKytProfile()">View KYT Fountain Valley Profile</button>'
+  +'    <a class="fxd-btn" href="'+escapeAttr(kytDirectionsUrl())+'" target="_blank" rel="noopener" onclick="if(typeof track===\'function\')track(\'kyt_directions\',{from:\'rowland\'})">Get Directions to KYT \u2197</a>'
+  +'    <a class="fxd-btn ghost" href="'+escapeAttr('mailto:hello@covercapy.com?subject='+encodeURIComponent('Notify me if KYT expands to Rowland Heights')+'&body='+encodeURIComponent('Please notify me if KYT Dental Services expands to the Rowland Heights area.\n\nName:\nEmail:\nPhone (optional):\nZIP:\nPreferred treatment:\n'))+'" onclick="if(typeof track===\'function\')track(\'future_notify\',{site:\'rowland-heights\'})">Notify me if KYT expands here</a>'
+  +'  </div>'
+  +'</div>';
+}
+function openFutureExpansionDrawer(){
+  const d=document.getElementById('ddrawer'), s=document.getElementById('dd-scrim');
+  if(!d||!s){ window.open(KYT_REF.url,'_blank','noopener'); return; }
+  try{ DD_PREV=document.activeElement; }catch(e){}
+  d.innerHTML=futureExpansionHtml();
+  s.classList.add('open'); d.classList.add('open'); document.body.style.overflow='hidden';
+  console.debug('KYT expansion card active');
+  if(typeof track==='function') track('future_expansion_drawer_open',{site:'rowland-heights'});
+}
+try{ window.openFutureExpansionDrawer=openFutureExpansionDrawer; window.openKytProfile=openKytProfile; window.searchResolvedLocation=searchResolvedLocation; }catch(e){}
+const FUTURE_SITE={ lat:33.9879, lng:-117.8931, name:'KYT Dental Services', label:'KYT Future Expansion Interest Area', address:'1747 Fullerton Rd, Rowland Heights, CA 91748' };
 let futureLayers={};
 function futureIcon(){ return L.divIcon({className:'', html:'<div class="cc-fx-pin"></div>', iconSize:[16,16], iconAnchor:[8,8]}); }
 function ccCurrentCenter(){ if(state.mapCenter && state.mapCenter.lat!=null) return {lat:state.mapCenter.lat,lng:state.mapCenter.lng}; const c=centroid(); return (c && c.lat!=null)?{lat:c.lat,lng:c.lng}:null; }
@@ -2972,7 +3001,8 @@ function drawFutureSite(){
     const g=L.layerGroup();
     L.circle([FUTURE_SITE.lat,FUTURE_SITE.lng],{radius:1609.34, color:'#8B7FD6', weight:1.5, opacity:.55, fillColor:'#B7AEE8', fillOpacity:.15, dashArray:'2 8', interactive:false}).addTo(g);
     const mk=L.marker([FUTURE_SITE.lat,FUTURE_SITE.lng],{icon:futureIcon(), zIndexOffset:500, keyboard:false}).addTo(g);
-    try{ mk.bindTooltip('Future Coverage Area',{direction:'top',offset:[0,-9],className:'cc-fx-tip'}); }catch(e){}
+    try{ mk.bindTooltip('<b>KYT Future Expansion Interest Area</b><br><span style="opacity:.82">Rowland Heights demand area</span>',{direction:'top',offset:[0,-9],className:'cc-fx-tip'}); }catch(e){}
+    mk.on('click', function(){ openFutureExpansionDrawer(); });
     g.addTo(m); futureLayers[tag]=g;
   });
 }
@@ -3370,6 +3400,14 @@ async function fsCenterOnLocation(){
   const inp=document.getElementById('fsmap-loc'); if(!inp) return;
   const q=(inp.value||'').trim(); if(!q){ inp.focus(); return; }
   const h=document.getElementById('fmc-hint');
+  const _rl=resolveLocation(q);
+  if(_rl){
+    state.distance=_rl.radiusDefault||state.distance||8;
+    try{ const r=document.getElementById('fsmap-rad'); if(r) r.value=state.distance; }catch(e){}
+    state.mapCenter={lat:_rl.lat, lng:_rl.lng, label:_rl.label, radius:state.distance};
+    ROWLAND_ACTIVE=true; console.debug('Resolved location:', _rl.label, '(local alias)'); console.debug('Search center:', _rl.lat, _rl.lng);
+    fsSearchNearby(); return;
+  }
   const key=q.toLowerCase().replace(/,.*$/,'').trim();
   if(CITIES[key] && CITIES[key].lat!=null){
     state.mapCenter={lat:CITIES[key].lat, lng:CITIES[key].lng, label:CITIES[key].label||q, radius:state.distance||10};
