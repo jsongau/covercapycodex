@@ -107,7 +107,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .sf-loc{flex:none; width:30px; height:30px; border-radius:8px; display:grid; place-items:center; border:1px solid var(--line); background:var(--cream-2); color:var(--teal-night); cursor:pointer; transition:.15s; padding:0}
 .sf-loc:hover{border-color:var(--gold-2); background:var(--cream-card)}
 .sf-loc svg{width:15px; height:15px}
-.searchinner .sfield.rad{flex:1.1 1 150px; min-width:140px; justify-content:center}
+.searchinner .sfield.rad{flex:0 1 180px; min-width:165px; justify-content:center}
 .railrad > label{display:flex; align-items:center; gap:6px}
 .railrad-val{font:700 11.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-night); background:var(--mint-soft); border:1px solid var(--line-2); border-radius:999px; padding:2px 8px; letter-spacing:0; text-transform:none}
 .railrad input[type=range]{-webkit-appearance:none; appearance:none; width:100%; max-width:150px; height:5px; margin-top:7px; border-radius:999px; outline:none; cursor:pointer; background:linear-gradient(90deg,var(--mint-700) 0,var(--mint-700) var(--fill,24%),var(--line) var(--fill,24%),var(--line) 100%)}
@@ -326,7 +326,14 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fs-close{position:absolute; top:14px; right:14px; z-index:700; width:42px; height:42px; border-radius:50%; background:var(--cream-card); border:1px solid var(--line-2); color:var(--ink); font-size:15px; font-weight:600; display:grid; place-items:center; box-shadow:var(--sh-md); cursor:pointer}
 .fs-close:hover{background:#fff}
 .fs-redo{position:absolute; top:16px; left:50%; transform:translateX(-50%); z-index:700; display:inline-flex; align-items:center; gap:7px; background:var(--cream-card); color:var(--teal-night); font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:999px; box-shadow:var(--sh-md); border:1px solid var(--line-2); cursor:pointer; white-space:nowrap}
-.fs-redo .i{color:var(--mint-700)}
+.fs-redo .i{color:var(--mint-700); display:inline-block}
+.fs-redo .fs-redo-tx{overflow:hidden; text-overflow:ellipsis}
+.fs-redo{max-width:min(330px, calc(100vw - 132px))}
+.fs-redo:hover{background:#fff}
+.fs-redo:active{transform:translateX(-50%) scale(.97)}
+.fs-redo.busy{pointer-events:none; opacity:.9}
+.fs-redo.busy .i{animation:fsRedoSpin .7s linear infinite}
+@keyframes fsRedoSpin{to{transform:rotate(360deg)}}
 /* ── v50: fullscreen-map radius search control ─────────────────────── */
 .fsmap-ctrl{position:absolute; right:18px; top:auto; bottom:18px; left:auto; transform:none; z-index:701; width:min(360px,calc(100% - 76px)); max-height:calc(100% - 110px); overflow-y:auto; overscroll-behavior:contain;
   background:rgba(255,253,248,.95); -webkit-backdrop-filter:saturate(1.4) blur(12px); backdrop-filter:saturate(1.4) blur(12px);
@@ -711,7 +718,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
   .fs-sheet.expanded{max-height:none}
   .fs-grip{display:none}
   .fs-card{padding-top:16px}
-  .fs-redo{left:auto; right:70px; transform:none}
+  .fs-redo{left:calc(50% + 196px); right:auto; transform:translateX(-50%)}
 }
 @media(max-width:620px){
   .lcard, .lcard.feat{grid-template-columns:1fr}
@@ -1757,6 +1764,7 @@ body.dd-lock{overflow:hidden}
     <div class="fsmap-cross" id="fsmap-cross" aria-hidden="true"><span class="fx-dot"></span></div>
     <div class="cc-life-legend" id="cc-life-legend" aria-hidden="true" style="display:none"></div>
     <button class="fs-close" onclick="closeFsMap()" aria-label="Close map">✕</button>
+    <button class="fs-redo" id="fs-redo" type="button" onclick="fsRedoSearch()" aria-label="Redo search in this area"><span class="i" aria-hidden="true">↻</span><span class="fs-redo-tx">Redo search in this area</span></button>
     <div class="fsmap-ctrl" id="fsmap-ctrl">
       <button class="fmc-toggle" type="button" onclick="toggleFsCtrl()" aria-label="Show or hide search options"><span class="fmc-tg-ico" aria-hidden="true">⌕</span><span class="fmc-tg-tx" id="fmc-tg-tx">Search this area</span><span class="fmc-tg-chev" id="fmc-tg-chev" aria-hidden="true">⌃</span></button>
       <div class="fmc-loc">
@@ -1844,9 +1852,11 @@ function loadDentistsFromSupabase(){ return WORKING; }
 
 /* normalize a raw public.dentists row into the card shape */
 function normalizeRow(r){
-  const tier = r.membership_tier==="Elite" ? "platinum_elite"
-    : r.featured_tier==="capy-accredited" ? "capy_accredited"
-    : r.featured_tier==="verified" ? "verified" : "public";
+  const _mt=String(r.membership_tier||"").trim().toLowerCase().replace(/[\s-]+/g,"_");
+  const _ft=String(r.featured_tier||"").trim().toLowerCase().replace(/[\s-]+/g,"_");
+  const tier = (_mt==="elite"||_mt==="platinum_elite"||_ft==="platinum_elite") ? "platinum_elite"
+    : (_mt==="capy_accredited"||_ft==="capy_accredited") ? "capy_accredited"
+    : (_mt==="verified"||_ft==="verified") ? "verified" : "public";
   const geo = CITIES[(r.city||"").toLowerCase()];
   const lat = r.latitude!=null ? +r.latitude : (geo ? geo.lat + (Math.random()-.5)*.012 : null);
   const lng = r.longitude!=null ? +r.longitude : (geo ? geo.lng + (Math.random()-.5)*.012 : null);
@@ -4001,6 +4011,15 @@ async function fsSearchNearby(){
   CITIES["__map__"]={lat:c.lat,lng:c.lng,label:c.label||'this area'}; state.city="__map__";
   renderFilters(); render(); fsAfterSearch();
 }
+/* v100 — top-center "Redo search in this area" pill: re-runs the radius scan at the current
+   map center using the current radius preset (delegates to fsSearchNearby). */
+async function fsRedoSearch(){
+  var b=document.getElementById('fs-redo');
+  if(b) b.classList.add('busy');
+  try{ await fsSearchNearby(); }
+  catch(e){ console.warn('redo search failed', e); }
+  finally{ if(b) setTimeout(function(){ b.classList.remove('busy'); }, 250); }
+}
 function fsAfterSearch(){
   if(window.matchMedia && window.matchMedia('(max-width:980px)').matches){ peekFsSheet(); miniFsCtrl(); }
   fsCtrlSync(); updateSearchCenter(); fsFitToCircle();
@@ -4618,15 +4637,28 @@ let DD_ID=null, ddMap=null, DD_LL=null, DD_D=null, DD_PREV=null;
 function openProfile(id){ openDentistDrawer(id); }
 function closeDentistDrawer(){ ddDestroyMap(); const s=document.getElementById('dd-scrim'), d=document.getElementById('ddrawer'); if(s)s.classList.remove('open'); if(d)d.classList.remove('open'); if(!document.querySelector('.scrim.open')) document.body.style.overflow=''; if(DD_PREV&&DD_PREV.focus){ try{ DD_PREV.focus(); }catch(e){} } DD_PREV=null; DD_ID=null; }
 function ddDestroyMap(){ if(ddMap){ try{ ddMap.remove(); }catch(e){} ddMap=null; } }
+/* v101 — tapping the drawer location map opens Google Maps centered on the practice (its pin loaded) */
+function ddOpenInMaps(){
+  try{
+    var d=DD_D||(DD_ID?find(DD_ID):null); if(!d) return;
+    var name=(typeof normalizeDentistName==='function')?normalizeDentistName(d):(d.practice||'');
+    var addr=d.address||((d.city||'')+(d.state?(', '+d.state):''));
+    var q=encodeURIComponent([name,addr].filter(Boolean).join(', '));
+    var url='https://www.google.com/maps/search/?api=1&query='+q;
+    if(d.placeId) url+='&query_place_id='+encodeURIComponent(d.placeId);
+    window.open(url,'_blank','noopener');
+  }catch(e){}
+}
 function ddInitMap(){
   if(ddMap){ try{ ddMap.invalidateSize(); }catch(e){} return; }
   if(!window.L || !DD_LL || !DD_D) return;
   const el=document.getElementById('dd-map'); if(!el) return;
   const fb=el.querySelector('.dd-map-fallback'); if(fb) fb.remove();
   try{
-    ddMap=L.map(el,{zoomControl:false, attributionControl:true, scrollWheelZoom:false, dragging:true, doubleClickZoom:true, tap:false}).setView(DD_LL,14);
+    ddMap=L.map(el,{zoomControl:false, attributionControl:false, scrollWheelZoom:false, dragging:false, doubleClickZoom:false, tap:false}).setView(DD_LL,14);
     L.tileLayer(TILE,{attribution:TILE_ATTR,subdomains:'abcd',maxZoom:19}).addTo(ddMap);
     L.marker(DD_LL,{icon:makeIcon(DD_D), interactive:false, keyboard:false, zIndexOffset:600}).addTo(ddMap);
+    try{ el.style.cursor='pointer'; el.setAttribute('title','Open in Google Maps'); ddMap.on('click', ddOpenInMaps); }catch(e){}
     setTimeout(()=>{ try{ ddMap.invalidateSize(); ddMap.setView(DD_LL,14); }catch(e){} },70);
   }catch(e){ ddMap=null; }
 }
@@ -5611,7 +5643,7 @@ bootData().then(()=>{ if(SB_READY){ refreshDerived();
 .listings.view-list .lrow{gap:13px}
 
 /* GRID (2-col) + MARKET (4-col): vertical luxury cards */
-.listings.view-grid, .listings.view-market{display:grid; align-items:start}
+.listings.view-grid, .listings.view-market{display:grid; align-items:stretch}
 .listings.view-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
 .listings.view-market{grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
 .listings.view-grid .promo, .listings.view-grid .soft-note, .listings.view-grid .lcard.feat,
@@ -5977,7 +6009,7 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } if(ty
 .geo-chev{display:inline-block; font-size:9px; line-height:1; transition:transform .18s}
 .geo-grp.open > .geo-row > .geo-chevbtn .geo-chev{transform:rotate(90deg)}
 .geo-lblbtn{flex:1; min-width:0; background:none; border:none; cursor:pointer; text-align:left; padding:0; display:flex; align-items:center; gap:7px; font:600 13.5px/1.25 "Inter Tight",system-ui,sans-serif; color:var(--ink)}
-.geo-lblbtn .geo-t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.geo-lblbtn .geo-t{white-space:normal; overflow:visible; text-overflow:clip; word-break:break-word}
 .geo-lblbtn:hover .geo-t{color:var(--teal-700)}
 .geo-emoji{flex:none; font-size:13px}
 .geo-ct{flex:none; font:600 11px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:2px 7px}
@@ -6062,5 +6094,26 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } if(ty
   setTimeout(init, 1300);
 })();
 </script>
+<style id="cc-v101-css">
+/* ===== v101 fixes ===== */
+/* #1 grid/market: equal-height cards with CTAs pinned to the bottom (regular cards; featured spans its own full-width row) */
+.listings.view-grid .lcard:not(.feat), .listings.view-market .lcard:not(.feat){height:100%}
+.listings.view-grid .lcard:not(.feat) .lrow, .listings.view-market .lcard:not(.feat) .lrow{flex:1 1 auto}
+.listings.view-grid .lcard:not(.feat) .lside, .listings.view-market .lcard:not(.feat) .lside{margin-top:auto}
+
+/* #4 featured platinum card: balance the hero — perks fill the width, CTAs centered, columns equal height */
+.lcard.feat .lrow{align-items:stretch}
+.lcard.feat .lmain{flex:1 1 auto; min-width:0}
+.lcard.feat .lside{justify-content:center}
+.lcard.feat .whychoose .wc-list{display:grid; grid-template-columns:1fr 1fr; gap:9px 20px}
+@media(max-width:760px){
+  .lcard.feat .whychoose .wc-list{grid-template-columns:1fr}
+  .lcard.feat .lside{justify-content:flex-start}
+}
+
+/* #5 drawer location map: hide Leaflet attribution, signal tappable */
+.dd-map .leaflet-control-attribution{display:none !important}
+.dd-map{cursor:pointer}
+</style>
 </body>
 </html>
