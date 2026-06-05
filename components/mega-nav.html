@@ -1,3 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CoverCapy Mega Nav</title>
+  <link rel="stylesheet" href="mega-nav.css">
+  <link rel="stylesheet" href="mega-nav-mobile.css">
+</head>
+<body>
 <nav aria-label="Primary" class="cc-nav" id="cc-nav">
 <div class="cc-nav-row">
 <div class="cc-left"><a aria-label="CoverCapy home" class="cc-logo" href="/">
@@ -5,90 +15,63 @@
 <svg aria-hidden="true" class="cc-logo-fallback" height="46" viewbox="0 0 64 64" width="46" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><ellipse cx="42" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><rect fill="#0E3F44" height="32" rx="16" width="36" x="14" y="20"></rect><ellipse cx="32" cy="44" fill="#123F52" rx="9" ry="6"></ellipse><circle cx="25" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="39" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="25" cy="33" fill="#0E3F44" r="1"></circle><circle cx="39" cy="33" fill="#0E3F44" r="1"></circle><circle cx="29" cy="44" fill="#FCFAF4" r="1.1"></circle><circle cx="35" cy="44" fill="#FCFAF4" r="1.1"></circle></svg>
 <span class="cc-edition"><span class="cc-edition-top">CoverCapy</span><span class="cc-edition-bottom">Concierge Dental Network</span></span>
 </a>
-<div class="cc-lang" data-i18n-skip="" id="cc-lang">
-<button aria-expanded="false" aria-haspopup="true" aria-label="Change language" class="cc-lang-btn" id="cc-lang-btn" type="button">
-<svg aria-hidden="true" class="cc-lang-globe" fill="none" height="15" stroke="currentColor" stroke-width="1.7" viewbox="0 0 24 24" width="15"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"></path></svg>
-<span class="cc-lang-cur" id="cc-lang-cur">EN</span>
-<span aria-hidden="true" class="cc-lang-caret">▾</span>
-</button>
-<div class="cc-lang-menu" id="cc-lang-menu" role="menu">
-<button class="cc-lang-opt is-active" data-lang="en" role="menuitem"><span class="cc-lang-name">English</span><span class="cc-lang-tag">English</span></button>
-<button class="cc-lang-opt" data-lang="es" role="menuitem"><span class="cc-lang-name">Español</span><span class="cc-lang-tag">Español</span></button>
-<button class="cc-lang-opt" data-lang="zh-hans" role="menuitem"><span class="cc-lang-name">简体中文</span><span class="cc-lang-tag">简体中文</span></button>
-<button class="cc-lang-opt" data-lang="zh-hant" role="menuitem"><span class="cc-lang-name">繁體中文</span><span class="cc-lang-tag">繁體中文</span></button>
-<div class="cc-lang-foot" id="cc-lang-foot">Choose site language</div>
+</div>
+<div class="cc-links" role="menubar"><div class="cc-link featured" data-link="find" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/ppodentists.html" role="menuitem">Find Dentist <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
+<div class="cc-mega dd-find" role="menu"><div class="mega-inner find-inviting-inner">
+<div class="find-inviting-grid">
+<section aria-label="Find a PPO dentist by ZIP" class="find-inviting-left">
+<div class="mega-eyebrow find-orange-eyebrow">Find a PPO Dentist</div>
+<h3 class="mega-title find-inviting-title">Find a trusted<br/>PPO dentist <em>near you.</em></h3>
+<p class="mega-sub find-inviting-sub">Browse PPO-friendly offices with clear details, softer choices, and less pressure before you book.</p>
+<div class="zip-search-card">
+<div class="zip-search-row">
+<div aria-hidden="true" class="zip-icon">⌖</div>
+<input autocomplete="off" class="find-zip-input zip-search-input" id="nav-zip" inputmode="search" maxlength="64" placeholder="Enter ZIP, city, or area (e.g., 91748 or Rowland Heights)" type="search"/>
+<button class="find-zip-btn zip-orange-btn" id="nav-zip-btn" type="button"><span aria-hidden="true">⌕</span> Search Dentists</button>
+</div>
+<div aria-label="Example searches" class="popular-searches option-c-searches">
+<span class="popular-label">Try a search</span>
+<button class="zip-chip zip-chip-simple" data-query="90210" type="button">90210</button>
+<button class="zip-chip zip-chip-simple" data-query="92605" type="button">92605</button>
+<button class="zip-chip zip-chip-simple" data-query="91745" type="button">91745</button>
+<button class="zip-chip zip-chip-simple" data-query="Rowland Heights" type="button">Rowland Heights</button>
+<button class="zip-chip zip-chip-simple" data-query="Miami Beach" type="button">Miami Beach</button>
 </div>
 </div>
+<div class="find-mini-trust">
+<div class="trust-mini"><span class="trust-ico">♢</span><strong>Platinum Elite</strong><small>Top-rated PPO dentists verified for quality.</small></div>
+<div class="trust-mini"><span class="trust-ico">⌾</span><strong>PPO Verified</strong><small>We confirm PPO acceptance before you book.</small></div>
+<div class="trust-mini"><span class="trust-ico">☺</span><strong>Always Free</strong><small>Our service is 100% free for patients.</small></div>
 </div>
-<div class="cc-links" role="menubar">
-<!-- ABOUT -->
-<div class="cc-link" data-link="about" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/" role="menuitem">About <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-about" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead">
-<div class="mega-eyebrow">Concierge Dental Network</div>
-<h3 class="mega-title" data-i18n-html="about_title">Dental care, guided from coverage to <em>booking.</em></h3>
-<p class="mega-sub">CoverCapy helps patients understand PPO coverage, estimate treatment costs, and find trusted dentists before they book.</p>
+</section>
+<aside aria-label="Search result" class="find-inviting-right">
+<div class="mega-eyebrow find-orange-eyebrow">What you’ll find</div>
+<div class="find-result-card featured-card" id="find-featured">
+<div class="what-row"><span class="what-icon">◇</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>
+<div class="what-row"><span class="what-icon">♢</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>
+<div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Continue to the full directory for refined search.</p></div></div>
+
 </div>
-<!-- ===== PROMO SLOT · About · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="promo-quote mr-bara-quote">
-<div class="promo-quote-text"><span class="promo-quote-mark open">“</span>We kept hearing the same story: a <span class="promo-money promo-money-high">$3,000</span> dental bill that might’ve been closer to <span class="promo-money promo-money-low">$300</span>. <span class="promo-brand">CoverCapy</span> helps you check the plan, the network, and the dentist <span class="promo-em">before the surprise</span>.<span class="promo-quote-mark end">”</span></div>
-<div class="promo-quote-sig">Mr. Bara</div>
+
+<div class="find-action-panel" id="find-action-panel" aria-label="Directory and dentist actions">
+  <a class="find-browse-main is-disabled" id="nav-browse-main" href="#" aria-disabled="true">Select a ZIP or city first →</a>
+  <a class="find-dentist-apply" href="/dentist-portal.html#platinum-elite">For Dentists: Apply to Join</a>
 </div>
+<div class="find-fallback-cta" id="find-fallback-cta" hidden>
+<a class="find-fallback-primary cta-idle" id="nav-find-cta" href="#" aria-disabled="true">Select a ZIP or city first <span aria-hidden="true">→</span></a>
+<a class="find-fallback-secondary" href="/dentist-portal.html#platinum-elite">For Dentists: Apply Platinum Elite</a>
 </div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">New here?</div><div class="mega-aside-text" data-i18n-html="about_video">A two minute look at how the <em>concierge</em> works.</div><a class="mega-aside-cta" href="/how-covercapy-works.html">See how it works</a></div>
+</aside>
 </div>
-<div class="mega-cols">
-<div class="ppo-toggle">
-<div class="ppo-toggle-head">PPO vs HMO at a glance</div>
-<div class="ppo-switch" id="ppo-switch">
-<button class="ppo-opt is-on" data-plan="ppo" type="button">PPO</button>
-<button class="ppo-opt" data-plan="hmo" type="button">HMO</button>
-<span class="ppo-thumb"></span>
-</div>
-<ul class="ppo-points good" data-for="ppo">
-<li><span class="ic">✓</span>Any dentist, no referral</li>
-<li><span class="ic">✓</span>See specialists directly</li>
-<li><span class="ic">✓</span>Out of network coverage</li>
-<li><span class="ic">✓</span>Higher annual maximums</li>
-</ul>
-<ul class="ppo-points lim" data-for="hmo" hidden="">
-<li><span class="ic">!</span>One assigned dentist</li>
-<li><span class="ic">!</span>Referrals required</li>
-<li><span class="ic">!</span>In network only</li>
-<li><span class="ic">!</span>Lower cost, less choice</li>
-</ul>
-<a class="ppo-cta" href="/guides/upgrade-from-hmo-to-ppo.html">Learn how to upgrade from an HMO <span aria-hidden="true">→</span></a>
-</div>
-<div>
-<div class="mega-group-title">The Network</div>
-<a class="mega-link" href="/about-covercapy.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">About Us</span></span></a>
-<a class="mega-link" href="/how-covercapy-works.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">How CoverCapy Works</span></span></a>
-<a class="mega-link" href="/dental-concierge-network.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental Concierge Network</span></span></a>
-<a class="mega-link" href="/dental-insurance-carriers.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Insurance We Work With</span></span></a>
-</div>
-<div>
-<div class="mega-group-title">Guides</div>
-<a class="mega-link" href="/guides/upgrade-from-medi-cal.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Upgrade your Medi-Cal to a PPO</span></span></a>
-<a class="mega-link" href="/guides/multiple-dental-ppo-plans.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Get more than one PPO</span></span></a>
-<a class="mega-link" href="/dental-insurance-glossary.html"><span class="mega-link-dot"></span><span><span class="mega-link-text">Dental Insurance Glossary</span></span></a>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>$0 to patients</span><span>Privacy-first guidance</span><span>Guided journey</span></div><a class="mega-foot-link" href="/how-covercapy-works.html">Learn more</a></div></div>
-</div>
-</div>
-<!-- GET COVERAGE -->
-<div class="cc-link" data-link="coverage" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/compare-ppo-dental-plans.html" role="menuitem">Get Coverage <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Capy Accredited Network</span><span>No assigned dentists</span><span>Always free for patients</span></div><span class="mega-foot-link cc-foot-wait">Choose a ZIP or city above first</span></div></div>
+</div></div>
+</div><div class="cc-link" data-link="coverage" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/compare-ppo-dental-plans.html" role="menuitem">Compare PPO Plans <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
 <div class="cc-mega dd-cov" role="menu">
 <div class="mega-inner">
 <div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">PPO Coverage Guidance</div><h3 class="mega-title" data-i18n-html="cov_title">Activate PPO coverage with <em>confidence.</em></h3><p class="mega-sub">Compare PPO dental plans by treatment needs, waiting periods, annual maximums, and dentist flexibility.</p></div>
+<div class="mega-head-lead"><div class="mega-eyebrow">Coverage</div><h3 class="mega-title">Compare PPO plans before you <em>commit.</em></h3><p class="mega-sub">Fast activation, waiting periods, annual maximums, and carrier guidance in one place.</p></div>
 <!-- ===== PROMO SLOT · Get Coverage · swap this block freely (menu code untouched) ===== -->
 <div class="mega-promo">
 <div class="featured-card promo-action-card plan-feature-card" style="margin-top:0">
@@ -98,7 +81,7 @@
 </div>
 </div>
 <!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Not sure which plan?</div><div class="mega-aside-text" data-i18n-html="cov_sub">Get <em>matched</em> to a plan that fits your treatment and timing.</div><a class="mega-aside-cta" href="/compare-ppo-dental-plans.html">Compare &amp; match</a></div>
+<div class="mega-aside"><div class="mega-aside-eyebrow">Not sure which plan?</div><div class="mega-aside-text">Get <em>matched</em> to a plan that fits your treatment and timing.</div><a class="mega-aside-cta" href="/compare-ppo-dental-plans.html">Compare &amp; match</a></div>
 </div>
 <div class="mega-cols">
 <div>
@@ -131,14 +114,12 @@
 </div>
 <div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Trusted PPO carriers</span><span>No assigned dentist</span><span>Coverage by carrier</span></div><a class="mega-foot-link" href="/compare-ppo-dental-plans.html">Compare all PPO plans</a></div></div>
 </div>
-</div>
-<!-- ESTIMATE COSTS -->
-<div class="cc-link" data-link="estimate" role="none">
+</div><div class="cc-link" data-link="estimate" role="none">
 <a aria-haspopup="true" class="cc-link-anchor" href="/dental-treatment-cost-estimator.html" role="menuitem">Estimate Costs <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
 <div class="cc-mega dd-est" role="menu">
 <div class="mega-inner">
 <div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">Treatment Cost Guidance</div><h3 class="mega-title" data-i18n-html="est_title">Know your dental cost <em>before</em> you book.</h3><p class="mega-sub">Estimate common treatments, compare PPO savings, and plan monthly payments before your appointment.</p></div>
+<div class="mega-head-lead"><div class="mega-eyebrow">Treatment Costs</div><h3 class="mega-title">Know your dental cost <em>before</em> you book.</h3><p class="mega-sub">Estimate common treatments, compare PPO savings, and plan monthly payments before your appointment.</p></div>
 <!-- ===== PROMO SLOT · Estimate · swap this block freely (menu code untouched) ===== -->
 <div class="mega-promo">
 <div class="featured-card promo-action-card estimator-feature-card" style="margin-top:0">
@@ -148,7 +129,7 @@
 </div>
 </div>
 <!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">See your number</div><div class="mega-aside-text" data-i18n-html="est_aside">Walk in <em>knowing</em> the number, not guessing.</div><a class="mega-aside-cta" href="/dental-treatment-cost-estimator.html">Plan my treatment</a></div>
+<div class="mega-aside"><div class="mega-aside-eyebrow">See your number</div><div class="mega-aside-text">Walk in <em>knowing</em> the number, not guessing.</div><a class="mega-aside-cta" href="/dental-treatment-cost-estimator.html">Plan my treatment</a></div>
 </div>
 <div class="mega-cols">
 <div>
@@ -202,71 +183,12 @@
 </div>
 <div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Dentist informed</span><span>Educational estimates</span><span>Educational planning</span></div><a class="mega-foot-link" href="/dental-treatment-cost-estimator.html">Full calculator</a></div></div>
 </div>
-</div>
-<!-- FIND MY DENTIST · FEATURED HERO -->
-<div class="cc-link featured" data-link="find" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/ppodentists.html" role="menuitem">Find My Dentist <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
-<div class="cc-mega dd-find" role="menu">
-<div class="mega-inner">
-<div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">PPO Dentist Discovery</div><h3 class="mega-title" data-i18n-html="find_title">Find a trusted PPO dentist <em>near you.</em></h3><p class="mega-sub">Browse Capy Accredited offices by ZIP and find quality dentists near you.</p></div>
-<!-- ===== PROMO SLOT · Find My Dentist · swap this block freely (menu code untouched) ===== -->
-<div class="mega-promo">
-<div class="featured-card promo-action-card dentist-feature-card" id="find-featured" style="margin-top:0">
-<div class="featured-banner">◆ Platinum Elite · Featured Dentist</div>
-<div class="featured-body">
-<div class="featured-avatar cc-symbol-avatar">◆</div>
-<div class="featured-copy">
-<a class="featured-name feature-practice-link" href="/dentists/kyt-dental-services.html">KYT Dental Services</a>
-<div class="featured-meta"><span class="featured-stars">★★★★★</span> 4.9 · 212 reviews</div>
-<a class="featured-loc feature-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=KYT%20Dental%20Services%2011180%20Warner%20Ave%20%23251%20Fountain%20Valley%20CA%2092708" rel="noopener" target="_blank">11180 Warner Ave #251<br/><span class="featured-address-line2">Fountain Valley, CA 92708<span class="featured-mi" id="feat-mi"></span></span></a>
-<a class="feature-phone" href="tel:+18335983368">(833) 598-3368</a>
-</div>
-</div>
-<div class="featured-actions">
-<a class="featured-btn primary" data-cc-booking-practice="KYT Dental Services" data-cc-modal="booking" data-cc-modal-provider="kyt" data-track-outbound="kyt-dental-services-booking" href="https://www.kytdentalservices.com/booking">Book Appointment</a>
-<a class="featured-btn secondary" href="tel:+18335983368">Call Office</a>
-</div>
-</div>
-</div>
-<!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Modern care standard</div><div class="mega-aside-text" data-i18n-html="find_aside">Capy Accreditation recognizes offices for modern diagnostics, digital workflows, and broad <em>PPO access.</em></div><a class="mega-aside-cta" href="/capy-accreditation-v4.html">View accreditation</a></div>
-</div>
-<div class="mega-cols">
-<div>
-<div class="find-zip">
-<div aria-hidden="true" class="find-zip-radar"><i></i><i></i><i></i></div>
-<div class="find-zip-eyebrow">Step 1 · Find by ZIP</div>
-<div class="find-zip-h">Find a PPO dentist near you.</div>
-<div class="find-zip-sub">Enter your ZIP and we'll see if there's a Platinum Elite dentist near you.</div>
-<div class="find-zip-row">
-<input autocomplete="off" class="find-zip-input" id="nav-zip" inputmode="numeric" maxlength="5" placeholder="ZIP code, e.g. 92708" type="text"/>
-<button class="find-zip-btn" id="nav-zip-btn" type="button">Search</button>
-</div>
-</div>
-</div>
-<div class="find-right"><div class="find-tag-wrap show" id="nav-zip-tag"><div class="find-tag-eyebrow">Step 2 · Confirm your city</div><span class="find-tag find-tag-ghost"><span class="find-tag-pin">📍</span>Enter a ZIP</span><div class="find-tag-meta">We'll show your city and the dentists nearby.</div></div>
-</div>
-<div>
-<div class="find-step-eyebrow">Step 3 · Browse dentists</div>
-<div class="find-ready" hidden="" id="nav-find-ready"><span class="find-ready-tx">You’re all set. Browse below</span><span class="find-ready-arrow">↓</span></div>
-<div class="mega-ctas">
-<a class="mega-cta-p cta-idle" href="/ppodentists.html?city=los-angeles-county/rowland-heights" id="nav-find-cta">Browse Dentists Near You</a>
-<a class="mega-cta-s cta-region" href="/ppodentists.html" id="nav-find-all">Region Search</a>
-</div>
-</div>
-</div>
-</div>
-<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Capy Accredited network</span><span>No assigned dentists</span><span>Always free for patients</span></div><a class="mega-foot-link" href="/ppodentists.html">Full directory</a></div></div>
-</div>
-</div>
-<!-- PATIENT REWARDS -->
-<div class="cc-link" data-link="rewards" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/covercapy-join.html" role="menuitem">Patient Rewards <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
+</div><div class="cc-link" data-link="rewards" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/covercapy-join.html" role="menuitem">Rewards <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
 <div class="cc-mega dd-rew" role="menu">
 <div class="mega-inner">
 <div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">Capy Crowns Membership</div><h3 class="mega-title" data-i18n-html="port_alt">A smarter way to <em>own your dentistry.</em></h3><p class="mega-sub">Earn Capy Crowns, redeem them at accredited offices. Your first 300 are already yours.</p></div>
+<div class="mega-head-lead"><div class="mega-eyebrow">Rewards</div><h3 class="mega-title">A smarter way to <em>own your dentistry.</em></h3><p class="mega-sub">Earn Capy Crowns, redeem them at accredited offices. Your first 300 are already yours.</p></div>
 <!-- ===== PROMO SLOT · Patient Rewards · featured reward (swap freely) ===== -->
 <div class="mega-promo">
 <div class="featured-card promo-action-card reward-feature-card">
@@ -274,7 +196,7 @@
 <div class="featured-body">
 <div class="featured-avatar cc-symbol-avatar">♔</div>
 <div class="featured-copy">
-<div class="featured-name" data-i18n-html="rew_title">Free Whitening <em>Session</em></div>
+<div class="featured-name">Free Whitening <em>Session</em></div>
 <div class="featured-meta">MSRP <s>$600</s> · unlocks at 2,000 ♔</div>
 <div class="feature-lines feature-lines-vertical"><span>Your balance: <strong>300 ♔</strong></span><span>1,700 to go</span></div>
 </div>
@@ -316,14 +238,12 @@
 </div>
 <div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Claim at participating Capy Accredited offices</span><span>Crowns never expire</span><span>Free to join</span></div><a class="mega-foot-link" href="/rewards.html">All rewards</a></div></div>
 </div>
-</div>
-<!-- DENTIST PORTAL -->
-<div class="cc-link" data-link="portal" role="none">
-<a aria-haspopup="true" class="cc-link-anchor" href="/dentist-portal.html" role="menuitem">Dentist Portal <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
+</div><div class="cc-link" data-link="portal" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/dentist-portal.html" role="menuitem">For Dentists <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
 <div class="cc-mega dd-port" role="menu">
 <div class="mega-inner">
 <div class="mega-head">
-<div class="mega-head-lead"><div class="mega-eyebrow">Practice Growth</div><h3 class="mega-title" data-i18n-html="port_title">Get discovered by patients <em>ready to book.</em></h3><p class="mega-sub">Reach patients comparing coverage and choosing a dentist near you.</p></div>
+<div class="mega-head-lead"><div class="mega-eyebrow">For Dentists</div><h3 class="mega-title">Claim your profile and get <em>discovered.</em></h3><p class="mega-sub">Reach patients comparing coverage and choosing a dentist near you.</p></div>
 <!-- ===== PROMO SLOT · Dentist Portal · swap this block freely (menu code untouched) ===== -->
 <div class="mega-promo">
 <div class="promo-search">
@@ -336,7 +256,7 @@
 </div>
 </div>
 <!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">Curated network</div><div class="mega-aside-text" data-i18n-html="port_aside">Every Tier 02 and up membership is <em>reviewed and verified</em> by our team.</div><a class="mega-aside-cta" href="/capy-accreditation.html">Accreditation</a></div>
+<div class="mega-aside"><div class="mega-aside-eyebrow">Curated network</div><div class="mega-aside-text">Every Tier 02 and up membership is <em>reviewed and verified</em> by our team.</div><a class="mega-aside-cta" href="/capy-accreditation.html">Accreditation</a></div>
 </div>
 <div class="mega-cols">
 <div class="tiers">
@@ -358,8 +278,7 @@
 </div>
 <div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Curated and vetted</span><span>Reviewed by our team</span><span>Cancel anytime</span></div><a class="mega-foot-link" href="/dentist-portal.html">Advertising disclosure</a></div></div>
 </div>
-</div>
-</div>
+</div></div>
 <div class="cc-actions">
 <a class="cc-signin" href="/sign-in.html">Sign in</a>
 <a class="cc-join" href="/covercapy-join.html">Join Free</a>
@@ -382,20 +301,17 @@
 </div>
 <div class="cc-drawer-tagline">Unlock 300 Capy Crowns and find PPO dentists near you.</div>
 </div>
-<div class="cc-drawer-nav">
-<div class="cc-dacc featured-acc"><button class="cc-dacc-btn" data-acc="">Find My Dentist<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<div class="cc-drawer-nav"><div class="cc-dacc featured-acc"><button class="cc-dacc-btn" data-acc="">Find Dentist<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
 <a class="cc-dacc-link feature" href="/ppodentists.html">Find My Dentist</a>
 <a class="cc-dacc-link" href="/best-ppo-dentists-by-city.html">Best PPO Dentists by City</a>
 <a class="cc-dacc-link" href="/ppo-dentists-by-state.html">PPO Dentists by State</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Patient Rewards<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/covercapy-join.html">Claim 300 Crowns</a>
-<a class="cc-dacc-link" href="/rewards/refer-a-friend.html">Refer a Friend</a>
-<a class="cc-dacc-link" href="/rewards/redeem/in-office-whitening.html">Redeem Free Whitening</a>
-<a class="cc-dacc-link" href="/rewards/local.html">Local Rewards</a>
-<a class="cc-dacc-link" href="/sign-in.html">Patient Login</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Estimate Costs<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+</div></div></div><div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Compare PPO Plans<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/compare-ppo-dental-plans.html">Compare PPO Plans</a>
+<a class="cc-dacc-link" href="/fast-ppo-activation.html">Fast PPO Activation</a>
+<a class="cc-dacc-link" href="/ppo-plans/emergency-dental.html">Dental Pain &amp; Emergency</a>
+<a class="cc-dacc-link" href="/ppo-plans/fillings-cavities.html">Fillings &amp; Cavities</a>
+<a class="cc-dacc-link" href="/ppo-plans/crowns-root-canals.html">Crowns &amp; Root Canals</a>
+</div></div></div><div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Estimate Costs<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
 <a class="cc-dacc-link feature" href="/dental-treatment-cost-estimator.html">Run Treatment Estimate</a>
 <a class="cc-dacc-link" href="/dental-financing-monthly-payments.html">Monthly Payment Options</a>
 <a class="cc-dacc-link" href="/guides/dental-insurance-waiting-periods.html">Dental Waiting Periods</a>
@@ -403,42 +319,19 @@
 <a class="cc-dacc-link" href="/cost-calculator/crown.html">Crown Cost</a>
 <a class="cc-dacc-link" href="/cost-calculator/bridge.html">Bridge Cost</a>
 <a class="cc-dacc-link" href="/cost-calculator/dentures.html">Denture Cost</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Get Coverage<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link feature" href="/compare-ppo-dental-plans.html">Compare PPO Plans</a>
-<a class="cc-dacc-link" href="/fast-ppo-activation.html">Fast PPO Activation</a>
-<a class="cc-dacc-link" href="/ppo-plans/emergency-dental.html">Dental Pain &amp; Emergency</a>
-<a class="cc-dacc-link" href="/ppo-plans/fillings-cavities.html">Fillings &amp; Cavities</a>
-<a class="cc-dacc-link" href="/ppo-plans/crowns-root-canals.html">Crowns &amp; Root Canals</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">About<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
-<a class="cc-dacc-link" href="/how-covercapy-works.html">How CoverCapy Works</a>
-<a class="cc-dacc-link" href="/dental-concierge-network.html">Dental Concierge Network</a>
-<a class="cc-dacc-link" href="/hmo-vs-ppo-dental-insurance.html">PPO vs HMO</a>
-<a class="cc-dacc-link" href="/upgrade-your-work-ppo.html">Upgrade Work PPO</a>
-</div></div></div>
-<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Dentist Portal<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+</div></div></div><div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Rewards<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/covercapy-join.html">Claim 300 Crowns</a>
+<a class="cc-dacc-link" href="/rewards/refer-a-friend.html">Refer a Friend</a>
+<a class="cc-dacc-link" href="/rewards/redeem/in-office-whitening.html">Redeem Free Whitening</a>
+<a class="cc-dacc-link" href="/rewards/local.html">Local Rewards</a>
+<a class="cc-dacc-link" href="/sign-in.html">Patient Login</a>
+</div></div></div><div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">For Dentists<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
 <a class="cc-dacc-link feature" href="/claim-dentist-listing-profile.html">Claim Free Profile</a>
 <a class="cc-dacc-link" href="/dentist-portal.html#capy-accredited">Capy Accreditation</a>
 <a class="cc-dacc-link" href="/dentist-portal.html#platinum-elite">Platinum Elite</a>
 <a class="cc-dacc-link" href="/dentist-portal.html">Dentist Portal</a>
-</div></div></div>
-</div>
+</div></div></div></div>
 <div class="cc-drawer-foot"><a class="cc-drawer-join" href="/covercapy-join.html">Join Free</a><a class="cc-drawer-sign" href="/sign-in.html">Sign in</a></div>
-</div>
-<div aria-hidden="true" aria-live="polite" class="cc-translation-widget" hidden="" id="cc-translation-widget">
-<div aria-hidden="true" class="cc-translation-bot">
-<span class="cc-translation-bot-antenna"></span>
-<span class="cc-translation-bot-head">
-<span class="cc-translation-bot-eye"></span>
-<span class="cc-translation-bot-eye"></span>
-</span>
-<span class="cc-translation-bot-ring"></span>
-</div>
-<div class="cc-translation-copy">
-<div class="cc-translation-kicker"><span>CoverCapy translation</span><span>in progress</span></div>
-<div class="cc-translation-widget-text" id="cc-translation-widget-text"><span class="cc-translation-line">Translating to</span><span class="cc-translation-language">简体中文</span></div>
-</div>
 </div>
 <div aria-hidden="true" aria-labelledby="cc-universal-modal-title" aria-modal="true" class="cc-universal-modal" id="covercapy-universal-modal" role="dialog">
 <div aria-hidden="true" class="cc-universal-modal-backdrop" data-modal-close=""></div>
@@ -447,7 +340,7 @@
 <svg aria-hidden="true" height="14" viewbox="0 0 24 24" width="14"><path d="M6 6 L18 18 M18 6 L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg>
 </button>
 <div class="cc-universal-modal-eyebrow"><span aria-hidden="true" class="cc-universal-modal-eyebrow-dot"></span><span data-modal-slot="eyebrow">Before you continue</span></div>
-<h2 class="cc-universal-modal-title" data-modal-slot="title" id="cc-universal-modal-title">You're heading to<br><em>UnitedHealthcare</em>.</br></h2>
+<h2 class="cc-universal-modal-title" data-modal-slot="title" id="cc-universal-modal-title">You're heading to<br/><em>UnitedHealthcare</em>.</h2>
 <p class="cc-universal-modal-lede" data-modal-slot="body">We'll open UnitedHealthcare's official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.</p>
 <div aria-label="Disclosures" class="cc-universal-modal-disclosures">
 <span class="cc-universal-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
@@ -465,3 +358,8 @@
 </div>
 </div>
 </div>
+
+<section class="preview-hero"><div><h1>Simple examples applied.<br>ZIP or city search.</h1><p>Open Find Dentist and test 90210, 91745, Rowland Heights, or Miami Beach.</p></div></section>
+  <script src="mega-nav.js"></script>
+</body>
+</html>
