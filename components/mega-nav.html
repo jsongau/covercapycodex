@@ -1,13 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CoverCapy Mega Nav</title>
-  <link rel="stylesheet" href="mega-nav.css">
-  <link rel="stylesheet" href="mega-nav-mobile.css">
-</head>
-<body>
+<!-- CoverCapy Mega Nav ONLY include.
+     Do not paste a full <!doctype html> file into your page.
+     Load CSS in <head>, paste/fetch this where the nav should appear, then load JS before </body>. -->
 <nav aria-label="Primary" class="cc-nav" id="cc-nav">
 <div class="cc-nav-row">
 <div class="cc-left"><a aria-label="CoverCapy home" class="cc-logo" href="/">
@@ -51,15 +44,13 @@
 <div class="what-row"><span class="what-icon">◇</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>
 <div class="what-row"><span class="what-icon">♢</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>
 <div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Continue to the full directory for refined search.</p></div></div>
-
 </div>
-
-<div class="find-action-panel" id="find-action-panel" aria-label="Directory and dentist actions">
-  <a class="find-browse-main is-disabled" id="nav-browse-main" href="#" aria-disabled="true">Select a ZIP or city first →</a>
-  <a class="find-dentist-apply" href="/dentist-portal.html#platinum-elite">For Dentists: Apply to Join</a>
+<div aria-label="Directory and dentist actions" class="find-action-panel" id="find-action-panel">
+<a aria-disabled="true" class="find-browse-main is-disabled" href="#" id="nav-browse-main">Select a ZIP or city first →</a>
+<a class="find-dentist-apply" href="/dentist-portal.html#platinum-elite">For Dentists: Apply to Join</a>
 </div>
-<div class="find-fallback-cta" id="find-fallback-cta" hidden>
-<a class="find-fallback-primary cta-idle" id="nav-find-cta" href="#" aria-disabled="true">Select a ZIP or city first <span aria-hidden="true">→</span></a>
+<div class="find-fallback-cta" hidden="" id="find-fallback-cta">
+<a aria-disabled="true" class="find-fallback-primary cta-idle" href="#" id="nav-find-cta">Select a ZIP or city first <span aria-hidden="true">→</span></a>
 <a class="find-fallback-secondary" href="/dentist-portal.html#platinum-elite">For Dentists: Apply Platinum Elite</a>
 </div>
 </aside>
@@ -358,8 +349,3 @@
 </div>
 </div>
 </div>
-
-<section class="preview-hero"><div><h1>Simple examples applied.<br>ZIP or city search.</h1><p>Open Find Dentist and test 90210, 91745, Rowland Heights, or Miami Beach.</p></div></section>
-  <script src="mega-nav.js"></script>
-</body>
-</html>
