@@ -73,12 +73,12 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .sfield label{font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint)}
 .sfield input, .sfield select{border:none; outline:none; background:transparent; font-family:inherit; font-size:14.5px; font-weight:600; color:var(--ink); width:100%; padding:1px 0}
 .sfield input::placeholder{color:var(--ink-faint); font-weight:500}
-.sfield.where{flex:1.5; min-width:200px}
+.sfield.where{flex:1.2; min-width:186px}
 .sfield.spec{flex:1; min-width:140px}
 .sfield.ppo{flex:1; min-width:130px}
 .sfield.rad{flex:.7; min-width:96px}
 .s-actions{display:flex; gap:8px}
-.s-search{display:flex; align-items:center; gap:8px; padding:0 20px; background:var(--teal-night); color:#fff; font-weight:600; font-size:14.5px; border-radius:13px; white-space:nowrap; transition:.15s}
+.s-search{display:flex; align-items:center; gap:7px; padding:0 15px; background:var(--teal-night); color:#fff; font-weight:600; font-size:14px; border-radius:13px; white-space:nowrap; transition:.15s}
 .s-search:hover{background:var(--teal-deep); box-shadow:0 8px 22px rgba(8,42,48,.26)}
 .s-search .i{color:var(--mint); font-size:16px}
 .s-map{display:flex; align-items:center; gap:7px; padding:0 16px; background:var(--cream-card); color:var(--ink); font-weight:600; font-size:14px; border:1px solid var(--line); border-radius:13px; white-space:nowrap; transition:.15s}
@@ -107,10 +107,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .sf-loc{flex:none; width:30px; height:30px; border-radius:8px; display:grid; place-items:center; border:1px solid var(--line); background:var(--cream-2); color:var(--teal-night); cursor:pointer; transition:.15s; padding:0}
 .sf-loc:hover{border-color:var(--gold-2); background:var(--cream-card)}
 .sf-loc svg{width:15px; height:15px}
-.searchinner .sfield.rad{flex:0 1 180px; min-width:165px; justify-content:center}
+.searchinner .sfield.rad{flex:1 1 0; min-width:165px; justify-content:center}
 .railrad > label{display:flex; align-items:center; gap:6px}
 .railrad-val{font:700 11.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-night); background:var(--mint-soft); border:1px solid var(--line-2); border-radius:999px; padding:2px 8px; letter-spacing:0; text-transform:none}
-.railrad input[type=range]{-webkit-appearance:none; appearance:none; width:100%; max-width:150px; height:5px; margin-top:7px; border-radius:999px; outline:none; cursor:pointer; background:linear-gradient(90deg,var(--mint-700) 0,var(--mint-700) var(--fill,24%),var(--line) var(--fill,24%),var(--line) 100%)}
+.railrad input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:5px; margin-top:7px; border-radius:999px; outline:none; cursor:pointer; background:linear-gradient(90deg,var(--mint-700) 0,var(--mint-700) var(--fill,24%),var(--line) var(--fill,24%),var(--line) 100%)}
 .railrad input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 2px 6px rgba(8,42,48,.3); cursor:pointer; transition:transform .12s}
 .railrad input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.1)}
 .railrad input[type=range]::-moz-range-thumb{width:18px; height:18px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 2px 6px rgba(8,42,48,.3); cursor:pointer}
@@ -128,14 +128,17 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 
 /* v85 framing band between the two search lanes (spacing + purpose label) */
 .rail-intro{background:linear-gradient(180deg,var(--cream),var(--cream-2)); padding:16px 22px 16px}
-.rail-intro-in{max-width:1480px; margin:0 auto; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.rail-intro-in{max-width:1480px; margin:0 auto; display:flex; flex-direction:column; align-items:flex-start; gap:4px}
 .ri-eyebrow{font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); padding-top:0}
 .ri-text{font:500 14.5px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); padding-top:0}
+.ri-title{font-family:"Fraunces",Georgia,serif; font-size:21px; font-weight:600; line-height:1.15; letter-spacing:-.01em; color:var(--teal-night); margin:0}
+.ri-sub{font:500 14px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); margin:0; max-width:820px}
 @media (max-width:760px){
   .rail-intro{padding:14px 16px 14px}
   .rail-intro-in{flex-direction:column; align-items:center; text-align:center; gap:5px}
   .ri-eyebrow{padding-top:0}
-  .ri-text{font-size:13.5px; padding-top:0; max-width:34ch}
+  .ri-text, .ri-sub{font-size:13px; padding-top:0; max-width:42ch}
+  .ri-title{font-size:18px}
 }
 
 /* ============ RESULT BAR ============ */
@@ -157,6 +160,12 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* ---- filter cards ---- */
 .fcard{background:var(--cream-card); border:1px solid var(--line-2); border-radius:var(--r); padding:15px 16px; margin-bottom:14px; box-shadow:var(--sh-sm)}
 .fcard h4{font-family:"Inter Tight"; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 11px}
+.fcard-h4btn{display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; background:none; border:none; padding:0; margin:0 0 11px; cursor:pointer; font-family:"Inter Tight"; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint)}
+.fcard-h4btn:hover{color:var(--teal-700)}
+.fcard-h4btn .fcoll-chev{font-size:13px; line-height:1; color:var(--ink-soft); transition:transform .2s}
+.fcard-coll.collapsed .fcard-h4btn{margin-bottom:0}
+.fcard-coll.collapsed .fcard-coll-body{display:none}
+.fcard-coll.collapsed .fcoll-chev{transform:rotate(180deg)}
 .minimap{height:152px; border-radius:12px; overflow:hidden; position:relative; border:1px solid var(--line-2); margin-bottom:11px; background:linear-gradient(135deg,#dfeee6,#cfe6dd); cursor:pointer; transition:box-shadow .2s, transform .2s}
 .minimap:hover{box-shadow:0 10px 24px rgba(8,42,48,.18); transform:translateY(-1px)}
 .minimap .mm-label{position:absolute; left:10px; bottom:9px; z-index:1000; pointer-events:none; background:rgba(8,42,48,.85); color:#fff; font-size:11.5px; font-weight:600; padding:4px 9px; border-radius:8px; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px)}
@@ -248,6 +257,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 
 /* badges */
 .badge{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:999px; letter-spacing:.01em}
+.badge.tier-plat{font-weight:800; box-shadow:0 1px 7px rgba(184,146,79,.30)}
+.badge.tier-capy{font-weight:800; box-shadow:0 1px 7px rgba(31,138,91,.26)}
 /* Badge colors are applied inline from Supabase (badge_bg / badge_text / badge_border)
    via getBadgeStyle. No hardcoded per-status badge color classes. */
 
@@ -291,6 +302,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* Platinum Elite — larger luxury pin: gold gradient, metallic trim ring, pulsing glow */
 .cc-pin.plat{width:34px; height:34px; background:linear-gradient(135deg,#ECCB82 0%,#C9A24E 52%,#B8924F 100%); border:2.5px solid #fff; animation:platGlow 2.4s ease-in-out infinite}
 .cc-pin.plat span{font-size:15px; color:#fff; text-shadow:0 1px 2px rgba(80,55,10,.55)}
+.cc-pin.accr{width:26px; height:26px}
+.cc-pin.accr span{font-size:12px}
 @keyframes platGlow{
   0%,100%{ box-shadow:0 0 0 2.5px rgba(184,146,79,.7), 0 5px 12px rgba(120,85,20,.42), 0 0 0 0 rgba(212,170,90,0) }
   50%{ box-shadow:0 0 0 2.5px rgba(184,146,79,.7), 0 6px 14px rgba(120,85,20,.5), 0 0 18px 7px rgba(212,170,90,.72) }
@@ -372,6 +385,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 @media(max-width:980px){ .fsmap-cross{left:50%; top:calc(50% + 55px)} }
 .fsmap-cross .fx-dot{position:relative; display:block; width:18px; height:18px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 0 0 6px rgba(91,224,160,.26), 0 6px 16px rgba(8,42,48,.4)}
 .fsmap-cross .fx-dot::after{content:""; position:absolute; left:50%; top:50%; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; border:2px solid rgba(91,224,160,.6); animation:ccpulse 1.9s ease-out infinite}
+.fsmap-cross.cross-hide{opacity:0; visibility:hidden; transition:opacity .2s ease, visibility .2s ease}
 /* share sheet */
 .share-head{display:flex; align-items:center; gap:12px; margin:2px 0 15px}
 .share-ava{width:46px; height:46px; border-radius:13px; background:var(--mint-soft); display:grid; place-items:center; overflow:hidden; flex:none; font-family:"Fraunces",Georgia,serif; font-size:20px; font-weight:600; color:var(--teal-night)}
@@ -395,10 +409,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .ddrawer.open{transform:translateX(0)}
 @media(max-width:520px){ .ddrawer{width:100%} }
 .dd-head{position:relative; flex:none}
-.dd-cover{height:122px; background:linear-gradient(120deg,#0C3A42,#0a2f37 55%,#103e3a); position:relative; overflow:hidden}
+.dd-cover{height:76px; background:linear-gradient(120deg,#0C3A42,#0a2f37 55%,#103e3a); position:relative; overflow:hidden}
 .dd-cover.no-img{background:radial-gradient(120% 140% at 18% 0%, #114048 0%, #0C3A42 42%, #082A30 100%)}
 .dd-cover.no-img::before{content:""; position:absolute; inset:0; background:radial-gradient(60% 90% at 88% 110%, rgba(184,146,79,.30), transparent 60%), radial-gradient(50% 80% at 8% -10%, rgba(91,224,160,.22), transparent 55%)}
-.dd-cover-mono{position:absolute; right:14px; bottom:-14px; font-family:"Fraunces",Georgia,serif; font-size:104px; line-height:1; font-weight:600; color:rgba(255,253,248,.10); letter-spacing:-.03em; pointer-events:none; user-select:none}
+.dd-cover-mono{position:absolute; right:14px; bottom:-8px; font-family:"Fraunces",Georgia,serif; font-size:64px; line-height:1; font-weight:600; color:rgba(255,253,248,.10); letter-spacing:-.03em; pointer-events:none; user-select:none}
 .dd-cover img{width:100%; height:100%; object-fit:cover; display:block}
 .dd-cover::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,42,48,0) 45%,rgba(8,42,48,.4))}
 .dd-x{position:absolute; top:14px; right:14px; z-index:3; width:38px; height:38px; border-radius:50%; border:none; background:rgba(255,253,248,.92); color:var(--teal-night); font-size:17px; cursor:pointer; display:grid; place-items:center; box-shadow:0 4px 14px rgba(8,42,48,.25); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
@@ -452,6 +466,14 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .dd-row{display:flex; align-items:flex-start; gap:10px; padding:11px 0; border-bottom:1px solid var(--line-2); font-size:13px; color:var(--ink); line-height:1.4}
 .dd-row:last-child{border-bottom:none}
 .dd-row .ic{color:var(--teal-700); flex:none; font-size:15px}
+.dd-loc-list{display:flex; flex-direction:column; gap:8px}
+.dd-loc-link{display:flex; align-items:center; gap:11px; width:100%; text-align:left; padding:12px 13px; border:1px solid var(--line-2); border-radius:13px; background:var(--cream-card); cursor:pointer; transition:border-color .15s, background .15s, transform .15s}
+.dd-loc-link:hover{border-color:var(--teal-700); background:var(--cream-2); transform:translateY(-1px)}
+.dd-loc-pin{flex:none; color:var(--teal-700); font-size:15px}
+.dd-loc-tx{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
+.dd-loc-city{font-weight:700; font-size:14px; color:var(--teal-night)}
+.dd-loc-addr{font-size:12.5px; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.dd-loc-arw{flex:none; color:var(--ink-faint); font-size:18px; font-weight:700; line-height:1}
 .dd-faq{border-bottom:1px solid var(--line-2); padding:12px 0}
 .dd-faq:last-of-type{border-bottom:none}
 .dd-faq b{display:block; font-size:13.5px; color:var(--teal-night); margin-bottom:4px}
@@ -920,16 +942,16 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 }
 
 /* ---- SEARCH RAIL (floats over hero, pins on scroll) ---- */
-.searchrail{background:transparent; border-bottom:none; margin-top:-58px; z-index:45; padding:0 22px}
+.searchrail{background:transparent; border-bottom:none; margin-top:8px; z-index:45; padding:0 22px}
 .searchinner{max-width:1480px; margin:0 auto; padding:12px; gap:9px;
   background:rgba(255,253,248,.97); border:1px solid var(--line-2); border-radius:20px;
   box-shadow:0 26px 60px rgba(8,42,48,.26), 0 2px 10px rgba(8,42,48,.10);
   -webkit-backdrop-filter:saturate(1.4) blur(10px); backdrop-filter:saturate(1.4) blur(10px); align-items:stretch}
 .sfield{border-radius:14px; padding:9px 15px}
-.sfield.where{flex:1.7; min-width:210px}
+.sfield.where{flex:1; min-width:165px}
 .sfield.spec{flex:1; min-width:138px}
 .sfield.ppo{flex:1; min-width:128px}
-.sfield.rad{flex:1.1; min-width:188px; justify-content:center; gap:9px}
+.sfield.rad{flex:1; min-width:165px; justify-content:center; gap:9px}
 .sfield.rad label .mi{color:var(--teal-700)}
 .s-actions{align-items:stretch}
 .s-search{border-radius:14px; padding:0 26px; font-size:15px; box-shadow:0 10px 24px rgba(8,42,48,.20)}
@@ -1318,7 +1340,7 @@ body.dd-lock{overflow:hidden}
 
 /* editorial header */
 .dh-header{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
-.dh-inner{max-width:1040px; margin:0 auto; padding:64px 24px 46px; display:flex; flex-direction:column; align-items:center; text-align:center}
+.dh-inner{max-width:1040px; margin:0 auto; padding:64px 24px 26px; display:flex; flex-direction:column; align-items:center; text-align:center}
 .dh-title{font-family:"Fraunces",Georgia,serif; font-weight:480; letter-spacing:-.022em; font-size:clamp(29px,4.6vw,48px); line-height:1.05; color:var(--teal-night); max-width:22ch; margin:0 auto; text-wrap:balance}
 .dh-eyebrow{display:inline-flex; align-items:center; gap:7px; font:700 12px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin:0 0 15px}
 .dh-sub{margin:14px auto 28px; font-size:clamp(14.5px,1.5vw,17px); color:var(--ink-soft); max-width:46ch; line-height:1.5; text-align:center}
@@ -1348,9 +1370,9 @@ body.dd-lock{overflow:hidden}
 .ucmd-row.best .ucmd-ico{background:#fff; border-color:transparent; color:var(--gold)}
 .ucmd-ico svg{width:19px;height:19px}
 .ucmd-txt{min-width:0; flex:1 1 auto}
-.ucmd-ttl{font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ucmd-ttl{display:block; font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .ucmd-ttl .hl{color:var(--teal-700)}
-.ucmd-sub2{font-size:12.5px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:1px}
+.ucmd-sub2{display:block; font-size:12.5px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:3px}
 .ucmd-act{flex:none; display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:5px 11px}
 .ucmd-row.best .ucmd-act{background:#fff; border-color:#e7d6ac; color:#8a6a2e}
 .ucmd-act svg{width:12px;height:12px; opacity:.8}
@@ -1437,8 +1459,8 @@ body.dd-lock{overflow:hidden}
 <section class="dh-header">
   <div class="dh-inner">
     <div class="dh-eyebrow">Check your dentist</div>
-    <h1 class="dh-title">See if your dentist takes your PPO.</h1>
-    <p class="dh-sub">Search your dentist by name to check if they're in our directory and accept PPO. New here? Start with a ZIP or city.</p>
+    <h1 class="dh-title">See which dentists take your PPO before you book.</h1>
+    <p class="dh-sub">Search a dentist by name to see if they take your PPO. Or start with your ZIP or city to find PPO-friendly offices near you.</p>
     <div class="ucmd" id="ucmd">
       <div class="ucmd-bar" id="ucmd-bar">
         <span class="ucmd-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span>
@@ -1458,8 +1480,8 @@ body.dd-lock{overflow:hidden}
 <!-- v85: framing band that separates the two search lanes and labels the sticky rail. Scrolls away; the rail pins. -->
 <div class="rail-intro">
   <div class="rail-intro-in">
-    <span class="ri-eyebrow">Already have PPO?</span>
-    <span class="ri-text">Find a PPO-friendly dentist near you and book. Filter by treatment, plan, and distance.</span>
+    <h2 class="ri-title">Find PPO dentists that fit your insurance</h2>
+    <p class="ri-sub">Browse offices nationwide and discover which practices patients choose most often, for PPO value, family care, cosmetic treatment, and convenience.</p>
   </div>
 </div>
 
@@ -1470,7 +1492,7 @@ body.dd-lock{overflow:hidden}
     <div class="sfield where" id="where-field">
       <label for="q-where">Where</label>
       <div class="sf-inrow">
-        <input id="q-where" type="text" placeholder="City, ZIP, dentist, or area" autocomplete="off">
+        <input id="q-where" type="text" placeholder="City or ZIP code" autocomplete="off">
         <button class="sf-loc" type="button" onclick="useCurrentLocation()" aria-label="Use my current location" title="Use my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
       </div>
       <div id="ac-menu" class="acmenu" role="listbox" aria-label="Location suggestions" hidden></div>
@@ -1528,15 +1550,7 @@ body.dd-lock{overflow:hidden}
   /* completeness-meter styles removed with the completeness UI */
   </style>
   <!-- v85: removed the Near-me/city quick-chip rail per request -->
-  <!-- v90 compact luxury micro-hero: emotional context above the results -->
-  <section class="microhero" aria-label="PPO dentist marketplace">
-    <div class="mh-in">
-      <div class="mh-copy">
-        <h2 class="mh-title">Find PPO dentists that fit your insurance</h2>
-        <p class="mh-sub">Browse offices nationwide and discover which practices patients choose most often, for PPO value, family care, cosmetic treatment, and convenience.</p>
-      </div>
-    </div>
-  </section>
+  <!-- v109: removed the "Find PPO dentists that fit your insurance" micro-hero banner per request -->
 
   <div class="resultbar">
     <div class="rb-l">
@@ -1937,7 +1951,7 @@ const state = {
   city: "",
   spec: "", carrier: "", distance: 8, allCounty:true, seoHome:true,
   filters: { tier:new Set(), carrier:new Set(), spec:new Set(), lang:new Set() },
-  offers:false, newpat:false, online:false, openWeekends:false, minReviews:0, minRating:0,
+  offers:false, newpat:false, online:false, openWeekends:false, minReviews:100, minRating:4.0,
   compare:new Set(), _picked:null, mapMove:false,
   areaKeys:null, areaLabel:null
 };
@@ -2035,8 +2049,8 @@ function processed(){
   if(state.offers) list = list.filter(d=> d.offer);
   if(state.newpat) list = list.filter(d=> d.newPatients);
   if(state.openWeekends) list = list.filter(d=> d.openWeekends);
-  if(state.minReviews>0) list = list.filter(d=> reviewCountOf(d) >= state.minReviews);
-  if(state.minRating>0) list = list.filter(d=> ratingValueOf(d) >= state.minRating);
+  if(state.minReviews>0) list = list.filter(d=> isPaidTier(d) || reviewCountOf(d) >= state.minReviews);
+  if(state.minRating>0) list = list.filter(d=> isPaidTier(d) || ratingValueOf(d) >= state.minRating);
   if(state.filters.carrier.size) list = list.filter(d=> [...state.filters.carrier].some(c=> officeAcceptsCarrier(d,c)));
   if(state.filters.spec.size) list = list.filter(d=> d.specialties.some(x=>state.filters.spec.has(x)));
   if(state.filters.lang.size) list = list.filter(d=> d.languages.some(x=>state.filters.lang.has(x)));
@@ -2080,7 +2094,12 @@ function isPremiumStatus(dentist){
   return ['Platinum Elite','Capy Accredited','Verified PPO','Verified Office'].includes(dentist && dentist.accreditation_status);
 }
 function badgeStyleAttr(d){ const s=getBadgeStyle(d); return 'background:'+s.background+';color:'+s.color+';border:'+s.border; }
-function statusBadgeHtml(d){ return '<span class="badge" style="'+escapeAttr(badgeStyleAttr(d))+'">'+escapeHtml(getDisplayStatus(d))+'</span>'; }
+function statusBadgeHtml(d){
+  var t = d && d.tier;
+  var em = t==='platinum_elite' ? '♛ ' : t==='capy_accredited' ? '🦫 ' : '';
+  var cls = t==='platinum_elite' ? ' tier-plat' : t==='capy_accredited' ? ' tier-capy' : t==='verified' ? ' tier-ver' : '';
+  return '<span class="badge'+cls+'" style="'+escapeAttr(badgeStyleAttr(d))+'">'+em+escapeHtml(getDisplayStatus(d))+'</span>';
+}
 /* legacy entry point now routes through the Supabase-driven badge */
 function badgeFor(d){ return statusBadgeHtml(d); }
 /* ctxBadge removed: any secondary context label is folded into the Supabase status badge. */
@@ -2539,7 +2558,13 @@ function dedupePlatinumLocations(list){
 function ccMultiLoc(d){
   if(!d || !(d._locCount>1)) return '';
   var n=d._nearbyCount||d._locCount;
-  return '<div class="cc-multiloc"><span class="cc-ml-pin" aria-hidden="true"></span>'+n+' locations near you</div>';
+  var cities=[]; (d._locations||[]).forEach(function(r){ var c=(r&&r.city||'').trim(); if(c && cities.indexOf(c)<0) cities.push(c); });
+  var names='';
+  if(cities.length===1) names=cities[0];
+  else if(cities.length===2) names=cities[0]+' & '+cities[1];
+  else if(cities.length>2) names=cities.slice(0,2).join(', ')+' + '+(cities.length-2)+' more';
+  return '<div class="cc-multiloc"><span class="cc-ml-pin" aria-hidden="true"></span>'+
+    '<span class="cc-ml-tx">'+n+' locations near you'+(names?' <span class="cc-ml-cities">· '+escapeHtml(names)+'</span>':'')+'</span></div>';
 }
 
 function cardHtml(d, feat){
@@ -2765,6 +2790,21 @@ let SPECS_ALL = uniqueVals('specialties').slice(0,12);
 let LANGS_ALL = uniqueVals('languages');
 function carrierCount(c){ return loadDentistsFromSupabase().filter(d=>officeAcceptsCarrier(d,c)).length; }
 
+/* The six plans CoverCapy features on the PPO comparison page lead the carrier filter. */
+const FEATURED_CARRIERS = ['UnitedHealthcare','Aetna','Ameritas','Guardian','Mutual of Omaha','Humana'];
+function ppoCarrierFilterHtml(){
+  var featured = FEATURED_CARRIERS;
+  var rest = CARRIERS_ALL.filter(function(c){ return featured.indexOf(c)<0; });
+  var order = featured.concat(rest);
+  return '<div class="fcard fcard-coll">'+
+    '<button class="fcard-h4btn" type="button" aria-expanded="true" onclick="toggleFcard(this)"><span>PPO insurance carriers</span><span class="fcoll-chev" aria-hidden="true">\u2303</span></button>'+
+    '<div class="fcard-coll-body">'+
+      order.map(function(c){ return opt('carrier',c,carrierCount(c)); }).join('')+
+    '</div>'+
+  '</div>';
+}
+function toggleFcard(btn){ var el=btn && btn.closest('.fcard-coll'); if(!el) return; var collapsed=el.classList.toggle('collapsed'); btn.setAttribute('aria-expanded', collapsed?'false':'true'); }
+
 function renderFilters(){
   const tierCounts = t=> loadDentistsFromSupabase().filter(d=>d.tier===t).length;
   const html =
@@ -2776,19 +2816,17 @@ function renderFilters(){
   '<div class="fcard"><h4>Rating</h4>'+
     ratingFilterControl()+
   '</div>'+
-  '<div class="fcard"><h4>PPO carrier</h4>'+
-    CARRIERS_ALL.map(c=>opt('carrier',c,carrierCount(c))).join('')+
-  '</div>'+
-  '<div class="fcard"><h4>Treatment</h4>'+
-    SPECS_ALL.map(s=>opt('spec',s)).join('')+
-  '</div>'+
   '<div class="fcard"><h4>Patient experience</h4>'+
     sw('openWeekends','Open weekends')+
     sw('offers','Has an offer or reward')+
     sw('newpat','Accepting new patients')+
     sw('online','Online booking')+
   '</div>'+
-  (LANGS_ALL.length>1?'<div class="fcard"><h4>Languages</h4>'+LANGS_ALL.map(l=>opt('lang',l)).join('')+'</div>':'');
+  (LANGS_ALL.length>1?'<div class="fcard"><h4>Languages</h4>'+LANGS_ALL.map(l=>opt('lang',l)).join('')+'</div>':'')+
+  '<div class="fcard"><h4>Treatment</h4>'+
+    SPECS_ALL.map(s=>opt('spec',s)).join('')+
+  '</div>'+
+  ppoCarrierFilterHtml();
 
   document.getElementById('filters').innerHTML = html;
   const sheetSlot = document.getElementById('filters-sheet-slot');
@@ -3152,6 +3190,8 @@ async function acRender(qraw){
   }
   acItems = items.slice(0,9); acIdx=-1;
   try{ const _loc=localLocationSuggestions(qraw); if(_loc.length){ const seen=new Set(_loc.map(x=>x.title)); acItems=_loc.concat(acItems.filter(x=>!seen.has(x.title))).slice(0,9); } }catch(e){}
+  /* v109: the WHERE field resolves to cities + ZIP codes only — dentists, landmarks, areas, and counties live in the hero search bar above */
+  acItems = acItems.filter(function(it){ return it && (it.type==='city' || it.type==='zip' || it.type==='current' || it.type==='geo' || it.key==='__me__'); }).slice(0,9);
   if(!acItems.length){ menu.hidden=true; inp.setAttribute('aria-expanded','false'); return; }
   menu.innerHTML='<div class="achead">'+(q?'Matching locations':'Browse popular locations')+'</div>'+
     acItems.map((it,i)=>'<div class="acrow '+(it.prem?'prem '+(it.prem==='mint'?'mint':''):'')+'" role="option" data-i="'+i+'" onmousedown="event.preventDefault();acPick('+i+')">'+
@@ -3217,6 +3257,7 @@ function makeIcon(d){
   // is at (size/2, ~1.207*size) from the icon's top-left. Anchor there for accuracy.
   const t=pinTier(d);
   if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat"><span>♛</span></div>', iconSize:[34,34], iconAnchor:[17,41]});
+  if(t==="accr") return L.divIcon({className:"", html:'<div class="cc-pin accr"><span>🦫</span></div>', iconSize:[26,26], iconAnchor:[13,31]});
   if(t==="pub")  return L.divIcon({className:"", html:'<div class="cc-pin pub"></div>', iconSize:[18,18], iconAnchor:[9,22]});
   return L.divIcon({className:"", html:'<div class="cc-pin '+t+'"></div>', iconSize:[24,24], iconAnchor:[12,29]});
 }
@@ -3800,13 +3841,21 @@ function renderMapPins(){
     return;
   }
   pinIndex={};
+  /* v109: a multi-location Platinum practice collapses to ONE card but pins EVERY office (each keeps its crown),
+     so the "N locations near you" claim is reflected on the map and the nearest office is never dropped. */
+  const _pinList=[];
+  LAST.forEach(d=>{
+    if(d && Array.isArray(d._locations) && d._locations.length>1){
+      d._locations.forEach(loc=>{ if(loc && loc.lat!=null && loc.lng!=null) _pinList.push(Object.assign({}, d, {lat:loc.lat, lng:loc.lng})); });
+    } else { _pinList.push(d); }
+  });
   [[sideMap,'side'],[fullMap,'full'],[miniMap,'mini']].forEach(([map,tag])=>{
     if(!map) return;
     if(tag==='side'){ if(sideLayer) map.removeLayer(sideLayer); sideLayer=L.layerGroup().addTo(map); }
     else if(tag==='full'){ if(fullLayer) map.removeLayer(fullLayer); fullLayer=L.layerGroup().addTo(map); }
     else { if(miniLayer) map.removeLayer(miniLayer); miniLayer=L.layerGroup().addTo(map); }
     const layer = tag==='side'?sideLayer:(tag==='full'?fullLayer:miniLayer);
-    LAST.forEach(d=>{ if(d.lat==null) return;
+    _pinList.forEach(d=>{ if(d.lat==null) return;
       if(tag==='mini'){ L.marker([d.lat,d.lng],{icon:makeIcon(d),interactive:false,zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer); return; }
       const m=L.marker([d.lat,d.lng],{icon:makeIcon(d),zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer);
       if(tag==='full'){ m.bindPopup(fsPinCard(d), {className:'cc-dpop', maxWidth:270, minWidth:250, autoPanPadding:[28,28], offset:[0,-6]}); m.on('click',()=>{ selectDentist(d.id); m.openPopup(); }); }
@@ -4218,6 +4267,7 @@ function panToVisible(latlng){
 function selectDentist(id, doPan){
   const d=LAST.find(x=>x.id===id); if(!d) return;
   FS_SELECTED=id;
+  (function(){ var x=document.getElementById('fsmap-cross'); if(x) x.classList.add('cross-hide'); })();
   const s=document.getElementById('fs-sheet'); if(s && s.classList.contains('peek')){ s.classList.remove('peek'); syncFsPeek(); fsInval(); }
   renderFsCard(d);
   setSelectedPin(id);
@@ -4233,7 +4283,7 @@ function selectDentist(id, doPan){
   document.querySelectorAll('.fs-mini.sel').forEach(c=>c.classList.remove('sel'));
   const lc=document.getElementById('fsmini-'+id); if(lc){ lc.classList.add('sel'); lc.scrollIntoView({block:'nearest'}); }
 }
-function deselectDentist(){ FS_SELECTED=null; renderFsCard(null); document.querySelectorAll('.cc-pin.cc-sel').forEach(p=>p.classList.remove('cc-sel')); document.querySelectorAll('.fs-mini.sel').forEach(c=>c.classList.remove('sel')); }
+function deselectDentist(){ FS_SELECTED=null; var x=document.getElementById('fsmap-cross'); if(x) x.classList.remove('cross-hide'); renderFsCard(null); document.querySelectorAll('.cc-pin.cc-sel').forEach(p=>p.classList.remove('cc-sel')); document.querySelectorAll('.fs-mini.sel').forEach(c=>c.classList.remove('sel')); }
 function setSelectedPin(id){
   document.querySelectorAll('.cc-pin.cc-sel').forEach(p=>p.classList.remove('cc-sel'));
   (pinIndex[id]||[]).forEach(m=>{ const el=m.getElement&&m.getElement(); if(el){ const p=el.querySelector('.cc-pin'); if(p) p.classList.add('cc-sel'); } if(m.setZIndexOffset) m.setZIndexOffset(2000); });
@@ -4372,6 +4422,20 @@ function updateSearchSummary(){
 
 /* ---------- CTAs ---------- */
 function find(id){ return loadDentistsFromSupabase().find(d=>d.id===id); }
+/* Other offices of the same practice (e.g. Abri Dental's Burbank + Beverly Hills), matched by practice name. */
+function siblingOffices(d){
+  if(!d) return [];
+  var name=String(d.practice||'').trim().toLowerCase();
+  if(!name) return [];
+  var selfAddr=String(d.address||'').trim().toLowerCase();
+  return loadDentistsFromSupabase().filter(function(o){
+    if(!o || o.id===d.id) return false;
+    if(String(o.practice||'').trim().toLowerCase()!==name) return false;
+    var oa=String(o.address||'').trim().toLowerCase();
+    if(selfAddr && oa && oa===selfAddr) return false;   // same address = duplicate record, not a separate location
+    return true;
+  });
+}
 /* ---------- event tracking (gtag + dataLayer, guarded) ---------- */
 function gtagSafe(ev,p){ try{ window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:ev,...(p||{})}); if(typeof window.gtag==='function') window.gtag('event',ev,p||{}); }catch(e){} }
 
@@ -4740,6 +4804,16 @@ function openDentistDrawer(id){
   const distTxt=(d.dist!=null&&d.dist<999)?(' \u00b7 '+d.dist.toFixed(1)+' mi away'):'';
   const reviews=reviewCountOf(d), rv=ratingValueOf(d);
   const addr=escapeHtml(d.address||((d.city||'')+(d.state?(', '+d.state):'')));
+  const sibs=siblingOffices(d);
+  const otherLoc = sibs.length ? ('<h4 class="dd-h4">Other locations</h4><div class="dd-loc-list">'+
+    sibs.slice(0,6).map(function(o){
+      var oc=escapeHtml((o.city||'').trim()||o.practice||'Office');
+      var oa=escapeHtml(o.address||((o.city||'')+(o.state?(', '+o.state):'')));
+      return '<button class="dd-loc-link" type="button" onclick="openProfile(\''+jsq(o.id)+'\')">'+
+        '<span class="dd-loc-pin">\u25CD</span>'+
+        '<span class="dd-loc-tx"><span class="dd-loc-city">'+oc+'</span><span class="dd-loc-addr">'+oa+'</span></span>'+
+        '<span class="dd-loc-arw">\u203A</span></button>';
+    }).join('')+'</div>') : '';
 
   const q=[];
   q.push('<a class="dd-q" href="javascript:void(0)" onclick="mapsPrompt(\''+idj+'\')"><span class="ic">\u25CD</span>Directions</a>');
@@ -4811,6 +4885,7 @@ function openDentistDrawer(id){
         '<div class="dd-row"><span class="ic">\uD83D\uDD52</span><span>Hours vary. Call to confirm same-day availability.</span></div>'+
         (d.openWeekends?'<div class="dd-row"><span class="ic">\u25F7</span><span>Open weekends'+(d.weekendNote?(' \u00b7 '+escapeHtml(d.weekendNote)):'')+'</span></div>':'')+
       '</div><button class="dd-btn soft" style="margin-top:14px" onclick="mapsPrompt(\''+idj+'\')">Get directions</button>'+
+      otherLoc+
       '<h4 class="dd-h4">Good to know</h4><div class="dd-rows">'+
         '<div class="dd-row"><span class="ic">\u267F</span><span>Accessibility, parking, and payment options vary by office. Confirm details when you book.</span></div>'+
         '<div class="dd-row"><span class="ic">\uD83D\uDCB3</span><span>Many PPO offices offer payment plans and financing. Ask the office for current options.</span></div>'+
@@ -5683,6 +5758,9 @@ bootData().then(()=>{ if(SB_READY){ refreshDerived();
 .listings.view-market .lside .cta-primary, .listings.view-market .lside .cta-secondary{width:100%; display:flex; flex-direction:column; gap:8px}
 .listings.view-grid .lside .la, .listings.view-market .lside .la{width:100%}
 .listings.view-grid .lcard.feat .lrow, .listings.view-market .lcard.feat .lrow{flex-direction:row}  /* featured stays a hero row */
+/* v109: in the dense 4-col market grid the Platinum hero is half-width (2 of 4) and stacks vertically, so its CTAs don't look stretched */
+.listings.view-market .lcard.feat{grid-column:span 2}
+.listings.view-market .lcard.feat .lrow{flex-direction:column}
 /* MARKET density */
 .listings.view-market .whychoose{display:none}
 .listings.view-market .chips{display:none}
@@ -5953,6 +6031,8 @@ a.eco-row:hover{border-color:var(--teal-300); transform:translateY(-1px); box-sh
 .cc-multiloc{display:inline-flex; align-items:center; gap:7px; margin:4px 0 3px; font:600 12px/1.2 "Inter Tight",system-ui,sans-serif; color:var(--teal-700)}
 .cc-ml-pin{position:relative; width:11px; height:11px; flex:none; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:var(--teal-700); box-shadow:0 0 0 2px rgba(20,82,91,.14)}
 .cc-ml-pin::after{content:""; position:absolute; top:3px; left:3px; width:5px; height:5px; border-radius:50%; background:var(--cream-card)}
+.cc-ml-tx{min-width:0}
+.cc-ml-cities{color:var(--ink-soft); font-weight:600}
 
 /* ===== v94 — mobile map-first UX: collapsible search control + draggable sheet ===== */
 .fmc-toggle{display:none}
