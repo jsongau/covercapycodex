@@ -1,3 +1,10 @@
+/* CoverCapy v103 guard: keep drawer/modal hidden unless JS opens them */
+.cc-drawer,.cc-universal-modal{display:none;}
+.cc-drawer[aria-hidden="false"],.cc-drawer.is-open,.cc-drawer.open{display:block;}
+.cc-universal-modal[aria-hidden="false"],.cc-universal-modal.is-open,.cc-universal-modal.open{display:flex;}
+.cc-burger{display:none;}
+@media(max-width:1080px){.cc-links,.cc-actions{display:none!important}.cc-burger{display:inline-flex!important}}
+
 .cc-nav a,.cc-mega a,.cc-drawer a,.cc-universal-modal a{text-decoration:none;}:root{
   --ivory:#FFFDF9;--cream:#FBF6EC;--cream-deep:#F4EDDF;--sand:#EDE3CF;
   --emerald:#1B5E5A;--emerald-deep:#0E3F44;--navy:#0C3A40;--teal-frame:rgba(12,58,64,.16);--teal-frame-soft:rgba(12,58,64,.075);--teal-wash:rgba(27,94,90,.06);--emerald-soft:#E7F0EC;
