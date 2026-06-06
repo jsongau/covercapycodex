@@ -2316,7 +2316,8 @@ function getDentistProfileUrl(d){
   if(d.profile_url && String(d.profile_url).trim()) return String(d.profile_url).trim();
   // 2) Build /dentists/{state}/{local-area}/{city}/{office-slug} from data; matches the static GitHub profile pages.
   const practiceSlug = slugify(d.slug || d.practice || d.practice_name || d.name) || "dental-office";
-  return buildSlug(["dentists", locationOf(d), areaOf(d), cityOf(d), practiceSlug]);
+  var _a=areaOf(d); var _localArea=(_a&&typeof _a==="object")?_a.local:_a;
+  return buildSlug(["dentists", locationOf(d), _localArea, cityOf(d), practiceSlug]);
 }
 function avInitialsTile(d){ return '<div class="av-ini" style="background:'+tierGrad(d)+'">'+getDentistInitials(d)+'</div>'; }
 function getDentistImageMarkup(d){
@@ -3205,8 +3206,8 @@ function areaShort(area){ area=area||""; return area.split(/\s+/).filter(Boolean
 function dataCentroid(){ let la=0,lo=0,n=0; loadDentistsFromSupabase().forEach(d=>{ if(typeof d.lat==="number"&&typeof d.lng==="number"){ la+=d.lat; lo+=d.lng; n++; } }); return n?{lat:la/n,lng:lo/n,label:""}:{lat:39.5,lng:-98.35,label:""}; }
 function rowsForCityKey(key){ key=(key||'').toLowerCase(); return loadDentistsFromSupabase().filter(d=> cityOf(d).toLowerCase()===key); }
 function activeStateLabel(){ const rows=(typeof LAST!=="undefined"&&LAST&&LAST.length)?LAST:loadDentistsFromSupabase(); for(const d of rows){ const s=stateFullName(stateOf(d)); if(s) return s; } return ""; }
-function currentAreaLabel(){ const rows=(typeof LAST!=="undefined"&&LAST&&LAST.length)?LAST:loadDentistsFromSupabase(); for(const d of rows){ const a=areaOf(d); const s=a&&(a.market||a.local); if(s) return s; } return ""; }
-function areaForCityKey(key){ const r=rowsForCityKey(key)[0]; if(r){ const a=areaOf(r); const s=a&&(a.market||a.local); if(s) return s; } const c=CITIES[(key||'').toLowerCase()]; return (c&&c.area)?c.area:""; }
+function currentAreaLabel(){ const rows=(typeof LAST!=="undefined"&&LAST&&LAST.length)?LAST:loadDentistsFromSupabase(); for(const d of rows){ const a=areaOf(d); const s=a&&(a.local||a.market); if(s) return s; } return ""; }
+function areaForCityKey(key){ const r=rowsForCityKey(key)[0]; if(r){ const a=areaOf(r); const s=a&&(a.local||a.market); if(s) return s; } const c=CITIES[(key||'').toLowerCase()]; return (c&&c.area)?c.area:""; }
 function stateForCityKey(key){ const r=rowsForCityKey(key)[0]; return r?stateFullName(stateOf(r)):activeStateLabel(); }
 function currentArea(){
   const key = state.allCounty ? (state._preCountyLoc||state._lastLoc) : (state._lastLoc||state.city);
