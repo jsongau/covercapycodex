@@ -1720,7 +1720,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,san
 }
 
 
-body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}.preview-hero{height:420px;display:grid;place-items:center;text-align:center;color:#0c3a40;background:linear-gradient(180deg,rgba(255,253,249,.7),rgba(12,58,64,.30));}.preview-hero h1{font-family:Georgia,serif;font-size:clamp(48px,8vw,96px);line-height:.92;margin:0;filter:blur(2px);opacity:.65;}.preview-hero p{filter:blur(1px);opacity:.55;}
+body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}.preview-hero{height:420px;display:grid;place-items:center;text-align:center;color:#0c3a40;background:linear-gradient(180deg,rgba(255,253,249,.7),rgba(12,58,64,.30));}.preview-hero h1{font-family:Georgia,serif;font-size:clamp(48px,8vw,96px);line-height:.92;margin:0;filter:blur(2px);opacity:.65;}.preview-hero p{filter:blur(1px);opacity:.55;}
 
 /* Include safety: this file is meant for the mega nav include only. */
 
@@ -3092,6 +3092,236 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
 .dd-find .find-browse-main:not(.is-disabled):hover .browse-go{ transform:translateX(5px); }
 @media (prefers-reduced-motion:reduce){ .dd-find .find-browse-main:not(.is-disabled){ animation:none; } }
 
+
+/* ===== v138 · strong primary CTA into the cost estimator (Estimate Costs tab) ===== */
+.dd-est .mega-aside.est-aside-cta{
+  padding:16px;
+  border:1px solid rgba(216,30,30,.16);
+  background:linear-gradient(168deg,#FFF7F6,#FFFDFB);
+  border-radius:16px;
+}
+.dd-est .est-aside-cta .mega-aside-eyebrow{margin-bottom:7px}
+.dd-est .est-aside-cta .mega-aside-text{margin-bottom:14px}
+.dd-est .est-aside-cta .mega-aside-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;margin-top:0;padding:13px 12px;white-space:nowrap;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ED1C24,#A30B14);
+  color:#fff;font-size:13px;font-weight:700;letter-spacing:0;
+  box-shadow:0 10px 24px rgba(217,15,30,.30);
+  transition:transform .2s var(--ease),box-shadow .25s var(--ease);
+}
+.dd-est .est-aside-cta .mega-aside-cta:hover{
+  gap:9px;
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(217,15,30,.40);
+}
+.dd-est .est-aside-cta .mega-aside-cta .aside-go{
+  transition:transform .2s var(--ease);font-size:15px;line-height:1;
+}
+.dd-est .est-aside-cta .mega-aside-cta:hover .aside-go{transform:translateX(3px)}
+
+/* ===== v139 · orange trim band atop the "What to expect" card (Find Dentist tab) ===== */
+.dd-find .find-result-card .find-intro-banner{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 26px;
+  background:linear-gradient(90deg,#fff2df,#fffaf1);
+  border-bottom:1px solid rgba(249,115,22,.18);
+  color:#b45309;
+  font-family:var(--ff-sans);
+  font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+}
+.dd-find .find-result-card .find-intro-banner .ib-dot{
+  color:#ea580c;font-size:11px;line-height:1;
+}
+
+/* ===== v140 · green-teal Estimate CTA, pops off the red panel + effects ===== */
+.dd-est .est-aside-cta .mega-aside-cta{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(135deg,#1FBE93 0%,#11947D 52%,#0C5E54 100%);
+  color:#ffffff;
+  box-shadow:0 10px 24px rgba(12,94,84,.36), 0 0 0 1px rgba(63,217,160,.30) inset;
+  transform:translateY(0);
+  transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .3s var(--ease);
+  animation:estCtaPulse 2.6s ease-in-out infinite;
+  will-change:transform;
+}
+.dd-est .est-aside-cta .mega-aside-cta::before{
+  content:"";position:absolute;inset:-1px;z-index:1;pointer-events:none;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(160,255,219,.55) 0%, rgba(160,255,219,0) 46%);
+  opacity:0;transition:opacity .25s var(--ease);
+}
+.dd-est .est-aside-cta .mega-aside-cta:hover::before{opacity:1}
+.dd-est .est-aside-cta .mega-aside-cta::after{
+  content:"";position:absolute;top:0;left:-90%;width:60%;height:100%;z-index:1;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:skewX(-18deg);transition:left .75s var(--ease);
+}
+.dd-est .est-aside-cta .mega-aside-cta:hover::after{left:140%}
+.dd-est .est-aside-cta .mega-aside-cta .cta-label,
+.dd-est .est-aside-cta .mega-aside-cta .aside-go{position:relative;z-index:2}
+.dd-est .est-aside-cta .mega-aside-cta:hover{
+  animation:none;
+  box-shadow:0 16px 34px rgba(12,94,84,.46), 0 0 26px rgba(31,190,147,.55), 0 0 0 1px rgba(63,217,160,.5) inset;
+}
+.dd-est .est-aside-cta .mega-aside-cta:active{transform:translateY(0) scale(.97)}
+.dd-est .est-aside-cta .mega-aside-cta .aside-go{transition:transform .2s var(--ease)}
+.dd-est .est-aside-cta .mega-aside-cta:hover .aside-go{transform:translateX(3px)}
+.dd-est .est-aside-cta .mega-aside-cta .cta-ripple{
+  position:absolute;border-radius:50%;z-index:1;pointer-events:none;
+  background:radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 60%);
+  transform:scale(0);animation:estCtaRipple .62s ease-out forwards;
+}
+@keyframes estCtaRipple{to{transform:scale(1);opacity:0}}
+@keyframes estCtaPulse{
+  0%,100%{box-shadow:0 10px 24px rgba(12,94,84,.34), 0 0 0 1px rgba(63,217,160,.28) inset, 0 0 0 0 rgba(31,190,147,0)}
+  50%{box-shadow:0 12px 26px rgba(12,94,84,.40), 0 0 0 1px rgba(63,217,160,.40) inset, 0 0 22px 2px rgba(31,190,147,.40)}
+}
+@media (prefers-reduced-motion:reduce){
+  .dd-est .est-aside-cta .mega-aside-cta{animation:none}
+  .dd-est .est-aside-cta .mega-aside-cta::after{display:none}
+  .dd-est .est-aside-cta .mega-aside-cta .cta-ripple{display:none}
+}
+
+/* ===== v141 · punchy dual-audience "no Platinum Elite" state (Find Dentist tab) ===== */
+.dd-find #find-featured .open-hero{
+  min-height:206px;
+  padding:20px 26px 22px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.dd-find .open-hero-title{
+  font-family:var(--ff-sans);
+  font-size:31px;line-height:1.02;letter-spacing:-.02em;font-weight:800;
+  color:#14242a;margin:0 0 10px;
+}
+.dd-find .open-hero-sub{
+  font-size:14.5px;line-height:1.5;color:#5f6f72;margin:0 0 20px;max-width:40ch;
+}
+.dd-find .open-hero-sub strong{color:#b45309;font-weight:800;}
+/* strongest dentist CTA in this state */
+.dd-find .cta-open-claim{
+  display:flex !important;width:100%;justify-content:center;gap:9px;
+  margin-top:0;padding:16px 22px !important;font-size:15px !important;
+  border-radius:13px !important;
+  box-shadow:0 12px 28px rgba(14,63,68,.30) !important;
+  animation:ccClaimInvite 2.8s ease-in-out infinite;
+}
+.dd-find .cta-open-claim:hover{animation:none;}
+@keyframes ccClaimInvite{
+  0%,100%{box-shadow:0 12px 28px rgba(14,63,68,.26);}
+  50%{box-shadow:0 14px 32px rgba(14,63,68,.32), 0 0 24px rgba(31,150,120,.42);}
+}
+@media (prefers-reduced-motion:reduce){.dd-find .cta-open-claim{animation:none;}}
+.dd-find .featured-actions .featured-btn{white-space:nowrap;}
+
+/* ===== v142 · "Full cost estimator" module + cleaner CTA color (Estimate Costs tab) ===== */
+/* clean, neutral module card so the teal reads intentionally (drops the pink tint) */
+.dd-est .est-estimator-module{
+  padding:18px;
+  border:1px solid rgba(14,63,68,.14);
+  background:linear-gradient(180deg,#FFFFFF,#F6FBFA);
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(20,36,42,.06);
+}
+.dd-est .est-mod-eyebrow{
+  font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:#0E5A52;margin-bottom:9px;display:flex;align-items:center;gap:7px;
+}
+.dd-est .est-mod-eyebrow::before{content:"";width:14px;height:1px;background:#0E5A52;opacity:.55}
+.dd-est .est-mod-title{
+  font-family:var(--ff-sans);
+  font-size:17px;line-height:1.22;font-weight:700;letter-spacing:-.01em;
+  color:#14242a;margin-bottom:13px;
+}
+.dd-est .est-mod-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.dd-est .est-mod-tags span{
+  font-size:10px;font-weight:700;color:#0E5A52;
+  border:1px solid rgba(14,63,68,.15);background:#fff;border-radius:999px;padding:5px 10px;
+}
+/* cleaner CTA: calm two-tone teal (no muddy 3-stop), soft inner highlight */
+.dd-est .est-estimator-module .mega-aside-cta{
+  background:linear-gradient(180deg,#15806E 0%,#0C5048 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 10px 24px rgba(13,90,80,.30);
+}
+/* soften the cursor highlight (less neon) */
+.dd-est .est-estimator-module .mega-aside-cta::before{
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(140,232,205,.42) 0%, rgba(140,232,205,0) 48%);
+}
+/* calmer breathing glow in teal */
+.dd-est .est-estimator-module .mega-aside-cta{ animation:estCtaPulseTeal 3s ease-in-out infinite; }
+.dd-est .est-estimator-module .mega-aside-cta:hover{
+  animation:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 16px 32px rgba(13,90,80,.40), 0 0 22px rgba(20,140,110,.36);
+}
+@keyframes estCtaPulseTeal{
+  0%,100%{ box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 10px 24px rgba(13,90,80,.30); }
+  50%{ box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 12px 26px rgba(13,90,80,.36), 0 0 18px rgba(20,140,110,.30); }
+}
+@media (prefers-reduced-motion:reduce){ .dd-est .est-estimator-module .mega-aside-cta{ animation:none; } }
+
+/* ===== v143 · simplify the estimator CTA to match the Find tab green buttons ===== */
+.dd-est .est-estimator-module .mega-aside-cta{
+  background:linear-gradient(135deg,#1f756e,#0e5a56) !important;
+  box-shadow:0 8px 18px rgba(14,63,68,.20) !important;
+  animation:none !important;
+}
+.dd-est .est-estimator-module .mega-aside-cta::before{ display:none !important; }
+.dd-est .est-estimator-module .mega-aside-cta:hover{
+  transform:translateY(-2px);
+  animation:none !important;
+  box-shadow:0 14px 30px rgba(14,63,68,.30) !important;
+}
+.dd-est .est-estimator-module .mega-aside-cta:active{ transform:translateY(0) scale(.98); }
+
+/* ===== v144 · Estimate panel rebuild: compact Zirconia teaser + "Treatment Plan Mode" hero ===== */
+/* rebalance the head so the hero gets room and the teaser shrinks */
+.cc-mega.dd-est .mega-head{
+  grid-template-columns:minmax(240px,1fr) minmax(300px,360px) minmax(320px,380px) !important;
+  gap:22px !important;
+}
+/* Zirconia teaser: size to content, no forced height / empty space */
+.dd-est .mega-promo>*{ height:auto !important; min-height:0 !important; }
+.dd-est .est-promo-widget .est-card{ padding:16px 18px !important; }
+.dd-est .est-card .est-out{ margin-top:13px !important; padding-top:12px !important; }
+.dd-est .est-card .est-ticks{ margin-top:6px !important; }
+
+/* Hero "Treatment Plan Mode" module = the highlight */
+.dd-est .est-estimator-module{
+  width:auto !important;
+  padding:20px 20px 22px !important;
+  border:1px solid rgba(14,63,68,.22) !important;
+  background:linear-gradient(180deg,#EEF8F5,#FFFFFF) !important;
+  border-radius:18px !important;
+  box-shadow:0 16px 38px rgba(14,63,68,.12) !important;
+}
+.dd-est .est-mod-eyebrow{ color:#0C5048 !important; margin-bottom:10px; }
+.dd-est .est-mod-eyebrow::before{ display:none; }
+.dd-est .est-mod-eyebrow .est-mod-run{ color:#15806E; font-size:10px; margin-right:1px; }
+.dd-est .est-mod-title{
+  font-family:var(--ff-sans) !important;
+  font-size:23px !important; line-height:1.08 !important; letter-spacing:-.02em !important; font-weight:800 !important;
+  color:#0E3F44 !important; margin-bottom:9px !important;
+}
+.dd-est .est-mod-sub{
+  font-size:12.5px; line-height:1.5; color:#54666a; margin:0 0 16px;
+}
+/* the highlight CTA: large, clean teal, white label (overrides the old green !important) */
+.dd-est .est-estimator-module .mega-aside-cta,
+.dd-est .est-estimator-module .mega-aside-cta:hover,
+.dd-est .est-estimator-module .mega-aside-cta .cta-label,
+.dd-est .est-estimator-module .mega-aside-cta .aside-go{ color:#ffffff !important; }
+.dd-est .est-estimator-module .mega-aside-cta{
+  display:flex !important; width:100%; justify-content:center; gap:9px;
+  padding:16px 20px !important; font-size:15px !important; border-radius:13px !important;
+  background:linear-gradient(135deg,#1f756e,#0e5a56) !important;
+  box-shadow:0 12px 26px rgba(14,63,68,.30) !important;
+  white-space:nowrap; animation:none !important;
+}
+.dd-est .est-estimator-module .mega-aside-cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 32px rgba(14,63,68,.40) !important;
+}
+.dd-est .est-estimator-module .mega-aside-cta:active{ transform:translateY(0) scale(.98); }
 </style>
 </head>
 <body>
@@ -3138,6 +3368,7 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
 <aside aria-label="Search result" class="find-inviting-right">
 <div class="mega-eyebrow find-orange-eyebrow">What to expect</div>
 <div class="find-result-card featured-card" id="find-featured">
+<div class="find-intro-banner"><span class="ib-dot">◆</span> Platinum Elite appears first within 18 miles</div>
 <div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>
 <div class="what-row"><span class="what-icon">✓</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>
 <div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Open the full directory to keep searching.</p></div></div>
@@ -3245,12 +3476,11 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
 <div><div class="est-cell-l">With PPO</div><div class="est-ppo" id="est-ppo">$675</div></div>
 <div class="est-save"><div class="est-save-l">You save</div><div class="est-save-v" id="est-save">$1,125</div></div>
 </div>
-<a class="est-run-btn" href="/dental-treatment-cost-estimator.html">Run My Estimate <b>→</b></a>
 </div>
 </div>
 </div>
 <!-- ===== /PROMO SLOT ===== -->
-<div class="mega-aside"><div class="mega-aside-eyebrow">See your number</div><div class="mega-aside-text">Walk in <em>knowing</em> the number, not guessing.</div><a class="mega-aside-cta" href="/dental-treatment-cost-estimator.html">Plan my treatment</a></div>
+<div class="mega-aside est-aside-cta est-estimator-module"><div class="est-mod-eyebrow"><span class="est-mod-run">▸</span> Treatment plan mode</div><div class="est-mod-title">Your numbers. Your plan.</div><div class="est-mod-sub">The real in-network rates, not sticker prices. Plan it yourself before you sit in the chair.</div><a class="mega-aside-cta" id="est-cta-btn" href="/dental-treatment-cost-estimator.html"><span class="cta-label">Run the cost estimator</span> <span class="aside-go">→</span></a></div>
 </div>
 <div class="mega-cols">
 <div class="est-tx-wrap">
@@ -3448,10 +3678,6 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
 </div>
 </div>
 </div>
-<section class="preview-hero">
-<h1>Preview only.<br/><em>Mega nav clean include.</em></h1>
-<p>Desktop: hover/click the top nav. Mobile: resize the browser or open on phone and tap the hamburger/drawer items.</p>
-</section>
 <script>
 /* CoverCapy Mega Nav v04 JUN 2026
    Purpose: navigation interactions + ZIP-only Platinum Elite lookup.
@@ -3699,7 +3925,8 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
   }
 
   function introCard() {
-    return '<div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>'
+    return '<div class="find-intro-banner"><span class="ib-dot">◆</span> Platinum Elite appears first within 18 miles</div>'
+      + '<div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>'
       + '<div class="what-row"><span class="what-icon">✓</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>'
       + '<div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Open the full directory to keep searching.</p></div></div>'
       + '';
@@ -3708,16 +3935,12 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
   function openApplicationCard(city, searchTerm) {
     var term = String(searchTerm || '').trim();
     var place = city && city !== ('ZIP ' + term) ? htmlEscape(city) : htmlEscape(term || 'your area');
-    var searchedLabel = /^\d{5}$/.test(term) ? 'ZIP searched' : 'Area searched';
-    return '<div class="featured-banner spot-open">◇ Platinum Elite · Application Open</div>'
-      + '<div class="zip-result-strip"><span class="zip-result-pin">⌖</span><span><small>' + searchedLabel + '</small><strong>'
-      + htmlEscape(term || place) + (city && city !== ('ZIP ' + term) && city !== term ? ' · ' + htmlEscape(city) : '') + '</strong></span></div>'
-      + '<div class="featured-body compact-open-body"><div class="featured-avatar cc-symbol-avatar">◆</div><div class="featured-copy">'
-      + '<div class="featured-name">Be the first Platinum Elite<br><span class="open-city-line">practice near ' + place + '</span></div>'
-      + '<div class="featured-meta">No Platinum Elite office within ' + PLATINUM_RADIUS_MILES + ' miles yet. Claim it before another practice does.</div>'
-      + '<div class="feature-lines open-opportunity-lines"><span>Appear first in local results</span><span>Serve PPO-ready patients nearby</span></div>'
-      + '<a class="find-secure-cta" href="/dentist-portal.html#platinum-elite">Make this area yours <b>→</b></a>'
-      + '</div></div>';
+    return '<div class="featured-banner spot-open open-status-banner">◇ No Platinum Elite within ' + PLATINUM_RADIUS_MILES + ' miles</div>'
+      + '<div class="open-hero">'
+      + '<div class="open-hero-title">This spot is open.</div>'
+      + '<div class="open-hero-sub">Be the first Platinum Elite near <strong>' + place + '</strong>.</div>'
+      + '<a class="find-secure-cta cta-open-claim" href="/dentist-portal.html#platinum-elite">Claim this area <b>→</b></a>'
+      + '</div>';
   }
 
   function dentistCard(dentist, location) {
@@ -3743,7 +3966,7 @@ body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"S
       + (phoneRaw ? '<a class="feature-phone" href="tel:' + htmlEscape(tel) + '">' + htmlEscape(phoneRaw) + '</a>' : '')
       + '</div></div><div class="featured-actions">'
       + '<a class="featured-btn primary" href="' + htmlEscape(profileUrl) + '"><span class="btn-ico" aria-hidden="true">▣</span> Book</a>'
-      + (phoneRaw ? '<a class="featured-btn secondary" href="tel:' + htmlEscape(tel) + '"><span class="btn-ico" aria-hidden="true">☎</span> Call</a>' : '<a class="featured-btn secondary" href="' + htmlEscape(profileUrl) + '">Profile</a>')
+      + '<a class="featured-btn secondary feature-view-profile" href="' + htmlEscape(profileUrl) + '">View profile</a>'
       + '</div>';
   }
 
