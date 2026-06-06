@@ -3,6 +3,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/find-my-dentist",
+      "destination": "/ppodentists.html"
+    },
+    {
       "source": "/best-ppo-dentists/:area/:city",
       "destination": "/ppodentists.html"
     },
