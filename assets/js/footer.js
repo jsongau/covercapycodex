@@ -55,3 +55,14 @@
   }
 })();
 
+
+/* Auto-load the sitewide "leaving CoverCapy" external-link modal (shared module). */
+(function () {
+  if (window.__ccLeavingInit) return;
+  if (document.querySelector('script[data-cc-leaving]')) return;
+  var s = document.createElement('script');
+  s.src = '/assets/js/leaving-modal.js';
+  s.defer = true;
+  s.setAttribute('data-cc-leaving', '');
+  document.body.appendChild(s);
+})();
