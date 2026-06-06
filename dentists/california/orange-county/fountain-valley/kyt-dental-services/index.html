@@ -72,7 +72,7 @@
       --peach:#FDEBE0; --peachline:#F4D6C4; --peachtext:#9C553D;
       --shadow:0 16px 44px rgba(8,42,48,.11);
       --shadow-sm:0 4px 16px rgba(8,42,48,.06);
-      --nav-offset:72px; /* matches the mega-nav mount height; lower to 0 if your mega-nav is not sticky */
+      --nav-offset:var(--nav-h, 72px); /* track the mega-nav height var so the section nav sits flush (no gap) at every breakpoint */
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
