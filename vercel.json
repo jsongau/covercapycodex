@@ -131,6 +131,16 @@
       "source": "/dental-insurance",
       "destination": "/compare-ppo-dental-plans.html",
       "permanent": true
+    },
+    {
+      "source": "/estimatecost.html",
+      "destination": "/dental-treatment-cost-estimator.html",
+      "permanent": true
+    },
+    {
+      "source": "/estimatecosts.html",
+      "destination": "/dental-treatment-cost-estimator.html",
+      "permanent": true
     }
   ]
 }
