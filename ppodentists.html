@@ -2043,7 +2043,18 @@ async function bootData(){
       CITIES["orange county"] = CITIES["orange county"] || { lat:33.70, lng:-117.86, label:"Orange County", area:"Orange County" };
     }
     const cols = "id,slug,name,practice_name,city,local_area,market_area,featured_area,state,zip,address,phone,email,website,booking_url,featured_tier,accreditation_status,is_sponsored,is_claimed,membership_tier,aggregate_rating,aggregate_review_count,google_rating,google_review_count,yelp_rating,yelp_review_count,capy_rating,capy_review_count,weighted_rating,weighted_review_count,rating_display,zocdoc_rating,zocdoc_review_count,zocdoc_url,yelp_url,google_place_id,insurance_networks,specialties,languages,latitude,longitude,short_description,open_weekends,weekend_hours_note,avatar_seed,avatar_version,avatar_traits,image_url,gallery_images,cover_image_url,claimed_by,pending_display_label,badge_style,badge_bg,badge_text,badge_border,profile_url,geo_sector,sub_area";
-    const { data: rows, error } = await sb.from("dentists").select(cols);
+    // PostgREST returns at most 1000 rows per response. The table now exceeds that, so a
+    // single select silently dropped later states (Nevada among them). Page through with
+    // .range() until a short page so every row loads and every state is searchable.
+    let rows = [], error = null, _from = 0; const _STEP = 1000;
+    while(true){
+      const { data: _chunk, error: _e } = await sb.from("dentists").select(cols).range(_from, _from + _STEP - 1);
+      if(_e){ error = _e; break; }
+      if(!_chunk || !_chunk.length) break;
+      rows = rows.concat(_chunk);
+      _from += _chunk.length;
+      if(_chunk.length < _STEP) break;
+    }
     if(error) throw error;
     if(rows && rows.length){
       WORKING = rows.map(normalizeRow);
@@ -2888,7 +2899,7 @@ function renderExplorer(root){
   if(!EXP.st || gs.so.indexOf(EXP.st)<0){ EXP.st = gs.so[0]; EXP.region=null; EXP.area=null; EXP.sub=null; }
   var ST = gs.S[EXP.st], g = ST._g;
   if(EXP.region && g.mo.indexOf(EXP.region)<0){ EXP.region=null; EXP.area=null; EXP.sub=null; }
-  if(!EXP.region && g.mo.length){ EXP.region = g.mo[0]; EXP.area=null; EXP.sub=null; }
+  /* default: no region selected means All regions, and column 3 lists every local area */
   var q = (EXP.q||'').toLowerCase().trim();
 
   // C1 - geo sectors branching into states
@@ -2910,20 +2921,26 @@ function renderExplorer(root){
 
   // C2 - regions (market areas)
   var c2 = '<div class="exp-col"><div class="exp-hd"><span class="exp-ttl">'+esc(EXP.st)+'</span><span class="exp-meta">'+g.mo.length+' region'+(g.mo.length===1?'':'s')+'</span></div><div class="exp-list">';
+  c2 += '<button class="exp-item'+(!EXP.region?' on':'')+'" type="button" onclick="expPickRegion(\'\')"><span class="exp-nm">All regions</span><span class="exp-ct">'+ST.items.length+'</span></button>';
   g.mo.forEach(function(mk){
     c2 += '<button class="exp-item'+(mk===EXP.region?' on':'')+'" type="button" onclick="expPickRegion(\''+jsq(mk)+'\')"><span class="exp-nm">'+esc(mk)+'</span><span class="exp-ct">'+g.M[mk].items.length+'</span></button>';
   });
   c2 += '</div></div>';
 
-  // C3 - areas (local) of selected region; counties branch into sub-areas
+  // C3 - areas (local). With no region selected, list every local area grouped by region;
+  // with a region selected, just that region. Counties branch into sub-areas on click.
   var c3 = '<div class="exp-col"><div class="exp-hd"><span class="exp-ttl">Areas</span><span class="exp-meta">'+esc(EXP.region||EXP.st)+'</span></div>';
   c3 += '<div class="exp-search"><input type="text" placeholder="Search city or area" value="'+esc(EXP.q||'')+'" oninput="expSearch(this.value)"></div>';
   c3 += '<div class="exp-list">';
-  var Greg = g.M[EXP.region];
-  var allCt = Greg ? Greg.items.length : 0;
-  c3 += '<button class="exp-item'+((!EXP.area)?' on':'')+'" type="button" onclick="expPickArea(\'\')"><span class="exp-nm">All of '+esc(EXP.region)+'</span><span class="exp-ct">'+allCt+'</span></button>';
-  if(Greg){
+  var c3AllLabel = EXP.region ? ('All of '+esc(EXP.region)) : 'All areas';
+  var c3AllCt = EXP.region ? (g.M[EXP.region]?g.M[EXP.region].items.length:0) : ST.items.length;
+  c3 += '<button class="exp-item'+((!EXP.area)?' on':'')+'" type="button" onclick="expPickArea(\'\')"><span class="exp-nm">'+c3AllLabel+'</span><span class="exp-ct">'+c3AllCt+'</span></button>';
+  var c3regs = EXP.region ? [EXP.region] : g.mo;
+  c3regs.forEach(function(mk){
+    var Greg = g.M[mk]; if(!Greg) return;
     var shown = Greg.lo.filter(function(lc){ return !q || lc.toLowerCase().indexOf(q)>=0 || (Greg.loc[lc].subo||[]).some(function(s){ return s.toLowerCase().indexOf(q)>=0; }); });
+    if(!shown.length) return;
+    if(!EXP.region) c3 += '<div class="exp-mk">'+esc(mk)+'</div>';
     shown.forEach(function(lc){
       var L=Greg.loc[lc], hasSub=!!(L.subo && L.subo.length), sel=(lc===EXP.area);
       c3 += '<button class="exp-item'+(sel&&!EXP.sub?' on':'')+'" type="button" onclick="expPickArea(\''+jsq(lc)+'\')"><span class="exp-nm">'+esc(lc)+(hasSub?' <span class="exp-chev">'+(sel?'▾':'▸')+'</span>':'')+'</span><span class="exp-ct">'+L.items.length+'</span></button>';
@@ -2933,7 +2950,7 @@ function renderExplorer(root){
         });
       }
     });
-  }
+  });
   c3 += '</div></div>';
 
   // C4 - offices
@@ -2952,9 +2969,9 @@ function renderExplorer(root){
   root.innerHTML = '<div class="exp">'+c1+c2+c3+c4+'</div>';
 }
 function expPickState(st){ EXP.st=st; EXP.region=null; EXP.area=null; EXP.sub=null; EXP.q=''; _expRerender(); }
-function expPickRegion(mk){ EXP.region=mk||null; EXP.area=null; EXP.sub=null; _expRerender(); }
-function expPickArea(area){ EXP.area=area||null; EXP.sub=null; _expRerender(); }
-function expPickSub(area,sub){ EXP.area=area||null; EXP.sub=sub||null; _expRerender(); }
+function expPickRegion(mk){ mk=mk||null; EXP.region=(mk&&EXP.region===mk)?null:mk; EXP.area=null; EXP.sub=null; _expRerender(); }
+function expPickArea(area){ area=area||null; EXP.area=(area&&EXP.area===area)?null:area; EXP.sub=null; _expRerender(); }
+function expPickSub(area,sub){ EXP.area=area||null; sub=sub||null; EXP.sub=(sub&&EXP.sub===sub)?null:sub; _expRerender(); }
 function expSearch(v){ EXP.q=v||''; _expRerender(true); }
 
 function render(){
