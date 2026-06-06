@@ -1,3 +1,5 @@
+/* CoverCapy Mega Nav  -  behavior. Load once, before </body>, after the markup. */
+
 /* CoverCapy Mega Nav v04 JUN 2026
    Purpose: navigation interactions + ZIP-only Platinum Elite lookup.
    Public Supabase anon key only; protect data with RLS and views/RPCs.
@@ -14,6 +16,7 @@
 
   var nav = document.getElementById('cc-nav');
   var backdrop = document.getElementById('cc-backdrop');
+  var curtain = document.getElementById('cc-curtain');
   var links = Array.prototype.slice.call(document.querySelectorAll('.cc-link'));
   var closeTimer = null;
 
@@ -30,12 +33,14 @@
     link.classList.add('is-open');
     backdrop.classList.add('show');
     nav.classList.add('dimmed');
+    if (curtain) curtain.classList.add('show');
   }
 
   function closeMega() {
     links.forEach(function (item) { item.classList.remove('is-open'); });
     if (backdrop) backdrop.classList.remove('show');
     if (nav) nav.classList.remove('dimmed');
+    if (curtain) curtain.classList.remove('show');
   }
 
   function scheduleClose() {
@@ -78,6 +83,10 @@
   });
 
   if (backdrop) backdrop.addEventListener('click', closeMega);
+  if (curtain) {
+    curtain.addEventListener('click', closeMega);
+    curtain.addEventListener('mouseenter', closeMega);
+  }
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closeMega();
   });
@@ -237,9 +246,9 @@
   }
 
   function introCard() {
-    return '<div class="what-row"><span class="what-icon">◇</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>'
-      + '<div class="what-row"><span class="what-icon">♢</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>'
-      + '<div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Continue to the full directory for refined search.</p></div></div>'
+    return '<div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>'
+      + '<div class="what-row"><span class="what-icon">✓</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>'
+      + '<div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Open the full directory to keep searching.</p></div></div>'
       + '';
   }
 
@@ -252,9 +261,10 @@
       + htmlEscape(term || place) + (city && city !== ('ZIP ' + term) && city !== term ? ' · ' + htmlEscape(city) : '') + '</strong></span></div>'
       + '<div class="featured-body compact-open-body"><div class="featured-avatar cc-symbol-avatar">⌖</div><div class="featured-copy">'
       + '<div class="featured-name">No Platinum Elite dentist<br><span class="open-city-line">within '
-      + PLATINUM_RADIUS_MILES + ' miles of ' + place + '</span></div>'
-      + '<div class="featured-meta">This territory is currently open for a qualifying practice.</div>'
-      + '<div class="feature-lines open-opportunity-lines"><span>Appear first in local discovery</span><span>Serve PPO-ready patients nearby</span></div>'
+      + PLATINUM_RADIUS_MILES + ' miles of ' + place + ', as of this moment</span></div>'
+      + '<div class="featured-meta">This area is open. Secure it before another practice does.</div>'
+      + '<div class="feature-lines open-opportunity-lines"><span>Appear first in local results</span><span>Serve PPO-ready patients nearby</span></div>'
+      + '<a class="find-secure-cta" href="/dentist-portal.html#platinum-elite">Secure this area <b>→</b></a>'
       + '</div></div>';
   }
 
@@ -433,21 +443,37 @@
     document.body.classList.remove('cc-locked');
     if (burger) burger.setAttribute('aria-expanded', 'false');
   }
-  if (burger) burger.addEventListener('click', openDrawer);
+  if (burger) burger.addEventListener('click', function(event){ event.preventDefault(); event.stopPropagation(); openDrawer(); });
   if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
   if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
   document.querySelectorAll('[data-acc]').forEach(function (button) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       var item = button.closest('.cc-dacc');
-      if (item) item.classList.toggle('open');
+      if (!item) return;
+      var isOpen = item.classList.contains('open') || item.classList.contains('is-open');
+      item.classList.toggle('open', !isOpen);
+      item.classList.toggle('is-open', !isOpen);
+      button.setAttribute('aria-expanded', String(!isOpen));
     });
   });
+
+  if (drawer) {
+    drawer.querySelectorAll('a[href]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (link.getAttribute('data-cc-modal') === 'insurance') return;
+        setTimeout(closeDrawer, 60);
+      });
+    });
+  }
 
   var modal = document.getElementById('covercapy-universal-modal');
   function closeModal() {
     if (!modal) return;
     modal.classList.remove('open');
+    modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('cc-universal-modal-open');
   }
@@ -461,10 +487,25 @@
       var continueLink = modal.querySelector('.cc-universal-modal-continue');
       if (continueLink) continueLink.href = link.href;
       modal.classList.add('open');
+      modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('cc-universal-modal-open');
     });
   });
+
+
+  document.querySelectorAll('.dd-cov-curated .uhc-activation-card').forEach(function(card){
+    card.addEventListener('mousemove', function(event){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--cc-cta-x', ((event.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+      card.style.setProperty('--cc-cta-y', ((event.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+    card.addEventListener('mouseleave', function(){
+      card.style.removeProperty('--cc-cta-x');
+      card.style.removeProperty('--cc-cta-y');
+    });
+  });
+
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closeModal();
   });
