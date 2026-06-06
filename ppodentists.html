@@ -4653,7 +4653,7 @@ function ccSaveSignIn(){
   toast('Sign in launching soon', 'Patient sign-in is on the way, so you can reach your saved offices anywhere.', 'info');
 }
 function callOffice(id){ const d=fsGet(id); gtagSafe('call_office_click',{dentist_id:id}); if(d&&d.phone){ window.location.href='tel:'+String(d.phone).replace(/[^0-9+]/g,''); } else { openPpoCheck(id,{noPhone:true}); } }
-function directionsTo(id){ const d=fsGet(id); if(!d) return; const q=(d.lat!=null&&d.lng!=null)?(d.lat+','+d.lng):encodeURIComponent((d.address||d.practice||'')+' '+(d.city||'')); window.open('https://www.google.com/maps/dir/?api=1&destination='+q,'_blank','noopener'); }
+function directionsTo(id){ const d=fsGet(id); if(!d) return; const q=(d.lat!=null&&d.lng!=null)?(d.lat+','+d.lng):encodeURIComponent((d.address||d.practice||'')+' '+(d.city||'')); var _du='https://www.google.com/maps/dir/?api=1&destination='+q; if(window.ccLeavingConfirm){window.ccLeavingConfirm(_du);}else{window.open(_du,'_blank','noopener');} }
 /* Generic "leaving CoverCapy" disclosure (shared by booking + maps). */
 function showDisclosure(opts){
   opts=opts||{};
@@ -4854,7 +4854,7 @@ async function uploadDentistMedia(id, kind){   // kind: 'cover' | 'avatar'
   }catch(e){ console.warn('media upload failed', e); toast('Could not save', (e&&e.message)?e.message:'Make sure you are signed in as the office owner.', 'warn'); }
 }
 
-function openWebsite(id){ const d=find(id); if(d&&d.website&&String(d.website).trim()){ gtagSafe('website_click',{dentist_id:id}); window.open(d.website,'_blank','noopener'); } }
+function openWebsite(id){ const d=find(id); if(d&&d.website&&String(d.website).trim()){ gtagSafe('website_click',{dentist_id:id}); if(window.ccLeavingConfirm){window.ccLeavingConfirm(d.website);}else{window.open(d.website,'_blank','noopener');} } }
 
 function openPpoCheck(id, opts){ const d=id?find(id):null; PPO_CTX=d; opts=opts||{};
   document.getElementById('v-title').textContent = d?('Check your coverage with '+d.practice):'Check your coverage with this office';
@@ -5084,7 +5084,7 @@ function ddOpenInMaps(){
     var q=encodeURIComponent([name,addr].filter(Boolean).join(', '));
     var url='https://www.google.com/maps/search/?api=1&query='+q;
     if(d.placeId) url+='&query_place_id='+encodeURIComponent(d.placeId);
-    window.open(url,'_blank','noopener');
+    if(window.ccLeavingConfirm){window.ccLeavingConfirm(url);}else{window.open(url,'_blank','noopener');}
   }catch(e){}
 }
 function ddInitMap(){
@@ -6760,5 +6760,6 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
   }, 2800);
 })();
 </script>
+<script src="/assets/js/leaving-modal.js" defer></script>
 </body>
 </html>

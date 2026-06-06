@@ -110,6 +110,21 @@
     if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
   }
 
+  /* Public API: route a JS-driven navigation (window.open) through the modal.
+     Usage: window.ccLeavingConfirm('https://example.com'). Internal/covercapy
+     URLs open immediately without the modal. */
+  window.ccLeavingConfirm = function (href) {
+    var u;
+    try { u = new URL(href, location.href); } catch (e) { window.open(href, '_blank', 'noopener'); return; }
+    var host = u.hostname.replace(/^www\./, '').toLowerCase();
+    var cur  = location.hostname.replace(/^www\./, '').toLowerCase();
+    if ((u.protocol !== 'http:' && u.protocol !== 'https:') || host === cur || host === CANON || host.endsWith('.' + CANON)) {
+      window.open(href, '_blank', 'noopener'); return; // internal/non-web: just open
+    }
+    lastFocus = document.activeElement;
+    open(u);
+  };
+
   document.addEventListener('click', function (e) {
     var t = e.target;
     var a = (t && t.closest) ? t.closest('a[href]') : null;
