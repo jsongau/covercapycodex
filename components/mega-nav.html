@@ -3322,6 +3322,15 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
   box-shadow:0 16px 32px rgba(14,63,68,.40) !important;
 }
 .dd-est .est-estimator-module .mega-aside-cta:active{ transform:translateY(0) scale(.98); }
+
+/* ===== v145 · crown pricing model update + subtle disclaimer ===== */
+.dd-est .est-disclaimer{
+  margin-top:11px;
+  font-size:9.5px;
+  line-height:1.45;
+  color:var(--ink-soft);
+  opacity:.8;
+}
 </style>
 </head>
 <body>
@@ -3347,16 +3356,17 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
 <div class="zip-search-card">
 <div class="zip-search-row">
 <div aria-hidden="true" class="zip-icon">⌖</div>
-<input autocomplete="off" class="find-zip-input zip-search-input" id="nav-zip" inputmode="search" maxlength="64" placeholder="Enter ZIP, city, or area (e.g., 91748 or Rowland Heights)" type="search"/>
+<input autocomplete="off" class="find-zip-input zip-search-input" id="nav-zip" inputmode="search" maxlength="64" placeholder="Enter ZIP, city, area, or state (e.g., 91745 or Orange County)" type="search" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="nav-suggest" aria-haspopup="listbox"/>
 <button class="find-zip-btn zip-orange-btn" id="nav-zip-btn" type="button"><span aria-hidden="true">⌕</span> Search Dentists</button>
 </div>
+<div class="cc-suggest" id="nav-suggest" role="listbox" aria-label="Location suggestions" hidden></div>
 <div aria-label="Example searches" class="popular-searches option-c-searches">
 <span class="popular-label">Try a search</span>
 <button class="zip-chip zip-chip-simple" data-query="90210" type="button">90210</button>
-<button class="zip-chip zip-chip-simple" data-query="92605" type="button">92605</button>
 <button class="zip-chip zip-chip-simple" data-query="91745" type="button">91745</button>
-<button class="zip-chip zip-chip-simple" data-query="Rowland Heights" type="button">Rowland Heights</button>
-<button class="zip-chip zip-chip-simple" data-query="Miami Beach" type="button">Miami Beach</button>
+<button class="zip-chip zip-chip-simple" data-query="92706" type="button">92706</button>
+<button class="zip-chip zip-chip-simple" data-query="Orange County" type="button">Orange County</button>
+<button class="zip-chip zip-chip-simple" data-query="Texas" type="button">Texas</button>
 </div>
 </div>
 <div class="find-mini-trust">
@@ -3368,7 +3378,7 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
 <aside aria-label="Search result" class="find-inviting-right">
 <div class="mega-eyebrow find-orange-eyebrow">What to expect</div>
 <div class="find-result-card featured-card" id="find-featured">
-<div class="find-intro-banner"><span class="ib-dot">◆</span> Platinum Elite appears first within 18 miles</div>
+<div class="find-intro-banner"><span class="ib-dot">◆</span> Platinum Elite appears first near you</div>
 <div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>
 <div class="what-row"><span class="what-icon">✓</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>
 <div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Open the full directory to keep searching.</p></div></div>
@@ -3471,11 +3481,12 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
 <div class="est-ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
 <div class="est-out">
 <div class="est-grid">
-<div><div class="est-cell-l">Typical cost</div><div class="est-full" id="est-full">$1,800</div></div>
+<div><div class="est-cell-l">Typical cost</div><div class="est-full" id="est-full">$1,600</div></div>
 <div class="est-arrow">→</div>
-<div><div class="est-cell-l">With PPO</div><div class="est-ppo" id="est-ppo">$675</div></div>
-<div class="est-save"><div class="est-save-l">You save</div><div class="est-save-v" id="est-save">$1,125</div></div>
+<div><div class="est-cell-l">With PPO</div><div class="est-ppo" id="est-ppo">$850</div></div>
+<div class="est-save"><div class="est-save-l">You save</div><div class="est-save-v" id="est-save">$750</div></div>
 </div>
+<div class="est-disclaimer">Illustrative estimate. First crown includes a $50 deductible. Actual allowed amounts vary by plan.</div>
 </div>
 </div>
 </div>
@@ -3678,6 +3689,123 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
 </div>
 </div>
 </div>
+<style id="cc-find-v147-css">
+/* === CoverCapy Find · live suggestions + ZIP→city + expansion spot (v147) === */
+.cc-mega.dd-find{overflow:visible}
+.dd-find .zip-search-card{position:relative;overflow:visible}
+
+/* suggestion dropdown (positioned under the input by JS) */
+.cc-suggest{position:absolute;z-index:200;background:var(--ivory,#FFFDF9);border:1px solid rgba(20,36,42,.12);border-radius:14px;box-shadow:0 22px 52px rgba(20,36,42,.17),0 2px 8px rgba(20,36,42,.06);padding:6px;max-height:336px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cc-suggest[hidden]{display:none}
+.cc-suggest-empty{padding:13px 14px;color:var(--ink-soft,#6b7d82);font-size:13px;line-height:1.4}
+.cc-suggest-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;border:none;background:transparent;border-radius:10px;padding:9px 11px;cursor:pointer;font-family:var(--ff-sans,inherit);transition:background .14s}
+.cc-suggest-item:hover,.cc-suggest-item.is-active{background:var(--emerald-soft,#e7f0ec)}
+.cc-suggest-badge{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:14px;line-height:1}
+.cc-suggest-tx{min-width:0;flex:1}
+.cc-suggest-label{display:block;font-size:14px;font-weight:650;color:var(--ink,#14242a);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-suggest-label b{background:rgba(27,94,90,.14);color:var(--emerald-deep,#0e3f44);border-radius:3px;padding:0 1px;font-weight:800}
+.cc-suggest-sub{display:block;font-size:11.5px;color:var(--ink-soft,#6b7d82);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-suggest-kind{flex:none;font-size:8.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#90a0a4;padding:3px 8px;border-radius:999px;border:1px solid rgba(20,36,42,.1);background:#fff}
+.cc-suggest-go{flex:none;color:#bcc7ca;font-size:14px}
+.cc-suggest-item.is-active .cc-suggest-go{color:var(--emerald,#1b5e5a)}
+.sg-zip .cc-suggest-badge{background:var(--emerald-soft,#e7f0ec);color:var(--emerald-deep,#0e3f44)}
+.sg-city .cc-suggest-badge{background:#e9f1fb;color:#3F6FB8}
+.sg-local_area .cc-suggest-badge{background:var(--gold-soft,#f6ecd2);color:var(--gold-deep,#8a6a23)}
+.sg-market_area .cc-suggest-badge{background:#eef0fa;color:#5a64c4}
+.sg-state .cc-suggest-badge{background:#efeaf8;color:#7C5CA8}
+
+/* result-card state borders */
+.dd-find #find-featured.is-found{border-color:rgba(27,94,90,.28)}
+.dd-find #find-featured.is-exp{border-color:rgba(124,92,168,.34)}
+.dd-find #find-featured.is-citypick{border-color:rgba(27,94,90,.22)}
+.dd-find #find-featured.is-scope{border-color:rgba(249,115,22,.22)}
+.dd-find #find-featured.is-open{border-color:rgba(27,94,90,.32)}
+.is-open .exp-banner{background:linear-gradient(100deg,#1B5E5A,#0E3F44)}
+.is-open .exp-pin{color:#0E3F44;background:rgba(27,94,90,.12)}
+.is-open .exp-body{background:linear-gradient(170deg,#EAF3F0,#FAFEFC)}
+.is-open .exp-actions{background:linear-gradient(170deg,#FAFEFC,#F6FBF9)}
+.is-open .exp-avatar{background:linear-gradient(135deg,#E2F0EA,#EAF6F1);color:#0E3F44}
+.is-open .exp-dentist-name:hover{color:#0E3F44}
+.is-open .exp-dentist-rating{color:#4a6b63}
+.exp-dentist-note{font-size:11px;font-weight:650;color:#3f6f5f;margin-top:4px}
+
+/* Platinum Elite found card */
+.fc2-banner{display:flex;align-items:center;gap:8px;padding:11px 20px;background:linear-gradient(100deg,#1b5e5a,#0e3f44);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.fc2-body{display:flex;gap:14px;align-items:flex-start;padding:16px 20px 4px}
+.fc2-avatar{flex:none;width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,var(--emerald-soft,#e7f0ec),#dfeef3);color:var(--emerald-deep,#0e3f44)}
+.fc2-tx{min-width:0;flex:1}
+.fc2-name{display:block;font-family:var(--ff-serif,serif);font-size:18px;font-weight:500;color:var(--ink,#14242a);line-height:1.16;text-decoration:none}
+.fc2-name:hover{color:var(--emerald-deep,#0e3f44)}
+.fc2-stars{color:var(--gold-deep,#8a6a23);font-weight:700}
+.fc2-rating{font-size:12px;color:var(--ink-mid,#49666c);margin-top:3px}
+.fc2-loc{display:block;font-size:12px;color:var(--ink-mid,#49666c);text-decoration:none;margin-top:5px;line-height:1.4}
+.fc2-mi{color:var(--emerald,#1b5e5a);font-weight:700}
+.fc2-phone{display:inline-block;font-size:12.5px;color:var(--emerald-deep,#0e3f44);text-decoration:none;margin-top:4px;font-weight:600}
+.fc2-actions{display:flex;gap:9px;padding:13px 20px 18px}
+.fc2-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 14px;border-radius:11px;text-decoration:none;font-weight:800;font-size:13.5px;transition:transform .18s var(--ease,ease),box-shadow .18s,background .18s,border-color .18s}
+.fc2-btn.primary{background:linear-gradient(135deg,#1b5e5a,#0e3f44);color:#fff;box-shadow:0 10px 24px rgba(14,63,68,.26)}
+.fc2-btn.primary:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(14,63,68,.36)}
+.fc2-btn.secondary{background:#fff;color:var(--emerald-deep,#0e3f44);border:1px solid rgba(27,94,90,.3)}
+.fc2-btn.secondary:hover{background:var(--emerald-soft,#e7f0ec);transform:translateY(-1px)}
+.fc2-loading{display:flex;align-items:center;gap:13px;padding:22px 20px}
+.fc2-spin{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid rgba(27,94,90,.16);border-top-color:var(--emerald,#1b5e5a);animation:ccspin .8s linear infinite}
+.fc2-loading-tx strong{display:block;font-size:14px;color:var(--ink,#14242a)}
+.fc2-loading-tx span{display:block;font-size:11.5px;color:var(--ink-soft,#6b7d82);margin-top:2px}
+
+/* ZIP → choose-a-city chooser */
+.find-citypick{padding:18px 20px}
+.find-citypick-eyebrow{font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--emerald,#1b5e5a);margin-bottom:7px}
+.find-citypick-h{font-family:var(--ff-serif,serif);font-size:19px;font-weight:500;color:var(--ink,#14242a);line-height:1.15;margin-bottom:3px}
+.find-citypick-zip{font-weight:700;color:var(--emerald-deep,#0e3f44)}
+.find-citypick-sub{font-size:12.5px;color:var(--ink-mid,#49666c);line-height:1.45;margin-bottom:13px}
+.find-citypick-chips{display:flex;flex-wrap:wrap;gap:8px}
+.find-citychip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(27,94,90,.28);background:#fff;border-radius:999px;padding:10px 16px;font-family:var(--ff-sans,inherit);font-size:13.5px;font-weight:650;color:var(--ink,#14242a);cursor:pointer;transition:transform .16s var(--ease,ease),border-color .16s,background .16s}
+.find-citychip:hover,.find-citychip.is-active{transform:translateY(-1px);border-color:var(--emerald,#1b5e5a);background:var(--emerald-soft,#e7f0ec)}
+.find-citychip .cc-dot{width:5px;height:5px;border-radius:50%;background:var(--emerald,#1b5e5a)}
+
+/* purple expansion-spot card */
+.exp-banner{display:flex;align-items:center;gap:8px;padding:11px 20px;background:linear-gradient(100deg,#7C5CA8,#6D4D9E);color:#fff;font-size:10px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.exp-body{padding:16px 20px 4px;background:linear-gradient(170deg,#F4EFFB,#FCFAFE)}
+.exp-pin{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#6D4D9E;background:rgba(124,92,168,.13);border-radius:999px;padding:5px 11px;margin-bottom:11px}
+.exp-h{font-family:var(--ff-serif,serif);font-size:19px;font-weight:500;color:var(--ink,#14242a);line-height:1.2;margin-bottom:8px}
+.exp-sub{font-size:12.5px;color:var(--ink-mid,#49666c);line-height:1.5}
+.exp-meta{font-size:11.5px;color:#7d6aa0;font-weight:600;margin-top:9px}
+.exp-actions{display:flex;gap:9px;padding:14px 20px 18px;background:linear-gradient(170deg,#FCFAFE,#FBF9FE)}
+.exp-cta{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 14px;border-radius:11px;background:linear-gradient(135deg,#7C5CA8,#6D4D9E);color:#fff;text-decoration:none;font-weight:800;font-size:13.5px;box-shadow:0 10px 24px rgba(109,77,158,.28);transition:transform .18s var(--ease,ease),box-shadow .18s}
+.exp-cta:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(109,77,158,.4)}
+.exp-cta .ar{transition:transform .2s var(--ease,ease)}
+.exp-cta:hover .ar{transform:translateX(3px)}
+.exp-cta.secondary{flex:0 0 auto;background:#fff;color:#6D4D9E;border:1px solid rgba(124,92,168,.4);box-shadow:none}
+.exp-cta.secondary:hover{background:#F4EFFB;transform:translateY(-1px)}
+.exp-dentist{display:flex;align-items:center;gap:11px;margin:11px 0 2px}
+.exp-avatar{flex:none;width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:19px;background:linear-gradient(135deg,#E7DFF6,#F0E8FB);color:#6D4D9E}
+.exp-dentist-tx{min-width:0}
+.exp-dentist-name{font-family:var(--ff-serif,serif);font-size:16px;font-weight:500;color:var(--ink,#14242a);text-decoration:none;line-height:1.15;display:block}
+.exp-dentist-name:hover{color:#6D4D9E}
+.exp-dentist-rating{font-size:11.5px;color:#7d6aa0;margin-top:2px}
+.exp-dentist-rating .st{color:var(--gold-deep,#8a6a23);font-weight:700}
+.exp-tag{display:inline-block;margin-top:9px;font-size:9px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6D4D9E;background:rgba(124,92,168,.13);border-radius:999px;padding:4px 10px}
+.exp-cta.claim{background:linear-gradient(135deg,#1B5E5A,#0E3F44);color:#fff;box-shadow:0 10px 24px rgba(14,63,68,.28)}
+.exp-cta.claim:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(14,63,68,.4)}
+.exp-cta.view{flex:0 0 auto;background:#F4EFFB;color:#6D4D9E;border:1px solid rgba(124,92,168,.3);box-shadow:none;font-weight:700}
+.exp-cta.view:hover{background:#ECE3F8;transform:translateY(-1px)}
+
+/* local area / market area / state browse card */
+.scope-card{padding:18px 20px}
+.scope-kindtag{display:inline-flex;align-items:center;gap:6px;margin-bottom:11px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#c2410c;background:#ffedd5;border-radius:999px;padding:4px 11px}
+.scope-h{font-family:var(--ff-serif,serif);font-size:20px;font-weight:500;color:var(--ink,#14242a);line-height:1.16;margin-bottom:7px}
+.scope-h em{font-style:italic;color:#ea580c}
+.scope-sub{font-size:12.5px;color:var(--ink-mid,#49666c);line-height:1.5}
+.scope-list{margin:13px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.scope-list li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--ink-mid,#49666c);line-height:1.4}
+.scope-list li::before{content:"→";color:#ea580c;font-weight:800;flex:none}
+
+@media (max-width:720px){
+  .cc-suggest{max-height:52vh}
+  .exp-actions,.fc2-actions{flex-direction:column}
+  .exp-cta.secondary{width:100%}
+}
+</style>
 <script>
 /* CoverCapy Mega Nav v04 JUN 2026
    Purpose: navigation interactions + ZIP-only Platinum Elite lookup.
@@ -3813,215 +3941,455 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
     }).catch(function () { return []; });
   }
 
-  function locationLabel(location) {
-    if (!location) return 'your area';
-    return location.name || location.city || location.title || 'your area';
+  /* ===== Find a Dentist: live suggestions + ZIP->city + expansion spot (v147) ===== */
+
+  var findLink = document.querySelector('.cc-link[data-link="find"]');
+
+  function supabaseSuggest(q) {
+    return supabaseRpc('nav_search_suggest', { q: q, max_n: 8 });
   }
 
-  function zipArray(location) {
-    if (!location) return [];
-    var z = location.zip_codes || location.zips || location.zip || location.postal_code || '';
-    if (Array.isArray(z)) return z.map(String).filter(Boolean);
-    return String(z || '').replace(/[{}\[\]"]/g, '').split(',').map(function (x) { return x.trim(); }).filter(Boolean);
-  }
-
-  function directoryBrowseLabel(searchTerm, location) {
-    var term = String(searchTerm || '').trim();
-    if (/^\d{5}$/.test(term)) return term;
-    var zips = zipArray(location);
-    if (zips.length === 1) return zips[0];
-    return locationLabel(location && location.name ? location : { name: term || 'this area' });
-  }
-
-  function directoryBrowseText(searchTerm, location) {
-    return 'Browse all dentists in ' + directoryBrowseLabel(searchTerm, location);
-  }
-
-  function locationSlug(location) {
-    if (!location) return '';
-    if (location.slug) return location.slug;
-    var county = location.county ? slugify(location.county).replace(/-county$/, '') + '/' : '';
-    return county + slugify(locationLabel(location));
-  }
-
-  function findLocationByZip(zip) {
-    var query = 'search_locations?select=*&type=eq.city&zip_codes=cs.{'
-      + encodeURIComponent(zip) + '}&limit=1';
-    return supabaseGet(query).then(function (rows) { return rows && rows[0] ? rows[0] : null; });
-  }
-
-  function findLocationByCity(term) {
-    var clean = String(term || '').trim();
-    if (!clean) return Promise.resolve(null);
-    var wildcard = '*' + clean.replace(/\s+/g, ' ') + '*';
-    var query = 'search_locations?select=*&type=eq.city&city=ilike.'
-      + encodeURIComponent(wildcard).replace(/%2A/g, '*')
-      + '&limit=1';
-    return supabaseGet(query).then(function (rows) { return rows && rows[0] ? rows[0] : null; });
-  }
-
-  function findFeaturedDentist(location) {
-    if (!location || location.lat == null || location.lng == null) return Promise.resolve(null);
-    return supabaseRpc('nav_featured_dentist', {
-      in_lat: Number(location.lat),
-      in_lng: Number(location.lng),
-      radius_miles: PLATINUM_RADIUS_MILES
+  function expansionSpotNear(lat, lng) {
+    if (lat == null || lng == null) return Promise.resolve(null);
+    return supabaseRpc('nav_expansion_spot', {
+      in_lat: Number(lat), in_lng: Number(lng), radius_miles: PLATINUM_RADIUS_MILES
     }).then(function (rows) { return rows && rows[0] ? rows[0] : null; });
   }
 
-  function directoryUrl(searchTerm, location) {
-    var term = String(searchTerm || '').trim();
-    var isZip = /^\d{5}$/.test(term);
-    var radius = 8;
-    return '/ppodentists.html?where=' + encodeURIComponent(term || '') + '&radius=' + radius + '&autosubmit=1';
+  function featuredDentistNear(lat, lng) {
+    if (lat == null || lng == null) return Promise.resolve(null);
+    return supabaseRpc('nav_featured_dentist', {
+      in_lat: Number(lat), in_lng: Number(lng), radius_miles: PLATINUM_RADIUS_MILES
+    }).then(function (rows) { return rows && rows[0] ? rows[0] : null; });
   }
 
-  function setZipStatus(message, detail) { /* ZIP state is now rendered inside the result card. */ }
+  function featuredDentistByScope(scope, value) {
+    return supabaseRpc('nav_featured_dentist_by_scope', { in_scope: scope, in_value: value })
+      .then(function (rows) { return rows && rows[0] ? rows[0] : null; });
+  }
 
-  var lastFindSearchTerm = '';
+  function citiesForZip(zip) {
+    var q = 'search_locations?select=name,city,lat,lng,slug,local_area,market_area,state'
+      + '&type=eq.city&zip_codes=cs.{' + encodeURIComponent(zip) + '}&order=name';
+    return supabaseGet(q);
+  }
 
-  function setDirectoryCtas(zip, location) {
-    var primary = document.getElementById('nav-find-cta');
-    var secondary = document.getElementById('nav-find-all');
-    var mainBrowse = document.getElementById('nav-browse-main');
-    var term = zip || lastFindSearchTerm;
-    var url = directoryUrl(term, location);
-    var labelText = directoryBrowseText(term, location);
-    var label = labelText + ' <span class="browse-go" aria-hidden="true">→</span>';
-    if (primary) {
-      primary.href = url;
-      primary.innerHTML = label;
-      primary.classList.remove('cta-idle');
-      primary.classList.add('cta-live');
-      primary.removeAttribute('aria-disabled');
+  function highlight(text, q) {
+    var t = htmlEscape(text);
+    var qq = htmlEscape(String(q || '').trim());
+    if (!qq) return t;
+    var i = t.toLowerCase().indexOf(qq.toLowerCase());
+    if (i < 0) return t;
+    return t.slice(0, i) + '<b>' + t.slice(i, i + qq.length) + '</b>' + t.slice(i + qq.length);
+  }
+
+  /* ---- result card helpers ---- */
+  function findCard() { return document.getElementById('find-featured'); }
+
+  function setCard(html, stateClass) {
+    var card = findCard();
+    if (!card) return;
+    card.className = 'find-result-card featured-card' + (stateClass ? ' ' + stateClass : '');
+    card.innerHTML = html;
+  }
+
+  var SCOPE_RADIUS = { zip: 8, city: 25, local_area: 60, market_area: 120, state: 600 };
+
+  function browseUrl(scope, value) {
+    var radius = SCOPE_RADIUS[scope] || 25;
+    return '/ppodentists.html?where=' + encodeURIComponent(value || '')
+      + '&scope=' + encodeURIComponent(scope || 'city')
+      + '&radius=' + radius + '&autosubmit=1';
+  }
+
+  function setBrowse(scope, value, label) {
+    var url = browseUrl(scope, value);
+    var text = 'Browse all dentists in ' + (label || value);
+    var main = document.getElementById('nav-browse-main');
+    if (main) {
+      main.href = url;
+      main.innerHTML = htmlEscape(text) + ' <span class="browse-go" aria-hidden="true">&#8594;</span>';
+      main.classList.remove('is-disabled');
+      main.removeAttribute('aria-disabled');
     }
-    if (secondary) {
-      secondary.href = url;
-      secondary.innerHTML = label;
-      secondary.classList.remove('is-disabled');
-      secondary.removeAttribute('aria-disabled');
+    var cta = document.getElementById('nav-find-cta');
+    if (cta) {
+      cta.href = url;
+      cta.innerHTML = htmlEscape(text) + ' <span aria-hidden="true">&#8594;</span>';
+      cta.classList.remove('cta-idle');
+      cta.classList.add('cta-live');
+      cta.removeAttribute('aria-disabled');
     }
-    if (mainBrowse) {
-      mainBrowse.href = url;
-      mainBrowse.innerHTML = labelText + ' <span class="browse-go" aria-hidden="true">→</span>';
-      mainBrowse.classList.remove('is-disabled');
-      mainBrowse.removeAttribute('aria-disabled');
+    var foot = document.querySelector('.cc-foot-wait');
+    if (foot) foot.textContent = 'Showing matches for ' + (label || value);
+  }
+
+  /* ---- card renderers ---- */
+  function introCardHTML() {
+    return '<div class="find-intro-banner"><span class="ib-dot">&#9670;</span> Platinum Elite appears first near you</div>'
+      + '<div class="what-row"><span class="what-icon">&#9812;</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your area.</p></div></div>'
+      + '<div class="what-row"><span class="what-icon">&#10003;</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>'
+      + '<div class="what-row"><span class="what-icon">&#9678;</span><div><strong>Dentists Near You</strong><p>Open the full list to keep searching.</p></div></div>';
+  }
+
+  function loadingCardHTML(label) {
+    return '<div class="fc2-loading"><span class="fc2-spin" aria-hidden="true"></span>'
+      + '<span class="fc2-loading-tx"><strong>Checking ' + htmlEscape(label || 'your area') + '</strong>'
+      + '<span>Looking for a Platinum Elite office nearby</span></span></div>';
+  }
+
+  function foundCardHTML(d) {
+    var name = d.practice_name || 'Platinum Elite dentist';
+    var profile = d.profile_url || d.booking_url || d.website || '/ppodentists.html';
+    var book = d.booking_url || d.profile_url || d.website || '/ppodentists.html';
+    var rating = Number(d.rating || 0);
+    var reviews = d.review_count || '';
+    var ratingLine = '';
+    if (rating) {
+      ratingLine = '<div class="fc2-rating"><span class="fc2-stars">' + starText(rating) + '</span> '
+        + rating.toFixed(1) + (reviews ? ' &#183; ' + htmlEscape(reviews) + ' reviews' : '') + '</div>';
+    } else if (d.rating_display) {
+      ratingLine = '<div class="fc2-rating">' + htmlEscape(d.rating_display) + '</div>';
     }
-  }
-
-  function setFindCard(html, showFallback) {
-    var card = document.getElementById('find-featured');
-    var fallback = document.getElementById('find-fallback-cta');
-    if (card) card.innerHTML = html;
-    if (fallback) fallback.hidden = !showFallback;
-  }
-
-  function loadingCard(term) {
-    return '<div class="featured-banner found-featured-banner">◇ Checking Platinum Elite availability</div>'
-      + '<div class="featured-body"><div class="featured-avatar cc-symbol-avatar">⌕</div><div class="featured-copy">'
-      + '<div class="featured-name">Searching near ' + htmlEscape(term || 'your area') + '</div>'
-      + '<div class="featured-meta">Loading the right column first. The directory opens only after you choose Search Dentists.</div>'
-      + '</div></div>';
-  }
-
-  function introCard() {
-    return '<div class="find-intro-banner"><span class="ib-dot">◆</span> Platinum Elite appears first within 18 miles</div>'
-      + '<div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>'
-      + '<div class="what-row"><span class="what-icon">✓</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>'
-      + '<div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Open the full directory to keep searching.</p></div></div>'
-      + '';
-  }
-
-  function openApplicationCard(city, searchTerm) {
-    var term = String(searchTerm || '').trim();
-    var place = city && city !== ('ZIP ' + term) ? htmlEscape(city) : htmlEscape(term || 'your area');
-    return '<div class="featured-banner spot-open open-status-banner">◇ No Platinum Elite within ' + PLATINUM_RADIUS_MILES + ' miles</div>'
-      + '<div class="open-hero">'
-      + '<div class="open-hero-title">This spot is open.</div>'
-      + '<div class="open-hero-sub">Be the first Platinum Elite near <strong>' + place + '</strong>.</div>'
-      + '<a class="find-secure-cta cta-open-claim" href="/dentist-portal.html#platinum-elite">Claim this area <b>→</b></a>'
-      + '</div>';
-  }
-
-  function dentistCard(dentist, location) {
-    var address = String(dentist.address || '').trim();
-    var street = address ? address.split(',')[0] : '';
-    var rest = address ? address.split(',').slice(1).join(',').trim() : [dentist.city, dentist.zip].filter(Boolean).join(', ');
-    var searchText = [dentist.practice_name, address || dentist.city || dentist.zip].filter(Boolean).join(' ');
-    var mapUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(searchText);
-    var rating = Number(dentist.rating || dentist.google_rating || 0);
-    var reviews = dentist.review_count || dentist.google_review_count || '';
-    var distance = dentist.distance_miles != null ? ' · ~' + dentist.distance_miles + ' mi away' : '';
-    var profileUrl = dentist.profile_url || '/ppodentists.html';
-    var phoneRaw = dentist.phone || '';
+    var locBits = [d.city, d.zip].filter(Boolean).join(', ');
+    var dist = d.distance_miles != null ? '<span class="fc2-mi"> &#183; ~' + d.distance_miles + ' mi away</span>' : '';
+    var phoneRaw = d.phone || '';
     var tel = String(phoneRaw).replace(/[^0-9+]/g, '');
-
-    return '<div class="featured-banner found-featured-banner">◆ Platinum Elite found within '
-      + PLATINUM_RADIUS_MILES + ' miles</div>'
-      + '<div class="featured-body"><div class="featured-avatar cc-symbol-avatar">◆</div><div class="featured-copy">'
-      + '<a class="featured-name feature-practice-link" href="' + htmlEscape(profileUrl) + '">' + htmlEscape(dentist.practice_name || 'Platinum Elite dentist') + '</a>'
-      + (rating ? '<div class="featured-meta"><span class="featured-stars">' + starText(rating) + '</span> ' + rating.toFixed(1) + (reviews ? ' · ' + htmlEscape(reviews) + ' reviews' : '') + '</div>' : '')
-      + '<a class="featured-loc feature-map-link" href="' + htmlEscape(mapUrl) + '" target="_blank" rel="noopener">'
-      + htmlEscape(street) + '<br><span class="featured-address-line2">' + htmlEscape(rest) + '<span class="featured-mi">' + htmlEscape(distance) + '</span></span></a>'
-      + (phoneRaw ? '<a class="feature-phone" href="tel:' + htmlEscape(tel) + '">' + htmlEscape(phoneRaw) + '</a>' : '')
-      + '</div></div><div class="featured-actions">'
-      + '<a class="featured-btn primary" href="' + htmlEscape(profileUrl) + '"><span class="btn-ico" aria-hidden="true">▣</span> Book</a>'
-      + '<a class="featured-btn secondary feature-view-profile" href="' + htmlEscape(profileUrl) + '">View profile</a>'
+    return '<div class="fc2-banner">&#9670; Platinum Elite found near you</div>'
+      + '<div class="fc2-body"><div class="fc2-avatar">&#9670;</div><div class="fc2-tx">'
+      + '<a class="fc2-name" href="' + htmlEscape(profile) + '">' + htmlEscape(name) + '</a>'
+      + ratingLine
+      + (locBits ? '<span class="fc2-loc">' + htmlEscape(locBits) + dist + '</span>' : (dist ? '<span class="fc2-loc">' + dist + '</span>' : ''))
+      + (phoneRaw ? '<a class="fc2-phone" href="tel:' + htmlEscape(tel) + '">' + htmlEscape(phoneRaw) + '</a>' : '')
+      + '</div></div>'
+      + '<div class="fc2-actions">'
+      + '<a class="fc2-btn primary" href="' + htmlEscape(book) + '">Book</a>'
+      + '<a class="fc2-btn secondary" href="' + htmlEscape(profile) + '">View profile</a>'
       + '</div>';
   }
 
-  function renderFindPreview(term) {
-    var isZip = /^\d{5}$/.test(term);
-    var resolver = isZip ? findLocationByZip(term) : findLocationByCity(term);
-    setFindCard(loadingCard(term), false);
-    return resolver.then(function (location) {
-      var area = location || (isZip ? { name: 'ZIP ' + term } : { name: term });
-      lastFindSearchTerm = term;
-      setDirectoryCtas(term, location);
-      return findFeaturedDentist(location).then(function (dentist) {
-        if (dentist) {
-          setFindCard(dentistCard(dentist, location), false);
-        } else {
-          setFindCard(openApplicationCard(locationLabel(area), term), false);
-        }
-      });
-    }).catch(function () {
-      setFindCard(openApplicationCard(term, term), false);
-    });
+  function expansionCardHTML(spot) {
+    var place = [spot.city, spot.area].filter(Boolean).join(' \u00b7 ') || (spot.zip || 'this area');
+    if (spot.dentist_name) {
+      var profile = spot.profile_url || spot.website || '/ppodentists.html';
+      var rating = Number(spot.rating || 0);
+      var reviews = spot.review_count || '';
+      var ratingLine = rating
+        ? '<div class="exp-dentist-rating"><span class="st">' + starText(rating) + '</span> ' + rating.toFixed(1) + (reviews ? ' \u00b7 ' + htmlEscape(reviews) + ' reviews' : '') + '</div>'
+        : '';
+      return '<div class="exp-banner">&#9670; No Platinum Elite here yet</div>'
+        + '<div class="exp-body">'
+        + '<span class="exp-pin">&#9678; ' + htmlEscape(place) + '</span>'
+        + '<div class="exp-h">Be the first in ' + htmlEscape(spot.city || 'this area') + '.</div>'
+        + '<div class="exp-dentist"><div class="exp-avatar" aria-hidden="true">&#9670;</div>'
+        + '<div class="exp-dentist-tx"><a class="exp-dentist-name" href="' + htmlEscape(profile) + '">' + htmlEscape(spot.dentist_name) + '</a>' + ratingLine
+        + '<div class="exp-dentist-note">Already planning to expand here. Claim it first.</div></div></div>'
+        + '</div>'
+        + '<div class="exp-actions">'
+        + '<a class="exp-cta claim" href="/dentist-portal.html#platinum-elite">Claim this area <span class="ar" aria-hidden="true">&#8594;</span></a>'
+        + '<a class="exp-cta view" href="' + htmlEscape(profile) + '">View</a>'
+        + '</div>';
+    }
+    return '<div class="exp-banner">&#9670; Platinum Elite spot open</div>'
+      + '<div class="exp-body">'
+      + '<span class="exp-pin">&#9678; ' + htmlEscape(place) + '</span>'
+      + '<div class="exp-h">Be the first in ' + htmlEscape(spot.city || spot.area || 'this area') + '.</div>'
+      + '</div>'
+      + '<div class="exp-actions">'
+      + '<a class="exp-cta claim" href="/dentist-portal.html#platinum-elite">Claim this area <span class="ar" aria-hidden="true">&#8594;</span></a>'
+      + '</div>';
   }
 
-  function runZipSearch() {
-    var input = document.getElementById('nav-zip');
-    if (!input) return;
-    var term = input.value.trim().replace(/\s+/g, ' ');
-    var isZip = /^\d{5}$/.test(term);
-    var isArea = /^[a-zA-Z0-9][a-zA-Z0-9\s.'#,&-]{1,}$/.test(term);
-    if (!isZip && !isArea) {
-      setFindCard(introCard(), false);
-      input.focus();
+  function openCardHTML(label) {
+    var place = label || 'this area';
+    return '<div class="exp-banner">&#9670; No Platinum Elite here yet</div>'
+      + '<div class="exp-body">'
+      + '<span class="exp-pin">&#9678; ' + htmlEscape(place) + '</span>'
+      + '<div class="exp-h">Be the first in ' + htmlEscape(place) + '.</div>'
+      + '<div class="exp-sub">Claim this area before another practice does.</div>'
+      + '</div>'
+      + '<div class="exp-actions">'
+      + '<a class="exp-cta claim" href="/dentist-portal.html#platinum-elite">Claim this area <span class="ar" aria-hidden="true">&#8594;</span></a>'
+      + '</div>';
+  }
+
+  function cityPickCardHTML(zip, cities) {
+    var chips = cities.map(function (c, idx) {
+      return '<button type="button" class="find-citychip" data-idx="' + idx + '">'
+        + '<span class="cc-dot" aria-hidden="true"></span>' + htmlEscape(c.name || c.city) + '</button>';
+    }).join('');
+    return '<div class="find-intro-banner"><span class="ib-dot">&#9670;</span> More than one city</div>'
+      + '<div class="find-citypick">'
+      + '<div class="find-citypick-h">Which part of <span class="find-citypick-zip">' + htmlEscape(zip) + '</span>?</div>'
+      + '<div class="find-citypick-chips">' + chips + '</div>'
+      + '</div>';
+  }
+
+  function scopeCardHTML(scope, label) {
+    var kindWord = { local_area: 'County / Local area', market_area: 'Regional market', state: 'Statewide' }[scope] || 'Area';
+    var lead = { local_area: 'Browse every PPO office across', market_area: 'Browse PPO offices across the', state: 'Browse PPO offices across' }[scope] || 'Browse PPO offices in';
+    var tail = scope === 'market_area' ? ' market' : '';
+    return '<div class="scope-card">'
+      + '<span class="scope-kindtag">' + htmlEscape(kindWord) + '</span>'
+      + '<div class="scope-h">' + htmlEscape(lead) + ' <em>' + htmlEscape(label) + tail + '</em>.</div>'
+      + '<div class="scope-sub">Open the full list to filter by city, rating, and PPO fit.</div>'
+      + '<ul class="scope-list">'
+      + '<li>Platinum Elite offices are shown first where available.</li>'
+      + '<li>Every listed PPO office in this area is included.</li>'
+      + '</ul>'
+      + '</div>';
+  }
+
+  /* ---- orchestration ---- */
+  function previewPoint(label, lat, lng) {
+    setCard(loadingCardHTML(label), '');
+    return featuredDentistNear(lat, lng).then(function (dentist) {
+      if (dentist) { setCard(foundCardHTML(dentist), 'is-found'); return; }
+      return expansionSpotNear(lat, lng).then(function (spot) {
+        if (spot) { setCard(expansionCardHTML(spot), 'is-open'); }
+        else { setCard(openCardHTML(label), 'is-open'); }
+      });
+    }).catch(function () { setCard(openCardHTML(label), 'is-open'); });
+  }
+
+  function resolveZip(zip) {
+    setBrowse('zip', zip, zip);
+    setCard(loadingCardHTML(zip), '');
+    return citiesForZip(zip).then(function (rows) {
+      var cities = (rows || []).filter(function (c) { return c && c.lat != null && c.lng != null; });
+      if (cities.length === 0) {
+        return previewPoint(zip, null, null);
+      }
+      if (cities.length === 1) {
+        var only = cities[0];
+        setBrowse('city', only.name || only.city, only.name || only.city);
+        return previewPoint(only.name || only.city, only.lat, only.lng);
+      }
+      setCard(cityPickCardHTML(zip, cities), 'is-citypick');
+      var card = findCard();
+      if (card) {
+        card.querySelectorAll('.find-citychip').forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            var c = cities[Number(chip.getAttribute('data-idx')) || 0];
+            if (!c) return;
+            card.querySelectorAll('.find-citychip').forEach(function (x) { x.classList.remove('is-active'); });
+            chip.classList.add('is-active');
+            setBrowse('city', c.name || c.city, c.name || c.city);
+            previewPoint(c.name || c.city, c.lat, c.lng);
+          });
+        });
+      }
+    }).catch(function () { previewPoint(zip, null, null); });
+  }
+
+  function resolveSelection(sel) {
+    var scope = sel.scope || 'city';
+    var value = sel.value;
+    var label = sel.label || value;
+    if (scope === 'zip') { resolveZip(value); return; }
+    if (scope === 'city') {
+      setBrowse('city', value, label);
+      if (sel.lat != null && sel.lng != null && sel.lat !== '' && sel.lng !== '') {
+        previewPoint(label, sel.lat, sel.lng);
+      } else {
+        setCard(openCardHTML(label), 'is-open');
+      }
       return;
     }
-    renderFindPreview(term);
+    // local_area | market_area | state: feature the matching Platinum Elite, else show the apply CTA
+    setBrowse(scope, value, label);
+    setCard(loadingCardHTML(label), '');
+    featuredDentistByScope(scope, value).then(function (dentist) {
+      if (dentist) { setCard(foundCardHTML(dentist), 'is-found'); }
+      else { setCard(openCardHTML(label), 'is-open'); }
+    }).catch(function () { setCard(openCardHTML(label), 'is-open'); });
   }
 
-  var zipInput = document.getElementById('nav-zip');
-  var zipButton = document.getElementById('nav-zip-btn');
-  if (zipInput) {
-    zipInput.addEventListener('input', function () {
-      this.value = this.value.replace(/[^0-9a-zA-Z\s.'-]/g, '').slice(0, 64);
-    });
-    zipInput.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') runZipSearch();
+  function runFreeText(term) {
+    var clean = String(term || '').trim().replace(/\s+/g, ' ');
+    if (!clean) return;
+    if (/^\d{5}$/.test(clean)) { resolveZip(clean); return; }
+    setCard(loadingCardHTML(clean), '');
+    supabaseSuggest(clean).then(function (rows) {
+      rows = rows || [];
+      if (!rows.length) {
+        setBrowse('city', clean, clean);
+        setCard(openCardHTML(clean), 'is-exp');
+        return;
+      }
+      var exact = null, i;
+      for (i = 0; i < rows.length; i++) {
+        if (String(rows[i].label || '').toLowerCase() === clean.toLowerCase()) { exact = rows[i]; break; }
+      }
+      var pick = exact || rows[0];
+      resolveSelection({
+        scope: pick.browse_scope || pick.kind,
+        value: pick.browse_value || pick.value || pick.label,
+        label: pick.label,
+        lat: pick.lat, lng: pick.lng
+      });
+    }).catch(function () {
+      setBrowse('city', clean, clean);
+      setCard(openCardHTML(clean), 'is-exp');
     });
   }
-  if (zipButton) zipButton.addEventListener('click', runZipSearch);
+
+  /* ---- autocomplete dropdown ---- */
+  var suggestBox = document.getElementById('nav-suggest');
+  var zipInput = document.getElementById('nav-zip');
+  var zipButton = document.getElementById('nav-zip-btn');
+  var suggestItems = [];
+  var activeIndex = -1;
+  var suggestTimer = null;
+  var lastQuery = '';
+
+  var KIND_GLYPH = { zip: '#', city: '\u2302', local_area: '\u25C6', market_area: '\u2756', state: '\u2605' };
+  var KIND_TAG = { zip: 'ZIP', city: 'City', local_area: 'Area', market_area: 'Market', state: 'State' };
+
+  function positionSuggest() {
+    if (!suggestBox || !zipInput) return;
+    suggestBox.style.left = zipInput.offsetLeft + 'px';
+    suggestBox.style.top = (zipInput.offsetTop + zipInput.offsetHeight + 6) + 'px';
+    suggestBox.style.width = zipInput.offsetWidth + 'px';
+  }
+
+  function hideSuggest() {
+    if (!suggestBox) return;
+    suggestBox.hidden = true;
+    suggestBox.innerHTML = '';
+    suggestItems = [];
+    activeIndex = -1;
+    if (zipInput) zipInput.setAttribute('aria-expanded', 'false');
+  }
+
+  function setActive(idx) {
+    var nodes = suggestBox ? suggestBox.querySelectorAll('.cc-suggest-item') : [];
+    if (!nodes.length) return;
+    if (idx < 0) idx = nodes.length - 1;
+    if (idx >= nodes.length) idx = 0;
+    activeIndex = idx;
+    nodes.forEach(function (n, i) {
+      if (i === idx) { n.classList.add('is-active'); n.scrollIntoView({ block: 'nearest' }); }
+      else { n.classList.remove('is-active'); }
+    });
+  }
+
+  function renderSuggest(items, q) {
+    if (!suggestBox) return;
+    suggestItems = items || [];
+    activeIndex = -1;
+    if (!suggestItems.length) {
+      suggestBox.innerHTML = '<div class="cc-suggest-empty">No matches. Try a ZIP, city, area, or state.</div>';
+      suggestBox.hidden = false;
+      positionSuggest();
+      if (zipInput) zipInput.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    var html = suggestItems.map(function (it) {
+      var kind = it.kind || it.browse_scope || 'city';
+      var glyph = KIND_GLYPH[kind] || '\u25CF';
+      var tag = KIND_TAG[kind] || '';
+      var sub = it.sublabel ? '<span class="cc-suggest-sub">' + htmlEscape(it.sublabel) + '</span>' : '';
+      return '<button type="button" class="cc-suggest-item sg-' + kind + '" role="option"'
+        + ' data-scope="' + htmlEscape(it.browse_scope || kind) + '"'
+        + ' data-value="' + htmlEscape(it.browse_value || it.value || it.label) + '"'
+        + ' data-label="' + htmlEscape(it.label) + '"'
+        + ' data-lat="' + (it.lat != null ? htmlEscape(it.lat) : '') + '"'
+        + ' data-lng="' + (it.lng != null ? htmlEscape(it.lng) : '') + '">'
+        + '<span class="cc-suggest-badge" aria-hidden="true">' + glyph + '</span>'
+        + '<span class="cc-suggest-tx"><span class="cc-suggest-label">' + highlight(it.label, q) + '</span>' + sub + '</span>'
+        + '<span class="cc-suggest-kind">' + tag + '</span>'
+        + '<span class="cc-suggest-go" aria-hidden="true">&#8594;</span>'
+        + '</button>';
+    }).join('');
+    suggestBox.innerHTML = html;
+    suggestBox.hidden = false;
+    positionSuggest();
+    if (zipInput) zipInput.setAttribute('aria-expanded', 'true');
+    suggestBox.querySelectorAll('.cc-suggest-item').forEach(function (node) {
+      node.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      node.addEventListener('click', function () {
+        var scope = node.getAttribute('data-scope');
+        var value = node.getAttribute('data-value');
+        var label = node.getAttribute('data-label');
+        var lat = node.getAttribute('data-lat');
+        var lng = node.getAttribute('data-lng');
+        if (zipInput) zipInput.value = label;
+        hideSuggest();
+        resolveSelection({ scope: scope, value: value, label: label, lat: lat === '' ? null : lat, lng: lng === '' ? null : lng });
+      });
+    });
+  }
+
+  function requestSuggest(q) {
+    var clean = String(q || '').trim();
+    var hasDigit = /\d/.test(clean);
+    if (!clean || (!hasDigit && clean.length < 2)) { hideSuggest(); return; }
+    lastQuery = clean;
+    supabaseSuggest(clean).then(function (rows) {
+      if (clean !== lastQuery) return;
+      renderSuggest(rows || [], clean);
+    }).catch(function () { hideSuggest(); });
+  }
+
+  if (zipInput) {
+    zipInput.addEventListener('input', function () {
+      this.value = this.value.replace(/[^0-9a-zA-Z\s.'#,&-]/g, '').slice(0, 64);
+      clearTimeout(closeTimer);
+      clearTimeout(suggestTimer);
+      var v = this.value;
+      suggestTimer = setTimeout(function () { requestSuggest(v); }, 150);
+    });
+    zipInput.addEventListener('focus', function () {
+      if (findLink) openMega(findLink);
+      if (this.value.trim()) requestSuggest(this.value);
+    });
+    zipInput.addEventListener('keydown', function (event) {
+      var open = suggestBox && !suggestBox.hidden && suggestItems.length;
+      if (event.key === 'ArrowDown') { if (open) { event.preventDefault(); setActive(activeIndex + 1); } }
+      else if (event.key === 'ArrowUp') { if (open) { event.preventDefault(); setActive(activeIndex - 1); } }
+      else if (event.key === 'Enter') {
+        event.preventDefault();
+        if (open && activeIndex >= 0) {
+          var nodes = suggestBox.querySelectorAll('.cc-suggest-item');
+          if (nodes[activeIndex]) { nodes[activeIndex].click(); return; }
+        }
+        hideSuggest();
+        runFreeText(this.value);
+      } else if (event.key === 'Escape') {
+        if (open) { hideSuggest(); } else { closeMega(); }
+      }
+    });
+    zipInput.addEventListener('blur', function () {
+      setTimeout(hideSuggest, 180);
+    });
+  }
+
+  if (zipButton) {
+    zipButton.addEventListener('click', function () {
+      hideSuggest();
+      if (zipInput) runFreeText(zipInput.value);
+    });
+  }
+
+  if (suggestBox) {
+    suggestBox.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+  }
+
+  window.addEventListener('resize', function () { if (suggestBox && !suggestBox.hidden) positionSuggest(); });
+
+  document.addEventListener('click', function (event) {
+    if (!suggestBox || suggestBox.hidden) return;
+    var inSearch = event.target.closest && event.target.closest('.zip-search-card');
+    if (!inSearch) hideSuggest();
+  });
 
   document.querySelectorAll('.zip-chip[data-query]').forEach(function (chip) {
     chip.addEventListener('click', function () {
-      var input = document.getElementById('nav-zip');
-      if (!input) return;
-      input.value = chip.getAttribute('data-query') || chip.textContent.trim();
-      runZipSearch();
+      var value = chip.getAttribute('data-query') || chip.textContent.trim();
+      if (zipInput) zipInput.value = value;
+      hideSuggest();
+      runFreeText(value);
     });
   });
 
@@ -4072,10 +4440,11 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
     }
     function render() {
       var count = getCount();
-      var cashPerCrown = 1800;
-      var ppoPerCrown = 675;
+      var cashPerCrown = 1600;
+      var ppoFirstCrown = 850;   // first crown includes a one-time $50 deductible
+      var ppoAddlCrown = 800;    // each additional crown
       var cash = cashPerCrown * count;
-      var network = ppoPerCrown * count;
+      var network = ppoFirstCrown + ppoAddlCrown * (count - 1);
       full.textContent = money(cash);
       ppo.textContent = money(network);
       save.textContent = money(cash - network);
