@@ -5,13 +5,13 @@
    No hero-slider-mobile.js is needed.
    ========================================================================== */
 
-/* Value strip — collapse to single column under 360px so labels stay readable */
+/* Value strip - collapse to single column under 360px so labels stay readable */
 @media (max-width: 359px){
   .pc-value-strip{ grid-template-columns: 1fr; }
   .pc-value-strip > div{ padding: 8px 12px; text-align: center; }
 }
 
-MOBILE FLOW FIX · 31MAY26
+/* MOBILE FLOW FIX · 31MAY26
    Purpose:
    - Stop the chapter rail from floating over the plan card on phones.
    - Let the active slide become normal page content on mobile instead
