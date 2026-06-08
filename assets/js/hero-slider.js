@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   CAROUSEL ENGINE · v500 — opacity fade, no scroll-snap.
+   CAROUSEL ENGINE · v500 - opacity fade, no scroll-snap.
    ────────────────────────────────────────────────────────────────
    Behaviour preserved from v403:
      · 60s grace period before autoplay starts (INITIAL_DELAY).
@@ -32,7 +32,7 @@
   const progress  = document.getElementById('progress-fill');
 
   const COUNT         = chapters.length;
-  const INITIAL_DELAY = 60000;   // 60s grace before autoplay
+  const INITIAL_DELAY = 9000;    // short grace before autoplay
   const IDLE_DELAY    = 14000;   // ms per chapter once autoplay active
   const SWIPE_THRESH  = 50;      // px of horizontal travel to count
   const FADE_DURATION = 900;     // must match CSS .chapter opacity transition
@@ -205,7 +205,7 @@
     if (e.key === 'ArrowLeft' ){ e.preventDefault(); prev(); resetIdle(); }
   });
 
-  /* ── Pause on hover (desktop only — hover doesn't fire on touch) ── */
+  /* ── Pause on hover (desktop only - hover doesn't fire on touch) ── */
   hero.addEventListener('mouseenter', () => {
     clearTimeout(idleTimer);
     clearProgress();
@@ -237,7 +237,7 @@
       el.textContent = '$' + parseInt(el.dataset.countTarget || '2811', 10).toLocaleString();
     }
   } else {
-    // 60s grace before autoplay so the user can browse freely first.
+    // Short grace so the user can read Chapter I before it advances.
     setTimeout(() => {
       autoplayStarted = true;
       resetIdle();
@@ -248,7 +248,7 @@
 
 
 /* ════════════════════════════════════════════════════════════════
-   CHAPTER V · SOONEST OPENING — always tomorrow at 9:00 am.
+   CHAPTER V · SOONEST OPENING - always tomorrow at 9:00 am.
    Computes "{Weekday} · 9:00 am" from the visitor's local clock
    so the featured practice's availability never reads stale.
    Falls back to "Tomorrow · 9:00 am" if JS doesn't run.
@@ -287,7 +287,7 @@
 
 
 /* ════════════════════════════════════════════════════════════════
-   CHAPTER I · AVATAR INITIALS — rotated on each page load
+   CHAPTER I · AVATAR INITIALS - rotated on each page load
    ────────────────────────────────────────────────────────────────
    The 5 social-proof avatars on Chapter I read as different
    "patients" each visit. Pool of 30 two-letter combos drawn
@@ -318,7 +318,7 @@
 
 
 /* ════════════════════════════════════════════════════════════════
-   DISCLOSURE MODAL — generic, reusable across carriers + practices
+   DISCLOSURE MODAL - generic, reusable across carriers + practices
    ────────────────────────────────────────────────────────────────
    Single modal element (#carrier-modal in HTML) serves every
    outbound transition. Content slots are populated by
@@ -335,14 +335,14 @@
    trigger element. No HTML or function rewrites required.
 
    On Continue, the link fires `outbound_click` to whichever analytics
-   global is loaded (GA4 gtag / Plausible / PostHog) — each guarded
+   global is loaded (GA4 gtag / Plausible / PostHog) - each guarded
    by a typeof check so loading one is enough.
    ════════════════════════════════════════════════════════════════ */
 (function(){
   const modal = document.getElementById('carrier-modal');
   if (!modal) return;
 
-  /* ─── Content registry — extend here to add a new carrier ──── */
+  /* ─── Content registry - extend here to add a new carrier ──── */
   const CONFIGS = {
     uhc: {
       eyebrow: 'Leaving CoverCapy',
@@ -365,7 +365,7 @@
     kyt: {
       eyebrow: 'Booking with a partner practice',
       title: 'You\'re booking with<br/><em>KYT Dental Services</em>.',
-      body: 'We\'ll open KYT Dental Services\' official booking page in a new tab. CoverCapy is an <strong>independent concierge directory</strong> — we help you discover and compare practices, but the schedule, accepted plans, fees, and treatment decisions are handled by the dental office.',
+      body: 'We\'ll open KYT Dental Services\' booking page in a new tab. CoverCapy is an <strong>independent concierge directory</strong>. We help you compare and choose practices, but the schedule, accepted plans, fees, and treatment decisions are handled by the dental office.',
       disclosuresLabel: 'Before you book',
       disclosures: [
         'CoverCapy is an <strong>independent concierge directory</strong>. We don\'t run the dental office, manage the schedule, or process payments.',
@@ -376,7 +376,7 @@
       ],
       cancelLabel: 'Stay on CoverCapy',
       continueLabel: 'Continue to KYT Dental Services',
-      continueUrl: 'https://www.kytdentalservices.com/booking',
+      continueUrl: 'https://www.zocdoc.com/practice/kyt-dental-services-fountain-valley-93836',
       trackingSlug: 'kyt-dental-services-booking',
       carrier: 'kyt'
     }
