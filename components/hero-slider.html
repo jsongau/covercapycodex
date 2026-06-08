@@ -1,3 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>CoverCapy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
+
+<!-- Load order matters: base first, mobile overlay last. -->
+<link rel="stylesheet" href="hero-slider.css">
+<link rel="stylesheet" href="hero-slider-mobile.css">
+</head>
+<body>
+
 <div class="hero-wrap">
 <section class="hero" id="hero" aria-roledescription="carousel" aria-label="The CoverCapy story in five chapters">
 
@@ -29,32 +46,17 @@
       <div class="chapter-text">
         <h1 class="headline">
           Get covered today.<br/>
-          <em>Book a dentist</em> tomorrow.
+          <em>Book your dentist</em> tomorrow.
         </h1>
-        <p class="lede">CoverCapy is the <strong>concierge layer</strong> between insurance confusion and great dental care. Activate a real PPO plan in <strong>one business day</strong>. Walk into your first appointment fully covered, with no waiting on cleanings, exams, or basic care.</p>
+        <p class="lede">CoverCapy is the <strong>concierge layer</strong> between insurance uncertainty and great dental care. Activate a PPO dental plan in <strong>1 business day</strong>. Walk into your first appointment fully covered.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" data-carrier-modal="uhc">
-            <span class="cta-label-full">Start My Coverage Today</span>
-            <span class="cta-label-short">Start My Coverage Today</span>
-            <span class="arr">→</span>
+            <span class="cta-label-full">Get covered today</span>
+            <span class="cta-label-short">Get covered today</span>
           </a>
-          <a class="btn-quiet" href="/ppodentists.html#page-start">Already insured? Find a dentist <span class="arr">→</span></a>
+          <a class="btn-quiet" href="/ppodentists.html#page-start">Already insured? Find a dentist</a>
         </div>
 
-        <div class="social-proof" aria-label="CoverCapy member rating">
-          <div class="proof-stars" aria-label="Five star rating">★★★★★</div>
-          <div class="proof-copy">
-            <strong>Trusted and reviewed by 2,000+ CoverCapy users</strong>
-          </div>
-          <!-- Supabase-ready: replace placeholder initials with verified member data when available. -->
-          <div class="cc-avatar-stack" aria-hidden="true">
-            <span class="cc-proof-avatar cc-proof-avatar-1">JM</span>
-            <span class="cc-proof-avatar cc-proof-avatar-2">SK</span>
-            <span class="cc-proof-avatar cc-proof-avatar-3">AT</span>
-            <span class="cc-proof-avatar cc-proof-avatar-4">RP</span>
-            <span class="cc-proof-avatar cc-proof-avatar-5">LB</span>
-          </div>
-        </div>
       </div>
 
       <div class="chapter-visual">
@@ -65,7 +67,7 @@
             <span>Active in as little as 1 business day</span>
           </div>
 
-          <!-- Lava-lamp wrapper: idle bob with translateY -12px → 0.
+          <!-- Lava-lamp wrapper: idle bob with translateY -12px to 0.
                Hover pauses the bob and zooms the inner card. -->
           <div class="plan-card-float">
             <article class="primary-card" aria-label="UnitedHealthcare Primary Dental PPO summary">
@@ -73,67 +75,44 @@
               <div class="pc-carrier">
                 <div class="pc-carrier-mark" aria-hidden="true">U</div>
                 <div class="pc-carrier-info">
-                  <span class="pc-carrier-name">UnitedHealthcare · Golden Rule Insurance Co.</span>
+                  <span class="pc-carrier-name">UnitedHealthcare</span>
                   <span class="pc-carrier-rating">
                     <span class="pc-aplus">A+</span>
-                    rated by A.M. Best · Superior
+                    rated by A.M. Best
                   </span>
                 </div>
               </div>
 
-              <h3 class="pc-plan-name">Primary <em>Dental</em></h3>
+              <h3 class="pc-plan-name">UHC Primary <em>Dental</em></h3>
               <div class="pc-plan-sub">
-                <span>PPO</span>
+                <span>PPO Dental Insurance</span>
                 <span class="dot" aria-hidden="true"></span>
                 <em>no waiting period</em>
-                <span class="dot" aria-hidden="true"></span>
-                <span>$50 deductible</span>
               </div>
 
               <div class="pc-rule" aria-hidden="true"></div>
 
-              <div class="pc-benefits">
-                <div class="pc-benefit">
-                  <span class="num">i.</span>
-                  <span class="label"><strong>100% preventive</strong>: exams, cleanings, x-rays</span>
-                  <span class="stamp">day one</span>
-                </div>
-                <div class="pc-benefit">
-                  <span class="num">ii.</span>
-                  <span class="label"><strong>50% basic restorative</strong>: fillings, simple repairs</span>
-                  <span class="stamp">day one</span>
-                </div>
-                <div class="pc-benefit">
-                  <span class="num">iii.</span>
-                  <span class="label">Member ID issued on signup</span>
-                  <span class="stamp">instant</span>
-                </div>
-              </div>
-
-              <!-- Value strip — Slider 1's own "wow" moment.
-                   Three compact tiles: $0 first visit, day-one preventive,
-                   instant member ID. Sits above the price/action row. -->
-              <div class="pc-value-strip" aria-label="Plan activation highlights">
-                <div>
+              <div class="pc-value-strip" aria-label="Plan highlights">
+                <div class="pc-vs-free">
                   <strong>$0</strong>
-                  <span>estimated first preventive visit</span>
+                  <span>Comprehensive exam, cleaning, 3D imaging</span>
                 </div>
                 <div>
-                  <strong>Day one</strong>
-                  <span>cleanings, exams, x-rays</span>
+                  <strong>Day 1</strong>
+                  <span>fillings covered, no waiting period</span>
                 </div>
                 <div>
-                  <strong>Fast ID</strong>
-                  <span>dentist-ready member info</span>
+                  <strong>Instant ID</strong>
+                  <span>Member ID issued on signup</span>
                 </div>
               </div>
 
               <div class="pc-action">
                 <div class="pc-price">
                   <span class="pc-price-num"><span class="approx">~</span>$34</span>
-                  <span class="pc-price-suffix">per month · cancel anytime</span>
+                  <span class="pc-price-suffix">a month · cancel anytime</span>
                 </div>
-                <a class="pc-activate" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" data-carrier-modal="uhc">Activate Now <span class="arr">→</span></a>
+                <a class="pc-activate" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" data-carrier-modal="uhc">Activate</a>
               </div>
 
             </article>
@@ -149,21 +128,21 @@
 
       <div class="chapter-text">
         <h2 class="headline">
-          Dental plans,<br/>
-          <em>curated</em> for<br/>
-          your needs.
+          Pick plans that are<br/>
+          catered to your<br/>
+          <em>family's</em> needs.
         </h2>
-        <p class="lede">Children needing braces? Adults past sixty-five who need major work? A higher annual maximum than <strong>$1,000</strong>? We read the fine print on every premium PPO insurance plan, so you find what basic coverage leaves out.</p>
+        <p class="lede">Braces for the kids, a crown or two for a parent, a bigger yearly maximum. We did the research, so choose the right one for you and your family.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="/compare-ppo-dental-plans.html#page-start">Explore options <span class="arr">→</span></a>
-          <a class="btn-quiet" href="/compare-ppo-dental-plans.html#page-start">Compare side-by-side <span class="arr">→</span></a>
+          <a class="btn btn-primary" href="/compare-ppo-dental-plans.html#page-start">Compare plans</a>
+          <a class="btn-quiet" href="/compare-ppo-dental-plans.html#page-start">See them side by side</a>
         </div>
         <div class="trust-line">
-          <span>A-rated carriers only</span>
+          <span>Not HMO</span>
           <span class="pip" aria-hidden="true"></span>
-          <span>No HMO</span>
+          <span>No Age Cap</span>
           <span class="pip" aria-hidden="true"></span>
-          <span>All ages eligible</span>
+          <span>85% basic coverage, day 1</span>
         </div>
       </div>
 
@@ -181,15 +160,15 @@
             <span class="ch2-ghost-meta"><span>$1,250 max</span><span>87% fit</span></span>
           </div>
 
-          <div class="ch2-chosen" role="article" aria-label="Featured premium plan">
+          <div class="ch2-chosen" role="article" aria-label="Featured plan">
             <div class="ch2-recommended">
               <span class="dot" aria-hidden="true"></span>
-              Active 1st of every month
+              Active <span class="ch2-effective-month">July</span> 1
             </div>
 
             <div class="ch2-carrier-line">
               <div class="ch2-carrier-mark" aria-hidden="true">G</div>
-              <span class="ch2-carrier-name">Guardian Direct · A+ rated</span>
+              <span class="ch2-carrier-name">Guardian Dental PPO</span>
             </div>
 
             <div class="ch2-plan-name">Guardian <em>Premier</em><br/>2.0</div>
@@ -200,26 +179,26 @@
                 <div class="value">$3,000</div>
               </div>
               <div class="ch2-key-stat gold">
-                <div class="label">Major · year 2</div>
-                <div class="value">60%</div>
+                <div class="label">Fillings · day 1</div>
+                <div class="value">85%</div>
               </div>
               <div class="ch2-key-stat">
                 <div class="label">Age cap</div>
                 <div class="value">None</div>
               </div>
               <div class="ch2-key-stat">
-                <div class="label">Kids' ortho</div>
+                <div class="label">Kids' braces</div>
                 <div class="value">$1,500</div>
               </div>
             </div>
 
             <div class="ch2-whisper">
               <span class="quote" aria-hidden="true">❝</span>
-              <span>60% on crowns and majors from Year Two. Orthodontia for dependents under nineteen. No member age limit. A PPO insurance plan for what preventative-only coverage leaves out.</span>
+              <span>Crowns, major work, and kids' braces.</span>
             </div>
 
             <div class="ch2-why">
-              <span class="ch2-why-cta">See reasoning <span class="arr">→</span></span>
+              <span class="ch2-why-cta">Why we picked it</span>
             </div>
           </div>
 
@@ -237,13 +216,13 @@
           dental insurance<br/>
           <em>actually</em> pays.
         </h2>
-        <p class="lede">No bill shock. No out-of-network surprises. We model your <strong>real out-of-pocket cost</strong> for cleanings, crowns, and root canals against your PPO's verified fee schedule, before the chair reclines.</p>
+        <p class="lede">No surprise bills. Tell us the work you need, and we show what your plan covers and what you actually pay.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="/dental-treatment-cost-estimator.html#page-start">Estimate my treatment <span class="arr">→</span></a>
+          <a class="btn btn-primary" href="/dental-treatment-cost-estimator.html#page-start">Estimate my treatment</a>
         </div>
         <div class="trust-line">
           <span>Median saved per patient:</span>
-          <span style="color:var(--gold-deep); font-weight:600;">$847 / year</span>
+          <span style="color:var(--gold-deep); font-weight:600;">$847 a year</span>
         </div>
       </div>
 
@@ -265,7 +244,7 @@
               </div>
               <div class="ch3-procedure">
                 <span class="num">iii.</span>
-                <span class="name">BruxZir<sup>®</sup> zirconia crown</span>
+                <span class="name">BruxZir® zirconia crown</span>
                 <span class="meta">D2950 + D2740</span>
               </div>
             </div>
@@ -273,11 +252,11 @@
 
           <div class="ch3-reveal">
             <div class="ch3-without">
-              <span class="label">Without PPO</span>
+              <span class="label">Without a plan</span>
               <span class="amt">$4,000</span>
             </div>
             <div class="ch3-with">
-              <span class="label">With PPO</span>
+              <span class="label">With your PPO</span>
               <span class="amt">$1,189</span>
             </div>
           </div>
@@ -289,40 +268,39 @@
             </div>
             <div class="ch3-savings-line">
               <span class="ch3-amount" data-count-target="2811">$0</span>
-              <span class="ch3-amount-suffix">across three procedures.</span>
+              <span class="ch3-amount-suffix">across these three.</span>
             </div>
           </div>
 
           <div class="ch3-footnote">
             <span class="dot" aria-hidden="true"></span>
-            Modeled from verified in-network PPO fee schedules and nationwide contracted reimbursement averages. Your actual savings may vary based on the dentist's submitted fees and your plan's coordination of benefits.
+            Modeled from real in-network PPO rates. Savings vary by dentist and plan.
           </div>
 
         </div>
       </div>
     </article>
 
-    <!-- ═══════════════ CHAPTER IV · TRUST · The Premium PPO Advantage ═══════════════ -->
+    <!-- ═══════════════ CHAPTER IV · TRUST ═══════════════ -->
     <article class="chapter" data-ch="4" aria-label="Chapter 4 of 5, Trust">
       <span class="chapter-watermark" aria-hidden="true">Trust</span>
 
       <div class="chapter-text">
         <h2 class="headline ch4-headline">
-          Your PPO plan<br/>
-          funds <em class="gold">better</em><br/>
-          dentistry.
+          Your plan pays for<br/>
+          <em class="gold">better</em> dentistry.
         </h2>
-        <p class="lede">Even when your monthly premium is low, select PPO plans featured through CoverCapy can still reimburse dentists meaningfully for exams, imaging, diagnostic records, cleanings, and preventive screenings. That helps the dentist you choose treat you like a VIP, while you get care earlier with clearer expectations.</p>
+        <p class="lede">Even on a low monthly cost, an individual PPO reimburses your dentist generously. That means more time with you, in a visit that never feels rushed.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="/dental-treatment-cost-estimator.html#page-start">See what's covered <span class="arr">→</span></a>
-          <a class="btn-quiet" href="/ppodentists.html#page-start">Find a CoverCapy dentist <span class="arr">→</span></a>
+          <a class="btn btn-primary" href="/dental-treatment-cost-estimator.html#page-start">See what's covered</a>
+          <a class="btn-quiet" href="/ppodentists.html#page-start">Find a dentist who takes your plan</a>
         </div>
         <div class="trust-line">
-          <span>Day-one preventive</span>
+          <span>Care from day one</span>
           <span class="pip" aria-hidden="true"></span>
-          <span>Modern imaging included</span>
+          <span>Imaging included</span>
           <span class="pip" aria-hidden="true"></span>
-          <span>Independent guidance</span>
+          <span>Largest private health insurance company</span>
         </div>
       </div>
 
@@ -334,10 +312,10 @@
             <div class="ch4-coverage-header">
               <div class="ch4-coverage-eyebrow">
                 <span class="ch4-coverage-dot" aria-hidden="true"></span>
-                Network reimbursement · day one
+                What your plan covers · first visit
               </div>
               <div class="ch4-coverage-plan">UHC Primary <em>Dental</em> · PPO</div>
-              <div class="ch4-coverage-note">Estimates from CoverCapy network dentists · rates vary by office</div>
+              <div class="ch4-coverage-note">Sample rates from network dentists. Yours may vary by office.</div>
             </div>
 
             <div class="ch4-coverage-list">
@@ -345,9 +323,9 @@
               <div class="ch4-coverage-row">
                 <span class="ch4-cov-num">i.</span>
                 <div class="ch4-cov-name">
-                  <strong>Comprehensive exam &amp; complete X-ray series</strong>
+                  <strong>Full exam and X-rays</strong>
                   <span class="ch4-cov-code">D0150 · D0210</span>
-                  <span class="ch4-cov-micro">Your clinical baseline. X-rays reveal decay between teeth and below the gumline — caught early, before symptoms surface.</span>
+                  <span class="ch4-cov-micro">Your starting point. X-rays catch decay between teeth and below the gumline, before anything hurts.</span>
                 </div>
                 <div class="ch4-cov-amt"><span class="amount">$236</span></div>
               </div>
@@ -355,9 +333,9 @@
               <div class="ch4-coverage-row">
                 <span class="ch4-cov-num">ii.</span>
                 <div class="ch4-cov-name">
-                  <strong>3D scan &amp; diagnostic casts</strong>
+                  <strong>3D scan and molds</strong>
                   <span class="ch4-cov-code">D0801 · D0470</span>
-                  <span class="ch4-cov-micro">Digital and physical models of your teeth — the 3D scan for restorative planning, the casts for whitening trays, night guards, and retainers.</span>
+                  <span class="ch4-cov-micro">Digital and physical models of your teeth, used for planning, whitening trays, night guards, and retainers.</span>
                 </div>
                 <div class="ch4-cov-amt"><span class="amount">$235</span></div>
               </div>
@@ -367,7 +345,7 @@
                 <div class="ch4-cov-name">
                   <strong>Oral cancer screening</strong>
                   <span class="ch4-cov-code">D0431</span>
-                  <span class="ch4-cov-micro">Early detection prevents the most expensive surgical and oncologic outcomes.</span>
+                  <span class="ch4-cov-micro">A quick check that catches the costly problems early.</span>
                 </div>
                 <div class="ch4-cov-amt"><span class="amount">$59</span></div>
               </div>
@@ -375,9 +353,9 @@
               <div class="ch4-coverage-row">
                 <span class="ch4-cov-num">iv.</span>
                 <div class="ch4-cov-name">
-                  <strong>Prophylaxis — adult cleaning</strong>
+                  <strong>Adult cleaning</strong>
                   <span class="ch4-cov-code">D1110</span>
-                  <span class="ch4-cov-micro">Interrupts the periodontal cascade behind most late-life dental costs.</span>
+                  <span class="ch4-cov-micro">Stops the gum trouble behind most big dental bills later in life.</span>
                 </div>
                 <div class="ch4-cov-amt"><span class="amount">$113</span></div>
               </div>
@@ -386,7 +364,7 @@
 
             <div class="ch4-coverage-total">
               <div class="ch4-coverage-total-block">
-                <span class="ch4-coverage-total-label">Paid to your dentist</span>
+                <span class="ch4-coverage-total-label">Your dentist is paid</span>
                 <span class="ch4-coverage-total-value">$643</span>
               </div>
               <span class="ch4-coverage-arrow" aria-hidden="true">→</span>
@@ -395,17 +373,6 @@
                 <span class="ch4-coverage-total-zero">$0</span>
               </div>
             </div>
-
-            <!-- Practitioner-targeted CTA — dentist FOMO at the foot of the patient card.
-                 Routes to the dentist-acquisition page (For Dentists nav item). -->
-            <a class="ch4-practitioner-cta" href="/capy-practice-membership.html#page-start" aria-label="Information for dental practices">
-              <span class="ch4-practitioner-eyebrow">For dentists</span>
-              <span class="ch4-practitioner-question">Built for modern practices with strong diagnostics.</span>
-              <span class="ch4-practitioner-action">
-                Join the CoverCapy dentist network
-                <span class="arr" aria-hidden="true">→</span>
-              </span>
-            </a>
 
           </article>
 
@@ -419,45 +386,49 @@
 
       <div class="chapter-text">
         <h2 class="headline">
-          Find an in-network<br/>
-          PPO dentist<br/>
-          <em class="gold">near me.</em>
+          Find in-network<br/>
+          PPO dentists<br/>
+          <em class="gold">nearby.</em>
         </h2>
-        <p class="lede">Every practice we feature is patient-verified, accepts your PPO, and has openings inside seven days. <strong>Platinum Elite</strong> is reserved for the top one percent. Earned through outcomes, not advertising.</p>
+        <p class="lede">Browse top ranking dentists nationwide, book your visit nearby, and recommend them for CoverCapy Accreditation.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="/ppodentists.html#page-start">Find my in-network dentist <span class="arr">→</span></a>
+          <a class="btn btn-primary" href="/ppodentists.html#page-start">Find my dentist</a>
         </div>
         <div class="trust-line">
-          <span>PPO-friendly</span>
+          <span>In-Network Rates</span>
           <span class="pip" aria-hidden="true"></span>
           <span>CoverCapy Accredited</span>
           <span class="pip" aria-hidden="true"></span>
-          <span>Open this week</span>
+          <span>Accepting New Patients</span>
         </div>
       </div>
 
       <div class="chapter-visual">
         <div class="ch5-stage">
 
+          <!-- Decorative, fictional capybara clinics (aria-hidden). Not real practices. -->
           <div class="ch5-runner ch5-runner-1" aria-hidden="true">
-            <div class="mini-av">B</div>
+            <div class="mini-av">C</div>
             <div class="info">
-              <div class="name">Beverly Smile Studio</div>
-              <div class="meta">Dr. Hsu, DDS · Los Angeles</div>
+              <div class="name">Capybara Cove Dental</div>
+              <div class="meta">Dr. Waters · Riverbend</div>
             </div>
             <div class="fit">89<sup>% fit</sup></div>
           </div>
 
           <div class="ch5-runner ch5-runner-2" aria-hidden="true">
-            <div class="mini-av">H</div>
+            <div class="mini-av">M</div>
             <div class="info">
-              <div class="name">Highland Family Dental</div>
-              <div class="meta">Dr. Vasquez · San Bernardino</div>
+              <div class="name">Marsh &amp; Molar Dentistry</div>
+              <div class="meta">Dr. Reed · Capy Bay</div>
             </div>
             <div class="fit">76<sup>% fit</sup></div>
           </div>
 
-          <div class="ch5-featured" role="article" aria-label="Featured Platinum Elite practice">
+          <!-- Featured practice. KYT is the location proxy until geolocation is enabled;
+               then populate from Supabase (nav_nearest_city -> nav_featured_dentist_by_scope).
+               Values below are KYT's real Supabase row. -->
+          <div class="ch5-featured" role="article" aria-label="Featured Platinum Elite practice" data-featured-source="kyt-proxy">
 
             <div class="ch5-platinum-bar">
               <span><span class="gem" aria-hidden="true">◆</span>&nbsp; Platinum Elite</span>
@@ -475,23 +446,23 @@
                   <div class="ch5-practice-meta">
                     Cosmetic &amp; General Dentistry
                     <span class="sep">·</span>
-                    Orange County, CA
+                    Fountain Valley, CA
                   </div>
                 </div>
               </div>
 
               <div class="ch5-stats">
                 <div class="ch5-stat">
-                  <span class="label">Plan fit</span>
-                  <span class="value"><em>98</em>%</span>
+                  <span class="label">Rating</span>
+                  <span class="value">5.0<em>★</em></span>
                 </div>
                 <div class="ch5-stat">
-                  <span class="label">Patient rating</span>
-                  <span class="value">4.9<em>★</em></span>
+                  <span class="label">Reviews</span>
+                  <span class="value"><em>733</em></span>
                 </div>
                 <div class="ch5-stat">
-                  <span class="label">Patients seen</span>
-                  <span class="value"><em>2,140</em></span>
+                  <span class="label">Accepts</span>
+                  <span class="value"><em>PPO</em></span>
                 </div>
               </div>
 
@@ -503,7 +474,7 @@
                   </div>
                   <div class="ch5-avail-time" data-tomorrow="9:00 am">Tomorrow · 9:00 am</div>
                 </div>
-                <a class="ch5-book" href="https://www.kytdentalservices.com/booking" data-disclosure-modal="kyt">Book <span class="arr">→</span></a>
+                <a class="ch5-book" href="https://www.zocdoc.com/practice/kyt-dental-services-fountain-valley-93836" data-disclosure-modal="kyt">Book</a>
               </div>
             </div>
 
@@ -544,41 +515,35 @@
 </div><!-- /.hero-wrap -->
 
 <!-- ══════════════════════════════════════════════════════════════
-     TRUST STRIP — single, calm
+     PATH STRIP, four steps whose first lines read as one sentence:
+     "Your plan, your dentist, your care, your call."
      ══════════════════════════════════════════════════════════════ -->
-<section class="trust-strip" aria-label="Patient outcomes">
+<section class="trust-strip" aria-label="The path most patients take">
   <div class="trust-strip-row">
     <div class="trust-strip-item">
-      <span class="figure">$<em>847</em></span>
-      <span class="label">Median saved · per patient</span>
+      <span class="figure">Your <em>plan</em></span>
+      <span class="label">A PPO dental plan, active as early as 1 day. From ~$34/month.</span>
     </div>
     <span class="trust-strip-divider" aria-hidden="true"></span>
     <div class="trust-strip-item">
-      <span class="figure"><em>1</em>&nbsp;Day</span>
-      <span class="label">Fast activation plans</span>
+      <span class="figure">Your <em>dentist</em></span>
+      <span class="label">Book one near you, one who is in-network with your plan. Seen this week.</span>
     </div>
     <span class="trust-strip-divider" aria-hidden="true"></span>
     <div class="trust-strip-item">
-      <span class="figure">$<em>10k</em>+</span>
-      <span class="label">Insurance maximizing guide</span>
+      <span class="figure">Your <em>care</em></span>
+      <span class="label">Comprehensive exam &amp; cleaning valued over $600, fully covered.</span>
     </div>
     <span class="trust-strip-divider" aria-hidden="true"></span>
     <div class="trust-strip-item">
-      <span class="figure"><em>A</em></span>
-      <span class="label">Rated carriers only</span>
+      <span class="figure">Your <em>call</em></span>
+      <span class="label">Refer and earn rewards, keep the plan, upgrade, or cancel anytime.</span>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     DISCLOSURE MODAL — single reusable instance
-     ────────────────────────────────────────────────────────────
-     One modal serves every outbound transition (UHC, KYT, future
-     carriers). Content slots are populated by openDisclosureModal()
-     in hero-carousel.js — see CONFIGS table there. Triggers use
-     [data-disclosure-modal="uhc"] / ="kyt" attributes; the legacy
-     `.pc-activate` and [data-carrier-modal] triggers still resolve
-     to the UHC config for backwards compatibility.
+     DISCLOSURE MODAL, single reusable instance
      ══════════════════════════════════════════════════════════════ -->
 <div class="carrier-modal" id="carrier-modal" role="dialog" aria-modal="true" aria-labelledby="carrier-modal-title" aria-hidden="true">
   <div class="carrier-modal-backdrop" data-modal-close aria-hidden="true"></div>
@@ -608,8 +573,6 @@
     <div class="carrier-modal-disclosures" aria-label="Disclosures">
       <span class="carrier-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
       <div data-modal-slot="disclosures">
-        <!-- Populated by openDisclosureModal(). Default UHC items render
-             if the page loads with JS disabled. -->
         <div class="carrier-modal-disclosure">
           <span class="num">i.</span>
           <span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of UnitedHealthcare.</span>
@@ -636,7 +599,6 @@
     <div class="carrier-modal-actions">
       <button class="btn-quiet carrier-modal-stay" type="button" data-modal-close>
         <span data-modal-slot="cancel-label">Wait, tell me more</span>
-        <span class="arr" aria-hidden="true">→</span>
       </button>
       <a class="btn btn-primary carrier-modal-continue"
          href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental"
@@ -645,7 +607,6 @@
          data-track-outbound="uhc-primary-dental"
          data-carrier="uhc">
         <span data-modal-slot="continue-label">Continue to UnitedHealthcare</span>
-        <span class="arr" aria-hidden="true">→</span>
       </a>
     </div>
 
@@ -653,3 +614,8 @@
 </div>
 
 <div id="page-start" aria-hidden="true"></div>
+
+
+<script src="hero-slider.js"></script>
+</body>
+</html>
