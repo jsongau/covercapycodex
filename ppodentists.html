@@ -1447,6 +1447,18 @@ body.dd-lock{overflow:hidden}
 .ucmd-nearby{display:flex; flex-wrap:nowrap; gap:10px; align-items:center; margin-top:18px; padding:2px 4px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none}
 .ucmd-nearby::-webkit-scrollbar{display:none}
 .ucmd-nearby[hidden]{display:none}
+.ucmd-clear{flex:none; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; border:0; background:transparent; color:var(--ink-faint); cursor:pointer; transition:.15s}
+.ucmd-clear:hover{background:var(--cream-2); color:var(--ink)}
+.ucmd-clear svg{width:15px;height:15px}
+.ucmd-kbd{flex:none; min-width:26px; height:26px; display:grid; place-items:center; border:1px solid var(--line-2); border-radius:8px; background:var(--cream-2); color:var(--ink-faint); font-size:12.5px; font-weight:700; padding:0 7px}
+.ucmd-bar:focus-within .ucmd-kbd{display:none}
+.ucmd-row .ucmd-del{flex:none; width:28px; height:28px; border-radius:50%; display:none; place-items:center; border:0; background:transparent; color:var(--ink-faint); cursor:pointer}
+.ucmd-row:hover .ucmd-del{display:grid}
+.ucmd-row .ucmd-del:hover{background:var(--cream); color:var(--ink)}
+.ucmd-row .ucmd-del svg{width:13px;height:13px}
+.ucmd-dym{display:flex; align-items:center; gap:8px; padding:12px 14px; font-size:14px; color:var(--ink-soft)}
+.ucmd-dym b{color:var(--teal-700); cursor:pointer}
+.ucmd-dym b:hover{text-decoration:underline}
 .ucmd-nearby .nb-lbl{flex:none; font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-faint); margin-right:8px; white-space:nowrap}
 .ucmd-nearby .nb-btn{flex:none; display:inline-flex; align-items:center; gap:9px; height:40px; padding:0 20px; border-radius:999px; border:1px solid var(--line-2); background:transparent; color:var(--ink); font-family:"Inter Tight",system-ui,sans-serif; font-size:14px; font-weight:500; letter-spacing:.005em; cursor:pointer; transition:border-color .3s ease, background-color .3s ease, color .3s ease; white-space:nowrap}
 .ucmd-nearby .nb-btn:hover{border-color:var(--gold-2); background-color:var(--cream-card); color:var(--teal-night)}
@@ -1574,6 +1586,8 @@ body.dd-lock{overflow:hidden}
                aria-label="Search dentists, places, treatments, and insurance"
                placeholder="Search your dentist's name, ZIP, or city"
                oninput="ucmdInput(this.value)" onkeydown="ucmdKey(event)" onfocus="ucmdFocus()">
+        <button class="ucmd-clear" id="ucmd-clear" type="button" onclick="ucmdClear()" aria-label="Clear search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <span class="ucmd-kbd" id="ucmd-kbd" aria-hidden="true" title="Press / to search">/</span>
         <button class="ucmd-rad" id="ucmd-rad" type="button" onclick="ucmdCycleRadius()" aria-label="Change search radius"><span id="ucmd-rad-val">8 mi</span></button>
         <button class="ucmd-loc" id="ucmd-loc" type="button" onclick="ucmdUseLocation()" aria-label="Use my current location" title="Use my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
       </div>
@@ -7390,6 +7404,252 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
 })();
 /* v186: micro-graphic anchors jump the user into the hero search on click / Enter. */
 function mgFocusSearch(){ try{ var el=document.getElementById('ucmd-input'); if(el){ try{ el.scrollIntoView({behavior:'smooth',block:'center'}); }catch(_){} el.focus(); } }catch(e){} }
+</script>
+
+<script>
+/* ============================================================
+   Omnibox upgrade layer: recents, popular-on-focus, fuzzy/typo
+   tolerance + did-you-mean, Tab completion, clear button,
+   "/" + Cmd/Ctrl+K shortcuts. Purely additive: wraps the v85
+   ucmd resolver, never replaces backend search behavior.
+   ============================================================ */
+(function(){
+if(typeof resolveUniversalSearch!=='function') return;
+
+/* ---- recents (localStorage, max 6) ---- */
+var REC_KEY='cc_ucmd_recent';
+function recGet(){ try{ return JSON.parse(localStorage.getItem(REC_KEY)||'[]')||[]; }catch(e){ return []; } }
+function recSave(a){ try{ localStorage.setItem(REC_KEY, JSON.stringify(a.slice(0,6))); }catch(e){} }
+window.ucmdRecAdd=function(it,qtyped){
+  if(!it||it._rec!=null) return;
+  var e={ q:(qtyped||it.label||'').trim(), t:it.type||'location', id:it.id||null,
+          lat:(it.lat!=null?it.lat:null), lng:(it.lng!=null?it.lng:null), label:it.label||'' };
+  if(!e.label) return;
+  var a=recGet().filter(function(x){ return (x.label||'').toLowerCase()!==e.label.toLowerCase(); });
+  a.unshift(e); recSave(a);
+};
+window.ucmdRecDel=function(i,ev){ if(ev){ ev.stopPropagation(); ev.preventDefault(); } var a=recGet(); a.splice(i,1); recSave(a); ucmdRenderHome(); };
+function recRun(e){
+  if(e.t==='dentist' && e.id){ ucmdOpenDentist(e.id); return; }
+  if(e.lat!=null && e.lng!=null){ ucmdCenterSearch(e.lat,e.lng,e.label,state.distance||8); return; }
+  var inp=document.getElementById('ucmd-input'); if(inp) inp.value=e.q||e.label;
+  var r=resolveUniversalSearch(e.q||e.label);
+  if(r.best){ ucmdClose(); try{ r.best.run(); }catch(_){} }
+}
+
+/* ---- fuzzy matching (bounded Levenshtein) ---- */
+function fzDist(a,b,max){
+  var la=a.length, lb=b.length;
+  if(Math.abs(la-lb)>max) return max+1;
+  var prev=[], cur=[], i, j;
+  for(j=0;j<=lb;j++) prev[j]=j;
+  for(i=1;i<=la;i++){
+    cur[0]=i; var rowMin=i;
+    for(j=1;j<=lb;j++){
+      var c=(a.charAt(i-1)===b.charAt(j-1))?0:1;
+      cur[j]=Math.min(prev[j]+1, cur[j-1]+1, prev[j-1]+c);
+      if(cur[j]<rowMin) rowMin=cur[j];
+    }
+    if(rowMin>max) return max+1;
+    var t=prev; prev=cur; cur=t;
+  }
+  return prev[lb];
+}
+function fzTokHit(qt, ft){
+  if(!qt||!ft) return false;
+  if(ft.indexOf(qt)===0 || (qt.length>=3 && ft.indexOf(qt)>=0)) return true;
+  if(qt.length<4) return false;
+  var max=qt.length>=6?2:1;
+  return fzDist(qt, ft.slice(0, Math.max(qt.length+max, ft.length>qt.length+max?qt.length+max:ft.length)), max)<=max
+      || fzDist(qt, ft, max)<=max;
+}
+function fzMatch(q, hay){
+  var qts=ucmdNorm(q).split(' ').filter(Boolean); if(!qts.length) return false;
+  var fts=ucmdNorm(hay).split(' ').filter(Boolean); if(!fts.length) return false;
+  return qts.every(function(qt){ return fts.some(function(ft){ return fzTokHit(qt,ft); }); });
+}
+
+/* ---- did-you-mean candidates ---- */
+function dymFind(q){
+  var ql=ucmdNorm(q); if(ql.length<4) return null;
+  var cand=[], i;
+  try{ Object.keys(CITIES||{}).forEach(function(k){ if(k.charAt(0)!=='_'&&CITIES[k]&&CITIES[k].label) cand.push(String(CITIES[k].label).split(',')[0]); }); }catch(e){}
+  for(i=0;i<UCMD_TREATMENTS.length;i++) cand.push(UCMD_TREATMENTS[i][0]);
+  try{ (CARRIERS_CANONICAL||[]).forEach(function(c){ cand.push(c); }); }catch(e){}
+  var best=null, bestD=3;
+  for(i=0;i<cand.length;i++){
+    var c=ucmdNorm(cand[i]); if(!c||Math.abs(c.length-ql.length)>2) continue;
+    var d=fzDist(ql,c,2);
+    if(d<bestD || (d===bestD && best && cand[i].length<best.length)){ bestD=d; best=cand[i]; }
+  }
+  return (best && bestD<=2 && ucmdNorm(best)!==ql) ? best : null;
+}
+
+/* ---- fuzzy fill pass over the resolver output ---- */
+var _rus=resolveUniversalSearch;
+window.resolveUniversalSearch=function(q){
+  var out=_rus(q);
+  var ql=ucmdNorm(q||'');
+  try{
+    if(ql.length>=4){
+      if(!out.dentists.length){
+        var dents=(typeof loadDentistsFromSupabase==='function'?loadDentistsFromSupabase():[])||[];
+        var hits=[];
+        for(var i=0;i<dents.length && hits.length<4;i++){
+          var d=dents[i];
+          if(fzMatch(ql, [d.practice,d.doctor,d.city].filter(Boolean).join(' '))) hits.push(d);
+        }
+        out.dentists=hits.map(function(d){ return ucmdDentistItem(d); });
+      }
+      if(!out.cities.length){
+        try{
+          Object.keys(CITIES||{}).forEach(function(k){
+            if(out.cities.length>=3 || k.charAt(0)==='_') return;
+            var c=CITIES[k]; if(!c||c.lat==null) return;
+            var nm=String(c.label).split(',')[0];
+            if(fzMatch(ql,nm)) out.cities.push({ type:'location', label:c.label, subtitle:'City · '+(c.area||'California'), icon:'pin', action:'Search this area', source:'cities', lat:c.lat, lng:c.lng,
+              run:(function(la,ln,lb){ return function(){ ucmdCenterSearch(la,ln,lb,state.distance||8); }; })(c.lat,c.lng,c.label) });
+          });
+        }catch(e){}
+      }
+      var hadOnlyFallback = out.best && out.best.source==='fallback';
+      if(hadOnlyFallback && (out.dentists.length||out.cities.length)) out.best=out.dentists[0]||out.cities[0];
+      if(hadOnlyFallback && !out.dentists.length && !out.cities.length) out.didYouMean=dymFind(q);
+    }
+  }catch(e){}
+  return out;
+};
+
+/* ---- row html with stable option ids + recent-remove ---- */
+window.ucmdRowHtml=function(it, q, cls){
+  var ico=UCMD_ICONS[it.icon]||UCMD_ICONS.pin;
+  var idx=ucmdItems.length;
+  var del=(it._rec!=null)?'<button class="ucmd-del" type="button" aria-label="Remove from recent searches" onmousedown="ucmdRecDel('+it._rec+',event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>':'';
+  return '<div class="ucmd-row'+(cls||'')+'" id="ucmd-opt-'+idx+'" role="option" data-k="'+idx+'" onmousedown="event.preventDefault();ucmdRun('+idx+')">'
+    +'<span class="ucmd-ico">'+ico+'</span>'
+    +'<span class="ucmd-txt"><span class="ucmd-ttl">'+ucmdHL(it.label,q)+'</span><span class="ucmd-sub2">'+ucmdEsc(it.subtitle||'')+'</span></span>'
+    +del
+    +'<span class="ucmd-act">'+ucmdEsc(it.action||'Open')+UCMD_ICONS.arrow+'</span>'
+  +'</div>';
+};
+window.ucmdActivePaint=function(){
+  var rows=document.querySelectorAll('#ucmd-menu .ucmd-row');
+  rows.forEach(function(r,i){ r.classList.toggle('active', i===ucmdIdx); });
+  var inp=document.getElementById('ucmd-input');
+  if(inp){ if(ucmdIdx>=0) inp.setAttribute('aria-activedescendant','ucmd-opt-'+ucmdIdx); else inp.removeAttribute('aria-activedescendant'); }
+  var el=document.querySelector('#ucmd-menu .ucmd-row.active'); if(el) el.scrollIntoView({block:'nearest'});
+};
+
+/* ---- empty-focus home: recents + popular ---- */
+window.ucmdRenderHome=function(){
+  var menu=document.getElementById('ucmd-menu'), inp=document.getElementById('ucmd-input'); if(!menu||!inp) return;
+  ucmdItems=[]; ucmdIdx=-1;
+  var html='';
+  var rec=recGet();
+  if(rec.length){
+    html+=ucmdSection('Recent searches');
+    rec.forEach(function(e,i){
+      var it={ type:'recent', label:e.label, subtitle:(e.t==='dentist'?'Dentist':'Search')+' · recent', icon:(e.t==='dentist'?'tooth':'search'), action:'Search again', _rec:i,
+               run:(function(en){ return function(){ ucmdClose(); recRun(en); }; })(e) };
+      html+=ucmdRowHtml(it,'',''); ucmdItems.push(it);
+    });
+  }
+  var pops=[];
+  try{
+    var counts=(typeof CITY_COUNTS!=='undefined'?CITY_COUNTS:{})||{};
+    Object.keys(counts).filter(function(k){ return k!=='orange county' && CITIES[k] && CITIES[k].lat!=null && (counts[k]||0)>0; })
+      .sort(function(a,b){ return (counts[b]||0)-(counts[a]||0); }).slice(0,4)
+      .forEach(function(k){ var c=CITIES[k]; pops.push({ type:'location', label:c.label, subtitle:(counts[k]||0)+' PPO offices', icon:'pin', action:'Search this area',
+        run:(function(la,ln,lb){ return function(){ ucmdCenterSearch(la,ln,lb,state.distance||8); }; })(c.lat,c.lng,c.label) }); });
+  }catch(e){}
+  if(pops.length){ html+=ucmdSection('Popular areas'); pops.forEach(function(it){ html+=ucmdRowHtml(it,'',''); ucmdItems.push(it); }); }
+  var tr=[['Invisalign','invisalign'],['Implants','implant'],['Emergency','emergency'],['Cleaning','clean']];
+  html+=ucmdSection('Popular treatments');
+  tr.forEach(function(t){
+    var it={ type:'treatment', label:t[0]+' dentists', subtitle:'Treatment search', icon:'spark', action:'Search',
+             run:(function(sp){ return function(){ ucmdApplyTreatment(sp,null); }; })(t[0]) };
+    html+=ucmdRowHtml(it,'',''); ucmdItems.push(it);
+  });
+  menu.innerHTML=html; menu.hidden=false; inp.setAttribute('aria-expanded','true');
+};
+
+/* ---- render wrapper: empty -> home, no hits -> did-you-mean ---- */
+var _render=ucmdRender;
+window.ucmdRender=function(q){
+  q=(q||'').trim();
+  if(!q){ ucmdRenderHome(); return; }
+  _render(q);
+  try{
+    var menu=document.getElementById('ucmd-menu');
+    if(menu && !ucmdItems.length){
+      var r=resolveUniversalSearch(q);
+      if(r.didYouMean){
+        menu.innerHTML='<div class="ucmd-dym">Did you mean <b onmousedown="event.preventDefault();ucmdExample(\''+ucmdEsc(r.didYouMean).replace(/'/g,"\\'")+'\')">'+ucmdEsc(r.didYouMean)+'</b>?</div>'+menu.innerHTML;
+      }
+    }
+  }catch(e){}
+};
+
+/* ---- key handling: Tab completion + recents recording ---- */
+window.ucmdKey=function(e){
+  var menu=document.getElementById('ucmd-menu');
+  if(e.key==='ArrowDown'){ if(menu && menu.hidden) ucmdRender(e.target.value); e.preventDefault(); ucmdMove(1); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); ucmdMove(-1); }
+  else if(e.key==='Tab' && menu && !menu.hidden && ucmdItems.length){
+    e.preventDefault();
+    var it=ucmdItems[ucmdIdx>=0?ucmdIdx:0];
+    if(it && it.label){ e.target.value=it.label; ucmdRender(it.label); }
+  }
+  else if(e.key==='Enter'){
+    e.preventDefault();
+    var q=(e.target.value||'').trim();
+    if(ucmdIdx>=0){ var sel=ucmdItems[ucmdIdx]; if(sel) ucmdRecAdd(sel,q); ucmdRun(ucmdIdx); return; }
+    if(!q){ ucmdClose(); return; }
+    var r=resolveUniversalSearch(q);
+    if(r.best){ ucmdRecAdd(r.best,q); ucmdClose(); try{ r.best.run(); }catch(_){ } } else { ucmdAllOffices(q); }
+  }
+  else if(e.key==='Escape'){ ucmdClose(); e.target.blur(); }
+};
+var _run=ucmdRun;
+window.ucmdRun=function(i){ var it=ucmdItems[i]; if(it) ucmdRecAdd(it); _run(i); };
+
+/* ---- clear button + input/focus wrappers ---- */
+window.ucmdClear=function(){
+  var inp=document.getElementById('ucmd-input'); if(!inp) return;
+  inp.value=''; ucmdSyncChrome(); inp.focus(); ucmdRenderHome();
+};
+function ucmdSyncChrome(){
+  var inp=document.getElementById('ucmd-input'), cl=document.getElementById('ucmd-clear'), kb=document.getElementById('ucmd-kbd');
+  var has=!!(inp && inp.value.trim());
+  if(cl) cl.hidden=!has;
+  if(kb) kb.hidden=has;
+}
+var _input=ucmdInput;
+window.ucmdInput=function(v){ ucmdSyncChrome(); _input(v); };
+window.ucmdFocus=function(){
+  var inp=document.getElementById('ucmd-input'); if(!inp) return;
+  ucmdSyncChrome();
+  if(inp.value.trim()) ucmdRender(inp.value); else ucmdRenderHome();
+};
+
+/* ---- global shortcuts: "/" and Cmd/Ctrl+K ---- */
+document.addEventListener('keydown', function(e){
+  var tag=(e.target && e.target.tagName||'').toLowerCase();
+  var typing = tag==='input'||tag==='textarea'||tag==='select'||(e.target&&e.target.isContentEditable);
+  var hot = (e.key==='/' && !typing) || ((e.metaKey||e.ctrlKey) && (e.key==='k'||e.key==='K'));
+  if(!hot) return;
+  var inp=document.getElementById('ucmd-input'); if(!inp) return;
+  e.preventDefault();
+  try{ inp.scrollIntoView({block:'center',behavior:'smooth'}); }catch(_){ }
+  inp.focus(); ucmdFocus();
+});
+
+/* close on outside click */
+document.addEventListener('mousedown', function(e){
+  var box=document.getElementById('ucmd'); if(!box) return;
+  if(!box.contains(e.target)) ucmdClose();
+});
+})();
 </script>
 </body>
 </html>
