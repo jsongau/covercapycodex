@@ -5250,3 +5250,29 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
 </script>
 </body>
 </html>
+
+<script>
+/* Logged-in nav swap: if the CoverCapy app set the cc_auth presence cookie on
+   .covercapy.com, replace Sign in / Create account with the member nav. */
+(function(){
+  function cookie(name){
+    var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)')); return m?decodeURIComponent(m[1]):null;
+  }
+  var first=cookie('cc_auth'); if(!first) return;
+  var APP='https://app.covercapy.com/app.html';
+  function swap(){
+    document.querySelectorAll('.cc-actions').forEach(function(el){
+      el.innerHTML='<a class="cc-signin" href="'+APP+'#/patient/community">Community</a>'
+        +'<a class="cc-signin" href="'+APP+'#/patient/coverage">Coverage</a>'
+        +'<a class="cc-signin" href="'+APP+'#/patient/profile">Account</a>'
+        +'<a class="cc-signin" href="'+APP+'?signout=1" style="opacity:.7">Sign out</a>'
+        +'<a class="cc-join" href="'+APP+'#/patient/home">'+(first&&first!=='Member'?first.replace(/[<>&"]/g,'')+"'s dashboard":'Dashboard')+'</a>';
+    });
+    document.querySelectorAll('.cc-drawer-foot').forEach(function(el){
+      el.innerHTML='<a class="cc-drawer-join" href="'+APP+'#/patient/home">Open dashboard</a><a class="cc-drawer-sign" href="'+APP+'?signout=1">Sign out</a>';
+    });
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',swap,{once:true}); } else { swap(); }
+  setTimeout(swap,400); /* re-run after the component injector replays scripts */
+})();
+</script>
