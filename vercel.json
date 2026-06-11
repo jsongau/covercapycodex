@@ -17,6 +17,21 @@
   ],
   "redirects": [
     {
+      "source": "/sign-in",
+      "destination": "https://app.covercapy.com/",
+      "permanent": false
+    },
+    {
+      "source": "/signin",
+      "destination": "https://app.covercapy.com/",
+      "permanent": false
+    },
+    {
+      "source": "/login",
+      "destination": "https://app.covercapy.com/",
+      "permanent": false
+    },
+    {
       "source": "/finance",
       "destination": "/dental-financing-monthly-payments.html",
       "permanent": true
