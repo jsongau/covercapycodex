@@ -214,15 +214,12 @@
 <!-- Shared CoverCapy shell styles -->
 <link rel="stylesheet" href="assets/css/mega-nav.css">
 <link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
-<link rel="stylesheet" href="assets/css/hero-slider.css">
-<link rel="stylesheet" href="assets/css/hero-slider-mobile.css">
 <link rel="stylesheet" href="assets/css/footer.css">
 
 <style>
 
 /* Shell mounts for shared mega nav + hero slider */
 #cc-nav-mount{ min-height:72px; }
-#cc-hero-mount{ min-height:80vh; }
 #page-start{
   display:block;
   height:0;
@@ -2221,7 +2218,6 @@ img,svg{ max-width:100%; display:block; }
 <body class="theme-now">
 
 <div id="cc-nav-mount"></div>
-<div id="cc-hero-mount"></div>
 <div id="page-start" aria-hidden="true"></div>
 
 
@@ -2293,7 +2289,91 @@ img,svg{ max-width:100%; display:block; }
   <!-- ==============================================================
        SECTION 2 - SMART MATCH - FIND YOUR FIT
        ============================================================== -->
-  <section class="sim" id="smart-match" aria-labelledby="sim-title">
+  
+<!-- ============ THE PPO DECISION DESK (CoverCapy signature component) ============ -->
+<section class="dd-desk" id="decision-desk" aria-labelledby="dd-title">
+<style>
+.dd-desk{position:relative;padding:8px 0 46px}
+.dd-desk::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:repeating-linear-gradient(180deg,transparent 0 31px,rgba(15,31,38,.022) 31px 32px)}
+.dd-wrap{position:relative;max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(360px,1.1fr) minmax(300px,.9fr);gap:26px;align-items:start}
+.dd-head{grid-column:1/-1;margin-bottom:2px}
+.dd-head h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.015em;margin:0 0 6px}
+.dd-head h2 em{font-style:italic;color:#15524A}
+.dd-head p{margin:0;color:#556A67;font-size:15px;max-width:64ch}
+.dd-blotter{position:relative;border:1px solid rgba(15,31,38,.14);border-radius:26px;background:linear-gradient(178deg,#fff,#FBF6EB);box-shadow:0 2px 6px rgba(15,31,38,.05),0 22px 50px rgba(15,31,38,.10);padding:24px 24px 20px}
+.dd-blotter::after{content:"";position:absolute;top:12px;right:12px;width:42px;height:42px;border-top:2px solid #F1E4C8;border-right:2px solid #F1E4C8;border-radius:0 18px 0 0;pointer-events:none}
+.dd-bhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 12px}
+.dd-bhead h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:19px;margin:0}
+.dd-stamp{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A6A30;border:1.5px solid #F1E4C8;border-radius:6px;padding:4px 8px;transform:rotate(2deg);background:rgba(250,243,224,.6);white-space:nowrap}
+.dd-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.dd-chips button{border:1px solid rgba(15,31,38,.14);background:#fff;border-radius:999px;padding:9px 15px;font-family:inherit;font-size:13.5px;font-weight:700;color:#0E3A33;cursor:pointer;transition:all .16s ease}
+.dd-chips button:hover{border-color:#15524A;transform:translateY(-1px)}
+.dd-chips button[aria-pressed="true"]{background:linear-gradient(135deg,#0E3A33,#15524A);color:#fff;border-color:transparent}
+.dd-fee{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px dashed rgba(15,31,38,.14);padding-bottom:9px;margin-bottom:13px}
+.dd-fee .l{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6E8590}
+.dd-fee .a{font-family:'Fraunces',Georgia,serif;font-size:28px;font-weight:600}
+.dd-rows{display:flex;flex-direction:column;gap:10px}
+.dd-row{display:grid;grid-template-columns:118px 1fr 86px;align-items:center;gap:12px;text-decoration:none;border-radius:12px;padding:4px 6px;transition:background .15s ease}
+.dd-row:hover{background:rgba(220,234,231,.35)}
+.dd-row .n{font-size:12.5px;font-weight:800;color:#0E3A33;line-height:1.2}
+.dd-row .n small{display:block;font-weight:600;color:#6E8590;font-size:10.5px}
+.dd-bar{position:relative;height:12px;border-radius:999px;background:#F2EDE2;overflow:hidden}
+.dd-bar i{position:absolute;inset:0 auto 0 0;width:0;border-radius:999px;background:linear-gradient(90deg,#15524A,#B8924F);transition:width .9s cubic-bezier(.16,1,.3,1)}
+.dd-row .c{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.dd-row .c.na{font-family:inherit;font-size:10.5px;font-weight:700;color:#6E8590;letter-spacing:.04em}
+.dd-bfoot{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dd-bfoot small{font-size:10.5px;color:#6E8590;max-width:40ch}
+.dd-bfoot a{font-size:13px;font-weight:800;color:#15524A;text-decoration:none}
+.dd-bfoot a:hover{text-decoration:underline}
+.dd-ticket{border:1px solid rgba(15,31,38,.14);border-radius:22px;background:#fff;box-shadow:0 1px 2px rgba(15,31,38,.04),0 14px 38px rgba(15,31,38,.09);overflow:hidden}
+.dd-thead{padding:14px 20px 11px;border-bottom:1px dashed rgba(15,31,38,.14);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,#F0F7F5,#fff)}
+.dd-thead .t{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#15524A}
+.dd-thead .no{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:12px;color:#6E8590}
+.dd-tbody{padding:12px 20px 4px}
+.dd-tline{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,31,38,.08);font-size:13px}
+.dd-tline:last-child{border-bottom:none}
+.dd-tline .k{color:#556A67;font-weight:600}
+.dd-tline .v{font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.dd-tline .v.good{color:#15524A}
+.dd-verdict{margin:6px 20px 14px;border-left:3px solid #B8924F;background:#FBF6EB;border-radius:0 12px 12px 0;padding:10px 14px;font-size:12.5px;color:#3C5560}
+.dd-verdict strong{color:#0E3A33}
+.dd-tcta{display:block;text-align:center;margin:0 20px 16px;padding:12px;border-radius:999px;background:linear-gradient(135deg,#8A6A30,#B8924F);color:#fff;font-weight:800;font-size:13px;text-decoration:none;box-shadow:0 10px 24px rgba(138,106,48,.25);transition:transform .15s ease}
+.dd-tcta:hover{transform:translateY(-2px)}
+.dd-tnote{padding:0 20px 14px;font-size:10px;color:#6E8590;line-height:1.5;margin:0}
+@media(max-width:880px){.dd-wrap{grid-template-columns:1fr}.dd-row{grid-template-columns:100px 1fr 78px}}
+</style>
+<div class="dd-wrap">
+  <div class="dd-head">
+    <h2 id="dd-title">The PPO Decision Desk: <em>compare what you'll actually pay</em></h2>
+    <p>Most people compare premiums. Smart shoppers compare what happens after treatment. Pick the visit on your calendar — the desk shows each plan's estimated patient cost, including the plans that would pay nothing at all.</p>
+  </div>
+  <div class="dd-blotter" aria-label="Treatment cost workspace">
+    <div class="dd-bhead"><h3>What does your mouth need?</h3><span class="dd-stamp">Verified · Jun 12 2026</span></div>
+    <div class="dd-chips" role="group" aria-label="Choose a treatment">
+      <button type="button" data-ddtx="crown" aria-pressed="true">Crown</button>
+      <button type="button" data-ddtx="implant" aria-pressed="false">Implant</button>
+      <button type="button" data-ddtx="rootcanal" aria-pressed="false">Root canal</button>
+      <button type="button" data-ddtx="cleaning" aria-pressed="false">Cleaning + exam</button>
+      <button type="button" data-ddtx="braces" aria-pressed="false">Braces (child)</button>
+    </div>
+    <div class="dd-fee"><span class="l">Typical office fee</span><span class="a" id="dd-fee">$1,600</span></div>
+    <div class="dd-rows" id="dd-rows" aria-live="polite"></div>
+    <div class="dd-bfoot">
+      <small id="dd-note">Estimated patient cost after coinsurance &amp; $50 deductible, in network, once any waiting period has passed.</small>
+      <a href="/dental-treatment-cost-estimator">Full estimator →</a>
+    </div>
+  </div>
+  <div class="dd-ticket" aria-label="Concierge reading">
+    <div class="dd-thead"><span class="t">Concierge reading</span><span class="no">Ticket №&nbsp;0612</span></div>
+    <div class="dd-tbody" id="dd-tbody"></div>
+    <div class="dd-verdict" id="dd-verdict"></div>
+    <a class="dd-tcta" id="dd-tcta" href="/dental-insurance/ppo-plans/ameritas-primestar">Read the full plan review →</a>
+    <p class="dd-tnote">Educational estimates from published plan coinsurance — not a quote. Plan terms vary by state. Always verify your dentist accepts the plan before enrolling.</p>
+  </div>
+</div>
+</section>
+
+<section class="sim" id="smart-match" aria-labelledby="sim-title">
     <div class="container">
 
       <header class="sim-head">
@@ -2510,7 +2590,98 @@ img,svg{ max-width:100%; display:block; }
        Visible answers are generated to mirror the FAQPage schema
        word for word. Keep both in sync on any edit.
        ============================================================== -->
-  <section class="faq" id="faq" aria-labelledby="faq-title">
+  
+<!-- ============ PPO AUTHORITY LAYER: treatment clusters · dictionary · trust ============ -->
+<section class="dd-auth" id="by-treatment" aria-labelledby="bt-title">
+<style>
+.dd-auth{padding:40px 0 8px}
+.dd-auth .dd-aw{max-width:1160px;margin:0 auto;padding:0 24px}
+.dd-auth h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.015em;margin:0 0 8px}
+.dd-auth h2 em{font-style:italic;color:#15524A}
+.dd-auth .dd-sub{color:#556A67;font-size:15px;max-width:66ch;margin:0 0 22px}
+.dd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 8px}
+.dd-card{display:block;text-decoration:none;border:1px solid rgba(15,31,38,.1);border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(15,31,38,.04),0 8px 22px rgba(15,31,38,.05);padding:18px 20px;transition:transform .16s ease,border-color .16s ease}
+.dd-card:hover{transform:translateY(-3px);border-color:rgba(15,31,38,.24)}
+.dd-card h3{margin:0 0 6px;font-size:15.5px;color:#0E3A33}
+.dd-card p{margin:0;font-size:13px;color:#556A67;line-height:1.5}
+.dd-card .go{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;color:#15524A}
+.dd-dict{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 6px}
+@media(max-width:760px){.dd-dict{grid-template-columns:1fr}}
+.dd-term{border:1px solid rgba(15,31,38,.1);border-left:3px solid #B8924F;border-radius:0 16px 16px 0;background:#FFFCF6;padding:15px 18px}
+.dd-term h3{margin:0 0 5px;font-size:14.5px;color:#0E3A33}
+.dd-term p{margin:0;font-size:13.5px;color:#3C5560;line-height:1.55}
+.dd-trust{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+@media(max-width:860px){.dd-trust{grid-template-columns:1fr}}
+.dd-tcard{border:1px solid rgba(15,31,38,.1);border-radius:20px;background:#fff;padding:22px 24px}
+.dd-tcard h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 10px}
+.dd-tcard ol,.dd-tcard ul{margin:0;padding-left:20px}
+.dd-tcard li{margin:0 0 9px;font-size:13.8px;color:#3C5560;line-height:1.55}
+.dd-tcard li strong{color:#0E3A33}
+</style>
+<div class="dd-aw">
+  <h2 id="bt-title">Compare PPO plans <em>by treatment need</em></h2>
+  <p class="dd-sub">Insurance is only as good as the procedure it pays for. Start from the work your dentist named, and we'll point you at the plan built for it — and tell you plainly when nothing on the shelf covers it.</p>
+  <div class="dd-cards">
+    <a class="dd-card" href="/dental-insurance/ppo-plans/humana-extend-5000"><h3>Implants</h3><p>Two plans cover implants: Humana (50% after 6 months, $2,000/yr) and Mutual of Omaha (50% after 12 months, $5,000 cap). The missing tooth clause decides which — or whether either.</p><span class="go">Best implant plans →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/ameritas-primestar"><h3>Crowns</h3><p>Crowns are "major" work — most plans wait 12 months. Ameritas pays from day one (20% year one); Humana opens 50% at month six.</p><span class="go">Best crown plans →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/humana-extend-5000"><h3>Root canals</h3><p>Usually on the major schedule: 50% after 6–12 months. Whether yours counts as "basic" instead can move the date by a quarter — verify the classification.</p><span class="go">Root canal coverage →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/mutual-of-omaha-dental"><h3>Dentures &amp; bridges</h3><p>High-cost major work rewards a high ceiling: Mutual of Omaha's $5,000 annual maximum absorbs a denture or bridge year without crowding out the rest of your care.</p><span class="go">High-maximum plans →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/uhc-primary-dental"><h3>Wisdom teeth</h3><p>Simple extractions are "basic" care — covered day one at 50–85% on most of the shelf. Surgical extractions are major work; the waiting clock applies.</p><span class="go">Day-one basics →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/guardian-premier-ppo"><h3>Braces &amp; Invisalign</h3><p>Guardian Premier 2.0 is the only plan here with orthodontics: 50% for dependents under 19 after a 12-month wait. Adult ortho isn't covered on any plan we shelve.</p><span class="go">The family plan →</span></a>
+    <a class="dd-card" href="/ppodentists.html"><h3>Emergency care</h3><p>Insurance enrolled today won't pay for major work today. For a tooth that can't wait, find a dentist first — then pick the plan that covers the follow-up.</p><span class="go">Find a dentist now →</span></a>
+    <a class="dd-card" href="/dental-treatment-cost-estimator"><h3>Not sure yet?</h3><p>Estimate the procedure first. Crowns run ~$1,200–$1,600, implants ~$3,000–$6,000, root canals ~$1,000–$1,500 — the number decides how much plan you need.</p><span class="go">Estimate your treatment →</span></a>
+  </div>
+</div>
+</section>
+
+<section class="dd-auth" id="ppo-dictionary" aria-labelledby="dict-title">
+<div class="dd-aw">
+  <h2 id="dict-title">The PPO dictionary: <em>eight terms that decide your bill</em></h2>
+  <p class="dd-sub">Every confusing sentence in a dental policy is built from these eight pieces. Learn them once and you can read any plan on the market.</p>
+  <div class="dd-dict">
+    <div class="dd-term"><h3>PPO dental insurance</h3><p>A plan that lets you see any licensed dentist but pays more when you use an in-network dentist who has agreed to the carrier's negotiated fees. The opposite of an HMO, which restricts you to an assigned network dentist.</p></div>
+    <div class="dd-term"><h3>Waiting period</h3><p>The time after your policy starts before a category of care is covered — typically none for preventive, 3–6 months for basic, 6–12 months for major work. Some carriers waive waits with proof of recent prior coverage.</p></div>
+    <div class="dd-term"><h3>Annual maximum</h3><p>The most a plan will pay in one benefit year — $1,000 to $5,000 on this shelf. You keep your coverage after hitting it; the plan just stops paying until the year resets.</p></div>
+    <div class="dd-term"><h3>Deductible</h3><p>What you pay before the plan starts paying — $50 per person on every plan we shelve. Usually waived for preventive care.</p></div>
+    <div class="dd-term"><h3>Coinsurance</h3><p>The percentage split after your deductible. "50% major" means the plan pays half of the allowed fee for crowns and dentures, and you pay the rest.</p></div>
+    <div class="dd-term"><h3>In-network vs. out-of-network</h3><p>In-network dentists accept negotiated fees, so both your share and the plan's go further. Out of network, the plan reimburses against its own fee schedule and the dentist may balance-bill you the difference.</p></div>
+    <div class="dd-term"><h3>Balance billing</h3><p>An out-of-network dentist charging you the gap between their full fee and what the insurer allows. The quiet reason "covered at 50%" can still mean a large bill.</p></div>
+    <div class="dd-term"><h3>Missing tooth clause</h3><p>A provision that can exclude coverage for replacing teeth lost before your policy began. The single most important sentence to check before buying an implant-grade plan.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="dd-auth" id="ppo-playbook" aria-labelledby="pb-title">
+<div class="dd-aw">
+  <h2 id="pb-title">The buyer's playbook: <em>mistakes, questions, and the verify-first rule</em></h2>
+  <div class="dd-trust">
+    <div class="dd-tcard">
+      <h3>Five mistakes that cost real money</h3>
+      <ol>
+        <li><strong>Buying on premium alone.</strong> A $30 plan that excludes major work is expensive the day a crown shows up.</li>
+        <li><strong>Enrolling after the diagnosis, expecting immediate major coverage.</strong> Waiting periods exist precisely for this. Know the clock before you count on the coverage.</li>
+        <li><strong>Assuming "covers implants" includes your implant.</strong> Missing tooth clauses, annual implant caps, and clinical review all narrow that sentence.</li>
+        <li><strong>Skipping the network check.</strong> The plan is wrong if your dentist doesn't take it — <a href="/ppodentists.html">verify acceptance</a> before any money moves.</li>
+        <li><strong>Reading a review of the wrong tier.</strong> Carriers sell multiple versions under one name. Match the annual maximum on your quote to the one in the review.</li>
+      </ol>
+    </div>
+    <div class="dd-tcard">
+      <h3>Six questions to ask before you buy</h3>
+      <ul>
+        <li>What does my <strong>next 12 months of dentistry</strong> actually look like? (Your dentist will tell you. <a href="/dental-treatment-cost-estimator">Estimate the costs</a>.)</li>
+        <li>Is my dentist <strong>in this plan's network</strong> — confirmed by the office, not a directory?</li>
+        <li>What are the <strong>waiting periods</strong> for the exact procedures I expect — and can prior coverage waive them?</li>
+        <li>Is the <strong>annual maximum</strong> bigger than my expected treatment, after the plan's percentage?</li>
+        <li>If implants: does the <strong>missing tooth clause</strong> apply to me? Get the answer in writing.</li>
+        <li>What does this plan <strong>refuse to cover</strong>? Every plan page on <a href="/dental-insurance/ppo-plans">our shelf</a> answers that in the first screen.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://www.covercapy.com/compare-ppo-dental-plans.html#ppo-dictionary","name":"PPO Dental Insurance Dictionary","hasDefinedTerm":[{"@type":"DefinedTerm","name":"PPO dental insurance","description":"A dental plan that lets you see any licensed dentist but pays more when you use an in-network dentist who has agreed to the carrier's negotiated fees."},{"@type":"DefinedTerm","name":"Waiting period","description":"The time after a dental policy starts before a category of care is covered - typically none for preventive, 3-6 months for basic, 6-12 months for major work."},{"@type":"DefinedTerm","name":"Annual maximum","description":"The most a dental plan will pay in one benefit year, commonly $1,000 to $5,000 for individual PPO plans."},{"@type":"DefinedTerm","name":"Deductible","description":"The amount the patient pays before the plan begins paying, commonly $50 per person, usually waived for preventive care."},{"@type":"DefinedTerm","name":"Coinsurance","description":"The percentage split between plan and patient after the deductible, e.g. a plan paying 50% of the allowed fee for major work."},{"@type":"DefinedTerm","name":"In-network dentist","description":"A dentist who accepts an insurance carrier's negotiated fees, lowering both the patient's share and the plan's outlay."},{"@type":"DefinedTerm","name":"Balance billing","description":"An out-of-network dentist charging the patient the difference between their full fee and the insurer's allowed amount."},{"@type":"DefinedTerm","name":"Missing tooth clause","description":"A policy provision that can exclude coverage for replacing teeth lost before the policy's effective date."}]}</script>
+
+<section class="faq" id="faq" aria-labelledby="faq-title">
     <div class="container">
       <div class="faq-grid">
 
@@ -3753,9 +3924,7 @@ loadPlans();
   };
 
   await injectComponent('cc-nav-mount', 'components/mega-nav.html');
-  await injectComponent('cc-hero-mount', 'components/hero-slider.html');
   await loadScript('assets/js/mega-nav.js');
-  await loadScript('assets/js/hero-slider.js');
 })();
 </script>
 
@@ -3838,6 +4007,62 @@ loadPlans();
 })();
 </script>
 
+
+
+<script>
+(function(){
+  var P="/dental-insurance/ppo-plans/";
+  var TX={
+    crown:{fee:"$1,600",max:1600,note:"Estimated patient cost after coinsurance & $50 deductible, in network, after the plan's major-work waiting period.",
+      plans:[{n:"Humana Extend 5000",s:"6-mo wait",u:P+"humana-extend-5000",pc:825},{n:"Guardian Premier 2.0",s:"12-mo wait",u:P+"guardian-premier-ppo",pc:825},{n:"Ameritas PrimeStar",s:"Day 1 \u00b7 20% Y1",u:P+"ameritas-primestar",pc:1290},{n:"UHC Primary Dental",s:"not covered",u:P+"uhc-primary-dental",pc:null}],
+      verdict:"<strong>Need it now?</strong> Ameritas is the only plan that pays anything on a day-one crown. <strong>Can it wait six months?</strong> Humana halves the industry's 12-month clock.",
+      cta:[P+"ameritas-primestar","Read the Ameritas review \u2192"],
+      tk:[["Crown, typical office fee","$1,600"],["Best post-wait cost","$825 \u00b7 Humana / Guardian","good"],["Fastest payout","Ameritas \u00b7 day one (20%)"],["Watch for","Crown = \u201cmajor\u201d, not \u201cbasic\u201d"]]},
+    implant:{fee:"$3,800",max:3800,note:"Single implant (post + abutment + crown), in network, after each plan's implant waiting period and caps.",
+      plans:[{n:"Mutual of Omaha",s:"12-mo wait \u00b7 $5k cap",u:P+"mutual-of-omaha-dental",pc:1925},{n:"Humana Extend 5000",s:"6-mo wait \u00b7 $2k/yr",u:P+"humana-extend-5000",pc:1800},{n:"Ameritas PrimeStar",s:"Phase 1 Day 1",u:P+"ameritas-primestar",pc:2300},{n:"Guardian Premier 2.0",s:"not covered",u:P+"guardian-premier-ppo",pc:null}],
+      verdict:"<strong>One implant, patient timeline?</strong> Mutual of Omaha pays the most in a single year. <strong>In a hurry?</strong> Humana's 6-month gate wins. <strong>Tooth already missing?</strong> Check the missing tooth clause first.",
+      cta:[P+"humana-extend-5000","Read the Humana implant analysis \u2192"],
+      tk:[["Implant, typical office fee","$3,800"],["Biggest single-year payout","Mutual of Omaha \u00b7 ~$1,875","good"],["Fastest covered path","Humana \u00b7 6 months"],["Verify first","Missing tooth clause"]]},
+    rootcanal:{fee:"$1,300",max:1300,note:"Molar root canal, in network, after the applicable waiting period. Classification (basic vs major) varies \u2014 verify yours.",
+      plans:[{n:"Humana Extend 5000",s:"6-mo wait",u:P+"humana-extend-5000",pc:675},{n:"Mutual of Omaha",s:"12-mo wait",u:P+"mutual-of-omaha-dental",pc:675},{n:"Ameritas PrimeStar",s:"Day 1 \u00b7 20% Y1",u:P+"ameritas-primestar",pc:1050},{n:"UHC Primary Dental",s:"not covered",u:P+"uhc-primary-dental",pc:null}],
+      verdict:"Root canals rarely schedule themselves politely. <strong>If endodontic risk is why you're shopping,</strong> day-one eligibility \u2014 even at 20% \u2014 is the feature that matters.",
+      cta:[P+"ameritas-primestar","Read the Ameritas review \u2192"],
+      tk:[["Root canal, typical fee","$1,300"],["Best post-wait cost","$675 \u00b7 Humana / MoO","good"],["Only day-one payer","Ameritas (20% Y1)"],["Ask your carrier","Basic or major? It moves the date"]]},
+    cleaning:{fee:"$0\u2013$220",max:1,note:"Two cleanings, exam, X-rays per year. Every plan on the shelf covers preventive at 100% in network from day one.",
+      plans:[{n:"UHC Primary Dental",s:"~$30/mo \u00b7 1\u20133 day start",u:P+"uhc-primary-dental",pc:0},{n:"Aetna Dental Direct",s:"~$50/mo",u:P+"aetna-dental-direct",pc:0},{n:"Ameritas PrimeStar",s:"~$60/mo \u00b7 off-cap",u:P+"ameritas-primestar",pc:0},{n:"Guardian Premier 2.0",s:"~$70/mo",u:P+"guardian-premier-ppo",pc:0}],
+      verdict:"<strong>All six plans cover preventive care at 100% from day one.</strong> If cleanings are all you need, the only question is the premium \u2014 and UHC's ~$30/month is the floor.",
+      cta:[P+"uhc-primary-dental","Read the UHC review \u2192"],
+      tk:[["Preventive year (2 visits)","$0 in network","good"],["Cheapest premium","UHC \u00b7 ~$30/mo"],["Fastest activation","UHC \u00b7 1\u20133 business days"],["Bonus","Ameritas keeps cleanings off your cap"]]},
+    braces:{fee:"$6,000",max:6000,note:"Typical child orthodontic case. Coverage applies to dependents under 19 after a 12-month wait; lifetime ortho maximum applies.",
+      plans:[{n:"Guardian Premier 2.0",s:"50% \u00b7 <19 \u00b7 12-mo wait",u:P+"guardian-premier-ppo",pc:3000},{n:"Humana Extend 5000",s:"not covered",u:P+"humana-extend-5000",pc:null},{n:"Aetna Dental Direct",s:"not covered",u:P+"aetna-dental-direct",pc:null},{n:"Mutual of Omaha",s:"not covered",u:P+"mutual-of-omaha-dental",pc:null}],
+      verdict:"<strong>One plan. One strategy:</strong> enroll the family a year before the orthodontist says go \u2014 and confirm the ortho lifetime maximum in writing.",
+      cta:[P+"guardian-premier-ppo","Read the Guardian family review \u2192"],
+      tk:[["Child ortho, typical case","$6,000"],["Only covered option","Guardian \u00b7 50%","good"],["The play","Enroll 12 months ahead"],["Confirm","Ortho lifetime maximum"]]}
+  };
+  var rowsEl=document.getElementById('dd-rows'),feeEl=document.getElementById('dd-fee'),vEl=document.getElementById('dd-verdict'),cEl=document.getElementById('dd-tcta'),tEl=document.getElementById('dd-tbody'),nEl=document.getElementById('dd-note');
+  if(!rowsEl) return;
+  function money(n){return '$'+n.toLocaleString('en-US');}
+  function render(k){
+    var t=TX[k];feeEl.textContent=t.fee;nEl.textContent=t.note;
+    rowsEl.innerHTML=t.plans.map(function(p){
+      var cov=p.pc!==null;var w=cov&&t.max>1?Math.max(6,Math.round((p.pc/t.max)*100)):(cov?6:0);
+      return '<a class="dd-row" href="'+p.u+'"><span class="n">'+p.n+'<small>'+p.s+'</small></span><span class="dd-bar"><i data-w="'+w+'"></i></span>'+(cov?'<span class="c">'+money(p.pc)+'</span>':'<span class="c na">PLAN PAYS $0</span>')+'</a>';
+    }).join('');
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      rowsEl.querySelectorAll('.dd-bar i').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%';});
+    });});
+    vEl.innerHTML=t.verdict;cEl.href=t.cta[0];cEl.textContent=t.cta[1];
+    tEl.innerHTML=t.tk.map(function(r){return '<div class="dd-tline"><span class="k">'+r[0]+'</span><span class="v'+(r[2]?' '+r[2]:'')+'">'+r[1]+'</span></div>';}).join('');
+  }
+  document.querySelectorAll('[data-ddtx]').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('[data-ddtx]').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');render(b.getAttribute('data-ddtx'));
+    });
+  });
+  render('crown');
+})();
+</script>
 
 </body>
 </html>
