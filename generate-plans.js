@@ -16,13 +16,9 @@
 const fs = require('fs');
 
 const SUPABASE_URL = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
-const KEY = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY;
+const KEY = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY
+  || 'sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf'; // publishable key – safe to commit
 const PAGE = process.env.PLANS_PAGE || 'compare-ppo-dental-plans.html';
-
-if (!KEY) {
-  console.error('[generate-plans] Missing SUPABASE_PUBLISHABLE_KEY env var. Aborting.');
-  process.exit(1);
-}
 
 const esc = (s) => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
