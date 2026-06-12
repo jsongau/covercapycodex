@@ -161,5 +161,6 @@
       "destination": "/dental-treatment-cost-estimator.html",
       "permanent": true
     }
-  ]
+  ],
+  "buildCommand": "node -e \"console.log(\"build ok\")\""
 }
