@@ -162,5 +162,6 @@
       "permanent": true
     }
   ],
-  "buildCommand": "node generate-plans.js"
+  "buildCommand": "node generate-plans.js",
+  "outputDirectory": "."
 }
