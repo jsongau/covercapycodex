@@ -16,8 +16,15 @@
 const fs = require('fs');
 
 const SUPABASE_URL = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
-const KEY = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY
-  || 'sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf'; // publishable key – safe to commit
+
+// REST API requires the JWT anon key (not the sb_publishable_ format)
+const ANON_KEY = process.env.SUPABASE_ANON_KEY
+  || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdmJlcWxlZnd3amxyYnl4cGJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTk1NzQsImV4cCI6MjA5NTIzNTU3NH0.AIP9Y5rQ4Ey5gbvxZT5jEVfCL7mxEAJX0KfX50JWmDQ';
+
+// Publishable key injected into browser-facing HTML (safe to commit – it's public)
+const BROWSER_KEY = process.env.SUPABASE_PUBLISHABLE_KEY
+  || 'sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf';
+
 const PAGE = process.env.PLANS_PAGE || 'compare-ppo-dental-plans.html';
 
 const esc = (s) => String(s ?? '')
@@ -33,7 +40,7 @@ async function main() {
     SUPABASE_URL + '/rest/v1/ppo_plans?is_active=eq.true&order=sort_order.asc'
     + '&select=plan_key,name,name_em,sub_carrier,monthly_text,cap_text,'
     + 'table_preventive,table_basic,table_major,table_implant,table_ortho,table_watch,plan_page,verified_at',
-    { headers: { apikey: KEY, Authorization: 'Bearer ' + KEY } }
+    { headers: { apikey: ANON_KEY, Authorization: 'Bearer ' + ANON_KEY } }
   );
   if (!res.ok) {
     console.error('[generate-plans] Supabase returned', res.status, await res.text());
@@ -87,8 +94,8 @@ async function main() {
   html = html.replace(/"dateModified":\s*"[0-9-]+"/, `"dateModified": "${isoDate}"`);
   html = html.replace(/"lastReviewed":\s*"[0-9-]+"/, `"lastReviewed": "${isoDate}"`);
 
-  // 4. Inject the publishable key token
-  html = html.split('__SUPABASE_PUBLISHABLE_KEY__').join(KEY);
+  // 4. Inject the publishable key token (browser-facing)
+  html = html.split('__SUPABASE_PUBLISHABLE_KEY__').join(BROWSER_KEY);
 
   fs.writeFileSync(PAGE, html);
   console.log('[generate-plans] Wrote', PAGE, '| verified', dateText);
