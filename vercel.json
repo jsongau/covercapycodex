@@ -161,6 +161,5 @@
       "destination": "/dental-treatment-cost-estimator.html",
       "permanent": true
     }
-  ],
-  "buildCommand": "node generate-plans.js"
+  ]
 }
