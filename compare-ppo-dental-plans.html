@@ -4014,6 +4014,4150 @@ loadPlans();
       cta:[P+"uhc-primary-dental","Read the UHC review \u2192"],
       tk:[["Preventive year (2 visits)","$0 in network","good"],["Cheapest premium","UHC \u00b7 ~$30/mo"],["Fastest activation","UHC \u00b7 1\u20133 business days"],["Bonus","Ameritas keeps cleanings off your cap"]]},
     cavity:{fee:"~$250",max:250,note:"One-surface composite filling \u2014 \u201cbasic\u201d care, covered day one on most of the shelf at very different rates.",
+      plans:[{n:"Guardian Premier 2.0",s:"85% \u00b7 Day 1",u:P+"guardian-premier-ppo",pc:80},{n:"Mutual of Omaha",s:"80% \u00b7 Day 1",u:P+"mutual-of-omaha-dental",pc:90},{n:"Ameritas PrimeStar",s:"80% \u00b7 Day 1",u:P+"ameritas-primestar",pc:90},{n:"UHC Primary Dental",s:"50% \u00b7 Day 1",u:P+"uhc-primary-dental",pc:150}],
+      verdict:"Fillings are where day-one coverage actually differs: <strong>Guardian's 85% is the highest immediate basic rate on the shelf</strong>, and even the $30 starter plan pays half.",
+      cta:[P+"guardian-premier-ppo","Read the Guardian review \u2192"],
+      tk:[["Filling, typical fee","~$250"],["Best day-one rate","Guardian \u00b7 85%","good"],["Budget option","UHC \u00b7 50% at ~$30/mo"],["Good to know","Basic \u2260 major \u2014 crowns wait longer"]]},
+    rootcanal:{fee:"~$1,300",max:1300,note:"Molar root canal, in network, after the applicable waiting period. Whether yours counts as basic or major moves the date \u2014 verify the classification.",
+      plans:[{n:"Humana Extend 5000",s:"6-mo wait",u:P+"humana-extend-5000",pc:675},{n:"Mutual of Omaha",s:"12-mo wait",u:P+"mutual-of-omaha-dental",pc:675},{n:"Ameritas PrimeStar",s:"Day 1 \u00b7 20% Y1",u:P+"ameritas-primestar",pc:1050},{n:"UHC Primary Dental",s:"not covered",u:P+"uhc-primary-dental",pc:null}],
+      verdict:"Root canals rarely schedule themselves politely. <strong>If endodontic risk is why you're shopping,</strong> day-one eligibility \u2014 even at 20% \u2014 is the feature that matters.",
+      cta:[P+"ameritas-primestar","Read the Ameritas review \u2192"],
+      tk:[["Root canal, typical fee","~$1,300"],["Best post-wait cost","$675 \u00b7 Humana / MoO","good"],["Only day-one payer","Ameritas (20% Y1)"],["Ask your carrier","Basic or major? It moves the date"]]},
+    crown:{fee:"~$1,600",max:1600,note:"Crowns are \u201cmajor\u201d work on every plan here \u2014 the waiting period, not the percentage, is what separates them.",
+      plans:[{n:"Humana Extend 5000",s:"6-mo wait",u:P+"humana-extend-5000",pc:825},{n:"Guardian Premier 2.0",s:"12-mo wait",u:P+"guardian-premier-ppo",pc:825},{n:"Ameritas PrimeStar",s:"Day 1 \u00b7 20% Y1",u:P+"ameritas-primestar",pc:1290},{n:"UHC Primary Dental",s:"not covered",u:P+"uhc-primary-dental",pc:null}],
+      verdict:"<strong>Need it now?</strong> Ameritas is the only plan that pays anything on a day-one crown. <strong>Can it wait six months?</strong> Humana halves the industry's 12-month clock.",
+      cta:[P+"ameritas-primestar","Read the Ameritas review \u2192"],
+      tk:[["Crown, typical office fee","~$1,600"],["Best post-wait cost","$825 \u00b7 Humana / Guardian","good"],["Fastest payout","Ameritas \u00b7 day one (20%)"],["Watch for","Crown = \u201cmajor\u201d, not \u201cbasic\u201d"]]}
+  };
+  var rowsEl=document.getElementById('dd-rows'),feeEl=document.getElementById('dd-fee'),vEl=document.getElementById('dd-verdict'),cEl=document.getElementById('dd-tcta'),tEl=document.getElementById('dd-tbody'),nEl=document.getElementById('dd-note');
+  if(!rowsEl) return;
+  function money(n){return '$'+n.toLocaleString('en-US');}
+  function render(k){
+    var t=TX[k];feeEl.textContent=t.fee;nEl.textContent=t.note;
+    rowsEl.innerHTML=t.plans.map(function(p){
+      var cov=p.pc!==null;var w=cov&&t.max>1?Math.max(6,Math.round((p.pc/t.max)*100)):(cov?6:0);
+      return '<a class="dd-row" href="'+p.u+'"><span class="n">'+p.n+'<small>'+p.s+'</small></span><span class="dd-bar"><i data-w="'+w+'"></i></span>'+(cov?'<span class="c">'+money(p.pc)+'</span>':'<span class="c na">PLAN PAYS $0</span>')+'</a>';
+    }).join('');
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      rowsEl.querySelectorAll('.dd-bar i').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%';});
+    });});
+    vEl.innerHTML=t.verdict;cEl.href=t.cta[0];cEl.textContent=t.cta[1];
+    tEl.innerHTML=t.tk.map(function(r){return '<div class="dd-tline"><span class="k">'+r[0]+'</span><span class="v'+(r[2]?' '+r[2]:'')+'">'+r[1]+'</span></div>';}).join('');
+  }
+  document.querySelectorAll('[data-ddtx]').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('[data-ddtx]').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');render(b.getAttribute('data-ddtx'));
+    });
+  });
+  render('cleaning');
+})();
+</script>
+
+
+<!-- ============ COVERCAPY GLOSSARY TOOLTIPS (ported from v157, current theme) ============ -->
+<style>
+.dd-tip{position:relative;display:inline;cursor:help;border-bottom:1px dotted rgba(184,146,79,.6);padding-bottom:1px;transition:color .2s,border-color .2s;color:inherit}
+.dd-tip:hover{color:#15524A;border-bottom-color:#15524A}
+.dd-tooltip{position:fixed;z-index:99999;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .22s ease,transform .22s cubic-bezier(.34,1.3,.64,1);max-width:300px;width:max-content;background:linear-gradient(165deg,#0E3A33,#15524A);border:1px solid rgba(184,146,79,.45);border-radius:14px;padding:13px 15px;box-shadow:0 12px 40px rgba(8,42,48,.4),0 0 22px rgba(184,146,79,.12);font-family:'Inter Tight',Inter,sans-serif}
+.dd-tooltip.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.dd-tooltip-title{font-family:'Fraunces',Georgia,serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:5px;line-height:1.25}
+.dd-tooltip-body{font-size:11.5px;color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:8px}
+.dd-tooltip-why{font-size:10.5px;color:#BFDCCB;font-weight:700;line-height:1.5;padding-top:8px;border-top:1px dashed rgba(184,146,79,.3)}
+.dd-tooltip-why::before{content:'\2728 Why it matters: ';color:#E8C886;font-weight:800}
+.dd-tooltip-link{display:inline-block;margin-top:9px;font-size:11px;font-weight:800;color:#E8C886;text-decoration:none}
+.dd-tooltip-link:hover{text-decoration:underline}
+.dd-tooltip-arrow{position:absolute;width:10px;height:10px;background:#0E3A33;border-right:1px solid rgba(184,146,79,.45);border-bottom:1px solid rgba(184,146,79,.45);transform:rotate(45deg);bottom:-6px;left:50%;margin-left:-5px}
+.dd-tooltip[data-flipped="true"] .dd-tooltip-arrow{bottom:auto;top:-6px;border-right:none;border-bottom:none;border-left:1px solid rgba(184,146,79,.45);border-top:1px solid rgba(184,146,79,.45);background:#15524A}
+@media (max-width:760px){.dd-tooltip{max-width:calc(100vw - 32px)}}
+</style>
+<script>
+(function(){
+  var DEFS={
+    "waiting-period":{t:"Waiting Period",b:"The time after enrollment before a benefit becomes active. Preventive care typically has no waiting period; basic care waits 3\u20136 months and major work 6\u201312 months.",w:"Knowing the waiting period tells you when treatment will actually be covered \u2014 enroll before you need the work, not after."},
+    "annual-maximum":{t:"Annual Maximum",b:"The most a plan will pay in one benefit year \u2014 $1,000 to $5,000 on this shelf. You keep coverage after hitting it; the plan just stops paying until the year resets.",w:"A crown-and-implant year can blow through a small cap. Match the maximum to the treatment ahead."},
+    "deductible":{t:"Deductible",b:"What you pay before the plan starts paying \u2014 $50 per person on every plan we shelve, usually waived for preventive care.",w:"It's subtracted before the percentage applies, so it shows up in every estimate on this page."},
+    "coinsurance":{t:"Coinsurance",b:"The percentage split after your deductible. \u201c50% major\u201d means the plan pays half the allowed fee for crowns and dentures \u2014 you pay the rest.",w:"Two plans can both \u201ccover crowns\u201d and leave you with very different bills."},
+    "in-network":{t:"In-Network Dentist",b:"A dentist who accepts the carrier's negotiated fees. In network, both your share and the plan's go further; out of network, the dentist may balance-bill the difference.",w:"The same procedure can cost hundreds more out of network \u2014 verify your dentist before enrolling."},
+    "missing-tooth":{t:"Missing Tooth Clause",b:"A provision that can exclude coverage for replacing teeth lost before your policy began.",w:"If you already have a gap and want an implant, this one sentence decides whether the plan works for you at all. Ask in writing."},
+    "basic-major":{t:"Basic vs. Major Care",b:"Basic care: fillings, simple extractions \u2014 covered early at higher rates. Major care: crowns, root canals, dentures, implants \u2014 longer waits, lower percentages.",w:"Misreading a crown as \u201cbasic\u201d is the most common way buyers get surprised."}
+  };
+  var ANCHOR={"waiting-period":"term-waiting-period","annual-maximum":"term-annual-maximum","deductible":"term-deductible","coinsurance":"term-coinsurance","in-network":"term-network","missing-tooth":"term-missing-tooth","basic-major":"term-ppo"};
+  var tip=null,cur=null,hideT=null;
+  function makeTip(){
+    if(tip) return tip;
+    tip=document.createElement('div');
+    tip.className='dd-tooltip';
+    tip.innerHTML='<div class="dd-tooltip-title"></div><div class="dd-tooltip-body"></div><div class="dd-tooltip-why"></div><a class="dd-tooltip-link" href="#ppo-dictionary">Read in the PPO dictionary \u2192</a><div class="dd-tooltip-arrow"></div>';
+    document.body.appendChild(tip);
+    tip.addEventListener('mouseenter',function(){if(hideT)clearTimeout(hideT);});
+    tip.addEventListener('mouseleave',hide);
+    return tip;
+  }
+  function show(el){
+    cur=el;var t=makeTip();
+    var key=el.getAttribute('data-term')||'';
+    var d=DEFS[key]||{t:el.getAttribute('data-tip-title')||'',b:el.getAttribute('data-tip-body')||'',w:el.getAttribute('data-tip-why')||''};
+    t.querySelector('.dd-tooltip-title').textContent=d.t;
+    t.querySelector('.dd-tooltip-body').textContent=d.b;
+    var w=t.querySelector('.dd-tooltip-why');
+    if(d.w){w.style.display='';w.textContent=d.w;}else{w.style.display='none';}
+    t.querySelector('.dd-tooltip-link').href='#'+(ANCHOR[key]||'ppo-dictionary');
+    t.style.left='-9999px';t.style.top='-9999px';t.removeAttribute('data-flipped');
+    t.classList.add('visible');
+    requestAnimationFrame(function(){position(el,t);});
+  }
+  function hide(){if(tip)tip.classList.remove('visible');cur=null;}
+  function scheduleHide(){if(hideT)clearTimeout(hideT);hideT=setTimeout(hide,180);}
+  function position(el,t){
+    var r=el.getBoundingClientRect(),tr=t.getBoundingClientRect(),vw=window.innerWidth,vh=window.innerHeight,gap=12;
+    var left=r.left+r.width/2-tr.width/2,top=r.top-tr.height-gap,flip=false;
+    if(top<8){top=r.bottom+gap;flip=true;}
+    if(left<8)left=8;
+    if(left+tr.width>vw-8)left=vw-tr.width-8;
+    if(top+tr.height>vh-8)top=vh-tr.height-8;
+    if(top<8)top=8;
+    t.style.left=left+'px';t.style.top=top+'px';
+    var al=Math.max(12,Math.min(tr.width-12,r.left+r.width/2-left));
+    var ar=t.querySelector('.dd-tooltip-arrow');
+    if(ar){ar.style.left=al+'px';ar.style.marginLeft='-5px';}
+    if(flip)t.setAttribute('data-flipped','true');
+  }
+  document.addEventListener('mouseover',function(e){
+    var el=e.target&&e.target.closest?e.target.closest('.dd-tip'):null;
+    if(el){if(hideT)clearTimeout(hideT);if(el!==cur)show(el);}
+  });
+  document.addEventListener('mouseout',function(e){
+    var el=e.target&&e.target.closest?e.target.closest('.dd-tip'):null;
+    if(el&&(!e.relatedTarget||(!el.contains(e.relatedTarget)&&!(tip&&tip.contains(e.relatedTarget)))))scheduleHide();
+  });
+  document.addEventListener('click',function(e){
+    if(tip&&tip.contains(e.target))return;
+    var el=e.target&&e.target.closest?e.target.closest('.dd-tip'):null;
+    if(el){e.preventDefault();if(cur===el)hide();else show(el);}
+    else if(cur)hide();
+  });
+  window.addEventListener('scroll',function(){if(cur&&tip)position(cur,tip);},true);
+  window.addEventListener('resize',function(){if(cur&&tip)position(cur,tip);});
+})();
+</script>\n</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNBPGSZ1LZ');
+</script>
+
+
+<!-- ==============================================================
+     SEO - CoverCapy - Compare PPO Dental Plans - BUILD 1 (v2)
+     Authority hub build 1: static plan table, visible FAQ with
+     matching schema, compliance sweep (revenue line, dashes,
+     banned words, hyphenated compounds), topical headings,
+     sr-only crawler block removed.
+     ============================================================== -->
+<title>Compare PPO Dental Plans 2026: Six Plans Matched to Your Treatment | CoverCapy</title>
+<meta name="description" content="Compare six PPO dental plans by waiting period, annual maximum, monthly cost, and treatment fit. Verify your dentist accepts the plan before you enroll. UHC, Humana, Guardian, Ameritas, Aetna, Mutual of Omaha." />
+<meta name="keywords" content="compare PPO dental plans, compare PPO dental insurance, best PPO dental insurance 2026, PPO dental insurance for implants, dental insurance for crowns, dental insurance for root canals, dental insurance with no waiting period, dental insurance for cleanings, dental insurance for dentures, dental insurance for whitening, individual PPO dental plans, PPO dentist network, verify dentist in network, UnitedHealthcare Primary Dental PPO, Humana Extend 5000, Guardian Premier 2.0, Ameritas PrimeStar Care Complete, Aetna Dental Direct Preferred PPO, Mutual of Omaha Dental Preferred, CoverCapy" />
+<meta name="author" content="CoverCapy" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta name="theme-color" content="#FAF7F1" />
+<link rel="canonical" href="https://www.covercapy.com/compare-ppo-dental-plans.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoverCapy" />
+<meta property="og:title" content="Compare PPO Dental Plans 2026 | CoverCapy" />
+<meta property="og:description" content="Compare six PPO dental insurance plans by treatment goal, waiting period, annual maximum, monthly cost, and dentist network. Open a Plan Brief, verify your dentist, then activate with confidence." />
+<meta property="og:url" content="https://www.covercapy.com/compare-ppo-dental-plans.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://www.covercapy.com/assets/images/og-compare-ppo-dental-plans.jpg" />
+<meta property="og:image:alt" content="CoverCapy PPO dental plan comparison dashboard" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@covercapy" />
+<meta name="twitter:title" content="Compare PPO Dental Plans 2026 | CoverCapy" />
+<meta name="twitter:description" content="Compare PPO dental plans for implants, crowns, cleanings, root canals, dentures, orthodontics and emergency visits. Verify dentist network before activating." />
+<meta name="twitter:image" content="https://www.covercapy.com/assets/images/og-compare-ppo-dental-plans.jpg" />
+
+<!-- JSON-LD : page specific structured data for rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.covercapy.com/#organization",
+      "name": "CoverCapy",
+      "url": "https://www.covercapy.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.covercapy.com/assets/images/covercapy-logo.svg"
+      },
+      "description": "CoverCapy is a concierge dental network that helps patients compare PPO dental insurance plans, verify dentist network status, estimate treatment fit, and prepare for PPO dental visits."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.covercapy.com/#website",
+      "url": "https://www.covercapy.com",
+      "name": "CoverCapy",
+      "publisher": {
+        "@id": "https://www.covercapy.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.covercapy.com/compare-ppo-dental-plans.html#webpage",
+      "url": "https://www.covercapy.com/compare-ppo-dental-plans.html",
+      "name": "Compare PPO Dental Plans 2026",
+      "isPartOf": {
+        "@id": "https://www.covercapy.com/#website"
+      },
+      "author": {
+        "@id": "https://www.covercapy.com/#organization"
+      },
+      "dateModified": "2026-06-12",
+      "lastReviewed": "2026-06-12",
+      "about": [
+        { "@type": "Thing", "name": "PPO dental insurance" },
+        { "@type": "Thing", "name": "dental insurance for implants" },
+        { "@type": "Thing", "name": "dental insurance for crowns" },
+        { "@type": "Thing", "name": "dental insurance waiting periods" },
+        { "@type": "Thing", "name": "PPO dentist network verification" }
+      ],
+      "description": "Compare PPO dental insurance plans from UnitedHealthcare, Humana, Guardian, Ameritas, Aetna, and Mutual of Omaha by treatment goal, waiting period, annual maximum, monthly cost, and dentist network before activating coverage.",
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.covercapy.com/assets/images/og-compare-ppo-dental-plans.jpg"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.covercapy.com/compare-ppo-dental-plans.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.covercapy.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Compare PPO Dental Plans", "item": "https://www.covercapy.com/compare-ppo-dental-plans.html" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.covercapy.com/compare-ppo-dental-plans.html#smartmatch",
+      "name": "CoverCapy PPO Dental Plan Smart Match",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.covercapy.com/compare-ppo-dental-plans.html",
+      "description": "A free PPO dental plan comparison tool that matches plans by treatment goal, timeline, budget, waiting period, annual maximum, and dentist verification workflow.",
+      "publisher": { "@id": "https://www.covercapy.com/#organization" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Compare PPO dental plans by treatment goal",
+        "Open Plan Brief dossiers",
+        "Filter PPO plans by implants, crowns, preventive care, annual maximum, and waiting period",
+        "Generate a dentist network verification email before activating coverage"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.covercapy.com/compare-ppo-dental-plans.html#plans",
+      "name": "PPO Dental Plans Compared by CoverCapy",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "UnitedHealthcare Primary Dental PPO", "url": "https://www.covercapy.com/uhc-primary-dental.html" },
+        { "@type": "ListItem", "position": 2, "name": "Humana Extend 5000 Dental PPO", "url": "https://www.covercapy.com/humana-extend-5000.html" },
+        { "@type": "ListItem", "position": 3, "name": "Guardian Premier 2.0 Dental PPO", "url": "https://www.covercapy.com/guardian-premier-ppo.html" },
+        { "@type": "ListItem", "position": 4, "name": "Ameritas PrimeStar Care Complete Dental PPO", "url": "https://www.covercapy.com/ameritas-primestar.html" },
+        { "@type": "ListItem", "position": 5, "name": "Aetna Dental Direct Preferred PPO", "url": "https://www.covercapy.com/aetna-dental-direct.html" },
+        { "@type": "ListItem", "position": 6, "name": "Mutual of Omaha Dental Preferred PPO", "url": "https://www.covercapy.com/mutual-of-omaha-dental.html" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.covercapy.com/compare-ppo-dental-plans.html#service",
+      "serviceType": "PPO Dental Plan Comparison",
+      "name": "Compare PPO Dental Plans",
+      "provider": { "@id": "https://www.covercapy.com/#organization" },
+      "areaServed": "United States",
+      "description": "CoverCapy helps patients compare PPO dental plans for preventive care, fillings, crowns, root canals, implants, dentures, whitening, orthodontics, emergency visits, and dentist network fit before activating coverage.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.covercapy.com/compare-ppo-dental-plans.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I compare PPO dental plans?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Compare PPO dental plans on five points: monthly cost, annual maximum, waiting periods for basic and major work, how the plan handles the treatment you actually need, and whether your dentist accepts it. The monthly cost matters least of the five. A plan that excludes your treatment is expensive at any price." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a dental insurance waiting period?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A waiting period is the time between the day your coverage starts and the day a category of treatment becomes eligible. Preventive care is usually covered on Day 1. Basic work such as fillings often waits 0 to 3 months. Major work such as crowns, root canals, and implants commonly waits 6 to 12 months, depending on the plan." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a dental annual maximum?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The annual maximum is the most a dental plan will pay toward your care in one benefit year. The plans on this page range from $1,000 to $5,000. For large treatment such as implants, the annual maximum often matters more than the coverage percentage." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a missing tooth clause?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A missing tooth clause excludes coverage for replacing a tooth that was already missing before your policy started. If you lost a tooth last year and buy a plan today, a missing tooth clause can exclude the implant or bridge that replaces it. Always confirm this clause in writing before enrolling for implant work." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which PPO dental plan is best for implants?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on timing and case size. Humana Extend 5000 has the shortest implant wait at 6 months, with a $2,000 per year implant benefit and a $4,000 lifetime maximum. Mutual of Omaha pays 50% after a 12 month wait under a $5,000 annual maximum. Ameritas covers Phase 1 work such as extraction and bone graft on Day 1. Check the missing tooth clause on any of them." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which PPO dental plan is best for crowns and root canals?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Crowns and root canals are usually classified as major services, so the deciding factors are the major waiting period and the annual maximum. Humana reaches major coverage at 6 months. Ameritas has no waiting period on major but pays 20% in year one and 50% from year two. Guardian and Mutual of Omaha pay 50% after a 12 month wait." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do any of these plans cover braces or Invisalign?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Guardian Premier 2.0 is the only plan on this page with orthodontic coverage. It pays 50% for dependents under 19 after a 12 month waiting period. None of the six plans cover adult orthodontics." }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can a PPO dental plan start?",
+          "acceptedAnswer": { "@type": "Answer", "text": "UnitedHealthcare Primary Dental and Ameritas PrimeStar Complete are typically active within 1 to 3 business days, with preventive care covered on Day 1. Guardian Premier 2.0 activates on the 1st of the next month. Fast activation covers preventive and basic work first; major categories still follow each plan's waiting periods." }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I verify my dentist before buying PPO dental insurance?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, before you enroll, not after. PPO networks vary by state, ZIP code, office, and plan version, and carrier directories are often out of date. Email or call the dental office directly and ask if they are in network with the exact plan name. The verification tool on this page writes that email for you." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I buy my own PPO if I have coverage through work or Medi-Cal?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Many people buy an individual PPO while waiting for work benefits to start, when their employer plan is too limited for planned treatment, or when moving from Medi-Cal to private coverage. Your situation changes which plan fits, so start with the treatment you need and the timeline you have." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<!-- Shared CoverCapy shell styles -->
+<link rel="stylesheet" href="assets/css/mega-nav.css">
+<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="assets/css/footer.css">
+
+<style>
+
+/* Shell mounts for shared mega nav + hero slider */
+#cc-nav-mount{ min-height:72px; }
+#page-start{
+  display:block;
+  height:0;
+  scroll-margin-top:96px;
+}
+#main-content{
+  scroll-margin-top:96px;
+}
+@media (max-width:760px){
+  #page-start,
+  #main-content{
+    scroll-margin-top:82px;
+  }
+}
+.cc-page-shell{ position:relative; z-index:1; }
+
+/* ================================================================
+   CoverCapy - Compare PPO Dental Plans
+   Editorial concierge edition - ivory, coastal, lavender, gold
+   ================================================================ */
+
+:root{
+  /* Type */
+  --ff-serif: 'Fraunces', Georgia, 'Iowan Old Style', serif;
+  --ff-sans:  'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ff-mono:  ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  /* Coastal green primary */
+  --deep:        #0E3A33;
+  --deep-2:      #15524A;
+  --deep-3:      #1E6B61;
+  --teal:        #1B5E5A;
+  --teal-night:  #082A30;
+  --teal-mist:   #DCEAE7;
+  --teal-faint:  #F0F7F5;
+
+  /* Cream + ivory */
+  --paper:    #FFFCF6;
+  --paper-2:  #FBF6EB;
+  --ivory:    #F8F3E8;
+  --ivory-2:  #FBF7EE;
+  --vellum:   #F2EDE2;
+
+  /* Gold (editorial accent) */
+  --gold:      #B8924F;
+  --gold-deep: #8A6A30;
+  --gold-soft: #F1E4C8;
+  --gold-faint:#FAF3E0;
+
+  /* Pastel lavender */
+  --lav:       #C7B8E0;
+  --lav-d:     #826FA6;
+  --plum:      #6B5A85;
+  --plum-d:    #574773;
+  --lav-l:     #E9E2F5;
+  --lav-vl:    #F7F4FC;
+  --lav-line:  rgba(130,111,166,.22);
+
+  /* Ink + lines */
+  --ink:        #0F1F26;
+  --ink-2:      #14201F;
+  --ink-soft:   #3C5560;
+  --ink-mid:    #556A67;
+  --ink-mute:   #6E8590;
+  --ink-faint:  #9FB1B9;
+  --line:       rgba(15,31,38,.08);
+  --line-mid:   rgba(15,31,38,.14);
+  --line-strong:rgba(15,31,38,.22);
+
+  /* Elevation */
+  --sh-1:  0 1px 2px rgba(15,31,38,.04), 0 4px 14px rgba(15,31,38,.06);
+  --sh-2:  0 2px 6px rgba(15,31,38,.05), 0 14px 38px rgba(15,31,38,.10);
+  --sh-3:  0 4px 12px rgba(15,31,38,.06), 0 28px 64px rgba(15,31,38,.14);
+  --sh-lg: 0 4px 12px rgba(15,31,38,.06), 0 30px 80px rgba(15,31,38,.14);
+  --sh-modal: 0 24px 80px rgba(8,42,48,.32), 0 8px 24px rgba(8,42,48,.18);
+
+  /* Easings */
+  --e-out:  cubic-bezier(.16,1,.3,1);
+  --e-luxe: cubic-bezier(.77,0,.18,1);
+  --e-soft: cubic-bezier(.4,0,.2,1);
+
+  /* Theme tokens (default = sage/Journey); swap via timeline buttons */
+  --th-accent:    #7BAE8D;
+  --th-accent-2:  #BFDCCB;
+  --th-bg:        rgba(191,220,203,.30);
+  --th-line:      rgba(123,174,141,.36);
+  --th-line-soft: rgba(123,174,141,.18);
+  --th-glow:      rgba(123,174,141,.32);
+  --th-ink:       #2f5849;
+  --th-faint:     rgba(123,174,141,.10);
+}
+
+body.theme-now,
+[data-theme="now"]{
+  --th-accent:#7BAE8D; --th-accent-2:#BFDCCB; --th-bg:rgba(191,220,203,.30);
+  --th-line:rgba(123,174,141,.36); --th-line-soft:rgba(123,174,141,.18);
+  --th-glow:rgba(123,174,141,.32); --th-ink:#2f5849; --th-faint:rgba(123,174,141,.10);
+}
+body.theme-wait,
+[data-theme="wait"]{
+  --th-accent:#D49A5F; --th-accent-2:#F1CFA8; --th-bg:rgba(241,207,168,.32);
+  --th-line:rgba(212,154,95,.38); --th-line-soft:rgba(212,154,95,.18);
+  --th-glow:rgba(212,154,95,.34); --th-ink:#6e3f1f; --th-faint:rgba(212,154,95,.10);
+}
+body.theme-plan,
+[data-theme="plan"]{
+  --th-accent:#8B72B7; --th-accent-2:#D8C9EF; --th-bg:rgba(216,201,239,.32);
+  --th-line:rgba(139,114,183,.38); --th-line-soft:rgba(139,114,183,.18);
+  --th-glow:rgba(139,114,183,.34); --th-ink:#44326d; --th-faint:rgba(139,114,183,.10);
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--ff-sans);
+  font-feature-settings:"ss01","cv11";
+  color:var(--ink);
+  background:
+    radial-gradient(1100px 700px at 88% 6%, var(--th-bg), transparent 60%),
+    radial-gradient(900px 600px at 6% 92%, var(--th-bg), transparent 60%),
+    var(--ivory);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  line-height:1.55;
+  transition: background 1.1s var(--e-luxe);
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:9999;
+  opacity:.035; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+a{ color:inherit; text-decoration:none; }
+::selection{ background:var(--th-faint); color:var(--th-ink); }
+img,svg{ max-width:100%; display:block; }
+
+/* ================================================================
+   PRIMITIVES - containers, eyebrow, headlines, buttons
+   ================================================================ */
+.container{ max-width:1200px; margin:0 auto; padding:0 28px; }
+.container-narrow{ max-width:920px; margin:0 auto; padding:0 28px; }
+@media (max-width:640px){
+  .container, .container-narrow{ padding:0 18px; }
+}
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--ff-sans);
+  font-size:10.5px; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink-mid);
+  margin-bottom:14px;
+  transition: color .8s var(--e-luxe);
+}
+.eyebrow::before{
+  content:""; width:24px; height:1px;
+  background:var(--th-accent); opacity:.7;
+  transition: background .8s var(--e-luxe);
+}
+.eyebrow .sparkle{
+  color:var(--th-accent);
+  letter-spacing:0;
+  transition: color .8s var(--e-luxe);
+}
+
+.h1{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 144, "SOFT" 50;
+  font-size:clamp(36px, 5.2vw, 60px);
+  line-height:1.02;
+  letter-spacing:-.028em;
+  color:var(--teal-night);
+}
+.h1 em{
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 144, "SOFT" 80, "WONK" 1;
+  color:var(--th-ink);
+  transition: color .8s var(--e-luxe);
+}
+
+.h2{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 96, "SOFT" 50;
+  font-size:clamp(28px, 3.6vw, 42px);
+  line-height:1.08;
+  letter-spacing:-.024em;
+  color:var(--teal-night);
+}
+.h2 em{
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 96, "SOFT" 80, "WONK" 1;
+  color:var(--th-ink);
+  transition: color .8s var(--e-luxe);
+}
+
+.lede{
+  font-size:16px;
+  line-height:1.65;
+  color:var(--ink-mid);
+  max-width:660px;
+  letter-spacing:-.003em;
+}
+.lede strong{ color:var(--ink-soft); font-weight:600; }
+.lede em{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  color:var(--th-ink);
+  font-weight:400;
+  transition: color .8s var(--e-luxe);
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:13px 22px;
+  border-radius:999px;
+  font-family:var(--ff-sans);
+  font-size:13.5px; font-weight:600;
+  letter-spacing:.005em;
+  cursor:pointer;
+  white-space:nowrap;
+  transition: transform .3s var(--e-out), box-shadow .3s var(--e-out), background .8s var(--e-luxe), border-color .8s var(--e-luxe), color .8s var(--e-luxe);
+}
+.btn .arr{ display:inline-block; transition: transform .3s var(--e-out); }
+.btn:hover .arr{ transform:translateX(4px); }
+
+.btn-primary{
+  background:linear-gradient(180deg, var(--th-accent) 0%, var(--th-ink) 100%);
+  color:var(--paper);
+  border:1px solid var(--th-ink);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.18) inset,
+    0 -1px 0 rgba(0,0,0,.18) inset,
+    0 8px 24px var(--th-glow),
+    0 2px 6px rgba(15,31,38,.10);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.22) inset,
+    0 -1px 0 rgba(0,0,0,.22) inset,
+    0 14px 34px var(--th-glow),
+    0 2px 8px rgba(15,31,38,.16);
+}
+.btn-outline{
+  background:var(--paper);
+  color:var(--ink-soft);
+  border:1px solid var(--line-mid);
+}
+.btn-outline:hover{
+  background:var(--th-faint);
+  border-color:var(--th-accent);
+  color:var(--th-ink);
+  transform:translateY(-1px);
+  box-shadow:var(--sh-1);
+}
+.btn-ghost{
+  background:transparent;
+  color:var(--ink-mid);
+  padding:13px 4px;
+  border-bottom:1px solid transparent;
+  border-radius:0;
+}
+.btn-ghost:hover{
+  color:var(--th-ink);
+  border-bottom-color:var(--th-accent);
+}
+
+/* ================================================================
+   SECTION 1 - INTRO - EDITORIAL OPENING
+   ================================================================ */
+.intro{
+  position:relative;
+  padding:64px 0 56px;
+}
+@media (max-width:640px){ .intro{ padding:44px 0 36px; } }
+
+.intro-grid{
+  display:grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .85fr);
+  gap:48px;
+  align-items:end;
+}
+@media (max-width:880px){
+  .intro-grid{ grid-template-columns:1fr; gap:28px; }
+}
+
+.intro-lede{ margin-top:18px; }
+
+.intro-pillars{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+  padding:18px;
+  background:rgba(255,252,246,.6);
+  border:1px solid var(--th-line-soft);
+  border-radius:18px;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:var(--sh-1);
+  transition: border-color .8s var(--e-luxe);
+}
+.intro-pillar{
+  display:flex; flex-direction:column; gap:5px;
+  padding:10px 6px;
+  text-align:left;
+  position:relative;
+}
+.intro-pillar + .intro-pillar::before{
+  content:""; position:absolute;
+  left:-5px; top:14%; bottom:14%;
+  width:1px;
+  background:var(--th-line-soft);
+  transition: background .8s var(--e-luxe);
+}
+.intro-pillar .step{
+  font-family:var(--ff-mono);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.18em;
+  color:var(--ink-faint);
+}
+.intro-pillar .label{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 80;
+  font-size:15px;
+  color:var(--th-ink);
+  letter-spacing:-.01em;
+  line-height:1.15;
+  transition: color .8s var(--e-luxe);
+}
+.intro-pillar .copy{
+  font-size:11.5px;
+  color:var(--ink-mute);
+  line-height:1.5;
+  margin-top:3px;
+}
+@media (max-width:560px){
+  .intro-pillars{ grid-template-columns:1fr; gap:4px; padding:14px; }
+  .intro-pillar + .intro-pillar::before{ left:14%; right:14%; top:0; width:auto; height:1px; bottom:auto; }
+  .intro-pillar{ padding:12px 8px; }
+}
+
+.intro-trust{
+  display:flex; align-items:center; gap:14px;
+  margin-top:28px;
+  font-size:12.5px;
+  color:var(--ink-mute);
+  flex-wrap:wrap;
+}
+.intro-trust .stars{ color:var(--gold); letter-spacing:.08em; }
+.intro-trust .pip{
+  width:3px; height:3px; border-radius:50%;
+  background:var(--ink-faint);
+}
+
+/* ================================================================
+   SECTION 2 - SMART MATCH - FIND YOUR FIT
+   ================================================================ */
+.sim{
+  position:relative;
+  padding:48px 0 64px;
+}
+.sim-head{ text-align:center; margin-bottom:32px; max-width:680px; margin-left:auto; margin-right:auto; }
+.sim-head .eyebrow{ justify-content:center; }
+.sim-head .lede{ margin:14px auto 0; }
+
+.sim-card{
+  position:relative;
+  max-width:1100px;
+  margin:0 auto;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:24px;
+  box-shadow: var(--sh-lg);
+  overflow:hidden;
+}
+.sim-card::before{
+  content:""; position:absolute; top:0; left:8%; right:8%;
+  height:2px;
+  background:linear-gradient(90deg, transparent, var(--th-accent), transparent);
+  opacity:.85;
+  border-radius:2px;
+  transition: background .8s var(--e-luxe);
+}
+.sim-card::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(540px 360px at 100% -10%, var(--th-glow), transparent 55%),
+    radial-gradient(420px 300px at 0% 110%, var(--th-glow), transparent 55%);
+  opacity:.5;
+  transition: background .8s var(--e-luxe);
+}
+
+.sim-inner{
+  position:relative; z-index:1;
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap:0;
+  align-items:stretch;
+}
+@media (max-width:880px){
+  .sim-inner{ grid-template-columns:1fr; }
+}
+
+.sim-form{
+  padding:26px 28px 22px;
+  border-right:1px solid var(--line);
+}
+@media (max-width:880px){
+  .sim-form{ border-right:0; border-bottom:1px solid var(--line); }
+}
+
+.sim-form-title{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 60, "SOFT" 80, "WONK" 1;
+  font-size:20px;
+  color:var(--th-ink);
+  margin-bottom:5px;
+  transition: color .8s var(--e-luxe);
+}
+.sim-form-sub{
+  font-size:12.5px;
+  color:var(--ink-mute);
+  line-height:1.55;
+  margin-bottom:22px;
+}
+
+.sec-label{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:10px;
+}
+.sec-label::after{
+  content:""; flex:1; height:1px; background:var(--line);
+}
+
+/* Treatment pill grid - 4x2 (8 options) */
+.treat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-bottom:18px;
+}
+@media (min-width:480px){
+  .treat-grid{ grid-template-columns:repeat(4, 1fr); }
+}
+.pill{
+  background:var(--paper);
+  border:1px solid var(--line-mid);
+  border-radius:12px;
+  padding:9px 6px 8px;
+  text-align:center;
+  font-family:var(--ff-sans);
+  font-size:10.5px;
+  font-weight:500;
+  color:var(--ink-soft);
+  letter-spacing:-.003em;
+  line-height:1.3;
+  cursor:pointer;
+  transition: background .35s var(--e-luxe), border-color .35s var(--e-luxe), color .35s var(--e-luxe), transform .25s var(--e-out), box-shadow .25s var(--e-out);
+}
+.pill .ico{ font-size:18px; display:block; margin-bottom:3px; filter:saturate(.9); transition:transform .35s var(--e-out); }
+.pill:hover{
+  background:var(--th-faint); border-color:var(--th-accent); color:var(--th-ink);
+  transform:translateY(-1px); box-shadow:var(--sh-1);
+}
+.pill:hover .ico{ transform:scale(1.08); }
+.pill.sel{
+  background:linear-gradient(180deg, var(--th-accent) 0%, var(--th-ink) 100%);
+  border-color:var(--th-ink);
+  color:var(--paper);
+  transform:translateY(-1px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 8px 22px var(--th-glow);
+}
+
+/* Timeline row */
+.tl-row{ display:flex; gap:6px; margin-bottom:18px; }
+.tl-opt{
+  flex:1;
+  background:var(--paper);
+  border:1px solid var(--line-mid);
+  border-radius:10px;
+  padding:8px 6px 7px;
+  text-align:center;
+  font-family:var(--ff-sans);
+  font-size:10.5px;
+  font-weight:500;
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition: background .35s var(--e-luxe), border-color .35s var(--e-luxe), color .35s var(--e-luxe), transform .25s var(--e-out);
+}
+.tl-opt .ico{ font-size:13px; display:block; margin-bottom:1px; }
+.tl-opt[data-tl="now"]:hover{  background:rgba(123,174,141,.10); border-color:rgba(123,174,141,.36); color:#2f5849; transform:translateY(-1px); }
+.tl-opt[data-tl="wait"]:hover{ background:rgba(212,154,95,.10);  border-color:rgba(212,154,95,.38);  color:#6e3f1f; transform:translateY(-1px); }
+.tl-opt[data-tl="plan"]:hover{ background:rgba(139,114,183,.10); border-color:rgba(139,114,183,.38); color:#44326d; transform:translateY(-1px); }
+.tl-opt[data-tl="now"].sel{  background:linear-gradient(180deg,#7BAE8D,#2f5849); border-color:#2f5849; color:var(--paper); transform:translateY(-1px); box-shadow:0 6px 18px rgba(123,174,141,.42); }
+.tl-opt[data-tl="wait"].sel{ background:linear-gradient(180deg,#D49A5F,#6e3f1f); border-color:#6e3f1f; color:var(--paper); transform:translateY(-1px); box-shadow:0 6px 18px rgba(212,154,95,.42); }
+.tl-opt[data-tl="plan"].sel{ background:linear-gradient(180deg,#8B72B7,#44326d); border-color:#44326d; color:var(--paper); transform:translateY(-1px); box-shadow:0 6px 18px rgba(139,114,183,.42); }
+
+/* Budget */
+.budget{ margin-bottom:8px; }
+.budget-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; }
+.budget-head .lbl{
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.budget-val{
+  font-family:var(--ff-serif);
+  font-weight:400; font-style:italic;
+  font-variation-settings:"opsz" 60, "SOFT" 80;
+  font-size:22px;
+  color:var(--th-ink);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+  line-height:1;
+  transition: color .8s var(--e-luxe);
+}
+.budget-val .mo{
+  font-style:normal;
+  font-size:13px;
+  color:var(--ink-mute);
+  font-variation-settings:"opsz" 30, "SOFT" 50;
+}
+.slider{
+  -webkit-appearance:none; appearance:none;
+  width:100%; height:4px;
+  border-radius:999px;
+  background:var(--th-accent-2);
+  outline:none;
+  margin-top:2px;
+  transition: background .8s var(--e-luxe);
+}
+.slider::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:18px; height:18px;
+  background:linear-gradient(135deg, var(--th-accent), var(--th-ink));
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 0 0 4px var(--paper), 0 2px 8px var(--th-glow);
+  transition:transform .2s var(--e-out);
+}
+.slider::-webkit-slider-thumb:hover{ transform:scale(1.15); }
+.slider::-moz-range-thumb{
+  width:18px; height:18px;
+  background:linear-gradient(135deg, var(--th-accent), var(--th-ink));
+  border-radius:50%;
+  cursor:pointer;
+  border:4px solid var(--paper);
+  box-shadow:0 2px 8px var(--th-glow);
+}
+.slider-labels{
+  display:flex; justify-content:space-between;
+  margin-top:6px;
+  font-family:var(--ff-sans);
+  font-size:10px; font-weight:500;
+  letter-spacing:.04em;
+  color:var(--ink-faint);
+}
+
+.run-cta{
+  margin-top:18px;
+  width:100%;
+  justify-content:center;
+}
+
+/* Result column */
+.sim-result{
+  padding:26px 28px 22px;
+  background:rgba(255,252,246,.4);
+  position:relative;
+}
+
+.result-empty{
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  min-height:300px;
+  color:var(--ink-mute);
+  font-size:13px;
+  line-height:1.6;
+  padding:30px 20px;
+}
+.result-empty .scope-ring{
+  position:relative;
+  width:120px; height:120px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  border:1px solid var(--th-line-soft);
+  display:flex; align-items:center; justify-content:center;
+}
+.result-empty .scope-ring::before{
+  content:""; position:absolute; inset:14px;
+  border-radius:50%; border:1px dashed var(--th-line);
+  animation:scope-rotate 14s linear infinite;
+}
+.result-empty .scope-ring::after{
+  content:""; position:absolute;
+  width:24px; height:24px; border-radius:50%;
+  background:var(--th-accent);
+  opacity:.25;
+}
+.result-empty .scope-dot{
+  position:relative; z-index:1;
+  width:6px; height:6px; border-radius:50%;
+  background:var(--th-ink);
+  box-shadow:0 0 0 4px var(--th-faint), 0 0 18px var(--th-glow);
+  animation:scope-pulse 2.2s ease-in-out infinite;
+}
+@keyframes scope-rotate{ to { transform:rotate(360deg); } }
+@keyframes scope-pulse{
+  0%,100%{ transform:scale(1); opacity:1; }
+  50%{ transform:scale(.7); opacity:.6; }
+}
+.result-empty .em{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  color:var(--th-ink);
+  font-weight:400;
+  transition: color .8s var(--e-luxe);
+}
+
+@keyframes shimmer{
+  0%   { opacity:.35; filter:blur(2px); transform:translateY(6px); }
+  60%  { opacity:.85; filter:blur(.4px); transform:translateY(1px); }
+  100% { opacity:1;   filter:blur(0);    transform:translateY(0); }
+}
+.analyzing{ animation: shimmer .42s var(--e-out); }
+
+.result-head{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 80;
+  font-size:14px;
+  letter-spacing:-.005em;
+  color:var(--th-ink);
+  margin-bottom:12px;
+  transition: color .8s var(--e-luxe);
+}
+.result-head::after{
+  content:""; flex:1; height:1px;
+  background:linear-gradient(90deg, var(--th-accent) 0%, transparent 100%);
+  opacity:.6;
+  transition: background .8s var(--e-luxe);
+}
+.result-head .ast{ color:var(--th-accent); font-style:normal; transition: color .8s var(--e-luxe); }
+
+/* Fit card: closest fit / backup */
+.loadout{
+  position:relative;
+  padding:14px 16px 14px 18px;
+  border-radius:14px;
+  margin-bottom:10px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), background .8s var(--e-luxe), border-color .8s var(--e-luxe);
+}
+.loadout::before{
+  content:""; position:absolute;
+  top:14px; bottom:14px; left:0;
+  width:3px;
+  border-radius:0 2px 2px 0;
+  background:var(--th-accent);
+  opacity:.85;
+  transition: background .8s var(--e-luxe);
+}
+.loadout.primary{
+  background:linear-gradient(180deg, var(--th-faint) 0%, var(--paper) 100%);
+  border-color:var(--th-line);
+  box-shadow:0 2px 6px rgba(15,31,38,.04), 0 14px 30px var(--th-glow);
+}
+.loadout.primary::before{ background:var(--th-accent); opacity:1; }
+.loadout.backup{
+  background:linear-gradient(180deg, rgba(255,252,246,.55) 0%, var(--paper) 100%);
+  border-color:var(--th-line-soft);
+}
+.loadout.backup::before{ background:var(--th-accent); opacity:.55; }
+.loadout:hover{ transform:translateY(-2px); box-shadow:0 2px 6px rgba(15,31,38,.06), 0 22px 48px rgba(15,31,38,.14); }
+
+.loadout-tag{
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 18, "SOFT" 80;
+  font-size:11.5px;
+  color:var(--th-ink);
+  letter-spacing:-.005em;
+  margin-bottom:4px;
+  transition: color .8s var(--e-luxe);
+}
+.loadout.backup .loadout-tag{ opacity:.78; }
+.loadout-name-row{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:10px;
+  margin-bottom:5px;
+}
+.loadout-name{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 60, "SOFT" 50;
+  font-size:19px;
+  line-height:1.1;
+  letter-spacing:-.018em;
+  color:var(--teal-night);
+  flex:1; min-width:0;
+}
+.loadout-name em{
+  font-style:italic;
+  font-variation-settings:"opsz" 60, "SOFT" 80, "WONK" 1;
+  color:var(--th-ink);
+  transition: color .8s var(--e-luxe);
+}
+.loadout-price{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 50;
+  font-size:13px;
+  color:var(--ink-mute);
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.005em;
+}
+.loadout-price .approx{
+  font-style:italic;
+  font-variation-settings:"opsz" 30, "SOFT" 100;
+  color:var(--ink-faint);
+  margin-right:1px;
+}
+.loadout-tagline{
+  font-size:12px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  margin-bottom:9px;
+  letter-spacing:-.002em;
+}
+.loadout-stats{
+  display:flex; flex-wrap:wrap; gap:5px;
+  margin-bottom:8px;
+}
+.chip{
+  display:inline-flex; align-items:center;
+  padding:3px 9px;
+  background:var(--th-faint);
+  border:1px solid var(--th-line-soft);
+  border-radius:999px;
+  font-family:var(--ff-sans);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:var(--th-ink);
+  transition: background .8s var(--e-luxe), border-color .8s var(--e-luxe), color .8s var(--e-luxe);
+}
+.chip.strong{ background:var(--th-accent-2); border-color:var(--th-line); }
+.chip.soft{ background:rgba(255,252,246,.7); border-color:var(--line-mid); color:var(--ink-mid); }
+.loadout-why{
+  display:flex; align-items:flex-start; gap:7px;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 18, "SOFT" 100;
+  font-size:12px;
+  line-height:1.5;
+  color:var(--ink-mute);
+  padding:6px 0 2px;
+  letter-spacing:-.003em;
+}
+.loadout-why .ast{ color:var(--th-accent); font-style:normal; flex-shrink:0; margin-top:1px; transition: color .8s var(--e-luxe); }
+.loadout-why em{
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  color:var(--th-ink);
+  font-weight:400;
+}
+.loadout-actions{
+  display:flex; gap:6px; flex-wrap:wrap;
+  margin-top:9px;
+}
+.mini-btn{
+  flex:1; min-width:120px;
+  display:inline-flex; align-items:center; justify-content:center; gap:5px;
+  font-family:var(--ff-sans);
+  font-size:11px; font-weight:600;
+  letter-spacing:.005em;
+  padding:8px 11px;
+  border-radius:999px;
+  border:1px solid var(--line-mid);
+  background:var(--paper);
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition: all .25s var(--e-out), background .8s var(--e-luxe), border-color .8s var(--e-luxe), color .8s var(--e-luxe);
+  white-space:nowrap;
+}
+.mini-btn:hover{
+  border-color:var(--th-accent); color:var(--th-ink); background:var(--th-faint);
+  transform:translateY(-1px); box-shadow:var(--sh-1);
+}
+.mini-btn.primary{
+  background:linear-gradient(180deg, var(--th-accent), var(--th-ink));
+  border-color:var(--th-ink); color:var(--paper);
+  box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 4px 12px var(--th-glow);
+}
+.mini-btn.primary:hover{
+  box-shadow:0 1px 0 rgba(255,255,255,.22) inset, 0 8px 18px var(--th-glow);
+}
+
+/* ================================================================
+   SECTION 3 - SIDE BY SIDE - STATIC COMPARISON TABLE
+   Static HTML so crawlers and AI systems can read the plan data
+   without JavaScript. The interactive grid below enhances it.
+   ================================================================ */
+.cmp{
+  position:relative;
+  padding:48px 0 28px;
+}
+.cmp-head{ text-align:center; margin-bottom:28px; max-width:680px; margin-left:auto; margin-right:auto; }
+.cmp-head .eyebrow{ justify-content:center; }
+.cmp-head .lede{ margin:14px auto 0; }
+
+.cmp-wrap{
+  max-width:1140px;
+  margin:0 auto;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  border:1px solid var(--lav-line);
+  border-radius:18px;
+  box-shadow:var(--sh-2);
+}
+.cmp-table{
+  width:100%;
+  min-width:980px;
+  border-collapse:collapse;
+  font-size:12.5px;
+  line-height:1.5;
+}
+.cmp-table thead th{
+  font-family:var(--ff-sans);
+  font-size:9.5px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  text-align:left;
+  padding:14px 14px 12px;
+  background:var(--ivory-2);
+  border-bottom:1px solid var(--line-mid);
+  white-space:nowrap;
+}
+.cmp-table tbody th,
+.cmp-table tbody td{
+  padding:13px 14px;
+  border-bottom:1px dashed var(--line);
+  vertical-align:top;
+  text-align:left;
+  color:var(--ink-2);
+  font-weight:400;
+}
+.cmp-table tbody tr:last-child th,
+.cmp-table tbody tr:last-child td{ border-bottom:0; }
+.cmp-table tbody th{
+  position:sticky;
+  left:0;
+  background:var(--paper);
+  min-width:190px;
+  box-shadow:1px 0 0 var(--line);
+}
+.cmp-table tbody th a{
+  font-family:var(--ff-serif);
+  font-size:14.5px;
+  letter-spacing:-.01em;
+  color:var(--teal-night);
+  border-bottom:1px solid var(--gold-soft);
+  transition:color .25s var(--e-out), border-color .25s var(--e-out);
+}
+.cmp-table tbody th a:hover{ color:var(--deep); border-bottom-color:var(--gold); }
+.cmp-table .sub{
+  display:block;
+  font-family:var(--ff-sans);
+  font-size:10px;
+  color:var(--ink-mute);
+  margin-top:3px;
+  letter-spacing:.02em;
+}
+.cmp-table .watch{ color:var(--gold-deep); }
+.cmp-verified{
+  text-align:center;
+  margin:14px auto 0;
+  max-width:680px;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-variation-settings:"opsz" 18, "SOFT" 80;
+  font-size:12.5px;
+  color:var(--ink-mute);
+  letter-spacing:-.003em;
+  padding:0 18px;
+}
+
+/* ================================================================
+   SECTION 4 - ALL SIX PLANS - DETAILED PLAN GRID
+   ================================================================ */
+.scope{
+  position:relative;
+  padding:60px 0 72px;
+  background:
+    radial-gradient(900px 600px at 50% 0%, rgba(255,253,247,.7), transparent 60%),
+    linear-gradient(180deg, transparent 0%, var(--ivory-2) 100%);
+}
+.scope-head{ text-align:center; margin-bottom:30px; max-width:680px; margin-left:auto; margin-right:auto; }
+.scope-head .eyebrow{ justify-content:center; }
+.scope-head .lede{ margin:14px auto 0; }
+
+/* Filter pill bar */
+.filters{
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:7px;
+  margin-bottom:32px;
+}
+.filter{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--ff-sans);
+  font-size:11.5px;
+  font-weight:500;
+  letter-spacing:.01em;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--line-mid);
+  background:rgba(255,253,247,.85);
+  color:var(--ink-mid);
+  cursor:pointer;
+  transition: all .25s var(--e-out), background .8s var(--e-luxe), border-color .8s var(--e-luxe), color .8s var(--e-luxe);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.filter:hover{
+  border-color:var(--th-accent); color:var(--th-ink); background:var(--th-faint);
+  transform:translateY(-1px);
+}
+.filter.active{
+  background:linear-gradient(180deg, var(--th-accent), var(--th-ink));
+  border-color:var(--th-ink); color:var(--paper);
+  box-shadow:0 4px 12px var(--th-glow);
+}
+.filter .glyph{ font-size:13px; }
+
+/* Plan card grid */
+.plan-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  max-width:1140px;
+  margin:0 auto;
+}
+@media (max-width:980px){ .plan-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:620px){ .plan-grid{ grid-template-columns:1fr; gap:14px; } }
+
+.plan-card{
+  position:relative;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  border:1px solid var(--lav-line);
+  border-radius:20px;
+  padding:22px 22px 20px;
+  display:flex; flex-direction:column;
+  box-shadow: var(--sh-2);
+  transition: transform .35s var(--e-out), box-shadow .35s var(--e-out), border-color .35s var(--e-out), opacity .35s var(--e-out);
+  overflow:hidden;
+}
+.plan-card.dim{ opacity:.35; filter:saturate(.6); }
+.plan-card::before{
+  content:""; position:absolute; top:0; left:18px; right:18px;
+  height:1.5px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.7;
+}
+.plan-card::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(480px 320px at 100% -10%, var(--lav-vl), transparent 55%);
+}
+.plan-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--th-line);
+  box-shadow: var(--sh-3);
+}
+
+.plan-head{
+  position:relative; z-index:1;
+  display:flex; align-items:flex-start; gap:12px;
+  margin-bottom:14px;
+}
+.plan-mark{
+  flex-shrink:0;
+  width:36px; height:36px;
+  border-radius:10px;
+  background:linear-gradient(135deg, var(--deep) 0%, var(--teal-night) 100%);
+  color:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:500;
+  font-variation-settings:"opsz" 36, "SOFT" 80;
+  font-size:17px;
+  letter-spacing:-.02em;
+  box-shadow: 0 1px 0 rgba(255,255,255,.16) inset, 0 4px 12px rgba(14,58,51,.30);
+}
+.plan-mark.uhc{      background:linear-gradient(135deg, #003B71, #002648); }
+.plan-mark.humana{   background:linear-gradient(135deg, #0E7E47, #064F2C); }
+.plan-mark.guardian{ background:linear-gradient(135deg, #003B71, #002648); }
+.plan-mark.ameritas{ background:linear-gradient(135deg, #45337A, #2A1F4D); }
+.plan-mark.aetna{    background:linear-gradient(135deg, #7D2A8E, #4E1A59); }
+.plan-mark.moo{      background:linear-gradient(135deg, #8A4F1F, #5C3414); }
+
+.plan-id{ min-width:0; flex:1; }
+.plan-carrier{
+  font-family:var(--ff-sans);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:3px;
+}
+.plan-name{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 60, "SOFT" 50;
+  font-size:20px;
+  line-height:1.1;
+  letter-spacing:-.018em;
+  color:var(--teal-night);
+}
+.plan-name em{
+  font-style:italic;
+  font-variation-settings:"opsz" 60, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+}
+
+.plan-tagline{
+  position:relative; z-index:1;
+  font-size:13px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  margin-bottom:14px;
+  letter-spacing:-.002em;
+  min-height:42px;
+}
+
+.plan-meta{
+  position:relative; z-index:1;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:8px;
+  margin-bottom:14px;
+  padding:11px 12px;
+  background:var(--lav-vl);
+  border:1px solid var(--lav-line);
+  border-radius:11px;
+}
+.plan-meta-cell{ min-width:0; }
+.plan-meta-lbl{
+  font-family:var(--ff-sans);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:2px;
+}
+.plan-meta-val{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 50;
+  font-size:14px;
+  color:var(--deep);
+  letter-spacing:-.005em;
+  line-height:1.2;
+  font-variant-numeric:tabular-nums;
+}
+.plan-meta-val em{
+  font-style:italic;
+  font-variation-settings:"opsz" 30, "SOFT" 80;
+}
+
+.plan-points{
+  position:relative; z-index:1;
+  list-style:none; padding:0; margin:0 0 14px;
+}
+.plan-points li{
+  display:grid;
+  grid-template-columns: 18px 1fr;
+  gap:8px;
+  padding:4px 0;
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--ink-2);
+  letter-spacing:-.002em;
+  border-bottom:1px dashed var(--line);
+}
+.plan-points li:last-child{ border-bottom:0; }
+.plan-points li .num{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 18, "SOFT" 80;
+  font-size:11px;
+  color:var(--gold-deep);
+  line-height:1.5;
+}
+.plan-points li strong{ color:var(--deep); font-weight:600; }
+
+.plan-caution{
+  position:relative; z-index:1;
+  display:flex; align-items:flex-start; gap:8px;
+  padding:9px 11px;
+  background:var(--gold-faint);
+  border:1px solid rgba(184,146,79,.32);
+  border-radius:10px;
+  font-size:11.5px;
+  line-height:1.5;
+  color:var(--gold-deep);
+  margin-bottom:14px;
+}
+.plan-caution .warn{ font-size:12px; flex-shrink:0; margin-top:1px; }
+.plan-caution strong{ color:var(--gold-deep); font-weight:700; }
+
+.plan-actions{
+  position:relative; z-index:1;
+  display:flex; gap:6px; flex-wrap:wrap;
+  margin-top:auto;
+}
+.plan-actions .mini-btn{ flex:1 1 calc(50% - 3px); min-width:0; }
+.plan-actions .mini-btn.full{ flex:1 1 100%; }
+
+/* ================================================================
+   SECTION 5 - FAQ - THE READING ROOM
+   Editorial spread: sticky index rail + animated entries.
+   Visible answers mirror the FAQPage schema word for word.
+   ================================================================ */
+.faq{
+  position:relative;
+  padding:96px 0 84px;
+  background:
+    radial-gradient(900px 600px at 18% 0%, var(--lav-vl), transparent 55%),
+    radial-gradient(800px 540px at 92% 100%, var(--gold-faint), transparent 60%),
+    linear-gradient(180deg, var(--paper) 0%, var(--ivory-2) 100%);
+}
+.faq::before{
+  content:""; position:absolute; top:0; left:18%; right:18%;
+  height:1.5px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.6;
+}
+.faq-grid{
+  display:grid;
+  grid-template-columns: minmax(280px, 350px) minmax(0, 1fr);
+  gap:56px;
+  max-width:1140px;
+  margin:0 auto;
+  align-items:start;
+}
+@media (max-width:920px){
+  .faq{ padding:72px 0 64px; }
+  .faq-grid{ grid-template-columns:1fr; gap:34px; }
+}
+
+/* Left rail: the index */
+.faq-rail{
+  position:sticky;
+  top:96px;
+}
+@media (max-width:920px){
+  .faq-rail{ position:static; }
+}
+.faq-rail .lede{ margin-top:14px; font-size:14.5px; }
+
+.faq-cats{
+  margin-top:26px;
+  border-top:1px solid var(--lav-line);
+}
+.faq-cat{
+  width:100%;
+  display:grid;
+  grid-template-columns: 30px 1fr auto;
+  gap:10px;
+  align-items:baseline;
+  text-align:left;
+  padding:14px 4px 14px 2px;
+  border-bottom:1px solid var(--lav-line);
+  cursor:pointer;
+  transition: padding .35s var(--e-out), background .35s var(--e-out);
+  position:relative;
+}
+.faq-cat::before{
+  content:""; position:absolute;
+  left:0; top:50%; transform:translateY(-50%) scaleY(0);
+  width:2px; height:60%;
+  background:var(--gold);
+  border-radius:2px;
+  transition: transform .35s var(--e-out);
+}
+.faq-cat:hover{ padding-left:8px; }
+.faq-cat.active{ padding-left:12px; }
+.faq-cat.active::before{ transform:translateY(-50%) scaleY(1); }
+.faq-cat-num{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-variation-settings:"opsz" 18, "SOFT" 80;
+  font-size:12px;
+  color:var(--gold-deep);
+}
+.faq-cat-name{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 50;
+  font-size:16.5px;
+  letter-spacing:-.012em;
+  color:var(--ink-mid);
+  transition:color .3s var(--e-out);
+}
+.faq-cat:hover .faq-cat-name,
+.faq-cat.active .faq-cat-name{ color:var(--teal-night); }
+.faq-cat.active .faq-cat-name{
+  font-style:italic;
+  font-variation-settings:"opsz" 30, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+}
+.faq-cat-count{
+  font-family:var(--ff-mono);
+  font-size:10px;
+  letter-spacing:.12em;
+  color:var(--ink-faint);
+}
+
+.faq-openall{
+  margin-top:20px;
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--ff-sans);
+  font-size:11.5px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:var(--gold-deep);
+  padding:10px 0;
+  border-bottom:1px solid var(--gold-soft);
+  transition: border-color .3s var(--e-out), color .3s var(--e-out);
+}
+.faq-openall:hover{ color:var(--deep); border-bottom-color:var(--gold); }
+.faq-openall .glyph{ font-size:13px; color:var(--gold); }
+
+.faq-rail-note{
+  margin-top:30px;
+  padding:18px 20px;
+  background:linear-gradient(135deg, var(--lav-vl) 0%, var(--gold-faint) 100%);
+  border:1px solid var(--lav-line);
+  border-left:3px solid var(--gold);
+  border-radius:14px;
+}
+.faq-rail-note .h{
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold-deep);
+  margin-bottom:7px;
+}
+.faq-rail-note p{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 18, "SOFT" 100;
+  font-size:13.5px;
+  line-height:1.65;
+  color:var(--ink-2);
+  letter-spacing:-.003em;
+}
+.faq-rail-note p em{
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+  font-weight:400;
+}
+
+/* Right column: the entries */
+.faq-entries{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.fq{
+  position:relative;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  border:1px solid var(--lav-line);
+  border-radius:20px;
+  box-shadow:var(--sh-1);
+  overflow:hidden;
+  transition: transform .4s var(--e-out), box-shadow .4s var(--e-out), border-color .4s var(--e-out), opacity .4s var(--e-out);
+}
+.fq::before{
+  content:""; position:absolute; top:0; left:22px; right:22px;
+  height:1.5px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:0;
+  transition:opacity .4s var(--e-out);
+}
+.fq:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--sh-2);
+  border-color:rgba(184,146,79,.34);
+}
+.fq:hover::before, .fq.open::before{ opacity:.8; }
+.fq.open{
+  border-color:rgba(184,146,79,.4);
+  box-shadow:var(--sh-2);
+}
+.fq.hide{ display:none; }
+
+.fq-q{
+  width:100%;
+  display:grid;
+  grid-template-columns: 50px 1fr 38px;
+  gap:16px;
+  align-items:start;
+  text-align:left;
+  padding:26px 24px;
+  cursor:pointer;
+}
+.fq-num{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 80;
+  font-size:16px;
+  color:var(--gold-deep);
+  padding-top:3px;
+  transition: color .3s var(--e-out);
+}
+.fq-title{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 60, "SOFT" 50;
+  font-size:21px;
+  line-height:1.28;
+  letter-spacing:-.016em;
+  color:var(--teal-night);
+  transition:color .3s var(--e-out);
+}
+.fq.open .fq-title{
+  font-style:italic;
+  font-variation-settings:"opsz" 60, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+}
+.fq-ind{
+  width:34px; height:34px;
+  border-radius:50%;
+  border:1px solid var(--gold-soft);
+  background:var(--paper);
+  display:grid; place-items:center;
+  color:var(--gold-deep);
+  font-size:16px;
+  font-weight:300;
+  line-height:1;
+  transition: transform .45s var(--e-out), background .35s var(--e-out), border-color .35s var(--e-out), color .35s var(--e-out);
+  justify-self:end;
+}
+.fq-q:hover .fq-ind{
+  background:var(--gold-faint);
+  border-color:var(--gold);
+}
+.fq.open .fq-ind{
+  transform:rotate(45deg);
+  background:linear-gradient(135deg, var(--gold), var(--gold-deep));
+  border-color:var(--gold-deep);
+  color:var(--paper);
+}
+
+.fq-a{
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition: grid-template-rows .55s var(--e-luxe), opacity .45s var(--e-out);
+}
+.fq.open .fq-a{
+  grid-template-rows:1fr;
+  opacity:1;
+}
+.fq-a-inner{ overflow:hidden; min-height:0; }
+.fq-a-pad{
+  padding:2px 26px 28px 90px;
+  position:relative;
+}
+.fq-a-pad::before{
+  content:""; position:absolute;
+  left:66px; top:6px; bottom:32px;
+  width:1.5px;
+  background:linear-gradient(180deg, var(--gold), transparent);
+  opacity:.55;
+}
+.fq-a-pad p{
+  font-size:15px;
+  line-height:1.78;
+  color:var(--ink-2);
+  letter-spacing:-.002em;
+  max-width:640px;
+}
+.fq-act{
+  display:inline-flex; align-items:center; gap:8px;
+  margin-top:16px;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  font-size:14.5px;
+  color:var(--gold-deep);
+  letter-spacing:-.005em;
+  border-bottom:1px solid var(--gold-soft);
+  padding-bottom:2px;
+  cursor:pointer;
+  transition:color .3s var(--e-out), border-color .3s var(--e-out), gap .3s var(--e-out);
+}
+.fq-act:hover{ color:var(--deep); border-bottom-color:var(--gold); gap:12px; }
+.fq-act .arr{ font-style:normal; font-size:13px; }
+
+@media (max-width:600px){
+  .fq-q{ grid-template-columns: 34px 1fr 32px; gap:12px; padding:20px 18px; }
+  .fq-num{ font-size:13px; padding-top:4px; }
+  .fq-title{ font-size:17.5px; }
+  .fq-ind{ width:30px; height:30px; font-size:14px; }
+  .fq-a-pad{ padding:0 18px 22px 64px; }
+  .fq-a-pad::before{ left:46px; }
+  .fq-a-pad p{ font-size:14px; }
+}
+
+/* ================================================================
+   MODAL - PLAN BRIEF (the dossier)
+   ================================================================ */
+.veil{
+  position:fixed; inset:0;
+  z-index:8000;
+  background:rgba(8,42,48,.42);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0; pointer-events:none;
+  transition:opacity .35s var(--e-out);
+}
+.veil.on{ opacity:1; pointer-events:auto; }
+
+.modal{
+  position:fixed;
+  z-index:8500;
+  top:50%; left:50%;
+  transform:translate(-50%, -46%) scale(.96);
+  width:min(740px, calc(100vw - 24px));
+  max-height:calc(100vh - 48px);
+  background:var(--paper);
+  border:1px solid var(--lav-line);
+  border-radius:22px;
+  box-shadow: var(--sh-modal);
+  opacity:0; pointer-events:none;
+  transition: opacity .35s var(--e-out), transform .45s var(--e-out);
+  display:flex; flex-direction:column;
+  overflow:hidden;
+}
+.modal.on{
+  opacity:1; pointer-events:auto;
+  transform:translate(-50%, -50%) scale(1);
+}
+.modal::before{
+  content:""; position:absolute; top:0; left:8%; right:8%;
+  height:2px;
+  background:linear-gradient(90deg, transparent, var(--gold), var(--deep), var(--lav-d), transparent);
+  opacity:.85;
+  pointer-events:none;
+}
+
+.modal-head{
+  padding:22px 26px 18px;
+  background:linear-gradient(180deg, var(--ivory-2) 0%, var(--paper) 100%);
+  border-bottom:1px solid var(--lav-line);
+  display:grid; grid-template-columns: 1fr auto;
+  gap:16px; align-items:start;
+}
+.modal-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10.5px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  font-weight:600;
+  margin-bottom:6px;
+}
+.modal-eyebrow .dot{
+  width:5px; height:5px; border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 10px var(--gold);
+  animation:pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.55; transform:scale(.85); }
+}
+.modal-title{
+  font-family:var(--ff-serif);
+  font-size:26px;
+  font-weight:400;
+  font-variation-settings:"opsz" 96, "SOFT" 50;
+  letter-spacing:-.018em;
+  line-height:1.15;
+  color:var(--teal-night);
+}
+.modal-title em{
+  font-style:italic;
+  font-variation-settings:"opsz" 96, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+}
+.modal-carrier{
+  font-size:11.5px;
+  color:var(--ink-mid);
+  margin-top:5px;
+  letter-spacing:.04em;
+}
+.modal-close{
+  width:32px; height:32px;
+  border-radius:50%;
+  background:var(--paper);
+  border:1px solid var(--lav-line);
+  display:grid; place-items:center;
+  color:var(--ink-mid);
+  font-size:14px;
+  transition: all .35s var(--e-out);
+}
+.modal-close:hover{
+  background:var(--lav-vl); color:var(--deep); border-color:var(--lav);
+  transform:rotate(90deg);
+}
+
+.modal-body{
+  padding:22px 26px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  flex:1;
+}
+
+.modal-stats{
+  display:grid; grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+  margin-bottom:22px;
+  padding:14px;
+  background:var(--lav-vl);
+  border:1px solid var(--lav-line);
+  border-radius:12px;
+}
+.modal-stat-lbl{
+  font-family:var(--ff-sans);
+  font-size:9px; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:3px;
+}
+.modal-stat-val{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 60, "SOFT" 50;
+  font-size:17px;
+  color:var(--deep);
+  letter-spacing:-.005em;
+  line-height:1.2;
+  font-variant-numeric:tabular-nums;
+}
+.modal-stat-val em{
+  font-style:italic;
+  font-variation-settings:"opsz" 60, "SOFT" 80, "WONK" 1;
+}
+@media (max-width:540px){
+  .modal-stats{ grid-template-columns:1fr; }
+}
+
+.modal-row{
+  margin-bottom:16px;
+  padding-bottom:16px;
+  border-bottom:1px dashed var(--lav-line);
+}
+.modal-row:last-of-type{ border-bottom:0; padding-bottom:0; }
+.modal-row h4{
+  font-family:var(--ff-sans);
+  font-size:10.5px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold-deep);
+  margin-bottom:10px;
+}
+.modal-row.warn h4{ color:var(--gold-deep); }
+.modal-row p,
+.modal-row li{
+  font-size:13.5px;
+  line-height:1.6;
+  color:var(--ink-2);
+  letter-spacing:-.002em;
+}
+.modal-row ul{ list-style:none; padding:0; }
+.modal-row li{
+  position:relative;
+  padding:5px 0 5px 16px;
+}
+.modal-row li::before{
+  content:""; position:absolute;
+  left:0; top:14px;
+  width:8px; height:1px;
+  background:var(--deep);
+}
+.modal-row.warn li::before{ background:var(--gold); }
+.modal-row li strong,
+.modal-row p strong{ color:var(--deep); font-weight:600; }
+
+.modal-coverage{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:8px;
+  margin-bottom:18px;
+}
+@media (max-width:540px){ .modal-coverage{ grid-template-columns:1fr; } }
+.cov-cell{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:9px 12px;
+}
+.cov-lbl{
+  font-family:var(--ff-sans);
+  font-size:9px; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:2px;
+}
+.cov-val{
+  font-size:12.5px;
+  color:var(--ink-2);
+  font-weight:500;
+  letter-spacing:-.002em;
+}
+
+.modal-concierge{
+  background:linear-gradient(135deg, var(--lav-vl) 0%, var(--gold-faint) 100%);
+  border:1px solid var(--lav-line);
+  border-left:3px solid var(--gold);
+  border-radius:11px;
+  padding:14px 16px;
+  margin-bottom:18px;
+}
+.modal-concierge-h{
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold-deep);
+  margin-bottom:6px;
+}
+.modal-concierge p{
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 18, "SOFT" 100;
+  font-size:13.5px;
+  line-height:1.6;
+  color:var(--ink-2);
+  letter-spacing:-.003em;
+}
+.modal-concierge p em{
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+  font-weight:400;
+}
+
+.modal-foot{
+  padding:16px 26px 20px;
+  background:var(--ivory-2);
+  border-top:1px solid var(--lav-line);
+  display:flex; flex-wrap:wrap; gap:10px;
+  align-items:center;
+}
+.modal-foot .btn{ flex:1; min-width:180px; justify-content:center; }
+.modal-foot-note{
+  margin-left:auto;
+  font-size:11px;
+  color:var(--ink-mute);
+  font-style:italic;
+  letter-spacing:-.002em;
+}
+@media (max-width:540px){
+  .modal{ width:calc(100vw - 16px); border-radius:18px; }
+  .modal-head, .modal-body{ padding-left:20px; padding-right:20px; }
+  .modal-foot{ padding:16px 20px 18px; flex-direction:column; }
+  .modal-foot .btn{ width:100%; }
+  .modal-foot-note{ margin-left:0; text-align:center; width:100%; }
+}
+
+/* ================================================================
+   MODAL - VERIFY WITH DENTIST (email composer)
+   ================================================================ */
+.verify-modal{ max-width:680px; }
+.verify-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:14px;
+}
+@media (max-width:540px){ .verify-fields{ grid-template-columns:1fr; } }
+.field{ display:flex; flex-direction:column; }
+.field.full{ grid-column:1/-1; }
+.field-lbl{
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:6px;
+}
+.field-input{
+  font-family:var(--ff-sans);
+  background:var(--paper);
+  border:1px solid var(--line-mid);
+  color:var(--ink);
+  border-radius:11px;
+  padding:11px 13px;
+  font-size:13px;
+  font-weight:500;
+  outline:none;
+  transition: border-color .25s var(--e-out), background .25s var(--e-out), box-shadow .25s var(--e-out);
+  width:100%; box-sizing:border-box;
+  letter-spacing:-.003em;
+}
+.field-input::placeholder{
+  color:var(--ink-faint);
+  font-style:italic;
+  font-family:var(--ff-serif);
+  font-variation-settings:"opsz" 18, "SOFT" 80;
+}
+.field-input:hover{
+  border-color:var(--th-line);
+  background:var(--paper-2);
+}
+.field-input:focus{
+  border-color:var(--th-accent);
+  background:var(--paper);
+  box-shadow: 0 0 0 4px var(--th-faint);
+  color:var(--th-ink);
+}
+
+.verify-locked{
+  display:flex; align-items:center; gap:10px;
+  padding:12px 14px;
+  background:var(--lav-vl);
+  border:1px solid var(--lav-line);
+  border-radius:11px;
+  margin-bottom:14px;
+}
+.verify-locked .lock-glyph{
+  width:30px; height:30px;
+  border-radius:8px;
+  background:var(--paper);
+  border:1px solid var(--lav-line);
+  display:grid; place-items:center;
+  font-size:13px;
+  color:var(--lav-d);
+  flex-shrink:0;
+}
+.verify-locked-info{ min-width:0; flex:1; }
+.verify-locked-lbl{
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-bottom:2px;
+}
+.verify-locked-val{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 50;
+  font-size:14px;
+  color:var(--deep);
+  letter-spacing:-.005em;
+}
+.verify-locked-val em{
+  font-style:italic;
+  font-variation-settings:"opsz" 30, "SOFT" 80, "WONK" 1;
+}
+
+/* Email preview */
+.email-preview{
+  background:var(--paper);
+  border:1px solid var(--lav-line);
+  border-radius:12px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  font-size:12.5px;
+  line-height:1.6;
+  color:var(--ink-2);
+  position:relative;
+  box-shadow: var(--sh-1);
+}
+.email-preview::before{
+  content:""; position:absolute; top:0; left:14px; right:14px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.55;
+}
+.email-preview-h{
+  font-family:var(--ff-sans);
+  font-size:9.5px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold-deep);
+  margin-bottom:8px;
+}
+.email-subject{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-variation-settings:"opsz" 30, "SOFT" 50;
+  font-size:14px;
+  color:var(--deep);
+  margin-bottom:9px;
+  letter-spacing:-.005em;
+  border-bottom:1px dashed var(--lav-line);
+  padding-bottom:9px;
+}
+.email-body{
+  font-family:var(--ff-sans);
+  font-size:12.5px;
+  white-space:pre-wrap;
+  color:var(--ink-2);
+}
+
+.verify-actions{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:8px;
+  margin-top:14px;
+}
+@media (max-width:540px){ .verify-actions{ grid-template-columns:1fr; } }
+
+.toast{
+  position:fixed; bottom:30px; left:50%;
+  transform:translate(-50%, 30px);
+  background:var(--teal-night);
+  color:var(--paper);
+  padding:11px 18px;
+  border-radius:999px;
+  font-size:12.5px;
+  font-weight:500;
+  letter-spacing:.005em;
+  box-shadow: 0 12px 36px rgba(8,42,48,.32);
+  z-index:9999;
+  opacity:0; pointer-events:none;
+  transition: opacity .25s var(--e-out), transform .35s var(--e-out);
+}
+.toast.on{
+  opacity:1; transform:translate(-50%, 0);
+}
+
+/* ================================================================
+   SECTION 6 - CLOSING CTA - NOW CHOOSE THE OFFICE
+   ================================================================ */
+.arena{
+  position:relative;
+  padding:80px 0 100px;
+  background:
+    radial-gradient(900px 600px at 50% 0%, var(--th-bg), transparent 60%),
+    linear-gradient(180deg, var(--ivory-2) 0%, var(--paper) 100%);
+}
+.arena-inner{
+  max-width:760px; margin:0 auto;
+  text-align:center;
+}
+.arena-inner .eyebrow{ justify-content:center; }
+.arena-h{ margin:14px auto 18px; }
+.arena-lede{ margin:0 auto 32px; }
+
+.arena-cta{
+  display:flex; flex-wrap:wrap; gap:14px;
+  justify-content:center;
+  margin-top:6px;
+}
+
+/* Editorial divider sparkle */
+.eddiv{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  margin:48px auto;
+  max-width:520px;
+  color:var(--ink-faint);
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.eddiv::before, .eddiv::after{
+  content:""; flex:1; height:1px;
+  background:linear-gradient(90deg, transparent, var(--th-accent), transparent);
+  opacity:.5;
+  transition: background .8s var(--e-luxe);
+}
+.eddiv .sparkle{ color:var(--th-accent); font-size:14px; }
+
+/* Footer bridge */
+.footer-bridge{
+  display:flex; align-items:flex-start; gap:9px;
+  max-width:520px;
+  margin:36px auto 0;
+  font-family:var(--ff-serif);
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 18, "SOFT" 100;
+  font-size:12.5px;
+  color:var(--ink-mute);
+  letter-spacing:-.005em;
+  line-height:1.5;
+  padding:0 16px;
+  text-align:left;
+}
+.footer-bridge .ast{
+  color:var(--gold);
+  font-size:13px; flex-shrink:0; margin-top:1px;
+  font-style:normal;
+}
+.footer-bridge em{
+  font-variation-settings:"opsz" 18, "SOFT" 80, "WONK" 1;
+  color:var(--deep);
+  font-weight:400;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+}
+
+/* Focus outline */
+:focus-visible{
+  outline: 2px solid var(--th-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* SR only (utility kept; crawler-only content block removed in v2) */
+.sr-only{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+
+/* ================================================================
+   HERO ISOLATION FIX
+   This compare page uses global .btn / .btn-primary styles for its own
+   themed UI. These higher-specificity rules keep the injected hero slider
+   from inheriting the compare-page button color tokens.
+   ================================================================ */
+.hero-wrap .btn{
+  font-family:var(--font-body, var(--ff-sans));
+}
+.hero-wrap .btn-primary{
+  background:linear-gradient(180deg, var(--teal-deep, #214E48) 0%, var(--teal-night, #102F2D) 100%);
+  color:var(--paper, #FFFDF8);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.16) inset,
+    0 -1px 0 rgba(0,0,0,.18) inset,
+    0 8px 24px rgba(16,47,45,.26),
+    0 2px 6px rgba(16,47,45,.16);
+}
+.hero-wrap .btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.20) inset,
+    0 -1px 0 rgba(0,0,0,.22) inset,
+    0 14px 34px rgba(16,47,45,.34),
+    0 2px 8px rgba(16,47,45,.20);
+}
+.hero-wrap .btn-quiet{
+  color:var(--ink-soft, #3F5B55);
+  border-bottom-color:transparent;
+}
+.hero-wrap .btn-quiet:hover{
+  color:var(--teal-deep, #214E48);
+  border-bottom-color:var(--teal, #2F6F64);
+}
+.hero-wrap .pc-activate{
+  background:linear-gradient(180deg, var(--teal-deep, #214E48), var(--teal-night, #102F2D));
+  color:var(--paper, #FFFDF8);
+}
+
+</style>
+</head>
+<body class="theme-now">
+
+<div id="cc-nav-mount"></div>
+<div id="page-start" aria-hidden="true"></div>
+
+
+<!-- ================================================================
+     NOTE FOR FUTURE INTEGRATION
+     This page sits UNDER the existing CoverCapy mega nav / header.
+     No homepage hero is rendered here; the page opens with the
+     editorial intro section directly. Mount this <main id="main-content" class="cc-page-shell"> below the
+     existing site header when integrating.
+     ================================================================ -->
+
+<main id="main-content" class="cc-page-shell" itemscope itemtype="https://schema.org/WebPage">
+
+  <meta itemprop="name" content="Compare PPO Dental Plans | CoverCapy" />
+  <meta itemprop="url" content="https://www.covercapy.com/compare-ppo-dental-plans.html" />
+
+  <!-- ==============================================================
+       SECTION 1 - EDITORIAL OPENING
+       ============================================================== -->
+  <section class="intro" aria-labelledby="intro-title">
+    <div class="container">
+      <div class="intro-grid">
+
+        <header>
+          <div class="eyebrow"><span class="sparkle">&#10022;</span> The case &middot; Before you activate</div>
+          <h1 class="h1" id="intro-title">
+            Compare <em>PPO&nbsp;dental&nbsp;plans</em>.<br/>
+            Then walk in <em>prepared.</em>
+          </h1>
+          <p class="lede intro-lede">
+            Before you commit to a PPO dental plan, <strong>open the case.</strong>
+            Compare the six PPOs we carry, understand what each one is fitted for,
+            <em>verify your dentist accepts it</em>, and then activate coverage with confidence.
+            No <span class="dd-tip" data-term="waiting-period">waiting periods</span> you didn’t expect. No <span class="dd-tip" data-term="missing-tooth">missing tooth</span> surprises. No wrong <span class="dd-tip" data-term="in-network">network</span>.
+          </p>
+
+          <div class="intro-trust" aria-label="Shelf credentials">
+            <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span>Six carriers rated A or better</span>
+            <span class="pip" aria-hidden="true"></span>
+            <span>Plan details verified <!-- VERIFIED_DATE_START -->June 12, 2026<!-- VERIFIED_DATE_END --></span>
+            <span class="pip" aria-hidden="true"></span>
+            <span>Editorial guidance, not a sales funnel</span>
+          </div>
+        </header>
+
+        <aside class="intro-pillars" aria-label="The three steps">
+          <div class="intro-pillar">
+            <span class="step">i. compare</span>
+            <span class="label">Open the brief.</span>
+            <span class="copy">Six PPOs, side by side. Match against the visit you actually have on the calendar.</span>
+          </div>
+          <div class="intro-pillar">
+            <span class="step">ii. verify</span>
+            <span class="label">Confirm the office.</span>
+            <span class="copy">One short email to your dentist. Network status confirmed before activation.</span>
+          </div>
+          <div class="intro-pillar">
+            <span class="step">iii. activate</span>
+            <span class="label">Walk in prepared.</span>
+            <span class="copy">Day 1 plans start in 1 to 3 business days. The PPO is ready before the appointment is.</span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================================
+       SECTION 2 - SMART MATCH - FIND YOUR FIT
+       ============================================================== -->
+  
+<!-- ============ THE PPO DECISION DESK (CoverCapy signature component) ============ -->
+<section class="dd-desk" id="decision-desk" aria-labelledby="dd-title">
+<style>
+.dd-desk{position:relative;padding:8px 0 46px}
+.dd-desk::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:repeating-linear-gradient(180deg,transparent 0 31px,rgba(15,31,38,.022) 31px 32px)}
+.dd-wrap{position:relative;max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(360px,1.1fr) minmax(300px,.9fr);gap:26px;align-items:start}
+.dd-head{grid-column:1/-1;margin-bottom:2px}
+.dd-head h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.015em;margin:0 0 6px}
+.dd-head h2 em{font-style:italic;color:#15524A}
+.dd-head p{margin:0;color:#556A67;font-size:15px;max-width:64ch}
+.dd-blotter{position:relative;border:1px solid rgba(15,31,38,.14);border-radius:26px;background:linear-gradient(178deg,#fff,#FBF6EB);box-shadow:0 2px 6px rgba(15,31,38,.05),0 22px 50px rgba(15,31,38,.10);padding:24px 24px 20px}
+.dd-blotter::after{content:"";position:absolute;top:12px;right:12px;width:42px;height:42px;border-top:2px solid #F1E4C8;border-right:2px solid #F1E4C8;border-radius:0 18px 0 0;pointer-events:none}
+.dd-bhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 12px}
+.dd-bhead h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:19px;margin:0}
+.dd-stamp{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A6A30;border:1.5px solid #F1E4C8;border-radius:6px;padding:4px 8px;transform:rotate(2deg);background:rgba(250,243,224,.6);white-space:nowrap}
+.dd-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.dd-chips button{border:1px solid rgba(15,31,38,.14);background:#fff;border-radius:999px;padding:9px 15px;font-family:inherit;font-size:13.5px;font-weight:700;color:#0E3A33;cursor:pointer;transition:all .16s ease}
+.dd-chips button:hover{border-color:#15524A;transform:translateY(-1px)}
+.dd-chips button[aria-pressed="true"]{background:linear-gradient(135deg,#0E3A33,#15524A);color:#fff;border-color:transparent}
+.dd-fee{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px dashed rgba(15,31,38,.14);padding-bottom:9px;margin-bottom:13px}
+.dd-fee .l{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6E8590}
+.dd-fee .a{font-family:'Fraunces',Georgia,serif;font-size:28px;font-weight:600}
+.dd-rows{display:flex;flex-direction:column;gap:10px}
+.dd-row{display:grid;grid-template-columns:118px 1fr 86px;align-items:center;gap:12px;text-decoration:none;border-radius:12px;padding:4px 6px;transition:background .15s ease}
+.dd-row:hover{background:rgba(220,234,231,.35)}
+.dd-row .n{font-size:12.5px;font-weight:800;color:#0E3A33;line-height:1.2}
+.dd-row .n small{display:block;font-weight:600;color:#6E8590;font-size:10.5px}
+.dd-bar{position:relative;height:12px;border-radius:999px;background:#F2EDE2;overflow:hidden}
+.dd-bar i{position:absolute;inset:0 auto 0 0;width:0;border-radius:999px;background:linear-gradient(90deg,#15524A,#B8924F);transition:width .9s cubic-bezier(.16,1,.3,1)}
+.dd-row .c{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.dd-row .c.na{font-family:inherit;font-size:10.5px;font-weight:700;color:#6E8590;letter-spacing:.04em}
+.dd-bfoot{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dd-bfoot small{font-size:10.5px;color:#6E8590;max-width:40ch}
+.dd-bfoot a{font-size:13px;font-weight:800;color:#15524A;text-decoration:none}
+.dd-bfoot a:hover{text-decoration:underline}
+.dd-ticket{border:1px solid rgba(15,31,38,.14);border-radius:22px;background:#fff;box-shadow:0 1px 2px rgba(15,31,38,.04),0 14px 38px rgba(15,31,38,.09);overflow:hidden}
+.dd-thead{padding:14px 20px 11px;border-bottom:1px dashed rgba(15,31,38,.14);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,#F0F7F5,#fff)}
+.dd-thead .t{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#15524A}
+.dd-thead .no{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:12px;color:#6E8590}
+.dd-tbody{padding:12px 20px 4px}
+.dd-tline{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid rgba(15,31,38,.08);font-size:13px}
+.dd-tline:last-child{border-bottom:none}
+.dd-tline .k{color:#556A67;font-weight:600}
+.dd-tline .v{font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.dd-tline .v.good{color:#15524A}
+.dd-verdict{margin:6px 20px 14px;border-left:3px solid #B8924F;background:#FBF6EB;border-radius:0 12px 12px 0;padding:10px 14px;font-size:12.5px;color:#3C5560}
+.dd-verdict strong{color:#0E3A33}
+.dd-tcta{display:block;text-align:center;margin:0 20px 16px;padding:12px;border-radius:999px;background:linear-gradient(135deg,#8A6A30,#B8924F);color:#fff;font-weight:800;font-size:13px;text-decoration:none;box-shadow:0 10px 24px rgba(138,106,48,.25);transition:transform .15s ease}
+.dd-tcta:hover{transform:translateY(-2px)}
+.dd-tnote{padding:0 20px 14px;font-size:10px;color:#6E8590;line-height:1.5;margin:0}
+@media(max-width:880px){.dd-wrap{grid-template-columns:1fr}.dd-row{grid-template-columns:100px 1fr 78px}}
+</style>
+<div class="dd-wrap">
+  <div class="dd-head">
+    <h2 id="dd-title">The PPO Decision Desk: <em>compare what you'll actually pay</em></h2>
+    <p>Most people compare premiums. Smart shoppers compare what happens after treatment — the <span class="dd-tip" data-term="waiting-period">waiting period</span>, the <span class="dd-tip" data-term="coinsurance">coinsurance</span> split, and the <span class="dd-tip" data-term="deductible">deductible</span>. Pick the visit on your calendar; the desk shows each plan’s estimated patient cost — and hands the bigger procedures to the <a href="/dental-treatment-cost-estimator">full cost estimator</a>.</p>
+  </div>
+  <div class="dd-blotter" aria-label="Treatment cost workspace">
+    <div class="dd-bhead"><h3>What does your mouth need?</h3><span class="dd-stamp">Verified · Jun 12 2026</span></div>
+    <div class="dd-chips" role="group" aria-label="Choose a treatment">
+      <button type="button" data-ddtx="cleaning" aria-pressed="true">Exam + cleaning</button>\n      <button type="button" data-ddtx="cavity" aria-pressed="false">Cavity filling</button>\n      <button type="button" data-ddtx="rootcanal" aria-pressed="false">Root canal</button>\n      <button type="button" data-ddtx="crown" aria-pressed="false">Crown</button>\n    </div>
+    <div class="dd-fee"><span class="l">Typical office fee</span><span class="a" id="dd-fee">$1,600</span></div>
+    <div class="dd-rows" id="dd-rows" aria-live="polite"></div>
+    <div class="dd-bfoot">
+      <small id="dd-note">Estimated patient cost after coinsurance &amp; $50 deductible, in network, once any waiting period has passed.</small>
+      <a href="/dental-treatment-cost-estimator">Implants, dentures, bridges + 20 more procedures →</a>
+    </div>
+  </div>
+  <div class="dd-ticket" aria-label="Concierge reading">
+    <div class="dd-thead"><span class="t">Concierge reading</span><span class="no">Ticket №&nbsp;0612</span></div>
+    <div class="dd-tbody" id="dd-tbody"></div>
+    <div class="dd-verdict" id="dd-verdict"></div>
+    <a class="dd-tcta" id="dd-tcta" href="/dental-insurance/ppo-plans/ameritas-primestar">Read the full plan review →</a>
+    <p class="dd-tnote">Educational estimates from published plan coinsurance — not a quote. Plan terms vary by state. Always verify your dentist accepts the plan before enrolling.</p>
+  </div>
+</div>
+</section>
+
+<section class="sim" id="smart-match" aria-labelledby="sim-title">
+    <div class="container">
+
+      <header class="sim-head">
+        <div class="eyebrow"><span class="sparkle">&#10022;</span> Find your fit</div>
+        <h2 class="h2" id="sim-title">
+          Match a PPO plan<br/>
+          <em>to your treatment.</em>
+        </h2>
+        <p class="lede">
+          Three answers. Six PPOs evaluated against your visit. CoverCapy returns
+          your <em>closest fit</em>, the plan most suited to the work ahead,
+          plus a backup if your timing changes.
+        </p>
+      </header>
+
+      <article class="sim-card" id="simCard" data-theme="now">
+        <div class="sim-inner">
+
+          <!-- LEFT - The console -->
+          <div class="sim-form">
+            <h3 class="sim-form-title">Tell us about your visit</h3>
+            <p class="sim-form-sub">Pick the procedure on the schedule, the urgency, and a monthly budget. The results update on every change.</p>
+
+            <div class="sec-label">Treatment goal</div>
+            <div class="treat-grid" role="radiogroup" aria-label="Treatment goal">
+              <button class="pill sel" data-treat="preventive"  onclick="selectTreat(this)" role="radio" aria-checked="true"><span class="ico">&#129701;</span>Cleaning</button>
+              <button class="pill"     data-treat="cavities"    onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#129657;</span>Fillings</button>
+              <button class="pill"     data-treat="crown"       onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#129463;</span>Crown / RCT</button>
+              <button class="pill"     data-treat="implant"     onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#128297;</span>Implant</button>
+              <button class="pill"     data-treat="whitening"   onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#10024;</span>Whitening</button>
+              <button class="pill"     data-treat="ortho"       onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#128208;</span>Braces / Invisalign</button>
+              <button class="pill"     data-treat="dentures"    onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#129463;</span>Dentures</button>
+              <button class="pill"     data-treat="emergency"   onclick="selectTreat(this)" role="radio" aria-checked="false"><span class="ico">&#128680;</span>Emergency</button>
+            </div>
+
+            <div class="sec-label">Timeline</div>
+            <div class="tl-row" role="radiogroup" aria-label="Timeline">
+              <button class="tl-opt sel" data-tl="now"  onclick="selectTl(this)" role="radio" aria-checked="true"><span class="ico">&#9889;</span>Need now</button>
+              <button class="tl-opt"     data-tl="wait" onclick="selectTl(this)" role="radio" aria-checked="false"><span class="ico">&#8987;</span>Can wait</button>
+              <button class="tl-opt"     data-tl="plan" onclick="selectTl(this)" role="radio" aria-checked="false"><span class="ico">&#128197;</span>Planning</button>
+            </div>
+
+            <div class="budget">
+              <div class="budget-head">
+                <span class="lbl">Monthly budget</span>
+                <span class="budget-val" id="budgetVal">~$70<span class="mo">/mo</span></span>
+              </div>
+              <input type="range" class="slider" id="budgetSlider" min="30" max="100" value="70" step="10" oninput="updateBudget(this.value)" aria-label="Monthly budget">
+              <div class="slider-labels"><span>$30</span><span>$100+</span></div>
+            </div>
+          </div>
+
+          <!-- RIGHT - The result -->
+          <div class="sim-result" id="resultPanel" aria-live="polite"></div>
+
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==============================================================
+       SECTION 3 - SIDE BY SIDE - STATIC COMPARISON TABLE
+       Crawlable plan data. Keep in sync with the PLANS object in
+       the script below; bump the verified date on any change.
+       ============================================================== -->
+  <section class="cmp" id="plan-table" aria-labelledby="cmp-title">
+    <div class="container">
+
+      <header class="cmp-head">
+        <div class="eyebrow"><span class="sparkle">&#10022;</span> Side by side</div>
+        <h2 class="h2" id="cmp-title">
+          All six PPO dental plans, <em>one table.</em>
+        </h2>
+        <p class="lede">
+          Monthly cost, annual maximum, waiting periods, and the one thing to watch for
+          on each plan. Coverage percentages are in network coinsurance after the deductible.
+        </p>
+      </header>
+
+      <div class="cmp-wrap" role="region" aria-label="PPO dental plan comparison table" tabindex="0">
+        <table class="cmp-table">
+          <thead>
+            <tr>
+              <th scope="col">Plan</th>
+              <th scope="col">Monthly cost</th>
+              <th scope="col">Annual max</th>
+              <th scope="col">Preventive</th>
+              <th scope="col">Basic</th>
+              <th scope="col">Major</th>
+              <th scope="col">Implants</th>
+              <th scope="col">Ortho / whitening</th>
+              <th scope="col">Watch for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- PLANS_TABLE_ROWS_START -->
+            <tr>
+              <th scope="row"><a href="/dental-insurance/ppo-plans/uhc-primary-dental">UnitedHealthcare Primary Dental</a><span class="sub">Golden Rule Insurance Co.</span></th>
+              <td>~$30</td>
+              <td>$1,000</td>
+              <td>100% Day 1</td>
+              <td>50% Day 1</td>
+              <td>Not covered</td>
+              <td>Not covered</td>
+              <td>Not covered</td>
+              <td class="watch">Age cap 64. No major services.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/dental-insurance/ppo-plans/aetna-dental-direct">Aetna Dental Direct Preferred</a><span class="sub">Aetna Life Insurance Company</span></th>
+              <td>~$50</td>
+              <td>$1,500</td>
+              <td>100% Day 1</td>
+              <td>50% after 3 mo</td>
+              <td>50% after 12 mo</td>
+              <td>Not covered</td>
+              <td>Not covered</td>
+              <td class="watch">Prior coverage waiver may remove waits. No implants.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/dental-insurance/ppo-plans/ameritas-primestar">Ameritas PrimeStar Care Complete</a><span class="sub">Ameritas Life Insurance Corp.</span></th>
+              <td>~$60</td>
+              <td>$2,000 Y1, $2,500 Y2+</td>
+              <td>100% Day 1, diagnostic off cap</td>
+              <td>60% Day 1</td>
+              <td>20% Y1, 50% Y2+, no wait</td>
+              <td>Phase 1 Day 1. Full implant after 12 mo.</td>
+              <td>Not covered</td>
+              <td class="watch">Year one major pays 20%.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/dental-insurance/ppo-plans/guardian-premier-ppo">Guardian Premier 2.0</a><span class="sub">The Guardian Life Insurance Co.</span></th>
+              <td>~$70</td>
+              <td>$3,000</td>
+              <td>100% Day 1</td>
+              <td>85% Day 1</td>
+              <td>50% after 12 mo</td>
+              <td>Not covered</td>
+              <td>Ortho 50%, under 19, 12 mo wait. Whitening 50%, 6 mo wait.</td>
+              <td class="watch">No implants. Ortho for dependents only.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/dental-insurance/ppo-plans/mutual-of-omaha-dental">Mutual of Omaha Dental Preferred</a><span class="sub">Mutual of Omaha Insurance Co.</span></th>
+              <td>~$90</td>
+              <td>$5,000</td>
+              <td>100% Day 1</td>
+              <td>80% Day 1</td>
+              <td>50% after 12 mo</td>
+              <td>50% after 12 mo</td>
+              <td>Not covered</td>
+              <td class="watch">12 mo wait on major and implants.</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/dental-insurance/ppo-plans/humana-extend-5000">Humana Extend 5000</a><span class="sub">Humana Inc.</span></th>
+              <td>~$100</td>
+              <td>$5,000</td>
+              <td>100% Day 1</td>
+              <td>50% after 3 mo</td>
+              <td>50% after 6 mo</td>
+              <td>50% after 6 mo. $2K/yr, $4K lifetime.</td>
+              <td>$200 whitening allowance after 3 mo</td>
+              <td class="watch">Missing tooth clause may exclude an existing gap.</td>
+            </tr>
+          <!-- PLANS_TABLE_ROWS_END -->
+          </tbody>
+        </table>
+      </div>
+
+      <p class="cmp-verified">
+        Plan details last verified <!-- VERIFIED_DATE_START -->June 12, 2026<!-- VERIFIED_DATE_END -->, against carrier benefit summaries.
+        Confirm final terms, pricing, and eligibility at the carrier before enrolling.
+      </p>
+
+    </div>
+  </section>
+
+  <div class="container"><div class="eddiv"><span class="sparkle">&#10022;</span> Every plan in detail <span class="sparkle">&#10022;</span></div></div>
+
+  <!-- ==============================================================
+       SECTION 4 - ALL SIX PLANS - DETAILED PLAN GRID
+       ============================================================== -->
+  <section class="scope" id="scope" aria-labelledby="scope-title">
+    <div class="container">
+
+      <header class="scope-head">
+        <div class="eyebrow"><span class="sparkle">&#10022;</span> The dossier &middot; all six PPOs</div>
+        <h2 class="h2" id="scope-title">
+          Compare <em>every plan in detail</em> before you activate.
+        </h2>
+        <p class="lede">
+          The full shelf. Filter by what matters: implants, crowns, preventive,
+          fastest activation, highest annual maximum, under budget. Open the brief on
+          any plan to read the full dossier.
+        </p>
+      </header>
+
+      <nav class="filters" id="filters" aria-label="Filter PPO dental plans">
+        <button class="filter active" data-filter="all"        onclick="applyFilter(this)"><span class="glyph">&#10022;</span> All six plans</button>
+        <button class="filter"        data-filter="implants"   onclick="applyFilter(this)"><span class="glyph">&#128297;</span> Best for implants</button>
+        <button class="filter"        data-filter="crowns"     onclick="applyFilter(this)"><span class="glyph">&#129463;</span> Best for crowns</button>
+        <button class="filter"        data-filter="preventive" onclick="applyFilter(this)"><span class="glyph">&#129701;</span> Best for preventive</button>
+        <button class="filter"        data-filter="fastest"    onclick="applyFilter(this)"><span class="glyph">&#9889;</span> Fastest activation</button>
+        <button class="filter"        data-filter="highmax"    onclick="applyFilter(this)"><span class="glyph">&#128200;</span> Highest annual max</button>
+        <button class="filter"        data-filter="budget"     onclick="applyFilter(this)"><span class="glyph">&#128154;</span> Best under budget</button>
+      </nav>
+
+      <div class="plan-grid" id="planGrid"></div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================================
+       SECTION 5 - FAQ - THE READING ROOM
+       Visible answers are generated to mirror the FAQPage schema
+       word for word. Keep both in sync on any edit.
+       ============================================================== -->
+  
+<!-- ============ PPO AUTHORITY LAYER: treatment clusters · dictionary · trust ============ -->
+<section class="dd-auth" id="by-treatment" aria-labelledby="bt-title">
+<style>
+.dd-auth{padding:40px 0 8px}
+.dd-auth .dd-aw{max-width:1160px;margin:0 auto;padding:0 24px}
+.dd-auth h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.015em;margin:0 0 8px}
+.dd-auth h2 em{font-style:italic;color:#15524A}
+.dd-auth .dd-sub{color:#556A67;font-size:15px;max-width:66ch;margin:0 0 22px}
+.dd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 8px}
+.dd-card{display:block;text-decoration:none;border:1px solid rgba(15,31,38,.1);border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(15,31,38,.04),0 8px 22px rgba(15,31,38,.05);padding:18px 20px;transition:transform .16s ease,border-color .16s ease}
+.dd-card:hover{transform:translateY(-3px);border-color:rgba(15,31,38,.24)}
+.dd-card h3{margin:0 0 6px;font-size:15.5px;color:#0E3A33}
+.dd-card p{margin:0;font-size:13px;color:#556A67;line-height:1.5}
+.dd-card .go{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;color:#15524A}
+.dd-dict{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 6px}
+@media(max-width:760px){.dd-dict{grid-template-columns:1fr}}
+.dd-term{border:1px solid rgba(15,31,38,.1);border-left:3px solid #B8924F;border-radius:0 16px 16px 0;background:#FFFCF6;padding:15px 18px}
+.dd-term h3{margin:0 0 5px;font-size:14.5px;color:#0E3A33}
+.dd-term p{margin:0;font-size:13.5px;color:#3C5560;line-height:1.55}
+.dd-trust{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+@media(max-width:860px){.dd-trust{grid-template-columns:1fr}}
+.dd-tcard{border:1px solid rgba(15,31,38,.1);border-radius:20px;background:#fff;padding:22px 24px}
+.dd-tcard h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 10px}
+.dd-tcard ol,.dd-tcard ul{margin:0;padding-left:20px}
+.dd-tcard li{margin:0 0 9px;font-size:13.8px;color:#3C5560;line-height:1.55}
+.dd-tcard li strong{color:#0E3A33}
+</style>
+<div class="dd-aw">
+  <h2 id="bt-title">Compare PPO plans <em>by treatment need</em></h2>
+  <p class="dd-sub">Insurance is only as good as the procedure it pays for. Start from the work your dentist named, and we'll point you at the plan built for it — and tell you plainly when nothing on the shelf covers it.</p>
+  <div class="dd-cards">
+    <a class="dd-card" href="/dental-insurance/ppo-plans/humana-extend-5000"><h3>Implants</h3><p>Two plans cover implants: Humana (50% after 6 months, $2,000/yr) and Mutual of Omaha (50% after 12 months, $5,000 cap). The missing tooth clause decides which — or whether either.</p><span class="go">Best implant plans →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/ameritas-primestar"><h3>Crowns</h3><p>Crowns are "major" work — most plans wait 12 months. Ameritas pays from day one (20% year one); Humana opens 50% at month six.</p><span class="go">Best crown plans →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/humana-extend-5000"><h3>Root canals</h3><p>Usually on the major schedule: 50% after 6–12 months. Whether yours counts as "basic" instead can move the date by a quarter — verify the classification.</p><span class="go">Root canal coverage →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/mutual-of-omaha-dental"><h3>Dentures &amp; bridges</h3><p>High-cost major work rewards a high ceiling: Mutual of Omaha's $5,000 annual maximum absorbs a denture or bridge year without crowding out the rest of your care.</p><span class="go">High-maximum plans →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/uhc-primary-dental"><h3>Wisdom teeth</h3><p>Simple extractions are "basic" care — covered day one at 50–85% on most of the shelf. Surgical extractions are major work; the waiting clock applies.</p><span class="go">Day-one basics →</span></a>
+    <a class="dd-card" href="/dental-insurance/ppo-plans/guardian-premier-ppo"><h3>Braces &amp; Invisalign</h3><p>Guardian Premier 2.0 is the only plan here with orthodontics: 50% for dependents under 19 after a 12-month wait. Adult ortho isn't covered on any plan we shelve.</p><span class="go">The family plan →</span></a>
+    <a class="dd-card" href="/ppodentists.html"><h3>Emergency care</h3><p>Insurance enrolled today won't pay for major work today. For a tooth that can't wait, find a dentist first — then pick the plan that covers the follow-up.</p><span class="go">Find a dentist now →</span></a>
+    <a class="dd-card" href="/dental-treatment-cost-estimator"><h3>Not sure yet?</h3><p>Estimate the procedure first. Crowns run ~$1,200–$1,600, implants ~$3,000–$6,000, root canals ~$1,000–$1,500 — the number decides how much plan you need.</p><span class="go">Estimate your treatment →</span></a>
+  </div>
+</div>
+</section>
+
+<section class="dd-auth" id="ppo-dictionary" aria-labelledby="dict-title">
+<div class="dd-aw">
+  <h2 id="dict-title">The PPO dictionary: <em>eight terms that decide your bill</em></h2>
+  <p class="dd-sub">Every confusing sentence in a dental policy is built from these eight pieces. Learn them once and you can read any plan on the market.</p>
+  <div class="dd-dict">
+    <div class="dd-term" id="term-ppo"><h3>PPO dental insurance</h3><p>A plan that lets you see any licensed dentist but pays more when you use an in-network dentist who has agreed to the carrier's negotiated fees. The opposite of an HMO, which restricts you to an assigned network dentist.</p></div>
+    <div class="dd-term" id="term-waiting-period"><h3>Waiting period</h3><p>The time after your policy starts before a category of care is covered — typically none for preventive, 3–6 months for basic, 6–12 months for major work. Some carriers waive waits with proof of recent prior coverage.</p></div>
+    <div class="dd-term" id="term-annual-maximum"><h3>Annual maximum</h3><p>The most a plan will pay in one benefit year — $1,000 to $5,000 on this shelf. You keep your coverage after hitting it; the plan just stops paying until the year resets.</p></div>
+    <div class="dd-term" id="term-deductible"><h3>Deductible</h3><p>What you pay before the plan starts paying — $50 per person on every plan we shelve. Usually waived for preventive care.</p></div>
+    <div class="dd-term" id="term-coinsurance"><h3>Coinsurance</h3><p>The percentage split after your deductible. "50% major" means the plan pays half of the allowed fee for crowns and dentures, and you pay the rest.</p></div>
+    <div class="dd-term" id="term-network"><h3>In-network vs. out-of-network</h3><p>In-network dentists accept negotiated fees, so both your share and the plan's go further. Out of network, the plan reimburses against its own fee schedule and the dentist may balance-bill you the difference.</p></div>
+    <div class="dd-term" id="term-balance-billing"><h3>Balance billing</h3><p>An out-of-network dentist charging you the gap between their full fee and what the insurer allows. The quiet reason "covered at 50%" can still mean a large bill.</p></div>
+    <div class="dd-term" id="term-missing-tooth"><h3>Missing tooth clause</h3><p>A provision that can exclude coverage for replacing teeth lost before your policy began. The single most important sentence to check before buying an implant-grade plan.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="dd-auth" id="ppo-playbook" aria-labelledby="pb-title">
+<div class="dd-aw">
+  <h2 id="pb-title">The buyer's playbook: <em>mistakes, questions, and the verify-first rule</em></h2>
+  <div class="dd-trust">
+    <div class="dd-tcard">
+      <h3>Five mistakes that cost real money</h3>
+      <ol>
+        <li><strong>Buying on premium alone.</strong> A $30 plan that excludes major work is expensive the day a crown shows up.</li>
+        <li><strong>Enrolling after the diagnosis, expecting immediate major coverage.</strong> Waiting periods exist precisely for this. Know the clock before you count on the coverage.</li>
+        <li><strong>Assuming "covers implants" includes your implant.</strong> Missing tooth clauses, annual implant caps, and clinical review all narrow that sentence.</li>
+        <li><strong>Skipping the network check.</strong> The plan is wrong if your dentist doesn't take it — <a href="/ppodentists.html">verify acceptance</a> before any money moves.</li>
+        <li><strong>Reading a review of the wrong tier.</strong> Carriers sell multiple versions under one name. Match the annual maximum on your quote to the one in the review.</li>
+      </ol>
+    </div>
+    <div class="dd-tcard">
+      <h3>Six questions to ask before you buy</h3>
+      <ul>
+        <li>What does my <strong>next 12 months of dentistry</strong> actually look like? (Your dentist will tell you. <a href="/dental-treatment-cost-estimator">Estimate the costs</a>.)</li>
+        <li>Is my dentist <strong>in this plan's network</strong> — confirmed by the office, not a directory?</li>
+        <li>What are the <strong>waiting periods</strong> for the exact procedures I expect — and can prior coverage waive them?</li>
+        <li>Is the <strong>annual maximum</strong> bigger than my expected treatment, after the plan's percentage?</li>
+        <li>If implants: does the <strong>missing tooth clause</strong> apply to me? Get the answer in writing.</li>
+        <li>What does this plan <strong>refuse to cover</strong>? Every plan page on <a href="/dental-insurance/ppo-plans">our shelf</a> answers that in the first screen.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTermSet","@id":"https://www.covercapy.com/compare-ppo-dental-plans.html#ppo-dictionary","name":"PPO Dental Insurance Dictionary","hasDefinedTerm":[{"@type":"DefinedTerm","name":"PPO dental insurance","description":"A dental plan that lets you see any licensed dentist but pays more when you use an in-network dentist who has agreed to the carrier's negotiated fees."},{"@type":"DefinedTerm","name":"Waiting period","description":"The time after a dental policy starts before a category of care is covered - typically none for preventive, 3-6 months for basic, 6-12 months for major work."},{"@type":"DefinedTerm","name":"Annual maximum","description":"The most a dental plan will pay in one benefit year, commonly $1,000 to $5,000 for individual PPO plans."},{"@type":"DefinedTerm","name":"Deductible","description":"The amount the patient pays before the plan begins paying, commonly $50 per person, usually waived for preventive care."},{"@type":"DefinedTerm","name":"Coinsurance","description":"The percentage split between plan and patient after the deductible, e.g. a plan paying 50% of the allowed fee for major work."},{"@type":"DefinedTerm","name":"In-network dentist","description":"A dentist who accepts an insurance carrier's negotiated fees, lowering both the patient's share and the plan's outlay."},{"@type":"DefinedTerm","name":"Balance billing","description":"An out-of-network dentist charging the patient the difference between their full fee and the insurer's allowed amount."},{"@type":"DefinedTerm","name":"Missing tooth clause","description":"A policy provision that can exclude coverage for replacing teeth lost before the policy's effective date."}]}</script>
+
+<section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="faq-grid">
+
+        <aside class="faq-rail">
+          <div class="eyebrow"><span class="sparkle">&#10022;</span> The reading room</div>
+          <h2 class="h2" id="faq-title">
+            PPO dental insurance, <em>answered.</em>
+          </h2>
+          <p class="lede">
+            The questions patients ask before enrolling, with the same answers
+            we give across the counter. Pick a shelf, or read straight through.
+          </p>
+
+          <nav class="faq-cats" aria-label="Question categories">
+            <button class="faq-cat active" type="button" onclick="faqCat(this,'all')">
+              <span class="faq-cat-num">i.</span><span class="faq-cat-name">Every question</span><span class="faq-cat-count">10</span>
+            </button>
+            <button class="faq-cat" type="button" onclick="faqCat(this,'basics')">
+              <span class="faq-cat-num">ii.</span><span class="faq-cat-name">The basics</span><span class="faq-cat-count">04</span>
+            </button>
+            <button class="faq-cat" type="button" onclick="faqCat(this,'fit')">
+              <span class="faq-cat-num">iii.</span><span class="faq-cat-name">Treatment fit</span><span class="faq-cat-count">03</span>
+            </button>
+            <button class="faq-cat" type="button" onclick="faqCat(this,'buy')">
+              <span class="faq-cat-num">iv.</span><span class="faq-cat-name">Before you buy</span><span class="faq-cat-count">03</span>
+            </button>
+          </nav>
+
+          <button class="faq-openall" type="button" onclick="faqOpenAll(this)">
+            <span class="glyph" aria-hidden="true">&#10022;</span> <span class="lbl">Open all answers</span>
+          </button>
+
+          <div class="faq-rail-note">
+            <div class="h">Concierge note</div>
+            <p>Still unsure after reading? <em>Start with the treatment, not the plan.</em> The Smart Match above narrows six plans to two in three answers.</p>
+          </div>
+        </aside>
+
+        <div class="faq-entries">
+        <article class="fq open" data-cat="basics">
+          <button class="fq-q" type="button" aria-expanded="true" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">i.</span>
+            <span class="fq-title">How do I compare PPO dental plans?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>Compare PPO dental plans on five points: monthly cost, annual maximum, waiting periods for basic and major work, how the plan handles the treatment you actually need, and whether your dentist accepts it. The monthly cost matters least of the five. A plan that excludes your treatment is expensive at any price.</p>
+                <button class="fq-act" type="button" onclick="jumpTo('plan-table')">See all six plans in the table <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="basics">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">ii.</span>
+            <span class="fq-title">What is a dental insurance waiting period?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>A waiting period is the time between the day your coverage starts and the day a category of treatment becomes eligible. Preventive care is usually covered on Day 1. Basic work such as fillings often waits 0 to 3 months. Major work such as crowns, root canals, and implants commonly waits 6 to 12 months, depending on the plan.</p>
+                <button class="fq-act" type="button" onclick="jumpTo('plan-table')">Compare waiting periods in the table <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="basics">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">iii.</span>
+            <span class="fq-title">What is a dental annual maximum?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>The annual maximum is the most a dental plan will pay toward your care in one benefit year. The plans on this page range from $1,000 to $5,000. For large treatment such as implants, the annual maximum often matters more than the coverage percentage.</p>
+                <button class="fq-act" type="button" onclick="jumpTo('plan-table')">Compare annual maximums <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="basics">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">iv.</span>
+            <span class="fq-title">What is a missing tooth clause?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>A missing tooth clause excludes coverage for replacing a tooth that was already missing before your policy started. If you lost a tooth last year and buy a plan today, a missing tooth clause can exclude the implant or bridge that replaces it. Always confirm this clause in writing before enrolling for implant work.</p>
+                <button class="fq-act" type="button" onclick="openPlanBrief('humana')">Read the Humana plan brief <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="fit">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">v.</span>
+            <span class="fq-title">Which PPO dental plan is best for implants?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>It depends on timing and case size. Humana Extend 5000 has the shortest implant wait at 6 months, with a $2,000 per year implant benefit and a $4,000 lifetime maximum. Mutual of Omaha pays 50% after a 12 month wait under a $5,000 annual maximum. Ameritas covers Phase 1 work such as extraction and bone graft on Day 1. Check the missing tooth clause on any of them.</p>
+                <button class="fq-act" type="button" onclick="faqFilterJump('implants')">See the implant fits <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="fit">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">vi.</span>
+            <span class="fq-title">Which PPO dental plan is best for crowns and root canals?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>Crowns and root canals are usually classified as major services, so the deciding factors are the major waiting period and the annual maximum. Humana reaches major coverage at 6 months. Ameritas has no waiting period on major but pays 20% in year one and 50% from year two. Guardian and Mutual of Omaha pay 50% after a 12 month wait.</p>
+                <button class="fq-act" type="button" onclick="faqFilterJump('crowns')">See the crown fits <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="fit">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">vii.</span>
+            <span class="fq-title">Do any of these plans cover braces or Invisalign?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>Guardian Premier 2.0 is the only plan on this page with orthodontic coverage. It pays 50% for dependents under 19 after a 12 month waiting period. None of the six plans cover adult orthodontics.</p>
+                <button class="fq-act" type="button" onclick="openPlanBrief('guardian')">Open the Guardian plan brief <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="buy">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">viii.</span>
+            <span class="fq-title">How fast can a PPO dental plan start?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>UnitedHealthcare Primary Dental and Ameritas PrimeStar Complete are typically active within 1 to 3 business days, with preventive care covered on Day 1. Guardian Premier 2.0 activates on the 1st of the next month. Fast activation covers preventive and basic work first; major categories still follow each plan's waiting periods.</p>
+                <button class="fq-act" type="button" onclick="faqFilterJump('fastest')">See the fastest activations <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="buy">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">ix.</span>
+            <span class="fq-title">Should I verify my dentist before buying PPO dental insurance?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>Yes, before you enroll, not after. PPO networks vary by state, ZIP code, office, and plan version, and carrier directories are often out of date. Email or call the dental office directly and ask if they are in network with the exact plan name. The verification tool on this page writes that email for you.</p>
+                <button class="fq-act" type="button" onclick="faqVerify()">Write the verification email <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="fq" data-cat="buy">
+          <button class="fq-q" type="button" aria-expanded="false" onclick="toggleFq(this)">
+            <span class="fq-num" aria-hidden="true">x.</span>
+            <span class="fq-title">Can I buy my own PPO if I have coverage through work or Medi-Cal?</span>
+            <span class="fq-ind" aria-hidden="true">+</span>
+          </button>
+          <div class="fq-a">
+            <div class="fq-a-inner">
+              <div class="fq-a-pad">
+                <p>Yes. Many people buy an individual PPO while waiting for work benefits to start, when their employer plan is too limited for planned treatment, or when moving from Medi-Cal to private coverage. Your situation changes which plan fits, so start with the treatment you need and the timeline you have.</p>
+                <button class="fq-act" type="button" onclick="jumpTo('smart-match')">Match a plan to your situation <span class="arr" aria-hidden="true">&#8594;</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================================
+       SECTION 6 - CLOSING CTA - NOW CHOOSE THE OFFICE
+       ============================================================== -->
+  <section class="arena" aria-labelledby="arena-title">
+    <div class="container">
+      <div class="arena-inner">
+
+        <div class="eyebrow"><span class="sparkle">&#10022;</span> The next move</div>
+        <h2 class="h2 arena-h" id="arena-title">
+          The plan is chosen.<br/>
+          <em>Now choose the office.</em>
+        </h2>
+        <p class="lede arena-lede">
+          A great PPO with the wrong dentist is the wrong plan. The next decision is
+          the office: <em>find a CoverCapy accredited PPO dentist</em> who already
+          accepts what you're activating, and walk in with the coverage ready.
+        </p>
+
+        <div class="arena-cta">
+          <a class="btn btn-primary" href="ppodentists.html">
+            Find PPO dentists near you <span class="arr" aria-hidden="true">&#8594;</span>
+          </a>
+          <button class="btn btn-outline" onclick="scrollToMatch()">
+            Compare plans again <span class="arr" aria-hidden="true">&#8593;</span>
+          </button>
+          <a class="btn-ghost btn" href="membership.html">
+            Explore CoverCapy network <span class="arr" aria-hidden="true">&#8594;</span>
+          </a>
+        </div>
+
+        <p class="footer-bridge">
+          <span class="ast" aria-hidden="true">&#10022;</span>
+          <span><em>CoverCapy is an independent guide.</em> We are paid by the dental offices in our network, not by which plan you pick, so our only job on this page is the right fit. Pricing, eligibility, and waiting periods verified at the carrier before enrollment.</span>
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================================================
+     PLAN BRIEF MODAL - opens with full dossier content per plan
+     ================================================================ -->
+<div class="veil" id="briefVeil" onclick="closeModal('brief')" aria-hidden="true"></div>
+<div class="modal" id="briefModal" role="dialog" aria-modal="true" aria-labelledby="briefTitle" aria-hidden="true">
+  <header class="modal-head">
+    <div>
+      <div class="modal-eyebrow"><span class="dot" aria-hidden="true"></span> Plan Brief &middot; the dossier</div>
+      <h2 class="modal-title" id="briefTitle"></h2>
+      <div class="modal-carrier" id="briefCarrier"></div>
+    </div>
+    <button class="modal-close" type="button" onclick="closeModal('brief')" aria-label="Close plan brief">
+      <svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true">
+        <path d="M2 2 L12 12 M12 2 L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </header>
+  <div class="modal-body" id="briefBody"></div>
+  <footer class="modal-foot">
+    <button class="btn btn-primary" id="briefVerifyBtn" type="button">
+      Verify with dentist first <span class="arr" aria-hidden="true">&#8594;</span>
+    </button>
+    <a class="btn btn-outline" id="briefPlanBtn" href="#">
+      Open full plan page <span class="arr" aria-hidden="true">&#8594;</span>
+    </a>
+    <span class="modal-foot-note">Verify before you activate.</span>
+  </footer>
+</div>
+
+<!-- ================================================================
+     VERIFY WITH DENTIST MODAL - email composer
+     ================================================================ -->
+<div class="veil" id="verifyVeil" onclick="closeModal('verify')" aria-hidden="true"></div>
+<div class="modal verify-modal" id="verifyModal" role="dialog" aria-modal="true" aria-labelledby="verifyTitle" aria-hidden="true">
+  <header class="modal-head">
+    <div>
+      <div class="modal-eyebrow"><span class="dot" aria-hidden="true"></span> Confirm the office</div>
+      <h2 class="modal-title" id="verifyTitle">
+        Verify with the <em>dentist.</em>
+      </h2>
+      <div class="modal-carrier">One email confirms network status before you activate.</div>
+    </div>
+    <button class="modal-close" type="button" onclick="closeModal('verify')" aria-label="Close verify modal">
+      <svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true">
+        <path d="M2 2 L12 12 M12 2 L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </header>
+  <div class="modal-body">
+
+    <div class="verify-locked" aria-live="polite">
+      <div class="lock-glyph" aria-hidden="true">&#128737;</div>
+      <div class="verify-locked-info">
+        <div class="verify-locked-lbl">Plan locked in for verification</div>
+        <div class="verify-locked-val" id="verifyPlanLocked">&middot;</div>
+      </div>
+    </div>
+
+    <div class="verify-fields">
+      <div class="field">
+        <label class="field-lbl" for="vfOffice">Dental office name</label>
+        <input class="field-input" id="vfOffice" type="text" placeholder="e.g. KYT Dental Services" autocomplete="organization" oninput="composeEmail()" />
+      </div>
+      <div class="field">
+        <label class="field-lbl" for="vfEmail">Office email</label>
+        <input class="field-input" id="vfEmail" type="email" placeholder="front-desk@office.com" autocomplete="email" oninput="composeEmail()" />
+      </div>
+      <div class="field">
+        <label class="field-lbl" for="vfName">Your first name</label>
+        <input class="field-input" id="vfName" type="text" placeholder="Alex" autocomplete="given-name" oninput="composeEmail()" />
+      </div>
+      <div class="field">
+        <label class="field-lbl" for="vfGoal">Appointment goal &middot; optional</label>
+        <input class="field-input" id="vfGoal" type="text" placeholder="e.g. crown follow up" oninput="composeEmail()" />
+      </div>
+    </div>
+
+    <div class="email-preview" id="emailPreview">
+      <div class="email-preview-h">Email preview</div>
+      <div class="email-subject" id="emailSubject"></div>
+      <div class="email-body" id="emailBody"></div>
+    </div>
+
+    <div class="verify-actions">
+      <button class="btn btn-primary" type="button" onclick="copyEmail()">
+        <span>Copy email</span>
+      </button>
+      <button class="btn btn-outline" type="button" onclick="openMailApp()">
+        <span>Open mail app</span> <span class="arr" aria-hidden="true">&#8594;</span>
+      </button>
+      <button class="btn btn-outline" type="button" onclick="sendThroughCoverCapy()" title="Coming soon">
+        <span>Send through CoverCapy</span>
+      </button>
+    </div>
+
+    <p class="modal-foot-note" style="margin-top:16px;text-align:center;width:100%">
+      CoverCapy helps patients verify before activating, so the visit feels smoother on both sides of the counter.
+    </p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ================================================================
+     LOGIC
+     ================================================================ -->
+<script>
+'use strict';
+
+/* ------------------------------------------------------------
+   CONFIG : Supabase
+   The publishable key token is injected by generate-plans.js
+   at deploy time. The key is safe to expose; RLS makes the
+   ppo_plans table read only to the public.
+   ------------------------------------------------------------ */
+const SB_URL = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
+const SB_KEY = '__SUPABASE_PUBLISHABLE_KEY__';
+const MATCH_FN = SB_URL + '/functions/v1/smart-match';
+const HAS_KEY = SB_KEY.indexOf('__SUPABASE') === -1;
+
+/* ------------------------------------------------------------
+   FALLBACK DATA
+   Used only when the live fetch is unavailable (for example a
+   local file preview before the build step has run). The same
+   data is public in the static table above, so shipping it
+   protects nothing less; the scoring matrix stays server side
+   in the smart-match Edge Function either way.
+   ------------------------------------------------------------ */
+const FALLBACK_PLANS = {
+  uhc: {
+    key:'uhc', mark:'U',
+    name:'UnitedHealthcare', em:'Primary Dental',
+    carrier:'UnitedHealthcare \u00b7 Golden Rule Insurance Co. \u00b7 A+ A.M. Best',
+    monthly:30, monthlyText:'~$30/mo',
+    capText:'$1,000', deductible:'$50',
+    bestFor:'Preventive entry with the fastest activation',
+    tagline:'Day 1 active. The easiest entry into PPO care: cleanings, exams, X-rays, a simple basic filling.',
+    timing:'Active in 1 to 3 business days',
+    weakness:'Age \u2264 64 \u00b7 no major, implant, ortho, or whitening',
+    planPage:'/uhc-primary-dental.html',
+    points:[
+      '<strong>100% preventive</strong> Day 1 \u00b7 cleanings, exams, X-rays',
+      '<strong>50% basic</strong> Day 1 \u00b7 fillings, simple extractions',
+      '<strong>Calendar year reset</strong> \u00b7 benefits refresh January 1',
+      'Member ID issued electronically at checkout'
+    ],
+    coverage:{
+      preventive:'100% \u00b7 Day 1',
+      basic:'50% \u00b7 Day 1',
+      major:'Not covered',
+      implant:'Not covered',
+      whitening:'Not covered',
+      ortho:'Not covered'
+    },
+    idealFor:[
+      'Patient who needs an exam, cleaning, and X-rays this week',
+      'Lowest monthly cost on the shelf',
+      'A simple basic filling is the upper bound of expected need',
+      'Starter PPO before stepping into stronger coverage'
+    ],
+    poorFitFor:[
+      'Anyone 65 or older, the age limit applies',
+      'Patient anticipating a crown, root canal, implant, or bridge',
+      'Family with a child needing orthodontics',
+      'Whitening or any cosmetic coverage'
+    ],
+    verify:[
+      'Confirm network status for the dentist you intend to see',
+      'Confirm the $1,000 annual maximum is sufficient for the year ahead',
+      'Confirm dependents are added correctly if applicable'
+    ],
+    concierge:'A clean entry point. If the schedule is cleanings, an exam, X-rays, and possibly one filling, <em>this is the plan we hand you across the counter</em>. If the schedule is anything else, keep reading.',
+    caution:'No major services. No implants. No whitening. No orthodontics. Age cap 64.',
+    tags:['preventive','fastest','budget']
+  },
+
+  aetna: {
+    key:'aetna', mark:'A',
+    name:'Aetna Dental', em:'Direct Preferred PPO',
+    carrier:'Aetna Life Insurance Company',
+    monthly:50, monthlyText:'~$50/mo',
+    capText:'$1,500', deductible:'$50',
+    bestFor:'Balanced everyday coverage with prior coverage waiver potential',
+    tagline:'Balanced everyday PPO. A reasonable middle path if you had dental coverage recently and want broader future proofing.',
+    timing:'Active in days \u00b7 basic 3 month wait \u00b7 major 12 month wait',
+    weakness:'12 month wait on major \u00b7 no implants',
+    planPage:'/aetna-dental-direct.html',
+    points:[
+      '<strong>100% preventive</strong> Day 1',
+      '<strong>50% basic</strong> after 3 month wait',
+      '<strong>50% major</strong> after 12 month wait',
+      'Prior coverage waiver may eliminate waiting periods'
+    ],
+    coverage:{
+      preventive:'100% \u00b7 Day 1',
+      basic:'50% \u00b7 3 month wait',
+      major:'50% \u00b7 12 month wait',
+      implant:'Not covered',
+      whitening:'Not covered',
+      ortho:'Not covered'
+    },
+    idealFor:[
+      'Had active dental coverage within the last 90 days',
+      'Balanced preventive plus future proofing for basics and major',
+      'Self employed or between employers, wants a reliable middle option',
+      'Doesn\u2019t need implants or whitening'
+    ],
+    poorFitFor:[
+      'Implant case planning',
+      'Whitening or orthodontics priority',
+      'Patient needing major work in the first 12 months'
+    ],
+    verify:[
+      'Confirm whether a prior coverage waiver applies to your situation',
+      'Confirm the 12 month major waiting period start date',
+      'Verify dentist network status'
+    ],
+    concierge:'A measured everyday PPO. If you had recent coverage and want preventive plus future proofing without paying implant tier pricing, <em>this is the comfortable middle</em>.',
+    caution:'No implants, no whitening, no orthodontics on this individual tier. 12 month major waiting period.',
+    tags:['budget']
+  },
+
+  ameritas: {
+    key:'ameritas', mark:'A',
+    name:'Ameritas', em:'PrimeStar Care Complete',
+    carrier:'Ameritas Life Insurance Corp.',
+    monthly:60, monthlyText:'~$60/mo',
+    capText:'$2,000 Y1 \u00b7 $2,500 Y2+', deductible:'$50',
+    bestFor:'Phased treatment and a no wait broader strategy',
+    tagline:'Broader no wait strategy. Phase 1 (extraction + bone graft) eligible Day 1. Year two upgrade for ongoing care.',
+    timing:'Day 1 active \u00b7 Phase 1 implant Day 1 \u00b7 full implant 12 month wait',
+    weakness:'Year one major is 20% \u00b7 12 month wait on full implant',
+    planPage:'/ameritas-primestar.html',
+    points:[
+      '<strong>100% preventive</strong> Day 1 \u00b7 diagnostic exclusion (cleanings off cap)',
+      '<strong>60% basic</strong> Day 1',
+      '<strong>20% major Y1, 50% Y2+</strong> with no waiting period',
+      '<strong>Phase 1 implant</strong> (extraction + bone graft) Day 1'
+    ],
+    coverage:{
+      preventive:'100% \u00b7 Day 1 \u00b7 diagnostic off cap',
+      basic:'60% \u00b7 Day 1',
+      major:'20% Y1 \u00b7 50% Y2+',
+      implant:'Phase 1 Day 1 \u00b7 full 12 mo wait',
+      whitening:'Not covered',
+      ortho:'Not covered'
+    },
+    idealFor:[
+      'Patient on a phased treatment path (extract now, implant later)',
+      'No wait broader coverage priority',
+      'Diagnostic exclusion preserves annual max for actual treatment',
+      'Year two strategy for ongoing major work'
+    ],
+    poorFitFor:[
+      'Patient who needs major work paid at full rates immediately',
+      'Whitening or orthodontics priority',
+      'Highest annual cap demand (Mutual and Humana win there)'
+    ],
+    verify:[
+      'Confirm Phase 1 Day 1 coverage on your specific tier',
+      'Confirm the year two coinsurance upgrade timing',
+      'Confirm diagnostic exclusion language for cleanings + exams'
+    ],
+    concierge:'The phased treatment specialist. Extract today, graft today, place the implant on Year 2 maximums. <em>The only plan with Phase 1 Day 1</em>, quietly the strongest sequencing tool on the shelf.',
+    caution:'Year one major coverage is 20%. Best for phased treatment timing across two benefit years.',
+    tags:['fastest','crowns','implants']
+  },
+
+  guardian: {
+    key:'guardian', mark:'G',
+    name:'Guardian', em:'Premier 2.0',
+    carrier:'The Guardian Life Insurance Company of America',
+    monthly:70, monthlyText:'~$70/mo',
+    capText:'$3,000', deductible:'$50',
+    bestFor:'Families, Day 1 fillings, and child orthodontics',
+    tagline:'85% on basic Day 1. $3,000 annual maximum. Whitening at 6 months. Orthodontics for dependents under 19.',
+    timing:'Basic Day 1 \u00b7 major 12 mo \u00b7 ortho 12 mo \u00b7 whitening 6 mo',
+    weakness:'12 month wait on major and orthodontics \u00b7 no implants',
+    planPage:'/guardian-premier-ppo.html',
+    points:[
+      '<strong>100% preventive</strong> Day 1',
+      '<strong>85% basic</strong> Day 1, the highest on the shelf',
+      '<strong>50% major</strong> after 12 month wait',
+      '<strong>50% orthodontics</strong> for dependents under 19',
+      '<strong>50% whitening</strong> after 6 month wait'
+    ],
+    coverage:{
+      preventive:'100% \u00b7 Day 1',
+      basic:'85% \u00b7 Day 1',
+      major:'50% \u00b7 12 mo wait',
+      implant:'Not covered',
+      whitening:'50% \u00b7 6 mo wait',
+      ortho:'50% \u00b7 dependents \u226419 \u00b7 12 mo wait'
+    },
+    idealFor:[
+      'Family with a dependent under 19 considering orthodontics',
+      'Patient with urgent fillings or deep cleaning',
+      'Whitening as part of routine care',
+      'Higher annual max than starter plans for ongoing work'
+    ],
+    poorFitFor:[
+      'Implant case planning (not covered here)',
+      'Patient who needs major work in the first 12 months',
+      'Adult orthodontics (dependents \u226419 only)'
+    ],
+    verify:[
+      'Confirm orthodontic lifetime maximum for the dependent',
+      'Confirm the 12 month wait window on major treatment',
+      'Confirm whitening procedure codes are covered'
+    ],
+    concierge:'The family pick. If a child needs braces or a teen needs Invisalign, <em>this is the only plan on the shelf with orthodontic coverage</em>. The 85% basic Day 1 is the bonus on top.',
+    caution:'No implants. 12 month wait on major and orthodontics. Orthodontics for dependents under 19 only.',
+    tags:['crowns']
+  },
+
+  moo: {
+    key:'moo', mark:'M',
+    name:'Mutual of Omaha', em:'Dental Preferred',
+    carrier:'Mutual of Omaha Insurance Company',
+    monthly:90, monthlyText:'~$90/mo',
+    capText:'$5,000', deductible:'$50',
+    bestFor:'Single implant economics and a high annual maximum',
+    tagline:'$5,000 annual maximum. 80% basic Day 1. The best single implant economics on the shelf if you can wait 12 months.',
+    timing:'Basic Day 1 \u00b7 major 12 month wait \u00b7 implant 12 month wait',
+    weakness:'12 month wait on major and implant \u00b7 no whitening or ortho',
+    planPage:'/mutual-of-omaha-dental.html',
+    points:[
+      '<strong>100% preventive</strong> Day 1',
+      '<strong>80% basic</strong> Day 1',
+      '<strong>50% major</strong> after 12 month wait',
+      '<strong>50% implant</strong> after 12 month wait, $5,000 cap',
+      'Calendar year reset \u00b7 strategic year end and year start timing'
+    ],
+    coverage:{
+      preventive:'100% \u00b7 Day 1',
+      basic:'80% \u00b7 Day 1',
+      major:'50% \u00b7 12 mo wait',
+      implant:'50% \u00b7 12 mo wait',
+      whitening:'Not covered',
+      ortho:'Not covered'
+    },
+    idealFor:[
+      'Patient planning a single implant after a 12 month wait',
+      'Highest annual maximum with simpler rules than Humana',
+      'Day 1 basic at 80% coinsurance',
+      'Calendar year reset for strategic timing'
+    ],
+    poorFitFor:[
+      'Whitening or orthodontics priority',
+      'Patient who needs major work paid in full immediately',
+      'A case with multiple implants spread across years (Humana stretches further)'
+    ],
+    verify:[
+      'Confirm the calendar year reset date',
+      'Confirm the 12 month implant wait start',
+      'Confirm the year two coinsurance schedule'
+    ],
+    concierge:'The single implant cap play. If you can wait 12 months and you only need one implant, the $5,000 cap covers 50% of a $4,500 case, about $2,250 reimbursed. <em>Lower monthly cost than Humana with a bigger annual ceiling.</em>',
+    caution:'12 month wait on major and implants. No whitening or orthodontics on this tier.',
+    tags:['implants','crowns','highmax']
+  },
+
+  humana: {
+    key:'humana', mark:'H',
+    name:'Humana', em:'Extend 5000',
+    carrier:'Humana Inc.',
+    monthly:100, monthlyText:'~$100/mo',
+    capText:'$5,000', deductible:'$50',
+    bestFor:'Implants, whitening, and planning ahead',
+    tagline:'$5,000 annual cap. $2,000/yr implant benefit. $4,000 implant lifetime. 6 month implant wait. Named whitening allowance.',
+    timing:'Basic 3 mo \u00b7 major 6 mo \u00b7 implant 6 mo',
+    weakness:'Missing tooth clause \u00b7 clinical review on implants',
+    planPage:'/humana-extend-5000.html',
+    points:[
+      '<strong>100% preventive</strong> Day 1',
+      '<strong>50% basic</strong> after 3 month wait',
+      '<strong>50% major</strong> after 6 month wait',
+      '<strong>50% implant</strong> after 6 month wait \u00b7 $2K/yr \u00b7 $4K lifetime',
+      '<strong>$200 named whitening allowance</strong> at 3 months'
+    ],
+    coverage:{
+      preventive:'100% \u00b7 Day 1',
+      basic:'50% \u00b7 3 mo wait',
+      major:'50% \u00b7 6 mo wait',
+      implant:'50% \u00b7 6 mo \u00b7 $2K/yr \u00b7 $4K lifetime',
+      whitening:'$200 allowance \u00b7 3 mo wait',
+      ortho:'Not covered'
+    },
+    idealFor:[
+      'Implant case with the fastest path to coverage',
+      'An implant strategy spread across two benefit years',
+      'Patient who wants named whitening as part of routine care',
+      'Highest implant ceiling on the shelf'
+    ],
+    poorFitFor:[
+      'Tooth was lost before the policy effective date (missing tooth clause)',
+      'Patient who needs major work in the first 6 months',
+      'Adult orthodontics or pediatric ortho'
+    ],
+    verify:[
+      'Confirm whether your missing tooth predates the effective date',
+      'Confirm the $4,000 implant lifetime maximum has not been used',
+      'Request a predetermination in writing before scheduling'
+    ],
+    concierge:'The implant specialist. Six month wait, $2,000/yr implant max, $4,000 lifetime, $5,000 annual cap, named whitening allowance. <em>The fastest legitimate implant path on the shelf</em>, with one critical verification: the missing tooth clause.',
+    caution:'Missing tooth clause may exclude an existing gap. Clinical review and lifetime maximum apply on implants.',
+    tags:['implants','crowns','highmax']
+  }
+};
+
+const FALLBACK_ORDER = ['uhc','aetna','ameritas','guardian','moo','humana'];
+
+let PLANS = {};
+let PLAN_ORDER = [];
+let usingFallback = false;
+
+function mapRow(r){
+  return {
+    key: r.plan_key, mark: r.mark,
+    name: r.name, em: r.name_em,
+    carrier: r.carrier,
+    monthly: r.monthly, monthlyText: r.monthly_text,
+    capText: r.cap_text, deductible: r.deductible,
+    bestFor: r.best_for, tagline: r.tagline,
+    timing: r.timing, weakness: r.weakness,
+    planPage: r.plan_page,
+    points: r.points || [],
+    coverage: r.coverage || {},
+    idealFor: r.ideal_for || [],
+    poorFitFor: r.poor_fit_for || [],
+    verify: r.verify_items || [],
+    concierge: r.concierge, caution: r.caution,
+    tags: r.tags || []
+  };
+}
+
+async function loadPlans(){
+  if (HAS_KEY){
+    try{
+      const res = await fetch(
+        SB_URL + '/rest/v1/ppo_plans?is_active=eq.true&order=sort_order.asc',
+        { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } }
+      );
+      if (res.ok){
+        const rows = await res.json();
+        if (Array.isArray(rows) && rows.length){
+          PLANS = {}; PLAN_ORDER = [];
+          rows.forEach(r => { PLANS[r.plan_key] = mapRow(r); PLAN_ORDER.push(r.plan_key); });
+          renderPlanGrid();
+          runSim();
+          return;
+        }
+      }
+      console.warn('[CoverCapy] plans fetch returned', res.status);
+    } catch(e){
+      console.warn('[CoverCapy] plans fetch failed', e);
+    }
+  }
+  // Fallback path
+  usingFallback = true;
+  PLANS = FALLBACK_PLANS;
+  PLAN_ORDER = FALLBACK_ORDER.slice();
+  renderPlanGrid();
+  runSim();
+}
+
+/* ------------------------------------------------------------
+   STATE
+   ------------------------------------------------------------ */
+let state = {
+  treat: 'preventive',
+  tl: 'now',
+  budget: 70,
+  filter: 'all'
+};
+let lastMatch = null;
+
+/* ------------------------------------------------------------
+   THEME: Journey (now) / Network (wait) / Synchronized (plan)
+   ------------------------------------------------------------ */
+function applyTheme(tl){
+  document.body.classList.remove('theme-now','theme-wait','theme-plan');
+  document.body.classList.add('theme-' + tl);
+  const card = document.getElementById('simCard');
+  if (card) card.dataset.theme = tl;
+}
+
+/* ------------------------------------------------------------
+   SIM CONTROLS
+   ------------------------------------------------------------ */
+function selectTreat(el){
+  document.querySelectorAll('.pill').forEach(p => { p.classList.remove('sel'); p.setAttribute('aria-checked','false'); });
+  el.classList.add('sel'); el.setAttribute('aria-checked','true');
+  state.treat = el.dataset.treat;
+  runSim();
+}
+function selectTl(el){
+  document.querySelectorAll('.tl-opt').forEach(p => { p.classList.remove('sel'); p.setAttribute('aria-checked','false'); });
+  el.classList.add('sel'); el.setAttribute('aria-checked','true');
+  state.tl = el.dataset.tl;
+  applyTheme(state.tl);
+  runSim();
+}
+let budgetTimer = null;
+function updateBudget(val){
+  state.budget = +val;
+  const v = document.getElementById('budgetVal');
+  if (v) v.innerHTML = '~$' + val + '<span class="mo">/mo</span>';
+  clearTimeout(budgetTimer);
+  budgetTimer = setTimeout(runSim, 280);
+}
+function scrollToMatch(){
+  const el = document.getElementById('smart-match');
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ------------------------------------------------------------
+   SMART MATCH : calls the smart-match Edge Function.
+   The scoring matrix lives server side and never ships here.
+   ------------------------------------------------------------ */
+let matchController = null;
+let matchSeq = 0;
+
+function renderMatching(){
+  return `
+    <div class="result-empty">
+      <div>
+        <div class="scope-ring"><span class="scope-dot"></span></div>
+        <p>Matching your visit against six plans...<br/><span class="em">One moment.</span></p>
+      </div>
+    </div>`;
+}
+function renderMatchError(){
+  return `
+    <div class="result-empty">
+      <div>
+        <div class="scope-ring"><span class="scope-dot"></span></div>
+        <p>The matcher could not be reached.<br/><span class="em">Check your connection,</span> then try again.</p>
+        <p style="margin-top:14px"><button class="mini-btn primary" type="button" onclick="runSim()">Try again</button></p>
+      </div>
+    </div>`;
+}
+
+async function runSim(){
+  const panel = document.getElementById('resultPanel');
+  if (!panel) return;
+  if (!PLAN_ORDER.length) { panel.innerHTML = renderMatching(); return; }
+
+  const seq = ++matchSeq;
+  if (matchController) matchController.abort();
+  matchController = new AbortController();
+
+  panel.innerHTML = renderMatching();
+
+  try{
+    const res = await fetch(MATCH_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ treat: state.treat, tl: state.tl, budget: state.budget }),
+      signal: matchController.signal
+    });
+    if (!res.ok) throw new Error('match fn ' + res.status);
+    const m = await res.json();
+    if (seq !== matchSeq) return; // a newer request superseded this one
+    lastMatch = m;
+
+    const primary = PLANS[m.primary_key];
+    const backup  = PLANS[m.backup_key];
+    if (!primary || !backup) throw new Error('unknown plan key');
+
+    panel.classList.remove('analyzing'); void panel.offsetWidth; panel.classList.add('analyzing');
+    panel.innerHTML = `
+      <h3 class="result-head"><span class="ast">\u2726</span> Closest fit \u00b7 ${m.treat_label}</h3>
+      ${loadoutHTML(primary, 'primary', m.why_primary)}
+      ${loadoutHTML(backup,  'backup',  m.why_backup)}
+    `;
+  } catch(e){
+    if (e.name === 'AbortError') return;
+    if (seq !== matchSeq) return;
+    console.warn('[CoverCapy] smart-match failed', e);
+    panel.innerHTML = renderMatchError();
+  }
+}
+
+function loadoutHTML(p, role, whyHtml){
+  const isPrimary = role === 'primary';
+  const overBudget = p.monthly > state.budget + 10;
+  const tagLabel = isPrimary ? '\u2605 Closest fit' : 'Backup option';
+
+  const chips = [
+    `<span class="chip strong">${p.monthlyText}</span>`,
+    `<span class="chip">${p.capText} cap</span>`,
+    `<span class="chip soft">${p.timing}</span>`
+  ].join('');
+
+  const overChip = overBudget
+    ? `<div style="display:inline-flex;align-items:center;gap:5px;background:var(--th-accent-2);border:1px solid var(--th-line);color:var(--th-ink);font-family:var(--ff-sans);font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:30px;margin-bottom:7px">\u26a0 Above your $${state.budget}/mo budget</div>`
+    : '';
+
+  return `
+    <article class="loadout ${role}">
+      <div class="loadout-tag">${tagLabel}</div>
+      ${overChip}
+      <div class="loadout-name-row">
+        <span class="loadout-name">${p.name} <em>${p.em}</em></span>
+        <span class="loadout-price"><span class="approx">~</span>$${p.monthly}<span style="color:var(--ink-faint);font-size:11px">/mo</span></span>
+      </div>
+      <p class="loadout-tagline">${p.tagline}</p>
+      <div class="loadout-stats">${chips}</div>
+      <p class="loadout-why"><span class="ast">\u2726</span><span>${whyHtml}</span></p>
+      <div class="loadout-actions">
+        <button class="mini-btn primary" type="button" onclick="openPlanBrief('${p.key}')">Open plan brief <span class="arr" aria-hidden="true">\u2192</span></button>
+        <button class="mini-btn" type="button" onclick="openVerifyModal('${p.key}')">Verify with dentist</button>
+      </div>
+    </article>`;
+}
+
+/* ------------------------------------------------------------
+   RENDER - PLAN GRID (every plan in detail)
+   ------------------------------------------------------------ */
+function renderPlanGrid(){
+  const grid = document.getElementById('planGrid');
+  if (!grid) return;
+  if (!PLAN_ORDER.length){
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--ink-mute);font-size:13px;padding:30px 0">Loading the shelf...</p>';
+    return;
+  }
+  grid.innerHTML = PLAN_ORDER.map(k => {
+    const p = PLANS[k];
+    const pointsHTML = p.points.map((pt, i) => `
+      <li><span class="num">${['i','ii','iii','iv','v'][i] || (i+1)}.</span><span>${pt}</span></li>
+    `).join('');
+    return `
+      <article class="plan-card" data-plan="${p.key}" data-tags="${p.tags.join(' ')}" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="category" content="PPO Dental Insurance" />
+        <header class="plan-head">
+          <div class="plan-mark ${p.key}" aria-hidden="true">${p.mark}</div>
+          <div class="plan-id">
+            <div class="plan-carrier" itemprop="seller">${p.name}</div>
+            <h3 class="plan-name" itemprop="name">${p.name} <em>${p.em}</em></h3>
+          </div>
+        </header>
+        <p class="plan-tagline">${p.tagline}</p>
+        <div class="plan-meta">
+          <div class="plan-meta-cell"><div class="plan-meta-lbl">Monthly</div><div class="plan-meta-val"><em>${p.monthlyText}</em></div></div>
+          <div class="plan-meta-cell"><div class="plan-meta-lbl">Annual max</div><div class="plan-meta-val">${p.capText}</div></div>
+          <div class="plan-meta-cell"><div class="plan-meta-lbl">Timing</div><div class="plan-meta-val" style="font-size:11px;line-height:1.4">${p.timing}</div></div>
+          <div class="plan-meta-cell"><div class="plan-meta-lbl">Best for</div><div class="plan-meta-val" style="font-size:11px;line-height:1.4;font-style:italic">${p.bestFor}</div></div>
+        </div>
+        <ul class="plan-points">${pointsHTML}</ul>
+        <div class="plan-caution">
+          <span class="warn" aria-hidden="true">\u26a0</span>
+          <span><strong>Watch for:</strong> ${p.weakness}</span>
+        </div>
+        <div class="plan-actions">
+          <button class="mini-btn primary" type="button" onclick="openPlanBrief('${p.key}')">Open brief</button>
+          <button class="mini-btn" type="button" onclick="openVerifyModal('${p.key}')">Verify dentist</button>
+          <a class="mini-btn full" href="${p.planPage}">View plan page <span class="arr" aria-hidden="true">\u2192</span></a>
+        </div>
+      </article>`;
+  }).join('');
+  // Re-apply the active filter after any re-render
+  const activeFilter = document.querySelector('.filter.active');
+  if (activeFilter && activeFilter.dataset.filter !== 'all') applyFilter(activeFilter);
+}
+
+/* ------------------------------------------------------------
+   FILTERS
+   ------------------------------------------------------------ */
+function applyFilter(btn){
+  document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  state.filter = f;
+  document.querySelectorAll('.plan-card').forEach(c => {
+    if (f === 'all'){ c.classList.remove('dim'); return; }
+    const tags = (c.dataset.tags || '').split(' ');
+    const match = tags.includes(f);
+    c.classList.toggle('dim', !match);
+  });
+}
+
+/* ------------------------------------------------------------
+   PLAN BRIEF MODAL
+   ------------------------------------------------------------ */
+let currentPlanKey = null;
+
+function openPlanBrief(key){
+  const p = PLANS[key];
+  if (!p) return;
+  currentPlanKey = key;
+
+  // Header
+  document.getElementById('briefTitle').innerHTML = `${p.name} <em>${p.em}</em>`;
+  document.getElementById('briefCarrier').textContent = p.carrier;
+
+  // Body
+  const body = document.getElementById('briefBody');
+  body.innerHTML = `
+
+    <div class="modal-stats">
+      <div>
+        <div class="modal-stat-lbl">Monthly</div>
+        <div class="modal-stat-val"><em>${p.monthlyText}</em></div>
+      </div>
+      <div>
+        <div class="modal-stat-lbl">Annual max</div>
+        <div class="modal-stat-val">${p.capText}</div>
+      </div>
+      <div>
+        <div class="modal-stat-lbl">Deductible</div>
+        <div class="modal-stat-val">${p.deductible}</div>
+      </div>
+    </div>
+
+    <div class="modal-concierge">
+      <div class="modal-concierge-h">Concierge note</div>
+      <p>${p.concierge}</p>
+    </div>
+
+    <div class="modal-row">
+      <h4>Coverage at a glance</h4>
+      <div class="modal-coverage">
+        <div class="cov-cell"><div class="cov-lbl">Preventive</div><div class="cov-val">${p.coverage.preventive}</div></div>
+        <div class="cov-cell"><div class="cov-lbl">Basic</div><div class="cov-val">${p.coverage.basic}</div></div>
+        <div class="cov-cell"><div class="cov-lbl">Major</div><div class="cov-val">${p.coverage.major}</div></div>
+        <div class="cov-cell"><div class="cov-lbl">Implant</div><div class="cov-val">${p.coverage.implant}</div></div>
+        <div class="cov-cell"><div class="cov-lbl">Whitening</div><div class="cov-val">${p.coverage.whitening}</div></div>
+        <div class="cov-cell"><div class="cov-lbl">Orthodontics</div><div class="cov-val">${p.coverage.ortho}</div></div>
+      </div>
+    </div>
+
+    <div class="modal-row">
+      <h4>Ideal for</h4>
+      <ul>${p.idealFor.map(x => `<li>${x}</li>`).join('')}</ul>
+    </div>
+
+    <div class="modal-row">
+      <h4>Best for</h4>
+      <p><strong>${p.bestFor}</strong>. ${p.tagline}</p>
+    </div>
+
+    <div class="modal-row warn">
+      <h4>Verify before activating</h4>
+      <ul>${p.verify.map(x => `<li>${x}</li>`).join('')}</ul>
+    </div>
+
+    <div class="modal-row warn">
+      <h4>Caution</h4>
+      <p>${p.caution}</p>
+    </div>
+
+    <div class="modal-row">
+      <h4>Poor fit if</h4>
+      <ul>${p.poorFitFor.map(x => `<li>${x}</li>`).join('')}</ul>
+    </div>
+  `;
+
+  // Footer CTAs
+  const planBtn = document.getElementById('briefPlanBtn');
+  planBtn.href = p.planPage;
+  const verifyBtn = document.getElementById('briefVerifyBtn');
+  verifyBtn.onclick = () => {
+    closeModal('brief');
+    setTimeout(() => openVerifyModal(key), 220);
+  };
+
+  // Open
+  document.getElementById('briefVeil').classList.add('on');
+  document.getElementById('briefModal').classList.add('on');
+  document.getElementById('briefModal').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ------------------------------------------------------------
+   VERIFY MODAL - email composer
+   ------------------------------------------------------------ */
+let verifyPlanKey = null;
+
+function openVerifyModal(key){
+  const p = PLANS[key];
+  if (!p) return;
+  verifyPlanKey = key;
+
+  document.getElementById('verifyPlanLocked').innerHTML = `${p.name} <em>${p.em}</em>`;
+
+  // Pre-fill goal from the active sim treatment if relevant
+  const goalEl = document.getElementById('vfGoal');
+  if (goalEl && !goalEl.value){
+    const goalMap = {
+      preventive:'routine cleaning + exam',
+      cavities:'fillings',
+      crown:'crown / root canal consult',
+      implant:'implant consult',
+      whitening:'whitening consult',
+      ortho:'orthodontic consult',
+      dentures:'dentures consult',
+      emergency:'emergency visit'
+    };
+    if (state.treat && goalMap[state.treat]) goalEl.placeholder = `e.g. ${goalMap[state.treat]}`;
+  }
+
+  composeEmail();
+
+  document.getElementById('verifyVeil').classList.add('on');
+  document.getElementById('verifyModal').classList.add('on');
+  document.getElementById('verifyModal').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+
+  // Focus first empty field for fast keyboard entry
+  setTimeout(() => {
+    const officeEl = document.getElementById('vfOffice');
+    if (officeEl && !officeEl.value) officeEl.focus();
+  }, 320);
+}
+
+function composeEmail(){
+  const p = PLANS[verifyPlanKey] || PLANS.uhc;
+  const office = (document.getElementById('vfOffice')?.value || '').trim() || '[Office Name]';
+  const name   = (document.getElementById('vfName')?.value   || '').trim() || '[Your Name]';
+  const goal   = (document.getElementById('vfGoal')?.value   || '').trim() || '[Appointment goal]';
+
+  const subject = 'Checking PPO network status before I activate my dental plan';
+  const body = `Hi ${office},
+
+I am looking at activating a PPO dental insurance plan through CoverCapy and wanted to verify network status before I visit your office.
+
+The plan I am reviewing is:
+${p.name} ${p.em}
+
+Could you please let me know if your office is in network with this PPO plan and whether it would be accepted for my upcoming visit?
+
+I am mainly interested in:
+${goal}
+
+Thank you,
+${name}`;
+
+  const subEl = document.getElementById('emailSubject');
+  const bodyEl = document.getElementById('emailBody');
+  if (subEl) subEl.textContent = subject;
+  if (bodyEl) bodyEl.textContent = body;
+}
+
+function copyEmail(){
+  const sub  = document.getElementById('emailSubject')?.textContent || '';
+  const body = document.getElementById('emailBody')?.textContent || '';
+  const full = 'Subject: ' + sub + '\n\n' + body;
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(full).then(
+      () => showToast('Email copied to clipboard'),
+      () => fallbackCopy(full)
+    );
+  } else {
+    fallbackCopy(full);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); showToast('Email copied to clipboard'); }
+  catch(e) { showToast('Copy failed, please select manually'); }
+  document.body.removeChild(ta);
+}
+
+function openMailApp(){
+  const to   = (document.getElementById('vfEmail')?.value || '').trim();
+  const sub  = document.getElementById('emailSubject')?.textContent || '';
+  const body = document.getElementById('emailBody')?.textContent || '';
+  const href = 'mailto:' + encodeURIComponent(to)
+             + '?subject=' + encodeURIComponent(sub)
+             + '&body=' + encodeURIComponent(body);
+  window.location.href = href;
+}
+
+function sendThroughCoverCapy(){
+  // Static placeholder; wires up to Supabase backend later.
+  // Capture fields for future POST:
+  // const payload = { office, email, name, goal, plan: verifyPlanKey };
+  showToast('Coming soon: direct send through CoverCapy');
+}
+
+/* ------------------------------------------------------------
+   MODAL CLOSE + TOAST
+   ------------------------------------------------------------ */
+function closeModal(kind){
+  const map = {
+    brief:  ['briefVeil','briefModal'],
+    verify: ['verifyVeil','verifyModal']
+  };
+  const ids = map[kind]; if (!ids) return;
+  document.getElementById(ids[0]).classList.remove('on');
+  document.getElementById(ids[1]).classList.remove('on');
+  document.getElementById(ids[1]).setAttribute('aria-hidden','true');
+  // Restore scroll only if no other modal is open
+  if (!document.querySelector('.modal.on')) document.body.style.overflow = '';
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(showToast._tm);
+  showToast._tm = setTimeout(() => t.classList.remove('on'), 2400);
+}
+
+// Esc closes any open modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape'){
+    if (document.getElementById('verifyModal').classList.contains('on')) closeModal('verify');
+    else if (document.getElementById('briefModal').classList.contains('on')) closeModal('brief');
+  }
+});
+
+
+/* ------------------------------------------------------------
+   FAQ - THE READING ROOM
+   ------------------------------------------------------------ */
+function jumpTo(id){
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function toggleFq(qBtn){
+  const fq = qBtn.closest('.fq');
+  if (!fq) return;
+  const open = fq.classList.toggle('open');
+  qBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function faqCat(btn, cat){
+  document.querySelectorAll('.faq-cat').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.fq').forEach(f => {
+    f.classList.toggle('hide', cat !== 'all' && f.dataset.cat !== cat);
+  });
+}
+function faqOpenAll(btn){
+  const entries = Array.from(document.querySelectorAll('.fq:not(.hide)'));
+  const anyClosed = entries.some(f => !f.classList.contains('open'));
+  entries.forEach(f => {
+    f.classList.toggle('open', anyClosed);
+    const q = f.querySelector('.fq-q');
+    if (q) q.setAttribute('aria-expanded', anyClosed ? 'true' : 'false');
+  });
+  const lbl = btn.querySelector('.lbl');
+  if (lbl) lbl.textContent = anyClosed ? 'Close all answers' : 'Open all answers';
+}
+function faqFilterJump(tag){
+  const b = document.querySelector('.filter[data-filter="' + tag + '"]');
+  if (b) applyFilter(b);
+  jumpTo('scope');
+}
+function faqVerify(){
+  const key = (lastMatch && lastMatch.primary_key) || PLAN_ORDER[0];
+  if (key) openVerifyModal(key);
+}
+
+
+/* ------------------------------------------------------------
+   INIT
+   ------------------------------------------------------------ */
+loadPlans();
+</script>
+
+
+<!-- Shared CoverCapy component loader: mega nav + hero slider -->
+<script>
+(async function(){
+  const loadScript = src => new Promise((resolve, reject) => {
+    if (document.querySelector('script[src="' + src + '"]')) return resolve();
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Failed to load ' + src));
+    document.body.appendChild(s);
+  });
+
+  const injectComponent = async (mountId, url) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(url + ' returned ' + res.status);
+      const html = await res.text();
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      injectedScripts.forEach(old => {
+        const fresh = document.createElement('script');
+        for (const attr of old.attributes) fresh.setAttribute(attr.name, attr.value);
+        fresh.textContent = old.textContent;
+        if (old.parentNode) old.parentNode.replaceChild(fresh, old);
+      });
+    } catch (err) {
+      console.error('[CoverCapy loader] failed:', url, err);
+    }
+  };
+
+  await injectComponent('cc-nav-mount', 'components/mega-nav.html');
+  await loadScript('assets/js/mega-nav.js');
+})();
+</script>
+
+
+<script>
+/* CoverCapy compare page #page-start fresh-load correction */
+(function(){
+  function shouldLand(){ return window.location.hash === '#page-start'; }
+  function land(){
+    if (!shouldLand()) return;
+    var target = document.getElementById('page-start');
+    if (target) target.scrollIntoView({ behavior:'auto', block:'start' });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){
+      land();
+      setTimeout(land, 250);
+      setTimeout(land, 900);
+    }, { once:true });
+  } else {
+    land();
+    setTimeout(land, 250);
+    setTimeout(land, 900);
+  }
+  window.addEventListener('load', function(){
+    land();
+    setTimeout(land, 500);
+  });
+})();
+</script>
+
+
+<!-- Footer mount -->
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
+
+<script>
+(function(){
+  const mountId = 'cc-footer-mount';
+  const htmlUrl = 'components/footer.html';
+  const jsUrl   = 'assets/js/footer.js';
+
+  const replayScripts = (scripts) => {
+    scripts.forEach(old => {
+      if (!old.parentNode) return;
+      const fresh = document.createElement('script');
+      for (const attr of old.attributes) fresh.setAttribute(attr.name, attr.value);
+      fresh.textContent = old.textContent;
+      old.parentNode.replaceChild(fresh, old);
+    });
+  };
+
+  const loadScript = (src) => {
+    if (!src || document.querySelector(`script[src="${src}"]`)) return;
+    const s = document.createElement('script');
+    s.src = src; s.defer = true;
+    document.body.appendChild(s);
+  };
+
+  const init = async () => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+    try {
+      const res = await fetch(htmlUrl, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${htmlUrl} returned ${res.status}`);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = await res.text();
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      replayScripts(injectedScripts);
+      loadScript(jsUrl);
+    } catch (err) {
+      console.warn('[footer loader]', err);
+    }
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
+})();
+</script>
+
+
+
+<script>
+(function(){
+  var P="/dental-insurance/ppo-plans/";
+  var TX={
+    cleaning:{fee:"$0\u2013$220",max:1,note:"Two cleanings, exam, X-rays per year. Every plan on the shelf covers preventive at 100% in network from day one.",
+      plans:[{n:"UHC Primary Dental",s:"~$30/mo \u00b7 1\u20133 day start",u:P+"uhc-primary-dental",pc:0},{n:"Aetna Dental Direct",s:"~$50/mo",u:P+"aetna-dental-direct",pc:0},{n:"Ameritas PrimeStar",s:"~$60/mo \u00b7 off-cap",u:P+"ameritas-primestar",pc:0},{n:"Guardian Premier 2.0",s:"~$70/mo",u:P+"guardian-premier-ppo",pc:0}],
+      verdict:"<strong>All six plans cover preventive care at 100% from day one.</strong> If cleanings are all you need, the only question is the premium \u2014 and UHC's ~$30/month is the floor.",
+      cta:[P+"uhc-primary-dental","Read the UHC review \u2192"],
+      tk:[["Preventive year (2 visits)","$0 in network","good"],["Cheapest premium","UHC \u00b7 ~$30/mo"],["Fastest activation","UHC \u00b7 1\u20133 business days"],["Bonus","Ameritas keeps cleanings off your cap"]]},
+    cavity:{fee:"~$250",max:250,note:"One-surface composite filling \u2014 \u201cbasic\u201d care, covered day one on most of the shelf at very different rates.",
       plans:[{n:"Guardian Premier 2.0",s:"85% \u00b7 Day 1",u:P+"guardian-premier-ppo",pc:80},{n:"Mutual of Omaha",s:"80% \u00b7 Day 1",u:P+"mutual-of-omaha-dental",pc:90},{n:"Ameritas PrimeStar",s:"60% \u00b7 Day 1",u:P+"ameritas-primestar",pc:130},{n:"UHC Primary Dental",s:"50% \u00b7 Day 1",u:P+"uhc-primary-dental",pc:150}],
       verdict:"Fillings are where day-one coverage actually differs: <strong>Guardian's 85% is the highest immediate basic rate on the shelf</strong>, and even the $30 starter plan pays half.",
       cta:[P+"guardian-premier-ppo","Read the Guardian review \u2192"],
