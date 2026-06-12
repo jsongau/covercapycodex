@@ -162,5 +162,5 @@
       "permanent": true
     }
   ],
-  "buildCommand": "node -e \"console.log(\"build ok\")\""
+  "buildCommand": "node generate-plans.js"
 }
