@@ -115,6 +115,27 @@ td:first-child{font-weight:700;color:var(--deep);white-space:nowrap}
 .related{display:flex;flex-wrap:wrap;gap:12px}
 .related a{display:inline-flex;padding:10px 16px;border-radius:999px;border:1px solid var(--line-mid);background:#fff;text-decoration:none;font-weight:700;font-size:14px;color:var(--deep)}
 .related a:hover{border-color:var(--deep-2)}
+.btn.gold{color:#fff;background:linear-gradient(135deg,var(--gold-deep),var(--gold));box-shadow:0 14px 30px rgba(138,106,48,.28)}
+.tour-stop{border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--sh-1);padding:26px 28px;margin:0 0 18px}
+.tour-stop .stop-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+.tour-stop h3{font-family:var(--ff-serif);font-weight:600;font-size:clamp(20px,2.6vw,26px);margin:0 0 4px;letter-spacing:-.015em}
+.tour-stop .stop-price{font-size:13.5px;font-weight:700;color:var(--ink-mute);margin:0 0 12px}
+.tour-stop .vignette{border-left:3px solid var(--teal-mist);background:var(--teal-faint);border-radius:0 16px 16px 0;padding:14px 18px;margin:0 0 14px;font-size:15.5px;color:var(--ink-soft)}
+.tour-stop .vignette strong{color:var(--deep)}
+.tour-stop .skip{font-size:14px;color:var(--ink-mid)}
+.tour-stop .stop-cta{display:inline-flex;margin-top:12px;font-weight:800;font-size:14px;color:var(--deep-2);text-decoration:none}
+.tour-stop .stop-cta:hover{text-decoration:underline}
+.picker{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.picker button{border:1px solid var(--line-mid);background:#fff;border-radius:999px;padding:11px 18px;font-family:inherit;font-size:14px;font-weight:700;color:var(--deep);cursor:pointer;transition:all .18s ease}
+.picker button:hover{border-color:var(--deep-2);transform:translateY(-1px)}
+.picker button.active{background:linear-gradient(135deg,var(--deep),var(--deep-2));color:#fff;border-color:transparent}
+.picker-answer{display:none;border:1px solid var(--teal-mist);background:linear-gradient(135deg,var(--teal-faint),#fff 75%);border-radius:20px;padding:20px 24px}
+.picker-answer.show{display:block}
+.picker-answer h4{margin:0 0 6px;font-family:var(--ff-serif);font-size:20px;font-weight:600}
+.picker-answer p{margin:0 0 10px}
+.cmp-wide td{white-space:normal}
+.cmp-wide td:first-child a{font-weight:800;text-decoration:none;color:var(--deep)}
+.cmp-wide td:first-child a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.covercapy.com/dental-insurance/ppo-plans/ameritas-primestar", "url": "https://www.covercapy.com/dental-insurance/ppo-plans/ameritas-primestar", "name": "Ameritas PrimeStar Care Complete Review 2026: Day-One Coverage Explained", "description": "Ameritas PrimeStar Care Complete review: ~$60/month, no waiting periods, major work covered day one at 20% (50% year two), Phase 1 implant surgery day one. The phased-treatment specialist.", "dateModified": "2026-06-12", "isPartOf": {"@type": "WebSite", "name": "CoverCapy", "url": "https://www.covercapy.com"}, "publisher": {"@type": "Organization", "name": "CoverCapy", "url": "https://www.covercapy.com"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.covercapy.com/"}, {"@type": "ListItem", "position": 2, "name": "Dental Insurance", "item": "https://www.covercapy.com/dental-insurance"}, {"@type": "ListItem", "position": 3, "name": "PPO Plans", "item": "https://www.covercapy.com/dental-insurance/ppo-plans"}, {"@type": "ListItem", "position": 4, "name": "Ameritas PrimeStar Care Complete", "item": "https://www.covercapy.com/dental-insurance/ppo-plans/ameritas-primestar"}]}</script>
@@ -142,6 +163,7 @@ td:first-child{font-weight:700;color:var(--deep);white-space:nowrap}
       </div>
     <div class="cta-row">
       <a class="btn primary" href="/ppodentists.html">Find a PPO dentist who accepts Ameritas</a>
+      <a class="btn gold" data-cc-modal="insurance" data-carrier-name="Ameritas" data-track-outbound="ameritas-primestar" href="https://myplan.ameritas.com/" rel="noopener">Activate with Ameritas →</a>
       <a class="btn ghost" href="/compare-ppo-dental-plans.html">Compare all six PPO dental plans</a>
     </div>
     <p class="verified">Verified <strong>June 12, 2026</strong> against carrier plan documents · Reviewed by the CoverCapy concierge team</p>
@@ -253,7 +275,7 @@ td:first-child{font-weight:700;color:var(--deep);white-space:nowrap}
 <li>Verify your dentist participates in the Ameritas network</li></ul>
       <div class="cta-row">
         <a class="btn primary" href="/ppodentists.html">Find a PPO dentist near you</a>
-        <a class="btn ghost" href="/compare-ppo-dental-plans.html">Back to the full comparison</a>
+        <a class="btn ghost" data-cc-modal="insurance" data-carrier-name="Ameritas" data-track-outbound="ameritas-primestar-verify-band" href="https://myplan.ameritas.com/" rel="noopener">Verified already? Activate with Ameritas →</a>
       </div>
     </div>
   </section>
