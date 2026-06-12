@@ -160,6 +160,66 @@
       "source": "/estimatecosts.html",
       "destination": "/dental-treatment-cost-estimator.html",
       "permanent": true
+    },
+    {
+      "source": "/uhc-primary-dental.html",
+      "destination": "/dental-insurance/ppo-plans/uhc-primary-dental",
+      "permanent": true
+    },
+    {
+      "source": "/uhc-primary-dental",
+      "destination": "/dental-insurance/ppo-plans/uhc-primary-dental",
+      "permanent": true
+    },
+    {
+      "source": "/aetna-dental-direct.html",
+      "destination": "/dental-insurance/ppo-plans/aetna-dental-direct",
+      "permanent": true
+    },
+    {
+      "source": "/aetna-dental-direct",
+      "destination": "/dental-insurance/ppo-plans/aetna-dental-direct",
+      "permanent": true
+    },
+    {
+      "source": "/ameritas-primestar.html",
+      "destination": "/dental-insurance/ppo-plans/ameritas-primestar",
+      "permanent": true
+    },
+    {
+      "source": "/ameritas-primestar",
+      "destination": "/dental-insurance/ppo-plans/ameritas-primestar",
+      "permanent": true
+    },
+    {
+      "source": "/guardian-premier-ppo.html",
+      "destination": "/dental-insurance/ppo-plans/guardian-premier-ppo",
+      "permanent": true
+    },
+    {
+      "source": "/guardian-premier-ppo",
+      "destination": "/dental-insurance/ppo-plans/guardian-premier-ppo",
+      "permanent": true
+    },
+    {
+      "source": "/mutual-of-omaha-dental.html",
+      "destination": "/dental-insurance/ppo-plans/mutual-of-omaha-dental",
+      "permanent": true
+    },
+    {
+      "source": "/mutual-of-omaha-dental",
+      "destination": "/dental-insurance/ppo-plans/mutual-of-omaha-dental",
+      "permanent": true
+    },
+    {
+      "source": "/humana-extend-5000.html",
+      "destination": "/dental-insurance/ppo-plans/humana-extend-5000",
+      "permanent": true
+    },
+    {
+      "source": "/humana-extend-5000",
+      "destination": "/dental-insurance/ppo-plans/humana-extend-5000",
+      "permanent": true
     }
   ],
   "buildCommand": "node generate-plans.js",
