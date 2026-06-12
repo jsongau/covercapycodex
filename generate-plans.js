@@ -43,13 +43,13 @@ async function main() {
     { headers: { apikey: ANON_KEY, Authorization: 'Bearer ' + ANON_KEY } }
   );
   if (!res.ok) {
-    console.error('[generate-plans] Supabase returned', res.status, await res.text());
-    process.exit(1);
+    console.warn('[generate-plans] WARNING: Supabase returned', res.status, '— deploying with existing HTML');
+    return;
   }
   const plans = await res.json();
   if (!Array.isArray(plans) || plans.length === 0) {
-    console.error('[generate-plans] No active plans returned. Aborting so the live table is not blanked.');
-    process.exit(1);
+    console.warn('[generate-plans] WARNING: No active plans returned — deploying with existing HTML');
+    return;
   }
   console.log('[generate-plans] Loaded', plans.length, 'plans from Supabase');
 
@@ -78,8 +78,8 @@ async function main() {
   const T2 = '<!-- PLANS_TABLE_ROWS_END -->';
   const t1 = html.indexOf(T1), t2 = html.indexOf(T2);
   if (t1 === -1 || t2 === -1) {
-    console.error('[generate-plans] Table markers not found in', PAGE);
-    process.exit(1);
+    console.warn('[generate-plans] WARNING: Table markers not found in', PAGE, '— deploying as-is');
+    return;
   }
   html = html.slice(0, t1 + T1.length) + '\n' + rows + '\n            ' + html.slice(t2);
 
@@ -101,4 +101,4 @@ async function main() {
   console.log('[generate-plans] Wrote', PAGE, '| verified', dateText);
 }
 
-main().catch((e) => { console.error('[generate-plans]', e); process.exit(1); });
+main().catch((e) => { console.warn('[generate-plans] WARNING:', e.message, '— deploying with existing HTML'); });
