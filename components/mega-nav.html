@@ -3720,7 +3720,7 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
 <div aria-label="Disclosures" class="cc-universal-modal-disclosures">
 <span class="cc-universal-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
 <div data-modal-slot="disclosures">
-<div class="cc-universal-modal-disclosure"><span class="num">i.</span><span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of UnitedHealthcare.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">i.</span><span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of any carrier on our shelf.</span></div>
 <div class="cc-universal-modal-disclosure"><span class="num">ii.</span><span>We <strong>don't earn a commission</strong> or referral fee on any plan you activate through this site.</span></div>
 <div class="cc-universal-modal-disclosure"><span class="num">iii.</span><span>The destination is governed by <strong>UnitedHealthcare's terms</strong>, not ours. Pricing, eligibility, and plan details can change without notice.</span></div>
 <div class="cc-universal-modal-disclosure"><span class="num">iv.</span><span>We make <strong>no guarantees</strong> about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.</span></div>
@@ -5018,6 +5018,13 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
       event.preventDefault();
       var continueLink = modal.querySelector('.cc-universal-modal-continue');
       if (continueLink) continueLink.href = link.href;
+      var cn = link.getAttribute('data-carrier-name');
+      if (cn) {
+        var tSlot = modal.querySelector('[data-modal-slot="title"]');
+        if (tSlot) tSlot.innerHTML = 'You\u2019re heading to<br/><em>' + cn + '</em>.';
+        var bSlot = modal.querySelector('[data-modal-slot="body"]');
+        if (bSlot) bSlot.innerHTML = 'We\u2019ll open ' + cn + '\u2019s official enrollment page in a new tab. You can review the plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.';
+      }
       modal.classList.add('open');
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
@@ -5276,4 +5283,3 @@ body{margin:0;min-height:100vh;background:#eef2f0;font-family:-apple-system,Blin
   setTimeout(swap,400); /* re-run after the component injector replays scripts */
 })();
 </script>
-undefined
