@@ -138,6 +138,21 @@
     .rv{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;}
     .rv.visible{opacity:1;transform:none;}
     @media(max-width:768px){section{padding:3.5rem 0;}.hub-hero{padding:3rem 0 2.5rem;}.card-grid-3,.dentist-grid{grid-template-columns:1fr;}.cta-group{flex-direction:column;}}
+
+    /* ── Hero text contrast fix ── */
+    .hub-hero .led { color: rgba(255,255,255,.72) !important; }
+    .hub-hero .hero-sub { color: rgba(255,255,255,.62) !important; }
+    .hub-hero .textlinks a { color: rgba(255,255,255,.75) !important; }
+    .hub-hero .textlinks a:hover { color: #fff !important; }
+    .hub-hero .flourish { color: #B8924F !important; }
+    /* ── Claim/Nominate merged CTA ── */
+    .cc-cta-pair { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:860px; margin:0 auto; }
+    @media(max-width:640px){ .cc-cta-pair { grid-template-columns:1fr; } }
+    .cc-cta-card { background:var(--teal-night,#082A30); color:#fff; border-radius:14px; padding:32px 28px; text-align:left; }
+    .cc-cta-card h3 { font-family:'Fraunces',Georgia,serif; font-size:1.2rem; margin:0 0 10px; color:#fff; }
+    .cc-cta-card p { color:rgba(255,255,255,.7); font-size:.88rem; line-height:1.65; margin:0 0 20px; }
+    .cc-cta-card .btn-gold { display:inline-block; background:#B8924F; color:#082A30; font-weight:700; font-size:.875rem; padding:10px 20px; border-radius:8px; text-decoration:none; }
+    .cc-cta-card .btn-gold:hover { background:#c9a460; }
   </style>
 </head>
 <body>
@@ -149,7 +164,7 @@
     <a href="#overview">Overview</a>
     <a href="#verify">How It Works</a>
     <a href="#dentists">Dentists</a>
-    <a href="#fountain-valley">Fountain Valley</a>
+    <a href="#cc-featured-city">Cities</a>
     <a href="#nearby">Nearby Cities</a>
     <a href="#faq">FAQ</a>
   </nav>
@@ -173,7 +188,7 @@
       <a href="/ppo-dentists/california/orange-county/" class="btn-line">Compare PPO Plans</a>
     </div>
     <div class="textlinks">
-      <a href="#fountain-valley">Fountain Valley offices →</a>
+      <a href="#dentists">Browse dentists ↓</a>
       <a href="/nominate/">Nominate a dentist →</a>
       <a href="/ppo-dentists/california/orange-county/">All OC carriers →</a>
     </div>
@@ -294,37 +309,8 @@
   </div>
 </section>
 
-<section class="section-tint-mint" id="fountain-valley">
-  <div class="container">
-    <div class="eyebrow rv">Featured City</div>
-    <h2 class="section-h2 rv">MetLife PPO dentists in Fountain Valley, CA</h2>
-    <p class="body-p rv">Fountain Valley's dental market benefits from its central position in southwest Orange County, with accessible locations along the Warner Avenue and Brookhurst Street corridors. MetLife's PDP Plus network is one of the larger dental PPO networks operating in this market, and a number of Fountain Valley practices have historically participated in PDP Plus — though participation status can change as individual offices renegotiate or exit network contracts. Patients with MetLife employer plans will find Fountain Valley a convenient starting point for their provider search.</p>
-    <p class="body-p rv">A key detail for MetLife PDP Plus patients: some dentists participate in the broader PDP Plus network but may be contracted at different fee tiers depending on the employer group plan. This means a dentist who appears as "in-network" in the general MetLife provider search may not be at the deepest discount tier for your specific employer's plan. The only way to confirm exact benefit levels is to provide the dental office with your group number and have them verify your specific plan tier before your appointment.</p>
-    <div class="dentist-grid">
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/fountain-valley/kyt-dental-services/">KYT Dental Services</a></h3>
-        <p class="dentist-city">Fountain Valley, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">General Dentistry</span><span class="tag">Cosmetic</span></div>
-        <a href="/dentists/california/orange-county/fountain-valley/kyt-dental-services/" class="dentist-link">View Profile →</a>
-      </div>
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/fountain-valley/magnolia-family-dental/">Magnolia Family Dental</a></h3>
-        <p class="dentist-city">Fountain Valley, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">Family Dentistry</span><span class="tag">Preventive</span></div>
-        <a href="/dentists/california/orange-county/fountain-valley/magnolia-family-dental/" class="dentist-link">View Profile →</a>
-      </div>
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/fountain-valley/brookhurst-dental-care/">Brookhurst Dental Care</a></h3>
-        <p class="dentist-city">Fountain Valley, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">General Dentistry</span><span class="tag">Restorative</span></div>
-        <a href="/dentists/california/orange-county/fountain-valley/brookhurst-dental-care/" class="dentist-link">View Profile →</a>
-      </div>
-    </div>
-    <a href="/ppo-dentists/california/orange-county/fountain-valley/" class="fv-link rv">See all Fountain Valley PPO dentists →</a>
-  </div>
+<!-- ═══ FEATURED CITY (populated by carrier-dentists.js) ════════════════ -->
+<section class="section-tint-mint" id="cc-featured-city" style="min-height:100px">
 </section>
 
 <section id="nearby">
@@ -343,22 +329,22 @@
   </div>
 </section>
 
-<section class="claim-section">
-  <div class="container">
-    <div class="claim-card rv">
-      <h2>Are you a dentist in Orange County?</h2>
-      <p>Claim your CoverCapy profile to help patients with MetLife PPO plans find and verify your office before scheduling. Free for verified practices.</p>
-      <a href="/claim/" class="btn-primary">Claim Your Profile →</a>
-    </div>
-  </div>
-</section>
 
-<section class="nominate-section">
+
+<!-- ═══ CTA PAIR ══════════════════════════════════════════════════════════ -->
+<section style="background:var(--paper,#FDFBF7);padding:3rem 0">
   <div class="container">
-    <div class="nominate-card rv">
-      <h2>Know a great MetLife dentist in OC?</h2>
-      <p>Nominate an Orange County dental office for the CoverCapy directory. Nominations help other patients discover verified PPO-friendly practices in their area.</p>
-      <a href="/nominate/" class="btn-primary">Nominate a Dentist →</a>
+    <div class="cc-cta-pair">
+      <div class="cc-cta-card rv">
+        <h3>Are you a dentist in Orange County?</h3>
+        <p>Claim your CoverCapy profile so patients with MetLife PPO plans can find and verify your office. Free for verified practices.</p>
+        <a href="/claim/" class="btn-gold">Claim Your Profile →</a>
+      </div>
+      <div class="cc-cta-card rv">
+        <h3>Know a great MetLife dentist in OC?</h3>
+        <p>Nominate an Orange County dental office for the CoverCapy directory. Nominations help other patients discover PPO-friendly practices nearby.</p>
+        <a href="/nominate/" class="btn-gold">Nominate a Dentist →</a>
+      </div>
     </div>
   </div>
 </section>
