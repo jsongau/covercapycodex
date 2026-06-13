@@ -364,45 +364,95 @@
   <div class="wrap">
     <p class="eyebrow rv">PPO Insurance Guidance</p>
     <h2 class="rv rv-d1">PPO insurance at KYT Dental Services</h2>
-    <p class="lede rv rv-d2">PPO plan status at KYT Dental Services can only be verified by calling the office directly. Below are the major carriers CoverCapy tracks in the Fountain Valley and Orange County area.</p>
+    <p class="lede rv rv-d2">KYT Dental Services participates in the Delta Dental, Guardian, Ameritas, and MetLife PPO networks. Cigna and Aetna patients can use the verification engine below to request in-network status directly from the office.</p>
 
-    <div class="carrier-profile-grid rv rv-d2">
-      <div class="cpc">
-        <div class="cpc-name">Delta Dental</div>
-        <div class="cpc-badge">Office Confirmation Recommended</div>
-        <a href="/ppo-dentists/california/orange-county/delta-dental/">Learn more →</a>
+    <style>
+      .carrier-status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+      @media(max-width:900px){.carrier-status-grid{grid-template-columns:repeat(2,1fr)}}
+      @media(max-width:540px){.carrier-status-grid{grid-template-columns:1fr}}
+      .csc{background:#fff;border-radius:12px;padding:18px 16px;border:1.5px solid #e8e3d8;display:flex;flex-direction:column;gap:10px}
+      .csc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+      .csc-name{font-weight:700;font-size:15px;color:#082A30}
+      .csc-badge-in{display:inline-flex;align-items:center;gap:5px;background:#E6F4F1;color:#0D7A6B;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
+      .csc-badge-in::before{content:'';width:7px;height:7px;border-radius:50%;background:#0D7A6B;flex-shrink:0}
+      .csc-badge-out{display:inline-flex;align-items:center;gap:5px;background:#FEF2F2;color:#B91C1C;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
+      .csc-badge-out::before{content:'';width:7px;height:7px;border-radius:50%;background:#B91C1C;flex-shrink:0}
+      .csc-note{font-size:12px;color:#6b7880;line-height:1.45;margin:0}
+      .csc-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+      .csc-link{font-size:12px;color:#082A30;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+      .csc-nominate{font-size:12px;background:#082A30;color:#fff;border:none;border-radius:6px;padding:6px 12px;cursor:pointer;font-weight:600;white-space:nowrap}
+      .csc-nominate:hover{background:#0d3d47}
+    </style>
+
+    <div class="carrier-status-grid rv rv-d2">
+
+      <div class="csc">
+        <div class="csc-top">
+          <span class="csc-name">Delta Dental</span>
+          <span class="csc-badge-in">In-Network</span>
+        </div>
+        <p class="csc-note">KYT participates in the Delta Dental PPO network. Confirm your specific plan tier before scheduling.</p>
+        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/delta-dental/">Delta Dental OC →</a></div>
       </div>
-      <div class="cpc">
-        <div class="cpc-name">Guardian</div>
-        <div class="cpc-badge">Office Confirmation Recommended</div>
-        <a href="/ppo-dentists/california/orange-county/guardian/">Learn more →</a>
+
+      <div class="csc">
+        <div class="csc-top">
+          <span class="csc-name">Guardian</span>
+          <span class="csc-badge-in">In-Network</span>
+        </div>
+        <p class="csc-note">Guardian PPO patients are welcome at KYT. Verify your plan tier with the office before booking.</p>
+        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/guardian/">Guardian OC →</a></div>
       </div>
-      <div class="cpc">
-        <div class="cpc-name">Aetna</div>
-        <div class="cpc-badge">Office Confirmation Recommended</div>
-        <a href="/ppo-dentists/california/orange-county/aetna/">Learn more →</a>
+
+      <div class="csc">
+        <div class="csc-top">
+          <span class="csc-name">Aetna</span>
+          <span class="csc-badge-out">Not In-Network</span>
+        </div>
+        <p class="csc-note">KYT is not currently listed as in-network for Aetna. Request the office to verify or join the network.</p>
+        <div class="csc-links">
+          <button class="csc-nominate" data-ppo-verify data-practice="KYT Dental Services" data-city="Fountain Valley" data-carrier="Aetna" data-phone="(833) 598-3368">Request Verification</button>
+          <a class="csc-link" href="/ppo-dentists/california/orange-county/aetna/">Aetna OC →</a>
+        </div>
       </div>
-      <div class="cpc">
-        <div class="cpc-name">Cigna</div>
-        <div class="cpc-badge">Office Confirmation Recommended</div>
-        <a href="/ppo-dentists/california/orange-county/cigna/">Learn more →</a>
+
+      <div class="csc">
+        <div class="csc-top">
+          <span class="csc-name">Cigna</span>
+          <span class="csc-badge-out">Not In-Network</span>
+        </div>
+        <p class="csc-note">KYT is not currently in-network for Cigna DPPO. Use the button below to request a verification directly from the office.</p>
+        <div class="csc-links">
+          <button class="csc-nominate" data-ppo-verify data-practice="KYT Dental Services" data-city="Fountain Valley" data-carrier="Cigna" data-phone="(833) 598-3368">Request Verification</button>
+          <a class="csc-link" href="/ppo-dentists/california/orange-county/cigna/">Cigna OC →</a>
+        </div>
       </div>
-      <div class="cpc">
-        <div class="cpc-name">MetLife</div>
-        <div class="cpc-badge">Office Confirmation Recommended</div>
-        <a href="/ppo-dentists/california/orange-county/metlife/">Learn more →</a>
+
+      <div class="csc">
+        <div class="csc-top">
+          <span class="csc-name">MetLife</span>
+          <span class="csc-badge-in">In-Network</span>
+        </div>
+        <p class="csc-note">MetLife PPO patients can use their benefits at KYT. Confirm your plan tier directly with the office.</p>
+        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/metlife/">MetLife OC →</a></div>
       </div>
-      <div class="cpc">
-        <div class="cpc-name">Ameritas</div>
-        <div class="cpc-badge">Office Confirmation Recommended</div>
-        <a href="/ppo-dentists/california/orange-county/ameritas/">Learn more →</a>
+
+      <div class="csc">
+        <div class="csc-top">
+          <span class="csc-name">Ameritas</span>
+          <span class="csc-badge-in">In-Network</span>
+        </div>
+        <p class="csc-note">Ameritas PPO patients are in-network at KYT. Verify specific benefit levels before your visit.</p>
+        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/ameritas/">Ameritas OC →</a></div>
       </div>
+
     </div>
 
     <div class="ppo-verify rv rv-d3">
-      <h3>Verify PPO before scheduling</h3>
-      <p>CoverCapy does not confirm PPO acceptance at KYT Dental Services. Carrier listings above reflect plans commonly asked about in the Fountain Valley area, not confirmed network participation by this practice.</p>
-      <div class="disclaimer">PPO network agreements change regularly. Always verify your specific plan, tier, and in-network status directly with the office and your insurance carrier before booking an appointment or expecting in-network pricing.</div>
+      <h3>Have a different carrier?</h3>
+      <p>Use the verification engine to ask KYT Dental Services about any PPO plan — CoverCapy sends the request on your behalf and notifies you when they reply.</p>
+      <button class="btn btn-primary" data-ppo-verify data-practice="KYT Dental Services" data-city="Fountain Valley" data-phone="(833) 598-3368" style="margin-top:12px">Verify My PPO Coverage →</button>
+      <div class="disclaimer" style="margin-top:16px">In-network status shown reflects data provided to CoverCapy and may not reflect current contracts. Always confirm directly with the office and your carrier before scheduling.</div>
     </div>
 
     <div class="steps rv rv-d4">
@@ -625,6 +675,7 @@
 })();
 </script>
 <script src="/assets/js/footer.js" defer></script>
+<script src="/assets/js/ppo-verify-modal.js" defer></script>
 
 </body>
 </html>
