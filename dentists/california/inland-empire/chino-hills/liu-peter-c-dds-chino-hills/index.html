@@ -247,6 +247,9 @@
     .footer-cta .row{display:block}
     .footer-cta .actions{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:7px}
   }
+  @media(max-width:680px){
+    .qf-dl[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  }
   @media(max-width:540px){
     .services,.local-grid,.carrier-grid,.nearby-grid,.lang-grid{grid-template-columns:1fr}
     .btn{width:100%}
@@ -452,28 +455,23 @@
 ══════════════════════════════════════════ -->
 <section class="section t-paper" id="quick-facts" aria-labelledby="qf-h">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start">
-      <div>
-        <span class="kicker">CoverCapy Quick Facts</span>
-        <h2 id="qf-h" style="margin-bottom:13px">Liu Dental Care at a glance</h2>
-        <p class="body-copy">Everything a patient needs before calling — practice, people, hours, insurance, and languages, all in one place.</p>
-        <div class="pull">&ldquo;The same address, the same phone number, the same neighborhood — for 35 years. That is not something you find very often in the Inland Empire.&rdquo;</div>
-      </div>
-      <div class="qf-block" itemscope itemtype="https://schema.org/Dentist">
-        <h3>Quick Facts</h3>
-        <dl class="qf-dl">
-          <div class="qf-row"><span class="qf-dt">Practice</span><dd class="qf-dd" itemprop="name">Liu Dental Care</dd></div>
-          <div class="qf-row"><span class="qf-dt">Founded</span><dd class="qf-dd">1989 — serving Chino Hills for 35+ years</dd></div>
-          <div class="qf-row"><span class="qf-dt">Dentists</span><dd class="qf-dd">Dr. Peter C. Liu DDS · Dr. Marie Nguyen DDS · Dr. Aaron T. Liu DDS</dd></div>
-          <div class="qf-row"><span class="qf-dt">Address</span><dd class="qf-dd" itemprop="address">15942 Los Serranos CC Dr, Suite F, Chino Hills CA 91709</dd></div>
-          <div class="qf-row"><span class="qf-dt">Phone</span><dd class="qf-dd"><a href="tel:9096066888" itemprop="telephone">(909) 606-6888</a> · Text: <a href="sms:9093445415">(909) 344-5415</a></dd></div>
-          <div class="qf-row"><span class="qf-dt">Hours</span><dd class="qf-dd">Mon–Tue, Thu–Fri: 9am–6pm<br>Saturday: 8am–1pm · Closed Wed &amp; Sun</dd></div>
-          <div class="qf-row"><span class="qf-dt">Languages</span><dd class="qf-dd">English · Mandarin · Spanish · Tagalog · Vietnamese · Farsi</dd></div>
-          <div class="qf-row"><span class="qf-dt">PPO Networks</span><dd class="qf-dd" id="prof-networks-qf">Ameritas (confirmed) · Aetna · Cigna · Delta Dental · MetLife — call to verify plan</dd></div>
-          <div class="qf-row"><span class="qf-dt">Website</span><dd class="qf-dd"><a href="https://www.liudentalcare.com" target="_blank" rel="noopener">liudentalcare.com</a></dd></div>
-          <div class="qf-row"><span class="qf-dt">Listing Tier</span><dd class="qf-dd" id="prof-ledger-tier">✓ Verified · CoverCapy Inland Empire</dd></div>
-        </dl>
-      </div>
+    <span class="kicker">CoverCapy Quick Facts</span>
+    <h2 id="qf-h" style="margin-bottom:6px">Liu Dental Care at a glance</h2>
+    <div class="pull" style="margin-top:10px;margin-bottom:16px">&ldquo;The same address, the same phone number, the same neighborhood — for 35 years. That is not something you find very often in the Inland Empire.&rdquo;</div>
+    <div class="qf-block" itemscope itemtype="https://schema.org/Dentist">
+      <h3>Quick Facts</h3>
+      <dl class="qf-dl" style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+        <div class="qf-row"><span class="qf-dt">Practice</span><dd class="qf-dd" itemprop="name">Liu Dental Care</dd></div>
+        <div class="qf-row"><span class="qf-dt">Founded</span><dd class="qf-dd">1989 — serving Chino Hills for 35+ years</dd></div>
+        <div class="qf-row"><span class="qf-dt">Dentists</span><dd class="qf-dd">Dr. Peter C. Liu DDS · Dr. Marie Nguyen DDS · Dr. Aaron T. Liu DDS</dd></div>
+        <div class="qf-row"><span class="qf-dt">Phone</span><dd class="qf-dd"><a href="tel:9096066888" itemprop="telephone">(909) 606-6888</a> · Text: <a href="sms:9093445415">(909) 344-5415</a></dd></div>
+        <div class="qf-row"><span class="qf-dt">Address</span><dd class="qf-dd" itemprop="address">15942 Los Serranos CC Dr, Suite F, Chino Hills CA 91709</dd></div>
+        <div class="qf-row"><span class="qf-dt">Hours</span><dd class="qf-dd">Mon–Tue, Thu–Fri: 9am–6pm · Sat: 8am–1pm · Closed Wed &amp; Sun</dd></div>
+        <div class="qf-row"><span class="qf-dt">Languages</span><dd class="qf-dd">English · Mandarin · Spanish · Tagalog · Vietnamese · Farsi</dd></div>
+        <div class="qf-row"><span class="qf-dt">PPO Networks</span><dd class="qf-dd" id="prof-networks-qf">Ameritas (confirmed) · Aetna · Cigna · Delta Dental · MetLife</dd></div>
+        <div class="qf-row" style="border-bottom:none"><span class="qf-dt">Website</span><dd class="qf-dd"><a href="https://www.liudentalcare.com" target="_blank" rel="noopener">liudentalcare.com</a></dd></div>
+        <div class="qf-row" style="border-bottom:none"><span class="qf-dt">Listing Tier</span><dd class="qf-dd" id="prof-ledger-tier">✓ Verified · CoverCapy Inland Empire</dd></div>
+      </dl>
     </div>
   </div>
 </section>
@@ -690,40 +688,43 @@
      PPO INSURANCE
 ══════════════════════════════════════════ -->
 <section class="section t-paper" id="insurance" aria-labelledby="insurance-h">
-  <div class="wrap two">
-    <div>
-      <span class="kicker">PPO insurance</span>
-      <h2 id="insurance-h">Insurance at Liu Dental Care</h2>
-      <p class="body-copy">Liu Dental Care participates in the <strong>Ameritas PPO network</strong> (confirmed June 2026). The CoverCapy directory also shows Aetna, Cigna, Delta Dental, and MetLife — always call (909) 606-6888 with your member ID to verify your specific plan before scheduling.</p>
-      <p class="body-copy">If your plan is not listed, most PPO plans include out-of-network benefits. The office can give you a pre-treatment cost estimate before anything is scheduled.</p>
-      <p class="body-copy" style="font-size:15px"><strong>Note:</strong> Network participation changes. Confirm directly with the office and your insurance carrier before booking.</p>
-      <div id="prof-networks" style="margin-top:10px"></div>
-
-      <div class="verify-cta">
-        <div>
-          <h3>Verify your PPO benefits before you book</h3>
-          <p>CoverCapy's PPO verification tool helps you confirm coverage and get an estimate before you sit in the chair.</p>
-        </div>
-        <div class="actions">
-          <a class="btn" href="/verify-ppo-benefits/" style="background:var(--sage);color:#fff;border-radius:10px;padding:11px 16px;font-weight:700;font-size:14px;display:inline-flex;align-items:center">Verify PPO Benefits</a>
-          <a class="btn outline" href="/ppo-dentists/california/inland-empire/ameritas/" style="padding:9px 13px;font-size:13px">Ameritas in IE</a>
-        </div>
+  <div class="wrap">
+    <div class="two" style="margin-bottom:18px;align-items:start">
+      <div>
+        <span class="kicker">PPO insurance</span>
+        <h2 id="insurance-h">Insurance at Liu Dental Care</h2>
+        <p class="body-copy">Liu Dental Care participates in the <strong>Ameritas PPO network</strong> (confirmed June 2026). The CoverCapy directory also lists Aetna, Cigna, Delta Dental, and MetLife — always call (909) 606-6888 with your member ID to verify your specific plan before scheduling.</p>
+        <p class="body-copy">If your plan is not listed, most PPO plans include out-of-network benefits. The office can provide a pre-treatment cost estimate before anything is scheduled.</p>
+        <p style="font-size:14px;color:var(--soft);margin:0"><strong>Note:</strong> Network participation changes. Confirm directly with the office and your insurance carrier before booking.</p>
+      </div>
+      <div class="ppo-card">
+        <h3>Questions to ask before treatment</h3>
+        <ul>
+          <li>Is my PPO plan currently active?</li>
+          <li>Is Liu Dental Care in-network with my specific plan?</li>
+          <li>What is left on my annual maximum this year?</li>
+          <li>Do crowns, implants, or deep cleanings have a waiting period?</li>
+          <li>Can I get a pre-treatment estimate in writing before major work?</li>
+          <li>What will I owe after insurance pays?</li>
+          <li>Is there a deductible I need to meet first?</li>
+        </ul>
+        <a class="btn call" href="tel:9096066888" style="width:100%;justify-content:center">Call (909) 606-6888</a>
+        <p style="font-size:12px;color:var(--faint);margin-top:9px;margin-bottom:0">Text: (909) 344-5415 · <a href="https://www.liudentalcare.com" target="_blank" rel="noopener" style="color:var(--sage)">liudentalcare.com</a></p>
       </div>
     </div>
 
-    <div class="ppo-card">
-      <h3>Questions to ask before treatment</h3>
-      <ul>
-        <li>Is my PPO plan currently active?</li>
-        <li>Is Liu Dental Care in-network with my specific plan?</li>
-        <li>What is left on my annual maximum this year?</li>
-        <li>Do crowns, implants, or deep cleanings have a waiting period?</li>
-        <li>Can I get a pre-treatment estimate in writing before major work?</li>
-        <li>What will I owe after insurance pays?</li>
-        <li>Is there a deductible I need to meet first?</li>
-      </ul>
-      <a class="btn call" href="tel:9096066888" style="width:100%;justify-content:center">Call (909) 606-6888</a>
-      <p style="font-size:12px;color:var(--faint);margin-top:9px;margin-bottom:0">Text: (909) 344-5415 · <a href="https://www.liudentalcare.com" target="_blank" rel="noopener" style="color:var(--sage)">liudentalcare.com</a></p>
+    <!-- JS-injected carrier verification cards go full-width here -->
+    <div id="prof-networks"></div>
+
+    <div class="verify-cta" style="margin-top:16px">
+      <div>
+        <h3>Verify your PPO benefits before you book</h3>
+        <p>CoverCapy's PPO verification tool helps you confirm coverage and get an estimate before you sit in the chair.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="/verify-ppo-benefits/" style="background:var(--sage);color:#fff;border-radius:10px;padding:11px 16px;font-weight:700;font-size:14px;display:inline-flex;align-items:center">Verify PPO Benefits</a>
+        <a class="btn outline" href="/ppo-dentists/california/inland-empire/ameritas/" style="padding:9px 13px;font-size:13px">Ameritas in IE</a>
+      </div>
     </div>
   </div>
 </section>
