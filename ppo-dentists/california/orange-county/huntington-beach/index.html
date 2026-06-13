@@ -280,6 +280,11 @@
 
   <style>
     /* ── Page-specific overrides ── */
+    /* Breadcrumb in dark hero must be light */
+    .hub-hero nav a { color: rgba(255,255,255,.8); text-decoration: none; }
+    .hub-hero nav a:hover { color: var(--gold); }
+    .hub-hero nav span { color: rgba(255,255,255,.45); }
+    .hub-hero nav span[aria-current="page"] { color: rgba(255,255,255,.65); }
     .hours-table {
       width: 100%; border-collapse: collapse; font-size: 14.5px;
       margin-top: 20px; border-radius: var(--radius); overflow: hidden;
