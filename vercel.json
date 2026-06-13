@@ -29,132 +29,132 @@
     },
     {
       "source": "/finance",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/financing",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/dental-financing",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/payment-plans",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/dental-payment-plans",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/monthly-payments",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/dental-monthly-payments",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/0-apr",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/0-apr-financing",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/0-apr-dental-financing",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/zero-percent-financing",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/zero-percent-dental-financing",
-      "destination": "/dental-financing-monthly-payments.html",
+      "destination": "/dental-financing-monthly-payments",
       "permanent": true
     },
     {
       "source": "/compare",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/compare-ppo",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/compare-ppo-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/compare-dental-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/compare-dental-insurance",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/ppo-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/ppo-dental-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/ppo-dental-insurance",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/dental-ppo-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/dental-insurance-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/best-ppo-dental-plans",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/dental-insurance",
-      "destination": "/compare-ppo-dental-plans.html",
+      "destination": "/compare-ppo-dental-plans",
       "permanent": true
     },
     {
       "source": "/estimatecost.html",
-      "destination": "/dental-treatment-cost-estimator.html",
+      "destination": "/dental-treatment-cost-estimator",
       "permanent": true
     },
     {
       "source": "/estimatecosts.html",
-      "destination": "/dental-treatment-cost-estimator.html",
+      "destination": "/dental-treatment-cost-estimator",
       "permanent": true
     },
     {
