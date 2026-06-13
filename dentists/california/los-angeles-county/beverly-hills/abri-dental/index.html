@@ -40,9 +40,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet" />
 
-  <!-- Shared CoverCapy component styles (same set as kyt-v4, root absolute, confirm paths against repo) -->
-  <link rel="stylesheet" href="/assets/css/mega-nav.css" />
-  <link rel="stylesheet" href="/assets/css/covercapy-footer.css" />
+  <!-- CoverCapy nav (self-contained loader: injects styles, markup, and behavior) -->
+  <script src="/assets/js/load-nav.js" defer></script>
+
+  <!-- CoverCapy footer styles -->
+  <link rel="stylesheet" href="/assets/css/footer.css" />
 
   <style>
     :root{
@@ -572,8 +574,7 @@
 <body>
   <div id="progress" aria-hidden="true"></div>
 
-  <!-- Shared CoverCapy mega nav -->
-  <div id="cc-nav-mount"></div>
+  <!-- CoverCapy mega nav (injected by load-nav.js) -->
 
   <!-- Section jump bar -->
   <nav class="jump" aria-label="Page sections">
@@ -1218,7 +1219,7 @@
   </main>
 
   <!-- Shared CoverCapy footer -->
-  <div id="cc-footer-mount"></div>
+  <div id="cc-footer-mount" class="cc-footer-mount"></div>
 
   <script>
   (function(){
@@ -1362,7 +1363,7 @@
   })();
   </script>
 
-  <!-- Combined CoverCapy component loader (same pattern as kyt-v4, root absolute paths) -->
+  <!-- CoverCapy footer component loader -->
   <script>
     (function(){
       function mount(url, id, after){
@@ -1372,11 +1373,8 @@
           if(after){ after(); }
         }).catch(function(){ /* component unavailable, page still readable */ });
       }
-      mount('/components/mega-nav.html', 'cc-nav-mount', function(){
-        var s = document.createElement('script'); s.src = '/assets/js/mega-nav.js'; document.body.appendChild(s);
-      });
-      mount('/components/covercapy-footer.html', 'cc-footer-mount', function(){
-        var s = document.createElement('script'); s.src = '/assets/js/covercapy-footer.js'; document.body.appendChild(s);
+      mount('/components/footer.html', 'cc-footer-mount', function(){
+        var s = document.createElement('script'); s.src = '/assets/js/footer.js'; s.defer = true; document.body.appendChild(s);
       });
     })();
   </script>
