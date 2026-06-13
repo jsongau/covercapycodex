@@ -216,6 +216,8 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* ---- filter cards ---- */
 .fcard{background:var(--cream-card); border:1px solid var(--line-2); border-radius:var(--r); padding:15px 16px; margin-bottom:14px; box-shadow:var(--sh-sm)}
 .fcard h4{font-family:"Inter Tight"; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 11px}
+.lang-morebtn{margin-top:9px; font:600 12.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-700); background:none; border:none; cursor:pointer; padding:4px 0}
+.lang-morebtn:hover{color:var(--teal-night); text-decoration:underline}
 .fcard-h4btn{display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; background:none; border:none; padding:0; margin:0 0 11px; cursor:pointer; font-family:"Inter Tight"; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint)}
 .fcard-h4btn:hover{color:var(--teal-700)}
 .fcard-h4btn .fcoll-chev{font-size:13px; line-height:1; color:var(--ink-soft); transition:transform .2s}
@@ -2266,7 +2268,10 @@ function rankDentists(list){
 }
 
 /* ---------- FILTER + PROCESS ---------- */
-function processed(){
+/* skipAttr=true returns offices in the current location/radius WITHOUT the attribute filters
+   (tier/carrier/treatment/language/weekend/etc.) — used to tell "area is empty" apart from
+   "filters removed everyone". */
+function processed(skipAttr){
   let list;
   var LISTVIEW = (typeof CC_VIEW!=='undefined' && CC_VIEW==='list');   /* list view = browse the whole directory, not just the search radius */
   if(SERVER_ORDER && !LISTVIEW){
@@ -2282,7 +2287,8 @@ function processed(){
     if(state.areaKeys){ const set=new Set(state.areaKeys); list=list.filter(d=> set.has(d.city.toLowerCase())); }
     else if(!state.allCounty && !LISTVIEW){ list=list.filter(withinReach); }
   }
-  // client-side secondary filters (apply in both modes)
+  // client-side secondary filters (apply in both modes) — skipped for the "is the area empty?" check
+  if(!skipAttr){
   if(state.filters.tier.size) list = list.filter(d=> state.filters.tier.has(d.tier));
   if(state.offers) list = list.filter(d=> d.offer);
   if(state.newpat) list = list.filter(d=> d.newPatients);
@@ -2291,10 +2297,11 @@ function processed(){
   if(state.minRating>0) list = list.filter(d=> isPaidTier(d) || ratingValueOf(d) >= state.minRating);
   if(state.filters.carrier.size) list = list.filter(d=> [...state.filters.carrier].some(c=> officeAcceptsCarrier(d,c)));
   if(state.filters.spec.size) list = list.filter(d=> d.specialties.some(x=>state.filters.spec.has(x)));
-  if(state.filters.lang.size) list = list.filter(d=> d.languages.some(x=>state.filters.lang.has(x)));
+  if(state.filters.lang.size) list = list.filter(d=> (d.languages||[]).some(x=>state.filters.lang.has(langCanon(x))));
   if(state.spec){ var _sq=String(state.spec).toLowerCase().replace(/[_\s]+/g,' ').trim();
     list = list.filter(function(d){ return (d.specialties||[]).concat(d.procedures||[]).some(function(x){ var xl=String(x).toLowerCase().replace(/[_\s]+/g,' ').trim(); return xl.indexOf(_sq)!==-1 || _sq.indexOf(xl)!==-1; }); }); }
   if(state.carrier) list = list.filter(d=> officeAcceptsCarrier(d, state.carrier));
+  }
   // "Recommended" now uses the believable client score (both Supabase and local modes); explicit sorts handled in rankDentists.
   return rankDentists(dedupePlatinumLocations(list));
 }
@@ -3161,7 +3168,9 @@ function render(){
 
   const root = document.getElementById('listings');
   if(!list.length){
-    root.innerHTML = ccEmptyState((c && c.label) ? c.label : '');
+    var _place = (c && c.label) ? c.label : '';
+    var _areaHas = (typeof _attrFiltersActive==='function' && _attrFiltersActive()) ? processed(true).length : 0;
+    root.innerHTML = _areaHas>0 ? ccNoFilterMatch(_place, _areaHas) : ccEmptyState(_place);
     renderMapPins(); return;
   }
   /* sparse results: soft guidance nudge */
@@ -3225,6 +3234,29 @@ function ucmdSubmit(){
 
 /* renderListings(): public name for the listings render pass (Supabase-ready) */
 function renderListings(){ return render(); }
+
+/* Any attribute (non-location) filter active? */
+function _attrFiltersActive(){
+  try{ return !!(state.filters.tier.size || state.offers || state.newpat || state.online || state.openWeekends
+    || state.minReviews>0 || state.minRating>0 || state.filters.carrier.size || state.filters.spec.size
+    || state.filters.lang.size || state.spec || state.carrier); }catch(e){ return false; }
+}
+/* v212b: the AREA has offices but the active filters removed them all — guide the patient to
+   relax a filter. No "coming soon", no dentist CTA (the network IS here). */
+function ccNoFilterMatch(place, n){
+  var p=(place && String(place).trim())?esc(String(place).trim()):'this area';
+  var cnt=(n||0).toLocaleString(), one=(n===1);
+  return ''
+  +'<div class="cc-empty">'
+  +  '<div class="cc-empty-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M7 12h10M10 19h4"></path></svg></div>'
+  +  '<h3 class="cc-empty-h">No offices match your filters in '+p+'.</h3>'
+  +  '<p class="cc-empty-p">There '+(one?'is':'are')+' <b>'+cnt+'</b> PPO '+(one?'office':'offices')+' in '+p+', but none fit every filter you’ve set. Remove a filter to see them.</p>'
+  +  '<div class="cc-empty-actions">'
+  +    '<button class="cc-empty-btn primary" type="button" onclick="clearFilters()">Clear all filters</button>'
+  +    '<button class="cc-empty-btn ghost" type="button" onclick="extendRadius()">Widen the radius</button>'
+  +  '</div>'
+  +'</div>';
+}
 
 /* v212: "network still building" empty state — reassures patients the area is coming, and
    turns a dead end into a dentist-acquisition moment (claim the spot before launch). */
@@ -3344,6 +3376,19 @@ function officeAcceptsCarrier(d, carrier){
 let CARRIERS_ALL = CARRIERS_CANONICAL.slice();
 let SPECS_ALL = uniqueVals('specialties').slice(0,12);
 let LANGS_ALL = uniqueVals('languages');
+/* Canonical language label — merge Chinese / Mandarin / Taiwanese into one "Chinese Mandarin". */
+function langCanon(s){ var t=String(s||'').trim(); if(/^(chinese|mandarin|taiwanese)$/i.test(t)) return 'Chinese Mandarin'; return t; }
+/* Curated primary languages always shown first; everything else hides behind "Show more". */
+const LANG_PRIMARY=['Spanish','Portuguese','Russian','Chinese Mandarin','Korean','Vietnamese'];
+function langOptions(){
+  var present={};
+  (LANGS_ALL||[]).forEach(function(l){ var c=langCanon(l); if(c && !/^english$/i.test(c)) present[c]=1; });
+  var more=Object.keys(present).filter(function(c){ return LANG_PRIMARY.indexOf(c)<0; }).sort();
+  return { primary:LANG_PRIMARY.slice(), more:more };
+}
+function toggleLangMore(btn){ var m=document.getElementById('lang-more'); if(!m) return;
+  if(m.hasAttribute('hidden')){ m.removeAttribute('hidden'); btn.textContent='Show fewer languages'; }
+  else { m.setAttribute('hidden',''); btn.textContent='Show more languages'; } }
 function carrierCount(c){ return loadDentistsFromSupabase().filter(d=>officeAcceptsCarrier(d,c)).length; }
 /* Human-readable label for a university subcategory (community_college -> Community College). */
 function univSubLabel(s){
@@ -3384,7 +3429,11 @@ function renderFilters(){
     sw('newpat','Accepting new patients')+
     sw('online','Online booking')+
   '</div>'+
-  (LANGS_ALL.length>1?'<div class="fcard"><h4>Languages</h4>'+LANGS_ALL.map(l=>opt('lang',l)).join('')+'</div>':'')+
+  (function(){ var L=langOptions(); return '<div class="fcard"><h4>Languages</h4>'
+    + L.primary.map(function(l){return opt('lang',l);}).join('')
+    + (L.more.length ? '<div class="lang-more" id="lang-more" hidden>'+L.more.map(function(l){return opt('lang',l);}).join('')+'</div>'
+        + '<button class="lang-morebtn" type="button" onclick="toggleLangMore(this)">Show more languages</button>' : '')
+    + '</div>'; })()+
   ppoCarrierFilterHtml()+
   '<div class="fcard moneycard">'+
     '<h4>Save on your visit</h4>'+
@@ -3674,25 +3723,36 @@ function cityFallback(reason){
   }
   if(reason==='denied') locHelp('denied');
 }
+/* Resolve a lat/lng to the nearest city we have offices in, so "pin my location" shows a real
+   city name (e.g. "Fountain Valley, CA") instead of "Near me" or a random nearby landmark. */
+function nearestCityLabel(lat,lng){
+  var best=null, bd=Infinity;
+  try{ for(var k in CITY_POS_D){ var p=CITY_POS_D[k]; if(!p||p.lat==null) continue; var dd=miles({lat:lat,lng:lng},{lat:p.lat,lng:p.lng}); if(dd<bd){ bd=dd; best=k; } } }catch(e){}
+  if(best==null) return null;
+  var nm=(CITIES[best]&&CITIES[best].label)?CITIES[best].label:(typeof titleCaseCity==='function'?titleCaseCity(best):best);
+  var st=CITY_STATE_D[best]||'';
+  return { key:best, label: nm+(st?(', '+st):''), lat:CITY_POS_D[best].lat, lng:CITY_POS_D[best].lng, dist:bd };
+}
 function useCurrentLocation(){
   if(!('geolocation' in navigator)){ cityFallback('unavailable'); return; }
   if(location.protocol==='file:' || window.isSecureContext===false){ cityFallback('insecure'); return; }
   toast("Finding offices near you","Locating…", 'info');
   navigator.geolocation.getCurrentPosition(async function(pos){
     const latitude=pos.coords.latitude, longitude=pos.coords.longitude;
-    document.getElementById('q-where').value="Near me"; state._title="your location"; state._lastLoc="your location";
+    const _nc=nearestCityLabel(latitude,longitude); const _wl=_nc?_nc.label:"Near me";
+    document.getElementById('q-where').value=_wl; state._title=_wl; state._lastLoc=_wl;
     state.allCounty=false; state.areaKeys=null; state.areaLabel=null;
-    state._center={lat:latitude,lng:longitude,label:"your location"};
+    state._center={lat:latitude,lng:longitude,label:_wl};
     if(sb && SB_READY){
       try {
         const { data, error } = await sb.rpc("search_dentists_near_coordinates", { in_lat:latitude, in_lng:longitude, radius_miles:Math.max(state.distance, PLAT_REACH) });
         if(error) throw error;
         SERVER_ORDER=(data||[]).map(r=>({ id:r.id, dist:+r.distance_miles, tier:r.tier }));
-        renderFilters(); render(); afterSearchUI("your location"); return;
+        renderFilters(); render(); afterSearchUI(_wl); return;
       } catch(e){ console.warn("coords RPC failed", e); }
     }
-    SERVER_ORDER=null; CITIES["__me__"]={lat:latitude,lng:longitude,label:"your location"}; state.city="__me__";
-    renderFilters(); render(); afterSearchUI("your location");
+    SERVER_ORDER=null; CITIES["__me__"]={lat:latitude,lng:longitude,label:_wl}; state.city="__me__";
+    renderFilters(); render(); afterSearchUI(_wl);
   }, function(err){ cityFallback(err && err.code===1 ? 'denied' : 'unavailable'); }, { enableHighAccuracy:false, timeout:8000, maximumAge:60000 });
 }
 
@@ -6120,16 +6180,7 @@ function buildContextCards(){
     sub:"Compare coverage & activate before your visit. Members earn Capy Crowns.",
     cta:"Compare "+promo+" plans " });
 
-  /* 3) Language × city (where languages exist in view). */
-  var langSeen={}, langs=[];
-  rows.forEach(function(d){ var city=(d.city||"").trim(); (d.languages||[]).forEach(function(L){
-    L=String(L||"").trim(); if(!L || /english/i.test(L) || !city) return;
-    var k=slugify(city)+"|"+slugify(L); if(langSeen[k]) return; langSeen[k]=1; langs.push({city:city,lang:L,d:d}); }); });
-  langs.slice(0,3).forEach(function(x){ cards.push({ type:"lang", weight:4,
-    href: ctxHubUrl(x.d,{language:x.lang}),
-    eyebrow:"Language match",
-    title: x.lang+"-speaking PPO dentists in "+x.city,
-    sub:"Find a "+x.lang+"-speaking office near "+x.city+".", cta:"Browse " }); });
+  /* (Language cards intentionally omitted — the left-rail Languages filter covers this.) */
 
   /* 4) Nearby places to keep crawling (sibling cities from view). */
   var cityset={}, nearbyCities=[];
