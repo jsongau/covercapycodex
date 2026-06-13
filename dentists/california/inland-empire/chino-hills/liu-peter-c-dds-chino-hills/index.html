@@ -33,186 +33,201 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--stone);color:var(--body);font-family:'Inter Tight',ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-  p{margin:0 0 14px}
+  p{margin:0 0 12px}
   strong{color:var(--ink);font-weight:700}
   h1,h2,h3{font-family:'Fraunces',Georgia,serif;letter-spacing:-.02em;line-height:1.08;margin:0;color:var(--ink)}
-  h1{font-size:clamp(32px,5.2vw,58px);font-weight:500;letter-spacing:-.028em}
-  h2{font-size:clamp(24px,3.4vw,38px);font-weight:500;margin-bottom:12px}
-  h3{font-size:19px;font-weight:600;margin-bottom:6px}
+  h1{font-size:clamp(30px,5vw,56px);font-weight:500;letter-spacing:-.028em}
+  h2{font-size:clamp(22px,3.2vw,36px);font-weight:500;margin-bottom:10px}
+  h3{font-size:18px;font-weight:600;margin-bottom:5px}
   .wrap{width:min(1100px,calc(100% - 32px));margin:0 auto}
   a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--sand);outline-offset:3px;border-radius:4px}
   .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 14px;z-index:100;font-weight:700}
   .skip:focus{left:0}
 
-  /* Nav */
-  .top{position:sticky;top:0;z-index:40;background:rgba(253,252,249,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line2)}
-  .top .row{height:60px;display:flex;align-items:center;gap:20px}
-  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:19px;display:flex;align-items:center;gap:9px;color:var(--ink)}
-  .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--sage);display:grid;place-items:center;font-family:'Fraunces',serif;font-size:14px}
-  .nav{margin-left:auto;display:flex;gap:18px;font-size:14px;color:var(--soft);font-weight:600}
+  /* ── Page sub-nav ── sticky below CoverCapy global nav */
+  .top{position:sticky;top:60px;z-index:40;background:rgba(253,252,249,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line2)}
+  .top .row{height:50px;display:flex;align-items:center;gap:18px}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:17px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .mark{width:27px;height:27px;border-radius:7px;background:var(--ink);color:var(--sage);display:grid;place-items:center;font-family:'Fraunces',serif;font-size:13px}
+  .nav{margin-left:auto;display:flex;gap:15px;font-size:13px;color:var(--soft);font-weight:600}
   .nav a:hover{color:var(--ink)}
 
   /* Badges */
-  .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;color:var(--soft)}
+  .pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;color:var(--soft)}
   .pill.sage{background:var(--sage-soft);color:#2D6135;border-color:var(--sage-line)}
   .pill.sand{background:var(--sand-soft);color:var(--sand-text);border-color:var(--sand-line)}
-  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
+
+  /* Word cycler */
+  .cycler-pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--sage-line);background:var(--sage-soft);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;color:#2D6135;transition:opacity .28s}
+  .cycler-pill.fade{opacity:0}
 
   /* Hero */
-  .hero{padding:44px 0 32px;background:linear-gradient(160deg,var(--paper) 0%,var(--stone) 100%)}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
-  .eyebrow{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-  .lead{font-size:17.5px;max-width:600px;color:var(--soft);margin-top:12px;line-height:1.7}
-  .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:13px 18px;font-weight:700;font-size:15px;min-height:48px;border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s}
+  .hero{padding:26px 0 18px;background:linear-gradient(160deg,var(--paper) 0%,var(--stone) 100%)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
+  .eyebrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+  .lead{font-size:17px;max-width:600px;color:var(--soft);margin-top:9px;line-height:1.65}
+  .ctas{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:11px;padding:11px 16px;font-weight:700;font-size:14px;min-height:44px;border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s}
   .btn:hover{transform:translateY(-2px)}
   .btn.primary{background:var(--charcoal);color:#fff;box-shadow:0 8px 20px rgba(44,53,48,.2)}
   .btn.primary:hover{background:#1a2320}
   .btn.call{background:linear-gradient(135deg,var(--sage),#4A7550);color:#fff;box-shadow:0 8px 20px rgba(107,143,113,.25)}
   .btn.outline{background:transparent;border-color:var(--line);color:var(--ink)}
   .btn.outline:hover{border-color:var(--ink)}
-  .breadcrumb{font-size:13px;color:var(--soft);margin-bottom:14px}
+  .breadcrumb{font-size:13px;color:var(--soft);margin-bottom:11px}
   .breadcrumb a{text-decoration:underline;text-decoration-color:var(--sand-line)}
 
   /* Fact card */
-  .fact-card{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
-  .office-art{border-radius:12px;overflow:hidden;display:block;width:100%;height:auto;margin-bottom:14px}
-  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:2px}
-  .stat{border:1px solid var(--line2);border-radius:12px;padding:12px 13px;background:var(--stone)}
-  .stat b{display:block;font-size:17px;color:var(--ink);font-family:'Fraunces',serif;font-weight:500}
+  .fact-card{background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:13px;box-shadow:var(--shadow)}
+  .office-art{border-radius:10px;overflow:hidden;display:block;width:100%;height:auto;margin-bottom:11px}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:2px}
+  .stat{border:1px solid var(--line2);border-radius:10px;padding:10px 12px;background:var(--stone)}
+  .stat b{display:block;font-size:15px;color:var(--ink);font-family:'Fraunces',serif;font-weight:500}
   .stat span{font-size:12px;color:var(--soft);font-weight:600}
   .stat.s-sage{background:var(--sage-soft);border-color:var(--sage-line)}
   .stat.s-sand{background:var(--sand-soft);border-color:var(--sand-line)}
-  .listing-note{background:linear-gradient(135deg,var(--paper),var(--stone));border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+  .listing-note{background:linear-gradient(135deg,var(--paper),var(--stone));border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-top:9px}
   .listing-note p{font-size:12px;color:var(--soft);margin:0}
 
-  /* Quick Facts AI block */
-  .qf-block{background:var(--card);border:1.5px solid var(--sage-line);border-radius:16px;padding:20px 24px}
-  .qf-block h3{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--sage);margin-bottom:14px;font-family:'Inter Tight',sans-serif;font-weight:800}
+  /* Quick Facts block */
+  .qf-block{background:var(--card);border:1.5px solid var(--sage-line);border-radius:14px;padding:17px 21px}
+  .qf-block h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--sage);margin-bottom:11px;font-family:'Inter Tight',sans-serif;font-weight:800}
   .qf-dl{display:grid;gap:0}
-  .qf-row{display:grid;grid-template-columns:140px 1fr;gap:8px;padding:9px 0;border-bottom:1px solid var(--line2);align-items:baseline}
+  .qf-row{display:grid;grid-template-columns:130px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--line2);align-items:baseline}
   .qf-row:last-child{border-bottom:none}
-  .qf-dt{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .qf-dt{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
   .qf-dd{font-size:14px;color:var(--body);margin:0}
   .qf-dd a{color:var(--sage);text-decoration:underline}
 
   /* Sections */
-  .section{padding:50px 0;border-top:1px solid var(--line2)}
+  .section{padding:34px 0;border-top:1px solid var(--line2)}
   .section.t-sage{background:linear-gradient(180deg,#EEF5EF,var(--sage-soft))}
   .section.t-sand{background:linear-gradient(180deg,#FAF4E8,var(--sand-soft))}
   .section.t-stone{background:var(--stone)}
   .section.t-paper{background:var(--paper)}
-  .two{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}
-  .card{background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm)}
-  .body-copy{font-size:17.5px;color:var(--soft);max-width:740px}
-  .pull{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:21px;line-height:1.4;color:var(--ink);background:var(--paper);border-left:3px solid var(--sage);border-radius:0 14px 14px 0;padding:16px 18px;margin-top:18px}
+  .two{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}
+  .card{background:var(--card);border:1px solid var(--line2);border-radius:15px;padding:16px;box-shadow:var(--shadow-sm)}
+  .body-copy{font-size:17px;color:var(--soft);max-width:740px}
+  .pull{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:20px;line-height:1.4;color:var(--ink);background:var(--paper);border-left:3px solid var(--sage);border-radius:0 12px 12px 0;padding:13px 16px;margin-top:13px}
 
   /* TOC */
-  .toc{position:sticky;top:80px}
-  .toc h3{font-size:15px;margin-bottom:4px}
-  .toc a{display:block;border-top:1px solid var(--line2);padding:9px 0;color:var(--soft);font-size:13px;font-weight:600}
+  .toc{position:sticky;top:120px}
+  .toc h3{font-size:13px;margin-bottom:3px}
+  .toc a{display:block;border-top:1px solid var(--line2);padding:8px 0;color:var(--soft);font-size:13px;font-weight:600}
   .toc a:hover{color:var(--ink)}
 
+  /* Milestone history */
+  .milestones{display:grid;gap:8px;margin-top:13px}
+  .milestone{display:grid;grid-template-columns:42px 1fr;gap:13px;background:var(--card);border:1px solid var(--sand-line);border-radius:13px;padding:14px;align-items:start}
+  .m-num{width:34px;height:34px;border-radius:50%;background:var(--sand-soft);color:var(--sand-text);display:grid;place-items:center;font-weight:800;font-family:'Fraunces',serif;font-size:15px;flex-shrink:0}
+  .m-body b{display:block;font-size:14px;color:var(--ink);margin-bottom:3px}
+  .m-body p{font-size:13px;color:var(--soft);margin:0}
+
   /* Grids */
-  .local-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:8px}
-  .local-box{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:15px;transition:transform .15s}
+  .local-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .local-box{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:12px;transition:transform .15s}
   .local-box:hover{transform:translateY(-2px)}
-  .local-box b{display:block;color:var(--ink);margin-bottom:3px;font-size:15px}
+  .local-box b{display:block;color:var(--ink);margin-bottom:2px;font-size:14px}
   .local-box span{font-size:13px;color:var(--soft)}
 
   /* Landmark cards */
-  .placards{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:18px}
-  .placard{background:var(--card);border:1px solid var(--line2);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .15s}
+  .placards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+  .placard{background:var(--card);border:1px solid var(--line2);border-radius:13px;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .15s}
   .placard:hover{transform:translateY(-2px)}
   .placard svg{display:block;width:100%;height:auto}
-  .placard .body{padding:12px 15px}
-  .placard b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+  .placard .body{padding:10px 13px}
+  .placard b{display:block;color:var(--ink);font-size:14px;margin-bottom:2px}
   .placard p{margin:0;font-size:13px;color:var(--soft)}
 
   /* Services */
-  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:8px}
-  .service{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:15px;transition:transform .15s}
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  .service{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:12px;transition:transform .15s}
   .service:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-  .service .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;margin-bottom:8px;font-size:18px}
-  .service h3{font-size:15px}
+  .service .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:7px;font-size:17px}
+  .service h3{font-size:14px}
   .service p{font-size:13px;color:var(--soft);margin:0}
   .b-sage{background:var(--sage-soft)} .b-sand{background:var(--sand-soft)} .b-stone{background:var(--stone)}
 
   /* Languages */
-  .lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:8px}
-  .lang{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:15px}
-  .lang .flag{font-size:22px;margin-bottom:5px}
-  .lang b{display:block;font-size:15px;color:var(--ink);margin-bottom:2px}
+  .lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .lang{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:12px}
+  .lang .flag{font-size:20px;margin-bottom:4px}
+  .lang b{display:block;font-size:14px;color:var(--ink);margin-bottom:2px}
   .lang span{font-size:13px;color:var(--soft)}
-  .lang a{font-size:12px;font-weight:700;color:var(--sage);text-decoration:underline;display:block;margin-top:7px}
+  .lang a{font-size:12px;font-weight:700;color:var(--sage);text-decoration:underline;display:block;margin-top:5px}
 
   /* Reviews */
-  .review-row{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:8px}
-  .review-src{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow-sm)}
+  .review-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .review-src{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:13px;text-align:center;box-shadow:var(--shadow-sm)}
   .review-src b{display:block;font-family:'Fraunces',serif;font-size:20px;color:var(--ink);font-weight:500}
   .review-src .src{font-size:12px;color:var(--soft);font-weight:600;margin-top:2px}
-  .review-src a{display:inline-block;margin-top:9px;font-size:12px;font-weight:700;color:var(--sage);text-decoration:underline}
+  .review-src a{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--sage);text-decoration:underline}
 
   /* PPO card */
-  .ppo-card{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm)}
-  .ppo-card ul{margin:0 0 14px;padding-left:18px}
-  .ppo-card li{margin:6px 0;color:var(--soft);font-size:14px}
+  .ppo-card{background:var(--card);border:1px solid var(--line2);border-radius:13px;padding:16px;box-shadow:var(--shadow-sm)}
+  .ppo-card ul{margin:0 0 12px;padding-left:18px}
+  .ppo-card li{margin:5px 0;color:var(--soft);font-size:14px}
 
   /* Carrier grid */
-  .carrier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-  .carrier-link{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:3px;transition:transform .15s,border-color .15s}
+  .carrier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .carrier-link{background:var(--card);border:1px solid var(--line2);border-radius:11px;padding:12px 13px;display:flex;flex-direction:column;gap:2px;transition:transform .15s,border-color .15s}
   .carrier-link:hover{transform:translateY(-2px);border-color:var(--sage-line)}
   .carrier-link b{font-size:14px;color:var(--ink)}
   .carrier-link span{font-size:12px;color:var(--soft)}
-  .carrier-link .arr{font-size:11px;font-weight:700;color:var(--sage);margin-top:4px}
 
   /* Nearby dentists */
-  .nearby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-  .nearby-card{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:3px;transition:transform .15s}
+  .nearby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .nearby-card{background:var(--card);border:1px solid var(--line2);border-radius:11px;padding:12px 13px;display:flex;flex-direction:column;gap:2px;transition:transform .15s}
   .nearby-card:hover{transform:translateY(-2px);border-color:var(--sage-line)}
   .nearby-card b{font-size:14px;color:var(--ink)}
   .nearby-card span{font-size:12px;color:var(--soft)}
-  .nearby-card a{font-size:12px;font-weight:700;color:var(--sage);text-decoration:underline;margin-top:4px}
+  .nearby-card a{font-size:12px;font-weight:700;color:var(--sage);text-decoration:underline;margin-top:3px}
 
   /* Verify PPO CTA */
-  .verify-cta{background:linear-gradient(135deg,var(--paper),var(--sage-soft));border:1.5px solid var(--sage-line);border-radius:16px;padding:22px 26px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-top:28px}
-  .verify-cta h3{font-size:18px;margin-bottom:5px}
-  .verify-cta p{font-size:14px;color:var(--soft);margin:0;max-width:52ch}
-  .verify-cta .actions{display:flex;flex-direction:column;gap:8px;white-space:nowrap}
+  .verify-cta{background:linear-gradient(135deg,var(--paper),var(--sage-soft));border:1.5px solid var(--sage-line);border-radius:13px;padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;margin-top:20px}
+  .verify-cta h3{font-size:16px;margin-bottom:4px}
+  .verify-cta p{font-size:13px;color:var(--soft);margin:0;max-width:52ch}
+  .verify-cta .actions{display:flex;flex-direction:column;gap:7px;white-space:nowrap}
 
   /* First visit */
-  .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:8px}
-  .visit-step{background:var(--card);border:1px solid var(--sand-line);border-radius:14px;padding:15px}
-  .visit-step .n{width:30px;height:30px;border-radius:50%;background:var(--sand-soft);color:var(--sand-text);display:grid;place-items:center;font-weight:800;font-family:'Fraunces',serif;margin-bottom:8px;font-size:14px}
-  .visit-step h3{font-size:16px}
+  .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+  .visit-step{background:var(--card);border:1px solid var(--sand-line);border-radius:12px;padding:13px}
+  .visit-step .n{width:28px;height:28px;border-radius:50%;background:var(--sand-soft);color:var(--sand-text);display:grid;place-items:center;font-weight:800;font-family:'Fraunces',serif;margin-bottom:7px;font-size:13px}
+  .visit-step h3{font-size:15px}
   .visit-step p{font-size:13px;color:var(--soft);margin:0}
 
   /* Directions */
-  .map-box{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .map-art{border-radius:16px;overflow:hidden;border:1px solid var(--line2);box-shadow:var(--shadow-sm)}
+  .map-box{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .map-art{border-radius:13px;overflow:hidden;border:1px solid var(--line2);box-shadow:var(--shadow-sm)}
   .map-art svg{display:block;width:100%;height:auto}
-  .addr{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm)}
+  .addr{background:var(--card);border:1px solid var(--line2);border-radius:13px;padding:16px;box-shadow:var(--shadow-sm)}
 
   /* FAQ */
-  .faq{display:grid;gap:9px;margin-top:8px}
-  .faq details{background:var(--card);border:1px solid var(--line2);border-radius:13px;padding:14px 16px}
+  .faq-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+  .faq-cat{border:1px solid var(--line2);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--soft);cursor:pointer;transition:all .15s;font-family:inherit}
+  .faq-cat.active,.faq-cat:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .faq-ctrl{display:flex;align-items:center;justify-content:flex-end;margin-bottom:8px}
+  #faq-toggle{border:none;background:none;font-size:13px;font-weight:700;color:var(--sage);cursor:pointer;padding:0;text-decoration:underline;font-family:inherit}
+  .faq{display:grid;gap:7px}
+  .faq details{background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:12px 15px}
   .faq details[open]{border-color:var(--sage-line);background:linear-gradient(180deg,var(--paper),var(--sage-soft))}
   .faq summary{cursor:pointer;font-weight:700;color:var(--ink);font-size:15px;list-style:none}
   .faq summary::-webkit-details-marker{display:none}
   .faq summary::after{content:"+";float:right;color:var(--sage);font-weight:800;font-size:17px;line-height:1}
   .faq details[open] summary::after{content:"–"}
-  .faq p{margin:8px 0 0;color:var(--soft);font-size:14px}
+  .faq p{margin:7px 0 0;color:var(--soft);font-size:14px}
 
-  /* Sticky footer */
-  .footer-cta{position:sticky;bottom:0;z-index:35;background:rgba(253,252,249,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line2);padding:10px 0}
+  /* Sticky footer CTA */
+  .footer-cta{position:sticky;bottom:0;z-index:35;background:rgba(253,252,249,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line2);padding:9px 0}
   .footer-cta .row{display:flex;gap:12px;align-items:center;justify-content:space-between}
-  .footer-cta b{font-family:'Fraunces',serif;font-size:17px;color:var(--ink);font-weight:500}
+  .footer-cta b{font-family:'Fraunces',serif;font-size:16px;color:var(--ink);font-weight:500}
   .footer-cta .small{font-size:12px;color:var(--faint)}
-  .footer-cta .actions{display:flex;gap:8px}
+  .footer-cta .actions{display:flex;gap:7px}
 
-  footer.foot{padding:28px 0;border-top:1px solid var(--line2);color:var(--faint);font-size:13px}
+  footer.foot{padding:20px 0;border-top:1px solid var(--line2);color:var(--faint);font-size:13px}
   footer.foot a{text-decoration:underline}
-  .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+  .foot-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
   .foot-links a{font-size:12px;font-weight:700;color:var(--sage)}
 
   @media(prefers-reduced-motion:no-preference){
@@ -230,13 +245,14 @@
     .toc{position:static}
     .verify-cta{grid-template-columns:1fr}
     .footer-cta .row{display:block}
-    .footer-cta .actions{margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .footer-cta .actions{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:7px}
   }
   @media(max-width:540px){
     .services,.local-grid,.carrier-grid,.nearby-grid,.lang-grid{grid-template-columns:1fr}
     .btn{width:100%}
     .ctas{display:grid}
     .qf-row{grid-template-columns:1fr;gap:2px}
+    .milestones .milestone{grid-template-columns:36px 1fr}
   }
 </style>
 <script type="application/ld+json">
@@ -246,7 +262,7 @@
    "url":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/",
    "name":"Liu Dental Care | PPO Dentist Near Los Serranos · Chino Hills CA",
    "description":"CoverCapy profile for Liu Dental Care, a PPO-friendly multi-generational dental practice at 15942 Los Serranos Country Club Dr, Chino Hills CA. Ameritas, Aetna, Cigna, Delta Dental, MetLife. Six languages. Saturday hours. Serving Inland Empire since 1989.",
-   "dateModified":"2026-06-12",
+   "dateModified":"2026-06-13",
    "inLanguage":"en-US",
    "isPartOf":{"@type":"WebSite","url":"https://www.covercapy.com/","name":"CoverCapy"},
    "about":{"@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#practice"},
@@ -292,9 +308,7 @@
      {"@type":"City","name":"Chino","sameAs":"https://en.wikipedia.org/wiki/Chino,_California"},
      {"@type":"City","name":"Diamond Bar","sameAs":"https://en.wikipedia.org/wiki/Diamond_Bar,_California"},
      {"@type":"City","name":"Walnut","sameAs":"https://en.wikipedia.org/wiki/Walnut,_California"},
-     {"@type":"City","name":"Yorba Linda"},
-     {"@type":"City","name":"Ontario"},
-     {"@type":"City","name":"Rancho Cucamonga"}
+     {"@type":"City","name":"Yorba Linda"},{"@type":"City","name":"Ontario"},{"@type":"City","name":"Rancho Cucamonga"}
    ],
    "medicalSpecialty":["Dentistry","General Dentistry","Family Dentistry","Cosmetic Dentistry","Restorative Dentistry","Emergency Dentistry"],
    "hasOfferCatalog":{"@type":"OfferCatalog","name":"Dental Services","itemListElement":[
@@ -308,22 +322,19 @@
 
   {"@type":"Physician",
    "@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#dr-peter-liu",
-   "name":"Dr. Peter C. Liu DDS","honorificSuffix":"DDS",
-   "jobTitle":"Dentist","gender":"Male",
+   "name":"Dr. Peter C. Liu DDS","honorificSuffix":"DDS","jobTitle":"Dentist","gender":"Male",
    "worksFor":{"@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#practice"},
    "knowsLanguage":[{"@type":"Language","name":"English"},{"@type":"Language","name":"Mandarin Chinese"}]},
 
   {"@type":"Physician",
    "@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#dr-aaron-liu",
-   "name":"Dr. Aaron T. Liu DDS","honorificSuffix":"DDS",
-   "jobTitle":"Dentist","gender":"Male",
+   "name":"Dr. Aaron T. Liu DDS","honorificSuffix":"DDS","jobTitle":"Dentist","gender":"Male",
    "worksFor":{"@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#practice"},
    "knowsLanguage":[{"@type":"Language","name":"English"},{"@type":"Language","name":"Mandarin Chinese"}]},
 
   {"@type":"Physician",
    "@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#dr-marie-nguyen",
-   "name":"Dr. Marie Nguyen DDS","honorificSuffix":"DDS",
-   "jobTitle":"Dentist","gender":"Female",
+   "name":"Dr. Marie Nguyen DDS","honorificSuffix":"DDS","jobTitle":"Dentist","gender":"Female",
    "worksFor":{"@id":"https://www.covercapy.com/dentists/california/inland-empire/chino-hills/liu-peter-c-dds-chino-hills/#practice"},
    "knowsLanguage":[{"@type":"Language","name":"English"},{"@type":"Language","name":"Vietnamese"}]},
 
@@ -331,10 +342,10 @@
    "mainEntity":[
      {"@type":"Question","name":"Where is Liu Dental Care located?","acceptedAnswer":{"@type":"Answer","text":"15942 Los Serranos Country Club Drive, Suite F, Chino Hills, CA 91709 — adjacent to Los Serranos Country Club golf course."}},
      {"@type":"Question","name":"Is Liu Dental Care in-network with Ameritas PPO?","acceptedAnswer":{"@type":"Answer","text":"Yes. Liu Dental Care participates in the Ameritas PPO network as of June 2026. Call (909) 606-6888 to confirm your specific plan before scheduling."}},
-     {"@type":"Question","name":"Does Liu Dental Care accept Aetna, Cigna, Delta Dental, or MetLife?","acceptedAnswer":{"@type":"Answer","text":"Liu Dental Care has been updated in the CoverCapy directory to include Aetna, Cigna, Delta Dental, and MetLife as networks. Always call (909) 606-6888 to verify your specific plan participation before scheduling."}},
+     {"@type":"Question","name":"Does Liu Dental Care accept Aetna, Cigna, Delta Dental, or MetLife?","acceptedAnswer":{"@type":"Answer","text":"Liu Dental Care has been updated in the CoverCapy directory to include Aetna, Cigna, Delta Dental, and MetLife. Always call (909) 606-6888 to verify your specific plan before scheduling."}},
      {"@type":"Question","name":"What languages does Liu Dental Care speak?","acceptedAnswer":{"@type":"Answer","text":"English, Mandarin Chinese, Spanish, Tagalog, Vietnamese, and Farsi. Call ahead to confirm staff availability on your preferred day."}},
      {"@type":"Question","name":"Does Liu Dental Care have Saturday hours?","acceptedAnswer":{"@type":"Answer","text":"Yes. Saturday 8:00 AM to 1:00 PM. Also open Mon, Tue, Thu, Fri 9am to 6pm. Closed Wednesday and Sunday."}},
-     {"@type":"Question","name":"Who are the dentists at Liu Dental Care?","acceptedAnswer":{"@type":"Answer","text":"Dr. Peter C. Liu DDS (founder, 1989), Dr. Marie Nguyen DDS, and Dr. Aaron T. Liu DDS (Dr. Peter's son). Two generations of the Liu family practice together."}},
+     {"@type":"Question","name":"Who are the dentists at Liu Dental Care?","acceptedAnswer":{"@type":"Answer","text":"Dr. Peter C. Liu DDS (founder, 1989), Dr. Marie Nguyen DDS, and Dr. Aaron T. Liu DDS. Two generations of the Liu family practice together."}},
      {"@type":"Question","name":"How far is Liu Dental Care from Diamond Bar?","acceptedAnswer":{"@type":"Answer","text":"Approximately 10 minutes via Grand Avenue west into Chino Hills to Los Serranos Country Club Drive."}},
      {"@type":"Question","name":"Is Liu Dental Care near Cal Poly Pomona or Ontario Airport?","acceptedAnswer":{"@type":"Answer","text":"Cal Poly Pomona is approximately 8 miles northeast via the 71 Freeway. Ontario International Airport is approximately 14 miles east via the 60 or 71 Freeway."}}
    ]}
@@ -345,15 +356,16 @@
 <a class="skip" href="#main">Skip to content</a>
 <script src="/assets/js/load-nav.js" defer></script>
 
-<header class="top" aria-label="CoverCapy navigation">
+<header class="top" aria-label="Page navigation">
   <div class="wrap row">
     <a class="brand" href="/ppo-dentists/california/inland-empire/" aria-label="CoverCapy Inland Empire"><span class="mark" aria-hidden="true">C</span>CoverCapy</a>
     <nav class="nav" aria-label="Profile sections">
+      <a href="#overview">About</a>
+      <a href="#history">Since 1989</a>
       <a href="#nearby">Nearby</a>
       <a href="#languages">Languages</a>
       <a href="#insurance">PPO</a>
       <a href="#reviews">Reviews</a>
-      <a href="#more-dentists">More Dentists</a>
       <a href="#faq">FAQ</a>
     </nav>
   </div>
@@ -361,9 +373,9 @@
 
 <main id="main">
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      HERO
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
@@ -376,12 +388,11 @@
       <div class="eyebrow reveal d1">
         <span id="prof-tier-badge" class="pill sand">✓ Verified listing</span>
         <span class="pill sage">Ameritas PPO</span>
-        <span class="pill">Chino Hills · Los Serranos</span>
-        <span class="pill">Saturday 8am–1pm</span>
+        <span class="cycler-pill" id="hero-cycler">Saturday 8am–1pm</span>
       </div>
       <h1 class="reveal d1">Liu Dental Care<br><span style="font-size:.62em;font-style:italic;color:var(--soft);">Chino Hills, CA</span></h1>
-      <p class="lead reveal d2">A multi-generational PPO dental practice on Los Serranos Country Club Drive — founded by Dr. Peter C. Liu in 1989, now practiced alongside his son Dr. Aaron T. Liu and Dr. Marie Nguyen. Six languages. Saturday hours. In-network with Ameritas, and verified across multiple PPO plans.</p>
-      <p class="lead reveal d2" style="font-size:16px">This page is a plain guide for patients comparing Chino Hills dentists. Insurance, languages, landmarks, and directions — in one place, without the runaround.</p>
+      <p class="lead reveal d2">A multi-generational PPO dental practice on Los Serranos Country Club Drive — founded by Dr. Peter C. Liu in 1989, now practiced alongside his son Dr. Aaron T. Liu and Dr. Marie Nguyen. Six languages. Saturday hours. In-network with Ameritas, Aetna, Cigna, Delta Dental, and MetLife.</p>
+      <p class="lead reveal d2" style="font-size:15px;margin-top:4px">This page is a plain guide for patients comparing Chino Hills dentists. Insurance, languages, landmarks, and directions — in one place, without the runaround.</p>
       <div class="ctas reveal d3" id="prof-cta-area">
         <a class="btn call" href="tel:9096066888">(909) 606-6888</a>
         <a class="btn primary" href="https://www.liudentalcare.com" target="_blank" rel="noopener">Visit website</a>
@@ -436,15 +447,15 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      QUICK FACTS — AI CITATION BLOCK
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section t-paper" id="quick-facts" aria-labelledby="qf-h">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start">
+    <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start">
       <div>
         <span class="kicker">CoverCapy Quick Facts</span>
-        <h2 id="qf-h" style="margin-bottom:16px">Liu Dental Care at a glance</h2>
+        <h2 id="qf-h" style="margin-bottom:13px">Liu Dental Care at a glance</h2>
         <p class="body-copy">Everything a patient needs before calling — practice, people, hours, insurance, and languages, all in one place.</p>
         <div class="pull">&ldquo;The same address, the same phone number, the same neighborhood — for 35 years. That is not something you find very often in the Inland Empire.&rdquo;</div>
       </div>
@@ -467,21 +478,22 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      OVERVIEW
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section" id="overview" aria-labelledby="overview-h">
   <div class="wrap two">
     <aside class="card toc" aria-label="On this page">
       <h3>On this page</h3>
       <a href="#quick-facts">Quick facts</a>
-      <a href="#nearby">Nearby &amp; directions</a>
+      <a href="#history">Since 1989</a>
+      <a href="#nearby">Nearby &amp; landmarks</a>
       <a href="#languages">Languages</a>
       <a href="#services">Services</a>
       <a href="#insurance">PPO insurance</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">First visit</a>
-      <a href="#more-dentists">More dentists nearby</a>
+      <a href="#more-dentists">More dentists</a>
       <a href="#networks-ie">IE PPO networks</a>
       <a href="#faq">FAQ</a>
     </aside>
@@ -495,16 +507,57 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
+     HISTORY — SINCE 1989
+══════════════════════════════════════════ -->
+<section class="section t-sand" id="history" aria-labelledby="hist-h">
+  <div class="wrap">
+    <span class="kicker">The practice</span>
+    <h2 id="hist-h">35 years at the same address</h2>
+    <p class="body-copy">Most practices move, rebrand, or get absorbed. Liu Dental Care opened in 1989 and has been at 15942 Los Serranos Country Club Drive ever since — same phone, same neighborhood, same family.</p>
+    <div class="milestones">
+      <div class="milestone">
+        <div class="m-num">I</div>
+        <div class="m-body">
+          <b>1989 — Founded by Dr. Peter C. Liu DDS</b>
+          <p>Dr. Peter C. Liu opens Liu Dental Care on Los Serranos Country Club Drive — a solo PPO practice serving the growing Chino Hills community. Ameritas is one of the first networks confirmed.</p>
+        </div>
+      </div>
+      <div class="milestone">
+        <div class="m-num">II</div>
+        <div class="m-body">
+          <b>1990s–2000s — Multilingual roots</b>
+          <p>As Chino Hills grows into one of the IE's most diverse cities, the practice builds multilingual capabilities — Mandarin, Spanish, Tagalog, Vietnamese, and Farsi — to meet the neighborhood where it is.</p>
+        </div>
+      </div>
+      <div class="milestone">
+        <div class="m-num">III</div>
+        <div class="m-body">
+          <b>2010s — Second generation joins</b>
+          <p>Dr. Aaron T. Liu DDS — Dr. Peter's son — joins the practice alongside Dr. Marie Nguyen DDS. Patients who came in as kids in the 90s are now bringing their own children.</p>
+        </div>
+      </div>
+      <div class="milestone">
+        <div class="m-num">IV</div>
+        <div class="m-body">
+          <b>Today — Three dentists, six languages, one address</b>
+          <p>Liu Dental Care remains at the same corner. Three dentists, six languages, five PPO networks, Saturday hours. One of the longest-running dental practices in the Inland Empire.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
      NEARBY + LANDMARKS
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section t-sage" id="nearby" aria-labelledby="nearby-h">
   <div class="wrap">
     <span class="kicker">Getting here</span>
-    <h2 id="nearby-h">PPO dentist near Los Serranos Country Club, Diamond Bar &amp; Walnut</h2>
-    <p class="body-copy">The office is in the Los Serranos neighborhood at the south end of Chino Hills. Here is who it tends to be convenient for.</p>
+    <h2 id="nearby-h">PPO dentist near Los Serranos, Diamond Bar &amp; Walnut</h2>
+    <p class="body-copy">The office is in the Los Serranos neighborhood at the south end of Chino Hills. Here is who tends to find it convenient.</p>
     <div class="local-grid" aria-label="Nearby cities">
-      <div class="local-box"><b>Los Serranos · Chino Hills</b><span>On Los Serranos Country Club Dr, right next to the golf course. Primary neighborhood.</span></div>
+      <div class="local-box"><b>Los Serranos · Chino Hills</b><span>On Los Serranos Country Club Dr, right next to the golf course. The primary neighborhood.</span></div>
       <div class="local-box"><b>Chino</b><span>Short drive via Chino Hills Pkwy or Pipeline Ave from central Chino.</span></div>
       <div class="local-box"><b>Diamond Bar</b><span>~10 min via Grand Ave west. No freeway needed from most of Diamond Bar.</span></div>
       <div class="local-box"><b>Walnut</b><span>South Walnut is a quick drive down Grand Ave or the 71.</span></div>
@@ -512,8 +565,8 @@
       <div class="local-box"><b>Ontario / Rancho Cucamonga</b><span>~20 min east via the 60 or 71 Freeway. Practical for Ameritas patients in the eastern IE.</span></div>
     </div>
 
-    <h3 style="margin-top:28px;margin-bottom:4px">Landmarks near Liu Dental Care</h3>
-    <p style="font-size:14px;color:var(--soft)">If you can find one of these, you can find the office.</p>
+    <h3 style="margin-top:22px;margin-bottom:4px">Landmarks near Liu Dental Care</h3>
+    <p style="font-size:14px;color:var(--soft);margin-bottom:0">If you can find one of these, you can find the office.</p>
     <div class="placards">
       <figure class="placard" style="margin:0">
         <svg viewBox="0 0 440 190" role="img" aria-label="Los Serranos Country Club golf course">
@@ -564,7 +617,7 @@
           <path x="140" y="64" d="M140 64 h208" stroke="#6B8F71" stroke-width="2.5" stroke-dasharray="6 4"/>
           <polygon points="344,59 344,69 354,64" fill="#6B8F71"/>
           <rect x="294" y="48" width="110" height="24" rx="12" fill="#FDFCF9" stroke="#E6DFCF"/>
-          <text x="349" y="65" text-anchor="middle" fill="#2C3530" font-family="Inter Tight,sans-serif" font-size="11" font-weight="800">Liu Dental → 10 min</text>
+          <text x="349" y="65" text-anchor="middle" fill="#2C3530" font-family="Inter Tight,sans-serif" font-size="11" font-weight="800">Liu Dental — 10 min</text>
         </svg>
         <figcaption class="body"><b>Grand Avenue from Diamond Bar</b><p>Grand Ave runs straight west into Chino Hills from Diamond Bar. No freeway needed. The route connects directly to the Los Serranos neighborhood.</p></figcaption>
       </figure>
@@ -587,35 +640,35 @@
           <circle cx="217" cy="90" r="3.5" fill="#fff"/>
           <text x="220" y="155" text-anchor="middle" fill="#5B6962" font-family="Inter Tight,sans-serif" font-size="11">Ontario Airport ~14 mi east via 60 or 71</text>
         </svg>
-        <figcaption class="body"><b>Shoppes · Cal Poly · Ontario Airport</b><p>The Shoppes at Chino Hills is ~3.5 miles. Cal Poly Pomona is ~8 miles north via 71. Ontario International Airport is ~14 miles east — practical for patients in transit.</p></figcaption>
+        <figcaption class="body"><b>Shoppes · Cal Poly · Ontario Airport</b><p>The Shoppes at Chino Hills is ~3.5 miles. Cal Poly Pomona ~8 miles north via 71. Ontario International Airport ~14 miles east — practical for patients in transit.</p></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      LANGUAGES
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section" id="languages" aria-labelledby="lang-h">
   <div class="wrap">
     <span class="kicker">Multilingual care</span>
     <h2 id="lang-h">Six languages spoken at Liu Dental Care</h2>
-    <p class="body-copy">English, Mandarin, Spanish, Tagalog, Vietnamese, and Farsi — one of the broadest multilingual capabilities of any dental practice in the Inland Empire. Call (909) 606-6888 ahead of your visit to confirm staff availability on your preferred day.</p>
+    <p class="body-copy">English, Mandarin, Spanish, Tagalog, Vietnamese, and Farsi — one of the broadest multilingual capabilities of any dental practice in the Inland Empire. Call (909) 606-6888 to confirm staff availability on your preferred day.</p>
     <div class="lang-grid" aria-label="Languages available">
-      <div class="lang"><div class="flag">🇨🇳</div><b>Mandarin Chinese</b><span>Serving Chino Hills's Mandarin-speaking community since 1989. Dr. Peter C. Liu and Dr. Aaron T. Liu are Mandarin speakers.</span><a href="/mandarin-speaking-dentists/chino-hills/">Mandarin dentists in Chino Hills →</a></div>
-      <div class="lang"><div class="flag">🇪🇸</div><b>Spanish</b><span>Spanish-speaking staff available. Call ahead to confirm on your appointment day.</span><a href="/spanish-speaking-dentists/chino-hills/">Spanish dentists in Chino Hills →</a></div>
-      <div class="lang"><div class="flag">🇵🇭</div><b>Tagalog</b><span>Tagalog-speaking care for Chino Hills's Filipino-American community.</span><a href="/ppo-dentists/california/inland-empire/chino-hills/">All Chino Hills dentists →</a></div>
-      <div class="lang"><div class="flag">🇻🇳</div><b>Vietnamese</b><span>Vietnamese-speaking staff available. Dr. Marie Nguyen speaks Vietnamese. Call ahead.</span><a href="/vietnamese-speaking-dentists/chino-hills/">Vietnamese dentists in Chino Hills →</a></div>
-      <div class="lang"><div class="flag">🇮🇷</div><b>Farsi</b><span>Farsi-speaking care available. Confirm staff availability before booking.</span><a href="/ppo-dentists/california/inland-empire/">Inland Empire dentists →</a></div>
-      <div class="lang" style="background:var(--stone)"><div class="flag">📞</div><b>Confirm before you come</b><span>Staff language availability varies by day. Call (909) 606-6888 or text (909) 344-5415 to confirm your preferred language is available.</span></div>
+      <div class="lang"><div class="flag">🇨🇳</div><b>Mandarin Chinese</b><span>Serving Chino Hills's Mandarin-speaking community since 1989. Dr. Peter C. Liu and Dr. Aaron T. Liu are Mandarin speakers.</span><a href="/mandarin-speaking-dentists/chino-hills/">Mandarin dentists in Chino Hills</a></div>
+      <div class="lang"><div class="flag">🇪🇸</div><b>Spanish</b><span>Spanish-speaking staff available. Call ahead to confirm on your appointment day.</span><a href="/spanish-speaking-dentists/chino-hills/">Spanish dentists in Chino Hills</a></div>
+      <div class="lang"><div class="flag">🇵🇭</div><b>Tagalog</b><span>Tagalog-speaking care for Chino Hills's Filipino-American community.</span><a href="/ppo-dentists/california/inland-empire/chino-hills/">All Chino Hills dentists</a></div>
+      <div class="lang"><div class="flag">🇻🇳</div><b>Vietnamese</b><span>Vietnamese-speaking staff available. Dr. Marie Nguyen speaks Vietnamese. Call ahead.</span><a href="/vietnamese-speaking-dentists/chino-hills/">Vietnamese dentists in Chino Hills</a></div>
+      <div class="lang"><div class="flag">🇮🇷</div><b>Farsi</b><span>Farsi-speaking care available. Confirm staff availability before booking.</span><a href="/ppo-dentists/california/inland-empire/">Inland Empire dentists</a></div>
+      <div class="lang" style="background:var(--stone)"><div class="flag">📞</div><b>Confirm before you come</b><span>Staff language availability varies by day. Call (909) 606-6888 or text (909) 344-5415 to confirm your preferred language is available on your visit day.</span></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      SERVICES
-════════════════════════════════════════════ -->
-<section class="section t-sand" id="services" aria-labelledby="services-h">
+══════════════════════════════════════════ -->
+<section class="section t-stone" id="services" aria-labelledby="services-h">
   <div class="wrap">
     <span class="kicker">What they do</span>
     <h2 id="services-h">Common reasons patients come in</h2>
@@ -633,18 +686,18 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      PPO INSURANCE
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section t-paper" id="insurance" aria-labelledby="insurance-h">
   <div class="wrap two">
     <div>
       <span class="kicker">PPO insurance</span>
       <h2 id="insurance-h">Insurance at Liu Dental Care</h2>
-      <p class="body-copy">Liu Dental Care participates in the <strong>Ameritas PPO network</strong> (confirmed as of June 2026). The CoverCapy directory also shows Aetna, Cigna, Delta Dental, and MetLife as networks for this practice — always call (909) 606-6888 with your member ID to verify your specific plan before scheduling.</p>
+      <p class="body-copy">Liu Dental Care participates in the <strong>Ameritas PPO network</strong> (confirmed June 2026). The CoverCapy directory also shows Aetna, Cigna, Delta Dental, and MetLife — always call (909) 606-6888 with your member ID to verify your specific plan before scheduling.</p>
       <p class="body-copy">If your plan is not listed, most PPO plans include out-of-network benefits. The office can give you a pre-treatment cost estimate before anything is scheduled.</p>
-      <p class="body-copy" style="font-size:15px"><strong>Note:</strong> Network participation changes. Do not rely solely on this listing — confirm directly with the office and your insurance carrier.</p>
-      <div id="prof-networks" style="margin-top:12px"></div>
+      <p class="body-copy" style="font-size:15px"><strong>Note:</strong> Network participation changes. Confirm directly with the office and your insurance carrier before booking.</p>
+      <div id="prof-networks" style="margin-top:10px"></div>
 
       <div class="verify-cta">
         <div>
@@ -652,8 +705,8 @@
           <p>CoverCapy's PPO verification tool helps you confirm coverage and get an estimate before you sit in the chair.</p>
         </div>
         <div class="actions">
-          <a class="btn sage" href="/verify-ppo-benefits/" style="background:var(--sage);color:#fff;border-radius:11px;padding:12px 18px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:7px">Verify PPO Benefits →</a>
-          <a class="btn outline" href="/ppo-dentists/california/inland-empire/ameritas/" style="padding:10px 14px;font-size:13px">Ameritas in IE →</a>
+          <a class="btn" href="/verify-ppo-benefits/" style="background:var(--sage);color:#fff;border-radius:10px;padding:11px 16px;font-weight:700;font-size:14px;display:inline-flex;align-items:center">Verify PPO Benefits</a>
+          <a class="btn outline" href="/ppo-dentists/california/inland-empire/ameritas/" style="padding:9px 13px;font-size:13px">Ameritas in IE</a>
         </div>
       </div>
     </div>
@@ -661,22 +714,23 @@
     <div class="ppo-card">
       <h3>Questions to ask before treatment</h3>
       <ul>
-        <li>Is my PPO plan active right now?</li>
+        <li>Is my PPO plan currently active?</li>
         <li>Is Liu Dental Care in-network with my specific plan?</li>
         <li>What is left on my annual maximum this year?</li>
         <li>Do crowns, implants, or deep cleanings have a waiting period?</li>
         <li>Can I get a pre-treatment estimate in writing before major work?</li>
         <li>What will I owe after insurance pays?</li>
+        <li>Is there a deductible I need to meet first?</li>
       </ul>
       <a class="btn call" href="tel:9096066888" style="width:100%;justify-content:center">Call (909) 606-6888</a>
-      <p style="font-size:12px;color:var(--faint);margin-top:10px;margin-bottom:0">Text: (909) 344-5415 · Website: <a href="https://www.liudentalcare.com" target="_blank" rel="noopener" style="color:var(--sage)">liudentalcare.com</a></p>
+      <p style="font-size:12px;color:var(--faint);margin-top:9px;margin-bottom:0">Text: (909) 344-5415 · <a href="https://www.liudentalcare.com" target="_blank" rel="noopener" style="color:var(--sage)">liudentalcare.com</a></p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      REVIEWS
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section t-stone" id="reviews" aria-labelledby="reviews-h">
   <div class="wrap">
     <span class="kicker">Reputation</span>
@@ -684,16 +738,16 @@
     <p class="body-copy">We link out to where patients actually wrote their reviews rather than republishing a single blended number. Read them at the source and judge for yourself.</p>
     <div class="review-row" id="prof-review-meter">
       <div class="review-src"><b>4.9 ★</b><div class="src">60+ reviews · Google</div><a href="https://www.google.com/maps/search/Liu+Dental+Care+15942+Los+Serranos+Country+Club+Dr+Chino+Hills+CA" target="_blank" rel="noopener">Read on Google</a></div>
-      <div class="review-src"><b>Zocdoc</b><div class="src">Booked-patient reviews</div><a href="https://www.zocdoc.com/dentist/peter-c-liu-dds" target="_blank" rel="noopener">Read on Zocdoc</a></div>
+      <div class="review-src"><b>Zocdoc</b><div class="src">Booked-patient verified reviews</div><a href="https://www.zocdoc.com/dentist/peter-c-liu-dds" target="_blank" rel="noopener">Read on Zocdoc</a></div>
       <div class="review-src"><b>Yelp</b><div class="src">Community reviews</div><a href="https://www.yelp.com/search?find_desc=Liu+Dental+Care&find_loc=Chino+Hills%2C+CA" target="_blank" rel="noopener">Search on Yelp</a></div>
     </div>
-    <p style="margin-top:12px;font-size:13px;color:var(--faint)">Google rating of 4.9 from 60+ reviews was verified June 2026. Counts shift over time — we link out rather than freeze a number on this page.</p>
+    <p style="margin-top:10px;font-size:13px;color:var(--faint)">Google rating of 4.9 from 60+ reviews was verified June 2026. Counts shift over time — we link out rather than freeze a number on this page.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      FIRST VISIT
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section" id="visit" aria-labelledby="visit-h">
   <div class="wrap">
     <span class="kicker">First time here</span>
@@ -701,19 +755,19 @@
     <p class="body-copy">If it has been a while since your last dentist, this is all you really need.</p>
     <div class="visit-grid">
       <div class="visit-step"><div class="n" aria-hidden="true">1</div><h3>Your insurance card</h3><p>Bring your PPO card, or have the member ID handy. The office verifies benefits from there — before treatment begins.</p></div>
-      <div class="visit-step"><div class="n" aria-hidden="true">2</div><h3>A photo ID</h3><p>Driver's license or any photo ID for the front desk paperwork.</p></div>
-      <div class="visit-step"><div class="n" aria-hidden="true">3</div><h3>Your concerns</h3><p>A quick list of anything bothering you, plus any medications you take. No need to have it figured out before you arrive.</p></div>
+      <div class="visit-step"><div class="n" aria-hidden="true">2</div><h3>A photo ID</h3><p>Driver's license or any photo ID for front desk paperwork. New-patient forms are usually quick.</p></div>
+      <div class="visit-step"><div class="n" aria-hidden="true">3</div><h3>Your concerns</h3><p>A quick list of anything bothering you, plus any medications you take. No need to have it figured out — just bring the list.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      DIRECTIONS
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section t-sage" id="directions" aria-labelledby="dir-h">
   <div class="wrap">
     <span class="kicker">Find the door</span>
-    <h2 id="dir-h">Directions to Liu Dental Care on Los Serranos Country Club Drive</h2>
+    <h2 id="dir-h">Directions to Liu Dental Care</h2>
     <div class="map-box">
       <div class="map-art">
         <svg viewBox="0 0 440 310" role="img" aria-label="Map showing Liu Dental Care on Los Serranos Country Club Drive near 71 Freeway and Grand Avenue">
@@ -735,17 +789,17 @@
           </g>
           <rect x="136" y="100" width="122" height="22" rx="11" fill="#FDFCF9" stroke="#E6DFCF"/>
           <text x="197" y="116" text-anchor="middle" fill="#2C3530" font-family="Inter Tight,sans-serif" font-size="11" font-weight="800">Liu Dental · Suite F</text>
-          <text x="220" y="270" text-anchor="middle" fill="#5B6962" font-family="Inter Tight,sans-serif" font-size="10">Diamond Bar ← Grand Ave → east</text>
+          <text x="220" y="270" text-anchor="middle" fill="#5B6962" font-family="Inter Tight,sans-serif" font-size="10">Diamond Bar — Grand Ave — east</text>
         </svg>
       </div>
       <div class="addr">
         <h3>Address and getting there</h3>
-        <p style="font-size:16px"><strong>Liu Dental Care</strong><br>15942 Los Serranos Country Club Dr<br>Suite F · Chino Hills, CA 91709</p>
-        <p style="font-size:14px;color:var(--soft)"><strong>From 71 Freeway:</strong> Exit Chino Hills Pkwy south → east on Los Serranos Country Club Dr. Office is on the right, Suite F.</p>
-        <p style="font-size:14px;color:var(--soft)"><strong>From Diamond Bar:</strong> Grand Ave west into Chino Hills → connects to Los Serranos CC Dr. No freeway needed.</p>
+        <p style="font-size:15px"><strong>Liu Dental Care</strong><br>15942 Los Serranos Country Club Dr<br>Suite F · Chino Hills, CA 91709</p>
+        <p style="font-size:14px;color:var(--soft)"><strong>From 71 Freeway:</strong> Exit Chino Hills Pkwy south, turn east on Los Serranos Country Club Dr. Office is on the right, Suite F.</p>
+        <p style="font-size:14px;color:var(--soft)"><strong>From Diamond Bar:</strong> Grand Ave west into Chino Hills connects to Los Serranos CC Dr. No freeway needed.</p>
         <p style="font-size:14px;color:var(--soft)"><strong>From Yorba Linda:</strong> Carbon Canyon Road (Hwy 142) west into Chino Hills, ~15 min.</p>
         <p style="font-size:13px;color:var(--faint)">Phone: <a href="tel:9096066888" style="color:var(--ink);font-weight:700">(909) 606-6888</a> · Text: <a href="sms:9093445415" style="color:var(--ink);font-weight:700">(909) 344-5415</a></p>
-        <div class="ctas" style="margin-top:12px">
+        <div class="ctas" style="margin-top:11px">
           <a class="btn primary" href="https://www.google.com/maps/search/Liu+Dental+Care+15942+Los+Serranos+Country+Club+Dr+Chino+Hills+CA" target="_blank" rel="noopener">Open in Google Maps</a>
           <a class="btn call" href="tel:9096066888">Call office</a>
         </div>
@@ -754,114 +808,139 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      MORE DENTISTS NEAR CHINO HILLS
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section" id="more-dentists" aria-labelledby="more-h">
   <div class="wrap">
     <span class="kicker">Explore nearby</span>
     <h2 id="more-h">More PPO dentists near Chino Hills</h2>
-    <p class="body-copy">Liu Dental Care is part of CoverCapy's Inland Empire directory. If you are comparing options, here are PPO dentists in neighboring cities — or browse the Chino Hills hub for all local offices.</p>
+    <p class="body-copy">Liu Dental Care is part of CoverCapy's Inland Empire directory. If you are comparing options, here are PPO dentists in neighboring cities.</p>
     <div class="nearby-grid">
       <div class="nearby-card">
         <b>Chino Hills PPO Dentists</b>
         <span>All PPO offices in Chino Hills, including Avion Dental, Gordon Ranch, Hillcrest Dental Studio, and more.</span>
-        <a href="/ppo-dentists/california/inland-empire/chino-hills/">Browse Chino Hills →</a>
+        <a href="/ppo-dentists/california/inland-empire/chino-hills/">Browse Chino Hills</a>
       </div>
       <div class="nearby-card">
         <b>Chino PPO Dentists</b>
         <span>PPO-friendly offices just south of Chino Hills along Pipeline Ave and Central Ave.</span>
-        <a href="/ppo-dentists/california/inland-empire/">Browse Chino →</a>
+        <a href="/ppo-dentists/california/inland-empire/">Browse Chino</a>
       </div>
       <div class="nearby-card">
         <b>Diamond Bar PPO Dentists</b>
         <span>~10 minutes east via Grand Ave. Multiple PPO options along Diamond Bar Blvd.</span>
-        <a href="/ppo-dentists/california/inland-empire/">Browse Diamond Bar →</a>
+        <a href="/ppo-dentists/california/inland-empire/">Browse Diamond Bar</a>
       </div>
       <div class="nearby-card">
         <b>Walnut PPO Dentists</b>
         <span>South Walnut is a short drive. Good options for patients between Diamond Bar and Rowland Heights.</span>
-        <a href="/ppo-dentists/california/inland-empire/">Browse Walnut →</a>
+        <a href="/ppo-dentists/california/inland-empire/">Browse Walnut</a>
       </div>
       <div class="nearby-card">
         <b>Ontario PPO Dentists</b>
         <span>~20 min east via 60 or 71. Broader network options near Ontario International Airport.</span>
-        <a href="/ppo-dentists/california/inland-empire/">Browse Ontario →</a>
+        <a href="/ppo-dentists/california/inland-empire/">Browse Ontario</a>
       </div>
       <div class="nearby-card">
         <b>Rancho Cucamonga Dentists</b>
         <span>Eastbound IE patients. Delta Dental, Guardian, and MetLife offices on Haven Ave and Foothill.</span>
-        <a href="/ppo-dentists/california/inland-empire/">Browse Rancho Cucamonga →</a>
+        <a href="/ppo-dentists/california/inland-empire/">Browse Rancho Cucamonga</a>
       </div>
     </div>
-    <p style="margin-top:16px;font-size:14px;color:var(--soft)">
-      <a href="/ppo-dentists/california/inland-empire/" style="font-weight:700;color:var(--sage)">← Inland Empire Hub</a> ·
-      <a href="/ppo-dentists/california/inland-empire/chino-hills/" style="font-weight:700;color:var(--sage)">Chino Hills Hub →</a> ·
-      <a href="/nominate-dentist/" style="font-weight:700;color:var(--sage)">Nominate a dentist →</a>
+    <p style="margin-top:13px;font-size:14px;color:var(--soft)">
+      <a href="/ppo-dentists/california/inland-empire/" style="font-weight:700;color:var(--sage)">Inland Empire Hub</a> ·
+      <a href="/ppo-dentists/california/inland-empire/chino-hills/" style="font-weight:700;color:var(--sage)">Chino Hills Hub</a> ·
+      <a href="/nominate-dentist/" style="font-weight:700;color:var(--sage)">Nominate a dentist</a>
     </p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      PPO NETWORKS IN IE
-════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section class="section t-sand" id="networks-ie" aria-labelledby="nets-h">
   <div class="wrap">
     <span class="kicker">PPO networks</span>
     <h2 id="nets-h">Popular PPO networks in the Inland Empire</h2>
-    <p class="body-copy">Each link shows all CoverCapy-listed PPO offices in the Inland Empire that participate in that carrier network. Use these to compare options or to verify coverage before booking.</p>
+    <p class="body-copy">Each link shows all CoverCapy-listed PPO offices in the Inland Empire that participate in that carrier network.</p>
     <div class="carrier-grid">
       <a href="/ppo-dentists/california/inland-empire/ameritas/" class="carrier-link">
         <b>Ameritas PPO</b>
         <span>Liu Dental Care is a confirmed Ameritas in-network provider.</span>
-        <span class="arr">See all Ameritas dentists in IE →</span>
       </a>
       <a href="/ppo-dentists/california/inland-empire/delta-dental/" class="carrier-link">
         <b>Delta Dental PPO</b>
         <span>One of the largest PPO networks in California. Call Liu to verify tier.</span>
-        <span class="arr">See all Delta Dental dentists in IE →</span>
       </a>
       <a href="/ppo-dentists/california/inland-empire/cigna/" class="carrier-link">
         <b>Cigna DPPO</b>
         <span>Cigna DPPO plans often allow out-of-network use with reimbursement.</span>
-        <span class="arr">See all Cigna dentists in IE →</span>
       </a>
       <a href="/ppo-dentists/california/inland-empire/metlife/" class="carrier-link">
         <b>MetLife PDP</b>
         <span>MetLife PDP Plus members can often see any licensed dentist.</span>
-        <span class="arr">See all MetLife dentists in IE →</span>
       </a>
       <a href="/ppo-dentists/california/inland-empire/guardian/" class="carrier-link">
         <b>Guardian PPO</b>
         <span>Guardian network participation varies by plan. Always verify.</span>
-        <span class="arr">See all Guardian dentists in IE →</span>
       </a>
       <a href="/ppo-dentists/california/inland-empire/united-concordia/" class="carrier-link">
         <b>United Concordia</b>
         <span>Common for federal employees and military families in the IE.</span>
-        <span class="arr">See all United Concordia dentists in IE →</span>
       </a>
     </div>
-    <p style="margin-top:16px;font-size:13px;color:var(--faint)">Not seeing your carrier? <a href="/verify-ppo-benefits/" style="color:var(--sage);font-weight:700">Use the CoverCapy PPO verification tool →</a> or call Liu Dental Care at (909) 606-6888 with your member ID.</p>
+    <p style="margin-top:13px;font-size:13px;color:var(--faint)">Not seeing your carrier? <a href="/verify-ppo-benefits/" style="color:var(--sage);font-weight:700">Use the CoverCapy PPO verification tool</a> or call Liu Dental Care at (909) 606-6888 with your member ID.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FAQ
-════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     FAQ — INTERACTIVE WITH FILTERS
+══════════════════════════════════════════ -->
 <section class="section" id="faq" aria-labelledby="faq-h">
   <div class="wrap">
     <span class="kicker">Questions</span>
     <h2 id="faq-h">Questions about Liu Dental Care</h2>
-    <div class="faq">
-      <details open><summary>Where is Liu Dental Care located?</summary><p>15942 Los Serranos Country Club Drive, Suite F, Chino Hills, CA 91709 — on the road adjacent to the Los Serranos Country Club golf course. From the 71 Freeway, exit Chino Hills Pkwy south and turn east on Los Serranos Country Club Dr.</p></details>
-      <details><summary>Does Liu Dental Care accept PPO insurance?</summary><p>Yes. Liu Dental Care participates in the Ameritas PPO network (confirmed June 2026). The CoverCapy directory also lists Aetna, Cigna, Delta Dental, and MetLife — call (909) 606-6888 with your member ID to verify your specific plan before scheduling.</p></details>
-      <details><summary>Is there a Saturday appointment available?</summary><p>Yes. Saturday hours are 8:00 AM to 1:00 PM. The office is also open Mon, Tue, Thu, and Fri 9am–6pm. Closed Wednesday and Sunday. Call ahead — (909) 606-6888 — to confirm Saturday availability.</p></details>
-      <details><summary>What languages are spoken at Liu Dental Care?</summary><p>English, Mandarin Chinese, Spanish, Tagalog, Vietnamese, and Farsi. Call (909) 606-6888 before your appointment to confirm which staff members are available on your preferred day.</p></details>
-      <details><summary>Who are the dentists at Liu Dental Care?</summary><p>Dr. Peter C. Liu DDS (founder, since 1989), Dr. Marie Nguyen DDS, and Dr. Aaron T. Liu DDS — Dr. Peter's son. Two generations of the Liu family practice together, making this one of the few genuinely multi-generational dental practices in the Inland Empire.</p></details>
-      <details><summary>How far is Liu Dental Care from Diamond Bar?</summary><p>Approximately 10 minutes via Grand Avenue west into Chino Hills, then to Los Serranos Country Club Drive. No freeway needed from most of Diamond Bar.</p></details>
-      <details><summary>Is Liu Dental Care near Cal Poly Pomona or Ontario Airport?</summary><p>Cal Poly Pomona is approximately 8 miles north via the 71 Freeway. Ontario International Airport is approximately 14 miles east via the 60 or 71. Practical for Inland Empire patients who work or travel through the eastern IE.</p></details>
-      <details><summary>How do I make an appointment?</summary><p>Call (909) 606-6888 or text (909) 344-5415. Office hours: Mon, Tue, Thu, Fri 9am–6pm · Saturday 8am–1pm. Closed Wednesday and Sunday.</p></details>
+
+    <div class="faq-filters" role="group" aria-label="Filter FAQ by topic">
+      <button class="faq-cat active" data-cat="all">All</button>
+      <button class="faq-cat" data-cat="ppo">PPO &amp; Insurance</button>
+      <button class="faq-cat" data-cat="hours">Hours &amp; Access</button>
+      <button class="faq-cat" data-cat="languages">Languages</button>
+      <button class="faq-cat" data-cat="location">Location</button>
+      <button class="faq-cat" data-cat="about">About the practice</button>
+    </div>
+
+    <div class="faq-ctrl">
+      <button id="faq-toggle">Open all</button>
+    </div>
+
+    <div class="faq" id="faq-list">
+      <details data-cat="location"><summary>Where is Liu Dental Care located?</summary><p>15942 Los Serranos Country Club Drive, Suite F, Chino Hills, CA 91709 — on the road adjacent to the Los Serranos Country Club golf course. From the 71 Freeway, exit Chino Hills Pkwy south and turn east on Los Serranos Country Club Dr.</p></details>
+
+      <details data-cat="ppo"><summary>Does Liu Dental Care accept PPO insurance?</summary><p>Yes. Liu Dental Care participates in the Ameritas PPO network (confirmed June 2026). The CoverCapy directory also lists Aetna, Cigna, Delta Dental, and MetLife — call (909) 606-6888 with your member ID to verify your specific plan before scheduling.</p></details>
+
+      <details data-cat="ppo"><summary>Is Liu Dental Care in-network with Aetna, Cigna, Delta Dental, or MetLife?</summary><p>The CoverCapy directory lists all four networks for this practice. In-network status can change, and specific plan tiers vary — always call (909) 606-6888 with your plan ID to confirm before booking. The office can also provide a pre-treatment estimate.</p></details>
+
+      <details data-cat="ppo"><summary>What should I ask about my PPO before treatment?</summary><p>Before major work: confirm your plan is active, verify the practice is in-network with your specific plan tier, ask what's left on your annual maximum, check for waiting periods on crowns or implants, and get a pre-treatment estimate in writing. Call (909) 606-6888 — the office handles these questions daily.</p></details>
+
+      <details data-cat="hours"><summary>Is there a Saturday appointment available?</summary><p>Yes. Saturday hours are 8:00 AM to 1:00 PM. The office is also open Mon, Tue, Thu, and Fri 9am–6pm. Closed Wednesday and Sunday. Call ahead — (909) 606-6888 — to confirm Saturday availability for your specific need.</p></details>
+
+      <details data-cat="hours"><summary>Is Liu Dental Care accepting new patients?</summary><p>Call (909) 606-6888 to confirm current availability. New patient appointments can often be scheduled within a few weeks — Saturday slots tend to fill faster than weekday slots.</p></details>
+
+      <details data-cat="hours"><summary>How do I make an appointment?</summary><p>Call (909) 606-6888 or text (909) 344-5415. Office hours: Mon, Tue, Thu, Fri 9am–6pm · Saturday 8am–1pm. Closed Wednesday and Sunday. You can also visit <a href="https://www.liudentalcare.com" target="_blank" rel="noopener">liudentalcare.com</a> directly.</p></details>
+
+      <details data-cat="languages"><summary>What languages are spoken at Liu Dental Care?</summary><p>English, Mandarin Chinese, Spanish, Tagalog, Vietnamese, and Farsi. Call (909) 606-6888 before your appointment to confirm which staff members are available on your preferred day.</p></details>
+
+      <details data-cat="languages"><summary>Does the office have Mandarin-speaking staff?</summary><p>Yes. Dr. Peter C. Liu and Dr. Aaron T. Liu are both Mandarin speakers. Liu Dental Care has served Chino Hills's Mandarin-speaking community since the practice opened in 1989.</p></details>
+
+      <details data-cat="about"><summary>Who are the dentists at Liu Dental Care?</summary><p>Dr. Peter C. Liu DDS (founder, since 1989), Dr. Marie Nguyen DDS, and Dr. Aaron T. Liu DDS — Dr. Peter's son. Two generations of the Liu family practice together, making this one of the few genuinely multi-generational dental practices in the Inland Empire.</p></details>
+
+      <details data-cat="about"><summary>How long has Liu Dental Care been open?</summary><p>Since 1989 — over 35 years at the same address on Los Serranos Country Club Drive. The practice was founded by Dr. Peter C. Liu and has remained in the Los Serranos neighborhood of Chino Hills throughout.</p></details>
+
+      <details data-cat="location"><summary>How far is Liu Dental Care from Diamond Bar?</summary><p>Approximately 10 minutes via Grand Avenue west into Chino Hills, then to Los Serranos Country Club Drive. No freeway needed from most of Diamond Bar.</p></details>
+
+      <details data-cat="location"><summary>Is Liu Dental Care near Cal Poly Pomona or Ontario Airport?</summary><p>Cal Poly Pomona is approximately 8 miles north via the 71 Freeway. Ontario International Airport is approximately 14 miles east via the 60 or 71. Practical for Inland Empire patients who work or travel through the eastern IE.</p></details>
     </div>
   </div>
 </section>
@@ -904,5 +983,73 @@
 <script src="/assets/js/footer.js" defer></script>
 <script src="/assets/js/ppo-verify-modal.js" defer></script>
 <script src="/assets/js/dentist-profile.js" defer></script>
+
+<script>
+/* ── Word cycler ── */
+(function(){
+  var phrases = [
+    'Saturday 8am–1pm',
+    'Ameritas · Confirmed',
+    '6 Languages',
+    'Since 1989',
+    'Chino Hills · Los Serranos',
+    'Delta Dental · Cigna · MetLife'
+  ];
+  var i = 0;
+  var el = document.getElementById('hero-cycler');
+  if (!el) return;
+  setInterval(function(){
+    el.classList.add('fade');
+    setTimeout(function(){
+      i = (i + 1) % phrases.length;
+      el.textContent = phrases[i];
+      el.classList.remove('fade');
+    }, 290);
+  }, 2600);
+})();
+
+/* ── FAQ filter + open-all ── */
+(function(){
+  var cats = document.querySelectorAll('.faq-cat');
+  var toggle = document.getElementById('faq-toggle');
+  var items = document.querySelectorAll('.faq details');
+
+  cats.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      cats.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.dataset.cat;
+      items.forEach(function(d){
+        d.style.display = (cat === 'all' || d.dataset.cat === cat) ? '' : 'none';
+      });
+      updateToggleLabel();
+    });
+  });
+
+  function visibleItems(){
+    return Array.prototype.filter.call(items, function(d){
+      return d.style.display !== 'none';
+    });
+  }
+
+  function updateToggleLabel(){
+    var vis = visibleItems();
+    var anyOpen = vis.some(function(d){ return d.open; });
+    toggle.textContent = anyOpen ? 'Close all' : 'Open all';
+  }
+
+  toggle.addEventListener('click', function(){
+    var vis = visibleItems();
+    var anyOpen = vis.some(function(d){ return d.open; });
+    vis.forEach(function(d){ d.open = !anyOpen; });
+    toggle.textContent = anyOpen ? 'Open all' : 'Close all';
+  });
+
+  // update label when individual items toggle
+  items.forEach(function(d){
+    d.addEventListener('toggle', updateToggleLabel);
+  });
+})();
+</script>
 </body>
 </html>
