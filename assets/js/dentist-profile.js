@@ -132,45 +132,68 @@
     }
   }
 
-  // ── 4. Aggregate review meter ─────────────────────────────────────────────
+  // ── 4. Review meter ───────────────────────────────────────────────────────
+  // Platinum Elite: full aggregate (Google + Yelp + Zocdoc + CoverCapy)
+  // Everyone else: Google only (if available)
   function patchReviewMeter(d) {
     const el = document.getElementById('prof-review-meter');
     if (!el) return;
 
-    const sources = [
-      { name: 'Google',     rating: d.google_rating,  count: d.google_review_count,  url: d.google_maps_url || '#', color: '#4285F4' },
-      { name: 'Yelp',       rating: d.yelp_rating,    count: d.yelp_review_count,    url: d.yelp_url || '#',        color: '#d32323' },
-      { name: 'Zocdoc',     rating: d.zocdoc_rating,  count: d.zocdoc_review_count,  url: d.zocdoc_url || '#',      color: '#00658E' },
-      { name: 'CoverCapy',  rating: d.capy_rating,    count: d.capy_review_count,    url: '#prof-review-section',   color: '#B8924F' },
-    ].filter(s => s.rating && parseFloat(s.rating) > 0);
+    const elite = isPlatinumElite(d);
 
-    const agg = parseFloat(d.aggregate_rating) || 0;
+    const allSources = [
+      { name: 'Google',    rating: d.google_rating,  count: d.google_review_count,  url: d.google_maps_url || null, color: '#4285F4' },
+      { name: 'Yelp',      rating: d.yelp_rating,    count: d.yelp_review_count,    url: d.yelp_url || null,        color: '#d32323' },
+      { name: 'Zocdoc',    rating: d.zocdoc_rating,  count: d.zocdoc_review_count,  url: d.zocdoc_url || null,      color: '#00658E' },
+      { name: 'CoverCapy', rating: d.capy_rating,    count: d.capy_review_count,    url: '#prof-review-section',    color: '#B8924F' },
+    ];
+
+    // Non-elite: Google only
+    const sources = (elite ? allSources : allSources.slice(0, 1))
+      .filter(s => s.rating && parseFloat(s.rating) > 0);
+
+    if (!sources.length) {
+      el.closest('section') && (el.closest('section').style.display = 'none');
+      return;
+    }
+
+    const scoreDisplay = elite
+      ? (parseFloat(d.aggregate_rating) || 0)
+      : parseFloat(sources[0].rating) || 0;
+
     const totalCount = sources.reduce((acc, s) => acc + (parseInt(s.count) || 0), 0);
+    const label = elite
+      ? `${totalCount.toLocaleString()} reviews across all platforms`
+      : `${totalCount.toLocaleString()} Google review${totalCount !== 1 ? 's' : ''}`;
 
     const rows = sources.map(s => {
       const r = parseFloat(s.rating) || 0;
       const pct = (r / 5) * 100;
       const cnt = parseInt(s.count) || 0;
+      const linkHtml = s.url
+        ? (s.url.startsWith('#')
+            ? `<a href="${s.url}" class="pdp-rm-link">Write →</a>`
+            : `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="pdp-rm-link">View →</a>`)
+        : '';
       return `<div class="pdp-rm-row">
   <span class="pdp-rm-source">${s.name}</span>
-  <div class="pdp-rm-bar-wrap">
-    <div class="pdp-rm-bar" style="--pct:${pct}%;--clr:${s.color}"></div>
-  </div>
-  <span class="pdp-rm-score">${parseFloat(r).toFixed(1)}</span>
+  <div class="pdp-rm-bar-wrap"><div class="pdp-rm-bar" style="--pct:${pct}%;--clr:${s.color}"></div></div>
+  <span class="pdp-rm-score">${r.toFixed(1)}</span>
   <span class="pdp-rm-count">${cnt > 0 ? `(${cnt.toLocaleString()})` : ''}</span>
-  ${s.url && s.url !== '#' ? `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="pdp-rm-link">View →</a>` : `<a href="${s.url}" class="pdp-rm-link">Write →</a>`}
+  ${linkHtml}
 </div>`;
     }).join('');
 
     el.innerHTML = `
 <div class="pdp-rm-header">
   <div class="pdp-rm-agg">
-    <span class="pdp-rm-agg-score">${agg.toFixed(1)}</span>
-    <span class="pdp-rm-agg-stars" aria-label="${agg} out of 5">${stars(agg)}</span>
-    <span class="pdp-rm-agg-total">${totalCount.toLocaleString()} reviews across all platforms</span>
+    <span class="pdp-rm-agg-score">${scoreDisplay.toFixed(1)}</span>
+    <span class="pdp-rm-agg-stars" aria-label="${scoreDisplay} out of 5">${stars(scoreDisplay)}</span>
+    <span class="pdp-rm-agg-total">${label}</span>
   </div>
 </div>
-<div class="pdp-rm-rows">${rows}</div>`;
+<div class="pdp-rm-rows">${rows}</div>
+${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">Upgrade to Platinum Elite to display your full review profile across Google, Yelp, Zocdoc, and CoverCapy.</p>'}`;
   }
 
   // ── 5. CoverCapy review form ──────────────────────────────────────────────
