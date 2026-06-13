@@ -282,46 +282,13 @@
 <section id="dentists">
   <div class="container">
     <div class="eyebrow rv">Orange County Offices</div>
-    <h2 class="section-h2 rv">PPO dental offices to compare in Orange County</h2>
-    <p class="body-p rv">The following offices appear in CoverCapy's directory. Ameritas PPO acceptance must be verified directly with each office before scheduling.</p>
-    <div class="dentist-grid">
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/fountain-valley/kyt-dental-services/">KYT Dental Services</a></h3>
-        <p class="dentist-city">Fountain Valley, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">General Dentistry</span><span class="tag">Cosmetic</span><span class="tag">PPO Patients</span></div>
-        <a href="/dentists/california/orange-county/fountain-valley/kyt-dental-services/" class="dentist-link">View Profile →</a>
-      </div>
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/fountain-valley/magnolia-family-dental/">Magnolia Family Dental</a></h3>
-        <p class="dentist-city">Fountain Valley, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">Family Dentistry</span><span class="tag">Preventive</span><span class="tag">PPO Patients</span></div>
-        <a href="/dentists/california/orange-county/fountain-valley/magnolia-family-dental/" class="dentist-link">View Profile →</a>
-      </div>
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/fountain-valley/brookhurst-dental-care/">Brookhurst Dental Care</a></h3>
-        <p class="dentist-city">Fountain Valley, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">General Dentistry</span><span class="tag">Restorative</span><span class="tag">PPO Patients</span></div>
-        <a href="/dentists/california/orange-county/fountain-valley/brookhurst-dental-care/" class="dentist-link">View Profile →</a>
-      </div>
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/huntington-beach/beach-cities-dental/">Beach Cities Dental</a></h3>
-        <p class="dentist-city">Huntington Beach, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">General Dentistry</span><span class="tag">Cosmetic</span><span class="tag">PPO Patients</span></div>
-        <a href="/dentists/california/orange-county/huntington-beach/beach-cities-dental/" class="dentist-link">View Profile →</a>
-      </div>
-      <div class="dentist-card rv">
-        <h3><a href="/dentists/california/orange-county/westminster/westminster-dental-group/">Westminster Dental Group</a></h3>
-        <p class="dentist-city">Westminster, CA</p>
-        <span class="badge">Office Confirmation Recommended</span>
-        <div class="dentist-tags"><span class="tag">General Dentistry</span><span class="tag">Family</span><span class="tag">PPO Patients</span></div>
-        <a href="/dentists/california/orange-county/westminster/westminster-dental-group/" class="dentist-link">View Profile →</a>
-      </div>
+    <h2 class="section-h2 rv">PPO dental offices accepting Ameritas in Orange County</h2>
+    <p class="body-p rv">Live data from CoverCapy's directory. Offices marked <strong>In-Network</strong> have confirmed Ameritas PPO participation. Use "Request Verification" to ask other offices about their network status.</p>
+    <div id="cc-dentist-grid" data-carrier="Ameritas">
+      <!-- Loading... carrier-dentists.js will populate this -->
+      <div style="padding:32px 0;text-align:center;color:#7a8a8e;font-size:14px">Loading live network data…</div>
     </div>
-    <p class="listing-note rv">CoverCapy listings are for informational comparison purposes. Ameritas PPO network participation, plan coverage, and in-network status must be confirmed directly with the dental office and Ameritas before scheduling any appointment or treatment.</p>
+    <p id="cc-dc-note" class="listing-note rv"></p>
   </div>
 </section>
 
@@ -437,6 +404,8 @@
   secs.forEach(s=>jo.observe(s));
 </script>
 <script src="/assets/js/footer.js" defer></script>
+<script src="/assets/js/carrier-dentists.js" defer></script>
+<script src="/assets/js/ppo-verify-modal.js" defer></script>
 
 </body>
 </html>
