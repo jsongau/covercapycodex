@@ -211,21 +211,20 @@
 
     <p class="hero-sub" id="hero-sub">KYT Dental Services is a Fountain Valley, California dental office appearing in CoverCapy's Orange County PPO directory. <strong>PPO insurance acceptance must be verified directly with the office before scheduling.</strong></p>
 
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 24px;align-items:center;">
-      <span class="badge badge-pending">Public Directory Listing</span>
-      <span style="font-size:13.5px;color:var(--ink-soft);">Last updated: June 2026</span>
+    <!-- Tier badge — patched by dentist-profile.js -->
+    <div id="prof-tier-badge" style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0 20px;">
+      <span class="badge badge-pending">Loading…</span>
     </div>
 
-    <div class="ctas">
+    <!-- CTAs — patched by dentist-profile.js -->
+    <div id="prof-cta-area" class="ctas">
       <a href="https://www.google.com/maps/search/KYT%20Dental%20Services%2011180%20Warner%20Ave%20Suite%20251%20Fountain%20Valley%20CA%2092708" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions <span class="arr" aria-hidden="true">→</span></a>
-      <a href="/compare-ppo-dental-plans" class="btn btn-gold">Verify PPO Acceptance</a>
-      <a href="/nominate-dentist" class="btn btn-line">Nominate This Dentist</a>
     </div>
 
     <div class="hero-textlinks">
-      <a href="#claim">Claim this profile →</a>
       <a href="/ppo-dentists/california/orange-county/fountain-valley/">All Fountain Valley PPO dentists →</a>
-      <a href="/ppo-dentists/california/orange-county/">View Orange County hub →</a>
+      <a href="/ppo-dentists/california/orange-county/">Orange County hub →</a>
+      <a href="#prof-review-section">Leave a review →</a>
     </div>
 
     <div class="marquee" aria-hidden="true">
@@ -287,14 +286,16 @@
           <h3>The KYT Ledger</h3>
           <dl>
             <div class="row"><dt>Practice</dt><dd>KYT Dental Services</dd></div>
+            <div class="row"><dt>Doctor</dt><dd id="prof-ledger-doctor">Loading…</dd></div>
+            <div class="row"><dt>Phone</dt><dd id="prof-ledger-phone">Loading…</dd></div>
             <div class="row"><dt>Address</dt><dd>11180 Warner Ave Suite 251</dd></div>
             <div class="row"><dt>City</dt><dd>Fountain Valley, CA 92708</dd></div>
             <div class="row"><dt>County</dt><dd>Orange County</dd></div>
-            <div class="row"><dt>State</dt><dd>California</dd></div>
-            <div class="row"><dt>Specialties</dt><dd>General Dentistry, Family Dentistry</dd></div>
-            <div class="row"><dt>Saturday Hours</dt><dd>Office Confirmation Recommended</dd></div>
-            <div class="row"><dt>PPO Status</dt><dd>Verification Recommended</dd></div>
-            <div class="row"><dt>Profile Type</dt><dd>Public Directory Listing</dd></div>
+            <div class="row"><dt>Specialties</dt><dd id="prof-ledger-specialties">Loading…</dd></div>
+            <div class="row"><dt>Networks</dt><dd id="prof-ledger-networks">Loading…</dd></div>
+            <div class="row"><dt>Weekend Hours</dt><dd id="prof-ledger-weekend">Loading…</dd></div>
+            <div class="row"><dt>Languages</dt><dd id="prof-ledger-languages">Loading…</dd></div>
+            <div class="row"><dt>Profile Tier</dt><dd id="prof-ledger-tier">Loading…</dd></div>
             <div class="row"><dt>Last Updated</dt><dd>June 2026</dd></div>
           </dl>
         </div>
@@ -362,90 +363,13 @@
 <!-- PPO INSURANCE -->
 <section id="ppo-insurance" class="tint-gold">
   <div class="wrap">
-    <p class="eyebrow rv">PPO Insurance Guidance</p>
+    <p class="eyebrow rv">PPO Insurance</p>
     <h2 class="rv rv-d1">PPO insurance at KYT Dental Services</h2>
-    <p class="lede rv rv-d2">KYT Dental Services participates in the Delta Dental, Guardian, Ameritas, and MetLife PPO networks. Cigna and Aetna patients can use the verification engine below to request in-network status directly from the office.</p>
+    <p class="lede rv rv-d2" id="prof-networks-note">KYT Dental Services participates in multiple PPO networks. Network status is pulled live from CoverCapy's verified database.</p>
 
-    <style>
-      .carrier-status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
-      @media(max-width:900px){.carrier-status-grid{grid-template-columns:repeat(2,1fr)}}
-      @media(max-width:540px){.carrier-status-grid{grid-template-columns:1fr}}
-      .csc{background:#fff;border-radius:12px;padding:18px 16px;border:1.5px solid #e8e3d8;display:flex;flex-direction:column;gap:10px}
-      .csc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-      .csc-name{font-weight:700;font-size:15px;color:#082A30}
-      .csc-badge-in{display:inline-flex;align-items:center;gap:5px;background:#E6F4F1;color:#0D7A6B;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
-      .csc-badge-in::before{content:'';width:7px;height:7px;border-radius:50%;background:#0D7A6B;flex-shrink:0}
-      .csc-badge-out{display:inline-flex;align-items:center;gap:5px;background:#FEF2F2;color:#B91C1C;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
-      .csc-badge-out::before{content:'';width:7px;height:7px;border-radius:50%;background:#B91C1C;flex-shrink:0}
-      .csc-note{font-size:12px;color:#6b7880;line-height:1.45;margin:0}
-      .csc-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-      .csc-link{font-size:12px;color:#082A30;font-weight:600;text-decoration:underline;text-underline-offset:2px}
-      .csc-nominate{font-size:12px;background:#082A30;color:#fff;border:none;border-radius:6px;padding:6px 12px;cursor:pointer;font-weight:600;white-space:nowrap}
-      .csc-nominate:hover{background:#0d3d47}
-    </style>
-
-    <div class="carrier-status-grid rv rv-d2">
-
-      <div class="csc">
-        <div class="csc-top">
-          <span class="csc-name">Delta Dental</span>
-          <span class="csc-badge-in">In-Network</span>
-        </div>
-        <p class="csc-note">KYT participates in the Delta Dental PPO network. Confirm your specific plan tier before scheduling.</p>
-        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/delta-dental/">Delta Dental OC →</a></div>
-      </div>
-
-      <div class="csc">
-        <div class="csc-top">
-          <span class="csc-name">Guardian</span>
-          <span class="csc-badge-in">In-Network</span>
-        </div>
-        <p class="csc-note">Guardian PPO patients are welcome at KYT. Verify your plan tier with the office before booking.</p>
-        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/guardian/">Guardian OC →</a></div>
-      </div>
-
-      <div class="csc">
-        <div class="csc-top">
-          <span class="csc-name">Aetna</span>
-          <span class="csc-badge-out">Not In-Network</span>
-        </div>
-        <p class="csc-note">KYT is not currently listed as in-network for Aetna. Request the office to verify or join the network.</p>
-        <div class="csc-links">
-          <button class="csc-nominate" data-ppo-verify data-practice="KYT Dental Services" data-city="Fountain Valley" data-carrier="Aetna" data-phone="(833) 598-3368">Request Verification</button>
-          <a class="csc-link" href="/ppo-dentists/california/orange-county/aetna/">Aetna OC →</a>
-        </div>
-      </div>
-
-      <div class="csc">
-        <div class="csc-top">
-          <span class="csc-name">Cigna</span>
-          <span class="csc-badge-out">Not In-Network</span>
-        </div>
-        <p class="csc-note">KYT is not currently in-network for Cigna DPPO. Use the button below to request a verification directly from the office.</p>
-        <div class="csc-links">
-          <button class="csc-nominate" data-ppo-verify data-practice="KYT Dental Services" data-city="Fountain Valley" data-carrier="Cigna" data-phone="(833) 598-3368">Request Verification</button>
-          <a class="csc-link" href="/ppo-dentists/california/orange-county/cigna/">Cigna OC →</a>
-        </div>
-      </div>
-
-      <div class="csc">
-        <div class="csc-top">
-          <span class="csc-name">MetLife</span>
-          <span class="csc-badge-in">In-Network</span>
-        </div>
-        <p class="csc-note">MetLife PPO patients can use their benefits at KYT. Confirm your plan tier directly with the office.</p>
-        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/metlife/">MetLife OC →</a></div>
-      </div>
-
-      <div class="csc">
-        <div class="csc-top">
-          <span class="csc-name">Ameritas</span>
-          <span class="csc-badge-in">In-Network</span>
-        </div>
-        <p class="csc-note">Ameritas PPO patients are in-network at KYT. Verify specific benefit levels before your visit.</p>
-        <div class="csc-links"><a class="csc-link" href="/ppo-dentists/california/orange-county/ameritas/">Ameritas OC →</a></div>
-      </div>
-
+    <!-- Live insurance cards — populated by dentist-profile.js -->
+    <div id="prof-networks" class="carrier-profile-grid rv rv-d2">
+      <div class="cpc" style="opacity:.5">Loading network data…</div>
     </div>
 
     <div class="ppo-verify rv rv-d3">
@@ -470,6 +394,18 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- REVIEW METER — populated by dentist-profile.js -->
+<section id="reviews">
+  <div class="wrap">
+    <p class="eyebrow rv">Ratings &amp; Reviews</p>
+    <h2 class="rv rv-d1">KYT Dental Services reviews</h2>
+    <p class="lede rv rv-d2">Aggregate score across Google, Yelp, Zocdoc, and CoverCapy.</p>
+    <div id="prof-review-meter" style="margin-top:28px;">
+      <p style="color:var(--ink-soft);font-size:14px;">Loading ratings…</p>
+    </div>
   </div>
 </section>
 
@@ -553,19 +489,11 @@
   </div>
 </section>
 
-<!-- CLAIM -->
-<section id="claim">
+<!-- COVERCAPY REVIEW FORM — populated by dentist-profile.js -->
+<section id="prof-review-section">
   <div class="wrap">
-    <div class="claim-card rv">
-      <div>
-        <p class="tagline">Are you KYT Dental Services?</p>
-        <h3>Claim this CoverCapy profile</h3>
-        <p>Verify your PPO insurance list, update your specialties and hours, and connect with patients actively searching for PPO-friendly care in Fountain Valley.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;flex:none;">
-        <a href="/claim/" class="btn btn-primary btn-sm">Claim This Profile <span class="arr" aria-hidden="true">→</span></a>
-        <a href="/about/listings/" class="btn btn-line btn-sm">Learn More</a>
-      </div>
+    <div id="prof-review-form-area">
+      <p style="color:var(--ink-soft);font-size:14px;">Loading…</p>
     </div>
   </div>
 </section>
@@ -676,6 +604,7 @@
 </script>
 <script src="/assets/js/footer.js" defer></script>
 <script src="/assets/js/ppo-verify-modal.js" defer></script>
+<script src="/assets/js/dentist-profile.js" defer></script>
 
 </body>
 </html>
