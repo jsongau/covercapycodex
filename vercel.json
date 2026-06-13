@@ -1,21 +1,17 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/find-my-dentist",
-      "destination": "/ppodentists.html"
-    },
-    {
-      "source": "/best-ppo-dentists/:area/:city",
-      "destination": "/ppodentists.html"
-    },
-    {
-      "source": "/best-ppo-dentists/:area",
-      "destination": "/ppodentists.html"
-    }
-  ],
   "redirects": [
+    {
+      "source": "/ppodentists",
+      "destination": "/find-my-dentist",
+      "permanent": true
+    },
+    {
+      "source": "/ppodentists.html",
+      "destination": "/find-my-dentist",
+      "permanent": true
+    },
     {
       "source": "/sign-in",
       "destination": "https://app.covercapy.com/",
@@ -220,6 +216,16 @@
       "source": "/humana-extend-5000",
       "destination": "/dental-insurance/ppo-plans/humana-extend-5000",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/best-ppo-dentists/:area/:city",
+      "destination": "/find-my-dentist"
+    },
+    {
+      "source": "/best-ppo-dentists/:area",
+      "destination": "/find-my-dentist"
     }
   ],
   "buildCommand": "node generate-plans.js",
