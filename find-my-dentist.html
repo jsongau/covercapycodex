@@ -6,6 +6,24 @@
 <title>Find PPO Dentists Near You | CoverCapy</title>
 <meta name="description" content="Search PPO dentists nationwide by ZIP code, city, specialty, insurance carrier, and distance.">
 <link id="seo-canonical" rel="canonical" href="https://www.covercapy.com/find-my-dentist">
+
+<!-- ===== Crawlability ===== -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<!-- Google Search Console verification.
+     Replace the content value below with the token from Search Console     Settings  Ownership verification  HTML tag (it looks like a long string).
+     (Alternative: upload the googleXXXX.html file GSC gives you to the site root.) -->
+<meta name="google-site-verification" content="REPLACE_WITH_YOUR_GSC_TOKEN">
+
+<!-- Google Analytics 4 (matches the CoverCapy SEO hub pages) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNBPGSZ1LZ');
+</script>
+
 <meta id="seo-og-title" property="og:title" content="Find PPO Dentists Near You | CoverCapy">
 <meta id="seo-og-desc" property="og:description" content="Search PPO dentists nationwide by ZIP code, city, specialty, insurance carrier, and distance.">
 <meta id="seo-og-url" property="og:url" content="https://www.covercapy.com/find-my-dentist">
@@ -15,6 +33,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/footer.css">
 <style>
 :root{
   --teal-night:#082A30; --teal-deep:#0C3A42; --teal-700:#14525B; --teal-300:#5E8C92;
@@ -55,8 +74,16 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .btn-dark{font-size:13.5px; font-weight:600; color:#fff; background:var(--teal-night); padding:8px 15px; border-radius:10px; transition:.15s}
 .btn-dark:hover{background:var(--teal-deep)}
 .menu-toggle{display:inline-flex}
-/* v136: nav is a hamburger at every width. Inline links + bar buttons live in the menu now. */
+/* Mobile default: hamburger only. Desktop (≥981px) shows the full nav like covercapy.com */
 .navright .btn-ghost:not(.menu-toggle), .navright .btn-dark{display:none}
+.topnav a.brand, .navlinks a, .topnav a.btn-ghost, .topnav a.btn-dark{text-decoration:none}
+.navlinks a.is-current{color:var(--teal-night); font-weight:600}
+@media(min-width:981px){
+  .navlinks{display:flex}
+  .menu-toggle{display:none}
+  .navright .btn-ghost:not(.menu-toggle){display:inline-flex; align-items:center}
+  .navright .btn-dark{display:inline-flex; align-items:center}
+}
 
 /* ============ INTRO BAND (compact) ============ */
 .introband{padding:18px 0 14px; background:linear-gradient(180deg, var(--cream-2), var(--cream))}
@@ -109,6 +136,30 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .sf-loc{flex:none; width:30px; height:30px; border-radius:8px; display:grid; place-items:center; border:1px solid var(--line); background:var(--cream-2); color:var(--teal-night); cursor:pointer; transition:.15s; padding:0}
 .sf-loc:hover{border-color:var(--gold-2); background:var(--cream-card)}
 .sf-loc svg{width:15px; height:15px}
+/* pin/locate icon sits LEFT of the input; magnifier search button sits RIGHT */
+.sf-loc-l{margin-right:2px}
+.sf-go{flex:none; width:32px; height:32px; border-radius:9px; display:grid; place-items:center; border:none; background:var(--teal-night); color:#fff; cursor:pointer; transition:.16s; padding:0}
+.sf-go:hover{background:var(--teal-deep); transform:translateY(-1px); box-shadow:0 4px 12px rgba(8,42,48,.22)}
+.sf-go svg{width:15px; height:15px}
+.sf-go.is-busy, .ucmd-go.is-busy{pointer-events:none; animation:goWork 1.05s ease-in-out infinite}
+/* calm "scanning" pulse while a search resolves — no spinning */
+@keyframes goWork{0%,100%{transform:scale(1); box-shadow:0 0 0 0 rgba(91,224,160,.0)}50%{transform:scale(.92); box-shadow:0 0 0 5px rgba(91,224,160,.18)}}
+
+/* ── v210: luxurious "searching" signal — a slim gold shimmer bar that streams
+   under the search rail while a search resolves, plus a quiet status line. ── */
+.cc-seekbar{position:relative; height:2px; overflow:hidden; background:transparent; opacity:0; transition:opacity .25s ease}
+.cc-seekbar.on{opacity:1}
+.cc-seekbar::before{content:""; position:absolute; top:0; left:-40%; height:100%; width:40%;
+  background:linear-gradient(90deg, rgba(201,162,78,0) 0%, var(--gold,#C9A24E) 45%, var(--mint-700,#0f6e56) 75%, rgba(201,162,78,0) 100%);
+  animation:seek 1.15s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes seek{0%{left:-45%}100%{left:105%}}
+.cc-seekline{display:flex; align-items:center; justify-content:center; gap:9px; height:0; overflow:hidden; opacity:0; transition:opacity .2s ease; font:500 13px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft)}
+.cc-seekline.on{height:auto; opacity:1; padding:14px 0 4px}
+.cc-seekline .dot{width:6px; height:6px; border-radius:50%; background:var(--gold,#C9A24E); animation:seekPulse 1.1s ease-in-out infinite}
+.cc-seekline .dot:nth-child(2){animation-delay:.18s}
+.cc-seekline .dot:nth-child(3){animation-delay:.36s}
+@keyframes seekPulse{0%,100%{transform:scale(.6);opacity:.35}50%{transform:scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.cc-seekbar::before,.cc-seekline .dot,.sf-go.is-busy,.ucmd-go.is-busy{animation:none}}
 .searchinner .sfield.rad{flex:1 1 0; min-width:165px; justify-content:center}
 .railrad > label{display:flex; align-items:center; gap:6px}
 .railrad-val{font:700 11.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--teal-night); background:var(--mint-soft); border:1px solid var(--line-2); border-radius:999px; padding:2px 8px; letter-spacing:0; text-transform:none}
@@ -171,6 +222,14 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fcard-coll.collapsed .fcard-h4btn{margin-bottom:0}
 .fcard-coll.collapsed .fcard-coll-body{display:none}
 .fcard-coll.collapsed .fcoll-chev{transform:rotate(180deg)}
+.moneycard{background:linear-gradient(180deg,#FFFDF6,#FBF6E8); border-color:var(--gold-2)}
+.moneycard h4{color:var(--teal-night); margin:0 0 8px}
+.moneycard .mc-sub{font:500 12.5px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); margin:0 0 12px}
+.moneycard .mc-btn{display:block; text-align:center; background:var(--teal-night); color:#fff; font:600 13px/1 "Inter Tight",system-ui,sans-serif; padding:11px 12px; border-radius:10px; text-decoration:none; transition:.15s}
+.moneycard .mc-btn:hover{background:var(--teal-deep)}
+.moneycard .mc-link{display:block; margin-top:10px; font:600 12px/1.35 "Inter Tight",system-ui,sans-serif; color:var(--teal-700); text-decoration:none}
+.moneycard .mc-link:hover{text-decoration:underline}
+.moneycard .mc-fine{margin-top:11px; padding-top:10px; border-top:1px solid rgba(184,146,79,.25); font:500 11px/1.4 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
 .minimap{height:152px; border-radius:12px; overflow:hidden; position:relative; border:1px solid var(--line-2); margin-bottom:11px; background:linear-gradient(135deg,#dfeee6,#cfe6dd); cursor:pointer; transition:box-shadow .2s, transform .2s}
 .minimap:hover{box-shadow:0 10px 24px rgba(8,42,48,.18); transform:translateY(-1px)}
 .minimap .mm-label{position:absolute; left:10px; bottom:9px; z-index:1000; pointer-events:none; background:rgba(8,42,48,.85); color:#fff; font-size:11.5px; font-weight:600; padding:4px 9px; border-radius:8px; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px)}
@@ -719,7 +778,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 #fs-listings{display:flex; flex-direction:column; gap:11px; padding:5px 3px 0}
 .fs-mini{display:flex; gap:12px; padding:11px; border-radius:14px; border:1px solid transparent; cursor:pointer; transition:.14s}
 .fs-mini:hover{background:var(--cream-2)}
-.fs-mini.sel{background:#fff; border-color:transparent; box-shadow:0 0 0 2.5px var(--teal-night), 0 0 0 6px rgba(91,224,160,.30), 0 8px 20px rgba(8,42,48,.16)}
+.fs-mini.sel{background:var(--mint-soft); border-color:#bfe9d3}
 .fsm-thumb{flex:none; width:58px; height:58px; border-radius:12px; overflow:hidden; background:var(--cream-2); display:grid; place-items:center}
 .fsm-thumb img,.fsm-thumb svg,.fsm-thumb .capyfull,.fsm-thumb .av-ini,.fsm-thumb .dimg{width:100%; height:100%; object-fit:cover}
 .fsm-body{min-width:0; flex:1; display:flex; flex-direction:column; justify-content:center}
@@ -727,17 +786,6 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .fsm-rate{font-size:12.5px; color:var(--gold); font-weight:600; margin-top:2px}
 .fsm-meta{font-size:12px; color:var(--ink-soft); margin-top:3px; display:flex; align-items:center; gap:5px; flex-wrap:wrap}
 .fsm-meta .dot{width:3px; height:3px; border-radius:50%; background:var(--line); display:inline-block}
-/* v146: tiered map-list framing. The paid frame is ALWAYS on (gold = Platinum hero at larger size, green = Capy Accredited).
-   Selecting a paid card intensifies its OWN color with a stronger glow, instead of swapping to the teal ring.
-   The teal .sel ring only applies to non-paid cards. */
-.fs-mini.fsm-plat{padding:15px; border-color:#D7B66B; background:linear-gradient(180deg,#FFFCF2,#FAEFD6); box-shadow:inset 0 0 0 1px rgba(215,182,107,.5), 0 0 0 3px rgba(215,182,107,.18), 0 6px 18px rgba(184,146,79,.20)}
-.fs-mini.fsm-plat .fsm-thumb{width:64px; height:64px}
-.fs-mini.fsm-plat .fsm-name{font-size:16.5px}
-.fs-mini.fsm-plat:hover{background:linear-gradient(180deg,#FFFAEA,#F6E9CC)}
-.fs-mini.fsm-plat.sel{border-color:#B8924F; background:linear-gradient(180deg,#FFF7E0,#F3E1B4); box-shadow:inset 0 0 0 1px rgba(184,146,79,.65), 0 0 0 3px rgba(184,146,79,.40), 0 0 0 7px rgba(184,146,79,.16), 0 10px 24px rgba(184,146,79,.36)}
-.fs-mini.fsm-accr{border-color:#7FD3A6; background:linear-gradient(180deg,#FBFFFD,#E9F7EF); box-shadow:0 2px 9px rgba(31,138,91,.12)}
-.fs-mini.fsm-accr:hover{background:linear-gradient(180deg,#F3FFF9,#E0F4E9)}
-.fs-mini.fsm-accr.sel{border-color:#1F8A5B; background:linear-gradient(180deg,#EAFAF1,#CFEDDD); box-shadow:0 0 0 2px rgba(31,138,91,.55), 0 0 0 6px rgba(31,138,91,.22), 0 8px 20px rgba(31,138,91,.30)}
 /* selected pin (CSS !important beats hoverPin's inline transform) */
 .cc-pin.cc-sel{transform:rotate(-45deg) scale(1.6)!important; box-shadow:0 6px 18px rgba(8,42,48,.5); z-index:1000}
 
@@ -1195,6 +1243,25 @@ a.rsrc-pill:hover{border-color:var(--teal-300); color:var(--ink)}
 .sfield.rad .distpills button{padding:4px 9px; font-size:12px}
 /* sparse-results nudge */
 .soft-note{background:var(--cream-2); border:1px solid var(--line-2); border-radius:12px; padding:11px 15px; margin-bottom:16px; font-size:13px; color:var(--ink-soft); line-height:1.5}
+/* v212 — "network still building" empty state */
+.cc-empty{max-width:640px; margin:8px auto; text-align:center; background:var(--cream-card); border:1px solid var(--line-2); border-radius:20px; padding:46px 34px; box-shadow:var(--sh-sm)}
+.cc-empty-ic{width:56px; height:56px; margin:0 auto 14px; border-radius:15px; display:grid; place-items:center; background:var(--cream-2); border:1px solid var(--line-2); color:var(--teal-700)}
+.cc-empty-ic svg{width:27px; height:27px}
+.cc-empty-eyebrow2{font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:11px}
+.cc-empty-h{font-family:"Fraunces",Georgia,serif; font-weight:500; font-size:24px; line-height:1.15; letter-spacing:-.01em; color:var(--teal-night); margin:0 0 10px; text-wrap:balance}
+.cc-empty-p{font:400 15px/1.6 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); max-width:50ch; margin:0 auto 20px}
+.cc-empty-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.cc-empty-btn{display:inline-flex; align-items:center; justify-content:center; font:600 13.5px/1 "Inter Tight",system-ui,sans-serif; padding:11px 18px; border-radius:11px; border:1px solid var(--line); background:var(--cream-2); color:var(--ink); cursor:pointer; text-decoration:none; transition:.15s}
+.cc-empty-btn:hover{border-color:var(--teal-300)}
+.cc-empty-btn.ghost{background:transparent}
+.cc-empty-btn.primary{background:var(--teal-night); color:#fff; border-color:transparent}
+.cc-empty-btn.primary:hover{background:var(--teal-deep)}
+.cc-empty-btn.gold{background:linear-gradient(180deg,#E9C06A,#D8A84A); color:#3a2a08; border-color:transparent}
+.cc-empty-btn.gold:hover{filter:brightness(1.04)}
+.cc-empty-dentist{margin-top:28px; padding:24px 22px 22px; border-radius:16px; background:linear-gradient(180deg,#FFFDF6,#FBF6E8); border:1px solid var(--gold-2)}
+.cc-empty-eyebrow{display:block; font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:9px}
+.cc-empty-dh{font-family:"Fraunces",Georgia,serif; font-weight:500; font-size:19px; color:var(--ink); margin:0 0 8px}
+.cc-empty-dp{font:400 13.5px/1.55 "Inter Tight",system-ui,sans-serif; color:var(--ink-soft); max-width:46ch; margin:0 auto 16px}
 .soft-expand{color:var(--teal-700); font-weight:600; cursor:pointer; text-decoration:none}
 .soft-expand:hover{color:var(--teal-night)}
 /* ensure mini-map card never appears on mobile (filters are hidden, but extra safety) */
@@ -1350,30 +1417,32 @@ body.dd-lock{overflow:hidden}
 <!-- ============ NAV ============ -->
 <header class="topnav">
   <div class="row">
-    <a class="brand" href="#"><span class="mark">C</span> CoverCapy <small>PPO Discovery</small></a>
-    <nav class="navlinks">
-      <a href="ppodentists.html">Find a Dentist</a>
-      <a href="compare-ppo-dental-plans.html">Compare PPO Plans</a>
-      <a href="estimatecost.html">Cost Estimator</a>
-      <a href="capy-accreditation.html">Rewards</a>
-      <a href="dentist-portal.html">Dentist Portal</a>
+    <a class="brand" href="/" aria-label="CoverCapy home"><span class="mark">C</span> CoverCapy <small>PPO Discovery</small></a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/compare-ppo-dental-plans.html">Compare PPO Plans</a>
+      <a href="/ppodentists.html" class="is-current" aria-current="page">Find PPO Dentists</a>
+      <a href="/dental-treatment-cost-estimator.html">Cost Estimator</a>
+      <a href="/dental-financing-monthly-payments.html">Financing</a>
+      <a href="/capy-practice-membership.html">For Dentists</a>
     </nav>
     <div class="navright">
-      <button class="btn-ghost" onclick="openModal('m-claim')">List your office</button>
-      <button class="btn-dark">Sign in</button>
+      <a class="btn-ghost" href="/capy-practice-membership.html">List your office</a>
+      <a class="btn-dark" href="/join/">Patient Portal</a>
       <button class="btn-ghost menu-toggle" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleNavMenu()">☰</button>
     </div>
   </div>
 </header>
 <nav class="mobile-menu" id="mobile-menu" aria-label="Menu">
-  <a href="ppodentists.html" onclick="closeNavMenu()">Find a Dentist</a>
-  <a href="compare-ppo-dental-plans.html" onclick="closeNavMenu()">Compare PPO Plans</a>
-  <a href="estimatecost.html" onclick="closeNavMenu()">Cost Estimator</a>
-  <a href="capy-accreditation.html" onclick="closeNavMenu()">Rewards</a>
-  <a href="dentist-portal.html" onclick="closeNavMenu()">Dentist Portal</a>
+  <a href="/" onclick="closeNavMenu()">Home</a>
+  <a href="/compare-ppo-dental-plans.html" onclick="closeNavMenu()">Compare PPO Plans</a>
+  <a href="/ppodentists.html" onclick="closeNavMenu()">Find PPO Dentists</a>
+  <a href="/dental-treatment-cost-estimator.html" onclick="closeNavMenu()">Cost Estimator</a>
+  <a href="/dental-financing-monthly-payments.html" onclick="closeNavMenu()">Dental Financing</a>
+  <a href="/capy-practice-membership.html" onclick="closeNavMenu()">For Dentists</a>
   <div class="mm-actions">
-    <button class="btn-ghost" onclick="closeNavMenu();openModal('m-claim')">List your office</button>
-    <button class="btn-dark" onclick="closeNavMenu()">Sign in</button>
+    <a class="btn-ghost" href="/capy-practice-membership.html" onclick="closeNavMenu()">List your office</a>
+    <a class="btn-dark" href="/join/" onclick="closeNavMenu()">Patient Portal</a>
   </div>
 </nav>
 
@@ -1393,12 +1462,12 @@ body.dd-lock{overflow:hidden}
 
 /* editorial header */
 .dh-header{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
-.dh-inner{max-width:1040px; margin:0 auto; padding:64px 24px 26px; display:flex; flex-direction:column; align-items:center; text-align:center}
+.dh-inner{max-width:1040px; margin:0 auto; padding:32px 24px 22px; display:flex; flex-direction:column; align-items:center; text-align:center}
 .dh-title{font-family:"Fraunces",Georgia,serif; font-weight:480; letter-spacing:-.022em; font-size:clamp(29px,4.6vw,48px); line-height:1.05; color:var(--teal-night); max-width:22ch; margin:0 auto; text-wrap:balance}
 .dh-eyebrow{display:inline-flex; align-items:center; gap:7px; font:700 12px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin:0 0 15px}
-.dh-sub{margin:14px auto 24px; font-size:clamp(14.5px,1.5vw,17px); color:var(--ink-soft); max-width:50ch; line-height:1.5; text-align:center}
+.dh-sub{margin:12px auto 18px; font-size:clamp(14.5px,1.5vw,17px); color:var(--ink-soft); max-width:50ch; line-height:1.5; text-align:center}
 /* v121: Search #1 discovery micro-graphic (Apple-onboarding style connected row) */
-.dh-microg{display:flex; align-items:flex-start; justify-content:center; max-width:560px; width:100%; margin:2px auto 26px; padding:0 2px}
+.dh-microg{display:none}
 .dh-microg .mg-node{display:flex; flex-direction:column; align-items:center; gap:8px; flex:0 0 auto; width:62px}
 .dh-microg .mg-ic{width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:var(--cream-card); border:1px solid var(--line); box-shadow:0 4px 13px rgba(8,42,48,.06); color:var(--teal-700)}
 .dh-microg .mg-ic svg{width:21px; height:21px}
@@ -1414,7 +1483,7 @@ body.dd-lock{overflow:hidden}
 
 /* universal command bar */
 .ucmd{position:relative; max-width:780px; width:100%; margin:0 auto}
-.ucmd-bar{display:flex; align-items:center; gap:12px; height:64px; padding:0 10px 0 20px; background:rgba(255,253,248,.86); -webkit-backdrop-filter:saturate(1.3) blur(12px); backdrop-filter:saturate(1.3) blur(12px); border:1px solid var(--line); border-radius:999px; transition:box-shadow .22s, border-color .22s, background .22s}
+.ucmd-bar{display:flex; align-items:center; gap:12px; height:64px; padding:0 9px; background:rgba(255,253,248,.86); -webkit-backdrop-filter:saturate(1.3) blur(12px); backdrop-filter:saturate(1.3) blur(12px); border:1px solid var(--line); border-radius:999px; transition:box-shadow .22s, border-color .22s, background .22s}
 .ucmd-bar:focus-within{border-color:var(--gold-2); background:var(--cream-card); box-shadow:0 18px 50px rgba(8,42,48,.14)}
 .ucmd-ic{flex:none; width:22px; height:22px; color:var(--ink-faint); display:grid; place-items:center}
 .ucmd-ic svg{width:20px;height:20px}
@@ -1425,22 +1494,29 @@ body.dd-lock{overflow:hidden}
 .ucmd-loc{flex:none; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--line); background:var(--cream-2); color:var(--teal-night); cursor:pointer; transition:.15s}
 .ucmd-loc:hover{border-color:var(--gold-2); background:var(--cream-card)}
 .ucmd-loc svg{width:18px;height:18px}
+/* hero search: crosshair/locate sits LEFT, magnifier search button sits RIGHT */
+.ucmd-loc-l{width:40px; height:40px}
+.ucmd-go{flex:none; width:46px; height:46px; border-radius:50%; display:grid; place-items:center; border:none; background:var(--teal-night); color:#fff; cursor:pointer; transition:.16s}
+.ucmd-go:hover{background:var(--teal-deep); transform:translateY(-1px); box-shadow:0 8px 18px rgba(8,42,48,.24)}
+.ucmd-go svg{width:19px;height:19px}
 
 /* command palette dropdown (Raycast / Arc / Spotlight feel) */
 .ucmd-menu{position:absolute; top:calc(100% + 12px); left:0; right:0; background:var(--cream-card); border:1px solid var(--line-2); border-radius:24px; box-shadow:var(--sh-lg); padding:10px; z-index:90; max-height:min(64vh,560px); overflow:auto; overscroll-behavior:contain}
 .ucmd-sec{font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); padding:12px 12px 6px}
-.ucmd-row{display:flex; align-items:center; gap:13px; padding:11px 12px; border-radius:15px; cursor:pointer; transition:background .12s}
+/* Rows: icon pinned left, action pinned right (absolute), title/subtitle centered on the
+   panel's true center — so the centering never shifts with the icon or button width. */
+.ucmd-row{position:relative; display:block; padding:11px 150px; border-radius:15px; cursor:pointer; transition:background .12s; text-align:center}
 .ucmd-row:hover, .ucmd-row.active{background:var(--cream-2)}
 .ucmd-row.best{background:var(--gold-soft)}
 .ucmd-row.best:hover, .ucmd-row.best.active{background:#efe0c4}
-.ucmd-ico{flex:none; width:38px; height:38px; border-radius:11px; display:grid; place-items:center; background:var(--cream); border:1px solid var(--line-2); color:var(--teal-700)}
+.ucmd-ico{position:absolute; left:14px; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:11px; display:grid; place-items:center; background:var(--cream); border:1px solid var(--line-2); color:var(--teal-700)}
 .ucmd-row.best .ucmd-ico{background:#fff; border-color:transparent; color:var(--gold)}
 .ucmd-ico svg{width:19px;height:19px}
-.ucmd-txt{min-width:0; flex:1 1 auto}
+.ucmd-txt{display:block; min-width:0; text-align:center}
 .ucmd-ttl{display:block; font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .ucmd-ttl .hl{color:var(--teal-700)}
 .ucmd-sub2{display:block; font-size:12.5px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:3px}
-.ucmd-act{flex:none; display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:5px 11px}
+.ucmd-act{position:absolute; right:14px; top:50%; transform:translateY(-50%); display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:var(--ink-soft); background:var(--cream-2); border:1px solid var(--line-2); border-radius:999px; padding:6px 13px}
 .ucmd-row.best .ucmd-act{background:#fff; border-color:#e7d6ac; color:#8a6a2e}
 .ucmd-act svg{width:12px;height:12px; opacity:.8}
 .ucmd-empty{padding:22px 14px; color:var(--ink-faint); font-size:14px; text-align:center}
@@ -1527,6 +1603,10 @@ body.dd-lock{overflow:hidden}
   .ucmd-rad{height:34px; padding:0 11px; font-size:12.5px}
   .ucmd-loc{width:36px;height:36px}
   .ucmd-menu{border-radius:20px}
+  /* tighter side gutters so centered text still fits on narrow screens */
+  .ucmd-row{padding:11px 104px 11px 58px}
+  .ucmd-ico{left:10px}
+  .ucmd-act{right:10px; padding:6px 10px; font-size:11px}
   .dh-title{max-width:none}
 }
 
@@ -1547,40 +1627,9 @@ body.dd-lock{overflow:hidden}
     <div class="dh-eyebrow">Find a PPO dentist near you</div>
     <h1 class="dh-title">Know your dentist? Search them first.</h1>
     <p class="dh-sub">Need one? Find a top ranking PPO dentist near you, in network with your insurance plan, here to deliver the quality care you deserve.</p>
-    <div class="dh-microg mgr-host" role="group" aria-label="Search a university or wellness center near you to find your PPO dentist">
-      <span class="mgr-bg" aria-hidden="true"><svg viewBox="0 0 274 84" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="mgrb-streamL" x1="52" y1="42" x2="106" y2="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#5BE0A0" stop-opacity="0"/><stop offset="50%" stop-color="#5BE0A0" stop-opacity="0.42"/><stop offset="100%" stop-color="#5BE0A0" stop-opacity="0.9"/>
-          </linearGradient>
-          <linearGradient id="mgrb-streamR" x1="222" y1="42" x2="168" y2="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#5BE0A0" stop-opacity="0"/><stop offset="50%" stop-color="#5BE0A0" stop-opacity="0.42"/><stop offset="100%" stop-color="#5BE0A0" stop-opacity="0.9"/>
-          </linearGradient>
-        </defs>
-        <g fill="none" stroke-linecap="round">
-          <path d="M54 30 C 74 32, 90 38, 103 41" stroke="url(#mgrb-streamL)" stroke-width="2.1"/>
-          <path d="M52 42 C 74 42, 90 42, 104 42" stroke="url(#mgrb-streamL)" stroke-width="2.8"/>
-          <path d="M54 54 C 74 52, 90 46, 103 43" stroke="url(#mgrb-streamL)" stroke-width="2.1"/>
-          <path d="M220 30 C 200 32, 184 38, 171 41" stroke="url(#mgrb-streamR)" stroke-width="2.1"/>
-          <path d="M222 42 C 200 42, 184 42, 170 42" stroke="url(#mgrb-streamR)" stroke-width="2.8"/>
-          <path d="M220 54 C 200 52, 184 46, 171 43" stroke="url(#mgrb-streamR)" stroke-width="2.1"/>
-        </g>
-        <g>
-          <circle cx="52" cy="42" r="5" fill="#5BE0A0" opacity="0.12"/><circle cx="52" cy="42" r="2.4" fill="#5BE0A0" opacity="0.6"/>
-          <circle cx="54" cy="30" r="4" fill="#5BE0A0" opacity="0.1"/><circle cx="54" cy="30" r="2" fill="#5BE0A0" opacity="0.5"/>
-          <circle cx="54" cy="54" r="4" fill="#5BE0A0" opacity="0.1"/><circle cx="54" cy="54" r="2" fill="#5BE0A0" opacity="0.5"/>
-          <circle cx="222" cy="42" r="5" fill="#5BE0A0" opacity="0.12"/><circle cx="222" cy="42" r="2.4" fill="#5BE0A0" opacity="0.6"/>
-          <circle cx="220" cy="30" r="4" fill="#5BE0A0" opacity="0.1"/><circle cx="220" cy="30" r="2" fill="#5BE0A0" opacity="0.5"/>
-          <circle cx="220" cy="54" r="4" fill="#5BE0A0" opacity="0.1"/><circle cx="220" cy="54" r="2" fill="#5BE0A0" opacity="0.5"/>
-        </g>
-      </svg></span>
-      <button type="button" class="mgr-pin mgr-uni" aria-label="Search near your university to find a PPO dentist" onclick="mgFocusSearch()"><span class="mgr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span><span class="mgr-lbl">University</span><span class="mgr-tip" aria-hidden="true">Search near your university</span></button>
-      <span class="mgr-pin mgr-dentist" aria-hidden="true"><span class="mgr-ic mgr-ic-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.6-1.5-3.2-2-4.8-2C5 3.5 3.5 5 3.5 7.6c0 2.2.7 3.4 1.4 6 .4 1.6.8 4 1.4 5.2.4.8 1.4.7 1.7-.1.4-1 .7-2.6 1-3.7.2-.8.4-1.2 1-1.2s.8.4 1 1.2c.3 1.1.6 2.7 1 3.7.3.8 1.3.9 1.7.1.6-1.2 1-3.6 1.4-5.2.7-2.6 1.4-3.8 1.4-6 0-2.6-1.5-4.1-3.7-4.1-1.6 0-3.2.5-4.8 2z"/></svg></span><span class="mgr-lbl">Dentist</span></span>
-      <button type="button" class="mgr-pin mgr-well" aria-label="Search near a wellness center to find a PPO dentist" onclick="mgFocusSearch()"><span class="mgr-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span><span class="mgr-lbl">Wellness</span><span class="mgr-tip" aria-hidden="true">Search near a wellness center</span></button>
-    </div>
     <div class="ucmd" id="ucmd">
       <div class="ucmd-bar" id="ucmd-bar">
-        <span class="ucmd-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span>
+        <button class="ucmd-loc ucmd-loc-l" id="ucmd-loc-l" type="button" onclick="ucmdUseLocation()" aria-label="Use my current location" title="Pin my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
         <input id="ucmd-input" class="ucmd-input" type="text" autocomplete="off" spellcheck="false"
                role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ucmd-menu"
                aria-label="Search dentists, places, treatments, and insurance"
@@ -1589,7 +1638,7 @@ body.dd-lock{overflow:hidden}
         <button class="ucmd-clear" id="ucmd-clear" type="button" onclick="ucmdClear()" aria-label="Clear search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
         <span class="ucmd-kbd" id="ucmd-kbd" aria-hidden="true" title="Press / to search">/</span>
         <button class="ucmd-rad" id="ucmd-rad" type="button" onclick="ucmdCycleRadius()" aria-label="Change search radius"><span id="ucmd-rad-val">8 mi</span></button>
-        <button class="ucmd-loc" id="ucmd-loc" type="button" onclick="ucmdUseLocation()" aria-label="Use my current location" title="Use my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
+        <button class="ucmd-go" id="ucmd-go" type="button" onclick="ucmdSubmit()" aria-label="Search this location" title="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></button>
       </div>
       <div class="ucmd-menu" id="ucmd-menu" role="listbox" aria-label="Search suggestions" hidden></div>
       <div class="ucmd-nearby" id="ucmd-nearby" aria-label="Nearby cities to browse" hidden></div>
@@ -1614,14 +1663,15 @@ body.dd-lock{overflow:hidden}
     <div class="sfield where" id="where-field">
       <label for="q-where">Location</label>
       <div class="sf-inrow">
+        <button class="sf-loc sf-loc-l" type="button" onclick="useCurrentLocation()" aria-label="Use my current location" title="Pin my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
         <input id="q-where" type="text" placeholder="ZIP, city, area, or campus" autocomplete="off">
-        <button class="sf-loc" type="button" onclick="useCurrentLocation()" aria-label="Use my current location" title="Use my current location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></button>
+        <button class="sf-go" type="button" onclick="advSearch()" aria-label="Search this location" title="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.2-4.2"></path></svg></button>
       </div>
       <div id="ac-menu" class="acmenu" role="listbox" aria-label="Location suggestions" hidden></div>
     </div>
     <div class="sfield spec">
       <label for="q-spec">Treatment</label>
-      <select id="q-spec"><option value="">Any reason</option><option>General</option><option>Cleaning</option><option>Emergency</option><option>Invisalign</option><option>Implants</option><option>Veneers</option><option>Crowns</option><option>Whitening</option><option>Root Canal</option><option>Cosmetic</option><option>Orthodontics</option><option>TMJ</option></select>
+      <select id="q-spec"><option value="">Any reason</option><option>General</option><option>Preventive</option><option>Cosmetic</option><option>Implants</option><option>Invisalign</option><option>Veneers</option><option>Whitening</option><option>Crowns</option><option>Root Canal</option><option>Emergency</option><option>Extractions</option><option>Dentures</option><option>Periodontics</option></select>
     </div>
     <div class="sfield ppo">
       <label for="q-carrier">Your PPO</label>
@@ -1637,6 +1687,7 @@ body.dd-lock{overflow:hidden}
   </div>
   <button class="search-toggle" id="search-toggle" type="button" onclick="toggleSearchCollapse()" aria-expanded="true" aria-label="Collapse search"><span class="chev">⌃</span></button>
 </div>
+<div class="cc-seekbar" id="cc-seekbar" role="presentation" aria-hidden="true"></div>
 
 <!-- v85: detailed-search inputs (#q-where / #q-spec / #q-carrier / #q-rad / #ac-menu) now live in the visible collapsible panel above. -->
 
@@ -1660,7 +1711,7 @@ body.dd-lock{overflow:hidden}
   .seodisc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; padding:12px 0 4px; }
   .seodisc-col h4{ font:700 11px/1 'Inter Tight',sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
   .seolinks{ display:flex; flex-direction:column; gap:1px; }
-  .seolinks a{ display:block; padding:5px 0; font:500 13.5px/1.35 'Inter Tight',sans-serif; color:var(--teal-700); text-decoration:none; }
+  .seolinks a{ display:block; padding:6px 0; font:500 13.5px/1.35 'Inter Tight',sans-serif; color:var(--teal-700); text-decoration:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .seolinks a:hover{ color:var(--mint-700); text-decoration:underline; }
   .seonearby{ width:min(1200px,calc(100% - 36px)); margin:28px auto 44px; padding-top:22px; border-top:1px solid var(--line-2); }
   .seonearby h4{ font:600 15px/1.2 'Fraunces',Georgia,serif; color:var(--ink); margin:0 0 12px; }
@@ -1699,10 +1750,12 @@ body.dd-lock{overflow:hidden}
     </div>
   </div>
 
+  <div class="cc-seekline" id="cc-seekline" aria-live="polite"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="cc-seektxt">Finding PPO dentists…</span></div>
+
   <div class="layout">
     <!-- SIDEBAR -->
     <aside class="filters" id="filters-slot">
-      <!-- v99 list-view geographic browse: region → location → area → city (shown only in list view) -->
+      <!-- v99 list-view geographic browse: region  location  area  city (shown only in list view) -->
       <div class="fcard cc-geocard" id="cc-geocard"></div>
       <!-- Search area mini-map card (desktop only; hidden on mobile via .filters{display:none}) -->
       <div class="fcard mapcard" id="mapcard">
@@ -1722,6 +1775,10 @@ body.dd-lock{overflow:hidden}
 
     <!-- RIGHT RAIL -->
     <aside class="prail">
+      <!-- v200: contextual, search-aware cards. Populated by renderContextCards() from the
+           offices currently in view. Sits ABOVE the CoverCapy Network module so the prime
+           right-rail slot serves crawlable intent links + promoted-plan CTAs. -->
+      <div class="ctx-rail" id="ctx-rail" aria-label="Searches and offices related to your results"></div>
       <div class="pcard fx-card" id="prail-future" hidden role="button" tabindex="0" onclick="if(event.target.closest('.fx-cta'))return; openFutureExpansionDrawer();" onkeydown="if((event.key==='Enter'||event.key===' ')&&!event.target.closest('.fx-cta')){event.preventDefault();openFutureExpansionDrawer();}">
         <div class="fx-tag">◆ Planned Expansion Site · 2027</div>
         <h5>KYT Dental Services · Future Expansion Interest</h5>
@@ -1757,7 +1814,7 @@ body.dd-lock{overflow:hidden}
             <a class="eco-row eco-crowns" href="javascript:void(0)" onclick="track('promo_crowns',{});return false;">
               <span class="eco-ic">♕</span>
               <span class="eco-tx"><b>Capy Crowns rewards</b><span>Earn on PPO checks, bookings &amp; verified visits.</span></span>
-              <span class="eco-state cta">Create account →</span>
+              <span class="eco-state cta">Create account </span>
             </a>
           </div>
         </div>
@@ -1772,7 +1829,7 @@ body.dd-lock{overflow:hidden}
             <a class="eco-row eco-gift" href="capy-accreditation.html" onclick="track&&track('sweeps_join',{})">
               <span class="eco-ic">🎁</span>
               <span class="eco-tx"><b>$50 gift card drawing</b><span>Every member is entered, funded by our dentist partners.</span></span>
-              <span class="eco-state cta">Enter →</span>
+              <span class="eco-state cta">Enter </span>
             </a>
           </div>
           <p class="eco-fine">No purchase necessary. One entry per member.</p>
@@ -1799,6 +1856,23 @@ body.dd-lock{overflow:hidden}
   <h4 id="seo-nearby-title">Nearby PPO dentist searches</h4>
   <div class="seonearby-grid" id="seo-nearby-links"></div>
 </section>
+
+<!-- CoverCapy universal footer (shared site component, same as the rest of the site) -->
+<div id="cc-footer-mount" class="cc-footer-mount"></div>
+<script>
+(function(){
+  function mount(url, id, after){
+    fetch(url).then(function(r){ return r.text(); }).then(function(html){
+      var el = document.getElementById(id);
+      if(el){ el.innerHTML = html; }
+      if(after){ after(); }
+    }).catch(function(){ /* component unavailable, page still readable */ });
+  }
+  mount('/components/footer.html', 'cc-footer-mount', function(){
+    var s = document.createElement('script'); s.src = '/assets/js/footer.js'; s.defer = true; document.body.appendChild(s);
+  });
+})();
+</script>
 
 <!-- ============ MOBILE BAR ============ -->
 <div class="mobilebar">
@@ -2218,7 +2292,8 @@ function processed(){
   if(state.filters.carrier.size) list = list.filter(d=> [...state.filters.carrier].some(c=> officeAcceptsCarrier(d,c)));
   if(state.filters.spec.size) list = list.filter(d=> d.specialties.some(x=>state.filters.spec.has(x)));
   if(state.filters.lang.size) list = list.filter(d=> d.languages.some(x=>state.filters.lang.has(x)));
-  if(state.spec) list = list.filter(d=> d.specialties.includes(state.spec) || ["platinum_elite","capy_accredited","verified"].includes(d.tier));
+  if(state.spec){ var _sq=String(state.spec).toLowerCase().replace(/[_\s]+/g,' ').trim();
+    list = list.filter(function(d){ return (d.specialties||[]).concat(d.procedures||[]).some(function(x){ var xl=String(x).toLowerCase().replace(/[_\s]+/g,' ').trim(); return xl.indexOf(_sq)!==-1 || _sq.indexOf(xl)!==-1; }); }); }
   if(state.carrier) list = list.filter(d=> officeAcceptsCarrier(d, state.carrier));
   // "Recommended" now uses the believable client score (both Supabase and local modes); explicit sorts handled in rankDentists.
   return rankDentists(dedupePlatinumLocations(list));
@@ -3086,8 +3161,7 @@ function render(){
 
   const root = document.getElementById('listings');
   if(!list.length){
-    const emptyHint = (!state.allCounty && !state.areaKeys) ? ' <button class="la la-link" onclick="extendRadius()">Expand radius</button>' : '';
-    root.innerHTML = '<div style="padding:50px;text-align:center;color:var(--ink-soft);background:var(--cream-card);border:1px solid var(--line-2);border-radius:16px">No offices found. Try another ZIP code, city, specialty, or increase your search radius.'+emptyHint+' <button class="la la-link" onclick="clearFilters()">Clear filters</button></div>';
+    root.innerHTML = ccEmptyState((c && c.label) ? c.label : '');
     renderMapPins(); return;
   }
   /* sparse results: soft guidance nudge */
@@ -3115,10 +3189,68 @@ function render(){
     else { renderFsCard(LAST.find(d=>d.id===FS_SELECTED)); }
   }
   track('search_results',{city:c.label,count:list.length});
+  try{ ccSeek(false); }catch(_e){}
+}
+
+/* v210: luxurious "searching" signal — gold shimmer bar + dotted status line + spinning
+   search glyph. Stays visible for at least ~0.5s so the motion always registers before
+   results pop in, matching the site's calm, premium tone. */
+var _ccSeekStart=0;
+function ccSeek(on, place){
+  var bar=document.getElementById('cc-seekbar'), line=document.getElementById('cc-seekline'),
+      gos=document.querySelectorAll('.sf-go, .ucmd-go');
+  if(on){
+    _ccSeekStart=Date.now();
+    if(bar) bar.classList.add('on');
+    if(line){ line.classList.add('on'); var t=line.querySelector('.cc-seektxt'); if(t) t.textContent = place ? ('Finding PPO dentists in '+place+'…') : 'Finding PPO dentists…'; }
+    gos.forEach(function(g){ g.classList.add('is-busy'); });
+  } else {
+    var wait=Math.max(0, 520-(Date.now()-_ccSeekStart));
+    setTimeout(function(){
+      if(bar) bar.classList.remove('on');
+      if(line) line.classList.remove('on');
+      document.querySelectorAll('.sf-go.is-busy, .ucmd-go.is-busy').forEach(function(g){ g.classList.remove('is-busy'); });
+    }, wait);
+  }
+}
+/* Hero search submit (magnifier button on the right) — mirrors pressing Enter in the hero bar. */
+function ucmdSubmit(){
+  var inp=document.getElementById('ucmd-input'); if(!inp) return;
+  if(typeof ucmdIdx!=='undefined' && ucmdIdx>=0){ try{ ccSeek(true); }catch(_e){} ucmdRun(ucmdIdx); return; }
+  var q=(inp.value||'').trim(); if(!q){ inp.focus(); return; }
+  try{ ccSeek(true, q); }catch(_e){}
+  try{ var r=resolveUniversalSearch(q); if(r&&r.best){ ucmdClose(); try{ r.best.run(); }catch(_){} return; } }catch(_e){}
+  try{ ucmdAllOffices(q); }catch(_e){}
 }
 
 /* renderListings(): public name for the listings render pass (Supabase-ready) */
 function renderListings(){ return render(); }
+
+/* v212: "network still building" empty state — reassures patients the area is coming, and
+   turns a dead end into a dentist-acquisition moment (claim the spot before launch). */
+function ccEmptyState(place){
+  var p = (place && String(place).trim()) ? esc(String(place).trim()) : 'this area';
+  return ''
+  + '<div class="cc-empty">'
+  +   '<div class="cc-empty-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg></div>'
+  +   '<div class="cc-empty-eyebrow2">Coming soon</div>'
+  +   '<h3 class="cc-empty-h">We’re still building the network in '+p+'.</h3>'
+  +   '<p class="cc-empty-p">CoverCapy is actively partnering with PPO dentists near '+p+', and new verified offices are added every week. Widen your search to see the closest options now, or check back soon.</p>'
+  +   '<div class="cc-empty-actions">'
+  +     '<button class="cc-empty-btn primary" type="button" onclick="extendRadius()">Widen the search</button>'
+  +     '<button class="cc-empty-btn ghost" type="button" onclick="clearFilters()">Clear filters</button>'
+  +   '</div>'
+  +   '<div class="cc-empty-dentist">'
+  +     '<span class="cc-empty-eyebrow">For dentists in '+p+'</span>'
+  +     '<h4 class="cc-empty-dh">Claim your spot before '+p+' launches.</h4>'
+  +     '<p class="cc-empty-dp">List your practice now to be one of the first PPO offices patients see the moment CoverCapy goes live here — verified placement, ahead of the rush.</p>'
+  +     '<div class="cc-empty-actions">'
+  +       '<a class="cc-empty-btn gold" href="/capy-practice-membership.html" onclick="track&&track(\'empty_list_office\',{place:\''+jsq(String(place||""))+'\'})">List your office</a>'
+  +       '<a class="cc-empty-btn ghost" href="/dentist-portal.html" onclick="track&&track(\'empty_dentist_portal\',{place:\''+jsq(String(place||""))+'\'})">Dentist portal</a>'
+  +     '</div>'
+  +   '</div>'
+  + '</div>';
+}
 
 /* ── hero command center ─────────────────────────────────────────────── */
 let HJ='find', HERO_EX_CUR=[], _heroIdx=0, _heroTimer=null, _acLastN=-1;
@@ -3213,6 +3345,12 @@ let CARRIERS_ALL = CARRIERS_CANONICAL.slice();
 let SPECS_ALL = uniqueVals('specialties').slice(0,12);
 let LANGS_ALL = uniqueVals('languages');
 function carrierCount(c){ return loadDentistsFromSupabase().filter(d=>officeAcceptsCarrier(d,c)).length; }
+/* Human-readable label for a university subcategory (community_college -> Community College). */
+function univSubLabel(s){
+  if(!s) return 'University';
+  var m={uc:'University of California',csu:'Cal State',community_college:'Community College',private_university:'Private University',public_university:'Public University',college:'College',university:'University'};
+  return m[s] || String(s).replace(/_/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+}
 
 /* The six plans CoverCapy features on the PPO comparison page lead the carrier filter. */
 const FEATURED_CARRIERS = ['UnitedHealthcare','Aetna','Ameritas','Guardian','Mutual of Omaha','Humana'];
@@ -3248,11 +3386,12 @@ function renderFilters(){
   '</div>'+
   (LANGS_ALL.length>1?'<div class="fcard"><h4>Languages</h4>'+LANGS_ALL.map(l=>opt('lang',l)).join('')+'</div>':'')+
   ppoCarrierFilterHtml()+
-  '<div class="fcard fcard-coll">'+
-    '<button class="fcard-h4btn" type="button" aria-expanded="true" onclick="toggleFcard(this)"><span>Treatment</span><span class="fcoll-chev" aria-hidden="true">\u2303</span></button>'+
-    '<div class="fcard-coll-body">'+
-      SPECS_ALL.map(s=>opt('spec',s)).join('')+
-    '</div>'+
+  '<div class="fcard moneycard">'+
+    '<h4>Save on your visit</h4>'+
+    '<p class="mc-sub">No PPO yet, or paying too much? Compare PPO dental plans and lock in in-network pricing before you book.</p>'+
+    '<a class="mc-btn" href="/compare-ppo-dental-plans.html" onclick="track&&track(\'filter_compare_plans\',{})">Compare PPO plans</a>'+
+    '<a class="mc-link" href="/dental-financing-monthly-payments.html" onclick="track&&track(\'filter_financing\',{})">Or explore monthly financing</a>'+
+    '<div class="mc-fine">Members earn Capy Crowns on every booking.</div>'+
   '</div>';
 
   document.getElementById('filters').innerHTML = html;
@@ -3416,6 +3555,7 @@ function clearFilters(){
 async function runSearch(){
   const inp = document.getElementById('q-where');
   const raw = inp.value.trim();
+  try{ ccSeek(true, raw); }catch(_e){}
   ROWLAND_ACTIVE=false;
   if(!state._picked){ const _rl=resolveLocation(raw); if(_rl){ searchResolvedLocation(_rl); return; } }
   state.spec = document.getElementById('q-spec').value;
@@ -3712,7 +3852,7 @@ async function acRender(qraw){
         if(_nm.indexOf(q)>=0 || (_sb && _sb.indexOf(q)>=0) || (_ct && _ct.indexOf(q)>=0)){
           items.push({ type:'landmark', key:'univ:'+_nm, name:_u.name, title:_u.name, lat:_u.lat, lng:_u.lng,
                        emoji:'\uD83C\uDF93',
-                       sub:([_u.sub, [_u.city,_u.state].filter(Boolean).join(', ')].filter(Boolean).join(' \u00b7 ')) || 'University' });
+                       sub:([univSubLabel(_u.sub), [_u.city,_u.state].filter(Boolean).join(', ')].filter(Boolean).join(' \u00b7 ')) || 'University' });
           _uAdded++;
         }
       }
@@ -4699,7 +4839,7 @@ function fsUseMyLocation(){
     toast("Couldn\u2019t get your location", msg, 'warn');
   }, { enableHighAccuracy:true, timeout:9000, maximumAge:60000 });
 }
-/* recenter on a typed place (known city → instant; otherwise geocode), then search */
+/* recenter on a typed place (known city  instant; otherwise geocode), then search */
 async function fsCenterOnLocation(){
   const inp=document.getElementById('fsmap-loc'); if(!inp) return;
   const q=(inp.value||'').trim(); if(!q){ inp.focus(); return; }
@@ -4729,7 +4869,7 @@ async function fsCenterOnLocation(){
   if(geo){ state.mapCenter={lat:geo.lat, lng:geo.lng, label:geo.label||q, radius:state.distance||10}; fsSearchNearby(); }
   else { if(h) h.textContent='Couldn\u2019t find that place · try a nearby city or 5-digit ZIP'; toast("Place not found","Try a city name or 5-digit ZIP code", 'warn'); }
 }
-/* Center the map on whatever is typed in the box (geocode → recenter) WITHOUT running a dentist search.
+/* Center the map on whatever is typed in the box (geocode  recenter) WITHOUT running a dentist search.
    Pairs with the "Search this area" button so the user can place the pin first, then search. */
 async function fsGoToTyped(){
   const inp=document.getElementById('fsmap-loc'); if(!inp) return;
@@ -4814,11 +4954,11 @@ function fsInval(){ setTimeout(()=>{ if(fullMap){ try{ fullMap.invalidateSize();
 function syncFsPeek(){ const lbl=document.getElementById('fs-peeklabel'); if(!lbl) return; let n=0; try{ n=fsFiltered().length; }catch(e){} lbl.textContent=n.toLocaleString()+' office'+(n===1?'':'s')+' nearby · tap to browse'; }
 /* grip taps toggle between the open list and a slim "peek" bar that reveals the full map */
 function toggleFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.toggle('peek'); syncFsPeek(); fsInval(); }
-/* v107: a single tap on the grip cycles through the three heights so the sheet can be opened/collapsed by tapping (no swipe needed): peek → default → expanded → peek */
+/* v107: a single tap on the grip cycles through the three heights so the sheet can be opened/collapsed by tapping (no swipe needed): peek  default  expanded  peek */
 function cycleFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return;
-  if(s.classList.contains('peek')){ s.classList.remove('peek','expanded'); }     // collapsed → default
-  else if(!s.classList.contains('expanded')){ s.classList.add('expanded'); }      // default → full
-  else { s.classList.remove('expanded'); s.classList.add('peek'); }               // full → collapsed
+  if(s.classList.contains('peek')){ s.classList.remove('peek','expanded'); }     // collapsed  default
+  else if(!s.classList.contains('expanded')){ s.classList.add('expanded'); }      // default  full
+  else { s.classList.remove('expanded'); s.classList.add('peek'); }               // full  collapsed
   syncFsPeek(); fsInval();
 }
 function peekFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.add('peek'); syncFsPeek(); fsInval(); }
@@ -5290,7 +5430,7 @@ function renderDentistDrawer(d){
         bookCTA+
         (util?'<div class="dd-cta-row">'+util+'</div>':'')+
       '</div>'+
-      '<a class="dd-full" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile →</a>'+
+      '<a class="dd-full" href="'+escapeAttr(url)+'" onclick="return goSeoProfile(event,\''+idj+'\')">View Full Profile </a>'+
     '</div>';
 }
 function openDentistDrawer(d){
@@ -5674,9 +5814,14 @@ function track(ev,p){ try{ window.dataLayer=window.dataLayer||[]; window.dataLay
    Ported from ppodentists.html: clean slugs + canonical/title/meta sync +
    crawlable city / treatment / carrier links. Layered on top of v27 without
    touching the hero, map, modals, save/compare, GA4, or palette. */
-const SEO_BASE = "/best-ppo-dentists", HOME_PATH = "/find-my-dentist";
+const SEO_BASE = "/ppo-dentists", HOME_PATH = "/find-my-dentist", PROFILE_BASE = "/dentists";
 const SEO_TREATMENTS = ["Invisalign","Implants","Emergency","Whitening","Veneers","Cosmetic","Orthodontics","Root Canal"];
-const SEO_CARRIERS   = ["Guardian","UnitedHealthcare","Delta PPO","MetLife","Cigna","Aetna","Anthem","Ameritas"];
+const SEO_CARRIERS   = ["UnitedHealthcare","Delta Dental","Guardian","Ameritas","MetLife","Cigna","Aetna","Anthem"];
+/* Carriers we have enough verified/listed inventory to build real pages for today.
+   Everything else renders as a filter/CTA (noindex) until data is verified. */
+const CARRIER_VERIFIED = ["Ameritas","Delta Dental"];
+/* Carriers CoverCapy actively promotes for plan purchase (paid placement). */
+const CARRIER_PROMOTED = ["UnitedHealthcare","Guardian","Ameritas"];
 const SEO_CITY_KEYS  = ["fountain valley","irvine","huntington beach","costa mesa","newport beach","santa ana","anaheim","tustin","garden grove","orange","mission viejo","lake forest"];
 const SEO_NEARBY = {
   "fountain valley":["westminster","huntington beach","garden grove","costa mesa","santa ana"],
@@ -5697,7 +5842,16 @@ const carrierSlug = c => { const s=slugify(c); return /-ppo$/.test(s)?s:s+"-ppo"
 const jsq = s => String(s==null?"":s).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
 
 /* §9 slug builders (location = full state name derived from data; area omitted cleanly when blank) */
-function buildLocationSlug(loc){ loc=loc||{}; return buildSlug([SEO_BASE.replace(/^\//,""), loc.stateLabel||loc.stateSlug, loc.areaLabel||loc.areaSlug, loc.cityLabel||loc.citySlug]); }
+/* Hub spine: /ppo-dentists/<state>/<local-area>/<city>/<neighborhood?>
+   Empty levels collapse automatically (buildSlug drops falsy segments); a neighborhood
+   that equals the city is suppressed so we never emit /city/city. */
+function buildLocationSlug(loc){
+  loc=loc||{};
+  const city=loc.cityLabel||loc.citySlug||"";
+  let hood=loc.hoodLabel||loc.hoodSlug||"";
+  if(hood && city && slugify(hood)===slugify(city)) hood="";
+  return buildSlug([SEO_BASE.replace(/^\//,""), loc.stateLabel||loc.stateSlug, loc.areaLabel||loc.areaSlug, city, hood]);
+}
 function buildSearchSlug(f){ f=f||currentSeoFilters(); let path=buildLocationSlug(f); if(f.treatment) path+="/"+treatmentSlug(f.treatment); if(f.carrier) path+="/"+carrierSlug(f.carrier); return path; }
 /* canonical/URL path: nationwide homepage uses /find-my-dentist, located views use /best-ppo-dentists/... */
 function seoPath(f){ f=f||currentSeoFilters(); return seoPlace(f) ? buildSearchSlug(f) : HOME_PATH; }
@@ -5829,15 +5983,53 @@ function renderQuickChips(){
   /* Quick-pick chips are cities only (plus "Near me") — no treatment or carrier chips. */
   host.innerHTML=h;
 }
+/* Navigate the SPA to a place by name (crawlable <a href> still carries the real URL). */
+function goPlace(place, ev){ if(ev&&ev.preventDefault) ev.preventDefault();
+  var w=document.getElementById('q-where'); if(w) w.value=place||"";
+  state.seoHome=false; state.city=""; state.allCounty=false; state._picked=null;
+  if(typeof runSearch==='function') runSearch();
+  var lst=document.getElementById('listings'); if(lst&&lst.scrollIntoView) lst.scrollIntoView({behavior:'smooth',block:'start'});
+  return false;
+}
+function seoLink(label, href, place){ return '<a href="'+esc(href)+'" onclick="return goPlace(\''+jsq(place)+'\',event)">'+esc(label)+'</a>'; }
+
+/* Data-driven crawlable link blocks: real cities, neighborhoods, and verified carriers
+   present in the current results, with a static fallback so the section is never empty. */
 function renderSeoLinks(){
   const f=currentSeoFilters();
   const facetCity = f.cityLabel || seoPlace(f) || "your area";
+  const rows = (typeof ctxOffices==='function') ? ctxOffices() : [];
+
+  /* Generate full, aligned link columns for whatever was searched. Cities are real (from the
+     searched market  state in the dataset); treatments + carriers are templated to the place
+     so the section is always complete and balanced (N rows per column = no ragged gaps). */
+  const N=8;
+  const all=(typeof loadDentistsFromSupabase==='function') ? (loadDentistsFromSupabase()||[]) : [];
+  const repD = rows[0] || all[0] || null;
+  const stOf = d => (d && (d.location || stateFullName(d.state))) || "";
+  const place = f.cityLabel || seoPlace(f) || (repD && repD.city) || "your area";
+
+  /* CITY column — in view  same market  same state, deduped, filled to N (all real places) */
   const cityHost=document.getElementById('seo-cities');
-  if(cityHost) cityHost.innerHTML = SEO_CITY_KEYS.map(k=> linkHtml(`PPO dentists in ${cityLabelFor(k)}`, seoHref(slugify(cityLabelFor(k))), k, "", "")).join("");
+  if(cityHost){
+    const seen={}, picks=[];
+    const add = list => list.forEach(function(d){ if(picks.length>=N) return; var c=(d.city||'').trim(); if(!c) return; var k=slugify(c); if(seen[k]) return; seen[k]=1; picks.push(d); });
+    add(rows);
+    if(picks.length<N && repD){ const mk=repD.marketArea||""; add(all.filter(d=>(d.marketArea||"")===mk)); }
+    if(picks.length<N && repD){ const sv=stOf(repD); add(all.filter(d=>stOf(d)===sv)); }
+    cityHost.innerHTML = picks.slice(0,N).map(function(d){ return seoLink('PPO dentists in '+d.city, ctxHubUrl(d,{}), d.city); }).join("");
+  }
+
+  /* TREATMENT column — N treatments, anchored to the searched place */
   const tHost=document.getElementById('seo-treatments');
-  if(tHost) tHost.innerHTML = SEO_TREATMENTS.map(t=> linkHtml(`${t} dentists in ${facetCity}`, seoHref(f.citySlug,t), null, t, "")).join("");
+  if(tHost && repD) tHost.innerHTML = SEO_TREATMENTS.slice(0,N).map(function(t){ return seoLink(t+' dentists in '+place, ctxHubUrl(repD,{treatment:t}), place); }).join("");
+
+  /* CARRIER column — N carriers, anchored to the searched place */
   const cHost=document.getElementById('seo-carriers');
-  if(cHost) cHost.innerHTML = SEO_CARRIERS.map(c=> linkHtml(`${c} PPO dentists in ${facetCity}`, seoHref(f.citySlug,"",c), null, "", c)).join("");
+  if(cHost && repD) cHost.innerHTML = SEO_CARRIERS.slice(0,N).map(function(c){ return seoLink(c+' PPO dentists in '+place, ctxHubUrl(repD,{carrier:c}), place); }).join("");
+
+  /* localize the section heading to the searched place */
+  try{ var hd=document.querySelector('#seo-disc-toggle > span:first-child'); if(hd) hd.textContent = (place&&place!=='your area') ? ('Browse PPO dentists in '+place+' by city, treatment & carrier') : 'Browse PPO dentists by city, treatment & carrier'; }catch(_e){}
 }
 function renderNearbyCityLinks(){
   const host=document.getElementById('seo-nearby-links'); if(!host) return;
@@ -5848,7 +6040,226 @@ function renderNearbyCityLinks(){
   if(title) title.textContent = f.cityLabel ? `Nearby PPO dentist searches around ${f.cityLabel}` : "Nearby PPO dentist searches";
   host.innerHTML = list.map(k=> `<a href="${esc(seoHref(slugify(cityLabelFor(k))))}" onclick="return goSeo('${jsq(k)}','','',event)">PPO dentists in ${esc(cityLabelFor(k))}<small>${esc(cityLabelFor(baseKey))} area</small></a>`).join("");
 }
-function renderSeo(){ renderQuickChips(); renderSeoLinks(); renderNearbyCityLinks(); }
+function renderSeo(){ renderQuickChips(); renderSeoLinks(); renderNearbyCityLinks(); try{ renderContextCards(); }catch(_e){} }
+
+/* ============================================================================
+   v200 — CONTEXTUAL CRAWLABLE CARD ENGINE
+   Search-aware cards that turn the right rail + the listings column into an
+   internal-link + conversion surface. Everything here is built from the offices
+   actually in view (LAST), so links are never empty, and every card that can be
+   a crawlable <a href> to a real /ppo-dentists/ page, is one.
+   ========================================================================== */
+
+/* Map a messy insurance_networks string to a canonical carrier, or "" for placeholders. */
+function normCarrier(raw){
+  var s=String(raw||"").toLowerCase();
+  if(!s || /verification|pending|friendly|recommended|verify before|not confirmed/.test(s)) return "";
+  if(/united\s*health|uhc/.test(s)) return "UnitedHealthcare";
+  if(/delta/.test(s)) return "Delta Dental";
+  if(/guardian/.test(s)) return "Guardian";
+  if(/ameritas/.test(s)) return "Ameritas";
+  if(/met\s*life/.test(s)) return "MetLife";
+  if(/cigna/.test(s)) return "Cigna";
+  if(/aetna/.test(s)) return "Aetna";
+  if(/anthem|blue\s*cross|bcbs/.test(s)) return "Anthem";
+  if(/humana/.test(s)) return "Humana";
+  return "";
+}
+function carrierIsVerified(c){ return CARRIER_VERIFIED.indexOf(c)>=0; }
+
+/* Build a hub URL for a place + optional facet, straight from an office's geo fields. */
+function ctxHubUrl(d, opt){
+  opt=opt||{};
+  var path=buildLocationSlug({ stateLabel:(d.location||stateFullName(d.state)||""), areaLabel:(d.localArea||""), cityLabel:(d.city||""), hoodLabel:(opt.useHood?d.subArea:"") });
+  if(opt.carrier)        path += "/" + carrierSlug(opt.carrier);
+  else if(opt.treatment) path += "/" + treatmentSlug(opt.treatment);
+  else if(opt.language)  path += "/" + slugify(opt.language) + "-speaking";
+  return path;
+}
+
+/* The offices currently in view (post-search, post-filter). */
+function ctxOffices(){
+  try{ if(typeof LAST!=="undefined" && LAST && LAST.length) return LAST; }catch(_e){}
+  try{ return loadDentistsFromSupabase()||[]; }catch(_e){ return []; }
+}
+
+/* Derive a deduped, ranked pool of contextual cards from the offices in view. */
+function buildContextCards(){
+  var rows=ctxOffices(); var cards=[];
+  if(!rows || !rows.length) return cards;
+
+  /* 1) City × carrier combos actually present in the data (verified carriers first). */
+  var seen={}, combos=[];
+  rows.forEach(function(d){
+    var city=(d.city||"").trim(); if(!city) return;
+    (d.carriers||[]).forEach(function(raw){
+      var c=normCarrier(raw); if(!c) return;
+      var key=slugify(city)+"|"+c; if(seen[key]) { seen[key].n++; return; }
+      seen[key]={n:1}; combos.push({city:city, carrier:c, d:d});
+    });
+  });
+  combos.sort(function(a,b){
+    var av=carrierIsVerified(a.carrier)?0:1, bv=carrierIsVerified(b.carrier)?0:1;
+    if(av!==bv) return av-bv; return (seen[slugify(b.city)+"|"+b.carrier].n)-(seen[slugify(a.city)+"|"+a.carrier].n);
+  });
+  combos.slice(0,8).forEach(function(x){
+    var verified=carrierIsVerified(x.carrier);
+    cards.push({ type:"carrier", weight:verified?1:3,
+      href: ctxHubUrl(x.d,{carrier:x.carrier}),
+      eyebrow: verified?"Verified PPO acceptance":"Listed · confirm before booking",
+      title: x.city+" dentists who accept "+x.carrier,
+      sub: verified ? "PPO offices in "+x.city+"." : "Listed from public data — ask us to verify.",
+      cta: "See "+x.carrier+" offices ", carrier:x.carrier, city:x.city, verified:verified });
+  });
+
+  /* 2) Promoted plan to purchase (featured placement) — pick a promoted carrier seen in view, else default UHC. */
+  var promo = CARRIER_PROMOTED.filter(function(c){ return combos.some(function(x){return x.carrier===c;}); })[0] || "UnitedHealthcare";
+  cards.push({ type:"promo", weight:2, href:"/plans/"+slugify(promo),
+    eyebrow:"PPO plan · CoverCapy",
+    title:promo+" PPO plans",
+    sub:"Compare coverage & activate before your visit. Members earn Capy Crowns.",
+    cta:"Compare "+promo+" plans " });
+
+  /* 3) Language × city (where languages exist in view). */
+  var langSeen={}, langs=[];
+  rows.forEach(function(d){ var city=(d.city||"").trim(); (d.languages||[]).forEach(function(L){
+    L=String(L||"").trim(); if(!L || /english/i.test(L) || !city) return;
+    var k=slugify(city)+"|"+slugify(L); if(langSeen[k]) return; langSeen[k]=1; langs.push({city:city,lang:L,d:d}); }); });
+  langs.slice(0,3).forEach(function(x){ cards.push({ type:"lang", weight:4,
+    href: ctxHubUrl(x.d,{language:x.lang}),
+    eyebrow:"Language match",
+    title: x.lang+"-speaking PPO dentists in "+x.city,
+    sub:"Find a "+x.lang+"-speaking office near "+x.city+".", cta:"Browse " }); });
+
+  /* 4) Nearby places to keep crawling (sibling cities from view). */
+  var cityset={}, nearbyCities=[];
+  rows.forEach(function(d){ var c=(d.city||"").trim(); if(c && !cityset[slugify(c)]){ cityset[slugify(c)]=1; nearbyCities.push(d); } });
+  nearbyCities.slice(1,5).forEach(function(d){ cards.push({ type:"city", weight:5,
+    href: ctxHubUrl(d,{}), eyebrow:"Nearby", title:"PPO dentists in "+d.city,
+    sub:"Compare offices, ratings and PPO fit in "+d.city+".", cta:"View "+d.city+" " }); });
+
+  /* 5) Standing conversion CTAs — always available. */
+  cards.push({ type:"verify", weight:6, href:"javascript:void(0)", action:"askVerifyPpo",
+    eyebrow:"Not sure it's covered?", title:"Ask CoverCapy to verify your PPO",
+    sub:"We'll confirm acceptance before you book.", cta:"Request a check " });
+  cards.push({ type:"nominate", weight:7, href:"javascript:void(0)", action:"nominateDentist",
+    eyebrow:"Don't see your dentist?", title:"Nominate a dentist",
+    sub:"Ask an office to join and confirm their PPO list.", cta:"Nominate an office " });
+  cards.push({ type:"claim", weight:8, href:"javascript:void(0)", action:"claimProfile",
+    eyebrow:"Are you this office?", title:"Claim your profile",
+    sub:"Confirm the PPO plans you accept so patients find you.", cta:"Claim & confirm PPOs " });
+
+  return cards;
+}
+
+/* Per-type icon + right-side state pill, matching the CoverCapy Network eco-rows. */
+function ctxIcon(c){
+  if(c.type==="carrier") return "🦷";
+  if(c.type==="promo")   return "◆";
+  if(c.type==="lang")    return "🗣";
+  if(c.type==="city")    return "📍";
+  if(c.type==="verify")  return "✓";
+  if(c.type==="nominate")return "＋";
+  if(c.type==="claim")   return "★";
+  return "◦";
+}
+function ctxState(c){
+  if(c.type==="carrier") return c.verified ? {t:"Verified",cls:""} : {t:"Listed",cls:"soon"};
+  if(c.type==="promo")   return {t:"Featured",cls:"feat"};
+  return {t:"",cls:"cta"};
+}
+/* One contextual row in eco-row form (icon · title/sub · state pill). */
+function ctxRowHtml(c){
+  var st=ctxState(c);
+  var href=(c.href && c.href.indexOf("javascript:")!==0) ? c.href : "javascript:void(0)";
+  var on = c.action ? ' onclick="ctxCardAction(\''+c.action+'\',event)"' : ' onclick="track&&track(\'ctx_card\',{t:\''+c.type+'\'})"';
+  var rowCls = c.type==="promo" ? " eco-feat" : (c.verified===true ? " eco-on" : "");
+  return '<a class="eco-row ctx-row'+rowCls+'" href="'+esc(href)+'"'+on+'>'
+    + '<span class="eco-ic">'+ctxIcon(c)+'</span>'
+    + '<span class="eco-tx"><b>'+esc(c.title)+'</b><span>'+esc(c.sub)+'</span></span>'
+    + '<span class="eco-state '+st.cls+'">'+esc(st.t)+'</span>'
+    + '</a>';
+}
+/* An eco-card wrapper (same chrome as the CoverCapy Network module). */
+function ctxEcoCard(eyebrow, title, rowsHtml){
+  return '<div class="eco-card ctx-eco">'
+    + '<div class="ctx-echd"><span class="eco-eyebrow">'+esc(eyebrow)+'</span><span class="eco-collttl">'+esc(title)+'</span></div>'
+    + '<div class="eco-rows">'+rowsHtml+'</div></div>';
+}
+
+var _ctxPool=[], _ctxTick=0, _ctxTimer=null;
+function renderContextCards(){
+  var rail=document.getElementById('ctx-rail'); if(!rail) return;
+  _ctxPool = buildContextCards().filter(function(c){ return c.title; });
+  if(!_ctxPool.length){ rail.innerHTML=''; return; }
+  _ctxTick=0; paintCtxRail();
+  if(_ctxTimer) clearInterval(_ctxTimer);
+  /* rotate the dynamic rows every 7s so users see different intent links as they read */
+  _ctxTimer=setInterval(function(){ _ctxTick++; paintCtxRail(); }, 7000);
+  try{ injectInlineCtxCards(); }catch(_e){}
+}
+function paintCtxRail(){
+  var rail=document.getElementById('ctx-rail'); if(!rail || !_ctxPool.length) return;
+  var dyn  =_ctxPool.filter(function(c){ return ["carrier","lang","city"].indexOf(c.type)>=0; });
+  var promo=_ctxPool.filter(function(c){ return c.type==="promo"; })[0];
+  var fixed=_ctxPool.filter(function(c){ return ["verify","nominate","claim"].indexOf(c.type)>=0; });
+  var show=[]; var n=Math.min(3, dyn.length);
+  for(var i=0;i<n;i++){ show.push(dyn[(_ctxTick+i)%dyn.length]); }
+  var html="";
+  if(show.length) html += ctxEcoCard("Related to your search","Searches that match your results", show.map(ctxRowHtml).join(""));
+  if(promo)       html += ctxEcoCard("PPO plan · CoverCapy","Featured coverage", ctxRowHtml(promo));
+  if(fixed.length)html += ctxEcoCard("Not sure it's covered?","Get coverage confirmed", fixed.map(ctxRowHtml).join(""));
+  rail.innerHTML = html;
+}
+/* Drop a contextual eco-card between result rows so it appears as the user scrolls. */
+function injectInlineCtxCards(){
+  var root=document.getElementById('listings'); if(!root || !_ctxPool.length) return;
+  root.querySelectorAll('.ctx-inline').forEach(function(n){ n.remove(); });
+  var cards=Array.prototype.filter.call(root.children, function(n){ return n.classList && n.classList.contains('lcard'); });
+  var dyn=_ctxPool.filter(function(c){ return ["carrier","lang","city"].indexOf(c.type)>=0; });
+  if(!dyn.length || cards.length<4) return;
+  var spots=[3,8,14], used=0;
+  spots.forEach(function(pos){ if(pos<cards.length && used<dyn.length){
+    var html='<div class="ctx-inline">'+ctxEcoCard("Related to your search","",ctxRowHtml(dyn[used++]))+'</div>';
+    cards[pos].insertAdjacentHTML('beforebegin', html);
+  }});
+}
+/* Conversion CTA actions — wired to existing flows where present, safe fallbacks otherwise. */
+function ctxCardAction(action, ev){
+  if(ev&&ev.preventDefault) ev.preventDefault();
+  track&&track('ctx_action',{action:action});
+  if(action==="askVerifyPpo"){
+    if(typeof openVerifyModal==="function") return openVerifyModal();
+    toast('Verify a PPO',"Tell us your plan and an office and we'll confirm acceptance.",'info'); return;
+  }
+  if(action==="nominateDentist"){
+    if(typeof openNominateModal==="function") return openNominateModal();
+    toast('Nominate a dentist',"Share an office and we'll invite them to confirm their PPO list.",'info'); return;
+  }
+  if(action==="claimProfile"){
+    if(typeof openClaimModal==="function") return openClaimModal();
+    window.location.href="capy-accreditation.html"; return;
+  }
+}
+/* inject the card styles once */
+(function ctxStyles(){
+  if(document.getElementById('ctx-css')) return;
+  var css='<style id="ctx-css">'
+  +'.ctx-rail{display:flex;flex-direction:column;gap:14px;margin-bottom:14px}'
+  +'.ctx-eco .ctx-echd{display:flex;flex-direction:column;gap:3px;min-width:0;padding-bottom:12px}'
+  +'.ctx-row .eco-tx b{white-space:normal}'
+  +'.ctx-row .eco-tx span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}'
+  /* verified PPO acceptance — gold accent on the row icon */
+  +'.ctx-row.eco-feat .eco-ic{background:var(--gold-soft);border-color:var(--gold-2);color:var(--gold)}'
+  +'.ctx-row.eco-feat{background:linear-gradient(180deg,#FFFDF6,#FBF6E8);border-color:var(--gold-2)}'
+  /* "Featured" pill (replaces Sponsored) */
+  +'.eco-state.feat{color:var(--gold);background:var(--gold-soft);border-color:var(--gold-2)}'
+  +'.ctx-inline{margin:2px 0}'
+  +'.ctx-inline .eco-card{padding:13px 14px}'
+  +'.ctx-inline .ctx-echd{display:none}'
+  +'</style>';
+  document.head.insertAdjacentHTML('beforeend', css);
+})();
 /* v176: skeleton placeholder cards for the listings column. Mirrors the real
    .lcard structure so first paint shows shape and there is no shift when live
    offices arrive and render() overwrites #listings. */
@@ -6066,8 +6477,7 @@ function ucmdDentistItem(d){
 
 /* ---- the resolver ---- */
 function ucmdUnivItem(u){
-  var subMap={uc:'University of California',csu:'Cal State',community_college:'Community college',private_university:'Private university',public_university:'Public university',college:'College'};
-  var subLabel=subMap[u.sub]||'University';
+  var subLabel=univSubLabel(u.sub);
   var place=[u.city,u.state].filter(Boolean).join(', ');
   return { type:'university', label:u.name, subtitle:subLabel+(place?(' \u00b7 '+place):''), icon:'cap', action:'Find dentists nearby', source:'universities', lat:u.lat, lng:u.lng,
     run:(function(la,ln,nm){ return function(){ ucmdCenterSearch(la,ln,nm,state.distance||8); }; })(u.lat,u.lng,u.name) };
@@ -6235,7 +6645,7 @@ function ucmdRowHtml(it, q, cls){
   return '<div class="ucmd-row'+(cls||'')+'" role="option" data-k="'+idx+'" onmousedown="event.preventDefault();ucmdRun('+idx+')">'
     +'<span class="ucmd-ico">'+ico+'</span>'
     +'<span class="ucmd-txt"><span class="ucmd-ttl">'+ucmdHL(it.label,q)+'</span><span class="ucmd-sub2">'+ucmdEsc(it.subtitle||'')+'</span></span>'
-    +'<span class="ucmd-act">'+ucmdEsc(it.action||'Open')+UCMD_ICONS.arrow+'</span>'
+    +'<span class="ucmd-act">'+ucmdEsc(it.action||'Open')+'</span>'
   +'</div>';
 }
 function ucmdSection(title){ return '<div class="ucmd-sec">'+ucmdEsc(title)+'</div>'; }
@@ -6266,7 +6676,7 @@ function ucmdRender(q){
 }
 function ucmdActivePaint(){ const rows=document.querySelectorAll('#ucmd-menu .ucmd-row'); rows.forEach(function(r,i){ r.classList.toggle('active', i===ucmdIdx); }); const el=document.querySelector('#ucmd-menu .ucmd-row.active'); if(el) el.scrollIntoView({block:'nearest'}); }
 function ucmdMove(d){ if(!ucmdItems.length) return; ucmdIdx=(ucmdIdx+d+ucmdItems.length)%ucmdItems.length; ucmdActivePaint(); }
-function ucmdRun(i){ const it=ucmdItems[i]; if(!it) return; ucmdClose(); try{ it.run(); }catch(e){ console.warn('ucmd run failed', e); } }
+function ucmdRun(i){ const it=ucmdItems[i]; if(!it) return; ucmdClose(); try{ ccSeek(true, it.label||''); }catch(_e){} try{ it.run(); }catch(e){ console.warn('ucmd run failed', e); } }
 function ucmdClose(){ const menu=document.getElementById('ucmd-menu'), inp=document.getElementById('ucmd-input'); if(menu) menu.hidden=true; if(inp) inp.setAttribute('aria-expanded','false'); }
 function ucmdInput(v){ clearTimeout(ucmdT); ucmdT=setTimeout(function(){ ucmdRender(v); }, 110); }
 function ucmdFocus(){ const inp=document.getElementById('ucmd-input'); if(inp && inp.value.trim()) ucmdRender(inp.value); }
@@ -6730,7 +7140,7 @@ a.eco-row:hover{border-color:var(--teal-300); transform:translateY(-1px); box-sh
 </style>
 
 <!-- ============================================================
-     v92 — VERIFY INSURANCE ACCEPTANCE (patient → dentist growth loop)
+     v92 — VERIFY INSURANCE ACCEPTANCE (patient  dentist growth loop)
      ============================================================ -->
 <div class="scrim" id="m-insverify"><div class="modal iv-modal"><div class="mh"><h3 id="iv-title">Verify PPO acceptance</h3><button class="x" onclick="closeModal('m-insverify')" aria-label="Close">×</button></div><div class="mb"><p class="iv-sub" id="iv-sub"></p><div id="iv-body"></div></div></div></div>
 
@@ -6971,7 +7381,7 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
 })();
 </script>
 <style id="cc-geo-css">
-/* v99 — LIST VIEW: close the right rail, widen the list, and browse by region → location → area → city */
+/* v99 — LIST VIEW: close the right rail, widen the list, and browse by region  location  area  city */
 @media(min-width:981px){ .layout.listmode{grid-template-columns:288px minmax(0,1fr)} }
 .layout.listmode .prail{display:none !important}
 .layout.listmode .mapcard{display:none}
@@ -7014,7 +7424,7 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
 .cc-geocard .nat-wait:hover{color:var(--teal-night); text-decoration:underline}
 </style>
 <script>
-/* v99 (rev v106) — region → county → city browse for the list view, driven by search_locations (CITIES[city].area) + CITY_COUNTS */
+/* v99 (rev v106) — region  county  city browse for the list view, driven by search_locations (CITIES[city].area) + CITY_COUNTS */
 (function(){
   function gcount(ck){ try{ return (CITY_COUNTS && CITY_COUNTS[ck]) || 0; }catch(e){ return 0; } }
   function gtotal(){ try{ return Object.keys(CITY_COUNTS).reduce(function(s,k){ return s+(CITY_COUNTS[k]||0); },0); }catch(e){ return 0; } }
@@ -7045,7 +7455,7 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
       '<div class="nat-stat"><div class="nat-num">'+offices.toLocaleString()+'</div><div class="nat-lbl">PPO offices live across <b>'+cityN+' '+(cityN===1?'city':'cities')+'</b> in <b>'+esc(stateLbl)+'</b></div></div>'+
       '<div class="nat-soonhead">Expanding to</div>'+
       '<div class="nat-grid">'+chips+'</div>'+
-      '<a class="nat-wait" href="mailto:hello@covercapy.com?subject=CoverCapy%20state%20waitlist">Don’t see your state? Join the waitlist →</a>';
+      '<a class="nat-wait" href="mailto:hello@covercapy.com?subject=CoverCapy%20state%20waitlist">Don’t see your state? Join the waitlist </a>';
   };
   window.geoToggle=function(el){ var g=el.closest('.geo-grp'); if(g) g.classList.toggle('open'); };
   function geoMark(kind,key){
@@ -7108,7 +7518,7 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
 </style>
 <style id="cc-v103-css">
 /* ===== v103 — declutter + weekend + subtle claim ===== */
-#fmc-life{display:none}                                   /* CCPets / lifestyle removed from the main map; it lives in drawer → Location */
+#fmc-life{display:none}                                   /* CCPets / lifestyle removed from the main map; it lives in drawer  Location */
 .chip.chip-wk{color:var(--teal-night); background:var(--mint-soft); border-color:#bfe9d3; font-weight:600}
 .cc-claimline{margin:11px 0 0; padding-top:11px; border-top:1px solid var(--line-2); font:500 12px/1.45 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint)}
 .cc-claimline button{background:none; border:none; padding:0; color:var(--teal-700); font:inherit; font-weight:700; cursor:pointer; text-decoration:underline; text-underline-offset:2px}
@@ -7529,7 +7939,7 @@ window.ucmdRowHtml=function(it, q, cls){
     +'<span class="ucmd-ico">'+ico+'</span>'
     +'<span class="ucmd-txt"><span class="ucmd-ttl">'+ucmdHL(it.label,q)+'</span><span class="ucmd-sub2">'+ucmdEsc(it.subtitle||'')+'</span></span>'
     +del
-    +'<span class="ucmd-act">'+ucmdEsc(it.action||'Open')+UCMD_ICONS.arrow+'</span>'
+    +'<span class="ucmd-act">'+ucmdEsc(it.action||'Open')+'</span>'
   +'</div>';
 };
 window.ucmdActivePaint=function(){
