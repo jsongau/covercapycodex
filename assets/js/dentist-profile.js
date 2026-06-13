@@ -14,11 +14,17 @@
   const SUPABASE_URL  = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdmJlcWxlZnd3amxyYnl4cGJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTk1NzQsImV4cCI6MjA5NTIzNTU3NH0.AIP9Y5rQ4Ey5gbvxZT5jEVfCL7mxEAJX0KfX50JWmDQ';
 
-  // ── Slug from URL ─────────────────────────────────────────────────────────
+  // ── Slug + region from URL ────────────────────────────────────────────────
   function slugFromUrl() {
-    // /dentists/california/orange-county/fountain-valley/kyt-dental-services/
+    // /dentists/california/{region}/{city}/{slug}/
     const parts = window.location.pathname.replace(/\/$/, '').split('/');
     return parts[parts.length - 1] || null;
+  }
+
+  function regionFromUrl() {
+    // parts: ['','dentists','california','orange-county','city','slug']
+    const parts = window.location.pathname.replace(/\/$/, '').split('/');
+    return parts[3] || 'orange-county'; // fallback to OC
   }
 
   // ── Auth check (Supabase session in localStorage) ─────────────────────────
@@ -68,10 +74,7 @@
           </svg>
           Platinum Elite · Verified &amp; Accredited
         </span>
-        <span class="pdp-badge-sub">Claimed profile · CoverCapy accredited · Last verified June 2026</span>`;
-    } else if (d.is_claimed) {
-      el.innerHTML = `<span class="pdp-badge pdp-badge--claimed">✓ Claimed Profile</span>
-        <span class="pdp-badge-sub">This practice manages their CoverCapy listing</span>`;
+        <span class="pdp-badge-sub">CoverCapy accredited · Last verified June 2026</span>`;
     } else {
       el.innerHTML = `<span class="pdp-badge pdp-badge--public">Public Directory Listing</span>
         <span class="pdp-badge-sub">Last updated: June 2026</span>`;
@@ -85,27 +88,27 @@
 
     const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent((d.address || d.practice_name) + ' ' + (d.city || '') + ' CA')}`;
     const phone = d.phone || '';
+    const website = d.website_url || d.website || '';
 
+    // Universal CTA order: Verify PPO (primary) → Call → Website → Directions
+    el.innerHTML = `
+      <a href="/verify-ppo-benefits/" class="btn btn-primary">Verify PPO Coverage <span class="arr">→</span></a>
+      ${phone ? `<a href="tel:${phone.replace(/\D/g,'')}" class="btn btn-gold">Call Office</a>` : ''}
+      ${website ? `<a href="${website}" target="_blank" rel="noopener noreferrer" class="btn btn-line">Visit Website →</a>` : ''}
+      <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-line">Get Directions →</a>`;
     if (isPlatinumElite(d)) {
-      el.innerHTML = `
-        <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions <span class="arr">→</span></a>
-        ${phone ? `<a href="tel:${phone.replace(/\D/g,'')}" class="btn btn-gold">Call Office</a>` : ''}
-        <a href="#prof-review-section" class="btn btn-line">Leave a Review</a>`;
-    } else {
-      el.innerHTML = `
-        <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions <span class="arr">→</span></a>
-        <a href="/compare-ppo-dental-plans" class="btn btn-gold">Verify PPO Acceptance</a>
-        <a href="/nominate-dentist" class="btn btn-line">Nominate This Dentist</a>`;
+      el.innerHTML += `<a href="#prof-review-section" class="btn btn-line">Leave a Review →</a>`;
     }
   }
 
   // ── 3. Insurance networks ─────────────────────────────────────────────────
-  const PROMOTED = ['Delta Dental', 'Guardian', 'Aetna', 'Cigna', 'MetLife', 'Ameritas'];
+  const PROMOTED = ['Delta Dental', 'Guardian', 'Aetna', 'Cigna', 'MetLife', 'Humana', 'Ameritas'];
 
   function patchNetworks(d) {
     const el = document.getElementById('prof-networks');
     if (!el) return;
 
+    const region = regionFromUrl(); // e.g. 'orange-county' or 'inland-empire'
     const confirmed = (d.insurance_networks || []).filter(n => n !== 'PPO Friendly');
     const elite = isPlatinumElite(d);
 
@@ -118,9 +121,9 @@
     ${isIn ? '✓ In-Network' : elite ? '✗ Out-of-Network' : 'Verify with office'}
   </span>
   ${isIn
-    ? `<p style="font-size:13px;color:var(--ink-soft);margin:6px 0 8px">Confirmed in-network${elite ? ' · Verified by CoverCapy' : ''}.</p>`
-    : `<p style="font-size:13px;color:var(--ink-soft);margin:6px 0 8px">${elite ? 'This office does not participate in this network.' : 'Contact the office to verify current PPO acceptance.'}</p>`}
-  <a href="/ppo-dentists/california/orange-county/${carrierSlug}/">Browse ${carrier} dentists →</a>
+    ? `<p class="cpc-note">Confirmed in-network${elite ? ' · Verified by CoverCapy' : ''}.</p>`
+    : `<p class="cpc-note">${elite ? 'This office does not participate in this network.' : 'Contact the office to verify current PPO acceptance.'}</p>`}
+  <a class="cpc-link" href="/ppo-dentists/california/${region}/${carrierSlug}/">Browse ${carrier} dentists →</a>
 </div>`;
     });
 
@@ -340,7 +343,7 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
       'prof-ledger-phone':        d.phone || '—',
       'prof-ledger-networks':     (d.insurance_networks || []).filter(n=>n!=='PPO Friendly').join(', ') || 'Verify with office',
       'prof-ledger-weekend':      d.open_weekends ? 'Open weekends' : (d.weekend_hours_note || 'Verify with office'),
-      'prof-ledger-tier':         isPlatinumElite(d) ? '⭐ Platinum Elite' : d.is_claimed ? 'Claimed Profile' : 'Public Directory Listing',
+      'prof-ledger-tier':         isPlatinumElite(d) ? '⭐ Platinum Elite' : 'Public Directory Listing',
       'prof-ledger-languages':    (d.languages || []).join(', ') || 'English',
     };
     Object.entries(map).forEach(([id, val]) => {
@@ -354,13 +357,22 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
 /* Tier badges */
 .pdp-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:5px 14px;border:1.5px solid transparent}
 .pdp-badge--platinum{background:#FFF3D6;color:#7a5200;border-color:#e8c96a}
-.pdp-badge--claimed{background:#E6F4F1;color:#0D7A6B;border-color:#a8d8ce}
 .pdp-badge--public{background:#f5f1ea;color:#6b5832;border-color:#e8e3d8}
 .pdp-badge-sub{font-size:12px;color:var(--ink-soft);margin-left:8px}
 
-/* Insurance cards */
-.cpc--in{border-color:#a8d8ce !important}
+/* Insurance carrier cards */
+.carrier-profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+@media(max-width:900px){.carrier-profile-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.carrier-profile-grid{grid-template-columns:1fr}}
+.cpc{background:#fff;border:1.5px solid #e8e3d8;border-radius:12px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:6px;transition:box-shadow .18s,border-color .18s}
+.cpc:hover{box-shadow:0 4px 16px rgba(8,42,48,.08)}
+.cpc--in{border-color:#a8d8ce !important;background:linear-gradient(135deg,#f5fdfb 0%,#edf9f5 100%)}
+.cpc-name{font-size:14px;font-weight:800;color:var(--teal-night)}
+.cpc-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;width:fit-content;background:#f5f1ea;color:#6b5832;border:1px solid #e8e3d8}
 .cpc-badge--in{background:#E6F4F1 !important;color:#0D7A6B !important;border-color:#a8d8ce !important}
+.cpc-note{font-size:13px;color:var(--ink-soft);margin:0;flex:1}
+.cpc-link{font-size:12px;font-weight:700;color:var(--gold-deep);text-decoration:none;margin-top:auto}
+.cpc-link:hover{text-decoration:underline}
 
 /* Review meter */
 .pdp-rm-header{margin-bottom:20px}
