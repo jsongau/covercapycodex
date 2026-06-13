@@ -52,8 +52,8 @@
   function isPlatinumElite(d) {
     return d.membership_tier === 'platinum_elite' || d.featured_tier === 'platinum_elite';
   }
-  function isCapyAccredited(d) {
-    return isPlatinumElite(d) || d.accreditation_status === 'Capy Accredited' || d.is_claimed;
+  function isVerified(d) {
+    return !isPlatinumElite(d) && (d.featured_tier === 'verified' || d.membership_tier === 'verified');
   }
 
   function stars(r, max = 5) {
@@ -75,6 +75,10 @@
           Platinum Elite · Verified &amp; Accredited
         </span>
         <span class="pdp-badge-sub">CoverCapy accredited · Last verified June 2026</span>`;
+    } else if (isVerified(d)) {
+      el.innerHTML = `
+        <span class="pdp-badge pdp-badge--verified">✓ Verified Listing</span>
+        <span class="pdp-badge-sub">CoverCapy verified · Last updated June 2026</span>`;
     } else {
       el.innerHTML = `<span class="pdp-badge pdp-badge--public">Public Directory Listing</span>
         <span class="pdp-badge-sub">Last updated: June 2026</span>`;
@@ -343,7 +347,7 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
       'prof-ledger-phone':        d.phone || '—',
       'prof-ledger-networks':     (d.insurance_networks || []).filter(n=>n!=='PPO Friendly').join(', ') || 'Verify with office',
       'prof-ledger-weekend':      d.open_weekends ? 'Open weekends' : (d.weekend_hours_note || 'Verify with office'),
-      'prof-ledger-tier':         isPlatinumElite(d) ? '⭐ Platinum Elite' : 'Public Directory Listing',
+      'prof-ledger-tier':         isPlatinumElite(d) ? '⭐ Platinum Elite' : isVerified(d) ? '✓ Verified' : 'Public Directory Listing',
       'prof-ledger-languages':    (d.languages || []).join(', ') || 'English',
     };
     Object.entries(map).forEach(([id, val]) => {
@@ -391,6 +395,18 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
 .pdp-rm-link{font-size:12px;font-weight:700;color:var(--gold-deep);text-decoration:none;white-space:nowrap}
 .pdp-rm-link:hover{text-decoration:underline}
 
+/* Verified badge */
+.pdp-badge--verified{background:#E6F4F1;color:#0D7A6B;border-color:#a8d8ce}
+
+/* Platinum Elite upsell */
+.pdp-upsell{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;background:linear-gradient(135deg,#fffdf7 0%,#fff8ec 100%);border:2px solid #e8c96a;border-radius:16px;padding:28px 28px 28px 28px;margin:0}
+@media(max-width:700px){.pdp-upsell{grid-template-columns:1fr}.pdp-upsell-right{display:none}}
+.pdp-upsell-eyebrow{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8a6200;margin:0 0 8px}
+.pdp-upsell-h{font-size:20px;font-weight:700;color:var(--teal-night);margin:0 0 10px;line-height:1.3}
+.pdp-upsell-body{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 14px}
+.pdp-upsell-list{list-style:none;padding:0;margin:0 0 4px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:var(--teal-night)}
+.pdp-upsell-preview{background:#fff;border:1.5px solid #e8c96a;border-radius:12px;padding:16px;min-width:180px;max-width:200px}
+
 /* Review form */
 .pdp-review-gate{text-align:center;padding:40px 20px}
 .pdp-review-form{display:flex;flex-direction:column;gap:20px;max-width:640px}
@@ -414,6 +430,47 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
     }
   }
 
+  // ── 7. Platinum Elite upsell ──────────────────────────────────────────────
+  function patchUpsell(d) {
+    const el = document.getElementById('prof-upsell');
+    if (!el || isPlatinumElite(d)) { if (el) el.style.display = 'none'; return; }
+
+    const name = d.practice_name || 'this practice';
+    el.innerHTML = `
+<div class="pdp-upsell">
+  <div class="pdp-upsell-left">
+    <p class="pdp-upsell-eyebrow">Is this your practice?</p>
+    <h3 class="pdp-upsell-h">Claim &amp; upgrade ${name}'s CoverCapy profile</h3>
+    <p class="pdp-upsell-body">Platinum Elite offices display verified insurance networks, full review aggregates across Google · Yelp · Zocdoc · CoverCapy, a direct call button, and a "Verified &amp; Accredited" badge — helping patients choose with confidence.</p>
+    <ul class="pdp-upsell-list">
+      <li>✓ Verified insurance network badges</li>
+      <li>✓ Full review meter (Google + Yelp + Zocdoc + CoverCapy)</li>
+      <li>✓ Direct call &amp; website CTAs above the fold</li>
+      <li>✓ Platinum Elite badge across all search results</li>
+      <li>✓ Priority placement in hub page grids</li>
+    </ul>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+      <a href="/claim-listing/?practice=${encodeURIComponent(name)}" class="btn btn-primary">Claim This Profile →</a>
+      <a href="/dentist-portal/" class="btn btn-line">Learn about Platinum Elite →</a>
+    </div>
+  </div>
+  <div class="pdp-upsell-right" aria-hidden="true">
+    <div class="pdp-upsell-preview">
+      <span class="pdp-badge pdp-badge--platinum" style="font-size:11px;padding:4px 12px;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Platinum Elite · Verified
+      </span>
+      <p style="font-size:13px;color:var(--ink-soft);margin:10px 0 4px;">What patients see after upgrade</p>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="height:8px;background:#e8c96a;border-radius:4px;width:80%"></div>
+        <div style="height:8px;background:#e8e3d8;border-radius:4px;width:60%"></div>
+        <div style="height:8px;background:#e8e3d8;border-radius:4px;width:70%"></div>
+      </div>
+    </div>
+  </div>
+</div>`;
+  }
+
   // ── Main ──────────────────────────────────────────────────────────────────
   async function init() {
     const slug = slugFromUrl();
@@ -431,6 +488,7 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
       patchReviewMeter(d);
       patchReviewForm(d);
       patchLedger(d);
+      patchUpsell(d);
 
     } catch (err) {
       console.warn('CoverCapy dentist-profile.js:', err);
