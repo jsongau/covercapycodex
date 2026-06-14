@@ -393,9 +393,9 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 /* Platinum Elite map pin — gold king, full orange fill, glowing, 30% bigger than the queen, on top of everything */
 .cc-pin-pking{position:relative; width:57px; height:57px}
 .cc-pin-pking .pkimg{width:57px; height:57px; border-radius:50%; border:2.5px solid #F47B20; object-fit:cover; object-position:52% 36%; background:linear-gradient(140deg,#0C3A42 0%,#082A30 100%); display:block; animation:pkGlow 2.2s ease-in-out infinite}
-.cc-pin-pking .pktail{position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:13px solid #EE6C16; filter:drop-shadow(0 2px 1px rgba(180,90,20,.3))}
-@keyframes pkGlow{0%,100%{box-shadow:0 0 0 3px #F47B20, 0 0 14px 3px rgba(244,123,32,.55), 0 4px 12px rgba(8,42,48,.28)} 50%{box-shadow:0 0 0 3px #F47B20, 0 0 24px 7px rgba(244,123,32,.9), 0 4px 12px rgba(8,42,48,.28)}}
-@media(prefers-reduced-motion:reduce){ .cc-pin-pking .pkimg{animation:none; box-shadow:0 0 0 3px #F47B20, 0 0 18px 4px rgba(244,123,32,.7), 0 4px 12px rgba(8,42,48,.28)} }
+.cc-pin-pking .pktail{position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:13px solid #F47B20; filter:drop-shadow(0 2px 1px rgba(180,90,20,.3))}
+@keyframes pkGlow{0%,100%{box-shadow:0 0 14px 3px rgba(244,123,32,.55), 0 4px 12px rgba(8,42,48,.28)} 50%{box-shadow:0 0 24px 7px rgba(244,123,32,.9), 0 4px 12px rgba(8,42,48,.28)}}
+@media(prefers-reduced-motion:reduce){ .cc-pin-pking .pkimg{animation:none; box-shadow:0 0 18px 4px rgba(244,123,32,.7), 0 4px 12px rgba(8,42,48,.28)} }
 /* gold king inside the "Platinum Elite" pill — same face-zoom as the queen */
 .tier-plat .badge-coin{width:16px; height:16px; border-radius:50%; overflow:hidden; display:inline-grid; place-items:center; background:#fffdf8}
 .tier-plat .badge-pking{width:16px; height:16px; object-fit:cover; transform:scale(1.85); transform-origin:58% 26%; display:block}
