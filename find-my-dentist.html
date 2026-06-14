@@ -2117,11 +2117,16 @@ function loadDentistsFromSupabase(){ return WORKING; }
 
 /* normalize a raw public.dentists row into the card shape */
 function normalizeRow(r){
+  /* accreditation_status is the source of truth for the tier badge; membership_tier is a fallback
+     for any row not yet backfilled. */
+  const _as=String(r.accreditation_status||"").trim().toLowerCase().replace(/[\s-]+/g,"_");
   const _mt=String(r.membership_tier||"").trim().toLowerCase().replace(/[\s-]+/g,"_");
-  const _ft=String(r.featured_tier||"").trim().toLowerCase().replace(/[\s-]+/g,"_");
-  const tier = (_mt==="elite"||_mt==="platinum_elite"||_ft==="platinum_elite") ? "platinum_elite"
-    : (_mt==="capy_accredited"||_ft==="capy_accredited") ? "capy_accredited"
-    : (_mt==="verified"||_ft==="verified") ? "verified" : "public";
+  const tier = (_as==="platinum_elite"||_as==="elite") ? "platinum_elite"
+    : (_as==="capy_accredited") ? "capy_accredited"
+    : (_as==="verified"||_as==="verified_ppo"||_as==="verified_office") ? "verified"
+    : (_mt==="elite"||_mt==="platinum_elite") ? "platinum_elite"
+    : (_mt==="capy_accredited") ? "capy_accredited"
+    : (_mt==="verified") ? "verified" : "public";
   const geo = CITIES[(r.city||"").toLowerCase()];
   const lat = r.latitude!=null ? +r.latitude : (geo ? geo.lat + (Math.random()-.5)*.012 : null);
   const lng = r.longitude!=null ? +r.longitude : (geo ? geo.lng + (Math.random()-.5)*.012 : null);
@@ -2188,7 +2193,7 @@ async function bootData(){
       locs.forEach(l=>{ const k=(l.city||l.name).toLowerCase(); if(l.type==="city"){ CITIES[k]={lat:+l.lat,lng:+l.lng,label:l.name,area:l.county||""}; CITY_ZIPS[k]=(l.zip_codes||[]).map(String); } });
       CITIES["orange county"] = CITIES["orange county"] || { lat:33.70, lng:-117.86, label:"Orange County", area:"Orange County" };
     }
-    const cols = "id,slug,name,practice_name,city,local_area,market_area,featured_area,state,zip,address,phone,email,website,booking_url,featured_tier,accreditation_status,is_sponsored,is_claimed,membership_tier,aggregate_rating,aggregate_review_count,google_rating,google_review_count,yelp_rating,yelp_review_count,capy_rating,capy_review_count,weighted_rating,weighted_review_count,rating_display,zocdoc_rating,zocdoc_review_count,zocdoc_url,yelp_url,google_place_id,insurance_networks,specialties,languages,latitude,longitude,short_description,open_weekends,weekend_hours_note,avatar_seed,avatar_version,avatar_traits,image_url,gallery_images,cover_image_url,claimed_by,pending_display_label,badge_style,badge_bg,badge_text,badge_border,profile_url,geo_sector,sub_area";
+    const cols = "id,slug,name,practice_name,city,local_area,market_area,featured_area,state,zip,address,phone,email,website,booking_url,accreditation_status,is_sponsored,is_claimed,membership_tier,aggregate_rating,aggregate_review_count,google_rating,google_review_count,yelp_rating,yelp_review_count,capy_rating,capy_review_count,weighted_rating,weighted_review_count,rating_display,zocdoc_rating,zocdoc_review_count,zocdoc_url,yelp_url,google_place_id,insurance_networks,specialties,procedures,languages,latitude,longitude,short_description,open_weekends,weekend_hours_note,avatar_seed,avatar_version,avatar_traits,image_url,gallery_images,cover_image_url,claimed_by,pending_display_label,badge_style,badge_bg,badge_text,badge_border,profile_url,geo_sector,sub_area";
     // PostgREST returns at most 1000 rows per response. The table now exceeds that, so a
     // single select silently dropped later states (Nevada among them). Page through with
     // .range() until a short page so every row loads and every state is searchable.
@@ -3987,14 +3992,16 @@ async function acRender(qraw){
     }
     if(/^[0-9]{3,5}$/.test(q)){ items = items.concat(zipCityMatches(q)); }   /* ZIP -> matching city first */
     items = items.concat(areaSuggest(qraw));   /* market / local / sub area matches */
-    /* v181: universities (from map_anchors) are searchable in the single folded search;
-       acPick already routes any item with lat/lng to a coordinate search. */
+    items = items.concat(locs);                /* real cities / counties / areas rank above campuses */
+    /* v222: universities (from map_anchors) come AFTER real places, and only match on the
+       university NAME or acronym \u2014 not its city \u2014 so a city query like "orange" no longer
+       floods the list with schools that merely sit in a city named Orange. */
     if(typeof UNIV_ROWS!=='undefined' && UNIV_ROWS && UNIV_ROWS.length){
       var _uAdded=0;
-      for(var _ui=0; _ui<UNIV_ROWS.length && _uAdded<5; _ui++){
+      for(var _ui=0; _ui<UNIV_ROWS.length && _uAdded<3; _ui++){
         var _u=UNIV_ROWS[_ui]; if(!_u) continue;
-        var _nm=(_u.name||'').toLowerCase(), _ct=(_u.city||'').toLowerCase(), _sb=(_u.sub||'').toLowerCase();
-        if(_nm.indexOf(q)>=0 || (_sb && _sb.indexOf(q)>=0) || (_ct && _ct.indexOf(q)>=0)){
+        var _nm=(_u.name||'').toLowerCase(), _sb=(_u.sub||'').toLowerCase();
+        if(_nm.indexOf(q)>=0 || (_sb && _sb.indexOf(q)>=0)){
           items.push({ type:'landmark', key:'univ:'+_nm, name:_u.name, title:_u.name, lat:_u.lat, lng:_u.lng,
                        emoji:'\uD83C\uDF93',
                        sub:([univSubLabel(_u.sub), [_u.city,_u.state].filter(Boolean).join(', ')].filter(Boolean).join(' \u00b7 ')) || 'University' });
@@ -4002,7 +4009,6 @@ async function acRender(qraw){
         }
       }
     }
-    items = items.concat(locs);
     // Always offer a fallback so ANY typed place / SoCal ZIP can resolve via geocode.
     if(!locs.length){
       const _isNum=/^[0-9]+$/.test(q);
