@@ -383,10 +383,12 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-pin.plat span{font-size:15px; color:#fff; text-shadow:0 1px 2px rgba(80,55,10,.55)}
 .cc-pin.accr{width:26px; height:26px}
 .cc-pin.accr span{font-size:12px}
-/* Capy Accredited: capybara-king medallion pin + avatar crop focus */
-.cc-king-pin{width:38px; height:38px; border-radius:50%; overflow:hidden; background:#fff; border:2.5px solid var(--mint-700); box-shadow:0 2px 8px rgba(0,0,0,.32)}
-.cc-king-pin img{width:100%; height:100%; object-fit:cover; object-position:60% 34%; display:block}
-.dimg.capyking{object-fit:cover; object-position:60% 34%; background:#fff}
+/* Capy Accredited: capybara-king map pin — teardrop like the others, just bigger.
+   The teardrop is rotated -45deg, so the image is counter-rotated +45deg to sit upright. */
+.cc-pin.cc-pin-king{width:42px; height:42px; overflow:hidden; background:#eaf7ef; border:2.5px solid #fff; box-shadow:0 3px 10px rgba(8,42,48,.34)}
+.cc-pin.cc-pin-king img{width:152%; height:152%; object-fit:cover; object-position:58% 30%; transform:rotate(45deg); display:block}
+/* king inside the "Capy Accredited" pill, in place of the leaf icon */
+.badge-coin .badge-king{width:16px; height:16px; border-radius:50%; object-fit:cover; object-position:58% 30%; background:#fff; display:block}
 /* office marker clusters (markercluster) */
 .cc-cluster-wrap{background:transparent; border:0}
 .cc-cluster{display:grid; place-items:center; border-radius:50%; background:var(--teal-night,#082A30); color:#fff; font:700 13px/1 "Fraunces",Georgia,serif; border:2.5px solid #fff; box-shadow:0 6px 16px rgba(8,42,48,.32); cursor:pointer; transition:transform .12s}
@@ -1334,7 +1336,7 @@ a.rsrc-pill:hover{border-color:var(--teal-300); color:var(--ink)}
 /* ---- tiered card framing: Platinum Elite stands clearly above Capy / Verified / public ---- */
 .lcard.lc-accr{position:relative; border:1.5px solid #9FE0BE; background:linear-gradient(180deg,#FBFFFD,#EBF9F1); box-shadow:0 11px 30px rgba(31,138,91,.15); transition:box-shadow .22s, transform .22s, border-color .22s}
 .lcard.lc-accr::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:linear-gradient(120deg,#BFEFD6,#1F8A5B,#BFEFD6); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:1}
-.lcard.lc-accr::after{content:""; position:absolute; top:-11px; right:16px; width:28px; height:28px; border-radius:50%; background:#fffdf8 url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2048%2032%27%3E%3Cg%20fill%3D%27%231F8A5B%27%3E%3Cellipse%20cx%3D%2719%27%20cy%3D%2717%27%20rx%3D%2715.5%27%20ry%3D%279.5%27%2F%3E%3Cellipse%20cx%3D%2735.5%27%20cy%3D%2715.5%27%20rx%3D%279%27%20ry%3D%277.8%27%2F%3E%3Crect%20x%3D%2743%27%20y%3D%2712.6%27%20width%3D%274%27%20height%3D%276%27%20rx%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%2731.5%27%20cy%3D%278.2%27%20r%3D%272.7%27%2F%3E%3Ccircle%20cx%3D%2738.5%27%20cy%3D%278.4%27%20r%3D%272.4%27%2F%3E%3Crect%20x%3D%2711%27%20y%3D%2723%27%20width%3D%273.6%27%20height%3D%276.6%27%20rx%3D%271.8%27%2F%3E%3Crect%20x%3D%2718.5%27%20y%3D%2724%27%20width%3D%273.6%27%20height%3D%276%27%20rx%3D%271.8%27%2F%3E%3Crect%20x%3D%2727.5%27%20y%3D%2723%27%20width%3D%273.6%27%20height%3D%276.6%27%20rx%3D%271.8%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / 16px no-repeat; box-shadow:inset 0 0 0 1px rgba(31,138,91,.5), 0 4px 13px rgba(31,138,91,.42); border:1.5px solid #FBFFFD; pointer-events:none; z-index:3}
+.lcard.lc-accr::after{content:""; position:absolute; top:-11px; right:16px; width:30px; height:30px; border-radius:50%; background:#fffdf8 url("/assets/images/capya.png") 56% 30% / 150% no-repeat; box-shadow:inset 0 0 0 1px rgba(31,138,91,.5), 0 4px 13px rgba(31,138,91,.42); border:1.5px solid #FBFFFD; pointer-events:none; z-index:3}
 .lcard.lc-accr:hover{transform:translateY(-2px); box-shadow:0 18px 44px rgba(31,138,91,.22)}
 .lcard.lc-ver{border-color:#C6DCF3; box-shadow:0 8px 22px rgba(45,94,150,.10)}
 .lcard.lc-plat{position:relative; border:1.5px solid #E4CB8E; background:linear-gradient(180deg,#FFFDF6,#FBF3E2); box-shadow:0 14px 38px rgba(184,146,79,.20), inset 0 1px 0 rgba(255,255,255,.65); transition:box-shadow .22s, transform .22s, border-color .22s}
@@ -2401,7 +2403,7 @@ const CAPY_ICON = '<svg class="capy-ic" viewBox="0 0 48 32" xmlns="http://www.w3
 function statusBadgeHtml(d){
   var t = d && d.tier;
   if(t==='platinum_elite' || t==='capy_accredited'){
-    var coin = t==='platinum_elite' ? '\uD83D\uDC51' : CAPY_ICON;
+    var coin = t==='platinum_elite' ? '\uD83D\uDC51' : '<img class="badge-king" src="/assets/images/capya.png" alt="">';
     var cls = t==='platinum_elite' ? 'tier-plat' : 'tier-capy';
     return '<span class="badge badge-paid '+cls+'"><span class="badge-coin">'+coin+'</span>'+escapeHtml(getDisplayStatus(d))+'</span>';
   }
@@ -2558,8 +2560,6 @@ function getDentistImageMarkup(d){
   // Custom uploaded photo wins; otherwise always the CoverCapy animal avatar.
   // Initials appear only transiently before the avatar engine finishes loading.
   if(hasRealDentistImage(d)) return '<img class="dimg" src="'+escapeAttr(d.image)+'" alt="'+escapeAttr(normalizeDentistName(d))+'" loading="lazy">';
-  // Capy Accredited offices wear the king (their tier identity)
-  if(d && d.tier==='capy_accredited') return '<img class="dimg capyking" src="'+CAPY_KING_IMG+'" alt="'+escapeAttr(normalizeDentistName(d))+' — Capy Accredited" loading="lazy">';
   const svg = renderCapyAvatar(d);
   return svg ? svg : avInitialsTile(d);
 }
@@ -4139,7 +4139,7 @@ function makeIcon(d){
   // is at (size/2, ~1.207*size) from the icon's top-left. Anchor there for accuracy.
   const t=pinTier(d);
   if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat"><span>♛</span></div>', iconSize:[34,34], iconAnchor:[17,41]});
-  if(t==="accr") return L.divIcon({className:"", html:'<div class="cc-king-pin"><img src="'+CAPY_KING_IMG+'" alt=""></div>', iconSize:[38,38], iconAnchor:[19,38]});
+  if(t==="accr") return L.divIcon({className:"", html:'<div class="cc-pin cc-pin-king"><img src="'+CAPY_KING_IMG+'" alt=""></div>', iconSize:[42,42], iconAnchor:[21,49]});
   if(t==="pub")  return L.divIcon({className:"", html:'<div class="cc-pin pub"></div>', iconSize:[18,18], iconAnchor:[9,22]});
   return L.divIcon({className:"", html:'<div class="cc-pin '+t+'"></div>', iconSize:[24,24], iconAnchor:[12,29]});
 }
