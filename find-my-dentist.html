@@ -385,11 +385,21 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-pin.accr span{font-size:12px}
 /* Capy Accredited: capybara-king map pin — upright circular image + pointer tail (a teardrop) */
 .cc-pin-king{position:relative; width:44px; height:44px}
-.cc-pin-king .kimg{width:44px; height:44px; border-radius:50%; border:2.5px solid #fff; object-fit:cover; object-position:58% 30%; background:#eaf7ef; box-shadow:0 3px 10px rgba(8,42,48,.34); display:block}
+.cc-pin-king .kimg{width:44px; height:44px; border-radius:50%; border:2.5px solid #fff; object-fit:cover; object-position:58% 30%; background:#eaf7ef; box-shadow:0 0 0 2.5px var(--mint-700), 0 3px 10px rgba(8,42,48,.34); display:block}
 .cc-pin-king .ktail{position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:11px solid #fff; filter:drop-shadow(0 2px 1px rgba(8,42,48,.22))}
 /* king inside the "Capy Accredited" pill — clipped circular coin, zoomed in on the face */
 .tier-capy .badge-coin{width:16px; height:16px; border-radius:50%; overflow:hidden; display:inline-grid; place-items:center; background:#fff}
 .tier-capy .badge-king{width:16px; height:16px; object-fit:cover; transform:scale(1.85); transform-origin:58% 26%; display:block}
+/* Platinum Elite map pin — transparent crown on the gold fill, 20% bigger than the king */
+.cc-pin-pking{position:relative; width:53px; height:53px}
+.cc-pin-pking .pkimg{width:53px; height:53px; border-radius:50%; border:2.5px solid #fff; object-fit:contain; padding:5px; background:linear-gradient(135deg,#ECCB82 0%,#C9A24E 52%,#B8924F 100%); box-shadow:0 0 0 2.5px var(--gold), 0 4px 12px rgba(184,146,79,.5); display:block}
+.cc-pin-pking .pktail{position:absolute; left:50%; bottom:-8px; transform:translateX(-50%); width:0; height:0; border-left:9px solid transparent; border-right:9px solid transparent; border-top:12px solid #fff; filter:drop-shadow(0 2px 1px rgba(184,146,79,.3))}
+/* crown inside the "Platinum Elite" pill */
+.tier-plat .badge-coin{width:16px; height:16px; border-radius:50%; overflow:hidden; display:inline-grid; place-items:center; background:#fffdf8}
+.tier-plat .badge-crown{width:16px; height:16px; object-fit:contain; display:block}
+/* crown on the avatar badge */
+.av-badge.av-crown{padding:0; overflow:hidden; background:#fffdf8}
+.av-badge.av-crown img{width:100%; height:100%; object-fit:contain; display:block}
 /* office marker clusters (markercluster) */
 .cc-cluster-wrap{background:transparent; border:0}
 .cc-cluster{display:grid; place-items:center; border-radius:50%; background:var(--teal-night,#082A30); color:#fff; font:700 13px/1 "Fraunces",Georgia,serif; border:2.5px solid #fff; box-shadow:0 6px 16px rgba(8,42,48,.32); cursor:pointer; transition:transform .12s}
@@ -1342,7 +1352,7 @@ a.rsrc-pill:hover{border-color:var(--teal-300); color:var(--ink)}
 .lcard.lc-ver{border-color:#C6DCF3; box-shadow:0 8px 22px rgba(45,94,150,.10)}
 .lcard.lc-plat{position:relative; border:1.5px solid #E4CB8E; background:linear-gradient(180deg,#FFFDF6,#FBF3E2); box-shadow:0 14px 38px rgba(184,146,79,.20), inset 0 1px 0 rgba(255,255,255,.65); transition:box-shadow .22s, transform .22s, border-color .22s}
 .lcard.lc-plat::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:linear-gradient(120deg,#F4E2AE,#C79A4E,#F4E2AE,#C79A4E); background-size:300% 300%; background-position:0% 50%; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:1}
-.lcard.lc-plat::after{content:"\01F451"; position:absolute; top:-11px; right:16px; width:28px; height:28px; border-radius:50%; background:#fffdf8; font-size:14px; display:grid; place-items:center; box-shadow:inset 0 0 0 1px rgba(184,146,79,.55), 0 4px 13px rgba(184,146,79,.42); border:1.5px solid #FFFDF6; pointer-events:none; z-index:3; line-height:1}
+.lcard.lc-plat::after{content:""; position:absolute; top:-11px; right:16px; width:30px; height:30px; border-radius:50%; background:#fffdf8 url("/assets/images/platinum-elite.png") center / 100% no-repeat; box-shadow:inset 0 0 0 1px rgba(184,146,79,.55), 0 4px 13px rgba(184,146,79,.42); border:1.5px solid #FFFDF6; pointer-events:none; z-index:3}
 .lcard.lc-plat:hover{transform:translateY(-3px); box-shadow:0 24px 54px rgba(184,146,79,.30), inset 0 1px 0 rgba(255,255,255,.65)}
 .lcard.lc-plat:hover::before{animation:platFlow 2.4s linear infinite}
 .lcard.lc-plat .lname{font-size:18px}
@@ -2404,7 +2414,7 @@ const CAPY_ICON = '<svg class="capy-ic" viewBox="0 0 48 32" xmlns="http://www.w3
 function statusBadgeHtml(d){
   var t = d && d.tier;
   if(t==='platinum_elite' || t==='capy_accredited'){
-    var coin = t==='platinum_elite' ? '\uD83D\uDC51' : '<img class="badge-king" src="/assets/images/capya.png" alt="">';
+    var coin = t==='platinum_elite' ? '<img class="badge-king badge-crown" src="/assets/images/platinum-elite.png" alt="">' : '<img class="badge-king" src="/assets/images/capya.png" alt="">';
     var cls = t==='platinum_elite' ? 'tier-plat' : 'tier-capy';
     return '<span class="badge badge-paid '+cls+'"><span class="badge-coin">'+coin+'</span>'+escapeHtml(getDisplayStatus(d))+'</span>';
   }
@@ -2689,8 +2699,8 @@ function renderCapyAvatar(d){ return CapyAvatar.svg(d, AVATAR_MODE); }
 function avBadge(d){
   if(!isPremiumStatus(d)) return '';
   const s=getBadgeStyle(d);
-  const glyph = d.tier==='platinum_elite' ? '👑' : '✓';
-  return '<span class="av-badge" style="background:'+escapeAttr(s.background)+';color:'+escapeAttr(s.color)+'" title="'+escapeAttr(getDisplayStatus(d))+'">'+glyph+'</span>';
+  if(d.tier==='platinum_elite') return '<span class="av-badge av-crown" title="'+escapeAttr(getDisplayStatus(d))+'"><img src="/assets/images/platinum-elite.png" alt=""></span>';
+  return '<span class="av-badge" style="background:'+escapeAttr(s.background)+';color:'+escapeAttr(s.color)+'" title="'+escapeAttr(getDisplayStatus(d))+'">✓</span>';
 }
 /* trading-card style stat strip */
 function pridebar(d){
@@ -4139,7 +4149,7 @@ function makeIcon(d){
   // Pins are a teardrop (border-radius 50% 50% 50% 0) rotated -45deg, so the visual tip
   // is at (size/2, ~1.207*size) from the icon's top-left. Anchor there for accuracy.
   const t=pinTier(d);
-  if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat"><span>♛</span></div>', iconSize:[34,34], iconAnchor:[17,41]});
+  if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin-pking"><img class="pkimg" src="/assets/images/platinum-elite-nobg.png" alt=""><span class="pktail"></span></div>', iconSize:[53,66], iconAnchor:[26,64]});
   if(t==="accr") return L.divIcon({className:"", html:'<div class="cc-pin-king"><img class="kimg" src="'+CAPY_KING_IMG+'" alt=""><span class="ktail"></span></div>', iconSize:[44,55], iconAnchor:[22,53]});
   if(t==="pub")  return L.divIcon({className:"", html:'<div class="cc-pin pub"></div>', iconSize:[18,18], iconAnchor:[9,22]});
   return L.divIcon({className:"", html:'<div class="cc-pin '+t+'"></div>', iconSize:[24,24], iconAnchor:[12,29]});
