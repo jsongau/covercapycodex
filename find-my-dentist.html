@@ -383,6 +383,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-pin.plat span{font-size:15px; color:#fff; text-shadow:0 1px 2px rgba(80,55,10,.55)}
 .cc-pin.accr{width:26px; height:26px}
 .cc-pin.accr span{font-size:12px}
+/* Capy Accredited: capybara-king medallion pin + avatar crop focus */
+.cc-king-pin{width:38px; height:38px; border-radius:50%; overflow:hidden; background:#fff; border:2.5px solid var(--mint-700); box-shadow:0 2px 8px rgba(0,0,0,.32)}
+.cc-king-pin img{width:100%; height:100%; object-fit:cover; object-position:60% 34%; display:block}
+.dimg.capyking{object-fit:cover; object-position:60% 34%; background:#fff}
 /* office marker clusters (markercluster) */
 .cc-cluster-wrap{background:transparent; border:0}
 .cc-cluster{display:grid; place-items:center; border-radius:50%; background:var(--teal-night,#082A30); color:#fff; font:700 13px/1 "Fraunces",Georgia,serif; border:2.5px solid #fff; box-shadow:0 6px 16px rgba(8,42,48,.32); cursor:pointer; transition:transform .12s}
@@ -2549,10 +2553,13 @@ function getDentistProfileUrl(d){
   return buildSlug(["dentists", locationOf(d), _localArea, cityOf(d), practiceSlug]);
 }
 function avInitialsTile(d){ return '<div class="av-ini" style="background:'+tierGrad(d)+'">'+getDentistInitials(d)+'</div>'; }
+var CAPY_KING_IMG = "/assets/images/capya.png";   // Capy Accredited tier mascot (the capybara king)
 function getDentistImageMarkup(d){
   // Custom uploaded photo wins; otherwise always the CoverCapy animal avatar.
   // Initials appear only transiently before the avatar engine finishes loading.
   if(hasRealDentistImage(d)) return '<img class="dimg" src="'+escapeAttr(d.image)+'" alt="'+escapeAttr(normalizeDentistName(d))+'" loading="lazy">';
+  // Capy Accredited offices wear the king (their tier identity)
+  if(d && d.tier==='capy_accredited') return '<img class="dimg capyking" src="'+CAPY_KING_IMG+'" alt="'+escapeAttr(normalizeDentistName(d))+' — Capy Accredited" loading="lazy">';
   const svg = renderCapyAvatar(d);
   return svg ? svg : avInitialsTile(d);
 }
@@ -3232,7 +3239,8 @@ function render(){
   const c = state.areaKeys ? {label:state.areaLabel} : (state.allCounty ? {label:(currentAreaLabel()||activeStateLabel()||"All offices")} : centroid());
   const locLabel = (SERVER_ORDER && state._title) ? state._title : c.label;
   document.getElementById('rb-title').textContent = seoHeading();
-  document.getElementById('rb-count').textContent = list.length.toLocaleString()+" office"+(list.length===1?"":"s")+" found";
+  var _rc = Math.min(list.length, 50);
+  document.getElementById('rb-count').textContent = _rc>0 ? (_rc.toLocaleString()+" office"+(_rc===1?"":"s")+" found in your area") : "PPO offices in your area";
   applySeo();
 
   const root = document.getElementById('listings');
@@ -4131,7 +4139,7 @@ function makeIcon(d){
   // is at (size/2, ~1.207*size) from the icon's top-left. Anchor there for accuracy.
   const t=pinTier(d);
   if(t==="plat") return L.divIcon({className:"", html:'<div class="cc-pin plat"><span>♛</span></div>', iconSize:[34,34], iconAnchor:[17,41]});
-  if(t==="accr") return L.divIcon({className:"", html:'<div class="cc-pin accr"><span>'+CAPY_ICON+'</span></div>', iconSize:[26,26], iconAnchor:[13,31]});
+  if(t==="accr") return L.divIcon({className:"", html:'<div class="cc-king-pin"><img src="'+CAPY_KING_IMG+'" alt=""></div>', iconSize:[38,38], iconAnchor:[19,38]});
   if(t==="pub")  return L.divIcon({className:"", html:'<div class="cc-pin pub"></div>', iconSize:[18,18], iconAnchor:[9,22]});
   return L.divIcon({className:"", html:'<div class="cc-pin '+t+'"></div>', iconSize:[24,24], iconAnchor:[12,29]});
 }
@@ -4988,8 +4996,8 @@ function fsAfterSearch(){
   const h=document.getElementById('fmc-hint');
   if(h){
     if(!n){ h.textContent='No offices in this radius. Widen it or pan the map, then search again.'; }
-    else if(n>50){ h.textContent=n.toLocaleString()+' offices within '+mi+' mi of here. Showing the 50 nearest the map center. Drag the map and search this area to see more.'; }
-    else { h.textContent=n.toLocaleString()+' office'+(n===1?'':'s')+' within '+mi+' mi of here. Drag the map and search this area to keep browsing.'; }
+    else if(n>50){ h.textContent='Showing the 50 nearest offices within '+mi+' mi of here. Drag the map and search this area to see more.'; }
+    else { h.textContent=Math.min(n,50)+' office'+(n===1?'':'s')+' within '+mi+' mi of here. Drag the map and search this area to keep browsing.'; }
   }
   if(n) toast("Area updated", n>50 ? (n.toLocaleString()+" PPO offices within "+mi+" mi. Showing the 50 nearest the map center.") : (n.toLocaleString()+" PPO office"+(n===1?"":"s")+" within "+mi+" mi"));
   else  toast("No offices found", "Try a wider radius or pan the map", 'warn');
@@ -5129,7 +5137,7 @@ function toggleNavMenu(){ const m=document.getElementById('mobile-menu'); if(!m)
 function closeNavMenu(){ const m=document.getElementById('mobile-menu'); if(m) m.classList.remove('open'); const t=document.querySelector('.menu-toggle'); if(t) t.setAttribute('aria-expanded','false'); }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNavMenu(); });
 function fsInval(){ setTimeout(()=>{ if(fullMap){ try{ fullMap.invalidateSize(); }catch(e){} } },300); }
-function syncFsPeek(){ const lbl=document.getElementById('fs-peeklabel'); if(!lbl) return; let n=0; try{ n=fsFiltered().length; }catch(e){} lbl.textContent=n.toLocaleString()+' office'+(n===1?'':'s')+' nearby · tap to browse'; }
+function syncFsPeek(){ const lbl=document.getElementById('fs-peeklabel'); if(!lbl) return; let n=0; try{ n=fsFiltered().length; }catch(e){} var _n=Math.min(n,50); lbl.textContent=_n+' office'+(_n===1?'':'s')+' nearby · tap to browse'; }
 /* grip taps toggle between the open list and a slim "peek" bar that reveals the full map */
 function toggleFsSheet(){ const s=document.getElementById('fs-sheet'); if(!s) return; s.classList.remove('expanded'); s.classList.toggle('peek'); syncFsPeek(); fsInval(); }
 /* v107: a single tap on the grip cycles through the three heights so the sheet can be opened/collapsed by tapping (no swipe needed): peek  default  expanded  peek */
@@ -5147,7 +5155,7 @@ function renderFsList(){
   syncReviewFilterUI();
   const list=fsFiltered();
   const cnt=document.getElementById('fs-count');
-  if(cnt) cnt.textContent = list.length.toLocaleString()+' office'+(list.length===1?'':'s')+(state.allCounty?(' across '+currentArea()):' nearby');
+  if(cnt){ var _lc=Math.min(list.length,50); cnt.textContent = _lc+' office'+(_lc===1?'':'s')+(state.allCounty?(' across '+currentArea()):' nearby'); }
   const root=document.getElementById('fs-listings');
   if(root) root.innerHTML = list.length ? list.map(fsMiniCard).join('') : '<div class="fs-empty">No offices match this filter.</div>';
   syncFsPeek();
