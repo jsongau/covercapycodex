@@ -332,7 +332,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .badge-paid .badge-coin{flex:none; width:18px; height:18px; border-radius:50%; display:grid; place-items:center; font-size:11px; line-height:1; background:#fffdf8; box-shadow:inset 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.16)}
 .badge-paid::after{content:""; position:absolute; inset:0; background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.42) 50%,transparent 58%); transform:translateX(-130%); pointer-events:none}
 .badge-paid:hover::after{transition:transform .85s ease; transform:translateX(130%)}
-.badge.tier-plat{color:#5a4310; background:linear-gradient(135deg,#FBEFC9,#F2D89A); border:1px solid #E4C988; box-shadow:0 2px 8px rgba(184,146,79,.28), inset 0 1px 0 rgba(255,255,255,.55)}
+.badge.tier-plat{color:#9A4A10; background:linear-gradient(135deg,#FDE7CE,#FBD2A6); border:1px solid #F3B978; box-shadow:0 2px 8px rgba(244,123,32,.26), inset 0 1px 0 rgba(255,255,255,.55)}
 .badge.tier-capy{color:#0f6b43; background:linear-gradient(135deg,#D7F5E5,#AEE7CB); border:1px solid #9FE0BE; box-shadow:0 2px 8px rgba(31,138,91,.24), inset 0 1px 0 rgba(255,255,255,.55)}
 .badge.tier-capy .badge-coin{color:#1F8A5B}
 .badge-coin .capy-ic{width:13px; height:auto; display:block}
@@ -392,10 +392,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .tier-capy .badge-king{width:16px; height:16px; object-fit:cover; transform:scale(1.85); transform-origin:58% 26%; display:block}
 /* Platinum Elite map pin — gold king, full orange fill, glowing, 30% bigger than the queen, on top of everything */
 .cc-pin-pking{position:relative; width:57px; height:57px}
-.cc-pin-pking .pkimg{width:57px; height:57px; border-radius:50%; border:2.5px solid #C9741C; object-fit:cover; object-position:52% 36%; background:linear-gradient(140deg,#F6B14A 0%,#E89328 50%,#D2761A 100%); display:block; animation:pkGlow 2.2s ease-in-out infinite}
-.cc-pin-pking .pktail{position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:13px solid #D2761A; filter:drop-shadow(0 2px 1px rgba(184,146,79,.3))}
-@keyframes pkGlow{0%,100%{box-shadow:0 0 0 3px #E0892B, 0 0 14px 3px rgba(232,147,40,.5), 0 4px 12px rgba(8,42,48,.3)} 50%{box-shadow:0 0 0 3px #E0892B, 0 0 24px 7px rgba(232,147,40,.85), 0 4px 12px rgba(8,42,48,.3)}}
-@media(prefers-reduced-motion:reduce){ .cc-pin-pking .pkimg{animation:none; box-shadow:0 0 0 3px #E0892B, 0 0 18px 4px rgba(232,147,40,.65), 0 4px 12px rgba(8,42,48,.3)} }
+.cc-pin-pking .pkimg{width:57px; height:57px; border-radius:50%; border:2.5px solid #EC6E16; object-fit:cover; object-position:52% 36%; background:linear-gradient(140deg,#FBA049 0%,#F47B20 55%,#EE6C16 100%); display:block; animation:pkGlow 2.2s ease-in-out infinite}
+.cc-pin-pking .pktail{position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:13px solid #EE6C16; filter:drop-shadow(0 2px 1px rgba(180,90,20,.3))}
+@keyframes pkGlow{0%,100%{box-shadow:0 0 0 3px #F47B20, 0 0 14px 3px rgba(244,123,32,.55), 0 4px 12px rgba(8,42,48,.28)} 50%{box-shadow:0 0 0 3px #F47B20, 0 0 24px 7px rgba(244,123,32,.9), 0 4px 12px rgba(8,42,48,.28)}}
+@media(prefers-reduced-motion:reduce){ .cc-pin-pking .pkimg{animation:none; box-shadow:0 0 0 3px #F47B20, 0 0 18px 4px rgba(244,123,32,.7), 0 4px 12px rgba(8,42,48,.28)} }
 /* gold king inside the "Platinum Elite" pill — same face-zoom as the queen */
 .tier-plat .badge-coin{width:16px; height:16px; border-radius:50%; overflow:hidden; display:inline-grid; place-items:center; background:#fffdf8}
 .tier-plat .badge-pking{width:16px; height:16px; object-fit:cover; transform:scale(1.85); transform-origin:58% 26%; display:block}
@@ -1354,7 +1354,7 @@ a.rsrc-pill:hover{border-color:var(--teal-300); color:var(--ink)}
 .lcard.lc-ver{border-color:#C6DCF3; box-shadow:0 8px 22px rgba(45,94,150,.10)}
 .lcard.lc-plat{position:relative; border:1.5px solid #E4CB8E; background:linear-gradient(180deg,#FFFDF6,#FBF3E2); box-shadow:0 14px 38px rgba(184,146,79,.20), inset 0 1px 0 rgba(255,255,255,.65); transition:box-shadow .22s, transform .22s, border-color .22s}
 .lcard.lc-plat::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:linear-gradient(120deg,#F4E2AE,#C79A4E,#F4E2AE,#C79A4E); background-size:300% 300%; background-position:0% 50%; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; z-index:1}
-.lcard.lc-plat::after{content:""; position:absolute; top:-11px; right:16px; width:30px; height:30px; border-radius:50%; background:#fffdf8 url("/assets/images/platinum.png") 58% 44% / 100% no-repeat; box-shadow:inset 0 0 0 1px rgba(184,146,79,.55), 0 4px 13px rgba(184,146,79,.42); border:1.5px solid #FFFDF6; pointer-events:none; z-index:3}
+.lcard.lc-plat::after{content:""; position:absolute; top:-11px; right:16px; width:30px; height:30px; border-radius:50%; background:#fffdf8 url("/assets/images/platinum.png") 58% 44% / 100% no-repeat; box-shadow:inset 0 0 0 1px rgba(244,123,32,.6), 0 4px 13px rgba(244,123,32,.4); border:1.5px solid #FFFDF6; pointer-events:none; z-index:3}
 .lcard.lc-plat:hover{transform:translateY(-3px); box-shadow:0 24px 54px rgba(184,146,79,.30), inset 0 1px 0 rgba(255,255,255,.65)}
 .lcard.lc-plat:hover::before{animation:platFlow 2.4s linear infinite}
 .lcard.lc-plat .lname{font-size:18px}
@@ -7305,7 +7305,7 @@ a.eco-row:hover{border-color:var(--teal-300); transform:translateY(-1px); box-sh
 /* ---------- 10. FEATURED / PLATINUM — dramatically elevated (sophisticated, no flashing) ---------- */
 .lcard.feat{border:1.5px solid var(--gold-2); background:linear-gradient(180deg,#FFFDF7 0%, var(--cream-card) 60%); box-shadow:0 3px 10px rgba(184,146,79,.12), 0 26px 60px rgba(184,146,79,.20); position:relative; overflow:visible}
 .lcard.feat::before{content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(120% 80% at 85% -10%, rgba(184,146,79,.16), transparent 55%); pointer-events:none; overflow:hidden}
-.lcard.feat .featrib, .lcard.lc-plat .featrib{display:flex; align-items:center; gap:8px; margin:-13px -15px 14px; padding:11px 16px; border-radius:14px 14px 0 0; background:linear-gradient(100deg, var(--teal-night), var(--teal-deep)); color:var(--gold-2); font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; position:relative; overflow:hidden}
+.lcard.feat .featrib, .lcard.lc-plat .featrib{display:flex; align-items:center; gap:8px; margin:-13px -15px 14px; padding:11px 16px; border-radius:14px 14px 0 0; background:linear-gradient(100deg, var(--teal-night), var(--teal-deep)); border-bottom:2.5px solid #F47B20; color:var(--gold-2); font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; position:relative; overflow:hidden}
 .lcard.feat .featrib::after, .lcard.lc-plat .featrib::after{content:""; position:absolute; inset:0; background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,.16) 48%, transparent 66%); transform:translateX(-120%); animation:ccShimmer 6.5s ease-in-out infinite}
 @keyframes ccShimmer{0%,55%{transform:translateX(-120%)} 80%,100%{transform:translateX(120%)}}
 @media (prefers-reduced-motion: reduce){ .lcard.feat .featrib::after, .lcard.lc-plat .featrib::after{animation:none; opacity:0} }
