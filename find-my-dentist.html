@@ -2410,11 +2410,15 @@ function carrierChips(d, max){
 function specChips(d, max){
   return d.specialties.slice(0,max).map(s=>'<span class="chip spec">'+esc(s)+'</span>').join('');
 }
-/* v219: two card tags randomly drawn from across the Supabase specialties, languages
-   (non-English), and procedures columns. The pick is seeded by the office id, so each office
-   shows a stable pair (no flicker on re-render) while the set varies across the list.
-   Empty offices fall back to General Dentistry + Preventative Dentistry. */
+/* v220: two card tags randomly drawn from across the Supabase specialties, languages
+   (non-English), and procedures columns. The pair is randomized fresh on every page load
+   (TAG_SALT) and cached per office for that load, so it rotates each visit but never flickers
+   while filtering. Generic terms only pad when the office has fewer than 2 real values. */
+var TAG_SALT = (Math.random()*4294967296)>>>0;
+var _tagCache = {};
 function cardTags(d){
+  var cid = String(d.id||d.practice||'capy');
+  if(_tagCache[cid]!==undefined) return _tagCache[cid];
   var seen={}, pool=[];
   var GENERIC={'general dentistry':1,'preventative dentistry':1,'preventive dentistry':1};
   function add(label, cls){
@@ -2429,15 +2433,19 @@ function cardTags(d){
     .forEach(function(l){ add(l,'chip chip-lang'); });
   (d.specialties||[]).filter(Boolean).forEach(function(s){ add(s,'chip spec'); });
   (d.procedures||[]).filter(Boolean).forEach(function(p){ add(p,'chip spec'); });
-  /* deterministic shuffle seeded by office id */
-  var seed=0, sid=String(d.id||d.practice||'capy');
+  /* shuffle seeded by office id + per-load salt → new pair each refresh, stable within the load */
+  var seed=TAG_SALT, sid=cid;
   for(var i=0;i<sid.length;i++){ seed=(seed*31 + sid.charCodeAt(i))>>>0; }
   function rnd(){ seed=(seed*1103515245 + 12345)>>>0; return seed/4294967296; }
   for(var j=pool.length-1;j>0;j--){ var k=Math.floor(rnd()*(j+1)); var t=pool[j]; pool[j]=pool[k]; pool[k]=t; }
   var picks=pool.slice(0,2);
-  /* Fallback ONLY when the office has nothing in Supabase — never pad real data with these. */
-  if(picks.length===0){ picks=[{label:'General Dentistry', cls:'chip spec'},{label:'Preventative Dentistry', cls:'chip spec'}]; }
-  return picks.map(function(t){ return '<span class="'+t.cls+'">'+esc(t.label)+'</span>'; }).join('');
+  /* Always show 2. Generic terms ONLY pad empty slots when the office has fewer than 2 real
+     (non-generic) values — they never compete with or replace real Supabase data. */
+  var fb=['General Dentistry','Preventative Dentistry'];
+  for(var m=0; picks.length<2 && m<fb.length; m++){ picks.push({label:fb[m], cls:'chip spec'}); }
+  var html=picks.map(function(t){ return '<span class="'+t.cls+'">'+esc(t.label)+'</span>'; }).join('');
+  _tagCache[cid]=html;
+  return html;
 }
 /* ---- Reviews: tier-aware (Supabase weighted_* is already tier-aware) ----
    Unclaimed / free:  Google rating ONLY. The rating is clickable and opens the practice's
@@ -3125,7 +3133,7 @@ function renderExplorer(root){
   });
   var activeSecKey = geoSectorKey(ST.items&&ST.items.length?ST.items[0]:{state:EXP.st});
   if(!EXP.secOpen){ EXP.secOpen={}; EXP.secOpen[activeSecKey]=true; }
-  var c1 = '<div class="exp-col"><div class="exp-hd"><span class="exp-ttl">Region</span></div><div class="exp-list">';
+  var c1 = '<div class="exp-col"><div class="exp-hd"><span class="exp-ttl">State</span></div><div class="exp-list">';
   secOrder.forEach(function(key){
     var sStates=secMap[key].states;
     var sOpen=!!EXP.secOpen[key];
@@ -3140,8 +3148,8 @@ function renderExplorer(root){
   c1 += '</div></div>';
 
   // C2 - regions (market areas)
-  var c2 = '<div class="exp-col"><div class="exp-hd"><span class="exp-ttl">Location</span><span class="exp-meta">'+esc(EXP.st)+'</span></div><div class="exp-list">';
-  c2 += '<button class="exp-item'+(!EXP.region?' on':'')+'" type="button" onclick="expPickRegion(\'\')"><span class="exp-nm">All regions</span></button>';
+  var c2 = '<div class="exp-col"><div class="exp-hd"><span class="exp-ttl">Region</span><span class="exp-meta">'+esc(EXP.st)+'</span></div><div class="exp-list">';
+  c2 += '<button class="exp-item'+(!EXP.region?' on':'')+'" type="button" onclick="expPickRegion(\'\')"><span class="exp-nm">All of '+esc(EXP.st||'state')+'</span></button>';
   g.mo.forEach(function(mk){
     c2 += '<button class="exp-item'+(mk===EXP.region?' on':'')+'" type="button" onclick="expPickRegion(\''+jsq(mk)+'\')"><span class="exp-nm">'+esc(mk)+'</span></button>';
   });
@@ -7127,10 +7135,10 @@ bootData().then(()=>{ if(SB_READY){ refreshDerived();
 .exp-item{display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; text-align:left; background:none; border:0; padding:9px 11px; border-radius:10px; cursor:pointer; transition:background .12s; color:var(--ink)}
 .exp-item:hover{background:var(--cream-2)}
 .exp-item.on{background:var(--mint-soft)}
-.exp-nm{font:600 13.5px/1.3 "Inter Tight",system-ui,sans-serif; color:var(--ink); display:block}
+.exp-nm{font:600 13.5px/1.3 "Inter Tight",system-ui,sans-serif; color:var(--ink); display:block; flex:1 1 auto; min-width:0; overflow-wrap:anywhere; word-break:break-word}
 .exp-item.on .exp-nm{color:var(--teal-night)}
 .exp-sub{font:600 10.5px/1.2 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint); display:block; margin-top:2px}
-.exp-ct{font:600 11.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint); white-space:nowrap}
+.exp-ct{font:600 11.5px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink-faint); white-space:nowrap; flex:none}
 .exp-item.on .exp-ct{color:var(--mint-700)}
 .exp-mk{font:700 10px/1.2 "Inter Tight",system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--teal-700); padding:13px 11px 4px}
 .exp-sub-item{padding-left:18px}
