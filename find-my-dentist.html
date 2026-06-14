@@ -383,6 +383,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 .cc-pin.plat span{font-size:15px; color:#fff; text-shadow:0 1px 2px rgba(80,55,10,.55)}
 .cc-pin.accr{width:26px; height:26px}
 .cc-pin.accr span{font-size:12px}
+/* office marker clusters (markercluster) */
+.cc-cluster-wrap{background:transparent; border:0}
+.cc-cluster{display:grid; place-items:center; border-radius:50%; background:var(--teal-night,#082A30); color:#fff; font:700 13px/1 "Fraunces",Georgia,serif; border:2.5px solid #fff; box-shadow:0 6px 16px rgba(8,42,48,.32); cursor:pointer; transition:transform .12s}
+.cc-cluster:hover{transform:scale(1.06)}
 @keyframes platGlow{
   0%,100%{ box-shadow:0 0 0 2.5px rgba(184,146,79,.7), 0 5px 12px rgba(120,85,20,.42), 0 0 0 0 rgba(212,170,90,0) }
   50%{ box-shadow:0 0 0 2.5px rgba(184,146,79,.7), 0 6px 14px rgba(120,85,20,.5), 0 0 18px 7px rgba(212,170,90,.72) }
@@ -463,7 +467,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none}
 #fullmap .leaflet-control-zoom a:hover{ background:var(--mint-soft) }
 @media(max-width:980px){ #fullmap .leaflet-control-zoom{ margin:64px 14px 0 0 } }
 /* fixed search-center crosshair (full map) — sits where the radius circle centers */
-.fsmap-cross{position:absolute; left:calc(50% + 196px); top:50%; transform:translate(-50%,-50%); z-index:690; pointer-events:none}
+.fsmap-cross{position:absolute; left:calc(50% + 196px); top:50%; transform:translate(-50%,-50%); z-index:640; pointer-events:none}
 @media(max-width:980px){ .fsmap-cross{left:50%; top:calc(50% + 55px)} }
 .fsmap-cross .fx-dot{position:relative; z-index:2; display:block; width:18px; height:18px; border-radius:50%; background:var(--teal-night); border:3px solid #fff; box-shadow:0 0 0 6px rgba(91,224,160,.26), 0 6px 16px rgba(8,42,48,.4)}
 /* v148: crosshair lines so the center marker reads as a cross/target you can land on a spot, not just a dot */
@@ -1260,6 +1264,12 @@ a.rsrc-pill:hover{border-color:var(--teal-300); color:var(--ink)}
 .cc-empty-btn.primary:hover{background:var(--teal-deep)}
 .cc-empty-btn.gold{background:linear-gradient(180deg,#E9C06A,#D8A84A); color:#3a2a08; border-color:transparent}
 .cc-empty-btn.gold:hover{filter:brightness(1.04)}
+.cc-empty-notify{display:flex; gap:8px; justify-content:center; max-width:420px; margin:16px auto 0}
+.cc-empty-notify input{flex:1 1 auto; min-width:0; height:42px; padding:0 14px; border-radius:11px; border:1px solid var(--line); background:var(--cream-2); font:500 14px/1 "Inter Tight",system-ui,sans-serif; color:var(--ink); outline:none}
+.cc-empty-notify input:focus{border-color:var(--gold-2)}
+.cc-empty-notify button{flex:none; height:42px; padding:0 18px; border-radius:11px; border:none; background:var(--teal-night); color:#fff; font:600 13.5px/1 "Inter Tight",system-ui,sans-serif; cursor:pointer; transition:.15s}
+.cc-empty-notify button:hover{background:var(--teal-deep)}
+.cc-empty-notify-ok{font:500 13.5px/1.5 "Inter Tight",system-ui,sans-serif; color:var(--teal-700); padding:10px 0}
 .cc-empty-dentist{margin-top:28px; padding:24px 22px 22px; border-radius:16px; background:linear-gradient(180deg,#FFFDF6,#FBF6E8); border:1px solid var(--gold-2)}
 .cc-empty-eyebrow{display:block; font:700 11px/1 "Inter Tight",system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:9px}
 .cc-empty-dh{font-family:"Fraunces",Georgia,serif; font-weight:500; font-size:19px; color:var(--ink); margin:0 0 8px}
@@ -1962,6 +1972,18 @@ body.dd-lock{overflow:hidden}
   <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-claim')">Cancel</button><button class="btn-dark" onclick="submitClaimProfile()">Request Free Claim Access</button></div>
 </div></div></div>
 
+<div class="scrim" id="m-nominate"><div class="modal"><div class="mh"><h3>Nominate a dentist</h3><button class="x" onclick="closeModal('m-nominate')">×</button></div><div class="mb">
+  <p>Love a dentist who isn’t on CoverCapy yet? Nominate them and we’ll invite the office to join and confirm the PPO plans they accept.</p>
+  <input class="inp" id="nom-office" placeholder="Practice or dentist name">
+  <div class="fgrid">
+    <input class="inp" id="nom-city" placeholder="City or ZIP">
+    <input class="inp" id="nom-carrier" placeholder="PPO plan you have (optional)">
+  </div>
+  <input class="inp" id="nom-email" type="email" placeholder="Your email (so we can update you)">
+  <textarea class="inp" id="nom-msg" rows="2" placeholder="Anything else? (optional)"></textarea>
+  <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-nominate')">Cancel</button><button class="btn-dark" onclick="submitNomination()">Nominate this office</button></div>
+</div></div></div>
+
 <div class="scrim" id="m-disc"><div class="modal"><div class="mh"><h3 id="disc-title">Before you book</h3><button class="x" onclick="closeModal('m-disc')">×</button></div><div class="mb">
   <p id="disc-body">You're about to open this office's booking page on their own site. CoverCapy recommends confirming your PPO participation before your visit so there are no billing surprises.</p>
   <div class="mfoot"><button class="btn-ghost" onclick="closeModal('m-disc')">Stay here</button><button class="btn-dark" id="disc-go">Continue to office</button></div>
@@ -2052,6 +2074,8 @@ body.dd-lock{overflow:hidden}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 /* =====================================================================
    COVERCAPY — FIND MY DENTIST (marketplace)
@@ -2126,6 +2150,7 @@ function normalizeRow(r){
     zocdocUrl: r.zocdoc_url || "", yelpUrl: r.yelp_url || "", placeId: r.google_place_id || "",
     carriers: (r.insurance_networks||[]).filter(Boolean),
     specialties: (r.specialties||[]).filter(Boolean),
+    procedures: (r.procedures||[]).filter(Boolean),
     languages: (r.languages||[]).filter(Boolean),
     rating: parseFloat(r.weighted_rating)>0 ? parseFloat(r.weighted_rating) : (parseFloat(r.aggregate_rating)||parseFloat(r.google_rating)||0),
     reviews: parseInt(r.weighted_review_count)>0 ? parseInt(r.weighted_review_count) : (parseInt(r.aggregate_review_count)|| ((parseInt(r.google_review_count)||0)+(parseInt(r.yelp_review_count)||0)+(parseInt(r.zocdoc_review_count)||0)+(parseInt(r.capy_review_count)||0)) || 0),
@@ -2384,6 +2409,35 @@ function carrierChips(d, max){
 }
 function specChips(d, max){
   return d.specialties.slice(0,max).map(s=>'<span class="chip spec">'+esc(s)+'</span>').join('');
+}
+/* v219: two card tags randomly drawn from across the Supabase specialties, languages
+   (non-English), and procedures columns. The pick is seeded by the office id, so each office
+   shows a stable pair (no flicker on re-render) while the set varies across the list.
+   Empty offices fall back to General Dentistry + Preventative Dentistry. */
+function cardTags(d){
+  var seen={}, pool=[];
+  var GENERIC={'general dentistry':1,'preventative dentistry':1,'preventive dentistry':1};
+  function add(label, cls){
+    var key=String(label||'').trim().toLowerCase();
+    if(!label || seen[key]) return;
+    seen[key]=1;
+    if(GENERIC[key]) return;            /* generic terms never compete with real data */
+    pool.push({label:label, cls:cls});
+  }
+  (d.languages||[]).map(function(l){return (typeof langCanon==='function')?langCanon(l):l;})
+    .filter(function(l){return l && !/^english$/i.test(l);})
+    .forEach(function(l){ add(l,'chip chip-lang'); });
+  (d.specialties||[]).filter(Boolean).forEach(function(s){ add(s,'chip spec'); });
+  (d.procedures||[]).filter(Boolean).forEach(function(p){ add(p,'chip spec'); });
+  /* deterministic shuffle seeded by office id */
+  var seed=0, sid=String(d.id||d.practice||'capy');
+  for(var i=0;i<sid.length;i++){ seed=(seed*31 + sid.charCodeAt(i))>>>0; }
+  function rnd(){ seed=(seed*1103515245 + 12345)>>>0; return seed/4294967296; }
+  for(var j=pool.length-1;j>0;j--){ var k=Math.floor(rnd()*(j+1)); var t=pool[j]; pool[j]=pool[k]; pool[k]=t; }
+  var picks=pool.slice(0,2);
+  /* Fallback ONLY when the office has nothing in Supabase — never pad real data with these. */
+  if(picks.length===0){ picks=[{label:'General Dentistry', cls:'chip spec'},{label:'Preventative Dentistry', cls:'chip spec'}]; }
+  return picks.map(function(t){ return '<span class="'+t.cls+'">'+esc(t.label)+'</span>'; }).join('');
 }
 /* ---- Reviews: tier-aware (Supabase weighted_* is already tier-aware) ----
    Unclaimed / free:  Google rating ONLY. The rating is clickable and opens the practice's
@@ -2901,10 +2955,10 @@ function cardHtml(d, feat){
                    (hasPhone?'<a class="lphone" role="button" tabindex="0" aria-label="Call '+escapeAttr(d.phone)+'" onclick="event.stopPropagation();callOffice(\''+idj+'\')">☎ '+escapeHtml(d.phone)+'</a>':'')+
                    distMeta(d)+
                  '</div>':'');
-    chipsHtml = '<div class="chips">'+wkChip+specChips(d,wkChip?2:3)+'</div>';
+    chipsHtml = '<div class="chips">'+cardTags(d)+'</div>';
   } else {
     metaHtml = '<div class="lmeta"><span class="geo">◍ '+escapeHtml(d.city)+', '+escapeHtml(d.state)+'</span>'+distMeta(d)+'</div>';
-    chipsHtml = '<div class="chips">'+wkChip+specChips(d,wkChip?2:3)+'</div>';
+    chipsHtml = '<div class="chips">'+cardTags(d)+'</div>';
   }
 
   /* Claim nudge sits in the status row, right in the eyeline of the pending verification badge. */
@@ -2921,9 +2975,11 @@ function cardHtml(d, feat){
   if(_ar){ var _mk=_ar.market||'', _lc=_ar.local||''; _arLbl=(_mk&&_lc&&_mk.toLowerCase()!==_lc.toLowerCase())?(_mk+' \u00b7 '+_lc):(_lc||_mk); }
   const areaTag = _arLbl ? '<div class="larea-tag"><span class="lat-pin">\u25C9</span>'+escapeHtml(_arLbl)+'</div>' : '';
 
-  return '<article class="lcard '+tierCard+(feat?' feat':'')+'" id="card-'+d.id+'" '+
+  /* v218: a Platinum Elite office always uses the standard Platinum frame — the "featured" slot
+     never changes its template, so every Platinum Elite card (now and future) renders identically. */
+  return '<article class="lcard '+tierCard+((feat && !isPlat)?' feat':'')+'" id="card-'+d.id+'" '+
       'onmouseenter="highlightCard(\''+idj+'\',true)" onmouseleave="highlightCard(\''+idj+'\',false)">'+
-    (feat?'<div class="featrib">👑 Featured Platinum partner · within 18 miles</div>':(isPlat?'<div class="featrib">👑 Platinum Elite</div>':''))+
+    (isPlat?'<div class="featrib">👑 Platinum Elite</div>':(feat?'<div class="featrib">👑 Featured partner</div>':''))+
     '<div class="lrow">'+
       '<div class="lavcol">'+
         '<div class="av-wrap '+tierCls+(claimed?' is-claimed':' is-unclaimed')+'" role="button" tabindex="0" aria-label="View '+escapeAttr(d.practice)+' profile" onclick="event.stopPropagation();openProfile(\''+idj+'\')" onkeypress="if(event.key===\'Enter\')openProfile(\''+idj+'\')">'+
@@ -2939,13 +2995,13 @@ function cardHtml(d, feat){
         '<div class="lrate">'+ratingHtml(d)+'</div>'+
         areaTag+
         metaHtml+
-        chipsHtml+
         ccModules(d,feat)+
       '</div>'+
       (function(){ var nb=(typeof ccNearby==='function')?ccNearby(d):''; return nb?'<div class="cc-nearby">'+nb+'</div>':''; })()+
       '<div class="lside">'+
         (ccPairN?'<div class="cta-pair'+(ccPairN===1?' cta-pair-1':'')+'">'+ccBookBtn+ccCallBtn+'</div>'+zocCap:'')+
         '<div class="cta-wide">'+ccWideBtn+'</div>'+
+        (chipsHtml ? '<div class="lside-tags">'+chipsHtml+'</div>' : '')+
       '</div>'+
     '</div>'+
     (isUnclaimedDentist(d)?'<div class="cc-claimline">Own this practice? <button type="button" onclick="event.stopPropagation();openClaim(\''+idj+'\')">Claim this listing</button></div>':'')+
@@ -3168,7 +3224,9 @@ function render(){
 
   const root = document.getElementById('listings');
   if(!list.length){
-    var _place = (c && c.label) ? c.label : '';
+    /* Only show a place name when the user actually searched one — never default to the home
+       centroid (Orange County) for a nationwide / no-location search. */
+    var _place = (state.seoHome || (!state._lastLoc && !(state.city && state.city!=='__me__' && state.city!=='orange county'))) ? '' : ((c && c.label) ? c.label : '');
     var _areaHas = (typeof _attrFiltersActive==='function' && _attrFiltersActive()) ? processed(true).length : 0;
     root.innerHTML = _areaHas>0 ? ccNoFilterMatch(_place, _areaHas) : ccEmptyState(_place);
     renderMapPins(); return;
@@ -3244,18 +3302,33 @@ function _attrFiltersActive(){
 /* v212b: the AREA has offices but the active filters removed them all — guide the patient to
    relax a filter. No "coming soon", no dentist CTA (the network IS here). */
 function ccNoFilterMatch(place, n){
-  var p=(place && String(place).trim())?esc(String(place).trim()):'this area';
+  var hasP=!!(place && String(place).trim());
+  var inP = hasP ? (' in '+esc(String(place).trim())) : '';
   var cnt=(n||0).toLocaleString(), one=(n===1);
   return ''
   +'<div class="cc-empty">'
   +  '<div class="cc-empty-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M7 12h10M10 19h4"></path></svg></div>'
-  +  '<h3 class="cc-empty-h">No offices match your filters in '+p+'.</h3>'
-  +  '<p class="cc-empty-p">There '+(one?'is':'are')+' <b>'+cnt+'</b> PPO '+(one?'office':'offices')+' in '+p+', but none fit every filter you’ve set. Remove a filter to see them.</p>'
+  +  '<h3 class="cc-empty-h">No offices match your filters'+inP+'.</h3>'
+  +  '<p class="cc-empty-p">There '+(one?'is':'are')+' <b>'+cnt+'</b> PPO '+(one?'office':'offices')+inP+', but none fit every filter you’ve set. Remove a filter to see them.</p>'
   +  '<div class="cc-empty-actions">'
   +    '<button class="cc-empty-btn primary" type="button" onclick="clearFilters()">Clear all filters</button>'
   +    '<button class="cc-empty-btn ghost" type="button" onclick="extendRadius()">Widen the radius</button>'
   +  '</div>'
   +'</div>';
+}
+
+/* Patient waitlist capture for a not-yet-launched area → form_submissions (best-effort). */
+function ccNotifyLaunch(ev, place){
+  if(ev&&ev.preventDefault) ev.preventDefault();
+  var form=ev&&ev.target, inp=form&&form.querySelector('input[type=email]');
+  var email=inp?String(inp.value||'').trim():''; if(!email) return false;
+  try{ track&&track('empty_notify_signup',{place:place||''}); }catch(e){}
+  try{ if(typeof sb!=='undefined' && sb && SB_READY){
+    sb.from('form_submissions').insert({ type:'area_launch_waitlist', status:'new', patient_email:email,
+      office_city:(place||null), source_page_url:(location&&location.href)||'', details:{ place:place||'' } }).then(function(){},function(){});
+  } }catch(e){}
+  if(form){ form.innerHTML='<div class="cc-empty-notify-ok">Thanks — we’ll email you the moment '+esc(place||'this area')+' goes live.</div>'; }
+  return false;
 }
 
 /* v212: "network still building" empty state — reassures patients the area is coming, and
@@ -3272,6 +3345,10 @@ function ccEmptyState(place){
   +     '<button class="cc-empty-btn primary" type="button" onclick="extendRadius()">Widen the search</button>'
   +     '<button class="cc-empty-btn ghost" type="button" onclick="clearFilters()">Clear filters</button>'
   +   '</div>'
+  +   '<form class="cc-empty-notify" onsubmit="return ccNotifyLaunch(event,\''+jsq(String(place||""))+'\')">'
+  +     '<input type="email" required autocomplete="email" placeholder="Email me when '+p+' is live" aria-label="Your email">'
+  +     '<button type="submit">Notify me</button>'
+  +   '</form>'
   +   '<div class="cc-empty-dentist">'
   +     '<span class="cc-empty-eyebrow">For dentists in '+p+'</span>'
   +     '<h4 class="cc-empty-dh">Claim your spot before '+p+' launches.</h4>'
@@ -4019,6 +4096,22 @@ let centerLayers={side:null,mini:null,full:null}, fsCircle=null, fsCircleExtra=n
 const TILE="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
 const TILE_ATTR='&copy; OpenStreetMap &copy; CARTO';
 function pinTier(d){ return d.tier==="platinum_elite"?"plat":d.tier==="capy_accredited"?"accr":d.tier==="verified"?"ver":"pub"; }
+/* v215: office pins cluster into count bubbles (split on zoom) so dense areas stop piling.
+   Falls back to a plain layer group if the markercluster plugin didn't load. */
+function ccMakeLayer(){
+  try{
+    if(window.L && L.markerClusterGroup){
+      return L.markerClusterGroup({
+        showCoverageOnHover:false, spiderfyOnMaxZoom:true, maxClusterRadius:46, chunkedLoading:true,
+        disableClusteringAtZoom:9,   /* individual pins at normal search zoom; cluster only when zoomed out wider than the search area */
+        iconCreateFunction:function(cluster){ var n=cluster.getChildCount();
+          var sz = n<10?38 : n<50?46 : 54;
+          return L.divIcon({ className:'cc-cluster-wrap', html:'<span class="cc-cluster" style="width:'+sz+'px;height:'+sz+'px">'+n+'</span>', iconSize:[sz,sz], iconAnchor:[sz/2,sz/2] }); }
+      });
+    }
+  }catch(e){ console.warn('cluster init failed', e); }
+  return L.layerGroup();
+}
 function makeIcon(d){
   // Pins are a teardrop (border-radius 50% 50% 50% 0) rotated -45deg, so the visual tip
   // is at (size/2, ~1.207*size) from the icon's top-left. Anchor there for accuracy.
@@ -4110,7 +4203,12 @@ function ensureMaps(){
       L.tileLayer(TILE,{attribution:TILE_ATTR,subdomains:'abcd',maxZoom:19}).addTo(fullMap);
       setupFsZoom(fullMap);
       L.control.zoom({position:'topright'}).addTo(fullMap);
-      fullMap.on('move', fsOnMove); fullMap.on('zoom', fsOnMove); fullMap.on('moveend', fsOnMoveEnd); }
+      fullMap.on('move', fsOnMove); fullMap.on('zoom', fsOnMove); fullMap.on('moveend', fsOnMoveEnd);
+      /* The screen-centered crosshair can't be z-indexed behind a Leaflet popup (the popup lives
+         in the map's transformed pane = separate stacking context), so hide it while a card is
+         open and always bring it back the moment the card closes. */
+      fullMap.on('popupopen', function(){ var x=document.getElementById('fsmap-cross'); if(x) x.classList.add('cross-hide'); });
+      fullMap.on('popupclose', function(){ var x=document.getElementById('fsmap-cross'); if(x) x.classList.remove('cross-hide'); }); }
   }
   if(!miniMap){
     const el=document.getElementById('minimap');
@@ -4640,13 +4738,19 @@ function renderMapPins(){
   const _pins = _pinList.slice(0,50);
   [[sideMap,'side'],[fullMap,'full'],[miniMap,'mini']].forEach(([map,tag])=>{
     if(!map) return;
-    if(tag==='side'){ if(sideLayer) map.removeLayer(sideLayer); sideLayer=L.layerGroup().addTo(map); }
-    else if(tag==='full'){ if(fullLayer) map.removeLayer(fullLayer); fullLayer=L.layerGroup().addTo(map); }
+    if(tag==='side'){ if(sideLayer) map.removeLayer(sideLayer); sideLayer=ccMakeLayer().addTo(map); }
+    else if(tag==='full'){ if(fullLayer) map.removeLayer(fullLayer); fullLayer=ccMakeLayer().addTo(map); }
     else { if(miniLayer) map.removeLayer(miniLayer); miniLayer=L.layerGroup().addTo(map); }
     const layer = tag==='side'?sideLayer:(tag==='full'?fullLayer:miniLayer);
+    /* Platinum Elite + Capy Accredited pins ride a separate, never-clustered layer so the
+       premium tiers always stand out (paid placement should never hide inside a count bubble). */
+    let featLayer=null;
+    if(tag!=='mini'){ if(map._ccFeat){ try{ map.removeLayer(map._ccFeat); }catch(e){} } featLayer=L.layerGroup().addTo(map); map._ccFeat=featLayer; }
     _pins.forEach(d=>{ if(d.lat==null) return;
-      if(tag==='mini'){ L.marker([d.lat,d.lng],{icon:makeIcon(d),interactive:false,zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer); return; }
-      const m=L.marker([d.lat,d.lng],{icon:makeIcon(d),zIndexOffset:(pinTier(d)==='plat'?600:0)}).addTo(layer);
+      var _t=pinTier(d), paid=(_t==='plat'||_t==='accr');
+      if(tag==='mini'){ L.marker([d.lat,d.lng],{icon:makeIcon(d),interactive:false,zIndexOffset:(paid?600:0)}).addTo(layer); return; }
+      var target=(paid && featLayer)?featLayer:layer;
+      const m=L.marker([d.lat,d.lng],{icon:makeIcon(d),zIndexOffset:(_t==='plat'?900:(_t==='accr'?700:0))}).addTo(target);
       if(tag==='full'){ m.bindPopup(fsPinCard(d), {className:'cc-dpop', maxWidth:270, minWidth:250, autoPanPadding:[28,28], offset:[0,-6]}); m.on('click',()=>{ selectDentist(d.id); m.openPopup(); }); }
       else { m.on('click',()=>{ m.bindPopup(popupHtml(d)).openPopup(); scrollToCard(d.id); }); }
       m.on('mouseover',()=>highlightCard(d.id,true));
@@ -5413,6 +5517,21 @@ function submitClaimProfile(){
    Each builds a clean payload and logs it. Swap the console.log for a fetch() to the matching
    /api endpoint later without touching the UI:
      /api/ppo-check-request   /api/availability-request   /api/claim-profile-request          */
+/* v213: actually persist a lead to Supabase form_submissions (the unified submissions table).
+   Adds the required status/details columns; degrades to console when offline. */
+async function ccSubmitForm(payload){
+  try{
+    if(typeof sb!=='undefined' && sb && SB_READY){
+      var rec={ status:'new', details:{} };
+      for(var k in payload){ if(payload[k]!==undefined && payload[k]!==null) rec[k]=payload[k]; }
+      var res=await sb.from('form_submissions').insert(rec);
+      if(res && res.error){ console.warn('[CoverCapy] form_submissions insert error', res.error); }
+      return res;
+    }
+  }catch(e){ console.warn('[CoverCapy] ccSubmitForm failed', e); }
+  console.log('[CoverCapy] (offline) form_submission', payload);
+  return null;
+}
 async function submitPpoCheckRequest(dentist, formData){
   const d=dentist||{}, f=formData||{};
   const payload={ type:'ppo_check_request',
@@ -5422,7 +5541,7 @@ async function submitPpoCheckRequest(dentist, formData){
     ppo_carrier:f.ppo_carrier||'', plan_name:f.plan_name||'', member_id:f.member_id||'',
     treatment_interest:f.treatment_interest||'', message:f.message||'',
     source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
-  try{ console.log('[CoverCapy] ppo-check-request', payload); /* await fetch('/api/ppo-check-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); */ }catch(e){ console.warn('ppo-check-request failed', e); }
+  try{ await ccSubmitForm(payload); }catch(e){ console.warn('ppo-check-request failed', e); }
   return payload;
 }
 async function submitAvailabilityRequest(dentist, formData){
@@ -5434,7 +5553,7 @@ async function submitAvailabilityRequest(dentist, formData){
     preferred_date:f.preferred_date||'', preferred_window:f.preferred_window||'',
     treatment_interest:f.treatment_interest||'', message:f.message||'',
     source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
-  try{ console.log('[CoverCapy] availability-request', payload); /* await fetch('/api/availability-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); */ }catch(e){ console.warn('availability-request failed', e); }
+  try{ await ccSubmitForm(payload); }catch(e){ console.warn('availability-request failed', e); }
   return payload;
 }
 async function submitClaimProfileRequest(dentist, formData){
@@ -5444,7 +5563,7 @@ async function submitClaimProfileRequest(dentist, formData){
     office_city:d.city||'', office_slug:d.slug||d.id||'',
     rep_name:f.rep_name||'', work_email:f.work_email||'', role:f.role||'', phone:f.phone||'', message:f.message||'',
     source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
-  try{ console.log('[CoverCapy] claim-profile-request', payload); /* await fetch('/api/claim-profile-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); */ }catch(e){ console.warn('claim-profile-request failed', e); }
+  try{ await ccSubmitForm(payload); }catch(e){ console.warn('claim-profile-request failed', e); }
   return payload;
 }
 
@@ -5851,6 +5970,23 @@ function openProfileModal(id){ const d=find(id); if(!d) return;
 /* ---------- MODALS / TOAST ---------- */
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+/* General-purpose entry points used by the contextual CTA cards (no specific office). */
+function openVerifyModal(){ try{ return openPpoCheck(null); }catch(e){ openModal('m-verify'); } }
+function openClaimModal(){ try{ return openClaim(null); }catch(e){ openModal('m-claim'); } }
+function openNominateModal(){ openModal('m-nominate'); gtagSafe('nominate_modal_open',{}); }
+async function submitNomination(){
+  var g=function(id){ var el=document.getElementById(id); return el?String(el.value||'').trim():''; };
+  var office=g('nom-office');
+  if(!office){ toast('Add a name','Tell us which office to nominate.','warn'); return; }
+  var payload={ type:'dentist_nomination', practice_name:office, office_city:g('nom-city'),
+    ppo_carrier:g('nom-carrier'), patient_email:g('nom-email'), message:g('nom-msg'),
+    source_page_url:(typeof location!=='undefined'?location.href:''), created_at:new Date().toISOString() };
+  try{ await ccSubmitForm(payload); }catch(e){}
+  gtagSafe('nominate_submit',{});
+  closeModal('m-nominate');
+  ['nom-office','nom-city','nom-carrier','nom-email','nom-msg'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+  toast('Thanks for the nomination', 'We’ll reach out to invite '+office+' to CoverCapy.', 'info');
+}
 document.querySelectorAll('.scrim').forEach(s=> s.addEventListener('click', e=>{ if(e.target===s) s.classList.remove('open'); }));
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ let closed=false; const openScrims=document.querySelectorAll('.scrim.open'); if(openScrims.length){ openScrims.forEach(s=>s.classList.remove('open')); closed=true; } else { const dd=document.getElementById('ddrawer'); if(dd&&dd.classList.contains('open')){ closeDentistDrawer(); closed=true; } const fs=document.getElementById('fsmap'); if(!closed && fs&&fs.classList.contains('open')){ closeFsMap(); closed=true; } } } });
 document.getElementById('sheet').addEventListener('click', e=>{ if(e.target.id==='sheet') closeSheet(); });
@@ -5875,6 +6011,24 @@ function track(ev,p){ try{ window.dataLayer=window.dataLayer||[]; window.dataLay
    crawlable city / treatment / carrier links. Layered on top of v27 without
    touching the hero, map, modals, save/compare, GA4, or palette. */
 const SEO_BASE = "/ppo-dentists", HOME_PATH = "/find-my-dentist", PROFILE_BASE = "/dentists";
+const HUB_URLS = {};
+(async ()=>{
+  try {
+    const r = await fetch('https://hfvbeqlefwwjlrbyxpbj.supabase.co/rest/v1/hub_pages?select=city_key,hub_url&hub_type=eq.city&is_live=eq.true', {
+      headers: {
+        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdmJlcWxlZnd3amxyYnl4cGJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTk1NzQsImV4cCI6MjA5NTIzNTU3NH0.AIP9Y5rQ4Ey5gbvxZT5jEVfCL7mxEAJX0KfX50JWmDQ',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmdmJlcWxlZnd3amxyYnl4cGJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTk1NzQsImV4cCI6MjA5NTIzNTU3NH0.AIP9Y5rQ4Ey5gbvxZT5jEVfCL7mxEAJX0KfX50JWmDQ'
+      }
+    });
+    const rows = await r.json();
+    rows.forEach(row => { if(row.city_key) HUB_URLS[row.city_key] = row.hub_url; });
+    renderSeoLinks();
+  } catch(e){ console.warn('hub_pages fetch failed', e); }
+})();
+function cityLinkHtml(label, cityKey){
+  if(HUB_URLS[cityKey]) return `<a href="${HUB_URLS[cityKey]}">${esc(label)}</a>`;
+  return linkHtml(label, seoHref(slugify(cityLabelFor(cityKey))), cityKey, "", "");
+}
 const SEO_TREATMENTS = ["Invisalign","Implants","Emergency","Whitening","Veneers","Cosmetic","Orthodontics","Root Canal"];
 const SEO_CARRIERS   = ["UnitedHealthcare","Delta Dental","Guardian","Ameritas","MetLife","Cigna","Aetna","Anthem"];
 /* Carriers we have enough verified/listed inventory to build real pages for today.
@@ -6077,7 +6231,7 @@ function renderSeoLinks(){
     add(rows);
     if(picks.length<N && repD){ const mk=repD.marketArea||""; add(all.filter(d=>(d.marketArea||"")===mk)); }
     if(picks.length<N && repD){ const sv=stOf(repD); add(all.filter(d=>stOf(d)===sv)); }
-    cityHost.innerHTML = picks.slice(0,N).map(function(d){ return seoLink('PPO dentists in '+d.city, ctxHubUrl(d,{}), d.city); }).join("");
+    cityHost.innerHTML = picks.slice(0,N).map(function(d){ var key=(d.city||'').toLowerCase(); return HUB_URLS[key] ? '<a href="'+esc(HUB_URLS[key])+'">'+esc('PPO dentists in '+d.city)+'</a>' : seoLink('PPO dentists in '+d.city, ctxHubUrl(d,{}), d.city); }).join("");
   }
 
   /* TREATMENT column — N treatments, anchored to the searched place */
@@ -6098,7 +6252,7 @@ function renderNearbyCityLinks(){
   const list = SEO_NEARBY[baseKey] || ["westminster","huntington beach","garden grove","costa mesa","irvine"];
   const title=document.getElementById('seo-nearby-title');
   if(title) title.textContent = f.cityLabel ? `Nearby PPO dentist searches around ${f.cityLabel}` : "Nearby PPO dentist searches";
-  host.innerHTML = list.map(k=> `<a href="${esc(seoHref(slugify(cityLabelFor(k))))}" onclick="return goSeo('${jsq(k)}','','',event)">PPO dentists in ${esc(cityLabelFor(k))}<small>${esc(cityLabelFor(baseKey))} area</small></a>`).join("");
+  host.innerHTML = list.map(k=> HUB_URLS[k] ? `<a href="${HUB_URLS[k]}">PPO dentists in ${esc(cityLabelFor(k))}<small>${esc(cityLabelFor(baseKey))} area</small></a>` : `<a href="${esc(seoHref(slugify(cityLabelFor(k))))}" onclick="return goSeo('${jsq(k)}','','',event)">PPO dentists in ${esc(cityLabelFor(k))}<small>${esc(cityLabelFor(baseKey))} area</small></a>`).join("");
 }
 function renderSeo(){ renderQuickChips(); renderSeoLinks(); renderNearbyCityLinks(); try{ renderContextCards(); }catch(_e){} }
 
@@ -6145,7 +6299,9 @@ function ctxOffices(){
 
 /* Derive a deduped, ranked pool of contextual cards from the offices in view. */
 function buildContextCards(){
-  var rows=ctxOffices(); var cards=[];
+  /* Use the ACTUAL in-view results (not the all-offices fallback) so a 0-result search never
+     shows unrelated carrier/city cards from random offices. */
+  var rows=(typeof LAST!=='undefined' && LAST) ? LAST : []; var cards=[];
   if(!rows || !rows.length) return cards;
 
   /* 1) City × carrier combos actually present in the data (verified carriers first). */
@@ -6896,7 +7052,11 @@ bootData().then(()=>{ if(SB_READY){ refreshDerived();
 .av-wrap.t-plat::after{border-color:var(--gold-2); box-shadow:0 0 0 1px rgba(184,146,79,.30), 0 0 22px rgba(184,146,79,.30)}
 .av-wrap.t-accr::after{border-color:var(--mint); box-shadow:0 0 0 1px rgba(91,224,160,.25), 0 0 18px rgba(91,224,160,.22)}
 .av-wrap.t-ver::after{border-color:var(--verified); box-shadow:0 0 0 1px rgba(47,143,102,.20)}
-.lcard.feat .av{width:88px; height:88px}
+/* v215: Featured Platinum and standard Platinum Elite share ONE template — same avatar,
+   name, and badge sizing. The only difference is the ribbon label (Featured vs Platinum Elite). */
+.lcard.feat .av{width:68px; height:68px}
+.lcard.feat .av-badge{width:22px; height:22px; font-size:11px}
+.lcard.feat .lname{font-size:20px}
 
 /* ---------- 4. EXPERIENCE TAGS (curated, max 2) ---------- */
 .xtags{display:flex; flex-wrap:wrap; gap:7px; margin-top:11px}
@@ -7296,6 +7456,11 @@ a.eco-row:hover{border-color:var(--teal-300); transform:translateY(-1px); box-sh
 .cta-pair .la{width:100%; padding:11px 6px; font-size:12.5px; line-height:1.2; min-width:0}
 .cta-wide{margin-top:8px; width:100%}
 .cta-wide .la{width:100%}
+/* v216: CTA buttons keep a fixed size regardless of how many tags render below them */
+.cta-pair, .cta-wide{flex:0 0 auto}
+.lside-tags{flex:0 0 auto; width:100%; margin-top:10px; padding-top:10px; border-top:1px solid var(--line-2)}
+.lside-tags .chips{margin-top:0; justify-content:center}
+.chip.chip-lang{background:var(--mint-soft); border-color:#bfe9d3; color:var(--teal-700)}
 .la-call{gap:6px}
 .la-call .cc-ph{font-style:normal; font-size:12px; line-height:1}
 /* Verify Insurance Acceptance — distinct teal-night patient CTA with mint accent */
@@ -7553,14 +7718,14 @@ function onGripTap(e){ if(_fsGripDragged){ _fsGripDragged=false; return; } cycle
 .listings.view-grid .lcard:not(.feat) .lrow, .listings.view-market .lcard:not(.feat) .lrow{flex:1 1 auto}
 .listings.view-grid .lcard:not(.feat) .lside, .listings.view-market .lcard:not(.feat) .lside{margin-top:auto}
 
-/* #4 featured platinum card: balance the hero — perks fill the width, CTAs centered, columns equal height */
-.lcard.feat .lrow{align-items:stretch}
+/* #4 featured platinum card: one template with standard Platinum — CTAs top-aligned, not centered */
+.lcard.feat .lrow{align-items:flex-start}
 .lcard.feat .lmain{flex:1 1 auto; min-width:0}
-.lcard.feat .lside{justify-content:center}
+.lcard.feat .lside{justify-content:flex-start}
 .lcard.feat .whychoose .wc-list{display:grid; grid-template-columns:1fr 1fr; gap:9px 20px}
 @media(max-width:760px){
   .lcard.feat .whychoose .wc-list{grid-template-columns:1fr}
-  .lcard.feat .lside{justify-content:center}
+  .lcard.feat .lside{justify-content:flex-start}
 }
 
 /* #5 drawer location map: hide Leaflet attribution, signal tappable */
