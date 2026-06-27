@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*?*add=
+Disallow: /estimate-cost.html
+Sitemap: https://www.covercapy.com/sitemap.xml

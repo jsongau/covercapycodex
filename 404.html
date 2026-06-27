@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | CoverCapy</title>
+  <meta name="description" content="This CoverCapy page could not be found. Continue to PPO plan comparison, dentist discovery, treatment estimates, financing, rewards, or practice membership." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#173f36" />
+
+  <!-- CoverCapy Google Analytics / Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XNBPGSZ1LZ');
+
+    window.addEventListener('DOMContentLoaded', function () {
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_not_found', {
+          page_path: window.location.pathname,
+          page_location: window.location.href,
+          referrer: document.referrer || 'direct'
+        });
+      }
+    });
+  </script>
+
+  <!-- CoverCapy shared component styles. These are needed so the injected nav/footer do not render as raw links. -->
+  <link rel="stylesheet" href="assets/css/mega-nav.css" />
+  <link rel="stylesheet" href="assets/css/mega-nav-mobile.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+
+  <!-- Safety net only. Your real mega-nav.css still wins when it loads. -->
+  <style id="cc-mega-nav-failsafe">
+    #cc-nav-mount,
+    #mega-nav-placeholder {
+      min-height: 72px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    #cc-nav-mount .cc-nav,
+    #mega-nav-placeholder .cc-nav {
+      width: 100%;
+      background: rgba(255,252,245,.94);
+      border-bottom: 1px solid rgba(23,63,54,.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #173f36;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    #cc-nav-mount .cc-nav-row,
+    #cc-nav-mount .cc-nav-shell,
+    #mega-nav-placeholder .cc-nav-row,
+    #mega-nav-placeholder .cc-nav-shell {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 32px;
+    }
+
+    #cc-nav-mount .cc-logo,
+    #mega-nav-placeholder .cc-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #173f36;
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+
+    #cc-nav-mount .cc-logo-img,
+    #mega-nav-placeholder .cc-logo-img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    #cc-nav-mount .cc-edition,
+    #cc-nav-mount .cc-logo-copy,
+    #mega-nav-placeholder .cc-edition,
+    #mega-nav-placeholder .cc-logo-copy {
+      display: grid;
+      line-height: 1.1;
+    }
+
+    #cc-nav-mount .cc-edition-top,
+    #cc-nav-mount .cc-logo-word,
+    #mega-nav-placeholder .cc-edition-top,
+    #mega-nav-placeholder .cc-logo-word {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .22em;
+    }
+
+    #cc-nav-mount .cc-edition-bottom,
+    #cc-nav-mount .cc-logo-line,
+    #mega-nav-placeholder .cc-edition-bottom,
+    #mega-nav-placeholder .cc-logo-line {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(23,63,54,.72);
+    }
+
+    #cc-nav-mount .cc-links,
+    #mega-nav-placeholder .cc-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      flex: 1 1 auto;
+    }
+
+    #cc-nav-mount .cc-link,
+    #mega-nav-placeholder .cc-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #173f36;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    #cc-nav-mount .cc-link > a,
+    #cc-nav-mount .cc-link-trigger,
+    #mega-nav-placeholder .cc-link > a,
+    #mega-nav-placeholder .cc-link-trigger {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 26px 0;
+    }
+
+    #cc-nav-mount .cc-dropdown,
+    #mega-nav-placeholder .cc-dropdown {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 8px);
+      transform: translateX(-50%);
+      width: min(820px, calc(100vw - 36px));
+      max-height: min(76vh, 680px);
+      overflow: auto;
+      z-index: 1005;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(23,63,54,.12);
+      background: rgba(255,252,245,.98);
+      box-shadow: 0 24px 70px rgba(23,63,54,.18);
+    }
+
+    #cc-nav-mount .cc-link:hover > .cc-dropdown,
+    #cc-nav-mount .cc-link:focus-within > .cc-dropdown,
+    #mega-nav-placeholder .cc-link:hover > .cc-dropdown,
+    #mega-nav-placeholder .cc-link:focus-within > .cc-dropdown {
+      display: block;
+    }
+
+    #cc-nav-mount .cc-actions,
+    #mega-nav-placeholder .cc-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    #cc-nav-mount .cc-actions a,
+    #mega-nav-placeholder .cc-actions a {
+      text-decoration: none;
+      color: #173f36;
+      font-weight: 800;
+    }
+
+    #cc-nav-mount .cc-mobile-menu,
+    #cc-nav-mount .cc-mobile-panel,
+    #cc-nav-mount .cc-mobile-drawer,
+    #cc-nav-mount .cc-drawer,
+    #cc-nav-mount .cc-nav-drawer,
+    #cc-nav-mount .mobile-menu,
+    #mega-nav-placeholder .cc-mobile-menu,
+    #mega-nav-placeholder .cc-mobile-panel,
+    #mega-nav-placeholder .cc-mobile-drawer,
+    #mega-nav-placeholder .cc-drawer,
+    #mega-nav-placeholder .cc-nav-drawer,
+    #mega-nav-placeholder .mobile-menu {
+      display: none;
+    }
+
+    @media (max-width: 880px) {
+      #cc-nav-mount .cc-links,
+      #mega-nav-placeholder .cc-links { display: none; }
+      #cc-nav-mount .cc-nav-row,
+      #cc-nav-mount .cc-nav-shell,
+      #mega-nav-placeholder .cc-nav-row,
+      #mega-nav-placeholder .cc-nav-shell { padding: 0 18px; }
+    }
+  </style>
+
+  <style>
+    :root {
+      --cc-emerald: #173f36;
+      --cc-emerald-2: #21594c;
+      --cc-cream: #fbf6ec;
+      --cc-card: rgba(255,255,255,.72);
+      --cc-line: rgba(23,63,54,.14);
+      --cc-text: #173f36;
+      --cc-muted: rgba(23,63,54,.68);
+      --cc-gold: #c49a5a;
+      --cc-orange: #e58a4a;
+      --cc-teal: #4aa89d;
+      --cc-shadow: 0 24px 70px rgba(23,63,54,.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--cc-text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(196,154,90,.28), transparent 34%),
+        radial-gradient(circle at 88% 16%, rgba(74,168,157,.20), transparent 30%),
+        linear-gradient(135deg, #fffaf0 0%, #f7efe2 46%, #edf7f4 100%);
+      overflow-x: hidden;
+    }
+
+    #cc-nav-mount:empty,
+    #cc-footer-mount:empty { display: none; }
+
+    .cc404-page {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      place-items: center;
+      padding: clamp(28px, 4.5vw, 56px) 18px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .cc404-page::before,
+    .cc404-page::after {
+      content: "";
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      border-radius: 999px;
+      filter: blur(14px);
+      opacity: .42;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .cc404-page::before {
+      left: -160px;
+      bottom: -140px;
+      background: rgba(229,138,74,.22);
+    }
+
+    .cc404-page::after {
+      right: -130px;
+      top: -160px;
+      background: rgba(23,63,54,.12);
+    }
+
+    .cc404-shell {
+      width: min(1080px, 100%);
+      background: var(--cc-card);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 34px;
+      box-shadow: var(--cc-shadow);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .cc404-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--cc-line);
+    }
+
+    body.has-external-nav .cc404-topbar { display: none; }
+
+    .cc404-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--cc-text);
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .cc404-brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255,255,255,.5);
+      padding: 5px;
+    }
+
+    .cc404-brand span small {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: var(--cc-muted);
+    }
+
+    .cc404-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--cc-line);
+      background: rgba(255,255,255,.54);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--cc-emerald);
+      white-space: nowrap;
+    }
+
+    .cc404-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--cc-orange);
+      box-shadow: 0 0 0 5px rgba(229,138,74,.14);
+    }
+
+    .cc404-main {
+      display: grid;
+      grid-template-columns: minmax(0, .98fr) minmax(340px, 1.02fr);
+      align-items: stretch;
+    }
+
+    .cc404-headline {
+      grid-column: 1 / -1;
+      padding: clamp(34px, 5vw, 58px) clamp(28px, 6vw, 68px) clamp(18px, 3vw, 26px);
+    }
+
+    .cc404-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 16px;
+      color: var(--cc-muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .cc404-eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cc-gold), transparent);
+    }
+
+    .cc404-headline h1 {
+      margin: 0;
+      max-width: 960px;
+      font-size: clamp(52px, 7.8vw, 100px);
+      line-height: .88;
+      letter-spacing: -.085em;
+    }
+
+    .cc404-left {
+      padding: 0 clamp(28px, 6vw, 68px) clamp(34px, 5vw, 58px);
+      border-top: 1px solid var(--cc-line);
+    }
+
+    .cc404-captain-visual {
+      width: min(100%, 470px);
+      margin: 28px 0 0;
+      border-radius: 28px;
+      border: 1px solid rgba(23,63,54,.14);
+      background: linear-gradient(135deg, rgba(255,255,255,.70), rgba(251,246,236,.52));
+      box-shadow: 0 18px 46px rgba(23,63,54,.12);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cc404-captain-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 14px 18px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,154,90,.42), transparent);
+      pointer-events: none;
+    }
+
+    .cc404-captain-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .cc404-lead {
+      margin: 20px 0 0;
+      max-width: 520px;
+      color: var(--cc-muted);
+      font-size: clamp(16px, 2vw, 18px);
+      line-height: 1.62;
+    }
+
+    .cc404-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .cc404-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 850;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .cc404-btn:hover { transform: translateY(-2px); }
+
+    .cc404-btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--cc-emerald), var(--cc-emerald-2));
+      box-shadow: 0 16px 32px rgba(23,63,54,.22);
+    }
+
+    .cc404-btn.secondary {
+      color: var(--cc-emerald);
+      border: 1px solid var(--cc-line);
+      background: rgba(255,255,255,.64);
+    }
+
+    .cc404-quick-panel {
+      padding: clamp(28px, 5vw, 48px) clamp(24px, 4vw, 38px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.48), rgba(255,255,255,.28)),
+        radial-gradient(circle at 70% 10%, rgba(196,154,90,.18), transparent 36%);
+      border-left: 1px solid var(--cc-line);
+      border-top: 1px solid var(--cc-line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cc404-mini-title {
+      margin: 0 0 14px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cc-muted);
+    }
+
+    .cc404-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .cc404-link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--cc-line);
+      background: rgba(255,255,255,.58);
+      text-decoration: none;
+      color: var(--cc-text);
+      font-weight: 850;
+      box-shadow: 0 10px 28px rgba(23,63,54,.06);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .cc404-link-card:hover {
+      transform: translateX(3px);
+      border-color: rgba(23,63,54,.28);
+      background: rgba(255,255,255,.82);
+    }
+
+    .cc404-link-card small {
+      display: block;
+      margin-top: 4px;
+      color: var(--cc-muted);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .cc404-arrow {
+      width: 30px;
+      height: 30px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: rgba(23,63,54,.08);
+      color: var(--cc-emerald);
+      font-weight: 900;
+    }
+
+    .cc404-path {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(23,63,54,.06);
+      color: var(--cc-muted);
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .cc404-local-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px 18px;
+      padding: 18px 22px;
+      border-top: 1px solid var(--cc-line);
+      color: var(--cc-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    body.has-external-footer .cc404-local-footer { display: none; }
+
+    .cc404-local-footer a {
+      color: var(--cc-text);
+      text-decoration: none;
+    }
+
+    .cc404-local-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 860px) {
+      .cc404-shell { border-radius: 26px; }
+      .cc404-topbar { align-items: flex-start; }
+      .cc404-status-pill { display: none; }
+      .cc404-main { grid-template-columns: 1fr; }
+      .cc404-headline { padding: 38px 22px 18px; }
+      .cc404-headline h1 { font-size: clamp(46px, 14vw, 76px); }
+      .cc404-left { padding: 0 22px 30px; }
+      .cc404-quick-panel { border-left: 0; padding: 26px 22px 30px; }
+      .cc404-captain-visual { width: 100%; margin-top: 22px; border-radius: 22px; }
+      .cc404-actions { flex-direction: column; }
+      .cc404-btn { width: 100%; }
+      .cc404-local-footer { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
+
+  <div class="cc404-page">
+    <section class="cc404-shell" aria-labelledby="page-title">
+      <header class="cc404-topbar">
+        <a class="cc404-brand" href="/" aria-label="CoverCapy home">
+          <img src="/assets/images/covercapy-logo.svg" alt="" onerror="this.style.display='none'" />
+          <span>CoverCapy<small>Concierge Dental Network</small></span>
+        </a>
+        <div class="cc404-status-pill" aria-label="Page not found status"><span class="cc404-dot"></span>404 route</div>
+      </header>
+
+      <main class="cc404-main">
+        <section class="cc404-headline">
+          <p class="cc404-eyebrow">Route not found</p>
+          <h1 id="page-title">This page wandered off.</h1>
+        </section>
+
+        <section class="cc404-left" aria-label="Page not found recovery">
+          <figure class="cc404-captain-visual" aria-label="Captain Capy map illustration">
+            <img src="/assets/images/captaincapymap.png" alt="Captain Capy holding a map and helping visitors find the right CoverCapy path" />
+          </figure>
+          <p class="cc404-lead">Let’s get you back to PPO plans, dentists, rewards, or treatment costs.</p>
+          <div class="cc404-actions" aria-label="Primary links">
+            <a class="cc404-btn primary" href="/">Back to CoverCapy</a>
+            <a class="cc404-btn secondary" href="/join">Claim 300 Capy Crowns</a>
+          </div>
+          <div class="cc404-path" id="missing-path">Missing page: loading…</div>
+        </section>
+
+        <aside class="cc404-quick-panel" aria-label="Helpful CoverCapy links">
+          <p class="cc404-mini-title">Popular paths</p>
+          <nav class="cc404-links">
+            <a class="cc404-link-card" href="/find-my-dentist">
+              <span>Find PPO Dentists<small>Search nearby dental offices</small></span>
+              <span class="cc404-arrow">›</span>
+            </a>
+            <a class="cc404-link-card" href="/compare-ppo-dental-plans">
+              <span>Compare PPO Plans<small>Understand coverage faster</small></span>
+              <span class="cc404-arrow">›</span>
+            </a>
+            <a class="cc404-link-card" href="/estimate-dental-treatment-cost.html">
+              <span>Estimate Costs<small>Crowns, implants, Invisalign, and more</small></span>
+              <span class="cc404-arrow">›</span>
+            </a>
+            <a class="cc404-link-card" href="/dental-financing-monthly-payments">
+              <span>Monthly Financing<small>Plan care with payment options</small></span>
+              <span class="cc404-arrow">›</span>
+            </a>
+            <a class="cc404-link-card" href="/capy-practice-membership.html">
+              <span>For Dental Practices<small>Claim or upgrade your profile</small></span>
+              <span class="cc404-arrow">›</span>
+            </a>
+          </nav>
+        </aside>
+      </main>
+
+      <footer class="cc404-local-footer">
+        <span>© <span id="year"></span> CoverCapy</span>
+        <span><a href="/">Home</a> · <a href="/join">Rewards</a> · <a href="/find-my-dentist">Dentists</a></span>
+      </footer>
+    </section>
+  </div>
+
+  <div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('missing-path').textContent = 'Missing page: ' + window.location.pathname;
+    window.goHome = window.goHome || function () { window.location.href = '/'; };
+
+    (function loadCoverCapyComponents(){
+      var components = [
+        {
+          mountId: 'cc-nav-mount',
+          html: ['components/mega-nav.html', '/components/mega-nav.html', 'mega-nav.html', '/mega-nav.html'],
+          script: ['assets/js/mega-nav.js', '/assets/js/mega-nav.js', 'mega-nav.js', '/mega-nav.js'],
+          successClass: 'has-external-nav'
+        },
+        {
+          mountId: 'cc-footer-mount',
+          html: ['components/footer.html', '/components/footer.html', 'footer.html', '/footer.html'],
+          script: ['assets/js/footer.js', '/assets/js/footer.js', 'footer.js', '/footer.js'],
+          successClass: 'has-external-footer'
+        }
+      ];
+
+      function loadScript(srcList) {
+        return srcList.reduce(function(chain, src) {
+          return chain.catch(function(){
+            return new Promise(function(resolve, reject){
+              if (document.querySelector('script[src="' + src + '"]')) return resolve(true);
+              var script = document.createElement('script');
+              script.src = src;
+              script.defer = true;
+              script.onload = function(){ resolve(true); };
+              script.onerror = function(){ reject(new Error('Script failed: ' + src)); };
+              document.body.appendChild(script);
+            });
+          });
+        }, Promise.reject()).catch(function(){ return false; });
+      }
+
+      function replayScripts(root) {
+        Array.prototype.slice.call(root.querySelectorAll('script')).forEach(function(oldScript){
+          var fresh = document.createElement('script');
+          Array.prototype.slice.call(oldScript.attributes).forEach(function(attr){
+            fresh.setAttribute(attr.name, attr.value);
+          });
+          fresh.textContent = oldScript.textContent;
+          if (oldScript.parentNode) oldScript.parentNode.replaceChild(fresh, oldScript);
+        });
+      }
+
+      function fetchFirst(urls) {
+        return urls.reduce(function(chain, url){
+          return chain.catch(function(){
+            return fetch(url, { cache: 'no-cache' }).then(function(res){
+              if (!res.ok) throw new Error(url + ' returned ' + res.status);
+              return res.text();
+            });
+          });
+        }, Promise.reject());
+      }
+
+      function injectComponent(component) {
+        var mount = document.getElementById(component.mountId);
+        if (!mount) return Promise.resolve(false);
+
+        return fetchFirst(component.html).then(function(html){
+          var wrapper = document.createElement('div');
+          wrapper.innerHTML = html;
+          replayScripts(wrapper);
+
+          while (wrapper.firstChild) {
+            mount.parentNode.insertBefore(wrapper.firstChild, mount);
+          }
+          mount.parentNode.removeChild(mount);
+          document.body.classList.add(component.successClass);
+          return loadScript(component.script);
+        }).catch(function(err){
+          console.warn('[CoverCapy 404 loader] Component failed:', component.mountId, err);
+          return false;
+        });
+      }
+
+      function init() {
+        components.reduce(function(chain, component){
+          return chain.then(function(){ return injectComponent(component); });
+        }, Promise.resolve());
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init, { once: true });
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

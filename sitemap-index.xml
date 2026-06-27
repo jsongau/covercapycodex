@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Curated indexable pages: home, compare, find-my-dentist, dental-insurance hub + 8 plan pages,
+       guides + glossary, benefit-maxing, ppo-dentists, dentist directory, legal. ~164 URLs.
+       Generated from each page's own canonical; noindex and dev/preview pages excluded. -->
+  <sitemap>
+    <loc>https://www.covercapy.com/sitemap-pages.xml</loc>
+    <lastmod>2026-06-26</lastmod>
+  </sitemap>
+
+  <!-- Generated dentist/city/metro/state SEO pages under /dental/ (generator-owned, built on the Mac).
+       Lists the indexable subset; principal-city and canonicalized duplicates are intentionally excluded. -->
+  <sitemap>
+    <loc>https://www.covercapy.com/dental/sitemap-dental.xml</loc>
+    <lastmod>2026-06-21</lastmod>
+  </sitemap>
+
+  <!-- Doctor profile pages under /dentists/ (NPI-enriched, ~1,148) are currently noindex
+       (is_published=false in enrich-npi.js). Add a sitemap-doctors entry here once they are flipped to index. -->
+
+</sitemapindex>

@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>CoverCapy Concierge Dental Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/mega-nav2.css">
+<link rel="stylesheet" href="/assets/css/mega-nav2-mobile.css">
+</head>
+<body>
+<!-- CoverCapy complete standalone page. Deploy this entire file as-is. Everything (fonts, styles, nav markup, and all behavior incl. the Rewards quest) is contained in this one file. No other files needed. -->
+<nav aria-label="Primary" class="cc-nav" id="cc-nav">
+<div class="cc-nav-row">
+<div class="cc-left"><a aria-label="CoverCapy home" class="cc-logo" href="/">
+<img alt="CoverCapy" class="cc-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="/assets/images/covercapy-logo.svg"/>
+<svg aria-hidden="true" class="cc-logo-fallback" height="46" viewbox="0 0 64 64" width="46" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><ellipse cx="42" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><rect fill="#0E3F44" height="32" rx="16" width="36" x="14" y="20"></rect><ellipse cx="32" cy="44" fill="#123F52" rx="9" ry="6"></ellipse><circle cx="25" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="39" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="25" cy="33" fill="#0E3F44" r="1"></circle><circle cx="39" cy="33" fill="#0E3F44" r="1"></circle><circle cx="29" cy="44" fill="#FCFAF4" r="1.1"></circle><circle cx="35" cy="44" fill="#FCFAF4" r="1.1"></circle></svg>
+<span class="cc-edition"><span class="cc-edition-top">CoverCapy</span><span class="cc-edition-bottom">Concierge Dental Network</span></span>
+</a>
+<a class="cc-emergency-pill" href="/benefit-maxing/guides/dental-emergencies/"><span class="cc-em-dot"></span> Dental emergency?</a>
+</div>
+<div class="cc-links" role="menubar"><div class="cc-link featured" data-link="find" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/find-my-dentist" role="menuitem"><svg class="cc-find-ic" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="cc-nav-label">Find a Dentist</span><span class="cc-nav-go" aria-hidden="true">Open <i class="cc-go-ar">→</i></span> <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
+<div class="cc-mega dd-find" role="menu"><div class="mega-inner find-inviting-inner">
+<div class="find-inviting-grid">
+<section aria-label="Find a PPO dentist by ZIP" class="find-inviting-left">
+<div class="mega-eyebrow find-orange-eyebrow">Find a PPO Dentist</div>
+<h3 class="mega-title find-inviting-title">Find a trusted<br/>PPO dentist <em>near you.</em></h3>
+<p class="mega-sub find-inviting-sub">Explore the best in-network PPO offices near you,<br/>backed by CoverCapy's dental concierge network.</p>
+<div class="zip-search-card">
+<div class="zip-search-row">
+<button type="button" id="nav-locate" class="zip-icon" aria-label="Use my current location" title="Use my location">⌖</button>
+<input autocomplete="off" class="find-zip-input zip-search-input" id="nav-zip" inputmode="search" maxlength="64" placeholder="Enter ZIP, city, area, or state (e.g., 91745 or Orange County)" type="search" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="nav-suggest" aria-haspopup="listbox"/>
+<button class="find-zip-btn zip-orange-btn cta-sheen" id="nav-zip-btn" type="button"><span aria-hidden="true">⌕</span> Search Dentists</button>
+</div>
+<div class="cc-suggest" id="nav-suggest" role="listbox" aria-label="Location suggestions" hidden></div>
+<div aria-label="Example searches" class="popular-searches option-c-searches">
+<span class="popular-label">Try a search</span>
+<button class="zip-chip zip-chip-simple" data-query="90210" type="button">90210</button>
+<button class="zip-chip zip-chip-simple" data-query="91745" type="button">91745</button>
+<button class="zip-chip zip-chip-simple" data-query="92697" type="button">92697</button>
+<button class="zip-chip zip-chip-simple" data-query="Orange County" type="button">Orange County</button>
+<button class="zip-chip zip-chip-simple" data-query="Texas" type="button">Texas</button>
+</div>
+</div>
+<div class="find-mini-trust">
+<div class="trust-mini"><span class="trust-ico">★</span><strong>Platinum Elite</strong></div>
+<div class="trust-mini"><span class="trust-ico">✓</span><strong>PPO verified</strong></div>
+<div class="trust-mini"><span class="trust-ico">◆</span><strong>Clear choices</strong></div>
+</div>
+</section>
+<aside aria-label="Search result" class="find-inviting-right">
+<div class="mega-eyebrow find-orange-eyebrow">What to expect</div>
+<div class="find-result-card featured-card" id="find-featured">
+<div class="find-intro-banner"><span class="ib-dot">◆</span> Platinum Elite appears first near you</div>
+<div class="what-row"><span class="what-icon">♔</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your ZIP.</p></div></div>
+<div class="what-row"><span class="what-icon">✓</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>
+<div class="what-row"><span class="what-icon">⌖</span><div><strong>Dentists Near You</strong><p>Open the full directory to keep searching.</p></div></div>
+</div>
+<div aria-label="Directory and dentist actions" class="find-action-panel" id="find-action-panel">
+<a aria-disabled="true" class="find-browse-main is-disabled" href="#" id="nav-browse-main">Select a ZIP or city first</a>
+<a class="find-dentist-apply" href="/dentist-portal.html#platinum-elite">Are you a dentist? Apply to join</a>
+</div>
+<div class="find-fallback-cta" hidden="" id="find-fallback-cta">
+<a aria-disabled="true" class="find-fallback-primary cta-idle" href="#" id="nav-find-cta">Select a ZIP or city first </a>
+<a class="find-fallback-secondary" href="/dentist-portal.html#platinum-elite">For Dentists: Apply Platinum Elite</a>
+</div>
+</aside>
+</div>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Capy Accredited Network</span><span>No assigned dentists</span><span>Always free for patients</span></div><span class="mega-foot-link cc-foot-wait">Choose a ZIP or city above first</span></div></div>
+</div></div>
+</div><div class="cc-link" data-link="insurance" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/dental-insurance/" role="menuitem"><span class="cc-nav-label">Insurance</span><span class="cc-nav-go" aria-hidden="true">Open <i class="cc-go-ar">&#8594;</i></span> <span aria-hidden="true" class="cc-link-caret" data-toggle="">&#9662;</span></a>
+<div class="cc-mega dd-cov" role="menu">
+<div class="mega-inner">
+<div class="mega-head">
+<div class="mega-head-lead"><div class="mega-eyebrow">Insurance</div><h3 class="mega-title">PPO dental coverage, <em>made simple.</em></h3><p class="mega-sub">Compare trusted PPO carriers and find the right plan for your timing and treatment.</p></div>
+<div class="mega-aside"><div class="mega-aside-eyebrow">Ready to compare?</div><div class="mega-aside-text">See select PPO plans side by side and match coverage to your dental moment.</div><a class="mega-aside-cta" href="/compare-ppo-dental-plans">Compare PPO plans</a></div>
+</div>
+<div class="mega-cols">
+<div>
+<div class="mn2-col-title">By carrier</div>
+<a class="mn2-link" href="/dental-insurance/delta-dental/">Delta Dental<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/dental-insurance/ppo-plans/guardian-premier-ppo/">Guardian<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/dental-insurance/ppo-plans/metlife-ncd-complete/">MetLife<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/dental-insurance/ppo-plans/uhc-primary-dental/">UnitedHealthcare<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/dental-insurance/ppo-plans/ameritas-primestar/">Ameritas<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link is-all" href="/dental-insurance/ppo-plans/">View all carriers<span class="mn2-ar">&#8594;</span></a>
+</div>
+<div>
+<div class="mn2-col-title">Get covered</div>
+<a class="mn2-link" href="/guides/immediate-coverage/">Immediate coverage<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/guides/no-waiting-period/">No waiting period<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/guides/between-jobs/">Between jobs<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/guides/self-employed/">Self-employed<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link is-all" href="/compare-ppo-dental-plans">Compare PPO plans<span class="mn2-ar">&#8594;</span></a>
+</div>
+</div>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Hand-checked carrier options</span><span>Verify dentist network first</span><span>Coverage details vary by state</span></div><a class="mega-foot-link" href="/compare-ppo-dental-plans">Compare all PPO plans</a></div></div>
+</div>
+</div></div><div class="cc-link" data-link="guides" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/guides/glossary/" role="menuitem"><span class="cc-nav-label">Guides</span><span class="cc-nav-go" aria-hidden="true">Open <i class="cc-go-ar">&#8594;</i></span> <span aria-hidden="true" class="cc-link-caret" data-toggle="">&#9662;</span></a>
+<div class="cc-mega dd-guides" role="menu">
+<div class="mega-inner">
+<div class="mega-head">
+<div class="mega-head-lead"><div class="mega-eyebrow">Guides</div><h3 class="mega-title">Understand PPO dental, <em>plainly explained.</em></h3><p class="mega-sub">Clear, jargon-free guides to help you choose coverage and plan treatment with confidence.</p></div>
+<div class="mega-aside"><div class="mega-aside-eyebrow">Start here</div><div class="mega-aside-text">New to PPO dental? The glossary decodes deductibles, annual max, and waiting periods.</div><a class="mega-aside-cta" href="/guides/glossary/">Open the glossary</a></div>
+</div>
+<div class="mega-cols">
+<div>
+<div class="mn2-col-title">Learn the basics</div>
+<a class="mn2-link" href="/guides/glossary/">Glossary<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/guides/medi-cal-vs-ppo-dental.html">Medi-Cal vs PPO<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/benefit-maxing/">Treatment cost guides<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link is-all" href="/guides/glossary/">All guides<span class="mn2-ar">&#8594;</span></a>
+</div>
+</div>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Independent guidance</span><span>Educational, not advice</span><span>Updated regularly</span></div><a class="mega-foot-link" href="/guides/glossary/">All guides</a></div></div>
+</div>
+</div></div><div class="cc-link" data-link="estimate" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/benefit-maxing/" role="menuitem"><span class="cc-nav-label">Benefit Maxing</span><span class="cc-nav-go" aria-hidden="true">Open <i class="cc-go-ar">&#8594;</i></span> <span aria-hidden="true" class="cc-link-caret" data-toggle="">&#9662;</span></a>
+<div class="cc-mega dd-est" role="menu">
+<div class="mega-inner">
+<div class="mega-head">
+<div class="mega-head-lead"><div class="mega-eyebrow">Benefit Maxing</div><h3 class="mega-title">Get the <em>most</em> from every dental benefit.</h3><p class="mega-sub">Strategy, timing, and treatment guides so you spend less and keep more of your annual maximum.</p></div>
+<div class="bm-emergency">
+<div class="bm-emergency-eyebrow">In a dental emergency?</div>
+<div class="bm-emergency-title">Concierge care, right now</div>
+<div class="bm-emergency-list">
+<a class="bm-emergency-link" href="/benefit-maxing/guides/dental-emergencies/knocked-out-tooth/">Knocked-out tooth</a>
+<a class="bm-emergency-link" href="/benefit-maxing/guides/dental-emergencies/severe-toothache/">Severe toothache</a>
+<a class="bm-emergency-link" href="/benefit-maxing/guides/dental-emergencies/tooth-abscess/">Swelling or abscess</a>
+<a class="bm-emergency-link" href="/benefit-maxing/guides/dental-emergencies/cracked-tooth/">Cracked tooth</a>
+<a class="bm-emergency-link" href="/benefit-maxing/guides/dental-emergencies/lost-filling-or-crown/">Lost filling or crown</a>
+</div>
+<a class="bm-emergency-all" href="/benefit-maxing/guides/dental-emergencies/">View all 11 emergency guides &#8594;</a>
+</div>
+</div>
+<div class="mega-cols">
+<div>
+<div class="mn2-col-title">Strategy</div>
+<a class="mn2-link" href="/benefit-maxing/">Benefit maxing hub<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol<span class="mn2-ar">&#8594;</span></a>
+</div>
+<div>
+<div class="mn2-col-title">By treatment</div>
+<a class="mn2-link" href="/benefit-maxing/guides/crowns/">Crowns<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/benefit-maxing/guides/root-canals/">Root canals<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/benefit-maxing/guides/implants/">Implants<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/benefit-maxing/guides/braces-invisalign/">Braces &amp; Invisalign<span class="mn2-ar">&#8594;</span></a>
+</div>
+</div>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Dentist informed</span><span>Educational estimates</span><span>Educational planning</span></div><a class="mega-foot-link" href="/benefit-maxing/">Benefit maxing hub</a></div></div>
+</div>
+</div></div><div class="cc-link" data-link="portal" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/dentist-portal.html" role="menuitem"><span class="cc-nav-label">For Dentists</span><span class="cc-nav-go" aria-hidden="true">Open <i class="cc-go-ar">&#8594;</i></span> <span aria-hidden="true" class="cc-link-caret" data-toggle="">&#9662;</span></a>
+<div class="cc-mega dd-port" role="menu">
+<div class="mega-inner">
+<div class="mega-head">
+<div class="mega-head-lead"><div class="mega-eyebrow">For Dentists</div><h3 class="mega-title">Claim your profile and get <em>found</em> by new patients.</h3><p class="mega-sub">Reach PPO-ready patients who already compared plans and know what they want.</p></div>
+<div class="mega-aside"><div class="mega-aside-eyebrow">Vetted network</div><div class="mega-aside-text">Every Capy Accredited membership is <em>reviewed and verified</em> by our team.</div><a class="mega-aside-cta" href="/capy-accreditation.html">Capy Accreditation</a></div>
+</div>
+<div class="mega-cols">
+<div>
+<div class="mn2-col-title">Get started</div>
+<a class="mn2-link" href="/covercapy-join.html">Join CoverCapy<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/dentist-portal.html">Dentist portal<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/claim-dentist-listing-profile.html">Claim your listing<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/capy-accreditation.html">Capy Accreditation<span class="mn2-ar">&#8594;</span></a>
+<a class="mn2-link" href="/capy-practice-membership.html">Practice membership<span class="mn2-ar">&#8594;</span></a>
+</div>
+</div>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Reviewed and vetted</span><span>Reviewed by our team</span><span>Cancel anytime</span></div><a class="mega-foot-link" href="/dentist-portal.html">Advertising disclosure</a></div></div>
+</div>
+</div></div><div class="cc-link" data-link="rewards" role="none">
+<a aria-haspopup="true" class="cc-link-anchor" href="/covercapy-join.html" role="menuitem"><span class="cc-nav-label">Capy Rewards</span><span class="cc-nav-go" aria-hidden="true">Open <i class="cc-go-ar">→</i></span> <span aria-hidden="true" class="cc-link-caret" data-toggle="">▾</span></a>
+<div class="cc-mega dd-rew" role="menu">
+<div class="mega-inner">
+<div class="rw-layout">
+<div class="rw-lead">
+<div class="mega-eyebrow">Rewards</div><h3 class="mega-title">Get <em>rewarded</em> for taking care of your teeth.</h3><p class="mega-sub">Earn Capy Crowns, redeem them at accredited offices. Your first 300 are already yours.</p>
+</div>
+<div class="rw-feat">
+<div class="featured-card promo-action-card reward-feature-card">
+<div class="featured-banner plan-feature-banner"><span class="bolt-mark">♔</span> Featured Reward · Capy Accredited</div>
+<div class="featured-body">
+<div class="featured-avatar cc-symbol-avatar">♔</div>
+<div class="featured-copy">
+<div class="featured-name">Free Whitening <em>Session</em></div>
+<div class="featured-meta">Worth $500+ · unlocks at 2,000 ♔</div>
+<div class="feature-lines feature-lines-vertical rw-feat-lines"><span class="rw-feat-bal">Balance <strong>300 ♔</strong> of 2,000</span><span class="rw-feat-meter"><i></i></span><span class="rw-feat-left">1,700 ♔ to your free whitening</span></div>
+</div>
+</div>
+<div class="featured-actions">
+<a class="featured-btn primary cta-sheen" href="/covercapy-join.html">Claim 300 ♔</a>
+<a class="featured-btn secondary" href="/covercapy-join.html#refer">Refer a friend</a>
+</div>
+</div>
+</div>
+<div class="rw-earn">
+<div class="rw-sec-title">How you earn 2,000 Crowns</div>
+<div class="rw-sec-sub">Four steps to free in-office whitening. Check them off.</div>
+<div class="rw-track" id="rw-track"><div class="rw-track-top"><span class="rw-track-now"><strong id="rw-track-num">300</strong> ♔</span><span class="rw-track-goal">of 2,000</span></div><div class="rw-track-bar"><i id="rw-track-fill"></i></div></div>
+<div class="rw-steps" id="rw-steps">
+<div class="rw-step done" data-step="1"><div class="rw-step-num">✓</div><div class="rw-step-body"><div class="rw-step-t">Create your account</div></div><div class="rw-step-meta"><div class="rw-step-pts">+300 ♔</div></div></div>
+<div class="rw-step" data-step="2" role="button" tabindex="0" aria-label="Activate a PPO plan, plus 500 Crowns"><div class="rw-step-num">2</div><div class="rw-step-body"><div class="rw-step-t">Activate a PPO plan</div><div class="rw-step-hint">Tap to check off</div></div><div class="rw-step-meta"><div class="rw-step-pts">+500 ♔</div></div></div>
+<div class="rw-step" data-step="3" role="button" tabindex="0" aria-label="Book a PPO dentist, plus 500 Crowns"><div class="rw-step-num">3</div><div class="rw-step-body"><div class="rw-step-t">Book a PPO dentist</div><div class="rw-step-hint">Tap to check off</div></div><div class="rw-step-meta"><div class="rw-step-pts">+500 ♔</div></div></div>
+<div class="rw-step" data-step="4" role="button" tabindex="0" aria-label="Refer a friend who books, plus 700 Crowns"><div class="rw-step-num">4</div><div class="rw-step-body"><div class="rw-step-t">Refer a friend who books too</div><div class="rw-step-hint">Tap for your last step</div></div><div class="rw-step-meta"><div class="rw-step-pts">+700 ♔</div></div></div>
+</div>
+<div class="rw-refer-cta" id="rw-refer-cta" hidden><span class="rw-refer-cta-tx">One step left. Refer a friend who books, and your free whitening is yours.</span><button type="button" class="rw-refer-btn" id="rw-refer-btn"><span class="rw-refer-btn-ic">↗</span> Refer a friend for +700 ♔</button></div>
+<div class="rw-note">Redeem at any participating <strong>Capy Accredited office</strong> near you.</div>
+</div>
+<div class="rw-keep">
+<div class="rw-sec-title">Keep earning, get more</div>
+<div class="rw-sec-sub">Past 2,000, your Crowns stretch further at the same offices.</div>
+<div class="rw-redeem rw-redeem-row">
+<a class="rw-rc" href="/rewards/redeem/invisalign-platinum.html"><span class="rw-rc-ic">😁</span><span><span class="rw-rc-name">Invisalign Promo</span><span class="rw-rc-sub">Member-exclusive rate</span></span><span class="rw-rc-cost">2,500 ♔</span></a>
+<a class="rw-rc" href="/rewards/redeem/tmj-botox.html"><span class="rw-rc-ic">💆</span><span><span class="rw-rc-name">Therapeutic Botox</span><span class="rw-rc-sub">For TMJ &amp; jaw tension</span></span><span class="rw-rc-cost">3,000 ♔</span></a>
+<a class="rw-rc" href="/rewards/redeem/emface.html"><span class="rw-rc-ic">✨</span><span><span class="rw-rc-name">Emface Session</span><span class="rw-rc-sub">Facial muscle lift</span></span><span class="rw-rc-cost">3,500 ♔</span></a>
+</div>
+</div>
+</div>
+</div>
+<div class="mega-foot"><div class="mega-foot-inner"><div class="mega-foot-trust"><span>Claim at participating Capy Accredited offices</span><span>Real in-office rewards</span><span>Free to join</span></div><a class="mega-foot-link" href="/rewards.html">All rewards</a></div></div>
+<div class="rw-cele" id="rw-cele" hidden aria-hidden="true"><div class="rw-cele-inner"><button type="button" class="rw-cele-x" id="rw-cele-x" aria-label="Close">✕</button><div class="rw-cele-burst">🎉</div><div class="rw-cele-kicker">Free whitening unlocked</div><div class="rw-cele-num"><span id="rw-cele-count">2,000</span> <span class="rw-cele-cr">♔</span></div><div class="rw-cele-sub">You hit 2,000 Crowns. Your free in-office whitening is ready to claim.</div><div class="rw-share"><div class="rw-share-label">Share your invite so a friend books too</div><div class="rw-share-row"><input class="rw-share-link" id="rw-share-link" type="text" readonly value="covercapy.com/r/CAPY300"><button type="button" class="rw-share-copy" id="rw-share-copy">Copy</button></div><div class="rw-share-apps"><button type="button" class="rw-share-app" data-share="sms"><span>💬</span>Messages</button><button type="button" class="rw-share-app" data-share="instagram"><span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><defs><linearGradient id="rw-ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset=".8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="url(#rw-ig-grad)" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="url(#rw-ig-grad)" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="url(#rw-ig-grad)"/></svg></span>Instagram</button><button type="button" class="rw-share-app" data-share="whatsapp"><span>🟢</span>WhatsApp</button><button type="button" class="rw-share-app" data-share="email"><span>✉️</span>Email</button></div></div><a class="rw-cele-cta" href="/covercapy-join.html">Claim my free whitening ♔</a></div></div>
+</div>
+</div></div>
+<div class="cc-actions">
+<button type="button" class="cc-theme-switch" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme between Gold and Jade">
+<span class="cc-ts-thumb" aria-hidden="true"></span>
+<span class="cc-ts-opt cc-ts-gold"><span class="cc-ts-dot" aria-hidden="true"></span>Gold</span>
+<span class="cc-ts-opt cc-ts-jade"><span class="cc-ts-dot" aria-hidden="true"></span>Jade</span>
+</button>
+<a class="cc-signin" href="/sign-in.html">Sign in</a>
+<a class="cc-join" href="/covercapy-join.html">Create account</a>
+</div>
+<button aria-expanded="false" aria-label="Open menu" class="cc-burger" id="cc-burger"><span class="cc-burger-bar"></span><span class="cc-burger-bar"></span><span class="cc-burger-bar"></span></button>
+</div>
+</nav>
+<div class="cc-backdrop" id="cc-backdrop"></div>
+<button aria-label="Close menu" class="cc-curtain" id="cc-curtain" type="button">
+<span aria-hidden="true" class="cc-curtain-rope"></span>
+<span aria-hidden="true" class="cc-curtain-knob">✕</span>
+<span class="cc-curtain-txt">Close</span>
+</button>
+<div aria-hidden="true" class="cc-stage" id="cc-stage"><span class="cc-stage-l"></span><span class="cc-stage-r"></span></div>
+<div aria-hidden="true" class="cc-drawer" id="cc-drawer">
+<div class="cc-drawer-head">
+<div class="cc-drawer-head-row">
+<div class="cc-drawer-brand"><span class="cc-drawer-brand-top">CoverCapy</span><span class="cc-drawer-brand-bot">Concierge Dental Network</span></div>
+<button aria-label="Close menu" class="cc-drawer-close" id="cc-drawer-close">✕</button>
+</div>
+<div class="cc-drawer-tagline">Find a PPO dentist. Get covered. Earn free rewards.</div>
+</div>
+<div class="cc-drawer-nav">
+<a class="cc-drawer-emergency" href="/benefit-maxing/guides/dental-emergencies/">
+<span class="cc-de-dot"></span>
+<span class="cc-de-tx"><span class="cc-de-t">Dental emergency?</span><span class="cc-de-s">Concierge care guides, right now</span></span>
+</a>
+<button type="button" class="cc-theme-switch cc-ts-drawer" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme between Gold and Jade">
+<span class="cc-ts-thumb" aria-hidden="true"></span>
+<span class="cc-ts-opt cc-ts-gold"><span class="cc-ts-dot" aria-hidden="true"></span>Gold</span>
+<span class="cc-ts-opt cc-ts-jade"><span class="cc-ts-dot" aria-hidden="true"></span>Jade</span>
+</button>
+<!-- ZIP/city search -->
+<div style="padding:14px 14px 10px;border-bottom:1px solid rgba(20,36,42,.06)">
+  <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B98023;margin-bottom:9px">Find a PPO Dentist</div>
+  <div style="display:flex;gap:7px;align-items:center">
+    <input id="cc-mob-zip" type="search" autocomplete="off" inputmode="search"
+      style="flex:1;height:40px;padding:0 12px;border:1px solid rgba(20,36,42,.16);border-radius:9px;font-size:14px;background:#fff;color:#14242A;outline:none;"
+      placeholder="ZIP or city..."
+      onkeydown="if(event.key==='Enter'){var v=this.value.trim();if(v)window.location.href='/find-my-dentist?where='+encodeURIComponent(v)+'&radius=30';}" />
+    <button onclick="var v=document.getElementById('cc-mob-zip').value.trim();if(v)window.location.href='/find-my-dentist?where='+encodeURIComponent(v)+'&radius=30';"
+      style="height:40px;padding:0 16px;background:#1B5E5A;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0;">Search</button>
+  </div>
+</div>
+<!-- Find a Dentist -->
+<div class="cc-dacc featured-acc"><button class="cc-dacc-btn" data-acc="">Find a Dentist<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/find-my-dentist">Find My Dentist</a>
+<a class="cc-dacc-link" href="/dental-treatment-cost-estimator.html">Treatment Cost Estimator</a>
+<a class="cc-dacc-link" href="/dental-financing-monthly-payments">Financing &amp; Monthly Plans</a>
+</div></div></div>
+<!-- Find a Plan -->
+<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Find a Plan<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/compare-ppo-dental-plans">Compare PPO Plans</a>
+<a class="cc-dacc-link" href="/dental-insurance/">Dental Insurance Guide</a>
+<a class="cc-dacc-link" href="/dental-insurance/delta-dental/">Delta Dental</a>
+<a class="cc-dacc-link" href="/dental-insurance/ppo-plans/">All PPO Carriers</a>
+<a class="cc-dacc-link" href="/guides/no-waiting-period/">No Waiting Period</a>
+<a class="cc-dacc-link" href="/guides/between-jobs/">Coverage Between Jobs</a>
+<a class="cc-dacc-link" href="/guides/immediate-coverage/">Fast PPO Activation</a>
+<a class="cc-dacc-link" href="/benefit-maxing/guides/dental-emergencies/emergency-dental-insurance/">Dental Pain &amp; Emergency</a>
+<a class="cc-dacc-link" href="/benefit-maxing/guides/root-canals/">Crowns &amp; Root Canals</a>
+<a class="cc-dacc-link" href="/dental-insurance/guardian-orthodontics-coverage/">Orthodontics – Children</a>
+<a class="cc-dacc-link" href="/benefit-maxing/guides/braces-invisalign/">Orthodontics – Adults</a>
+</div></div></div>
+<!-- Benefit Maxing -->
+<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Benefit Maxing<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/dental-treatment-cost-estimator.html">Run Cost Estimator</a>
+<a class="cc-dacc-link" href="/benefit-maxing/smart-timing-protocol/">Smart Timing Strategy <span style="font-size:10px;background:#E7F0EC;color:#1B5E5A;padding:1px 6px;border-radius:4px;font-weight:700">$10,000 Saved</span></a>
+<a class="cc-dacc-link" href="/dental-financing-monthly-payments">Monthly Payment Options <span style="font-size:10px;background:#E7F0EC;color:#1B5E5A;padding:1px 6px;border-radius:4px;font-weight:700">0% APR</span></a>
+<a class="cc-dacc-link" href="/benefit-maxing/guides/dental-emergencies/">Dental Emergencies</a>
+<a class="cc-dacc-link" href="/guides/glossary/">PPO Dental Glossary</a>
+<a class="cc-dacc-link" href="/guides/in-network-vs-out-of-network-costs.html">In-Network vs Out-of-Network</a>
+</div></div></div>
+<!-- Capy Rewards -->
+<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">Capy Rewards<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/covercapy-join.html">Claim 300 Capy Crowns</a>
+<a class="cc-dacc-link" href="/rewards/redeem/in-office-whitening.html">Redeem Free Whitening</a>
+<a class="cc-dacc-link" href="/rewards/nominate-dentist.html">Nominate Your Dentist</a>
+<a class="cc-dacc-link" href="#" onclick="if(window.openCapyReferModal)window.openCapyReferModal();return false;">Refer a Friend</a>
+</div></div></div>
+<!-- For Dentists -->
+<div class="cc-dacc"><button class="cc-dacc-btn" data-acc="">For Dentists<span class="cc-dacc-caret">▶</span></button><div class="cc-dacc-body"><div class="cc-dacc-body-inner">
+<a class="cc-dacc-link feature" href="/claim-dentist-listing-profile.html">Claim Your Profile</a>
+<a class="cc-dacc-link" href="/dentist-portal.html#capy-accredited">Capy Accreditation</a>
+<a class="cc-dacc-link" href="/dentist-portal.html#platinum-elite">Platinum Elite</a>
+</div></div></div>
+</div>
+<div class="cc-drawer-foot"><a class="cc-drawer-join" href="/covercapy-join.html">Create account</a><a class="cc-drawer-sign" href="/sign-in.html">Sign in</a></div>
+</div>
+<div aria-hidden="true" aria-labelledby="cc-universal-modal-title" aria-modal="true" class="cc-universal-modal" id="covercapy-universal-modal" role="dialog">
+<div aria-hidden="true" class="cc-universal-modal-backdrop" data-modal-close=""></div>
+<div class="cc-universal-modal-card" role="document">
+<button aria-label="Close" class="cc-universal-modal-close" data-modal-close="" type="button">
+<svg aria-hidden="true" height="14" viewbox="0 0 24 24" width="14"><path d="M6 6 L18 18 M18 6 L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="cc-universal-modal-eyebrow"><span aria-hidden="true" class="cc-universal-modal-eyebrow-dot"></span><span data-modal-slot="eyebrow">Before you continue</span></div>
+<h2 class="cc-universal-modal-title" data-modal-slot="title" id="cc-universal-modal-title">You're heading to<br/><em>UnitedHealthcare</em>.</h2>
+<p class="cc-universal-modal-lede" data-modal-slot="body">We'll open UnitedHealthcare's official enrollment page in a new tab. You can review the Primary Dental plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.</p>
+<div aria-label="Disclosures" class="cc-universal-modal-disclosures">
+<span class="cc-universal-modal-disclosures-label" data-modal-slot="disclosures-label">A note before you go</span>
+<div data-modal-slot="disclosures">
+<div class="cc-universal-modal-disclosure"><span class="num">i.</span><span>CoverCapy is an <strong>independent guide</strong>. We're not a broker, agent, or affiliate of any carrier on our shelf.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">ii.</span><span>We <strong>don't earn a commission</strong> or referral fee on any plan you activate through this site.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">iii.</span><span>The destination is governed by <strong>UnitedHealthcare's terms</strong>, not ours. Pricing, eligibility, and plan details can change without notice.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">iv.</span><span>We make <strong>no guarantees</strong> about coverage limits, waiting periods, or in-network status. Verify everything with UnitedHealthcare before enrolling.</span></div>
+<div class="cc-universal-modal-disclosure"><span class="num">v.</span><span>By continuing, you acknowledge that <strong>CoverCapy is not liable</strong> for outcomes, denials, billing decisions, or transactions that happen after you leave this site.</span></div>
+</div>
+</div>
+<div class="cc-universal-modal-actions">
+<button class="btn-quiet cc-universal-modal-stay" data-modal-close="" type="button"><span data-modal-slot="cancel-label">Wait, tell me more</span></button>
+<a class="btn btn-primary cc-universal-modal-continue" data-carrier="uhc" data-track-outbound="uhc-primary-dental" href="https://www.uhc.com/shop/individuals-families/en/quote/census?leadsourcename=UHC-Website-Dental" rel="noopener noreferrer" target="_blank"><span data-modal-slot="continue-label">Continue to UnitedHealthcare</span></a>
+</div>
+</div>
+</div>
+<script>
+/* CoverCapy Mega Nav v04 JUN 2026
+   Purpose: navigation interactions + ZIP-only Platinum Elite lookup.
+   Public Supabase anon key only; protect data with RLS and views/RPCs.
+*/
+(function () {
+  'use strict';
+
+  if (window.__CoverCapyMegaNavInitialized) return;
+  window.__CoverCapyMegaNavInitialized = true;
+
+  var SUPABASE_URL = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf';
+  var PLATINUM_RADIUS_MILES = 18;
+
+  var nav = document.getElementById('cc-nav');
+  var backdrop = document.getElementById('cc-backdrop');
+  var curtain = document.getElementById('cc-curtain');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.cc-link'));
+  var closeTimer = null;
+
+  function isDesktop() {
+    return window.matchMedia('(min-width:1081px)').matches;
+  }
+
+  function openMega(link) {
+    if (!link || !backdrop || !nav) return;
+    clearTimeout(closeTimer);
+    links.forEach(function (item) {
+      if (item !== link) item.classList.remove('is-open');
+    });
+    link.classList.add('is-open');
+    backdrop.classList.add('show');
+    nav.classList.add('dimmed');
+    if (curtain) curtain.classList.add('show');
+  }
+
+  function closeMega() {
+    links.forEach(function (item) { item.classList.remove('is-open'); });
+    if (backdrop) backdrop.classList.remove('show');
+    if (nav) nav.classList.remove('dimmed');
+    if (curtain) curtain.classList.remove('show');
+  }
+
+  function scheduleClose() {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(closeMega, 160);
+  }
+
+  links.forEach(function (link) {
+    var anchor = link.querySelector('.cc-link-anchor');
+    var mega = link.querySelector('.cc-mega');
+    var caret = link.querySelector('[data-toggle]');
+
+    link.addEventListener('mouseenter', function () {
+      if (isDesktop()) openMega(link);
+    });
+    link.addEventListener('mouseleave', function () {
+      if (isDesktop()) scheduleClose();
+    });
+    if (mega) {
+      mega.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+      mega.addEventListener('mouseleave', function () { if (isDesktop()) scheduleClose(); });
+    }
+    if (caret) {
+      caret.addEventListener('click', function (event) {
+        if (!isDesktop()) return;
+        event.preventDefault();
+        event.stopPropagation();
+        link.classList.contains('is-open') ? closeMega() : openMega(link);
+      });
+    }
+    if (anchor) {
+      anchor.addEventListener('focus', function () { if (isDesktop()) openMega(link); });
+      anchor.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeMega();
+          anchor.focus();
+        }
+      });
+    }
+  });
+
+  if (backdrop) backdrop.addEventListener('click', closeMega);
+  if (curtain) {
+    curtain.addEventListener('click', closeMega);
+    curtain.addEventListener('mouseenter', closeMega);
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeMega();
+  });
+
+  /* Scrolling the page down means the user is moving on, so close the (large) mega.
+     Scrolling inside the mega's own overflow does not fire a window scroll, so reading a
+     tall panel will not close it; only moving the page does. Desktop only. */
+  var ccLastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+  window.addEventListener('scroll', function () {
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (isDesktop()) {
+      var open = links.some(function (l) { return l.classList.contains('is-open'); });
+      if (open && y > ccLastScrollY + 3) closeMega();
+    }
+    ccLastScrollY = y;
+  }, { passive: true });
+
+  /* Leaving-site confirmation. Any outbound (different-host) link inside the find
+     result card opens a third-party site, so we confirm first and then open it in a
+     new tab. Links that stay on our own host (e.g. a dentist's CoverCapy profile)
+     skip the notice and just open in a new tab. tel: and mailto: are left alone. */
+  var ccLeaveUrl = '';
+  var ccLeaveEls = null;
+  function buildLeaveModal() {
+    if (ccLeaveEls) return ccLeaveEls;
+    var wrap = document.createElement('div');
+    wrap.className = 'cc-leave';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML =
+      '<div class="cc-leave-backdrop" data-leave-close></div>'
+      + '<div class="cc-leave-card" role="dialog" aria-modal="true" aria-labelledby="cc-leave-h">'
+      + '<div class="cc-leave-h" id="cc-leave-h">You\u2019re leaving CoverCapy</div>'
+      + '<p class="cc-leave-p">This link opens a third-party site. '
+      + 'CoverCapy doesn\u2019t operate it and isn\u2019t responsible for its content, '
+      + 'availability, or anything you book or arrange there.</p>'
+      + '<div class="cc-leave-dest" id="cc-leave-dest"></div>'
+      + '<div class="cc-leave-actions">'
+      + '<button type="button" class="cc-leave-cancel" data-leave-close>Go back</button>'
+      + '<button type="button" class="cc-leave-go" id="cc-leave-go">Continue</button>'
+      + '</div></div>';
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', function (e) {
+      if (e.target.closest('[data-leave-close]')) hideLeave();
+    });
+    wrap.querySelector('#cc-leave-go').addEventListener('click', function () {
+      var u = ccLeaveUrl;
+      hideLeave();
+      if (u) window.open(u, '_blank', 'noopener,noreferrer');
+    });
+    ccLeaveEls = wrap;
+    return wrap;
+  }
+  function showLeave(url, host) {
+    var wrap = buildLeaveModal();
+    ccLeaveUrl = url;
+    var dest = wrap.querySelector('#cc-leave-dest');
+    dest.textContent = host ? 'Continue to ' + host : '';
+    dest.style.display = host ? '' : 'none';
+    wrap.classList.add('is-open');
+    wrap.setAttribute('aria-hidden', 'false');
+  }
+  function hideLeave() {
+    if (!ccLeaveEls) return;
+    ccLeaveEls.classList.remove('is-open');
+    ccLeaveEls.setAttribute('aria-hidden', 'true');
+    ccLeaveUrl = '';
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && ccLeaveEls && ccLeaveEls.classList.contains('is-open')) hideLeave();
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var card = a.closest('#find-featured');
+    if (!card) return;
+    var raw = a.getAttribute('href') || '';
+    if (!raw || raw.charAt(0) === '#') return;
+    if (a.hasAttribute('data-leave-skip')) return; /* maps/directions open directly in a new tab */
+    var u;
+    try { u = new URL(raw, window.location.href); } catch (_) { return; }
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return; /* leave tel:/mailto: alone */
+    var external = !!u.host && u.host !== window.location.host;
+    e.preventDefault();
+    if (external) {
+      showLeave(u.href, u.host);
+    } else {
+      window.open(u.href, '_blank', 'noopener');
+    }
+  });
+
+  function htmlEscape(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
+    });
+  }
+
+  function slugify(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  }
+
+  function starText(rating) {
+    var count = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)));
+    return '★'.repeat(count) + '☆'.repeat(5 - count);
+  }
+
+  function fmtRating(value) {
+    var n = Number(value) || 0;
+    return n ? (Math.round(n * 10) / 10).toFixed(1) : '';
+  }
+
+  function fmtCount(value) {
+    var n = Number(value) || 0;
+    return n ? n.toLocaleString('en-US') : '';
+  }
+
+  /* Source-rating block matching the live directory: an aggregate-total headline,
+     then per-source chips (blue Google, red Yelp, yellow Zocdoc). Any source that is
+     missing or zero is skipped, never shown as a 0. */
+  function sourceRatingHTML(d) {
+    var overall = Number(d.rating || 0) || Number(d.aggregate_rating || 0);
+    var gR = Number(d.google_rating || 0), gC = Number(d.google_review_count || 0);
+    var yR = Number(d.yelp_rating || 0), yC = Number(d.yelp_review_count || 0);
+    var zR = Number(d.zocdoc_rating || 0), zC = Number(d.zocdoc_review_count || 0);
+    var headR = overall || gR || yR || zR;
+    if (!headR) return '';
+    var total = gC + yC + zC;
+    if (!total) total = Number(d.review_count || 0) || Number(d.aggregate_review_count || 0);
+    function chip(name, cls, r, c) {
+      if (!r) return '';
+      return '<span class="fc2-src"><span class="fc2-dot ' + cls + '"></span>' + name
+        + ' <span class="fc2-num">' + fmtRating(r) + (c ? ' &#183; ' + fmtCount(c) : '') + '</span></span>';
+    }
+    var chips = chip('Google', 'fc2-dot-google', gR, gC)
+      + chip('Yelp', 'fc2-dot-yelp', yR, yC)
+      + chip('Zocdoc', 'fc2-dot-zocdoc', zR, zC);
+    return '<div class="fc2-ratings">'
+      + '<div class="fc2-rating-main"><span class="fc2-stars">' + starText(headR) + '</span> <b>' + fmtRating(headR) + '</b>'
+      + (total ? '<span class="fc2-rev">' + fmtCount(total) + ' reviews</span>' : '') + '</div>'
+      + (chips ? '<div class="fc2-srcs">' + chips + '</div>' : '')
+      + '</div>';
+  }
+
+  function supabaseGet(path) {
+    return fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: 'Bearer ' + SUPABASE_ANON_KEY
+      }
+    }).then(function (response) {
+      return response.ok ? response.json() : [];
+    }).catch(function () { return []; });
+  }
+
+  function supabaseRpc(functionName, body) {
+    return fetch(SUPABASE_URL + '/rest/v1/rpc/' + functionName, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body || {})
+    }).then(function (response) {
+      return response.ok ? response.json() : [];
+    }).catch(function () { return []; });
+  }
+
+  /* ===== Find a Dentist: live suggestions + ZIP->city + expansion spot (v147) ===== */
+
+  var findLink = document.querySelector('.cc-link[data-link="find"]');
+
+  function supabaseSuggest(q) {
+    return supabaseRpc('nav_search_suggest', { q: q, max_n: 8 });
+  }
+
+  function expansionSpotNear(lat, lng) {
+    if (lat == null || lng == null) return Promise.resolve(null);
+    return supabaseRpc('nav_expansion_spot', {
+      in_lat: Number(lat), in_lng: Number(lng), radius_miles: PLATINUM_RADIUS_MILES
+    }).then(function (rows) { return rows && rows[0] ? rows[0] : null; });
+  }
+
+  function featuredDentistNear(lat, lng) {
+    if (lat == null || lng == null) return Promise.resolve(null);
+    return supabaseRpc('nav_featured_dentist', {
+      in_lat: Number(lat), in_lng: Number(lng), radius_miles: PLATINUM_RADIUS_MILES
+    }).then(function (rows) { return rows && rows[0] ? rows[0] : null; });
+  }
+
+  function featuredDentistByScope(scope, value) {
+    return supabaseRpc('nav_featured_dentist_by_scope', { in_scope: scope, in_value: value })
+      .then(function (rows) { return rows && rows[0] ? rows[0] : null; });
+  }
+
+  function citiesForZip(zip) {
+    var q = 'search_locations?select=name,city,lat,lng,slug,local_area,market_area,state'
+      + '&type=eq.city&zip_codes=cs.{' + encodeURIComponent(zip) + '}&order=name';
+    return supabaseGet(q);
+  }
+
+  function highlight(text, q) {
+    var t = htmlEscape(text);
+    var qq = htmlEscape(String(q || '').trim());
+    if (!qq) return t;
+    var i = t.toLowerCase().indexOf(qq.toLowerCase());
+    if (i < 0) return t;
+    return t.slice(0, i) + '<b>' + t.slice(i, i + qq.length) + '</b>' + t.slice(i + qq.length);
+  }
+
+  /* ---- result card helpers ---- */
+  function findCard() { return document.getElementById('find-featured'); }
+
+  function setCard(html, stateClass) {
+    var card = findCard();
+    if (!card) return;
+    card.className = 'find-result-card featured-card' + (stateClass ? ' ' + stateClass : '');
+    card.innerHTML = html;
+    var panel = document.getElementById('find-action-panel');
+    if (panel) panel.style.display = (stateClass === 'is-empty') ? 'none' : '';
+  }
+
+  var ccBrowseUrl = '';
+  var ccBrowseLabel = '';
+
+  var SCOPE_RADIUS = { zip: 8, city: 25, local_area: 60, market_area: 120, state: 600 };
+
+  function browseUrl(scope, value) {
+    var radius = SCOPE_RADIUS[scope] || 25;
+    return '/find-my-dentist?where=' + encodeURIComponent(value || '')
+      + '&scope=' + encodeURIComponent(scope || 'city')
+      + '&radius=' + radius + '&autosubmit=1';
+  }
+
+  function setBrowse(scope, value, label) {
+    var url = browseUrl(scope, value);
+    ccBrowseUrl = url;
+    ccBrowseLabel = label || value || 'your area';
+    var text = 'Browse all dentists in ' + (label || value);
+    var main = document.getElementById('nav-browse-main');
+    if (main) {
+      main.href = url;
+      main.innerHTML = htmlEscape(text) + ' ';
+      main.classList.remove('is-disabled');
+      main.removeAttribute('aria-disabled');
+    }
+    var cta = document.getElementById('nav-find-cta');
+    if (cta) {
+      cta.href = url;
+      cta.innerHTML = htmlEscape(text) + '';
+      cta.classList.remove('cta-idle');
+      cta.classList.add('cta-live');
+      cta.removeAttribute('aria-disabled');
+    }
+    var foot = document.querySelector('.cc-foot-wait');
+    if (foot) foot.textContent = 'Showing matches for ' + (label || value);
+  }
+
+  /* ---- card renderers ---- */
+  function introCardHTML() {
+    return '<div class="find-intro-banner"><span class="ib-dot">&#9670;</span> Platinum Elite appears first near you</div>'
+      + '<div class="what-row"><span class="what-icon">&#9812;</span><div><strong>Platinum Elite Dentists</strong><p>Top PPO offices appear first when available near your area.</p></div></div>'
+      + '<div class="what-row"><span class="what-icon">&#10003;</span><div><strong>PPO Benefits Confirmed</strong><p>See which PPO plans are accepted before you call.</p></div></div>'
+      + '<div class="what-row"><span class="what-icon">&#9678;</span><div><strong>Dentists Near You</strong><p>Open the full list to keep searching.</p></div></div>';
+  }
+
+  function loadingCardHTML(label) {
+    return '<div class="fc2-loading"><span class="fc2-spin" aria-hidden="true"></span>'
+      + '<span class="fc2-loading-tx"><strong>Checking ' + htmlEscape(label || 'your area') + '</strong>'
+      + '<span>Looking for a Platinum Elite office nearby</span></span></div>';
+  }
+
+  function foundCardHTML(d) {
+    var name = d.practice_name || 'Platinum Elite dentist';
+    var profile = d.profile_url || d.booking_url || d.website || '/find-my-dentist';
+    var book = d.booking_url || d.profile_url || d.website || '/find-my-dentist';
+    var rating = Number(d.rating || 0);
+    var ratingLine = sourceRatingHTML(d);
+    if (!ratingLine && d.rating_display) {
+      ratingLine = '<div class="fc2-rating">' + htmlEscape(d.rating_display) + '</div>';
+    }
+    var addrLine1 = '', addrLine2 = '';
+    if (d.address) {
+      var ci = String(d.address).indexOf(',');
+      if (ci > -1) { addrLine1 = d.address.slice(0, ci).trim(); addrLine2 = d.address.slice(ci + 1).trim(); }
+      else { addrLine1 = String(d.address).trim(); }
+    }
+    if (!addrLine1 && !addrLine2) {
+      addrLine1 = d.city || '';
+      addrLine2 = [d.state, d.zip].filter(Boolean).join(' ');
+      if (!addrLine1) { addrLine1 = addrLine2; addrLine2 = ''; }
+    }
+    var hasAddr = !!(addrLine1 || addrLine2);
+    var mapsQuery = d.address || [name, d.city, d.zip].filter(Boolean).join(' ');
+    var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(mapsQuery);
+    var dist = d.distance_miles != null ? '<span class="fc2-mi"> &#183; ~' + d.distance_miles + ' mi away</span>' : '';
+    var phoneRaw = d.phone || '';
+    var tel = String(phoneRaw).replace(/[^0-9+]/g, '');
+    return '<div class="fc2-banner">&#9670; Platinum Elite found near you</div>'
+      + '<div class="fc2-body"><div class="fc2-avatar">&#9670;</div><div class="fc2-tx">'
+      + '<a class="fc2-name" href="' + htmlEscape(profile) + '">' + htmlEscape(name) + '</a>'
+      + ratingLine
+      + ((hasAddr || phoneRaw) ? '<div class="fc2-meta">' : '')
+      + (hasAddr
+          ? '<a class="fc2-meta-row fc2-addr" href="' + htmlEscape(mapsUrl) + '" target="_blank" rel="noopener" data-leave-skip>'
+            + '<span class="fc2-meta-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg></span>'
+            + '<span class="fc2-meta-tx">'
+            + '<span class="fc2-addr-l1">' + htmlEscape(addrLine1) + (addrLine2 ? '' : dist) + '</span>'
+            + (addrLine2 ? '<span class="fc2-addr-l2">' + htmlEscape(addrLine2) + dist + '<span class="fc2-addr-go" aria-hidden="true"> &#8599;</span></span>' : '')
+            + '</span>'
+            + '</a>'
+          : (dist ? '<span class="fc2-meta-row"><span class="fc2-meta-ic"></span><span class="fc2-meta-tx">' + dist + '</span></span>' : ''))
+      + (phoneRaw
+          ? '<a class="fc2-meta-row fc2-tel" href="tel:' + htmlEscape(tel) + '">'
+            + '<span class="fc2-meta-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.85 21 3 13.15 3 3.99c0-.55.45-1 1-1h3.49c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.12.35.03.75-.24 1.02l-2.21 2.21z" fill="currentColor"/></svg></span>'
+            + '<span class="fc2-meta-tx">' + htmlEscape(phoneRaw) + '</span>'
+            + '</a>'
+          : '')
+      + ((hasAddr || phoneRaw) ? '</div>' : '')
+      + '</div></div>'
+      + '<div class="fc2-actions">'
+      + '<a class="fc2-btn primary cta-sheen" href="' + htmlEscape(book) + '">Book</a>'
+      + '<a class="fc2-btn secondary cta-sheen" href="' + htmlEscape(profile) + '">View profile</a>'
+      + '</div>';
+  }
+
+  function expansionCardHTML(spot) {
+    var place = [spot.city, spot.area].filter(Boolean).join(' \u00b7 ') || (spot.zip || 'this area');
+    if (spot.dentist_name) {
+      var profile = spot.profile_url || spot.website || '/find-my-dentist';
+      var rating = Number(spot.rating || 0);
+      var reviews = spot.review_count || '';
+      var ratingLine = rating
+        ? '<div class="exp-dentist-rating"><span class="st">' + starText(rating) + '</span> ' + rating.toFixed(1) + (reviews ? ' \u00b7 ' + htmlEscape(reviews) + ' reviews' : '') + '</div>'
+        : '';
+      return '<div class="exp-banner">&#9670; No Platinum Elite here yet</div>'
+        + '<div class="exp-body">'
+        + '<span class="exp-pin">&#9678; ' + htmlEscape(place) + '</span>'
+        + '<div class="exp-h">Be the first in ' + htmlEscape(spot.city || 'this area') + '.</div>'
+        + '<div class="exp-dentist"><div class="exp-avatar" aria-hidden="true">&#9670;</div>'
+        + '<div class="exp-dentist-tx"><a class="exp-dentist-name" href="' + htmlEscape(profile) + '">' + htmlEscape(spot.dentist_name) + '</a>' + ratingLine
+        + '<div class="exp-dentist-note">Already planning to expand here. Claim it first.</div></div></div>'
+        + '</div>'
+        + '<div class="exp-actions">'
+        + '<a class="exp-cta claim" href="/dentist-portal.html#platinum-elite">Claim this area </a>'
+        + '<a class="exp-cta view" href="' + htmlEscape(profile) + '">View</a>'
+        + '</div>';
+    }
+    return '<div class="exp-banner">&#9670; Platinum Elite spot open</div>'
+      + '<div class="exp-body">'
+      + '<span class="exp-pin">&#9678; ' + htmlEscape(place) + '</span>'
+      + '<div class="exp-h">Be the first in ' + htmlEscape(spot.city || spot.area || 'this area') + '.</div>'
+      + '</div>'
+      + '<div class="exp-actions">'
+      + '<a class="exp-cta claim" href="/dentist-portal.html#platinum-elite">Claim this area </a>'
+      + '</div>';
+  }
+
+  function openCardHTML(label) {
+    var place = label || 'this area';
+    var browseHref = ccBrowseUrl || '/find-my-dentist';
+    return '<div class="find-intro-banner find-intro-calm"><span class="ib-dot">&#9671;</span> No Platinum Elite partner here yet</div>'
+      + '<div class="open-wrap">'
+      + '<div class="open-h">Let\u2019s find your PPO dentist.</div>'
+      + '<div class="open-sub">There are PPO-friendly offices near <b>' + htmlEscape(place) + '</b>.<span class="open-sub-2">Open the list to see them, compare ratings, and book.</span></div>'
+      + '<a class="find-browse-main open-browse" href="' + htmlEscape(browseHref) + '" data-leave-skip>Browse PPO dentists in ' + htmlEscape(place) + ' </a>'
+      + '<a class="open-dentist-link" href="/dentist-portal.html#platinum-elite">Are you a dentist? Claim this area</a>'
+      + '</div>';
+  }
+
+  function cityPickCardHTML(zip, cities) {
+    var chips = cities.map(function (c, idx) {
+      return '<button type="button" class="find-citychip" data-idx="' + idx + '">'
+        + '<span class="cc-dot" aria-hidden="true"></span>' + htmlEscape(c.name || c.city) + '</button>';
+    }).join('');
+    return '<div class="find-intro-banner"><span class="ib-dot">&#9670;</span> More than one city</div>'
+      + '<div class="find-citypick">'
+      + '<div class="find-citypick-h">Which part of <span class="find-citypick-zip">' + htmlEscape(zip) + '</span>?</div>'
+      + '<div class="find-citypick-chips">' + chips + '</div>'
+      + '</div>';
+  }
+
+  function scopeCardHTML(scope, label) {
+    var kindWord = { local_area: 'County / Local area', market_area: 'Regional market', state: 'Statewide' }[scope] || 'Area';
+    var lead = { local_area: 'Browse every PPO office across', market_area: 'Browse PPO offices across the', state: 'Browse PPO offices across' }[scope] || 'Browse PPO offices in';
+    var tail = scope === 'market_area' ? ' market' : '';
+    return '<div class="scope-card">'
+      + '<span class="scope-kindtag">' + htmlEscape(kindWord) + '</span>'
+      + '<div class="scope-h">' + htmlEscape(lead) + ' <em>' + htmlEscape(label) + tail + '</em>.</div>'
+      + '<div class="scope-sub">Open the full list to filter by city, rating, and PPO fit.</div>'
+      + '<ul class="scope-list">'
+      + '<li>Platinum Elite offices are shown first where available.</li>'
+      + '<li>Every listed PPO office in this area is included.</li>'
+      + '</ul>'
+      + '</div>';
+  }
+
+  /* ---- orchestration ---- */
+  function previewPoint(label, lat, lng) {
+    setCard(loadingCardHTML(label), '');
+    return featuredDentistNear(lat, lng).then(function (dentist) {
+      if (dentist) { setCard(foundCardHTML(dentist), 'is-found'); return; }
+      return expansionSpotNear(lat, lng).then(function (spot) {
+        if (spot) { setCard(expansionCardHTML(spot), 'is-open'); }
+        else { setCard(openCardHTML(label), 'is-empty'); }
+      });
+    }).catch(function () { setCard(openCardHTML(label), 'is-empty'); });
+  }
+
+  function resolveZip(zip) {
+    setBrowse('zip', zip, zip);
+    setCard(loadingCardHTML(zip), '');
+    return citiesForZip(zip).then(function (rows) {
+      var cities = (rows || []).filter(function (c) { return c && c.lat != null && c.lng != null; });
+      if (cities.length === 0) {
+        return previewPoint(zip, null, null);
+      }
+      if (cities.length === 1) {
+        var only = cities[0];
+        setBrowse('city', only.name || only.city, only.name || only.city);
+        return previewPoint(only.name || only.city, only.lat, only.lng);
+      }
+      setCard(cityPickCardHTML(zip, cities), 'is-citypick');
+      var card = findCard();
+      if (card) {
+        card.querySelectorAll('.find-citychip').forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            var c = cities[Number(chip.getAttribute('data-idx')) || 0];
+            if (!c) return;
+            card.querySelectorAll('.find-citychip').forEach(function (x) { x.classList.remove('is-active'); });
+            chip.classList.add('is-active');
+            setBrowse('city', c.name || c.city, c.name || c.city);
+            previewPoint(c.name || c.city, c.lat, c.lng);
+          });
+        });
+      }
+    }).catch(function () { previewPoint(zip, null, null); });
+  }
+
+  function resolveSelection(sel) {
+    var scope = sel.scope || 'city';
+    var value = sel.value;
+    var label = sel.label || value;
+    if (scope === 'zip') { resolveZip(value); return; }
+    if (scope === 'city') {
+      setBrowse('city', value, label);
+      if (sel.lat != null && sel.lng != null && sel.lat !== '' && sel.lng !== '') {
+        previewPoint(label, sel.lat, sel.lng);
+      } else {
+        setCard(openCardHTML(label), 'is-empty');
+      }
+      return;
+    }
+    // local_area | market_area | state: show the Platinum Elite within 18 mi of the area's
+    // centroid (then expansion spot, then the apply CTA). Using the selected suggestion's
+    // centroid keeps results in the right place (e.g. CA "Orange County" vs NY/TX). Falls back
+    // to a scope (string) match only when the suggestion carries no coordinates.
+    setBrowse(scope, value, label);
+    if (sel.lat != null && sel.lng != null && sel.lat !== '' && sel.lng !== '') {
+      previewPoint(label, sel.lat, sel.lng);
+      return;
+    }
+    setCard(loadingCardHTML(label), '');
+    featuredDentistByScope(scope, value).then(function (dentist) {
+      if (dentist) { setCard(foundCardHTML(dentist), 'is-found'); }
+      else { setCard(openCardHTML(label), 'is-empty'); }
+    }).catch(function () { setCard(openCardHTML(label), 'is-empty'); });
+  }
+
+  function runFreeText(term) {
+    var clean = String(term || '').trim().replace(/\s+/g, ' ');
+    if (!clean) return;
+    if (/^\d{5}$/.test(clean)) { resolveZip(clean); return; }
+    setCard(loadingCardHTML(clean), '');
+    supabaseSuggest(clean).then(function (rows) {
+      rows = rows || [];
+      if (!rows.length) {
+        setBrowse('city', clean, clean);
+        setCard(openCardHTML(clean), 'is-empty');
+        return;
+      }
+      var exact = null, i;
+      for (i = 0; i < rows.length; i++) {
+        if (String(rows[i].label || '').toLowerCase() === clean.toLowerCase()) { exact = rows[i]; break; }
+      }
+      var pick = exact || rows[0];
+      resolveSelection({
+        scope: pick.browse_scope || pick.kind,
+        value: pick.browse_value || pick.value || pick.label,
+        label: pick.label,
+        lat: pick.lat, lng: pick.lng
+      });
+    }).catch(function () {
+      setBrowse('city', clean, clean);
+      setCard(openCardHTML(clean), 'is-empty');
+    });
+  }
+
+  /* ---- autocomplete dropdown ---- */
+  var suggestBox = document.getElementById('nav-suggest');
+  var zipInput = document.getElementById('nav-zip');
+  var zipButton = document.getElementById('nav-zip-btn');
+
+  function nearestCity(lat, lng) {
+    return supabaseRpc('nav_nearest_city', { in_lat: Number(lat), in_lng: Number(lng) })
+      .then(function (rows) { return rows && rows[0] ? rows[0] : null; });
+  }
+
+  var locateBtn = document.getElementById('nav-locate');
+  function pinCurrentLocation() {
+    if (!navigator.geolocation) { if (zipInput) zipInput.focus(); return; }
+    if (locateBtn) locateBtn.classList.add('locating');
+    hideSuggest();
+    setCard(loadingCardHTML('your area'), '');
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var lat = pos.coords.latitude, lng = pos.coords.longitude;
+      nearestCity(lat, lng).then(function (c) {
+        if (locateBtn) locateBtn.classList.remove('locating');
+        var near = c && Number(c.distance_miles || 999) <= 45 ? (c.name || c.city) : null;
+        if (near) {
+          if (zipInput) zipInput.value = near;
+          setBrowse('city', near, near);
+          previewPoint(near, lat, lng);
+        } else {
+          if (zipInput) zipInput.value = '';
+          if (c) setBrowse('city', c.name || c.city, c.name || c.city);
+          previewPoint('your area', lat, lng);
+        }
+      }).catch(function () {
+        if (locateBtn) locateBtn.classList.remove('locating');
+        previewPoint('your area', lat, lng);
+      });
+    }, function () {
+      if (locateBtn) locateBtn.classList.remove('locating');
+      setCard(introCardHTML(), '');
+      if (zipInput) zipInput.focus();
+    }, { enableHighAccuracy: false, timeout: 9000, maximumAge: 300000 });
+  }
+  if (locateBtn) locateBtn.addEventListener('click', function (e) { e.preventDefault(); pinCurrentLocation(); });
+  var suggestItems = [];
+  var activeIndex = -1;
+  var suggestTimer = null;
+  var lastQuery = '';
+
+  var KIND_GLYPH = { zip: '#', city: '\u2302', local_area: '\u25C6', market_area: '\u2756', state: '\u2605' };
+  var KIND_TAG = { zip: 'ZIP', city: 'City', local_area: 'Area', market_area: 'Market', state: 'State' };
+
+  function positionSuggest() {
+    if (!suggestBox || !zipInput) return;
+    suggestBox.style.left = zipInput.offsetLeft + 'px';
+    suggestBox.style.top = (zipInput.offsetTop + zipInput.offsetHeight + 6) + 'px';
+    suggestBox.style.width = zipInput.offsetWidth + 'px';
+  }
+
+  function hideSuggest() {
+    if (!suggestBox) return;
+    suggestBox.hidden = true;
+    suggestBox.innerHTML = '';
+    suggestItems = [];
+    activeIndex = -1;
+    if (zipInput) zipInput.setAttribute('aria-expanded', 'false');
+  }
+
+  function setActive(idx) {
+    var nodes = suggestBox ? suggestBox.querySelectorAll('.cc-suggest-item') : [];
+    if (!nodes.length) return;
+    if (idx < 0) idx = nodes.length - 1;
+    if (idx >= nodes.length) idx = 0;
+    activeIndex = idx;
+    nodes.forEach(function (n, i) {
+      if (i === idx) { n.classList.add('is-active'); n.scrollIntoView({ block: 'nearest' }); }
+      else { n.classList.remove('is-active'); }
+    });
+  }
+
+  function renderSuggest(items, q) {
+    if (!suggestBox) return;
+    suggestItems = items || [];
+    activeIndex = -1;
+    if (!suggestItems.length) {
+      suggestBox.innerHTML = '<div class="cc-suggest-empty">No matches. Try a ZIP, city, area, or state.</div>';
+      suggestBox.hidden = false;
+      positionSuggest();
+      if (zipInput) zipInput.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    var html = suggestItems.map(function (it) {
+      var kind = it.kind || it.browse_scope || 'city';
+      var glyph = KIND_GLYPH[kind] || '\u25CF';
+      var tag = KIND_TAG[kind] || '';
+      var sub = it.sublabel ? '<span class="cc-suggest-sub">' + htmlEscape(it.sublabel) + '</span>' : '';
+      return '<button type="button" class="cc-suggest-item sg-' + kind + '" role="option"'
+        + ' data-scope="' + htmlEscape(it.browse_scope || kind) + '"'
+        + ' data-value="' + htmlEscape(it.browse_value || it.value || it.label) + '"'
+        + ' data-label="' + htmlEscape(it.label) + '"'
+        + ' data-lat="' + (it.lat != null ? htmlEscape(it.lat) : '') + '"'
+        + ' data-lng="' + (it.lng != null ? htmlEscape(it.lng) : '') + '">'
+        + '<span class="cc-suggest-badge" aria-hidden="true">' + glyph + '</span>'
+        + '<span class="cc-suggest-tx"><span class="cc-suggest-label">' + highlight(it.label, q) + '</span>' + sub + '</span>'
+        + '<span class="cc-suggest-kind">' + tag + '</span>'
+        + ''
+        + '</button>';
+    }).join('');
+    suggestBox.innerHTML = html;
+    suggestBox.hidden = false;
+    positionSuggest();
+    if (zipInput) zipInput.setAttribute('aria-expanded', 'true');
+    suggestBox.querySelectorAll('.cc-suggest-item').forEach(function (node) {
+      node.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      node.addEventListener('click', function () {
+        var scope = node.getAttribute('data-scope');
+        var value = node.getAttribute('data-value');
+        var label = node.getAttribute('data-label');
+        var lat = node.getAttribute('data-lat');
+        var lng = node.getAttribute('data-lng');
+        if (zipInput) zipInput.value = label;
+        hideSuggest();
+        resolveSelection({ scope: scope, value: value, label: label, lat: lat === '' ? null : lat, lng: lng === '' ? null : lng });
+      });
+    });
+  }
+
+  function requestSuggest(q) {
+    var clean = String(q || '').trim();
+    var hasDigit = /\d/.test(clean);
+    if (!clean || (!hasDigit && clean.length < 2)) { hideSuggest(); return; }
+    lastQuery = clean;
+    supabaseSuggest(clean).then(function (rows) {
+      if (clean !== lastQuery) return;
+      renderSuggest(rows || [], clean);
+    }).catch(function () { hideSuggest(); });
+  }
+
+  if (zipInput) {
+    zipInput.addEventListener('input', function () {
+      this.value = this.value.replace(/[^0-9a-zA-Z\s.'#,&-]/g, '').slice(0, 64);
+      clearTimeout(closeTimer);
+      clearTimeout(suggestTimer);
+      var v = this.value;
+      suggestTimer = setTimeout(function () { requestSuggest(v); }, 150);
+    });
+    zipInput.addEventListener('focus', function () {
+      if (findLink) openMega(findLink);
+      if (this.value.trim()) requestSuggest(this.value);
+    });
+    zipInput.addEventListener('keydown', function (event) {
+      var open = suggestBox && !suggestBox.hidden && suggestItems.length;
+      if (event.key === 'ArrowDown') { if (open) { event.preventDefault(); setActive(activeIndex + 1); } }
+      else if (event.key === 'ArrowUp') { if (open) { event.preventDefault(); setActive(activeIndex - 1); } }
+      else if (event.key === 'Enter') {
+        event.preventDefault();
+        if (open && activeIndex >= 0) {
+          var nodes = suggestBox.querySelectorAll('.cc-suggest-item');
+          if (nodes[activeIndex]) { nodes[activeIndex].click(); return; }
+        }
+        hideSuggest();
+        runFreeText(this.value);
+      } else if (event.key === 'Escape') {
+        if (open) { hideSuggest(); } else { closeMega(); }
+      }
+    });
+    zipInput.addEventListener('blur', function () {
+      setTimeout(hideSuggest, 180);
+    });
+  }
+
+  if (zipButton) {
+    zipButton.addEventListener('click', function () {
+      hideSuggest();
+      if (zipInput) runFreeText(zipInput.value);
+    });
+  }
+
+  if (suggestBox) {
+    suggestBox.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+  }
+
+  window.addEventListener('resize', function () { if (suggestBox && !suggestBox.hidden) positionSuggest(); });
+
+  document.addEventListener('click', function (event) {
+    if (!suggestBox || suggestBox.hidden) return;
+    var inSearch = event.target.closest && event.target.closest('.zip-search-card');
+    if (!inSearch) hideSuggest();
+  });
+
+  document.querySelectorAll('.zip-chip[data-query]').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var value = chip.getAttribute('data-query') || chip.textContent.trim();
+      if (zipInput) zipInput.value = value;
+      hideSuggest();
+      runFreeText(value);
+    });
+  });
+
+  document.querySelectorAll('.pf-pill').forEach(function (button) {
+    button.addEventListener('click', function () {
+      document.querySelectorAll('.pf-pill').forEach(function (item) { item.classList.remove('on'); });
+      button.classList.add('on');
+      var data = {
+        me: ['UnitedHealthcare Primary Dental', 'Fast activation, coverage in days', '/dental-insurance/ppo-plans/uhc-primary-dental'],
+        family: ['Guardian Premier 2.0', 'Higher annual maximum for households', '/dental-insurance/ppo-plans/guardian-premier-ppo'],
+        senior: ['Humana Complete Dental', 'Popular for 65+ PPO planning', '/dental-insurance/ppo-plans/humana-extend-5000'],
+        ortho: ['Ameritas PrimeStar', 'Better fit for orthodontic planning', '/dental-insurance/ppo-plans/ameritas-primestar']
+      }[button.getAttribute('data-plan')] || [];
+      var name = document.getElementById('pf-name');
+      var benefit = document.getElementById('pf-benefit');
+      var link = document.getElementById('pf-go');
+      if (name) name.textContent = data[0] || 'Compare PPO plans';
+      if (benefit) benefit.textContent = data[1] || 'Match by timing and treatment';
+      if (link) link.href = data[2] || '/compare-ppo-dental-plans';
+    });
+  });
+
+
+  document.addEventListener('click', function (event) {
+    var idle = event.target && event.target.closest ? event.target.closest('#nav-find-cta.cta-idle,[aria-disabled="true"]') : null;
+    if (idle) event.preventDefault();
+  });
+
+  function setupEstimator() {
+    var minus = document.getElementById('est-minus');
+    var plus = document.getElementById('est-plus');
+    var qty = document.getElementById('est-qval');
+    var slider = document.getElementById('est-slider');
+    var full = document.getElementById('est-full');
+    var ppo = document.getElementById('est-ppo');
+    var save = document.getElementById('est-save');
+    if (!qty || !slider || !full || !ppo || !save) return;
+
+    function money(n) { return '$' + Math.round(n).toLocaleString(); }
+    function getCount() {
+      return Math.max(1, Math.min(6, Number(String(qty.textContent || '1').replace(/\D/g, '')) || Number(slider.value) || 1));
+    }
+    function setCount(next) {
+      var count = Math.max(1, Math.min(6, Number(next) || 1));
+      qty.textContent = '×' + count;
+      slider.value = String(count);
+      render();
+    }
+    function render() {
+      var count = getCount();
+      var cashPerCrown = 1600;
+      var ppoFirstCrown = 850;   // first crown includes a one-time $50 deductible
+      var ppoAddlCrown = 800;    // each additional crown
+      var cash = cashPerCrown * count;
+      var network = ppoFirstCrown + ppoAddlCrown * (count - 1);
+      full.textContent = money(cash);
+      ppo.textContent = money(network);
+      save.textContent = money(cash - network);
+      var pct = ((count - 1) / (6 - 1)) * 100;
+      slider.style.background = 'linear-gradient(90deg,var(--emerald) 0%,var(--emerald) ' + pct + '%,var(--sand) ' + pct + '%,var(--sand) 100%)';
+    }
+    if (minus) minus.addEventListener('click', function () { setCount(getCount() - 1); });
+    if (plus) plus.addEventListener('click', function () { setCount(getCount() + 1); });
+    slider.addEventListener('input', function(){ setCount(slider.value); });
+    setCount(slider.value || 1);
+  }
+  setupEstimator();
+
+  /* For Dentists: search the practice by name, then open a claim modal for the match. */
+  var portalName = document.getElementById('portal-name');
+  var portalNameBtn = document.getElementById('portal-name-btn');
+  var portalSuggest = document.getElementById('portal-suggest');
+  var pfItems = [];
+  var pfTimer = null;
+  var pfLastQ = '';
+  var ccClaimEls = null;
+
+  function pfTierLabel(t) {
+    if (t === 'platinum_elite') return 'Platinum Elite';
+    if (t === 'capy_accredited') return 'Capy Accredited';
+    return 'Listed';
+  }
+  function pfHide() {
+    if (portalSuggest) { portalSuggest.hidden = true; portalSuggest.innerHTML = ''; }
+    if (portalName) portalName.setAttribute('aria-expanded', 'false');
+  }
+  function pfRender(items, q) {
+    if (!portalSuggest) return;
+    pfItems = items || [];
+    if (!pfItems.length) {
+      portalSuggest.innerHTML = '<div class="cc-suggest-empty">No match yet. '
+        + '<a class="pf-add" href="/claim-dentist-listing-profile.html">Add your practice</a></div>';
+      portalSuggest.hidden = false;
+      if (portalName) portalName.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    portalSuggest.innerHTML = pfItems.map(function (it, i) {
+      var loc = [it.city, it.state].filter(Boolean).join(', ');
+      return '<button type="button" class="cc-suggest-item pf-item" role="option" data-i="' + i + '">'
+        + '<span class="cc-suggest-badge" aria-hidden="true">&#9670;</span>'
+        + '<span class="cc-suggest-tx"><span class="cc-suggest-label">' + highlight(it.practice_name, q) + '</span>'
+        + (loc ? '<span class="cc-suggest-sub">' + htmlEscape(loc) + '</span>' : '') + '</span>'
+        + '<span class="cc-suggest-kind pf-kind-' + htmlEscape(it.membership_tier || 'listed') + '">' + htmlEscape(pfTierLabel(it.membership_tier)) + '</span>'
+        + '</button>';
+    }).join('');
+    portalSuggest.hidden = false;
+    if (portalName) portalName.setAttribute('aria-expanded', 'true');
+    portalSuggest.querySelectorAll('.pf-item').forEach(function (node) {
+      node.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      node.addEventListener('click', function () {
+        var it = pfItems[Number(node.getAttribute('data-i'))];
+        pfHide();
+        if (it) openClaimModal(it);
+      });
+    });
+  }
+  function pfRequest(q) {
+    var clean = String(q || '').trim();
+    if (clean.length < 2) { pfHide(); return; }
+    pfLastQ = clean;
+    supabaseRpc('nav_practice_search', { in_q: clean, max_n: 8 }).then(function (rows) {
+      if (clean !== pfLastQ) return;
+      pfRender(rows || [], clean);
+    }).catch(function () { pfHide(); });
+  }
+  function claimRatingChips(it) {
+    return sourceRatingHTML(it);
+  }
+  function buildClaimModal() {
+    if (ccClaimEls) return ccClaimEls;
+    var wrap = document.createElement('div');
+    wrap.className = 'cc-claim';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML =
+      '<div class="cc-claim-backdrop" data-claim-close></div>'
+      + '<div class="cc-claim-card" role="dialog" aria-modal="true" aria-labelledby="cc-claim-h">'
+      + '<button type="button" class="cc-claim-x" data-claim-close aria-label="Close">\u00d7</button>'
+      + '<div class="cc-claim-eye">Found your practice</div>'
+      + '<div class="cc-claim-h" id="cc-claim-h"></div>'
+      + '<div class="cc-claim-loc" id="cc-claim-loc"></div>'
+      + '<div class="cc-claim-rate" id="cc-claim-rate"></div>'
+      + '<p class="cc-claim-p">Claim this listing to manage your page and reach PPO patients who already know what they want. '
+      + 'We confirm you\u2019re with the practice before it\u2019s yours.</p>'
+      + '<div class="cc-claim-actions">'
+      + '<a class="cc-claim-view" id="cc-claim-view" href="#" target="_blank" rel="noopener">View profile</a>'
+      + '<a class="cc-claim-go" id="cc-claim-go" href="#">Claim this profile</a>'
+      + '</div></div>';
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', function (e) { if (e.target.closest('[data-claim-close]')) hideClaim(); });
+    ccClaimEls = wrap;
+    return wrap;
+  }
+  function openClaimModal(it) {
+    var wrap = buildClaimModal();
+    wrap.querySelector('#cc-claim-h').textContent = it.practice_name || 'Your practice';
+    var loc = [it.city, it.state].filter(Boolean).join(', ');
+    var locEl = wrap.querySelector('#cc-claim-loc');
+    locEl.textContent = loc; locEl.style.display = loc ? '' : 'none';
+    var rEl = wrap.querySelector('#cc-claim-rate');
+    rEl.innerHTML = claimRatingChips(it); rEl.style.display = rEl.innerHTML ? '' : 'none';
+    var profile = it.profile_url || '/find-my-dentist';
+    var claim = '/claim-dentist-listing-profile.html' + (it.slug ? '?practice=' + encodeURIComponent(it.slug) : '');
+    wrap.querySelector('#cc-claim-view').setAttribute('href', profile);
+    wrap.querySelector('#cc-claim-go').setAttribute('href', claim);
+    wrap.classList.add('is-open');
+    wrap.setAttribute('aria-hidden', 'false');
+  }
+  function hideClaim() {
+    if (!ccClaimEls) return;
+    ccClaimEls.classList.remove('is-open');
+    ccClaimEls.setAttribute('aria-hidden', 'true');
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && ccClaimEls && ccClaimEls.classList.contains('is-open')) hideClaim();
+  });
+  if (portalName) {
+    portalName.addEventListener('input', function () {
+      var v = this.value;
+      clearTimeout(pfTimer);
+      pfTimer = setTimeout(function () { pfRequest(v); }, 160);
+    });
+    portalName.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); if (pfItems.length) { pfHide(); openClaimModal(pfItems[0]); } else pfRequest(this.value); }
+      else if (e.key === 'Escape') pfHide();
+    });
+    portalName.addEventListener('blur', function () { setTimeout(pfHide, 180); });
+  }
+  if (portalNameBtn) portalNameBtn.addEventListener('click', function () {
+    if (pfItems.length) { pfHide(); openClaimModal(pfItems[0]); }
+    else pfRequest(portalName ? portalName.value : '');
+  });
+
+  var burger = document.getElementById('cc-burger');
+  var drawer = document.getElementById('cc-drawer');
+  var drawerClose = document.getElementById('cc-drawer-close');
+  function openDrawer() {
+    if (!drawer || !backdrop) return;
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('show');
+    document.body.classList.add('cc-locked');
+    if (burger) burger.setAttribute('aria-expanded', 'true');
+  }
+  function closeDrawer() {
+    if (!drawer || !backdrop) return;
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('show');
+    document.body.classList.remove('cc-locked');
+    if (burger) burger.setAttribute('aria-expanded', 'false');
+  }
+  if (burger) burger.addEventListener('click', function(event){ event.preventDefault(); event.stopPropagation(); openDrawer(); });
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+  document.querySelectorAll('[data-acc]').forEach(function (button) {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      var item = button.closest('.cc-dacc');
+      if (!item) return;
+      var isOpen = item.classList.contains('open') || item.classList.contains('is-open');
+      item.classList.toggle('open', !isOpen);
+      item.classList.toggle('is-open', !isOpen);
+      button.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  if (drawer) {
+    drawer.querySelectorAll('a[href]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (link.getAttribute('data-cc-modal') === 'insurance') return;
+        setTimeout(closeDrawer, 60);
+      });
+    });
+  }
+
+  var modal = document.getElementById('covercapy-universal-modal');
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('cc-universal-modal-open');
+  }
+  document.querySelectorAll('[data-modal-close]').forEach(function (button) {
+    button.addEventListener('click', closeModal);
+  });
+  document.querySelectorAll('[data-cc-modal="insurance"]').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      if (!modal) return;
+      event.preventDefault();
+      var continueLink = modal.querySelector('.cc-universal-modal-continue');
+      if (continueLink) continueLink.href = link.href;
+      var cn = link.getAttribute('data-carrier-name');
+      if (cn) {
+        var tSlot = modal.querySelector('[data-modal-slot="title"]');
+        if (tSlot) tSlot.innerHTML = 'You\u2019re heading to<br/><em>' + cn + '</em>.';
+        var bSlot = modal.querySelector('[data-modal-slot="body"]');
+        if (bSlot) bSlot.innerHTML = 'We\u2019ll open ' + cn + '\u2019s official enrollment page in a new tab. You can review the plan, check eligibility, and activate coverage directly with the carrier. <strong>CoverCapy never sees or stores</strong> your payment, insurance, or login details.';
+      }
+      modal.classList.add('open');
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('cc-universal-modal-open');
+    });
+  });
+
+
+  document.querySelectorAll('.dd-cov-curated .uhc-activation-card').forEach(function(card){
+    card.addEventListener('mousemove', function(event){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--cc-cta-x', ((event.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+      card.style.setProperty('--cc-cta-y', ((event.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+    card.addEventListener('mouseleave', function(){
+      card.style.removeProperty('--cc-cta-x');
+      card.style.removeProperty('--cc-cta-y');
+    });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeModal();
+  });
+}());
+
+</script>
+<script>
+/* CoverCapy Rewards quest: tappable steps, filling meter, refer-gated unlock, confetti */
+(function () {
+  var rew = document.querySelector('.cc-link[data-link="rewards"]');
+  if (!rew) return;
+  var panel = rew.querySelector('.cc-mega.dd-rew');
+  if (!panel) return;
+
+  var steps = Array.prototype.slice.call(panel.querySelectorAll('.rw-step'));
+  var trackNum = document.getElementById('rw-track-num');
+  var trackFill = document.getElementById('rw-track-fill');
+  var referCta = document.getElementById('rw-refer-cta');
+  var referBtn = document.getElementById('rw-refer-btn');
+  var cele = document.getElementById('rw-cele');
+  var celeX = document.getElementById('rw-cele-x');
+  var celeCount = document.getElementById('rw-cele-count');
+  var featBal = panel.querySelector('.rw-feat-bal');
+  var featMeter = panel.querySelector('.rw-feat-meter i');
+  var featLeft = panel.querySelector('.rw-feat-left');
+
+  var BASE = 300, GOAL = 2000, PTS = { 2: 500, 3: 500, 4: 700 };
+  var total = BASE, done = {}, armed = false;
+  var STORE_KEY = 'cc_rw_quest_v1';
+  function readSaved() { try { var s = window.localStorage.getItem(STORE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+  function writeSaved() { try { var a = []; for (var s = 2; s <= 4; s++) { if (done[s]) a.push(s); } window.localStorage.setItem(STORE_KEY, JSON.stringify({ steps: a, celebrated: !!done[4] })); } catch (e) {} }
+  function clearSaved() { try { window.localStorage.removeItem(STORE_KEY); } catch (e) {} }
+
+  function reduceMotion() { return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function fmt(n) { return n.toLocaleString('en-US'); }
+  function pct(n) { return Math.min(100, Math.round(n / GOAL * 100)); }
+  function easeOut(p) { return 1 - Math.pow(1 - p, 3); }
+
+  function paintMeter() {
+    if (trackNum) trackNum.textContent = fmt(total);
+    if (trackFill) trackFill.style.width = pct(total) + '%';
+    if (featBal) featBal.innerHTML = 'Balance <strong>' + fmt(total) + ' \u265A</strong> of 2,000';
+    if (featMeter) featMeter.style.width = pct(total) + '%';
+    if (featLeft) { var rem = GOAL - total; featLeft.textContent = rem > 0 ? (fmt(rem) + ' \u265A to your free whitening') : 'Free whitening ready to claim'; }
+  }
+
+  function nextStep() { for (var s = 2; s <= 4; s++) { if (!done[s]) return s; } return null; }
+
+  function paintNext() {
+    var n = nextStep();
+    steps.forEach(function (el) {
+      el.classList.remove('is-next');
+      var s = +el.getAttribute('data-step');
+      if (s >= 2 && !done[s] && s === n && !(s === 4 && armed)) el.classList.add('is-next');
+    });
+  }
+
+  function elForStep(s) { for (var i = 0; i < steps.length; i++) { if (+steps[i].getAttribute('data-step') === s) return steps[i]; } return null; }
+
+  function completeStep(s) {
+    if (done[s]) return;
+    done[s] = true;
+    var el = elForStep(s);
+    if (el) { el.classList.add('done'); var num = el.querySelector('.rw-step-num'); if (num) num.textContent = '\u2713'; }
+    total += (PTS[s] || 0);
+    paintMeter();
+    paintNext();
+    writeSaved();
+  }
+
+  function activate(el) {
+    var s = +el.getAttribute('data-step');
+    if (s < 2 || done[s]) return;
+    if (s !== nextStep()) return;
+    if (s === 4) {
+      armed = true;
+      paintNext();
+      if (referCta) { referCta.hidden = false; referCta.classList.add('show'); }
+      if (referBtn) { try { referBtn.focus(); } catch (e) {} }
+      return;
+    }
+    completeStep(s);
+  }
+
+  steps.forEach(function (el) {
+    el.addEventListener('click', function () { activate(el); });
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); activate(el); } });
+  });
+
+  function countUp(node, from, to, dur) {
+    if (!node) return;
+    if (reduceMotion()) { node.textContent = fmt(to); return; }
+    var t0 = null;
+    function tick(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur); node.textContent = fmt(Math.round(from + (to - from) * easeOut(p))); if (p < 1) requestAnimationFrame(tick); }
+    requestAnimationFrame(tick);
+  }
+
+  function showCele(animateCount) {
+    fireConfetti();
+    if (cele) { cele.hidden = false; cele.classList.add('show'); cele.setAttribute('aria-hidden', 'false'); }
+    if (animateCount) countUp(celeCount, 1300, GOAL, 1100); else if (celeCount) celeCount.textContent = '2,000';
+  }
+  function hideCele() {
+    if (cele) { cele.classList.remove('show'); cele.hidden = true; cele.setAttribute('aria-hidden', 'true'); }
+    stopConfetti();
+  }
+  function unlock() {
+    if (done[4]) return;
+    completeStep(4);
+    if (referCta) { referCta.classList.remove('show'); referCta.hidden = true; }
+    showCele(true);
+  }
+  if (referBtn) referBtn.addEventListener('click', unlock);
+  if (celeX) celeX.addEventListener('click', hideCele);
+
+  /* featured-card "Refer a friend" mirrors the quest unlock once steps are complete */
+  var featRefer = panel.querySelector('.reward-feature-card .featured-btn.secondary');
+  if (featRefer) featRefer.addEventListener('click', function (e) {
+    if (done[2] && done[3] && !done[4]) { e.preventDefault(); unlock(); }
+    else if (done[4]) { e.preventDefault(); showCele(false); }
+  });
+
+  /* ---- share sheet ---- */
+  var shareLink = 'https://covercapy.com/r/CAPY300';
+  var shareMsg = 'I just unlocked free teeth whitening on CoverCapy. Book a PPO dentist and we both score Crowns: ';
+  var copyBtn = document.getElementById('rw-share-copy');
+  var linkInput = document.getElementById('rw-share-link');
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(shareLink); }
+      else if (linkInput) { linkInput.removeAttribute('readonly'); linkInput.select(); document.execCommand('copy'); linkInput.setAttribute('readonly', ''); }
+      copyBtn.textContent = 'Copied';
+      setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1600);
+    } catch (e) {}
+  });
+  Array.prototype.slice.call(panel.querySelectorAll('.rw-share-app')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-share'), url = '', msg = encodeURIComponent(shareMsg + shareLink);
+      if (navigator.share && (k === 'sms' || k === 'whatsapp' || k === 'instagram')) { try { navigator.share({ title: 'CoverCapy', text: shareMsg, url: shareLink }); return; } catch (e) {} }
+      if (k === 'sms') url = 'sms:&body=' + msg;
+      else if (k === 'whatsapp') url = 'https://wa.me/?text=' + msg;
+      else if (k === 'instagram') { try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(shareLink); } catch (e) {} url = 'https://www.instagram.com/'; }
+      else if (k === 'email') url = 'mailto:?subject=' + encodeURIComponent('Free whitening on CoverCapy') + '&body=' + msg;
+      if (url) window.open(url, '_blank', 'noopener');
+    });
+  });
+
+  /* ---- confetti ---- */
+  var cvs = null, ctx = null, parts = [], raf = null, endAt = 0;
+  function ensureCanvas() {
+    if (cvs) return;
+    cvs = document.createElement('canvas'); cvs.className = 'rw-confetti';
+    document.body.appendChild(cvs); ctx = cvs.getContext('2d');
+    sizeCanvas(); window.addEventListener('resize', sizeCanvas);
+  }
+  function sizeCanvas() { if (!cvs) return; cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+  function fireConfetti() {
+    if (reduceMotion()) return;
+    ensureCanvas(); cvs.style.display = 'block';
+    var colors = ['#5BE0A0', '#B8924F', '#8B6FB8', '#1B5E5A', '#F2C14E', '#E0853B', '#7BD8B6'];
+    parts = [];
+    for (var i = 0; i < 160; i++) parts.push({
+      x: window.innerWidth * (0.2 + 0.6 * Math.random()),
+      y: window.innerHeight * 0.32 + (Math.random() * 40 - 20),
+      vx: (Math.random() - 0.5) * 9, vy: -(6 + Math.random() * 9),
+      g: 0.22 + Math.random() * 0.12, s: 5 + Math.random() * 7,
+      rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+      c: colors[(Math.random() * colors.length) | 0], shape: Math.random() < 0.5 ? 'r' : 'c'
+    });
+    endAt = performance.now() + 2600;
+    if (!raf) raf = requestAnimationFrame(drawConfetti);
+  }
+  function drawConfetti(ts) {
+    if (!ctx) { raf = null; return; }
+    var now = ts || performance.now(), alive = false;
+    var fade = Math.max(0, Math.min(1, (endAt - now) / 700));
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    parts.forEach(function (p) {
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= 0.99; p.rot += p.vr;
+      if (p.y < cvs.height + 30) alive = true;
+      ctx.save(); ctx.globalAlpha = (now > endAt - 700 ? fade : 1); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.c;
+      if (p.shape === 'r') ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6); else { ctx.beginPath(); ctx.arc(0, 0, p.s / 2, 0, 7); ctx.fill(); }
+      ctx.restore();
+    });
+    if (alive && now < endAt) raf = requestAnimationFrame(drawConfetti); else { raf = null; stopConfetti(); }
+  }
+  function stopConfetti() { if (raf) { cancelAnimationFrame(raf); raf = null; } if (ctx && cvs) { ctx.clearRect(0, 0, cvs.width, cvs.height); cvs.style.display = 'none'; } }
+
+  /* ---- persistence: progress survives the dropdown opening and closing; ---- */
+  /* ---- a page refresh only wipes it once the celebration has been reached ---- */
+  function markDone(s) {
+    if (s < 2 || s > 4 || done[s]) return;
+    done[s] = true;
+    var el = elForStep(s);
+    if (el) { el.classList.add('done'); var num = el.querySelector('.rw-step-num'); if (num) num.textContent = '\u2713'; }
+    total += (PTS[s] || 0);
+  }
+
+  (function init() {
+    var saved = readSaved();
+    if (saved && saved.celebrated) {
+      clearSaved();
+    } else if (saved && saved.steps && saved.steps.length) {
+      saved.steps.forEach(markDone);
+    }
+    paintMeter();
+    paintNext();
+  }());
+}());
+</script>
+</body>
+</html>
+
+<script>
+/* Logged-in nav swap: if the CoverCapy app set the cc_auth presence cookie on
+   .covercapy.com, replace Sign in / Create account with the member nav. */
+(function(){
+  function cookie(name){
+    var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)')); return m?decodeURIComponent(m[1]):null;
+  }
+  var first=cookie('cc_auth'); if(!first) return;
+  var APP='https://app.covercapy.com/app.html';
+  function swap(){
+    document.querySelectorAll('.cc-actions').forEach(function(el){
+      el.innerHTML='<a class="cc-signin" href="'+APP+'#/patient/community">Community</a>'
+        +'<a class="cc-signin" href="'+APP+'#/patient/coverage">Coverage</a>'
+        +'<a class="cc-signin" href="'+APP+'#/patient/profile">Account</a>'
+        +'<a class="cc-signin" href="'+APP+'?signout=1" style="opacity:.7">Sign out</a>'
+        +'<a class="cc-join" href="'+APP+'#/patient/home">'+(first&&first!=='Member'?first.replace(/[<>&"]/g,'')+"'s dashboard":'Dashboard')+'</a>';
+    });
+    document.querySelectorAll('.cc-drawer-foot').forEach(function(el){
+      el.innerHTML='<a class="cc-drawer-join" href="'+APP+'#/patient/home">Open dashboard</a><a class="cc-drawer-sign" href="'+APP+'?signout=1">Sign out</a>';
+    });
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',swap,{once:true}); } else { swap(); }
+  setTimeout(swap,400); /* re-run after the component injector replays scripts */
+})();
+</script>

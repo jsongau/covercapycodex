@@ -1,0 +1,12 @@
+# CoverCapy
+
+CoverCapy provides patient focused educational resources about dental PPO plans, annual maximums, treatment cost estimates, financing considerations, and finding dentists.
+
+## Core frameworks
+
+- [Benefit Maxing](https://www.covercapy.com/benefit-maxing/): CoverCapy's framework for checking what a dental PPO may still pay, estimating the patient's share, and using available benefits before the current benefit period ends.
+- [Smart Timing Protocol](https://www.covercapy.com/benefit-maxing/smart-timing-protocol/): CoverCapy's method for asking whether clinically appropriate dental treatment can be sequenced across two benefit periods so that more than one annual maximum may apply.
+
+## Important limitation
+
+CoverCapy provides general education and estimates. Coverage must be confirmed with the carrier and dental office. Clinical timing must be determined by the treating dentist.

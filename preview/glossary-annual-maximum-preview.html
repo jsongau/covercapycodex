@@ -1,0 +1,251 @@
+<!doctype html><html lang="en" data-theme="gold"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>/* CoverCapy Hub Theme — shared design system (jade default + gold/navy alt).
+   Used by the PPO hub and the /guides/ pages so they all match. */
+:root{
+  --paper:#F6F8FA;--paper-2:#EAEFF3;--card:#FFFFFF;
+  --ink:#0F1B25;--ink-soft:#33445F;--ink-soft:#33444F;
+  --green:#0A7E7D;--green-d:#0A6E6D;--green-l:#5E707B;
+  --sage:#E2F4F3;--sage-2:#D3EBEA;
+  --muted:#5E707B;--line:#DCE4EA;--line-2:#C9D6DE;
+  --gold:#B26A00;--rust:#C2410C;
+  --covered:#0F9D6E;--covered-tint:#E4F6EE;--covered-ink:#0A5D43;
+  --partial:#B26A00;--partial-tint:#FBEFD9;--partial-ink:#7A4A00;
+  --notcov:#64748B;--notcov-tint:#EEF1F4;--notcov-ink:#475569;
+  --panel:#0B3B40;--panel-ink:#EAF6F5;--panel-soft:rgba(244,248,252,.80);--panel-eye:#D9B26A;
+  --serif:'Inter Tight',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;
+  --shadow:0 1px 2px rgba(15,27,37,.05),0 4px 12px -4px rgba(15,27,37,.10);
+  --radius:16px;--toch:52px;
+}
+[data-theme="gold"]{
+  --paper:#FAF6EC;--paper-2:#F1E9D6;--card:#FFFFFF;
+  --ink:#15202E;--ink-soft:#3D4654;
+  --green:#C9A24A;--green-d:#8A6212;--green-l:#B79447;
+  --sage:#F6EEDA;--sage-2:#ECDFC2;
+  --muted:#6B6857;--line:#E8DEC8;--line-2:#DCCFB2;
+  --gold:#8A6212;--rust:#B0542E;
+  --panel:#0A2342;--panel-ink:#F4F8FC;--panel-soft:rgba(244,248,252,.80);--panel-eye:#E0BC72;
+  --shadow:0 1px 2px rgba(10,35,66,.06),0 4px 14px -4px rgba(10,35,66,.16);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);font-weight:700;line-height:1.16;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(30px,4.4vw,42px);margin:6px 0 14px}
+h2{font-size:clamp(22px,2.8vw,28px);margin:38px 0 12px}
+h3{font-size:18px;margin:26px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--green-d);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{margin:0 0 16px;padding-left:22px}
+li{margin:4px 0}
+strong{color:var(--ink)}
+.lede{font-size:18px;color:var(--ink-soft);margin:0 0 18px}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+/* tables */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--paper-2)}
+tbody tr:last-child td{border-bottom:0}
+td a{font-weight:600}
+/* breadcrumb */
+.crumb{font-size:13px;color:var(--muted);padding:18px 0 0}
+.crumb a{color:var(--muted)}
+.crumb b{color:var(--ink)}
+/* eyebrow */
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-d);display:inline-flex;align-items:center;gap:9px;margin-bottom:8px}
+.eyebrow .sp{color:var(--gold)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14px;border-radius:999px;padding:12px 22px;min-height:46px;cursor:pointer;border:1px solid transparent;text-decoration:none;transition:filter .15s,box-shadow .15s}
+.btn-green{background:#0A2342;color:#fff}
+.btn-green:hover{background:#0C2C54;text-decoration:none}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--green-d)}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+/* callout / sources */
+.sources{font-size:13px;color:var(--muted)}
+.sources a{color:var(--muted);text-decoration:underline}
+/* FAQ */
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:8px 0;padding:0 16px}
+.faq summary{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--ink);padding:14px 0;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq details[open] summary{border-bottom:1px solid var(--line)}
+.faq details p{padding:12px 0 14px;margin:0}
+/* sticky sub-nav console (pins under the universal mega nav) */
+.toc{position:sticky;top:72px;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.toc .wrap{max-width:1180px;display:flex;align-items:center;gap:16px;height:var(--toch)}
+.toc-brand{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;flex-shrink:0}
+.toc-links{display:flex;gap:20px;font-size:13.5px;font-weight:500;overflow-x:auto;scrollbar-width:none}
+.toc-links::-webkit-scrollbar{display:none}
+.toc-links a{color:var(--muted);white-space:nowrap;padding:4px 0}
+.toc-links a:hover{color:var(--ink)}
+.toc-cta{margin-left:auto;flex-shrink:0;background:#0A2342;color:#fff;font-weight:600;font-size:13px;border-radius:999px;padding:9px 16px;white-space:nowrap;text-decoration:none}
+/* theme switch */
+.theme-switch{position:relative;display:inline-flex;align-items:center;background:#1a1a1a;border-radius:999px;padding:3px;cursor:pointer;user-select:none;flex-shrink:0}
+.ts-opt{position:relative;z-index:1;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 12px;color:#9aa;transition:color .35s}
+.theme-switch[data-active="gold"] .ts-gold,.theme-switch[data-active="jade"] .ts-jade{color:#fff}
+.ts-thumb{position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;background:var(--gold);transition:transform .4s cubic-bezier(.4,0,.2,1),background .4s}
+.theme-switch[data-active="jade"] .ts-thumb{transform:translateX(100%);background:#0FB5A6}
+@media(max-width:1080px){.toc{top:60px}.toc-brand{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+#cc-nav-mount:empty,#cc-footer-mount:empty{min-height:0}
+/* glossary / guide content compatibility (re-themed pages) */
+.hero{padding:8px 0 2px}
+.hero-tagline{font-size:18px;color:var(--ink-soft);margin:6px 0 12px;max-width:60ch}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 0}
+.hero-ctas a{font-weight:600;font-size:14px;color:var(--green-d)}
+.section{margin:0 0 4px}
+.example-box{background:var(--sage);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:18px 0}
+.ex-label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-d);font-weight:700;margin-bottom:6px}
+.cta-sub{font-size:13px;color:var(--muted)}
+.watchout-list{list-style:none;padding:0;margin:14px 0}
+.wo-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}
+.wo-item:last-child{border-bottom:0}
+.wo-icon{color:var(--rust);flex-shrink:0;font-weight:700}
+.related-section{margin-top:30px}
+.rel-pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}
+.rel-pill{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--green-d);text-decoration:none}
+.rel-pill:hover{border-color:var(--green);text-decoration:none}
+.faq-section{margin-top:30px}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:8px 0;padding:14px 18px}
+.faq-q{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--ink);margin:0;display:flex;justify-content:space-between;gap:10px}
+.faq-a{margin:8px 0 0;font-size:14.5px;color:var(--ink-soft)}
+.faq-icon{color:var(--muted);flex-shrink:0}
+.sticky-card{background:var(--panel);color:#fff;border-radius:14px;padding:18px 20px;margin:20px 0;position:static}
+.sc-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--panel-eye)}
+.sc-plan{font-family:var(--serif);font-weight:700;font-size:18px;color:#fff;margin:4px 0}
+.sc-from,.sc-benefit{font-size:13px;color:var(--panel-soft)}
+.sc-close a,.sticky-card a{color:var(--panel-eye)}
+
+.toc{top:0!important}</style></head><body><header style="background:#F6F0E6;border-bottom:1px solid #E8E2D8;height:66px;display:flex;align-items:center;padding:0 24px;gap:22px;font-family:'Inter Tight',system-ui"><span style="font-family:Georgia,serif;font-style:italic;font-weight:600;font-size:19px;color:#082A30">CoverCapy</span><span style="color:#33453E;font-weight:600;font-size:14px">Find a Plan</span><span style="color:#33453E;font-weight:600;font-size:14px">Benefit Maxing</span><span style="color:#33453E;font-weight:600;font-size:14px">Capy Rewards</span><span style="color:#33453E;font-weight:600;font-size:14px">For Dentists</span><span style="margin-left:auto;background:#082A30;color:#fff;border-radius:999px;padding:9px 18px;font-weight:600;font-size:13px">Find a dentist</span></header><nav class="toc" aria-label="Hub navigation">
+  <div class="wrap">
+    <a class="toc-brand" href="/compare-ppo-dental-plans">PPO Plan Hub</a>
+    <nav class="toc-links" aria-label="Guides"><a href="/guides/implants/">Implants</a><a href="/guides/crowns/insurance-coverage.html">Crowns</a><a href="/guides/root-canals/">Root canals</a><a href="/guides/dentures/">Dentures</a><a href="/guides/braces-invisalign/">Braces</a><a href="/guides/whitening/">Whitening</a><a href="/guides/glossary/">All terms</a><a href="/compare-ppo-dental-plans#compare">Compare plans</a></nav>
+    <div class="theme-switch" id="cc-ts" data-active="gold" role="switch" aria-checked="false" tabindex="0" aria-label="Switch color theme"><span class="ts-thumb"></span><span class="ts-opt ts-gold">Gold</span><span class="ts-opt ts-jade">Jade</span></div>
+    <a class="toc-cta" href="/find-my-dentist">Find a dentist</a>
+  </div>
+</nav>
+<main class="wrap">
+  <nav class="crumb"><a href="/">Home</a> / <a href="/guides/glossary/">Glossary</a> / <b>Annual maximum</b></nav>
+  <article class="prose faq">
+<aside class="sticky-card" aria-label="Plan recommendation">
+  <button class="sc-close" aria-label="Close">&times;</button>
+  <span class="sc-label">Highest Max</span>
+  <div class="sc-plan">Ameritas PrimeStar Complete</div>
+  <p class="sc-benefit">$2,000 annual maximum — double most entry-level plans.</p>
+  <div class="sc-from">from <strong>$36/mo</strong></div>
+  <a href="/compare-ppo-dental-plans/" class="sc-btn">Compare plans &rarr;</a>
+  <a href="/find-my-dentist" class="sc-btn2">Find a dentist</a>
+</aside>
+
+  <div class="wrap">
+
+    <!-- Breadcrumb -->
+    <nav class="bc" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/dental-insurance/">Dental Insurance</a><span aria-hidden="true">/</span>
+      <a href="/guides/glossary/">Glossary</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Annual maximum</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <span class="eyebrow">Dental Insurance Glossary</span>
+      <h1>Annual maximum</h1>
+      <p class="hero-tagline">The ceiling on what your plan pays in a year — after which you pay 100%.</p>
+      <div class="hero-ctas">
+        <a href="/find-my-dentist" class="btn btn-primary">Find a PPO dentist</a>
+        <a href="/compare-ppo-dental-plans/" class="btn btn-outline">Compare PPO plans</a>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Definition -->
+      <section class="section" aria-labelledby="def-heading">
+        <h2 id="def-heading">What is annual maximum?</h2>
+        <p>The annual maximum is the hard dollar ceiling on the total benefits a dental insurance plan will pay per covered member in a single benefit year. Once the plan's payments reach this limit, you are responsible for 100% of any additional covered services until the year resets. According to the National Association of Dental Plans, 32.8% of in-network PPO annual maximums fall between $1,000 and $1,500. Unlike health insurance, dental plans have no out-of-pocket maximum — your exposure above the annual maximum is theoretically unlimited. Only the insurer's actual benefit payments count toward the maximum; your deductible, coinsurance, and balance billing amounts do not.</p>
+      </section>
+
+      <!-- How it works -->
+      <section class="section" aria-labelledby="how-heading">
+        <h2 id="how-heading">How it works</h2>
+        <p>Each claim is processed and the plan's payment portion is tracked against the annual maximum. When the sum of plan payments reaches the limit, subsequent claims produce an Explanation of Benefits showing $0 plan payment with reason code 'annual maximum reached.' Your deductible and coinsurance obligations still apply to claims that eat into the maximum — the maximum tracks only what the plan pays, not what you pay.</p>
+        <div class="example-box">
+          <div class="ex-label">Example</div>
+          <p>Annual max $1,500. You need a crown ($1,100 UCR, plan pays 50% = $550) and a root canal ($900 UCR, plan pays 50% = $450). Total plan payments: $1,000 of your $1,500 used. You later need a bridge ($2,000 UCR, plan would pay 50% = $1,000 — but only $500 of maximum remains). Plan pays $500. You pay $1,500 out-of-pocket for the bridge.</p>
+        </div>
+      </section>
+
+      <!-- Watch outs -->
+      <section class="section" aria-labelledby="watch-heading">
+        <h2 id="watch-heading">What to watch out for</h2>
+        <ul class="watchout-list"><li class="wo-item"><span class="wo-icon">&#9888;</span><span>One major procedure can wipe out a $1,000–$1,500 maximum in a single visit. A crown or root canal often exceeds the entire year's benefit. If you face multiple major procedures, completing one in late December and another in January lets each draw from separate annual maximums.</span></li><li class="wo-item"><span class="wo-icon">&#9888;</span><span>There is no dental out-of-pocket maximum. Once benefits are exhausted, all costs are yours — there is no 'catastrophic' cap like health insurance provides under the ACA. Budget accordingly for years with multiple major procedures.</span></li></ul>
+      </section>
+
+      <!-- Related terms -->
+      <div class="related-section">
+        <h2>Related terms</h2>
+        <div class="rel-pills">
+          <a href="/guides/glossary/deductible/" class="rel-pill">Deductible</a>
+<a href="/guides/glossary/coinsurance/" class="rel-pill">Coinsurance</a>
+<a href="/guides/glossary/calendar-year/" class="rel-pill">Calendar year reset</a>
+<a href="/guides/glossary/plan-year/" class="rel-pill">Plan year</a>
+<a href="/guides/glossary/ppo/" class="rel-pill">PPO dental insurance</a>
+          <a href="/guides/glossary/" class="rel-pill">View all terms</a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <section class="faq-section" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently asked questions about annual maximum</h2>
+        
+        <div class="faq-item" id="faq-0">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-0-a" onclick="toggleFaq(this)">
+            <span>What counts toward the annual maximum?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a" id="faq-0-a" role="region" hidden>
+            <p>Only what the insurance plan actually pays counts. Your deductible payments, coinsurance amounts you pay, and any balance billing from out-of-network dentists do not reduce the annual maximum. If your plan pays $400 on a crown, that $400 counts toward the maximum — your $400 coinsurance share does not.</p>
+          </div>
+        </div>
+        <div class="faq-item" id="faq-1">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-1-a" onclick="toggleFaq(this)">
+            <span>Can I split a dental procedure across two plan years?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a" id="faq-1-a" role="region" hidden>
+            <p>Potentially yes. Many carriers apply benefits to the date the procedure was initiated, not completed. A crown prep on December 28 and final placement January 8 may allow each stage to draw from separate plan years' maximums. Confirm this in writing with your carrier before relying on it — policies vary.</p>
+          </div>
+        </div>
+        <div class="faq-item" id="faq-2">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-2-a" onclick="toggleFaq(this)">
+            <span>What dental plans have no annual maximum?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a" id="faq-2-a" role="region" hidden>
+            <p>A small number of plans, including certain Spirit Dental products and some dental discount plans (which are not insurance), advertise no annual maximum. True no-maximum insurance plans typically charge significantly higher premiums. Verify whether you are comparing insurance (reimbursement) to a discount plan (fee reduction only).</p>
+          </div>
+        </div>
+        <div class="faq-item" id="faq-3">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-3-a" onclick="toggleFaq(this)">
+            <span>Does the annual maximum reset on January 1?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a" id="faq-3-a" role="region" hidden>
+            <p>On calendar-year plans, yes — January 1. On plan-year (policy anniversary) plans, the maximum resets on your enrollment anniversary date. Some individual plans purchased mid-year reset 12 months from your effective date, not January 1.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="cta-block">
+        <h3>Find a dentist who accepts your PPO</h3>
+        <p>Search CoverCapy's verified network of accredited PPO dentists and confirm your coverage before you arrive.</p>
+        <a href="/find-my-dentist" class="btn-mint">Search PPO dentists near me</a>
+        <p class="cta-sub">Free verification &middot; No account required</p>
+      </div>
+
+    </div>
+  </div>
+</article>
+  <div class="cta-row"><a class="btn btn-green" href="/find-my-dentist">Find a dentist who takes your plan</a><a class="btn btn-ghost" href="/compare-ppo-dental-plans">Compare every PPO plan</a></div>
+</main><script>var H=document.documentElement,T=document.getElementById("cc-ts");function ap(t){H.setAttribute("data-theme",t);if(T)T.setAttribute("data-active",t);}if(T)T.addEventListener("click",function(){ap(H.getAttribute("data-theme")==="gold"?"jade":"gold");});setTimeout(function(){document.querySelectorAll("*").forEach(function(e){e.style.transition="background .9s,color .9s,border-color .9s";});ap("jade");},900);</script></body></html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoverCapy — Footer ORIGINAL Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F6F0E6; min-height: 100vh; display: flex; flex-direction: column; }
+    .page-placeholder { flex: 1; display: flex; align-items: center; justify-content: center; padding: 80px 40px; font-family: 'Fraunces', Georgia, serif; font-size: 1.4rem; font-weight: 500; color: rgba(42,45,38,0.2); text-align: center; letter-spacing: -0.01em; }
+  </style>
+  <style>
+/* ==========================================================================
+   CoverCapy — Sitewide Footer Styles
+   Scoped under .cc-footer. Full-bleed transparent footer that blends
+   into the page background; only CTA tiles remain softly carded. Teal = patients, amber = dentists.
+   Layout is 100% CSS (grid/flex). JS only: mobile accordion + optional
+   side-rail hide. Tuned ~30% shorter than the previous build.
+   ========================================================================== */
+
+.cc-footer {
+  /* ---- Warm cream + parchment ground ---- */
+  --cc-ivory:       #F4F1E8;
+  --cc-cream:       #FBFAF4;
+  --cc-cream-2:     #F7F3E9;
+  --cc-parchment:   #ECE6D6;
+  --cc-parchment-2: #F1ECDE;
+
+  /* ---- Text ---- */
+  --cc-graphite:    #2A2D26;
+  --cc-graphite-2:  #62665A;
+  --cc-muted:       #8B8F82;
+
+  /* ---- CoverCapy comparison-page palette (source of truth for CTAs) ---- */
+  --capy-green-dark:  #335B4C;
+  --capy-green:       #42665C;
+  --capy-green-light: #70A183;
+  --capy-orange-dark: #754625;
+  --capy-orange:      #8F5F38;
+  --capy-orange-light:#AE7A4B;
+
+  /* ---- Patient: green (mapped to comparison palette) ---- */
+  --cc-teal-900:    var(--capy-green-dark);
+  --cc-teal-700:    var(--capy-green);
+  --cc-teal-500:    var(--capy-green-light);
+  --cc-teal-tint:   rgba(66, 102, 92, 0.07);
+  --cc-teal-tint-2: rgba(66, 102, 92, 0.22);
+
+  /* ---- Dentist: copper (mapped to comparison palette) ---- */
+  --cc-amber-900:   var(--capy-orange-dark);
+  --cc-amber-700:   var(--capy-orange);
+  --cc-amber-500:   var(--capy-orange-light);
+  --cc-amber-tint:  rgba(143, 95, 56, 0.08);
+  --cc-amber-tint-2:rgba(174, 122, 75, 0.30);
+
+  /* ---- Soft lavender (ambient only) ---- */
+  --cc-lavender:    rgba(150, 140, 200, 0.15);
+
+  /* ---- Accent ---- */
+  --cc-gold:        #A98A4B;
+
+  /* ---- Lines & shadows — light, refined ---- */
+  --cc-line:        rgba(42, 45, 38, 0.085);
+  --cc-line-soft:   rgba(42, 45, 38, 0.05);
+  --cc-shadow-soft: 0 22px 56px -46px rgba(42, 45, 38, 0.30);
+  --cc-shadow-card: 0 14px 36px -32px rgba(42, 45, 38, 0.22);
+
+  /* ---- Radii — consistent scale ---- */
+  --cc-radius-shell: 28px;
+  --cc-radius-card:  18px;
+  --cc-radius-pill:  999px;
+
+  /* ---- Consistent gap scale (drives the compact vertical rhythm) ---- */
+  --footer-gap-xs: clamp(6px, 0.8vw, 9px);
+  --footer-gap-sm: clamp(10px, 1.2vw, 14px);
+  --footer-gap-md: clamp(16px, 2vw, 22px);
+  --footer-gap-lg: clamp(22px, 2.8vw, 30px);
+
+  /* ---- Type ---- */
+  --cc-serif: "Fraunces", "Hoefler Text", "Iowan Old Style", "Palatino Linotype",
+              "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+  --cc-sans:  "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+              Helvetica, Arial, sans-serif;
+
+  /* ---- Inner content width ---- */
+  --cc-maxw: 1760px;
+  --cc-gutter: clamp(36px, 6vw, 128px);
+
+  position: relative;
+  isolation: isolate;
+  overflow: visible;                /* no framed footer background; blends into page */
+  background: transparent;
+  color: var(--cc-graphite);
+  font-family: var(--cc-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Full-bleed vertical rhythm. Horizontal gutters live on .cc-footer-shell. */
+  padding: clamp(44px, 5.5vw, 78px) 0 clamp(24px, 3vw, 40px);
+}
+
+.cc-footer *,
+.cc-footer *::before,
+.cc-footer *::after { box-sizing: border-box; }
+
+/* ---- Ambient glow: teal (left), amber (right), lavender (center) ---- */
+.cc-footer-aura {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  display: none; /* removed: footer should inherit the page background, not create its own panel */
+}
+
+/* ==========================================================================
+   SHELL — one cohesive concierge module
+   ========================================================================== */
+.cc-footer-shell {
+  max-width: var(--cc-maxw);
+  width: min(calc(100% - var(--cc-gutter)), var(--cc-maxw));
+  margin: 0 auto;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: 0;
+}
+
+/* ---- Eyebrow ---- */
+.cc-footer-eyebrow {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: var(--footer-gap-sm);
+}
+.cc-footer-eyebrow--teal  { color: var(--cc-teal-700); }
+.cc-footer-eyebrow--amber { color: var(--cc-amber-700); }
+
+/* ---- Buttons ---- */
+.cc-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;                 /* identical button height across both cards */
+  font-family: var(--cc-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;                   /* height comes from min-height, not text */
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0 24px;                  /* horizontal-only padding => consistent rhythm */
+  border-radius: var(--cc-radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  flex: 0 0 auto;                   /* button keeps full width on the row */
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.cc-footer-btn--teal {
+  background: linear-gradient(180deg, #70A183 0%, #42665C 48%, #335B4C 100%);
+  color: #fff;
+  box-shadow: 0 16px 34px rgba(51, 91, 76, .24);
+}
+.cc-footer-btn--teal:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.04);
+  box-shadow: 0 20px 42px rgba(51, 91, 76, .30);
+}
+.cc-footer-btn--amber {
+  background: linear-gradient(180deg, #AE7A4B 0%, #8F5F38 48%, #754625 100%);
+  color: #fff;
+  box-shadow: 0 16px 34px rgba(117, 70, 37, .24);
+}
+.cc-footer-btn--amber:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.04);
+  box-shadow: 0 20px 42px rgba(117, 70, 37, .30);
+}
+
+/* ---- Text links (sit on their own line beneath the button) ---- */
+.cc-footer-textlink {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap .2s ease, color .2s ease, opacity .18s ease, transform .18s ease;
+}
+.cc-footer-textlink:hover { opacity: .82; transform: translateX(2px); }
+.cc-footer-textlink--teal  { color: var(--cc-teal-700); }
+.cc-footer-textlink--teal:hover  { color: var(--cc-teal-900); gap: 10px; }
+.cc-footer-textlink--amber { color: var(--cc-amber-700); }
+.cc-footer-textlink--amber:hover { color: var(--cc-amber-900); gap: 10px; }
+.cc-footer-arrow { transition: transform .25s ease; }
+.cc-footer-textlink:hover .cc-footer-arrow { transform: translateX(3px); }
+
+/* ==========================================================================
+   1. TOP ROW — brand (1fr) + patient card (.95fr) + dentist card (.95fr)
+   ========================================================================== */
+.cc-footer-top {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.08fr) minmax(340px, .96fr) minmax(340px, .96fr);
+  gap: clamp(22px, 2.4vw, 44px);
+  align-items: stretch;
+  padding-bottom: clamp(26px, 3vw, 44px);
+  margin-bottom: clamp(28px, 3.2vw, 46px);
+  border-bottom: 1px solid var(--cc-line);
+}
+
+/* ---- Brand column — compact, pills sit just under copy ---- */
+.cc-footer-brand {
+  display: flex;
+  flex-direction: column;
+  padding-right: clamp(8px, 1.5vw, 18px);
+}
+.cc-footer-logo {
+  font-family: var(--cc-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--cc-graphite);
+  text-decoration: none;
+}
+.cc-footer-badge {
+  align-self: flex-start;
+  margin: var(--footer-gap-sm) 0 var(--footer-gap-sm);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cc-teal-700);
+  background: var(--cc-teal-tint);
+  border: 1px solid var(--cc-teal-tint-2);
+  padding: 5px 11px;
+  border-radius: var(--cc-radius-pill);
+}
+.cc-footer-brand-copy {
+  margin: 0 0 var(--footer-gap-sm);
+  font-size: 0.89rem;
+  color: var(--cc-graphite-2);
+  max-width: 40ch;
+}
+.cc-footer-pills {
+  list-style: none;
+  margin: 0;                        /* sits close to copy — no bottom float */
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--footer-gap-xs);
+}
+.cc-footer-pills li {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--cc-graphite-2);
+  padding: 5px 12px;
+  border-radius: var(--cc-radius-pill);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--cc-line);
+}
+.cc-footer-pills li a {
+  text-decoration: none;
+  color: inherit;
+  transition: color .18s ease;
+}
+.cc-footer-pills li a:hover { color: var(--cc-teal-700); }
+
+/* ---- CTA tiles — grid rows give both cards identical internal rhythm ----
+   Rows: eyebrow / title / copy(reserved height) / actions.
+   The copy row reserves a min-height so the actions row lands at the SAME
+   vertical position in both cards without bottom-pinning (no margin-top:auto). */
+.cc-footer-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto minmax(52px, auto) auto;
+  align-content: start;
+  padding: clamp(14px, 1.6vw, 20px);
+  border-radius: var(--cc-radius-card);
+  overflow: hidden;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FBF8EE 100%);
+  border: 1px solid var(--cc-line);
+  box-shadow: var(--cc-shadow-card);
+}
+.cc-footer-card > * { position: relative; z-index: 1; }
+
+.cc-footer-card--patient { border-top: 2px solid var(--cc-teal-tint-2); }
+.cc-footer-card--patient::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(70% 55% at 100% 0%, rgba(61, 161, 161, 0.14), transparent 62%),
+    radial-gradient(48% 48% at 0% 100%, rgba(30, 126, 126, 0.06), transparent 62%);
+  pointer-events: none;
+}
+.cc-footer-card--dentist { border-top: 2px solid var(--cc-amber-tint-2); }
+.cc-footer-card--dentist::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(70% 55% at 100% 0%, rgba(212, 154, 94, 0.17), transparent 62%),
+    radial-gradient(48% 48% at 0% 100%, rgba(178, 112, 57, 0.06), transparent 62%);
+  pointer-events: none;
+}
+
+.cc-footer-card-title {
+  font-family: var(--cc-serif);
+  font-weight: 500;
+  font-size: clamp(1.28rem, 1.8vw, 1.55rem);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--cc-graphite);
+  margin: 0 0 var(--footer-gap-sm);
+  text-wrap: balance;               /* avoids awkward single-word last lines */
+}
+.cc-footer-card-title em { font-style: italic; font-weight: 500; }
+.cc-footer-card--patient .cc-footer-card-title em { color: var(--cc-teal-700); }
+.cc-footer-card--dentist .cc-footer-card-title em { color: var(--cc-amber-700); }
+
+.cc-footer-card-copy {
+  margin: 0;
+  min-height: 52px;
+  font-size: 0.89rem;
+  color: var(--cc-graphite-2);
+}
+.cc-footer-card-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;           /* button over link: fits at card width, no clipping */
+  align-items: flex-start;
+  gap: 14px;                        /* identical primary→secondary spacing in both cards */
+}
+
+/* ==========================================================================
+   2. NAVIGATION ROW — 5 columns, tight luxury directory
+   ========================================================================== */
+.cc-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(28px, 4.6vw, 92px);
+  padding-bottom: clamp(28px, 3.6vw, 48px);
+  margin-bottom: 0;
+}
+.cc-footer-col { min-width: 0; }
+.cc-footer-col-head { margin: 0; }
+.cc-footer-col-toggle {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--cc-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cc-graphite);
+  padding-bottom: var(--footer-gap-sm);
+  cursor: default;
+}
+.cc-footer-chevron {
+  display: none;
+  width: 8px; height: 8px;
+  border-right: 1.5px solid var(--cc-graphite-2);
+  border-bottom: 1.5px solid var(--cc-graphite-2);
+  transform: rotate(45deg);
+  transition: transform .3s ease;
+  margin-left: 12px;
+  flex: none;
+}
+.cc-footer-col-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-gap-xs);
+}
+.cc-footer-col-list a {
+  text-decoration: none;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--cc-graphite-2);
+  display: inline-block;
+  transition: color .2s ease;
+}
+.cc-footer-col-list a:hover { color: var(--cc-teal-700); }
+
+/* ==========================================================================
+   3. NATIONWIDE DISCOVERY — slim horizontal SEO rail
+   ========================================================================== */
+.cc-footer-discovery {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--footer-gap-lg);
+  row-gap: var(--footer-gap-sm);
+  padding: clamp(18px, 2vw, 26px) 0 clamp(10px, 1.2vw, 16px);
+  margin-bottom: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--cc-line);
+}
+.cc-footer-discovery-head { min-width: 0; }
+.cc-footer-discovery-title {
+  font-family: var(--cc-serif);
+  font-weight: 500;
+  font-size: clamp(1.0rem, 1.4vw, 1.18rem);
+  line-height: 1.25;
+  margin: 0 0 2px;
+  padding-left: 0.04em;             /* guard against italic glyph clipping */
+  color: var(--cc-graphite);
+}
+.cc-footer-discovery-title em {
+  font-style: italic;
+  color: var(--cc-gold);
+  padding-right: 0.04em;
+}
+.cc-footer-discovery-intro {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--cc-graphite-2);
+}
+.cc-footer-discovery-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--footer-gap-xs);
+  justify-content: flex-end;
+}
+.cc-footer-markets {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding-top: var(--footer-gap-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--footer-gap-xs);
+}
+
+/* ---- Pills ---- */
+.cc-footer-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--cc-graphite);
+  padding: 7px 14px;
+  border-radius: var(--cc-radius-pill);
+  background: transparent;
+  border: 1px solid rgba(42, 45, 38, 0.18);
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.cc-footer-pill:hover {
+  border-color: var(--cc-teal-700);
+  color: var(--cc-teal-700);
+}
+.cc-footer-markets a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--cc-graphite-2);
+  padding: 6px 12px;
+  border-radius: var(--cc-radius-pill);
+  background: rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(42, 45, 38, 0.11);
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.cc-footer-markets a:hover {
+  border-color: var(--cc-teal-500);
+  color: var(--cc-teal-700);
+  background: #fff;
+}
+
+/* ==========================================================================
+   4. LEGAL — compact parchment band
+   ========================================================================== */
+.cc-footer-legal {
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--cc-line);
+  padding: clamp(16px, 2vw, 24px) 0 0;
+}
+.cc-footer-legal-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--footer-gap-xs) var(--footer-gap-md);
+  padding-bottom: var(--footer-gap-sm);
+  margin-bottom: var(--footer-gap-sm);
+  border-bottom: 1px solid var(--cc-line);
+}
+.cc-footer-copyright {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--cc-graphite);
+}
+.cc-footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--footer-gap-xs) var(--footer-gap-md);
+}
+.cc-footer-legal-links a {
+  font-size: 0.76rem;
+  text-decoration: none;
+  color: var(--cc-graphite-2);
+  transition: color .2s ease;
+}
+.cc-footer-legal-links a:hover { color: var(--cc-teal-700); }
+.cc-footer-fineprint {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--cc-muted);
+  max-width: 110ch;
+}
+.cc-footer-fineprint em {
+  font-style: italic;
+  color: var(--cc-graphite-2);
+}
+.cc-footer-fineprint--second {
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   Focus — obvious & elegant
+   ========================================================================== */
+.cc-footer a:focus-visible,
+.cc-footer button:focus-visible {
+  outline: 2px solid var(--cc-teal-500);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   Optional: side-scroll rail hide hook
+   footer.js adds .cc-side-rail-hidden to a rail you register so it fades out
+   while the footer is on screen and never overlaps the CTA cards.
+   Default target class is .cc-side-rail — override in footer.js if needed.
+   ========================================================================== */
+.cc-side-rail {
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.cc-side-rail-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+
+/* ==========================================================================
+   Wide desktop polish — prevents the footer from looking like a small app card
+   when the browser is zoomed out on large monitors.
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .cc-footer-brand-copy { max-width: 48ch; }
+  .cc-footer-card { padding: clamp(24px, 2vw, 34px); }
+  .cc-footer-card-title { font-size: clamp(1.44rem, 1.36vw, 1.76rem); }
+  .cc-footer-nav { grid-template-columns: 1.06fr 1.1fr 1.1fr 1.06fr .98fr; }
+}
+
+@media (min-width: 1800px) {
+  .cc-footer { --cc-gutter: clamp(80px, 7vw, 156px); }
+  .cc-footer-shell { max-width: 1840px; }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* Tablet/mobile threshold per spec: 900px */
+@media (max-width: 900px) {
+  .cc-footer-top {
+    grid-template-columns: 1fr;     /* brand, then stacked full-width cards */
+    gap: var(--footer-gap-md);
+  }
+  .cc-footer-brand { padding-right: 0; }
+
+  .cc-footer-nav {
+    grid-template-columns: 1fr;     /* accordion */
+    gap: 0;
+  }
+  .cc-footer-col { border-bottom: 1px solid var(--cc-line); }
+  .cc-footer-col:last-child { border-bottom: none; }
+  .cc-footer-col-toggle {
+    cursor: pointer;
+    min-height: 44px;               /* tap target */
+    padding: 12px 2px;
+    font-size: 0.76rem;
+  }
+  .cc-footer-chevron { display: inline-block; }
+  .cc-footer-col-toggle[aria-expanded="true"] .cc-footer-chevron { transform: rotate(-135deg); }
+
+  .cc-footer-col-list {
+    max-height: 0;
+    overflow: hidden;
+    gap: 0;
+    transition: max-height .35s ease, padding .35s ease;
+  }
+  .cc-footer-col-list li a {
+    display: block;
+    padding: 10px 2px;
+    font-size: 0.92rem;
+  }
+  .cc-footer-col-list.cc-footer-open {
+    max-height: 520px;
+    padding-bottom: 8px;
+  }
+
+  /* Discovery strip stacks */
+  .cc-footer-discovery { grid-template-columns: 1fr; }
+  .cc-footer-discovery-actions { justify-content: flex-start; width: 100%; }
+}
+
+/* CTA stacks full-width on smaller screens (spec breakpoint: 720px) */
+@media (max-width: 720px) {
+  .cc-footer-card-copy { min-height: 0; }   /* no reserved height once stacked */
+  .cc-footer-card-actions { align-items: stretch; gap: 12px; }
+  .cc-footer-btn { width: 100%; }
+  .cc-footer-textlink { align-self: flex-start; padding: 2px 0; }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .cc-footer {
+    --cc-gutter: clamp(20px, 6vw, 32px);
+    padding-top: clamp(28px, 8vw, 44px);
+  }
+  .cc-footer-shell {
+    border-radius: 0;
+    padding: 0;
+  }
+  .cc-footer-card { padding: 18px; }
+
+  .cc-footer-card-title { font-size: 1.24rem; }
+  .cc-footer-logo { font-size: 1.38rem; }
+  .cc-footer-badge { font-size: 0.64rem; }
+
+  .cc-footer-pill { padding: 9px 16px; font-size: 0.84rem; }
+  .cc-footer-markets a { padding: 8px 14px; font-size: 0.84rem; }
+
+  .cc-footer-legal { padding: 16px; }
+  .cc-footer-legal-top { flex-direction: column; align-items: flex-start; }
+  .cc-footer-legal-links a { padding: 2px 0; font-size: 0.82rem; }
+  .cc-footer-fineprint { font-size: 0.76rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-footer * { transition: none !important; animation: none !important; }
+}
+
+/* ==========================================================================
+   LEGAL MODAL — ivory glass dialog (shared, reusable)
+   Outside .cc-footer scope because the overlay is fixed to the viewport.
+   ========================================================================== */
+.legal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(112, 161, 131, .16), transparent 34%),
+    radial-gradient(circle at 80% 20%, rgba(174, 122, 75, .14), transparent 36%),
+    rgba(22, 26, 24, .48);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.legal-modal-overlay.is-open { display: flex; }
+
+.legal-modal {
+  width: min(760px, 100%);
+  max-height: min(82vh, 760px);
+  overflow: auto;
+  border-radius: 28px;
+  background: rgba(255, 252, 244, .96);
+  border: 1px solid rgba(80, 70, 50, .16);
+  box-shadow: 0 30px 90px rgba(24, 30, 28, .26);
+  padding: 30px;
+  color: #2e302c;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.legal-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(80, 70, 50, .12);
+  margin-bottom: 20px;
+}
+.legal-modal-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #42665C;
+}
+.legal-modal h2 {
+  margin: 0;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.1;
+  color: #252823;
+}
+.legal-modal-body {
+  font-size: 15px;
+  line-height: 1.68;
+  color: rgba(40, 42, 38, .78);
+}
+.legal-modal-body p { margin: 0 0 14px; }
+.legal-modal-body ul { margin: 0 0 18px; padding-left: 20px; }
+.legal-modal-body li { margin-bottom: 10px; }
+.legal-modal-note {
+  margin-top: 22px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(66, 102, 92, .08);
+  border: 1px solid rgba(66, 102, 92, .14);
+  color: rgba(40, 42, 38, .74);
+  font-size: 13px;
+}
+.legal-modal-close {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(80, 70, 50, .14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .72);
+  color: #2e302c;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease;
+}
+.legal-modal-close:hover { transform: rotate(4deg); background: rgba(255, 255, 255, .94); }
+.legal-modal-close:focus-visible { outline: 2px solid #42665C; outline-offset: 3px; }
+
+body.legal-modal-open { overflow: hidden; }
+
+@media (max-width: 640px) {
+  .legal-modal { padding: 22px; border-radius: 22px; }
+  .legal-modal-header { gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .legal-modal-close, .legal-modal-overlay { transition: none !important; }
+}
+  </style>
+</head>
+<body>
+  <div class="page-placeholder">↑ page content sits above the footer</div>
+<!--
+  CoverCapy — Sitewide Footer
+  Install:
+    1. Link assets/css/footer.css in <head>.
+    2. Paste this <footer> block before </body> (or load via your component loader).
+    3. Include assets/js/footer.js with `defer`.
+    4. Add the included legal pages to your domain root so every footer link works.
+  Layout is 100% CSS (grid/flex). footer.js only: (a) mobile nav accordion,
+  (b) optional: hides a fixed side-scroll rail while the footer is on screen
+     (see data-cc-side-rail note in footer.js).
+-->
+<footer class="cc-footer" role="contentinfo" aria-label="CoverCapy site footer">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-main",
+        "name": "Main",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Home", "url": "https://www.covercapy.com/index.html" },
+          { "@type": "WebPage", "name": "Compare PPO Plans", "url": "https://www.covercapy.com/compare-ppo-dental-plans.html" },
+          { "@type": "WebPage", "name": "Find PPO Dentists", "url": "https://www.covercapy.com/find-my-dentist.html" },
+          { "@type": "WebPage", "name": "Estimate Treatment Costs", "url": "https://www.covercapy.com/dental-treatment-cost-estimator.html" },
+          { "@type": "WebPage", "name": "Dental Financing", "url": "https://www.covercapy.com/dental-financing-monthly-payments.html" },
+          { "@type": "WebPage", "name": "Patient Portal", "url": "https://www.covercapy.com/join/" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-patients",
+        "name": "For Patients",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Capy Accredited Dentists", "url": "https://www.covercapy.com/capy-accredited-dentists.html" },
+          { "@type": "WebPage", "name": "Dental Implant Cost", "url": "https://www.covercapy.com/dental-implant-cost.html" },
+          { "@type": "WebPage", "name": "Dental Crown Cost", "url": "https://www.covercapy.com/dental-crown-cost.html" },
+          { "@type": "WebPage", "name": "Invisalign Cost", "url": "https://www.covercapy.com/invisalign-cost.html" },
+          { "@type": "WebPage", "name": "Cosmetic PPO Dentists", "url": "https://www.covercapy.com/cosmetic-ppo-dentists.html" },
+          { "@type": "WebPage", "name": "Emergency PPO Dentists", "url": "https://www.covercapy.com/emergency-ppo-dentists.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-dentists",
+        "name": "For Dentists",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Dentist Portal", "url": "https://www.covercapy.com/dentist-portal.html" },
+          { "@type": "WebPage", "name": "Claim Free Profile", "url": "https://www.covercapy.com/capy-practice-membership.html" },
+          { "@type": "WebPage", "name": "Capy Accreditation", "url": "https://www.covercapy.com/capy-accreditation.html" },
+          { "@type": "WebPage", "name": "Platinum Elite Dentists", "url": "https://www.covercapy.com/platinum-elite-dentists.html" },
+          { "@type": "WebPage", "name": "Sponsored Dentist Listings", "url": "https://www.covercapy.com/sponsored-dentist-listings.html" },
+          { "@type": "WebPage", "name": "PPO Patient Acquisition", "url": "https://www.covercapy.com/ppo-patient-acquisition.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-nationwide",
+        "name": "Nationwide",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Browse by State", "url": "https://www.covercapy.com/states.html" },
+          { "@type": "WebPage", "name": "Browse by City", "url": "https://www.covercapy.com/cities.html" },
+          { "@type": "WebPage", "name": "Browse by Treatment", "url": "https://www.covercapy.com/treatments.html" },
+          { "@type": "WebPage", "name": "Featured Markets", "url": "https://www.covercapy.com/featured-markets.html" },
+          { "@type": "WebPage", "name": "PPO Dentist Directory", "url": "https://www.covercapy.com/ppo-dentist-directory.html" },
+          { "@type": "WebPage", "name": "Request a Dentist", "url": "https://www.covercapy.com/request-a-dentist.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-company",
+        "name": "Company",
+        "hasPart": [
+          { "@type": "WebPage", "name": "About CoverCapy", "url": "https://www.covercapy.com/about.html" },
+          { "@type": "WebPage", "name": "Carrier Watch", "url": "https://www.covercapy.com/carrier-watch.html" },
+          { "@type": "WebPage", "name": "Dental Insurance Market", "url": "https://www.covercapy.com/dental-insurance-market.html" },
+          { "@type": "WebPage", "name": "Insurance Carrier Intelligence", "url": "https://www.covercapy.com/insurance-carrier-intelligence.html" },
+          { "@type": "WebPage", "name": "CoverCapy Network Effect", "url": "https://www.covercapy.com/covercapy-network-effect.html" },
+          { "@type": "WebPage", "name": "Contact", "url": "https://www.covercapy.com/contact.html" }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.covercapy.com/#footer-legal",
+        "name": "Legal and Trust",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Privacy Policy", "url": "https://www.covercapy.com/privacy.html" },
+          { "@type": "WebPage", "name": "Terms of Service", "url": "https://www.covercapy.com/terms.html" },
+          { "@type": "WebPage", "name": "Insurance Disclaimer", "url": "https://www.covercapy.com/insurance-disclaimer.html" },
+          { "@type": "WebPage", "name": "Advertising Disclosure", "url": "https://www.covercapy.com/advertising-disclosure.html" },
+          { "@type": "WebPage", "name": "Provider Listing Policy", "url": "https://www.covercapy.com/provider-listing.html" },
+          { "@type": "WebPage", "name": "Accessibility Statement", "url": "https://www.covercapy.com/accessibility.html" },
+          { "@type": "WebPage", "name": "Contact", "url": "https://www.covercapy.com/contact.html" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.covercapy.com/#footer-markets",
+        "name": "Featured PPO Dentist Markets",
+        "itemListOrder": "https://schema.org/ItemListUnordered",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Orange County",  "url": "https://www.covercapy.com/dental/california/orange-county/" },
+          { "@type": "ListItem", "position": 2, "name": "Los Angeles",    "url": "https://www.covercapy.com/dental/california/los-angeles/" },
+          { "@type": "ListItem", "position": 3, "name": "San Diego",      "url": "https://www.covercapy.com/dental/california/san-diego/" },
+          { "@type": "ListItem", "position": 4, "name": "San Francisco",  "url": "https://www.covercapy.com/dental/california/bay-area/" },
+          { "@type": "ListItem", "position": 5, "name": "New York City",  "url": "https://www.covercapy.com/dental/new-york/new-york-city/" },
+          { "@type": "ListItem", "position": 6, "name": "Chicago",        "url": "https://www.covercapy.com/dental/illinois/chicago/" },
+          { "@type": "ListItem", "position": 7, "name": "Dallas",         "url": "https://www.covercapy.com/dental/texas/dallas/" },
+          { "@type": "ListItem", "position": 8, "name": "Miami",          "url": "https://www.covercapy.com/dental/florida/miami/" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Soft ambient glow accents (teal / amber / lavender) — decorative -->
+  <div class="cc-footer-aura" aria-hidden="true"></div>
+
+  <div class="cc-footer-shell">
+
+    <!-- ===================== 1. TOP ROW: brand + 2 CTA tiles ===================== -->
+    <section class="cc-footer-top" aria-label="CoverCapy concierge overview">
+
+      <!-- Column 1 — Brand identity -->
+      <div class="cc-footer-brand">
+        <a class="cc-footer-logo" href="/" aria-label="CoverCapy home">CoverCapy</a>
+        <span class="cc-footer-badge">Nationwide PPO Dental Concierge Network</span>
+        <p class="cc-footer-brand-copy">
+          Compare PPO plans, estimate treatment costs, and find in-network dentists across the U.S.
+        </p>
+        <ul class="cc-footer-pills" aria-label="What CoverCapy provides">
+          <li><a href="/compare-ppo-dental-plans.html">PPO Plans</a></li>
+          <li><a href="/dental-treatment-cost-estimator.html">Treatment Costs</a></li>
+          <li><a href="/find-my-dentist.html">Dentist Discovery</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2 — Patient CTA tile (teal) -->
+      <article class="cc-footer-card cc-footer-card--patient">
+        <span class="cc-footer-eyebrow cc-footer-eyebrow--teal">For Patients</span>
+        <h2 class="cc-footer-card-title">Enter dental care <em>prepared</em>.</h2>
+        <p class="cc-footer-card-copy">
+          Compare PPO plans, estimate costs, and find in network dentists.
+        </p>
+        <div class="cc-footer-card-actions">
+          <a class="cc-footer-btn cc-footer-btn--teal" href="/join/">
+            Patient Portal
+          </a>
+          <a class="cc-footer-textlink cc-footer-textlink--teal" href="/compare-ppo-dental-plans.html">
+            Compare PPO plans
+          </a>
+        </div>
+      </article>
+
+      <!-- Column 3 — Dentist CTA tile (amber) -->
+      <article class="cc-footer-card cc-footer-card--dentist">
+        <span class="cc-footer-eyebrow cc-footer-eyebrow--amber">For Dentists</span>
+        <h2 class="cc-footer-card-title">Join CoverCapy&rsquo;s&nbsp;<em>network</em>.</h2>
+        <p class="cc-footer-card-copy">
+          Claim your free profile, earn Capy Accreditation, or upgrade to Platinum Elite.
+        </p>
+        <div class="cc-footer-card-actions">
+          <a class="cc-footer-btn cc-footer-btn--amber" href="/dentist-portal.html">
+            Dentist Portal
+          </a>
+          <a class="cc-footer-textlink cc-footer-textlink--amber" href="/capy-practice-membership.html">
+            Explore membership
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ===================== 2. NAVIGATION ROW (crawlable directory) ===================== -->
+    <nav class="cc-footer-nav" aria-label="Footer navigation">
+
+      <div class="cc-footer-col">
+        <h3 class="cc-footer-col-head">
+          <button type="button" class="cc-footer-col-toggle" aria-expanded="false" aria-controls="cc-col-main">
+            <span class="cc-footer-col-label">Main</span>
+            <span class="cc-footer-chevron" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <ul id="cc-col-main" class="cc-footer-col-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/compare-ppo-dental-plans.html">Compare PPO Plans</a></li>
+          <li><a href="/find-my-dentist.html">Find PPO Dentists</a></li>
+          <li><a href="/dental-treatment-cost-estimator.html">Estimate Treatment Costs</a></li>
+          <li><a href="/dental-financing-monthly-payments.html">Dental Financing</a></li>
+          <li><a href="/join/">Patient Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="cc-footer-col">
+        <h3 class="cc-footer-col-head">
+          <button type="button" class="cc-footer-col-toggle" aria-expanded="false" aria-controls="cc-col-patients">
+            <span class="cc-footer-col-label">For Patients</span>
+            <span class="cc-footer-chevron" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <ul id="cc-col-patients" class="cc-footer-col-list">
+          <li><a href="/capy-accredited-dentists.html">Capy Accredited Dentists</a></li>
+          <li><a href="/dental-implant-cost.html">Dental Implant Cost</a></li>
+          <li><a href="/dental-crown-cost.html">Dental Crown Cost</a></li>
+          <li><a href="/invisalign-cost.html">Invisalign Cost</a></li>
+          <li><a href="/cosmetic-ppo-dentists.html">Cosmetic PPO Dentists</a></li>
+          <li><a href="/emergency-ppo-dentists.html">Emergency PPO Dentists</a></li>
+        </ul>
+      </div>
+
+      <div class="cc-footer-col">
+        <h3 class="cc-footer-col-head">
+          <button type="button" class="cc-footer-col-toggle" aria-expanded="false" aria-controls="cc-col-dentists">
+            <span class="cc-footer-col-label">For Dentists</span>
+            <span class="cc-footer-chevron" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <ul id="cc-col-dentists" class="cc-footer-col-list">
+          <li><a href="/dentist-portal.html">Dentist Portal</a></li>
+          <li><a href="/capy-practice-membership.html">Claim Free Profile</a></li>
+          <li><a href="/capy-accreditation.html">Capy Accreditation</a></li>
+          <li><a href="/platinum-elite-dentists.html">Platinum Elite Dentists</a></li>
+          <li><a href="/sponsored-dentist-listings.html">Sponsored Dentist Listings</a></li>
+          <li><a href="/ppo-patient-acquisition.html">PPO Patient Acquisition</a></li>
+        </ul>
+      </div>
+
+      <div class="cc-footer-col">
+        <h3 class="cc-footer-col-head">
+          <button type="button" class="cc-footer-col-toggle" aria-expanded="false" aria-controls="cc-col-nationwide">
+            <span class="cc-footer-col-label">Nationwide</span>
+            <span class="cc-footer-chevron" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <ul id="cc-col-nationwide" class="cc-footer-col-list">
+          <li><a href="/states.html">Browse by State</a></li>
+          <li><a href="/cities.html">Browse by City</a></li>
+          <li><a href="/treatments.html">Browse by Treatment</a></li>
+          <li><a href="/featured-markets.html">Featured Markets</a></li>
+          <li><a href="/ppo-dentist-directory.html">PPO Dentist Directory</a></li>
+          <li><a href="/request-a-dentist.html">Request a Dentist</a></li>
+        </ul>
+      </div>
+
+      <div class="cc-footer-col">
+        <h3 class="cc-footer-col-head">
+          <button type="button" class="cc-footer-col-toggle" aria-expanded="false" aria-controls="cc-col-company">
+            <span class="cc-footer-col-label">Company</span>
+            <span class="cc-footer-chevron" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <ul id="cc-col-company" class="cc-footer-col-list">
+          <li><a href="/about.html">About CoverCapy</a></li>
+          <li><a href="/carrier-watch.html">Carrier Watch</a></li>
+          <li><a href="/dental-insurance-market.html">Dental Insurance Market</a></li>
+          <li><a href="/insurance-carrier-intelligence.html">Carrier Intelligence</a></li>
+          <li><a href="/covercapy-network-effect.html">Network Effect</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ===================== 3. NATIONWIDE DISCOVERY (slim SEO rail) ===================== -->
+    <section class="cc-footer-discovery" aria-label="Explore PPO dentist discovery nationwide">
+      <div class="cc-footer-discovery-head">
+        <h3 class="cc-footer-discovery-title">
+          PPO dentist discovery, <em>nationwide</em>.
+        </h3>
+        <p class="cc-footer-discovery-intro">
+          Browse by state, city, and treatment as our accredited network expands.
+        </p>
+      </div>
+
+      <div class="cc-footer-discovery-actions">
+        <a class="cc-footer-pill cc-footer-pill--strong" href="/states.html">All States</a>
+        <a class="cc-footer-pill cc-footer-pill--strong" href="/cities.html">All Cities</a>
+        <a class="cc-footer-pill cc-footer-pill--strong" href="/treatments.html">All Treatments</a>
+      </div>
+
+      <ul class="cc-footer-markets" aria-label="Featured markets">
+        <li><a href="/dental/california/orange-county/">Orange County</a></li>
+        <li><a href="/dental/california/los-angeles/">Los Angeles</a></li>
+        <li><a href="/dental/california/san-diego/">San Diego</a></li>
+        <li><a href="/dental/california/bay-area/">San Francisco</a></li>
+        <li><a href="/dental/new-york/new-york-city/">New York City</a></li>
+        <li><a href="/dental/illinois/chicago/">Chicago</a></li>
+        <li><a href="/dental/texas/dallas/">Dallas</a></li>
+        <li><a href="/dental/florida/miami/">Miami</a></li>
+      </ul>
+    </section>
+
+    <!-- ===================== 4. LEGAL + TRUST ===================== -->
+    <section class="cc-footer-legal" aria-label="Legal and trust information">
+      <div class="cc-footer-legal-top">
+        <p class="cc-footer-copyright">&copy; 2026 CoverCapy. All rights reserved.</p>
+        <nav class="cc-footer-legal-links" aria-label="Legal and trust links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/insurance-disclaimer.html">Insurance Disclaimer</a>
+          <a href="/advertising-disclosure.html">Advertising Disclosure</a>
+          <a href="/provider-listing.html">Provider Listing Policy</a>
+          <a href="/accessibility.html">Accessibility</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </div>
+      <p class="cc-footer-fineprint">
+        CoverCapy is a dental guidance and discovery platform, not an insurance carrier or dental practice.
+        Some listings or links may be sponsored. Always verify benefits, pricing, provider participation,
+        credentials, availability, and treatment costs directly with the carrier and dental office.
+      </p>
+    </section>
+
+  </div>
+</footer>
+  <script>
+    document.querySelectorAll('.cc-footer-col-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        const list = document.getElementById(btn.getAttribute('aria-controls'));
+        if (list) list.classList.toggle('cc-footer-open', !expanded);
+      });
+    });
+  </script>
+</body>
+</html>

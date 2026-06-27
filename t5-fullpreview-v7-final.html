@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="gold">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Birch Dental | PPO Dentist Newport Beach, CA — Insurance Verified | CoverCapy</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--teal-950:#0C3A42;--teal-800:#0A2F36;--teal-650:#9A7440;--mint-500:#B8924F;--mint-100:rgba(184,146,79,.12);--cream-50:#FAF8F5;--cream-100:#F4F0EA;--cream-200:#ECE4DA;--ink-950:#1E1714;--ink-700:#4A403A;--ink-500:#7A6B62;--gold-500:#B8924F;--gold-bg:rgba(184,146,79,.12);--border:#E7E0D7;--star:#F2A93B;--content-max:1180px;--rail-w:320px;--rad-card:16px;--rad-btn:11px;--nav-h:52px}
+[data-theme="jade"]{--teal-950:#12161B;--teal-800:#1C2228;--teal-650:#0C8C81;--mint-500:#0FB5A6;--mint-100:#E6F7F4;--cream-50:#FFFFFF;--cream-100:#F5F7F8;--cream-200:#E9EEF0;--ink-950:#161A1F;--ink-700:#3A434D;--ink-500:#5A636E;--border:rgba(18,22,27,.12)}
+html.switching,html.switching *{transition:background .5s,color .5s,border-color .5s!important}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--cream-50);color:var(--ink-700);font-family:'Inter Tight',sans-serif;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+a{color:var(--teal-650);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3{font-family:'Fraunces',serif;line-height:1.16;color:var(--ink-950);font-weight:500}
+h1{font-size:clamp(28px,4vw,42px)}h2{font-size:clamp(20px,2.4vw,26px)}
+.wrap{max-width:var(--content-max);margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:var(--rad-btn);padding:12px 20px;min-height:46px;font:600 14px/1 'Inter Tight';cursor:pointer;text-decoration:none;transition:.16s}
+.btn-primary{background:var(--teal-950);color:var(--mint-500)}.btn-primary:hover{background:var(--teal-800)}
+.btn-secondary{background:var(--cream-50);color:var(--ink-950);border:1.5px solid var(--border)}.btn-secondary:hover{border-color:var(--gold-500)}
+.btn-ghost{background:transparent;color:var(--ink-700);border:1.5px solid var(--border)}.btn-ghost:hover{border-color:var(--teal-650)}
+
+/* ALERT BAR */
+.alert-bar{background:var(--teal-950);color:#FAF8F5;text-align:center;padding:10px 16px;font-size:14px;line-height:1.5}
+.alert-bar a{color:var(--mint-500);font-weight:700;text-decoration:underline}
+
+/* BREADCRUMB */
+.crumb{font-size:12.5px;color:var(--ink-500);background:var(--cream-100);border-bottom:1px solid var(--border);padding:11px 0}
+.crumb .wrap{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.crumb a{color:var(--ink-500)}.crumb a:hover{color:var(--teal-650)}.crumb .sep{opacity:.45}.crumb b{color:var(--ink-950);font-weight:500}
+
+/* SECTION NAV */
+.section-nav{position:sticky;top:0;z-index:150;background:var(--cream-50);border-bottom:1px solid var(--border)}
+.sn-inner{display:flex;align-items:center;gap:16px;max-width:var(--content-max);margin:0 auto;padding:0 18px;height:var(--nav-h)}
+.sn-links{list-style:none;display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;height:100%;align-items:center;scrollbar-width:none}
+.sn-links a{display:flex;align-items:center;height:100%;white-space:nowrap;padding:0 12px;font:600 13px/1 'Inter Tight';color:var(--ink-500);border-bottom:2px solid transparent}
+.sn-links a:hover{color:var(--ink-950);text-decoration:none}.sn-links a.active{color:var(--ink-950);border-bottom-color:var(--mint-500)}
+
+/* LUXURY THEME TOGGLE */
+.ts-wrap{flex-shrink:0;display:flex;align-items:center}
+.theme-switch{
+  position:relative;display:inline-flex;align-items:center;
+  background:#1a1a1a;
+  border:1.5px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  padding:4px;
+  cursor:pointer;user-select:none;flex-shrink:0;
+  box-shadow:0 2px 12px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06);
+  transition:border-color .35s,box-shadow .35s;
+  height:38px;
+}
+.theme-switch:hover{
+  border-color:rgba(184,146,79,.5);
+  box-shadow:0 2px 12px rgba(0,0,0,.32),0 0 0 3px rgba(184,146,79,.14),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.ts-thumb{
+  position:absolute;
+  top:4px;left:4px;
+  width:calc(50% - 4px);height:calc(100% - 8px);
+  border-radius:999px;
+  background:#B8924F;
+  box-shadow:0 3px 10px rgba(184,146,79,.55),0 1px 3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform 1.8s cubic-bezier(.34,1.18,.64,1), background .7s ease;
+  will-change:transform;
+}
+[data-theme="jade"] .ts-thumb{background:#0FB5A6;box-shadow:0 3px 10px rgba(15,181,166,.5),0 1px 3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22)}
+.theme-switch[data-active="jade"] .ts-thumb{transform:translateX(100%)}
+.ts-opt{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:5px;
+  padding:0 16px;height:100%;
+  font:700 11.5px/1 'Inter Tight';letter-spacing:.07em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  transition:color .35s;
+  white-space:nowrap;
+}
+.ts-dot{
+  width:5px;height:5px;border-radius:50%;flex-shrink:0;
+  transition:opacity .35s;opacity:0;
+}
+.ts-opt.ts-gold .ts-dot{background:#B8924F}
+.ts-opt.ts-jade .ts-dot{background:#0FB5A6}
+.theme-switch[data-active="gold"] .ts-opt.ts-gold{color:#fff}
+.theme-switch[data-active="gold"] .ts-opt.ts-gold .ts-dot{opacity:1}
+.theme-switch[data-active="jade"] .ts-opt.ts-jade{color:#fff}
+.theme-switch[data-active="jade"] .ts-opt.ts-jade .ts-dot{opacity:1}
+@keyframes ts-pulse{
+  0%,100%{box-shadow:0 2px 12px rgba(0,0,0,.32),0 0 0 0 rgba(184,146,79,0),inset 0 1px 0 rgba(255,255,255,.06)}
+  50%{box-shadow:0 2px 12px rgba(0,0,0,.32),0 0 0 6px rgba(184,146,79,.18),inset 0 1px 0 rgba(255,255,255,.06)}
+}
+.theme-switch.flipping{animation:ts-pulse 1.8s ease-in-out}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) var(--rail-w);gap:44px;align-items:start;padding:30px 0 64px}
+.main-col{min-width:0}
+.module{border-top:1px solid var(--border);padding:30px 0;scroll-margin-top:66px}.module:first-child{border-top:none;padding-top:6px}
+.eyebrow{display:block;font:600 11px/1 'Inter Tight';letter-spacing:.11em;text-transform:uppercase;color:var(--gold-500);margin-bottom:8px}
+.module h2{margin-bottom:8px}.sec-p{font-size:14.5px;color:var(--ink-500);max-width:580px;margin-bottom:16px}
+
+/* HERO */
+.hero-top{display:flex;gap:18px;align-items:flex-start}
+.headshot{flex-shrink:0;width:84px;height:84px;border-radius:50%;border:1px solid var(--border);background:var(--cream-100);display:grid;place-items:center}
+.mono{font-family:'Fraunces',serif;font-size:30px;color:var(--gold-500)}
+.hero-name{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.accr-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold-bg);color:var(--gold-500);border:1px solid rgba(184,146,79,.34);font:600 10.5px/1 'Inter Tight';letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.hero-doctor{font-size:14.5px;color:var(--ink-500);margin-top:2px}
+.hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:9px 16px;font-size:14px;color:var(--ink-700);margin:12px 0 14px}
+.stars{color:var(--star);letter-spacing:-1px}.rating{display:inline-flex;align-items:center;gap:6px}
+.open-pill{display:inline-flex;align-items:center;gap:6px;font:600 12.5px/1 'Inter Tight';padding:5px 11px;border-radius:999px;background:#E8F5EC;color:#2C7A52}
+.hero-lede{font-size:15px;color:var(--ink-500);line-height:1.7;max-width:580px;margin-bottom:18px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.data-checked{font-size:11.5px;color:var(--ink-500);margin-top:14px;display:flex;align-items:center;gap:6px}
+
+/* OFFICE GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.gphoto{aspect-ratio:4/3;border-radius:12px;overflow:hidden;padding:0;margin:0}
+.gphoto.real img,.gphoto.stock img{width:100%;height:100%;object-fit:cover;display:block}
+.gphoto.stock{position:relative;border:1px solid var(--border);background:#EAF1F0}
+.gphoto.stock svg{width:100%;height:100%;display:block}
+.stock-tag{position:absolute;bottom:8px;left:8px;background:rgba(8,42,48,.78);color:#fff;font:600 10px/1 'Inter Tight';letter-spacing:.03em;padding:4px 8px;border-radius:6px}
+.gphoto.upload{border:1.5px dashed var(--border);background:var(--cream-100);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-500);cursor:pointer;text-align:center;padding:10px;transition:.15s;font-family:inherit}
+.gphoto.upload:hover{border-color:var(--teal-650);color:var(--teal-650);background:var(--cream-50)}
+.gphoto.upload svg{width:24px;height:24px;color:var(--gold-500)}
+.gphoto.upload .lbl{font:600 12px/1.3 'Inter Tight'}
+.gallery-note{font-size:12px;color:var(--ink-500);margin-top:10px}
+
+/* INSURANCE */
+.ins-intro{background:var(--mint-100);border:1px solid var(--border);border-radius:var(--rad-card);padding:16px 20px;margin-bottom:16px}
+.ins-intro h3{color:var(--ink-950);margin-bottom:5px;font-size:16px}.ins-intro p{font-size:13.5px;color:var(--ink-700)}
+.carrier-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--cream-50);border:1px solid var(--border);border-radius:12px;padding:13px 16px;margin-bottom:8px}
+.carrier-name{font:600 14.5px/1.2 'Inter Tight';color:var(--ink-950)}.carrier-status{font-size:11.5px;color:var(--ink-500);margin-top:3px;display:flex;align-items:center;gap:5px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--gold-500);display:inline-block}
+.carrier-check{font:600 12.5px/1 'Inter Tight';color:var(--teal-650);background:none;border:none;cursor:pointer;text-decoration:underline}
+.ins-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.ins-disclaimer{font-size:12.5px;color:var(--ink-500);line-height:1.6;margin-top:14px;background:var(--cream-100);border-left:3px solid var(--gold-500);padding:11px 15px;border-radius:0 8px 8px 0}
+
+/* PILLS */
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-top:14px}
+.pill{background:var(--cream-50);border:1px solid var(--border);border-radius:999px;padding:8px 16px;font-size:13.5px;color:var(--ink-950)}
+
+/* HOURS/LOCATION */
+.hours-loc{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.hours-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--cream-200);font-size:13.5px}.hours-row:last-child{border-bottom:none}.hours-row.today{font-weight:600;color:var(--ink-950)}
+.map-tile{border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:10px}
+.map-tile iframe{display:block;width:100%;height:220px;border:none}
+.loc-actions{display:flex;flex-direction:column;gap:8px}
+
+/* GUIDES */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.guide-link{display:flex;align-items:center;gap:11px;background:var(--cream-50);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font:500 13.5px/1.35 'Inter Tight';color:var(--ink-950)}.guide-link:hover{border-color:var(--teal-650);text-decoration:none}
+
+/* FAQ */
+.faq{background:var(--cream-50);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}.faq[open]{border-color:var(--teal-650)}
+.faq summary{cursor:pointer;padding:15px 18px;font:600 14.5px/1.4 'Inter Tight';color:var(--ink-950);list-style:none;display:flex;justify-content:space-between;gap:12px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:'+';color:var(--gold-500);font-size:20px;line-height:1}.faq[open] summary::after{content:'–'}
+.faq .fbody{padding:0 18px 16px;font-size:14px;color:var(--ink-700);line-height:1.7}
+
+/* NEARBY LIST */
+.geo-office{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}.geo-office:last-of-type{border-bottom:none}
+.geo-dist{flex-shrink:0;width:52px;background:var(--cream-100);border:1px solid var(--border);border-radius:10px;text-align:center;padding:10px 4px;font:700 15px/1.1 'Inter Tight';color:var(--ink-950)}.geo-dist span{display:block;font-size:10px;font-weight:500;color:var(--ink-500);margin-top:2px}
+.geo-name{font-size:15px;margin-bottom:4px}.geo-name a{font-weight:700;color:var(--teal-650)}.geo-name a:hover{text-decoration:underline}
+.geo-desc{font-size:13.5px;color:var(--ink-700);line-height:1.55;margin-bottom:5px}
+.geo-dir{font-size:13px;font-weight:600;color:var(--teal-650)}.geo-dir:hover{text-decoration:underline}
+/* CITY NAV STRIP — 2026 editorial scroll rail */
+.city-nav{position:relative;margin-top:24px}
+.city-nav-fade-l,.city-nav-fade-r{position:absolute;top:0;bottom:16px;width:48px;z-index:2;pointer-events:none}
+.city-nav-fade-l{left:0;background:linear-gradient(to right,var(--cream-50) 30%,transparent)}
+.city-nav-fade-r{right:0;background:linear-gradient(to left,var(--cream-50) 30%,transparent)}
+.city-nav-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-top:1px solid var(--border)}
+.city-nav-track::-webkit-scrollbar{display:none}
+.city-nav-item{
+  scroll-snap-align:start;flex-shrink:0;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:16px 22px 14px;
+  border-right:1px solid var(--border);
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  transition:background .2s;
+  min-width:140px;
+}
+.city-nav-item::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2.5px;
+  background:var(--mint-500);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.city-nav-item:hover{background:var(--cream-100);text-decoration:none}
+.city-nav-item:hover::after{transform:scaleX(1)}
+.cni-label{font:500 9.5px/1 'Inter Tight';letter-spacing:.1em;text-transform:uppercase;color:var(--ink-500);margin-bottom:7px;opacity:.7}
+.cni-name{font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--ink-950);line-height:1.15;transition:color .2s}
+.city-nav-item:hover .cni-name{color:var(--teal-650)}
+.cni-count{font-size:11px;color:var(--ink-500);margin-top:5px;display:flex;align-items:center;gap:4px}
+.cni-arrow{font-size:10px;opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s;color:var(--mint-500)}
+.city-nav-item:hover .cni-arrow{opacity:1;transform:translateX(0)}
+.city-nav-all{scroll-snap-align:start;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px 24px;text-decoration:none;min-width:120px;transition:background .2s}
+.city-nav-all:hover{background:var(--cream-100);text-decoration:none}
+.cna-icon{width:36px;height:36px;border-radius:50%;background:var(--teal-950);display:grid;place-items:center;transition:transform .2s}
+.city-nav-all:hover .cna-icon{transform:scale(1.08)}
+.cna-text{font:700 11px/1.3 'Inter Tight';color:var(--ink-950);text-align:center;letter-spacing:.02em}
+
+/* CARRIER COLLAPSE */
+.carrier-hidden{display:none}
+.carrier-toggle{display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;font:600 13px/1 'Inter Tight';color:var(--teal-650);padding:10px 0 2px;width:100%}
+.carrier-toggle svg{transition:transform .3s}.carrier-toggle.open svg{transform:rotate(180deg)}
+.carrier-toggle-count{background:var(--mint-100);color:var(--gold-500);border-radius:999px;font:700 10px/1 'Inter Tight';padding:2px 7px}
+.geo-intro{font-size:14.5px;color:var(--ink-700);line-height:1.7;margin-bottom:4px}
+
+/* CLAIM BLOCK */
+.claim-block{background:var(--teal-950);border-radius:18px;padding:30px 32px;color:#fff}
+.claim-block .eyebrow{color:var(--mint-500)}.claim-block h2{color:#fff;margin-bottom:8px}
+.claim-block .lede{font-size:14px;color:rgba(255,255,255,.78);margin-bottom:20px;line-height:1.65}
+.claim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+.claim-feat{display:flex;gap:10px;font-size:13.5px;color:rgba(255,255,255,.9);line-height:1.5}
+.claim-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn-mint{background:var(--mint-500);color:var(--teal-950)}.btn-line{background:transparent;color:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,.22)}
+
+/* RAIL */
+.rail{position:sticky;top:calc(var(--nav-h) + 14px);align-self:start}
+.railcard{border-radius:18px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.07)}
+.rc-top{background:var(--teal-950);padding:18px 20px 16px;color:#fff}
+.rc-name{font-family:'Fraunces',serif;font-size:18px;font-weight:500;line-height:1.25}.rc-city{font-size:13px;color:rgba(255,255,255,.85);margin:3px 0 10px}
+.rc-rating{display:inline-flex;align-items:center;gap:6px;font-size:13px}.rc-badge{display:inline-flex;align-items:center;gap:5px;font:600 10.5px/1 'Inter Tight';letter-spacing:.05em;text-transform:uppercase;background:var(--gold-bg);color:#E2C58A;border:1px solid rgba(184,146,79,.4);border-radius:999px;padding:4px 10px;margin-top:11px}
+.rc-body{background:var(--cream-50);padding:16px 18px}
+.rc-addr{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--ink-950);line-height:1.45;margin-bottom:10px}
+.rc-phone{display:flex;gap:9px;align-items:center;font-size:14px;color:var(--ink-950);margin-bottom:14px}.rc-phone a{color:var(--ink-950);font-weight:600}
+.rc-stack{display:flex;flex-direction:column;gap:8px}
+.rc-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;border:none;cursor:pointer;border-radius:var(--rad-btn);font:600 13.5px/1 'Inter Tight';padding:12px;min-height:46px;transition:.15s;text-decoration:none}
+.rc-btn.mint{background:var(--mint-500);color:var(--teal-950)}.rc-btn.solid{background:var(--teal-950);color:var(--mint-500)}.rc-btn.ghost{background:var(--cream-50);color:var(--teal-650);border:1.5px solid var(--border)}
+.rc-secondary{display:flex;gap:8px;margin-top:8px}.rc-secondary .rc-btn{font-size:12.5px;padding:10px;min-height:42px}
+.rc-note{font-size:11px;color:var(--ink-500);text-align:center;margin-top:11px}
+
+/* STICKY BAR */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:140;background:var(--teal-950);padding:10px 16px calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.1)}
+.sticky-inner{display:flex;gap:12px;align-items:center;justify-content:space-between;max-width:var(--content-max);margin:0 auto}
+.sticky-ctx{display:flex;flex-direction:column;gap:2px}
+.sticky-name{font:600 14px/1.2 'Inter Tight';color:#fff}
+.sticky-sub{font-size:12px;color:rgba(255,255,255,.6)}
+.sticky-actions{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.btn-sticky-primary{background:rgba(184,146,79,.15);color:var(--mint-500);border:1.5px solid rgba(184,146,79,.4);border-radius:10px;padding:10px 18px;min-height:44px;font:700 13px/1 'Inter Tight';cursor:pointer;white-space:nowrap}
+.btn-sticky-secondary{color:rgba(255,255,255,.7);font:600 13px/1 'Inter Tight';background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap}
+
+@media(max-width:920px){.layout{grid-template-columns:1fr}.rail{position:static}.hours-loc{grid-template-columns:1fr}}
+@media(max-width:600px){.nearby-grid{grid-template-columns:1fr}.claim-grid{grid-template-columns:1fr}.sticky-actions{flex-wrap:wrap;gap:8px}}
+</style>
+</head>
+<body>
+
+<div class="alert-bar">No insurance? PPO plans from ~$30/month &mdash; <a href="/compare-ppo-dental-plans">get covered today, see a dentist tomorrow</a>.</div>
+
+<nav class="crumb" aria-label="Breadcrumb"><div class="wrap">
+  <a href="/">CoverCapy</a><span class="sep">/</span>
+  <a href="/dental/california/">California</a><span class="sep">/</span>
+  <a href="/dental/california/orange-county/">Orange County</a><span class="sep">/</span>
+  <a href="/dental/california/orange-county/newport-beach/">Newport Beach</a><span class="sep">/</span>
+  <b>Birch Dental</b>
+</div></nav>
+
+<nav class="section-nav">
+  <div class="sn-inner">
+    <div class="ts-wrap">
+      <div class="theme-switch" id="ts" data-active="gold" role="switch" aria-checked="false" tabindex="0" aria-label="Switch between Gold and Jade themes">
+        <span class="ts-thumb"></span>
+        <span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span>
+        <span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
+      </div>
+    </div>
+    <ul class="sn-links">
+      <li><a href="#overview" class="active">Overview</a></li>
+      <li><a href="#insurance">Insurance</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#treatments">Treatments</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#faqs">FAQs</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap"><div class="layout">
+<main class="main-col" id="main-content">
+
+  <section class="module" id="overview">
+    <span class="eyebrow">PPO Dentist · Newport Beach, CA</span>
+    <div class="hero-top">
+      <div class="headshot"><span class="mono">BD</span></div>
+      <div style="flex:1">
+        <div class="hero-name">
+          <h1>Birch Dental</h1>
+          <span class="accr-badge">★ Capy Accredited</span>
+        </div>
+        <p class="hero-doctor">Led by Dr. Sarah Chen, DDS</p>
+        <div class="hero-meta">
+          <span class="rating"><span class="stars">★★★★★</span><b>4.8</b><span style="font-size:12px;color:var(--ink-500)">· 312 reviews</span></span>
+          <span class="open-pill"><span style="width:7px;height:7px;border-radius:50%;background:#2C7A52;display:inline-block"></span>Open now · Closes 5:00 p.m.</span>
+        </div>
+      </div>
+    </div>
+    <p class="hero-lede">Birch Dental lists Delta Dental, Guardian, and Cigna PPO. Check whether your exact plan is accepted, then book or prepare a coverage request.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary">Verify my Insurance</button>
+      <a class="btn btn-secondary" href="#book">Book an Appointment</a>
+    </div>
+    <p class="data-checked" style="font-size:11.5px;color:var(--ink-500);margin-top:14px;display:flex;align-items:center;gap:6px">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--teal-650)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      Data from public Google listing. Last updated June 17, 2026.
+    </p>
+
+    <div class="gallery">
+      <div class="gphoto stock">
+        <svg viewBox="0 0 320 240" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="240" fill="#EAF1F0"/><rect y="172" width="320" height="68" fill="#DCE8E5"/><rect x="26" y="32" width="88" height="64" rx="6" fill="#CFE3DF"/><line x1="70" y1="32" x2="70" y2="96" stroke="#EAF1F0" stroke-width="4"/><line x1="26" y1="64" x2="114" y2="64" stroke="#EAF1F0" stroke-width="4"/><rect x="206" y="20" width="6" height="48" fill="#9A7440"/><circle cx="209" cy="76" r="21" fill="#B8924F"/><circle cx="209" cy="76" r="11" fill="#F3E8CF"/><rect x="150" y="150" width="124" height="22" rx="11" fill="#0C3A42"/><rect x="166" y="92" width="92" height="62" rx="15" fill="#12454D"/><rect x="150" y="118" width="42" height="42" rx="13" fill="#1E6670"/><rect x="236" y="88" width="20" height="74" rx="9" fill="#12454D"/><rect x="34" y="150" width="24" height="22" rx="3" fill="#B8924F"/><path d="M46 150c-11-6-15-23-2-33 2 15 8 21 2 33z" fill="#5BE0A0"/><path d="M46 150c11-4 17-19 6-31-4 13-10 17-6 31z" fill="#3FB985"/><path d="M286 38c-8 0-12 5-12 12 0 9 3 13 4 22 .4 3 4 3 4.4 0l1.6-12c.2-1.6 3.8-1.6 4 0l1.6 12c.4 3 4 3 4.4 0 1-9 4-13 4-22 0-7-4-12-12-12z" fill="#fff" opacity=".8"/></svg>
+        <span class="stock-tag">Sample image</span>
+      </div>
+      <button class="gphoto upload" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span class="lbl">Upload office photo</span>
+      </button>
+      <button class="gphoto upload" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span class="lbl">Upload office photo</span>
+      </button>
+    </div>
+    <p class="gallery-note">This dentist hasn't uploaded photos of their office yet. Are you the practice? Add photos to improve your ranking.</p>
+  </section>
+
+  <section class="module" id="insurance">
+    <span class="eyebrow">Insurance</span>
+    <h2>Will this office take your PPO plan?</h2>
+    <div class="ins-intro"><h3>Listed carriers</h3><p>These carriers are listed for this office. A listing is a starting point, not a guarantee for every plan tier. Check your exact plan, then confirm with the office.</p></div>
+    <div class="carrier-row"><div><div class="carrier-name">Delta Dental</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check">Check my plan</button></div>
+    <div class="carrier-row"><div><div class="carrier-name">Guardian</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check">Check my plan</button></div>
+    <div class="carrier-row carrier-hidden" id="carrier-extra-1"><div><div class="carrier-name">Cigna DPPO</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check">Check my plan</button></div>
+    <div class="carrier-row carrier-hidden" id="carrier-extra-2"><div><div class="carrier-name">Aetna PPO</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check">Check my plan</button></div>
+    <div class="carrier-row carrier-hidden" id="carrier-extra-3"><div><div class="carrier-name">MetLife</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check">Check my plan</button></div>
+    <button class="carrier-toggle" id="carrier-toggle" onclick="toggleCarriers()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+      <span class="carrier-toggle-label">Show 3 more carriers</span>
+      <span class="carrier-toggle-count">+3</span>
+    </button>
+    <div class="ins-actions"><button class="btn btn-primary">Check my exact plan</button><a class="btn btn-ghost" href="/guides/glossary/">Learn about PPO tiers</a></div>
+    <p class="ins-disclaimer">Carrier listings do not guarantee that every plan or network tier is accepted. Always confirm with the office.</p>
+  </section>
+
+  <section class="module" id="book">
+    <span class="eyebrow">Booking</span>
+    <h2>Book a visit</h2>
+    <p class="sec-p">Request an appointment at Birch Dental. Nothing is confirmed until the office replies.</p>
+    <div style="border:1px solid var(--border);border-radius:var(--rad-card);overflow:hidden;max-width:540px;margin-top:14px">
+      <div style="background:var(--teal-950);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Fraunces',serif;font-size:16px">Book at Birch Dental</span><span style="font:600 10px/1 'Inter Tight';background:rgba(255,255,255,.14);color:#fff;padding:4px 9px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase">Request</span></div>
+      <div style="padding:16px 18px">
+        <div style="font:600 10px/1 'Inter Tight';letter-spacing:.07em;text-transform:uppercase;color:var(--ink-500);margin-bottom:8px">Visit type</div>
+        <div style="display:flex;gap:7px;margin-bottom:14px">
+          <button style="border:1.5px solid var(--teal-650);background:var(--mint-100);border-radius:999px;padding:7px 13px;font:600 12.5px/1 'Inter Tight';color:var(--ink-950);cursor:pointer">New patient</button>
+          <button style="border:1.5px solid var(--border);background:var(--cream-50);border-radius:999px;padding:7px 13px;font:600 12.5px/1 'Inter Tight';color:var(--ink-700);cursor:pointer">Cleaning</button>
+          <button style="border:1.5px solid var(--border);background:var(--cream-50);border-radius:999px;padding:7px 13px;font:600 12.5px/1 'Inter Tight';color:var(--ink-700);cursor:pointer">Consult</button>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center">Request this appointment</button>
+        <p style="font-size:11px;color:var(--ink-500);line-height:1.5;margin-top:11px">Pick a day and preferred time, then send your request. Nothing is confirmed until the office replies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="module" id="treatments">
+    <span class="eyebrow">Treatments &amp; services</span>
+    <h2>What this office offers</h2>
+    <ul class="pillrow">
+      <li class="pill">Cleanings</li><li class="pill">Implants</li><li class="pill">Crowns</li><li class="pill">Veneers</li>
+      <li class="pill">Invisalign</li><li class="pill">Root canal</li><li class="pill">Whitening</li><li class="pill">X-rays</li>
+      <li class="pill">Fillings</li><li class="pill">Extractions</li><li class="pill">Night guards</li>
+    </ul>
+  </section>
+
+  <section class="module">
+    <span class="eyebrow">About this practice</span>
+    <h2>Birch Dental, Newport Beach</h2>
+    <div style="margin-top:12px;font-size:15px;line-height:1.74;color:var(--ink-700)">
+      <p style="margin-bottom:14px">Birch Dental is a dental office at 5140 Birch St #100, Newport Beach, CA, led by Dr. Sarah Chen, DDS. The practice lists 3 PPO insurance networks, including Delta Dental, Guardian, and Cigna DPPO.</p>
+      <p>If you already have dental insurance, CoverCapy helps you check whether your exact PPO plan is likely accepted and prepare a short coverage request. The nearby PPO dentists below are also listed on CoverCapy.</p>
+    </div>
+  </section>
+
+  <section class="module" id="location">
+    <span class="eyebrow">Hours &amp; location</span>
+    <h2>When and where</h2>
+    <div class="hours-loc" style="margin-top:14px">
+      <div>
+        <div class="hours-row today"><span>Mon</span><span>9:00 a.m. – 5:00 p.m.</span></div>
+        <div class="hours-row"><span>Tue</span><span>9:00 a.m. – 5:00 p.m.</span></div>
+        <div class="hours-row"><span>Wed</span><span>9:00 a.m. – 5:00 p.m.</span></div>
+        <div class="hours-row"><span>Thu</span><span>9:00 a.m. – 5:00 p.m.</span></div>
+        <div class="hours-row"><span>Fri</span><span>9:00 a.m. – 4:00 p.m.</span></div>
+        <div class="hours-row"><span>Sat</span><span style="color:var(--ink-500)">Closed</span></div>
+        <div class="hours-row"><span>Sun</span><span style="color:var(--ink-500)">Closed</span></div>
+      </div>
+      <div>
+        <div class="map-tile"><iframe title="Map" loading="lazy" src="https://www.google.com/maps?q=5140+Birch+St+Newport+Beach+CA+92660&hl=en&z=15&output=embed"></iframe></div>
+        <div class="loc-actions">
+          <a class="btn btn-secondary" href="https://www.google.com/maps/dir/?api=1&destination=33.6189,-117.9298" target="_blank">Get directions</a>
+          <a class="btn btn-ghost" href="tel:+19499428855">(949) 942-8855</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="module" id="guides">
+    <span class="eyebrow">Before you book</span>
+    <h2>PPO &amp; cost guides</h2>
+    <div class="guide-grid" style="margin-top:14px">
+      <a class="guide-link" href="/guides/glossary/">📄 How to verify PPO coverage before booking</a>
+      <a class="guide-link" href="/guides/glossary/">📄 What a dental annual maximum means</a>
+      <a class="guide-link" href="/guides/glossary/">📄 How waiting periods affect crowns and implants</a>
+      <a class="guide-link" href="/guides/glossary/">📄 PPO versus cash pricing</a>
+      <a class="guide-link" href="/guides/glossary/">📄 Dental financing without interest</a>
+      <a class="guide-link" href="/guides/glossary/">📄 Using two calendar-year maximums</a>
+    </div>
+  </section>
+
+  <section class="module" id="faqs">
+    <span class="eyebrow">Frequently asked</span>
+    <h2 style="margin-bottom:16px">Questions about this office</h2>
+    <details class="faq" open><summary>Does Birch Dental accept Delta Dental PPO?</summary><div class="fbody">Delta Dental is listed as a carrier for Birch Dental. However, Delta Dental operates multiple network tiers including PPO, Premier, and HMO. Acceptance of your specific plan should be confirmed directly with the office before scheduling.</div></details>
+    <details class="faq"><summary>What is the phone number for Birch Dental?</summary><div class="fbody">Birch Dental's phone number is (949) 942-8855. Call during office hours to confirm insurance acceptance and schedule an appointment.</div></details>
+    <details class="faq"><summary>Where is Birch Dental located in Newport Beach?</summary><div class="fbody">Birch Dental is located at 5140 Birch St #100, Newport Beach, CA 92660. The office is easily accessible from the 73 and 55 freeways.</div></details>
+  </section>
+
+  <section class="module">
+    <div class="claim-block">
+      <span class="eyebrow">For the practice</span>
+      <h2>Is this your practice?</h2>
+      <p class="lede">Claim Birch Dental to keep your listing accurate and unlock the booking widget, photos, and patient coverage requests.</p>
+      <div class="claim-grid">
+        <div class="claim-feat">✓ Turn on real online booking</div>
+        <div class="claim-feat">✓ Add cover and office photos</div>
+        <div class="claim-feat">✓ Manage accepted insurance networks</div>
+        <div class="claim-feat">✓ Receive patient coverage requests</div>
+      </div>
+      <div class="claim-ctas"><a class="btn btn-mint" href="/for-dentists/claim/">Claim this profile — free</a><a class="btn btn-line" href="/for-dentists/">How accreditation works</a></div>
+    </div>
+  </section>
+
+  <section class="module" id="nearby">
+    <span class="eyebrow">Also on CoverCapy</span>
+    <h2>PPO dentists near Birch Dental in Orange County</h2>
+    <p class="geo-intro" style="margin:10px 0 4px">Birch Dental is a PPO dental office in Newport Beach. Browse other PPO dentists in <a href="/dental/california/orange-county/newport-beach/">Newport Beach</a> or explore the full <a href="/dental/california/orange-county/">Orange County PPO network</a> on CoverCapy.</p>
+
+    <div class="geo-office">
+      <div class="geo-dist">2.1<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.8</span><a href="/dental/california/orange-county/costa-mesa/pacific-smiles/">Pacific Smiles Dental</a> <span style="display:inline-flex;align-items:center;gap:4px;background:var(--gold-bg);color:var(--gold-500);border:1px solid rgba(184,146,79,.3);font:600 10px/1 'Inter Tight';padding:3px 8px;border-radius:999px;margin-left:4px">Capy Accredited</span></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/costa-mesa/pacific-smiles/">Pacific Smiles Dental</a> is a dental office in Costa Mesa, about 2.1 miles northwest of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/costa-mesa/">More PPO dentists in Costa Mesa</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">3.4<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.6</span><a href="/dental/california/orange-county/corona-del-mar/corona-del-mar-dental/">Corona del Mar Dental</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/corona-del-mar/corona-del-mar-dental/">Corona del Mar Dental</a> is a dental office in Corona del Mar, about 3.4 miles south of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/corona-del-mar/">More PPO dentists in Corona del Mar</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">4.3<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.9</span><a href="/dental/california/orange-county/irvine/irvine-dental-group/">Irvine Dental Group</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/irvine/irvine-dental-group/">Irvine Dental Group</a> is a dental office in Irvine, about 4.3 miles east of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/irvine/">More PPO dentists in Irvine</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">5.1<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.7</span><a href="/dental/california/orange-county/newport-beach/bayside-family-dentistry/">Bayside Family Dentistry</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/newport-beach/bayside-family-dentistry/">Bayside Family Dentistry</a> is a dental office in Newport Beach, about 5.1 miles north of Birch Dental.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/newport-beach/">More PPO dentists in Newport Beach</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">5.8<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.7</span><a href="/dental/california/orange-county/huntington-beach/beach-cities-dental/">Beach Cities Dental</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/huntington-beach/beach-cities-dental/">Beach Cities Dental</a> is a dental office in Huntington Beach, about 5.8 miles northwest of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/huntington-beach/">More PPO dentists in Huntington Beach</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">6.2<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.5</span><a href="/dental/california/orange-county/laguna-hills/laguna-hills-dentistry/">Laguna Hills Dentistry</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/laguna-hills/laguna-hills-dentistry/">Laguna Hills Dentistry</a> is a dental office in Laguna Hills, about 6.2 miles south of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/laguna-hills/">More PPO dentists in Laguna Hills</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">7.0<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.4</span><a href="/dental/california/orange-county/tustin/gold-coast-dental-tustin/">Gold Coast Dental</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/tustin/gold-coast-dental-tustin/">Gold Coast Dental</a> is a dental office in Tustin, about 7.0 miles northeast of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/tustin/">More PPO dentists in Tustin</a>
+      </div>
+    </div>
+
+    <div class="geo-office">
+      <div class="geo-dist">8.3<span>mi</span></div>
+      <div>
+        <div class="geo-name"><span style="color:var(--teal-650);font-weight:600;font-size:12.5px;margin-right:5px">★ 4.9</span><a href="/dental/california/orange-county/irvine/oc-healthy-smiles/">OC Healthy Smiles</a></div>
+        <div class="geo-desc"><a href="/dental/california/orange-county/irvine/oc-healthy-smiles/">OC Healthy Smiles</a> is a dental office in Irvine, about 8.3 miles east of Newport Beach.</div>
+        <a class="geo-dir" href="/dental/california/orange-county/irvine/">More PPO dentists in Irvine</a>
+      </div>
+    </div>
+
+    <div class="city-nav" aria-label="Browse PPO dentists by city">
+      <div class="city-nav-fade-l"></div>
+      <div class="city-nav-fade-r"></div>
+      <div class="city-nav-track">
+        <a class="city-nav-item" href="/dental/california/orange-county/newport-beach/">
+          <span class="cni-label">This city</span>
+          <span class="cni-name">Newport Beach</span>
+          <span class="cni-count">24 offices <span class="cni-arrow">→</span></span>
+        </a>
+        <a class="city-nav-item" href="/dental/california/orange-county/costa-mesa/">
+          <span class="cni-label">2.1 mi</span>
+          <span class="cni-name">Costa Mesa</span>
+          <span class="cni-count">31 offices <span class="cni-arrow">→</span></span>
+        </a>
+        <a class="city-nav-item" href="/dental/california/orange-county/irvine/">
+          <span class="cni-label">4.3 mi</span>
+          <span class="cni-name">Irvine</span>
+          <span class="cni-count">48 offices <span class="cni-arrow">→</span></span>
+        </a>
+        <a class="city-nav-item" href="/dental/california/orange-county/huntington-beach/">
+          <span class="cni-label">5.8 mi</span>
+          <span class="cni-name">Huntington Beach</span>
+          <span class="cni-count">39 offices <span class="cni-arrow">→</span></span>
+        </a>
+        <a class="city-nav-item" href="/dental/california/orange-county/laguna-hills/">
+          <span class="cni-label">6.2 mi</span>
+          <span class="cni-name">Laguna Hills</span>
+          <span class="cni-count">17 offices <span class="cni-arrow">→</span></span>
+        </a>
+        <a class="city-nav-item" href="/dental/california/orange-county/tustin/">
+          <span class="cni-label">7.0 mi</span>
+          <span class="cni-name">Tustin</span>
+          <span class="cni-count">22 offices <span class="cni-arrow">→</span></span>
+        </a>
+        <a class="city-nav-all" href="/dental/california/orange-county/">
+          <div class="cna-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8924F" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+          </div>
+          <span class="cna-text">All Orange County<br>PPO dentists</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="rail">
+  <div class="railcard">
+    <div class="rc-top">
+      <div class="rc-name">Birch Dental</div>
+      <div class="rc-city">Newport Beach, CA</div>
+      <div class="rc-rating"><span class="stars" style="font-size:13px">★★★★★</span><b style="color:#fff">4.8</b><span style="color:rgba(255,255,255,.75);font-size:11.5px">· 312 reviews</span></div>
+      <div class="rc-badge">★ Capy Accredited</div>
+    </div>
+    <div class="rc-body">
+      <div class="rc-addr" style="display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--ink-950);margin-bottom:10px">
+        <div>5140 Birch St #100, Newport Beach, CA 92660<a href="https://maps.google.com" target="_blank" style="display:block;color:var(--teal-650);font-weight:600;font-size:12.5px;margin-top:3px">Get directions</a></div>
+      </div>
+      <div class="rc-phone" style="margin-bottom:14px"><a href="tel:+19499428855" style="font-weight:600">(949) 942-8855</a></div>
+      <div class="rc-stack">
+        <a class="rc-btn mint" href="#book">Book a visit</a>
+        <button class="rc-btn solid">Check my insurance</button>
+      </div>
+      <div class="rc-secondary">
+        <a class="rc-btn ghost" href="https://maps.google.com" target="_blank">Directions</a>
+        <button class="rc-btn ghost">Website</button>
+      </div>
+      <p class="rc-note">Insurance verification is always free.</p>
+    </div>
+  </div>
+</aside>
+
+</div></div>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" role="region" aria-label="Coverage actions">
+  <div class="sticky-inner">
+    <div class="sticky-ctx">
+      <span class="sticky-name">Birch Dental</span>
+      <span class="sticky-sub">Newport Beach &middot; PPO Dentist &middot; Free eligibility check</span>
+    </div>
+    <div class="sticky-actions">
+      <button class="btn-sticky-primary">Verify my coverage &mdash; free</button>
+      <a class="btn-sticky-secondary" href="/compare-ppo-dental-plans">Plans from ~$30/mo</a>
+    </div>
+  </div>
+</div>
+
+<script>
+var html=document.documentElement,ts=document.getElementById('ts');
+
+function applyTheme(t,slow){
+  html.style.transition=slow
+    ?'background 1.4s ease, color 1.4s ease'
+    :'background .45s ease, color .45s ease';
+  ['*'].forEach(function(){});
+  // wide property sweep
+  var dur=slow?'1.4s':'0.45s';
+  var styleTag=document.getElementById('theme-transition-style');
+  if(!styleTag){styleTag=document.createElement('style');styleTag.id='theme-transition-style';document.head.appendChild(styleTag);}
+  styleTag.textContent='html,html *{transition:background '+dur+' ease,color '+dur+' ease,border-color '+dur+' ease,box-shadow '+dur+' ease !important}';
+  html.setAttribute('data-theme',t);
+  ts.setAttribute('data-active',t);
+  ts.setAttribute('aria-checked',t==='jade'?'true':'false');
+  setTimeout(function(){if(styleTag)styleTag.textContent='';},slow?1600:600);
+}
+
+// click / keyboard toggle
+ts.addEventListener('click',function(){
+  applyTheme(html.getAttribute('data-theme')==='gold'?'jade':'gold',false);
+});
+ts.addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();ts.click();}
+});
+
+// carrier collapse toggle
+function toggleCarriers(){
+  var btn=document.getElementById('carrier-toggle');
+  var hidden=document.querySelectorAll('.carrier-hidden');
+  var open=btn.classList.contains('open');
+  hidden.forEach(function(el){el.style.display=open?'none':'flex';});
+  btn.classList.toggle('open');
+  var lbl=btn.querySelector('.carrier-toggle-label');
+  var cnt=btn.querySelector('.carrier-toggle-count');
+  if(open){lbl.textContent='Show 3 more carriers';cnt.textContent='+3';}
+  else{lbl.textContent='Show less';cnt.textContent='';}
+}
+
+// page-load: start Gold → slow-flip to Jade after 900ms
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    ts.classList.add('flipping');
+    applyTheme('jade',true);
+    setTimeout(function(){ts.classList.remove('flipping');},2000);
+  },900);
+});
+</script>
+</body>
+</html>

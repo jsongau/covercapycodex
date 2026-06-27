@@ -1,0 +1,159 @@
+/* ============================================================
+   CoverCapy PPO — Shared Design System (Direction C · Warm/Jade)
+   Source of truth: docs/ppo-redesign/05-APPROVED-DESIGN-SYSTEM.md
+   Used by: master hub, 8 plan spokes, carrier hubs, treatment/timing pages.
+   All colors are WCAG-AA verified. Two palettes: Warm (default) + Jade ([data-palette="jade"]).
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  /* === T5 JADE — single scheme. CTA fills, links, and body are THREE DISTINCT colors (Agent O6). === */
+  --cream:#F6F0E6;--cream-2:#FBF6EC;--cream-card:#FFFDF8;--card:#FFFDF8;
+  --paper:#F6F0E6;--paper-2:#EFE8D9;
+  --teal-night:#082A30;--teal-deep:#0C3A42;          /* CTA fills ONLY */
+  --teal-700:#14525B;--teal-300:#5E8C92;             /* links / mid accents */
+  --mint:#5BE0A0;--mint-700:#1F8A5B;--mint-soft:#E6F7EE;
+  --ink:#082A30;--body:#33453E;--ink-soft:#56655F;--ink-faint:#8A958F;--muted:#56655F;
+  --gold:#B8924F;--gold-2:#D7B675;--gold-soft:#F3E8CF;--gold-text:#8A6721;--alert-bg:#F3E8CF;
+  --cov-full:#136A52;--cov-partial:#8A6721;--cov-none:#6E7268;
+  --line:#E8E2D8;--line-2:#D8CDB6;
+  --green:#1F8A5B;--green-d:#176B47;                  /* legacy alias → accents only, never text/CTA */
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--prose:'Inter',system-ui,sans-serif;
+  --r-sm:8px;--r:14px;--r-lg:22px;
+  --sh-sm:0 1px 0 rgba(8,42,48,.04);--sh:0 1px 0 rgba(8,42,48,.03),0 12px 30px rgba(8,42,48,.07);--sh-lg:0 18px 50px rgba(8,42,48,.16);
+  --subnav-h:50px;--cc-anchor-offset:62px;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--sp-10:40px;--sp-14:56px;
+}
+
+/* ---------- 2. BASE + TYPE (Fraunces = voice, Inter Tight = data) ---------- */
+.ppo *{box-sizing:border-box}
+.ppo{background:var(--paper);color:var(--body);font-family:var(--prose);line-height:1.55;-webkit-font-smoothing:antialiased}
+.ppo h1,.ppo h2,.ppo h3{font-family:var(--serif);color:var(--teal-night);font-weight:500;margin:0;letter-spacing:-.005em}
+.ppo h1{font-size:clamp(32px,5vw,44px);line-height:1.06}.ppo h2{font-size:clamp(23px,3vw,27px)}.ppo h3{font-size:19px}
+.ppo .it{font-style:italic;font-weight:400}
+.ppo .tab{font-family:var(--sans);font-variant-numeric:tabular-nums}      /* every comparable number */
+.ppo .lede{font-size:18px;color:var(--body);max-width:60ch}
+.ppo .eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-700);display:inline-flex;align-items:center;gap:10px}
+.ppo .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+.ppo .seclbl{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.ppo a{color:var(--teal-700);text-decoration:none}
+.ppo .trust{font-family:var(--sans);font-size:12.5px;color:var(--muted)}
+.ppo .trust a{border-bottom:1px solid var(--line-2)}
+[id]{scroll-margin-top:var(--cc-anchor-offset)}
+
+/* ---------- 3. BUTTONS + BADGES ---------- */
+.cc-btn{font-family:var(--sans);font-weight:600;font-size:14px;border-radius:999px;padding:11px 20px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.cc-btn--green{background:var(--teal-night);color:#fff}.cc-btn--green:hover{background:var(--teal-deep)}
+.cc-btn--ghost{background:transparent;border-color:var(--line-2);color:var(--teal-night)}
+.cc-btn:focus-visible,.cc-pbtn:focus-visible,.cc-chip:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+.cc-badge{font-family:var(--sans);font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px}
+.cc-badge--shape{background:var(--paper-2);color:var(--ink);border:1px solid var(--line-2)}
+.cc-badge--fit{background:var(--alert-bg);color:var(--gold-text)}
+.cc-badge--review{background:var(--alert-bg);color:var(--gold-text);border:1px solid var(--gold)}
+
+/* ---------- 4. PALETTE TOGGLE ---------- */
+.cc-pbtn{font-family:var(--sans);font-weight:600;font-size:12px;border:1px solid var(--line-2);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 13px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.cc-pbtn .dot{width:10px;height:10px;border-radius:50%}
+.cc-pbtn[aria-pressed="true"]{background:var(--teal-night);color:#fff;border-color:transparent}
+
+/* ---------- 5. STICKY SUBNAV (one component for the whole PPO ecosystem) ---------- */
+.cc-subnav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cc-subnav .inner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;height:var(--subnav-h);align-items:center}
+.cc-subnav .inner::-webkit-scrollbar{display:none}
+.cc-subnav a{font-family:var(--sans);font-weight:600;font-size:13px;color:var(--muted);padding:8px 13px;border-radius:999px;white-space:nowrap;flex:none}
+.cc-subnav a.on,.cc-subnav a:hover{color:var(--teal-night);background:var(--paper-2)}
+
+/* ---------- 6. SMART MATCH (a lens on the same data — never a separate engine) ---------- */
+.cc-match{display:grid;grid-template-columns:1fr 1fr;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);overflow:hidden}
+.cc-match .panel{padding:24px}.cc-match .panel.l{border-right:1px solid var(--line)}
+.cc-flab{font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin:16px 0 8px}
+.cc-chips{display:flex;flex-wrap:wrap;gap:7px}
+.cc-chip{font-family:var(--sans);font-size:13px;font-weight:600;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer}
+.cc-chip.on{background:var(--mint-soft);color:var(--ink);border-color:var(--teal-300)}
+.cc-match input[type=range]{width:100%;accent-color:var(--green)}
+.cc-vplan{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-top:12px;background:var(--paper)}
+.cc-vplan.top{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.cc-vplan .nm{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--teal-night)}
+.cc-vplan .why{font-size:13px;color:var(--body);margin-top:5px}.cc-vplan .why .cau{color:var(--cov-partial)}
+
+/* ---------- 7. PLAN CARD (spec-first) + COVERAGE GRID ---------- */
+.cc-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+.cc-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);padding:18px;display:flex;flex-direction:column}
+.cc-card.fit{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh)}
+.cc-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.cc-logo{width:34px;height:34px;border-radius:8px;background:var(--teal-night);color:#fff;font-family:var(--serif);font-style:italic;display:grid;place-items:center;font-size:15px;flex:none}
+.cc-pname{font-family:var(--serif);font-size:17px;color:var(--teal-night);line-height:1.15;margin-top:8px}
+.cc-hl{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;margin:12px 0}
+.cc-hl .c{background:var(--card);padding:8px 10px}
+.cc-hl .l{font-family:var(--sans);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint)}
+.cc-hl .v{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:17px;font-weight:600;color:var(--teal-night)}
+.cc-hl .v small{font-size:11px;color:var(--muted);font-weight:500}
+.cc-cov{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.cc-cov .c{background:var(--card);padding:7px 4px;text-align:center}
+.cc-cov .t{font-family:var(--sans);font-size:8.5px;text-transform:uppercase;color:var(--ink-faint)}
+.cc-cov .p{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:13px;font-weight:700}
+.p-full{color:var(--cov-full)}.p-part{color:var(--cov-partial)}.p-none{color:var(--cov-none);font-style:italic;font-size:9.5px}
+
+/* ---------- 8. COMPARISON MATRIX (the instrument) ---------- */
+.cc-term{border:1px solid var(--line-2);border-radius:var(--r);overflow:auto;box-shadow:var(--sh-sm);background:var(--card)}
+.cc-cmp{border-collapse:collapse;font-family:var(--sans);font-variant-numeric:tabular-nums;min-width:760px;width:100%}
+.cc-cmp thead th{position:sticky;top:0;background:var(--teal-night);color:#fff;font-size:12.5px;font-weight:600;text-align:center;padding:12px;min-width:150px}
+.cc-cmp thead th.rh{text-align:left;left:0;z-index:2;color:var(--paper-2);min-width:130px}
+.cc-cmp tbody th{position:sticky;left:0;background:var(--paper-2);text-align:left;font-weight:600;color:var(--ink);font-size:12px;padding:9px 12px;z-index:1}
+.cc-cmp td{text-align:center;padding:9px 12px;font-size:12.5px;border-bottom:1px solid var(--line);color:var(--body)}
+.cc-cmp tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--paper) 55%,var(--card))}
+.cc-cmp .best .v{font-weight:700;color:var(--teal-night);border-bottom:2px solid var(--gold);padding-bottom:1px}
+.cc-cmp .best .pill{font-size:8.5px;font-weight:700;color:var(--gold-text);background:var(--alert-bg);padding:1px 5px;border-radius:5px;margin-left:5px}
+.cc-cmp .na{color:var(--cov-none);font-style:italic}
+.cc-yrtog{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;overflow:hidden;font-family:var(--sans);font-size:12px;font-weight:600}
+.cc-yrtog button{border:0;background:var(--card);color:var(--muted);padding:6px 14px;cursor:pointer}
+.cc-yrtog button.on{background:var(--teal-night);color:#fff}
+
+/* ---------- 9. RESPONSIVE + MOTION ---------- */
+@media(max-width:740px){.cc-match{grid-template-columns:1fr}.cc-match .panel.l{border-right:0;border-bottom:1px solid var(--line)}}
+@media(prefers-reduced-motion:reduce){.ppo *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- 10. GLOSSARY TOOLTIP (tap + focus + hover; never hover-only) ---------- */
+.cc-gloss{font:inherit;font-weight:600;color:var(--teal-night);background:none;border:0;border-bottom:1px dotted var(--teal-700);padding:0;cursor:help}
+.cc-gloss:hover{border-bottom-style:solid}
+.cc-gloss:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+.cc-tip{position:absolute;z-index:60;max-width:284px;background:var(--teal-night);color:var(--paper);font-family:var(--prose);font-size:13px;line-height:1.5;padding:11px 13px;border-radius:10px;box-shadow:var(--sh-lg);opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;pointer-events:none}
+.cc-tip.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.cc-tip b{color:#fff;font-family:var(--sans)}
+.cc-tip .why{display:block;margin-top:6px;color:var(--paper-2);font-style:italic}
+.cc-tip .more{display:block;margin-top:7px;color:var(--gold);font-family:var(--sans);font-size:12px;font-weight:600}
+.cc-sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- 11. COMPARE TRAY (pin up to 4) ---------- */
+.cc-cmp-pick{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer}
+.cc-cmp-pick input{accent-color:var(--green);width:16px;height:16px}
+.cc-tray{position:sticky;bottom:0;z-index:35;background:var(--teal-night);color:var(--paper);border-radius:14px 14px 0 0;box-shadow:var(--sh-lg);padding:12px 16px;display:none}
+.cc-tray.show{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cc-tray .lbl{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C7CEBE}
+.cc-tray .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 10px;font-family:var(--sans);font-size:12.5px}
+.cc-tray .chip button{background:none;border:0;color:var(--paper);cursor:pointer;font-size:15px;line-height:1}
+.cc-tray .go{margin-left:auto}
+
+/* ---------- 12. SORT / FILTER TOOLBAR ---------- */
+.cc-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.cc-filter{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line-2);border-radius:999px;padding:7px 13px;cursor:pointer}
+.cc-filter input{accent-color:var(--green)}
+.cc-filter:has(input:checked){background:var(--mint-soft);color:var(--ink);border-color:var(--teal-300)}
+
+/* ---------- 13. COVERAGE SPEC-DOTS (compact) ---------- */
+.cc-ps{display:flex;gap:12px;flex-wrap:wrap}
+.cc-ps .c{display:flex;flex-direction:column;align-items:center;gap:4px}
+.cc-ps .k{font-family:var(--sans);font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint)}
+.cc-dot{width:13px;height:13px;border-radius:50%;border:1px solid var(--line-2)}
+.cc-dot.is-covered{background:var(--cov-full);border-color:transparent}
+.cc-dot.is-partial{background:linear-gradient(90deg,var(--cov-partial) 50%,#fff0 50%);border-color:var(--cov-partial)}
+.cc-dot.is-none{background:repeating-linear-gradient(45deg,var(--line) 0 2px,#fff0 2px 4px)}
+
+/* ---------- 14. LOGO PLATE / NAV CARD / METHOD CARD ---------- */
+.cc-logo-plate{width:40px;height:40px;border-radius:9px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;flex:none}
+.cc-logo-plate img{max-width:78%;max-height:78%}
+.cc-navcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-decoration:none;transition:transform .14s,border-color .14s}
+.cc-navcard:hover{transform:translateY(-2px);border-color:var(--green)}
+.cc-navcard .n{font-family:var(--serif);font-size:17px;color:var(--teal-night)}.cc-navcard .d{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:3px}
+.cc-method{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);padding:18px}
+.cc-method h4{font-family:var(--serif);color:var(--teal-night);margin:0 0 6px;font-size:17px}

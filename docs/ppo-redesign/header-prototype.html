@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare PPO Dental Plans | CoverCapy</title>
+<meta name="description" content="Compare featured PPO dental plans on coverage, annual maximum, waiting period and monthly premium, then get matched to a top in-network dentist near you.">
+<link rel="canonical" href="https://www.covercapy.com/compare-ppo-dental-plans/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F0E6;--card:#FFFDF8;--paper:#F6F0E6;--paper-2:#EFE8D9;
+  --teal-night:#082A30;--teal-deep:#0C3A42;--teal-700:#14525B;--teal-300:#5E8C92;
+  --gold:#B8924F;--gold-soft:#D9B26A;--gold-tint:#F3E8CF;
+  --ink:#082A30;--body:#33453E;--ink-faint:#8A958F;--muted:#56655F;
+  --line:#E8E2D8;--line-2:#D8CDB6;
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--prose:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--prose);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--teal-700);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+h1{font-family:var(--serif);color:var(--teal-night);font-weight:500;font-size:clamp(34px,5vw,50px);line-height:1.04;letter-spacing:-.01em;margin:0}
+h2{font-family:var(--serif);color:var(--teal-night);font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.08;margin:6px 0 0}
+h2 .it,h1 .it,em{font-style:italic;font-weight:400}
+.note{background:var(--gold-tint);border:1px solid var(--line-2);border-radius:12px;padding:11px 16px;font-family:var(--sans);font-size:12.5px;color:var(--muted);margin:18px 0}
+
+/* universal mega nav is OWNED elsewhere — this page only carries the hub sub-nav */
+.megaslot{height:56px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#EFE8D9,#EFE8D9 12px,#EAE2D2 12px,#EAE2D2 24px);color:var(--ink-faint);font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+
+/* HUB SUB-NAV — relocated from mid-page; sticky under the universal nav. Active = cream pill, accents = gold. */
+.sub{position:sticky;top:0;z-index:55;background:var(--teal-night);box-shadow:inset 0 2px 0 rgba(184,146,79,.30)}
+.sub .row{display:flex;align-items:center;gap:2px;height:54px;overflow-x:auto;scrollbar-width:none;position:relative}
+.sub .row::-webkit-scrollbar{display:none}
+.sub .eye{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-right:16px;white-space:nowrap}
+.sub a{font-family:var(--sans);font-weight:600;font-size:13px;color:rgba(255,253,248,.74);padding:7px 13px;border-radius:999px;white-space:nowrap;flex:none}
+.sub a:hover{color:#FFFDF8}
+.sub a[aria-current]{background:var(--cream);color:var(--teal-night)}
+.sub .dent{margin-left:auto;background:var(--gold);color:var(--teal-night);font-weight:700}
+.sub .dent:hover{background:var(--gold-soft);color:var(--teal-night)}
+.sub .prog{position:absolute;left:0;bottom:0;height:2px;background:var(--gold);width:22%}
+
+/* hero */
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-700);display:inline-flex;align-items:center;gap:10px}
+.eyebrow .sp{color:var(--gold)}
+.hero{padding:44px 0 38px}
+.lede{font-size:18px;color:var(--body);max-width:62ch;margin:14px 0 0}
+.trust{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:14px}
+.hacts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.btn{font-family:var(--sans);font-weight:600;font-size:14px;border-radius:999px;padding:12px 22px;min-height:44px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid transparent}
+.btn-pri{background:var(--teal-night);color:#fff}.btn-pri:hover{background:var(--teal-deep)}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--teal-700)}
+
+/* branch grid */
+.cc-branch,.cc-gloss-mod{padding:40px 0;border-top:1px solid var(--line)}
+.cc-branch-feat{display:block;background:var(--teal-night);color:#fff;border-radius:16px;padding:24px 26px;margin:20px 0 18px;transition:background .2s ease}
+.cc-branch-feat:hover{background:var(--teal-deep)}
+.cc-branch-eye{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+.cc-branch-t{display:block;font-family:var(--serif);font-size:25px;font-weight:500;margin:6px 0 6px;color:#fff}
+.cc-branch-d{display:block;font-size:14px;color:#CFE0DA;max-width:64ch;line-height:1.5}
+.cc-branch-go{display:inline-block;margin-top:14px;font-family:var(--sans);font-weight:600;font-size:14px;color:var(--gold-soft)}
+.cc-branch-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.cc-branch-grid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px;transition:border-color .2s ease,transform .2s ease}
+.cc-branch-grid a:hover{border-color:var(--teal-300);transform:translateY(-2px)}
+.cc-branch-grid b{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink)}
+.cc-branch-grid span{display:block;font-size:13px;color:var(--body);margin-top:4px;line-height:1.5}
+.cc-branch-all{display:inline-block;margin-top:18px;font-family:var(--sans);font-weight:600;font-size:14px;color:var(--teal-700)}
+.cc-gloss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px 28px;margin:18px 0 0}
+.cc-gloss-grid dt{margin:0}
+.cc-gloss-grid dt a{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--teal-700)}
+.cc-gloss-grid dt a:hover{text-decoration:underline}
+.cc-gloss-grid dd{margin:3px 0 0;font-size:13.5px;color:var(--body);line-height:1.5}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- The universal mega nav renders here in production (not built on this page) -->
+<div class="megaslot">Universal mega nav renders here</div>
+
+<!-- HUB SUB-NAV — the relocated menu, now sticky under the universal nav -->
+<nav class="sub" aria-label="On this hub"><div class="wrap"><div class="row">
+  <span class="eye">&#10038; Dental insurance</span>
+  <a href="#overview">Overview</a>
+  <a href="#match" aria-current="page">Compare plans</a>
+  <a href="#explore-carriers">Featured plans</a>
+  <a href="#glossary-shelf">Glossary</a>
+  <a href="/guides/no-waiting-period/">No waiting period</a>
+  <a href="/guides/between-jobs/">Between jobs</a>
+  <a href="/guides/self-employed/">Self-employed</a>
+  <a class="dent" href="/find-my-dentist">Find a dentist</a>
+  <span class="prog"></span>
+</div></div></nav>
+
+<main class="wrap">
+  <section class="hero" id="match">
+    <span class="eyebrow"><span class="sp">&#10038;</span> The PPO dental plan hub</span>
+    <h1 style="margin-top:14px">Match a PPO dental plan<br><span class="it">to the work ahead.</span></h1>
+    <p class="lede">We check each featured PPO plan on the four things that decide your bill: coverage for the treatment you need, the annual maximum, the waiting period and the monthly premium. Then we point you to a top in-network dentist nearby.</p>
+    <p class="trust">Independent, no paid placement &middot; reviewed by dental billing specialists &middot; updated June 2026</p>
+    <div class="hacts"><a class="btn btn-pri" href="#match">Match my plan</a><a class="btn btn-ghost" href="#explore-carriers">Compare featured plans</a></div>
+  </section>
+
+  <p class="note" id="overview">The page no longer builds its own mega nav. The dark band above is the hub sub-nav (the old floating mid-page menu, now sticky and in place). The mint accent is gone, replaced by gold and a cream active pill. No arrows or dashes in copy. Sub-lines below double as meta-description-grade text for each linked page.</p>
+
+  <!-- BRANCH GRID -->
+  <section class="cc-branch" id="explore-carriers" aria-label="PPO dental plans by carrier">
+    <span class="eyebrow"><span class="sp">&#10038;</span> Featured plans</span>
+    <h2>PPO dental plans, <em>by carrier.</em></h2>
+    <p class="lede">Each featured plan has its own full review, with comparison models for implants, crowns, root canals, dentures, braces and whitening. Delta Dental, the largest network in the country, has its own hub.</p>
+    <a class="cc-branch-feat" href="/dental-insurance/ppo-plans/delta-dental/">
+      <span class="cc-branch-eye">Featured carrier hub</span>
+      <span class="cc-branch-t"><em>Delta Dental</em>, the full hub</span>
+      <span class="cc-branch-d">Compare Delta Dental PPO plans, find an in-network Delta dentist, and explore coverage for adults, seniors on SCAN, and UC students across the largest dental network in the United States.</span>
+      <span class="cc-branch-go">Enter the Delta hub</span>
+    </a>
+    <ul class="cc-branch-grid" role="list">
+      <li><a href="/dental-insurance/ppo-plans/mutual-of-omaha-dental/"><b>Mutual of Omaha, Dental Preferred</b><span>A $5,000 annual maximum at a low monthly premium, with basic and major dental care covered from the first day of the plan.</span></a></li>
+      <li><a href="/dental-insurance/ppo-plans/humana-extend-5000/"><b>Humana Extend 5000</b><span>A dental and vision plan with a $5,000 maximum, major coverage that climbs to 60%, and the fastest path to implant care on the shelf.</span></a></li>
+      <li><a href="/dental-insurance/ppo-plans/guardian-premier-ppo/"><b>Guardian Premier 2.0</b><span>85% coverage on fillings from day one with no waiting period, plus teeth whitening and braces coverage for children.</span></a></li>
+      <li><a href="/dental-insurance/ppo-plans/ameritas-primestar/"><b>Ameritas PrimeStar Complete</b><span>No waiting periods and day-one implant and bone graft coverage, with the annual maximum growing in the second year.</span></a></li>
+      <li><a href="/dental-insurance/ppo-plans/aetna-dental-direct/"><b>Aetna Dental Direct</b><span>Balanced everyday PPO coverage for cleanings, fillings and crowns, with monthly CVS pharmacy rewards included.</span></a></li>
+      <li><a href="/dental-insurance/ppo-plans/uhc-primary-dental/"><b>UnitedHealthcare Primary Dental</b><span>The lowest monthly premium on the shelf, with preventive and basic dental care covered from the first day.</span></a></li>
+    </ul>
+    <a class="cc-branch-all" href="/compare-ppo-dental-plans/#shelf">Compare the featured plans side by side</a>
+  </section>
+
+  <!-- SHORT GLOSSARY -->
+  <section class="cc-gloss-mod" id="glossary-shelf" aria-label="PPO dental insurance glossary">
+    <span class="eyebrow"><span class="sp">&#10038;</span> The plain-English shelf</span>
+    <h2>The terms that <em>decide your bill.</em></h2>
+    <dl class="cc-gloss-grid">
+      <div><dt><a href="/guides/glossary/annual-maximum/">Annual maximum</a></dt><dd>The most a dental plan will pay toward your care in one year. Once you reach it, you cover the rest yourself.</dd></div>
+      <div><dt><a href="/guides/glossary/waiting-period/">Waiting period</a></dt><dd>The number of months you must hold a plan before a tier of dental care becomes covered.</dd></div>
+      <div><dt><a href="/guides/glossary/deductible/">Deductible</a></dt><dd>The amount you pay out of pocket each year before your dental plan begins sharing the cost of care.</dd></div>
+      <div><dt><a href="/guides/glossary/in-network/">In-network</a></dt><dd>A dentist who has agreed to a plan's discounted PPO fees, so your share of the bill is lower.</dd></div>
+      <div><dt><a href="/guides/glossary/coinsurance/">Coinsurance</a></dt><dd>The share of a covered procedure you pay after the deductible, such as 50% of the cost of a crown.</dd></div>
+      <div><dt><a href="/guides/glossary/coverage-major/">Major services</a></dt><dd>Higher-cost dental work such as crowns, bridges, dentures and implants, usually the last tier to be covered.</dd></div>
+      <div><dt><a href="/guides/glossary/missing-tooth/">Missing-tooth clause</a></dt><dd>A rule that excludes coverage for replacing teeth you lost before the plan started.</dd></div>
+      <div><dt><a href="/guides/glossary/out-of-pocket/">Out-of-pocket cost</a></dt><dd>The portion of a dental bill you pay yourself after the plan has paid its share.</dd></div>
+      <div><dt><a href="/guides/glossary/effective-date/">Effective date</a></dt><dd>The day your dental coverage actually begins after you enroll in a plan.</dd></div>
+      <div><dt><a href="/guides/glossary/balance-billing/">Balance billing</a></dt><dd>When a dentist bills you for the difference between their fee and the plan's allowed amount.</dd></div>
+    </dl>
+    <a class="cc-branch-all" href="/guides/glossary/">Browse every term from A to Z</a>
+  </section>
+  <div style="height:80px"></div>
+</main>
+
+<script>
+/* sticky sub-nav progress bar + active highlight */
+(function(){
+  var prog=document.querySelector('.sub .prog');
+  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?(window.scrollY/h*100):0)+'%';},{passive:true});
+})();
+</script>
+</body>
+</html>

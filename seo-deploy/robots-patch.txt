@@ -1,0 +1,56 @@
+# ============================================================
+# CoverCapy robots.txt PATCH
+# Apply to: /robots.txt  (site root, served at https://www.covercapy.com/robots.txt)
+# Purpose: explicitly permit search-and-retrieval crawlers used by AI answer
+#          engines, while leaving normal Googlebot/Bingbot access untouched and
+#          NOT changing any model-training preferences (GPTBot, ClaudeBot).
+# ------------------------------------------------------------
+# HOW TO APPLY
+#   1. Open the existing /robots.txt.
+#   2. PRESERVE every existing rule. Do not remove existing Allow/Disallow lines.
+#   3. ADD the search-and-retrieval blocks below if they are not already present.
+#   4. Do NOT add or remove GPTBot or ClaudeBot rules here. Those control
+#      potential model training and are a separate, owner-only decision.
+#   5. Confirm the Sitemap line points to the live sitemap.
+#   6. Never Disallow /assets/, /components/, *.css, *.js, images, or JSON-LD.
+#      Crawlers must be able to load shared nav, footer, styles, and scripts to
+#      render and understand the pages.
+# ============================================================
+
+# --- Search and retrieval crawlers (AI answer engines) : ALLOW ---
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# --- Standard web search engines : PRESERVE normal access ---
+# (Shown for clarity. Keep whatever already exists; do not tighten.)
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- Default rule : keep your existing site-wide policy ---
+# Example only. Match your current file. Ensure assets remain crawlable.
+User-agent: *
+Allow: /
+# Disallow: /api/            # keep existing private paths if any
+# (Do NOT Disallow /assets/, /components/, /benefit-maxing/, *.css, *.js)
+
+# --- Model-training crawlers : DO NOT CHANGE in this patch ---
+# GPTBot and ClaudeBot govern potential training data use. Leave whatever the
+# site owner has already chosen. This patch intentionally adds no rule for them.
+# If the owner later sets a training preference, edit those rules separately.
+
+Sitemap: https://www.covercapy.com/sitemap.xml
+Sitemap: https://www.covercapy.com/dental/sitemap-dental.xml

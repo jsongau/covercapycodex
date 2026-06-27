@@ -1,0 +1,210 @@
+<!--
+  CoverCapy Universal Hub Sub-Nav ("2x sticky" second bar)
+  =========================================================
+  This is the single source of truth for the sticky sub-navigation bar that pins
+  directly below the universal mega-nav on every dental-insurance hub, guide, plan,
+  and glossary page. It carries:
+    - the green scroll-progress meter (.toc-prog)
+    - the Gold / Jade theme toggle (#cc-ts): boots GOLD, slow-flips to JADE ~1s after load
+    - the six hub dropdowns: Compare, Plans, Explore, By Treatment, By Situation, Insurance Terms
+
+  HOW TO USE
+  ----------
+  1. In <head>, link the shared stylesheet that styles this bar:
+         <link rel="stylesheet" href="/assets/css/hub-theme.css">
+     (it also defines the .crumb breadcrumb, the gold/jade tokens, and .toc/.toc-dd/.theme-switch CSS)
+  2. In <body>, immediately after the mega-nav mount, drop the mount point:
+         <div id="cc-nav-mount"></div>
+         <div id="cc-hub-subnav-mount"></div>
+  3. Register it in the universal component loader alongside mega-nav + footer:
+         { mountId: 'cc-hub-subnav-mount', html: '/components/hub-subnav.html', script: null }
+     The loader replays the inline <script> below, so the dropdowns / theme / scroll meter all wire up.
+  4. Put the per-page breadcrumb right after the mount:
+         <div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / ... / <span>This page</span></div></div>
+
+  The links below are GENERAL dental-insurance hub links and are identical on every page.
+  Only the breadcrumb trail (the .crumb block on the page) changes per page.
+-->
+<div class="toc" aria-label="Dental insurance hub sub navigation">
+  <div class="toc-prog" id="tocProg"></div>
+  <div class="wrap">
+    <div class="theme-switch" id="cc-ts" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme, Gold or Jade">
+      <span class="ts-thumb"></span>
+      <span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span>
+      <span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
+    </div>
+    <div class="toc-dd" id="ddCompareWrap">
+      <button class="toc-dd-btn" id="ddCompareBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddCompare">Compare <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddCompare" role="menu" aria-label="Compare plans">
+        <a href="/compare-ppo-dental-plans" role="menuitem">Compare PPO plans side by side</a>
+        <div class="dd-lbl">By coverage tier</div>
+        <a href="/compare-ppo-dental-plans#tier-essentials" role="menuitem">Essentials, budget-first</a>
+        <a href="/compare-ppo-dental-plans#tier-full" role="menuitem">Full coverage, most popular</a>
+        <a href="/compare-ppo-dental-plans#tier-maximum" role="menuitem">Maximum protection, highest limits</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddPlansWrap">
+      <button class="toc-dd-btn" id="ddPlansBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddPlans">Plans <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddPlans" role="menu" aria-label="PPO plans by carrier">
+        <div class="dd-lbl">Plans by carrier</div>
+        <a href="/dental-insurance/ppo-plans/uhc-primary-dental/" role="menuitem">UnitedHealthcare</a>
+        <a href="/dental-insurance/ppo-plans/aetna-dental-direct/" role="menuitem">Aetna</a>
+        <a href="/dental-insurance/ppo-plans/ameritas-primestar/" role="menuitem">Ameritas</a>
+        <a href="/dental-insurance/ppo-plans/guardian-premier-ppo/" role="menuitem">Guardian</a>
+        <a href="/dental-insurance/ppo-plans/mutual-of-omaha-dental/" role="menuitem">Mutual of Omaha</a>
+        <a href="/dental-insurance/ppo-plans/humana-extend-5000/" role="menuitem">Humana</a>
+        <a href="/dental-insurance/ppo-plans/metlife-ncd-complete/" role="menuitem">MetLife</a>
+        <div class="dd-fly" id="ddDeltaFly">
+          <button class="dd-fly-btn" aria-expanded="false" aria-haspopup="true" aria-controls="ddDelta">Delta Dental <svg class="dd-fly-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <div class="dd-fly-panel" id="ddDelta" role="menu" aria-label="Delta Dental hub">
+            <a href="/dental-insurance/ppo-plans/delta-dental-ppo-premium/" role="menuitem"><b>PPO Premium plan</b></a>
+            <a href="/dental-insurance/delta-dental/compare/" role="menuitem">Is Delta Dental good?</a>
+            <a href="/dental-insurance/delta-dental/over-65/" role="menuitem">Delta for over 65</a>
+            <a href="/dental-insurance/delta-dental/uc-students/" role="menuitem">Delta for UC students</a>
+          </div>
+        </div>
+        <a class="dd-all" href="/dental-insurance/ppo-plans/" role="menuitem">All carriers and plans</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddExploreWrap">
+      <button class="toc-dd-btn" id="ddExploreBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddExplore">Explore <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddExplore" role="menu" aria-label="Explore the hub">
+        <div class="dd-lbl">Guides and tools</div>
+        <a href="/dental-insurance/" role="menuitem">Dental insurance overview</a>
+        <a href="/dental-treatment-cost-estimator.html" role="menuitem">Treatment cost estimator</a>
+        <a href="/dental-insurance/ppo-plans/" role="menuitem">All carriers and plans</a>
+        <div class="dd-lbl">By situation</div>
+        <a href="/guides/no-waiting-period/" role="menuitem">No waiting period</a>
+        <a href="/guides/immediate-coverage/" role="menuitem">Coverage that starts now</a>
+        <a href="/guides/between-jobs/" role="menuitem">Between jobs</a>
+        <a href="/guides/self-employed/" role="menuitem">Self-employed</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddTreatWrap">
+      <button class="toc-dd-btn" id="ddTreatBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddTreat">By Treatment <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddTreat" role="menu" aria-label="By treatment">
+        <a href="/compare-ppo-dental-plans#treatment" role="menuitem">Compare plans by procedure</a>
+        <div class="dd-lbl">Procedures</div>
+        <a href="/guides/implants/" role="menuitem">Implants</a>
+        <a href="/guides/crowns/insurance-coverage.html" role="menuitem">Crowns</a>
+        <a href="/guides/root-canals/" role="menuitem">Root canals</a>
+        <a href="/guides/dentures/" role="menuitem">Dentures</a>
+        <a href="/guides/braces-invisalign/" role="menuitem">Braces and Invisalign</a>
+        <a href="/guides/whitening/" role="menuitem">Whitening</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddSitWrap">
+      <button class="toc-dd-btn" id="ddSitBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddSit">By Situation <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddSit" role="menu" aria-label="By situation">
+        <a href="/compare-ppo-dental-plans#situation" role="menuitem">Match plans by life event</a>
+        <div class="dd-lbl">Life situations</div>
+        <a href="/guides/immediate-coverage/" role="menuitem">Lost my benefits</a>
+        <a href="/guides/no-waiting-period/" role="menuitem">Need coverage now</a>
+        <a href="/guides/between-jobs/" role="menuitem">Between jobs</a>
+        <a href="/guides/self-employed/" role="menuitem">Self-employed</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddGlossWrap">
+      <button class="toc-dd-btn" id="ddGlossBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddGloss">Insurance Terms <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddGloss" role="menu" aria-label="PPO glossary terms">
+        <div class="dd-lbl">Key terms</div>
+        <a href="/guides/glossary/annual-maximum/" role="menuitem">Annual maximum</a>
+        <a href="/guides/glossary/waiting-period/" role="menuitem">Waiting period</a>
+        <a href="/guides/glossary/deductible/" role="menuitem">Deductible</a>
+        <a href="/guides/glossary/coinsurance/" role="menuitem">Coinsurance</a>
+        <a href="/guides/glossary/in-network/" role="menuitem">In-network</a>
+        <a href="/guides/glossary/coverage-major/" role="menuitem">Major services</a>
+        <a href="/guides/glossary/missing-tooth/" role="menuitem">Missing tooth clause</a>
+        <a href="/guides/glossary/out-of-pocket/" role="menuitem">Out of pocket</a>
+        <a href="/guides/glossary/effective-date/" role="menuitem">Effective date</a>
+        <a href="/guides/glossary/balance-billing/" role="menuitem">Balance billing</a>
+        <a class="dd-all" href="/guides/glossary/" role="menuitem">All terms, A to Z</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* CoverCapy hub sub-nav behaviour: scroll meter, Gold/Jade theme, dropdowns.
+   Self-contained and idempotent: guards against double-init when the loader replays it. */
+(function(){
+  if (window.__ccHubSubnavInit) return;
+  window.__ccHubSubnavInit = true;
+
+  /* ---- scroll-progress meter ---- */
+  var prog = document.getElementById('tocProg');
+  if (prog) {
+    window.addEventListener('scroll', function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+    }, { passive: true });
+  }
+
+  /* ---- Gold / Jade theme toggle (boot GOLD, slow-flip to JADE ~1s after load) ---- */
+  var ccHtml = document.documentElement, ccTs = document.getElementById('cc-ts');
+  function applyTheme(t, slow){
+    var dur = slow ? '1.4s' : '0.45s';
+    var st = document.getElementById('cc-theme-transition');
+    if (!st){ st = document.createElement('style'); st.id = 'cc-theme-transition'; document.head.appendChild(st); }
+    st.textContent = 'html,html *{transition:background ' + dur + ' ease,color ' + dur + ' ease,border-color ' + dur + ' ease,box-shadow ' + dur + ' ease !important}';
+    ccHtml.setAttribute('data-theme', t);
+    if (ccTs){ ccTs.setAttribute('data-active', t); ccTs.setAttribute('aria-checked', t === 'jade' ? 'true' : 'false'); }
+    setTimeout(function(){ if (st) st.textContent = ''; }, slow ? 1600 : 600);
+  }
+  // Boot GOLD on <html> and the switch, then flip to JADE ~1s after load.
+  ccHtml.setAttribute('data-theme', 'gold');
+  if (ccTs){
+    ccTs.setAttribute('data-active', 'gold'); ccTs.setAttribute('aria-checked', 'false');
+    ccTs.addEventListener('click', function(){ applyTheme(ccHtml.getAttribute('data-theme') === 'gold' ? 'jade' : 'gold', false); });
+    ccTs.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); ccTs.click(); } });
+  }
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      if (ccTs) ccTs.classList.add('flipping');
+      applyTheme('jade', true);
+      setTimeout(function(){ if (ccTs) ccTs.classList.remove('flipping'); }, 2000);
+    }, 1000);
+  });
+
+  /* ---- dropdowns (Compare, Plans, Explore, By Treatment, By Situation, Insurance Terms) ---- */
+  var dds = [].slice.call(document.querySelectorAll('.toc-dd'));
+  if (dds.length){
+    var T = null;
+    function closeAll(except){
+      dds.forEach(function(d){
+        if (d !== except){
+          var b = d.querySelector('.toc-dd-btn'), p = d.querySelector('.toc-dd-panel');
+          if (b) b.setAttribute('aria-expanded', 'false');
+          if (p) p.removeAttribute('data-open');
+        }
+      });
+    }
+    dds.forEach(function(d){
+      var btn = d.querySelector('.toc-dd-btn'), panel = d.querySelector('.toc-dd-panel');
+      if (!btn || !panel) return;
+      function open(){ clearTimeout(T); closeAll(d); btn.setAttribute('aria-expanded', 'true'); panel.setAttribute('data-open', ''); }
+      function close(){ btn.setAttribute('aria-expanded', 'false'); panel.removeAttribute('data-open'); }
+      btn.addEventListener('click', function(e){ e.stopPropagation(); btn.getAttribute('aria-expanded') === 'true' ? close() : open(); });
+      if (matchMedia('(hover:hover)').matches){
+        d.addEventListener('mouseenter', function(){ clearTimeout(T); open(); });
+        d.addEventListener('mouseleave', function(){ clearTimeout(T); T = setTimeout(close, 450); });
+      }
+    });
+    document.addEventListener('click', function(e){ if (!e.target.closest('.toc-dd')) closeAll(null); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(null); });
+
+    /* Delta fly-out (opens to the right inside the Plans menu) */
+    var fly = document.getElementById('ddDeltaFly');
+    if (fly){
+      var fb = fly.querySelector('.dd-fly-btn'), fp = fly.querySelector('.dd-fly-panel'), FT = null;
+      function fclose(){ fb.setAttribute('aria-expanded', 'false'); fp.removeAttribute('data-open'); }
+      function fopen(){ clearTimeout(FT); fb.setAttribute('aria-expanded', 'true'); fp.setAttribute('data-open', ''); }
+      fb.addEventListener('click', function(e){ e.stopPropagation(); fb.getAttribute('aria-expanded') === 'true' ? fclose() : fopen(); });
+      if (matchMedia('(hover:hover)').matches){
+        fly.addEventListener('mouseenter', function(){ clearTimeout(FT); fopen(); });
+        fly.addEventListener('mouseleave', function(){ clearTimeout(FT); FT = setTimeout(fclose, 450); });
+      }
+    }
+  }
+})();
+</script>

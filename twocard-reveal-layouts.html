@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoverCapy · Two-card reveal layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#1B5E5A;--teal-deep:#0E3F44;--ivory:#FFFDF9;--cream:#F4EDDF;--gold:#C9A24A;--gold-deep:#8A6A23;--ink:#14242A;--ink-soft:#6B7D82;--line:rgba(20,36,42,.10)}
+  *{box-sizing:border-box}
+  body{margin:0;background:#E7DFD0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:var(--ink)}
+  .wrap{max-width:1180px;margin:0 auto;padding:42px 22px 80px}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:30px;margin:0 0 8px;letter-spacing:-.01em}
+  .lead{color:#5b5240;font-size:15px;max-width:72ch;margin:0 0 34px;line-height:1.55}
+  .concept{margin-bottom:46px}
+  .c-h{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+  .c-n{font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:#fff;background:var(--teal-deep);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .c-t{font-family:'Fraunces',serif;font-size:21px;font-weight:500}
+  .c-s{font-size:13px;color:var(--ink-soft);margin:0 0 16px 36px;max-width:70ch;line-height:1.5}
+
+  /* mock "page docked at bottom" frame */
+  .frame{position:relative;height:340px;border-radius:18px;overflow:hidden;border:1px solid rgba(20,36,42,.12);
+    background:linear-gradient(180deg,#FBF7EE 0%,#FBF7EE 60%,#EFE7D7 100%)}
+  .frame::before{content:"";position:absolute;inset:0;background:
+    repeating-linear-gradient(180deg,transparent 0 16px,rgba(20,36,42,.04) 16px 17px);opacity:.5}
+  .frame::after{content:"";position:absolute;inset:0;background:rgba(14,63,68,.18)}
+  .sheet{position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:2;
+    background:var(--ivory);border:1px solid var(--line);border-bottom:none;border-radius:20px 20px 0 0;
+    box-shadow:0 -26px 60px -20px rgba(8,42,48,.5);padding:14px 16px 18px}
+  .grip{width:42px;height:5px;border-radius:99px;background:rgba(20,36,42,.18);margin:0 auto 10px}
+  .sheet-h{text-align:center;font-size:12px;color:var(--ink-soft);margin-bottom:14px}
+  .sheet-h b{display:block;font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--ink);margin-bottom:2px}
+  .sheet-h em{font-style:normal;color:var(--gold-deep);font-weight:700}
+
+  /* a compact card (styling settled; focus is composition) */
+  .mc{background:var(--ivory);border:1px solid var(--line);border-radius:14px;padding:14px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
+  .mc:hover{transform:translateY(-3px);box-shadow:0 16px 34px -20px rgba(14,63,68,.5);border-color:rgba(201,162,75,.5)}
+  .mc-badge{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-bottom:9px}
+  .b-near{background:rgba(27,94,90,.1);color:var(--teal-deep)}
+  .b-top{background:rgba(201,162,74,.16);color:var(--gold-deep)}
+  .mc-name{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--ink);line-height:1.15;margin-bottom:5px}
+  .mc-meta{font-size:12px;color:var(--ink-soft);margin-bottom:4px}
+  .mc-meta b{color:var(--ink)}
+  .mc-dist{font-size:11.5px;font-weight:700;color:var(--teal);margin-bottom:11px}
+  .mc-btn{display:block;text-align:center;background:var(--teal);color:var(--ivory);font-size:13px;font-weight:600;padding:10px;border-radius:10px;text-decoration:none}
+  .mc-btn.alt{background:var(--ivory);border:1px solid rgba(27,94,90,.3);color:var(--teal-deep);margin-top:7px}
+
+  /* concept 1: side by side */
+  .s1{width:min(680px,calc(100% - 24px))}
+  .s1 .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+  .s1 .vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:34px;height:34px;border-radius:50%;background:var(--cream);border:1px solid var(--gold);display:grid;place-items:center;font-family:'Fraunces',serif;font-size:12px;font-weight:600;color:var(--gold-deep)}
+
+  /* concept 2: stacked */
+  .s2{width:min(420px,calc(100% - 24px))}
+  .s2 .duo{display:flex;flex-direction:column;gap:11px}
+
+  /* concept 3: switch / toggle */
+  .s3{width:min(420px,calc(100% - 24px))}
+  .seg{display:flex;gap:4px;background:var(--cream);border-radius:999px;padding:4px;margin-bottom:12px}
+  .seg button{flex:1;border:none;background:transparent;font:600 12px/1 system-ui;padding:8px;border-radius:999px;cursor:pointer;color:var(--ink-soft)}
+  .seg button.on{background:var(--ivory);color:var(--teal-deep);box-shadow:0 2px 6px rgba(20,36,42,.12)}
+  .s3 .both{display:block;text-align:center;font-size:12px;font-weight:600;color:var(--teal-deep);margin-top:11px;text-decoration:none}
+  .stars{color:var(--gold);letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>How the two offices arrive from the bottom</h1>
+  <p class="lead">When a search finds two Platinum Elite offices in range, both rise from the bottom together. The goal is a moment that invites you to weigh the two and pick. Each concept differentiates them with a small reason to choose (nearest vs highest rated). Pick a direction.</p>
+
+  <!-- CONCEPT 1 -->
+  <div class="concept">
+    <div class="c-h"><span class="c-n">1</span><span class="c-t">Side by side, weigh and pick</span></div>
+    <p class="c-s">A wider sheet rises with both offices next to each other and a small "or" between them. Reading them at a glance makes the choice feel active. Best on desktop.</p>
+    <div class="frame">
+      <div class="sheet s1">
+        <div class="grip"></div>
+        <div class="sheet-h"><b>Two Platinum Elite offices near Los Angeles County</b><em>Pick the one that fits</em></div>
+        <div class="duo">
+          <div class="vs">or</div>
+          <div class="mc"><span class="mc-badge b-near">Nearest</span><div class="mc-name">Abri Dental, Beverly Hills</div><div class="mc-meta"><span class="stars">★★★★★</span> <b>4.8</b> · 80 reviews</div><div class="mc-dist">1.5 mi from Los Angeles County</div><a class="mc-btn" href="#">Book appointment</a></div>
+          <div class="mc"><span class="mc-badge b-top">Highest rated</span><div class="mc-name">Abri Dental, Burbank</div><div class="mc-meta"><span class="stars">★★★★★</span> <b>4.9</b> · 159 reviews</div><div class="mc-dist">11.2 mi from Los Angeles County</div><a class="mc-btn" href="#">Book appointment</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 2 -->
+  <div class="concept">
+    <div class="c-h"><span class="c-n">2</span><span class="c-t">Stacked, scannable</span></div>
+    <p class="c-s">A narrow sheet stacks both offices, each with its reason-to-pick label. Thumb-friendly and works the same on phone and desktop. The second card peeks so you know there is a choice.</p>
+    <div class="frame">
+      <div class="sheet s2">
+        <div class="grip"></div>
+        <div class="sheet-h"><b>Two offices near Los Angeles County</b><em>Compare and choose</em></div>
+        <div class="duo">
+          <div class="mc"><span class="mc-badge b-near">Nearest</span><div class="mc-name">Abri Dental, Beverly Hills</div><div class="mc-meta"><span class="stars">★★★★★</span> <b>4.8</b> · 80 reviews · 1.5 mi</div><a class="mc-btn" href="#">Book appointment</a></div>
+          <div class="mc"><span class="mc-badge b-top">Highest rated</span><div class="mc-name">Abri Dental, Burbank</div><div class="mc-meta"><span class="stars">★★★★★</span> <b>4.9</b> · 159 reviews · 11.2 mi</div><a class="mc-btn" href="#">Book appointment</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 3 -->
+  <div class="concept">
+    <div class="c-h"><span class="c-n">3</span><span class="c-t">Switch between the two</span></div>
+    <p class="c-s">One office at a time with a toggle to flip between nearest and highest rated. The act of switching makes you compare. A link shows both at once if they want the full view.</p>
+    <div class="frame">
+      <div class="sheet s3">
+        <div class="grip"></div>
+        <div class="sheet-h"><b>Two Platinum Elite offices near you</b><em>Which matters more?</em></div>
+        <div class="seg"><button class="on">Nearest</button><button>Highest rated</button></div>
+        <div class="mc"><span class="mc-badge b-near">Nearest</span><div class="mc-name">Abri Dental, Beverly Hills</div><div class="mc-meta"><span class="stars">★★★★★</span> <b>4.8</b> · 80 reviews</div><div class="mc-dist">1.5 mi from Los Angeles County</div><a class="mc-btn" href="#">Book appointment</a><a class="mc-btn alt" href="#">View dentist profile</a></div>
+        <a class="both" href="#">See both offices</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

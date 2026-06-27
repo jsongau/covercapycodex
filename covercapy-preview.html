@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CoverCapy — All Hub Pages Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+/* GOLD default */
+:root{
+  --teal-950:#0C3A42;--teal-800:#0A2F36;--teal-650:#9A7440;
+  --mint-500:#B8924F;--mint-100:rgba(184,146,79,.12);
+  --cream-50:#FAF8F5;--cream-100:#F4F0EA;--cream-200:#ECE4DA;
+  --ink-950:#1E1714;--ink-700:#4A403A;--ink-500:#7A6B62;
+  --gold-500:#B8924F;--gold-bg:rgba(184,146,79,.12);
+  --border:#E7E0D7;--star:#F2A93B;
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;
+}
+/* JADE alternate */
+[data-theme="jade"]{
+  --teal-950:#12161B;--teal-800:#1C2228;--teal-650:#0C8C81;
+  --mint-500:#0FB5A6;--mint-100:#E6F7F4;
+  --cream-50:#FFFFFF;--cream-100:#F5F7F8;--cream-200:#E9EEF0;
+  --ink-950:#161A1F;--ink-700:#3A434D;--ink-500:#5A636E;
+  --gold-500:#B8924F;--gold-bg:rgba(184,146,79,.12);
+  --border:rgba(18,22,27,.12);--star:#F5A623;
+}
+html.theme-switching,html.theme-switching *{transition:background-color .5s,color .5s,border-color .5s,fill .5s,stroke .5s!important}
+body{font-family:var(--sans);background:var(--cream-100);color:var(--ink-700);min-height:100vh}
+
+/* CHROME */
+.app-chrome{position:fixed;top:0;left:0;right:0;z-index:1000;background:#1a1a1a;border-bottom:1px solid rgba(255,255,255,.06)}
+.chrome-top{display:flex;align-items:center;gap:14px;padding:0 20px;height:46px}
+.chrome-logo{font-family:var(--serif);font-size:17px;font-weight:500;color:#B8924F;flex-shrink:0}
+[data-theme="jade"] .chrome-logo{color:#0FB5A6}
+.chrome-sep{width:1px;height:20px;background:rgba(255,255,255,.1);flex-shrink:0}
+.chrome-label{font:700 10px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);flex-shrink:0}
+.chrome-spacer{flex:1}
+/* Theme switch — exact T5 formula */
+.theme-switch{background:#111;border:1.5px solid rgba(255,255,255,.08);border-radius:999px;padding:4px;height:34px;display:inline-flex;align-items:center;position:relative;cursor:pointer;user-select:none;flex-shrink:0;box-shadow:0 2px 12px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06)}
+.ts-thumb{position:absolute;top:3px;left:3px;width:calc(50% - 5px);height:calc(100% - 6px);border-radius:999px;background:#B8924F;transition:transform 1.8s cubic-bezier(.34,1.18,.64,1),background .7s ease;box-shadow:0 3px 10px rgba(184,146,79,.55),0 1px 3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22)}
+[data-theme="jade"] .ts-thumb{background:#0FB5A6;box-shadow:0 3px 10px rgba(15,181,166,.5),0 1px 3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22)}
+.theme-switch[data-active="jade"] .ts-thumb{transform:translateX(calc(100% + 2px))}
+.ts-opt{position:relative;z-index:1;padding:4px 12px;font:700 10px/1 'Inter Tight';letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:5px;transition:color .4s}
+.ts-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.6}
+.theme-switch[data-active="gold"] .ts-gold{color:#fff}
+.theme-switch[data-active="jade"] .ts-jade{color:#fff}
+.flipping .ts-thumb{animation:ts-pulse 1.8s ease}
+@keyframes ts-pulse{0%{opacity:1}50%{opacity:.55}100%{opacity:1}}
+/* Tabs */
+.chrome-tabs{display:flex;gap:0;padding:0 20px;height:38px;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(255,255,255,.06);align-items:stretch}
+.chrome-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;height:100%;padding:0 14px;font:600 11.5px/1 'Inter Tight';color:rgba(255,255,255,.38);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.15s}
+.tab-btn:hover{color:rgba(255,255,255,.7)}
+.tab-btn.active{color:#fff;border-bottom-color:#B8924F}
+[data-theme="jade"] .tab-btn.active{border-bottom-color:#0FB5A6}
+.chrome-height{height:84px}
+/* Panels */
+.page-panel{display:none}
+.page-panel.active{display:block}
+/* Shared */
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.eyebrow{display:block;font:700 10.5px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:var(--gold-500);margin-bottom:8px}
+/* DI-HUB NAV */
+.di-hub{background:var(--teal-950);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.di-hub-inner{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.di-hub-label{font:700 10px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);flex-shrink:0}
+.di-hub-label .sp{color:var(--gold-500)}
+.di-hub-links{list-style:none;display:flex;flex-wrap:wrap;gap:5px}
+.di-hub-links a{font:500 12px/1 'Inter Tight';color:rgba(255,255,255,.55);padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);text-decoration:none;white-space:nowrap;transition:.15s}
+.di-hub-links a:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25)}
+.di-hub-links a[aria-current="page"]{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28)}
+.di-hub-links .cta-chip{background:var(--mint-500)!important;color:var(--teal-950)!important;border-color:var(--mint-500)!important;font-weight:700!important}
+/* HERO */
+.hero{background:var(--teal-950);padding:40px 0 0}
+.hero-inner{max-width:1080px;margin:0 auto;padding:0 24px 32px}
+.hero h1{font-family:var(--serif);font-size:clamp(24px,3.5vw,40px);font-weight:500;color:var(--cream-50);line-height:1.15;margin-bottom:10px}
+.hero h1 em{font-style:italic;color:var(--mint-500)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:540px;line-height:1.65;margin-bottom:20px}
+.hero-cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn-primary-hero{background:var(--teal-800);color:var(--mint-500);font:700 13px/1 'Inter Tight';padding:12px 22px;border-radius:999px;border:1.5px solid rgba(255,255,255,.12);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:.15s}
+.btn-primary-hero:hover{opacity:.88}
+.btn-ghost-hero{color:rgba(255,255,255,.55);font:600 13px/1 'Inter Tight';text-decoration:none;padding:12px 4px}
+.hero-trust{font-size:11.5px;color:rgba(255,255,255,.3);margin-top:12px}
+/* Situation chips */
+.chips-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.chip{font:500 12px/1 'Inter Tight';color:rgba(255,255,255,.6);padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);cursor:pointer;transition:.15s;background:transparent}
+.chip:hover,.chip.active{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.32)}
+/* Urgency strip */
+.urg-strip{background:var(--teal-800);display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.06)}
+.urg-card{padding:16px 20px;border-right:1px solid rgba(255,255,255,.06)}
+.urg-card:last-child{border-right:none}
+.urg-label{font:700 10px/1 'Inter Tight';letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.urg-text{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;margin-bottom:6px}
+.urg-link{font:600 12px/1 'Inter Tight';color:var(--mint-500);text-decoration:none}
+/* REVIEWER BAR */
+.reviewer-bar{border-bottom:1px solid var(--border);padding:12px 0 16px;margin-bottom:24px}
+.reviewer-inner{display:flex;align-items:center;gap:12px}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;background:var(--teal-950);color:var(--mint-500);font:700 12px/1 'Inter Tight';display:grid;place-items:center;flex-shrink:0}
+.reviewer-name{display:block;font-size:13px;color:var(--ink-950)}
+.reviewer-date{display:block;font-size:11.5px;color:var(--ink-500);margin-top:2px}
+.reviewer-link{color:var(--teal-650);text-decoration:none}
+/* Tier headers */
+.tier-hdr{font:700 10.5px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);padding:18px 0 10px;border-top:1px solid var(--border);margin-top:8px}
+/* Plan cards */
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:6px}
+.plan-card{background:var(--cream-50);border:1px solid var(--border);border-radius:14px;padding:18px;transition:.15s}
+.plan-card:hover{border-color:var(--teal-650)}
+.plan-card.rec{border-color:var(--mint-500);border-width:2px}
+.plan-carrier{font:700 10px/1 'Inter Tight';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-500);display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.plan-verified{font:400 10px/1 'Inter Tight';color:var(--ink-500)}
+.plan-name{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink-950);margin-bottom:10px}
+.plan-price{font:700 22px/1 'Inter Tight';color:var(--ink-950);margin-bottom:2px}
+.plan-price span{font-size:13px;font-weight:400;color:var(--ink-500)}
+.plan-max{font-size:12px;color:var(--ink-500);margin-bottom:10px}
+.flag-now{background:#E6F4EE;color:#0D6647;font:600 11px/1 'Inter Tight';padding:4px 9px;border-radius:6px;display:inline-block;margin-bottom:10px}
+.flag-wait{background:var(--gold-bg);color:#7A5200;font:600 11px/1 'Inter Tight';padding:4px 9px;border-radius:6px;display:inline-block;margin-bottom:10px}
+.rec-badge{display:inline-flex;align-items:center;gap:4px;background:var(--gold-bg);color:var(--gold-500);border:1px solid rgba(184,146,79,.3);font:600 10.5px/1 'Inter Tight';letter-spacing:.03em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+.plan-cta{display:block;width:100%;background:var(--teal-950);color:var(--mint-500);font:600 13px/1 'Inter Tight';text-align:center;padding:10px 0;border-radius:999px;border:none;cursor:pointer;margin-top:12px;transition:.15s;text-decoration:none}
+.plan-cta:hover{opacity:.85}
+/* Compare table */
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px;margin:20px 0 32px}
+.cmp-table th{background:var(--teal-950);color:rgba(255,255,255,.8);font:600 11px/1 'Inter Tight';letter-spacing:.05em;padding:10px 12px;text-align:left}
+.cmp-table th:first-child{border-radius:8px 0 0 0}.cmp-table th:last-child{border-radius:0 8px 0 0}
+.cmp-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--ink-700);vertical-align:middle}
+.cmp-table tr:last-child td{border-bottom:none}
+.cmp-table .row-label{color:var(--ink-500);font-weight:600;font-size:12px}
+.cmp-table .hl{background:var(--mint-100)}
+/* Modal overlay */
+.modal-overlay{background:rgba(8,42,48,.52);padding:48px 24px;display:flex;align-items:center;justify-content:center;min-height:280px}
+.modal-box{background:var(--cream-50);border-radius:16px;padding:28px;max-width:340px;width:100%;border:1px solid var(--border)}
+.modal-eyebrow{font:700 10px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:var(--gold-500);margin-bottom:8px}
+.modal-title{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink-950);margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--ink-500);margin-bottom:18px;line-height:1.5}
+.modal-input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--sans);outline:none;background:var(--cream-50);color:var(--ink-950);margin-bottom:10px}
+.modal-input:focus{border-color:var(--teal-650)}
+.modal-btn{width:100%;background:var(--mint-500);color:#fff;border:none;border-radius:999px;padding:11px;font:700 13px/1 'Inter Tight';cursor:pointer;display:block;margin-bottom:10px;font-family:var(--sans)}
+[data-theme="jade"] .modal-btn{color:var(--teal-950)}
+.modal-skip{display:block;text-align:center;font-size:12px;color:var(--ink-500);text-decoration:none}
+/* Sidebar layout */
+.page-layout{display:grid;grid-template-columns:1fr 272px;gap:48px;max-width:1080px;margin:0 auto;padding:28px 24px;align-items:start}
+.main-col{min-width:0}
+.sidebar-col{position:sticky;top:100px}
+.sb-cta-block{background:var(--teal-950);border-radius:16px;padding:22px;margin-bottom:14px}
+.sb-cta-eyebrow{font:700 10px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:rgba(184,146,79,.8);display:block;margin-bottom:8px}
+[data-theme="jade"] .sb-cta-eyebrow{color:rgba(15,181,166,.8)}
+.sb-cta-headline{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--cream-50);line-height:1.3;margin:0 0 14px}
+.sb-cta-headline em{color:var(--mint-500);font-style:italic}
+.sb-cta-btn{display:block;width:100%;background:var(--mint-500);color:var(--teal-950);font:700 13px/1 'Inter Tight';text-align:center;padding:11px 0;border-radius:999px;text-decoration:none;transition:.15s}
+.sb-cta-btn:hover{opacity:.88}
+.sb-cta-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;display:block;text-align:center}
+.sb-widget{background:var(--cream-50);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.sb-widget-title{font:700 10.5px/1 'Inter Tight';letter-spacing:.1em;text-transform:uppercase;color:var(--ink-500);margin:0 0 10px}
+.sb-list{list-style:none}
+.sb-list li a{font-size:13px;color:var(--teal-650);text-decoration:none;display:block;padding:6px 0;border-bottom:1px solid var(--cream-200);line-height:1.4}
+.sb-list li:last-child a{border-bottom:none}
+.sb-list li a:hover{color:var(--ink-950)}
+.sb-page-info{font-size:11.5px;color:var(--ink-500);line-height:1.7}
+.sb-ghost-btn{display:block;width:100%;border:1px solid var(--teal-650);color:var(--teal-650);background:none;font:600 13px/1 'Inter Tight';text-align:center;padding:11px 0;border-radius:999px;text-decoration:none;margin-top:8px;transition:background .15s,color .15s;font-family:var(--sans)}
+.sb-ghost-btn:hover{background:var(--teal-650);color:#fff}
+/* Article */
+.article-h2{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--ink-950);margin-bottom:10px;border-left:3px solid var(--teal-650);padding-left:12px}
+.article-p{font-size:15px;color:var(--ink-700);line-height:1.7;margin-bottom:14px}
+.article-lede{font-size:15.5px;color:var(--ink-500);line-height:1.7;margin-bottom:24px}
+.info-box{background:var(--mint-100);border-left:3px solid var(--mint-500);padding:12px 16px;border-radius:0 8px 8px 0;font-size:13.5px;color:var(--ink-700);line-height:1.65;margin-bottom:16px}
+.warn-box{background:var(--gold-bg);border-left:3px solid var(--gold-500);padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:var(--ink-700);line-height:1.65;margin-bottom:16px}
+/* Procedure table */
+.proc-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0 20px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.proc-table th{background:var(--teal-950);color:rgba(255,255,255,.8);padding:9px 12px;text-align:left;font:600 11px/1 'Inter Tight';letter-spacing:.05em}
+.proc-table td{padding:10px 12px;border-bottom:1px solid var(--border);background:var(--cream-50)}
+.proc-table tr:last-child td{border-bottom:none}
+.proc-now{color:#0D6647;font-weight:600}
+.proc-wait{color:#7A5200;font-weight:500}
+/* Glossary terms */
+.term-entry{padding:20px 0;border-bottom:1px solid var(--border)}
+.term-h3{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink-950);margin-bottom:6px}
+.term-def{font-size:14.5px;color:var(--ink-700);line-height:1.65;margin-bottom:10px}
+.term-details summary{font:600 12.5px/1 'Inter Tight';color:var(--teal-650);cursor:pointer;letter-spacing:.02em}
+.term-why{font-size:13.5px;color:var(--ink-500);line-height:1.6;padding:10px 0 0 14px;border-left:2px solid var(--mint-500);margin-top:8px}
+/* FAQ */
+.faq{background:var(--cream-50);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
+.faq[open]{border-color:var(--teal-650)}
+.faq summary{cursor:pointer;padding:15px 18px;font:600 14.5px/1.4 'Inter Tight';color:var(--ink-950);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--gold-500);font-size:20px;line-height:1}
+.faq[open] summary::after{content:'–'}
+.faq .fbody{padding:0 18px 16px;font-size:14px;color:var(--ink-700);line-height:1.7}
+/* Hub grid */
+.hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}
+.hub-card{background:var(--cream-50);border:1px solid var(--border);border-radius:14px;padding:20px;text-decoration:none;color:var(--ink-950);display:block;transition:.15s}
+.hub-card:hover{border-color:var(--teal-650);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.hub-card-tag{font:700 10px/1 'Inter Tight';letter-spacing:.1em;text-transform:uppercase;color:var(--gold-500);margin-bottom:8px}
+.hub-card-title{font-family:var(--serif);font-size:18px;font-weight:500;line-height:1.25;margin-bottom:6px}
+.hub-card-desc{font-size:13px;color:var(--ink-500);line-height:1.55}
+/* COBRA comparison */
+.cobra-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.cc-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:var(--cream-50)}
+.cc-card.rec{border-color:var(--mint-500);border-width:2px}
+.cc-card-label{font:700 10.5px/1 'Inter Tight';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-500);margin-bottom:8px}
+.cc-card h4{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink-950);margin-bottom:8px}
+.cc-card ul{list-style:none;font-size:13px;color:var(--ink-700);line-height:1.6;display:flex;flex-direction:column;gap:4px}
+/* Tax box */
+.tax-box{background:var(--cream-100);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:16px 0}
+.tax-box h3{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink-950);margin-bottom:10px}
+.tax-conditions{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tax-conditions li{font-size:13.5px;color:var(--ink-700);line-height:1.5;padding-left:18px;position:relative}
+.tax-conditions li::before{content:'▸';position:absolute;left:0;color:var(--teal-650);font-weight:700}
+.tax-disclaimer{font-size:12px;color:var(--ink-500);margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);line-height:1.6}
+/* Change badge */
+.change-badge{display:inline-flex;align-items:center;background:var(--mint-100);color:var(--teal-650);border:1px solid var(--border);font:700 10px/1 'Inter Tight';letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px}
+/* Divider label */
+.section-wrap{background:var(--cream-100);padding:32px 0}
+/* Footer */
+.preview-footer{background:var(--teal-950);padding:16px 24px;text-align:center}
+.preview-footer p{font-size:11.5px;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+
+<!-- CHROME -->
+<div class="app-chrome">
+  <div class="chrome-top">
+    <span class="chrome-logo">CoverCapy</span>
+    <div class="chrome-sep"></div>
+    <span class="chrome-label">Hub Pages Preview — June 2026</span>
+  </div>
+  <div class="chrome-tabs" role="tablist" style="justify-content:space-between">
+    <div style="display:flex;align-items:stretch;gap:0">
+    <button class="tab-btn active" data-tab="compare" role="tab">Compare Plans</button>
+    <button class="tab-btn" data-tab="hub" role="tab">Insurance Hub</button>
+    <button class="tab-btn" data-tab="glossary" role="tab">Glossary</button>
+    <button class="tab-btn" data-tab="between-jobs" role="tab">Between Jobs</button>
+    <button class="tab-btn" data-tab="self-employed" role="tab">Self-Employed</button>
+    <button class="tab-btn" data-tab="no-wait" role="tab">No Waiting Period</button>
+      <button class="tab-btn" data-tab="immediate" role="tab">Need Coverage Now</button>
+    </div>
+    <div style="display:flex;align-items:center;padding:0 4px;flex-shrink:0">
+      <div class="theme-switch" id="theme-switch" data-active="gold" role="switch" aria-checked="false" tabindex="0" aria-label="Switch Gold / Jade" style="height:26px">
+        <div class="ts-thumb" style="top:2px;left:2px;width:calc(50% - 4px);height:calc(100% - 4px)"></div>
+        <span class="ts-opt ts-gold" style="padding:3px 10px;font-size:9px"><span class="ts-dot"></span>Gold</span>
+        <span class="ts-opt ts-jade" style="padding:3px 10px;font-size:9px"><span class="ts-dot"></span>Jade</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="chrome-height"></div>
+
+<!-- PAGE 1: COMPARE -->
+<div class="page-panel active" id="tab-compare">
+  <div class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">&#10038; PPO Dental Insurance</span>
+      <h1>Compare PPO dental plans — <em>match coverage to your treatment.</em></h1>
+      <p class="hero-sub">Eight PPO plans compared side by side. Most people enroll in under 10 minutes. Tell us what's happening.</p>
+      <div class="chips-row">
+        <button class="chip active">Something hurts now</button>
+        <button class="chip">Just left a job</button>
+        <button class="chip">Big dental work coming</button>
+        <button class="chip">Comparing options</button>
+      </div>
+      <div class="hero-cta-row">
+        <a href="#" class="btn-primary-hero">See plans for my situation &#8594;</a>
+        <a href="#" class="btn-ghost-hero">Skip to full compare table</a>
+      </div>
+      <p class="hero-trust">8 plans &middot; 5,776 in-network dentists &middot; Free to use &middot; No broker</p>
+    </div>
+    <div class="urg-strip">
+      <div class="urg-card"><p class="urg-label">Need care now</p><p class="urg-text">UnitedHealthcare Primary activates tomorrow. Emergency covered day one.</p><a href="#" class="urg-link">See no-wait plans &#8594;</a></div>
+      <div class="urg-card"><p class="urg-label">Big work planned</p><p class="urg-text">Waiting period clock starts today. Enroll now, use by December.</p><a href="#" class="urg-link">See major coverage &#8594;</a></div>
+      <div class="urg-card"><p class="urg-label">Between jobs</p><p class="urg-text">COBRA window is 60 days. Individual PPOs cost less and activate faster.</p><a href="#" class="urg-link">See COBRA alternatives &#8594;</a></div>
+    </div>
+  </div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#" aria-current="page">Compare plans</a></li><li><a href="#">Glossary</a></li><li><a href="#">No waiting period</a></li><li><a href="#">Between jobs</a></li><li><a href="#">Self-employed</a></li><li><a href="#">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div class="section-wrap"><div class="wrap">
+    <!-- Reviewer bar -->
+    <div class="reviewer-bar"><div class="reviewer-inner"><div class="reviewer-avatar">SC</div><div><span class="reviewer-name">Plan data reviewed by <strong>Sarah Chen</strong>, licensed dental insurance consultant</span><span class="reviewer-date">Verified <time datetime="2026-06">June 2026</time> &middot; Updated quarterly &middot; <a href="#methodology" class="reviewer-link">How we rate plans</a></span></div></div></div>
+    <h2 style="font-family:var(--serif);font-size:24px;font-weight:500;color:var(--ink-950);margin-bottom:4px">Compare all PPO plans</h2>
+    <p style="font-size:14px;color:var(--ink-500);margin-bottom:20px">Eight individual PPO plans — annual max listed first.</p>
+    <p class="tier-hdr" style="border-top:none;padding-top:0">&#10038; Essentials</p>
+    <div class="plans-grid">
+      <div class="plan-card"><p class="plan-carrier">UnitedHealthcare <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">Primary Dental</p><p class="plan-price">~$30 <span>/mo</span></p><p class="plan-max">$1,000 annual max</p><span class="flag-now">Coverage: Tomorrow</span><a href="#" class="plan-cta">Activate plan</a></div>
+      <div class="plan-card"><p class="plan-carrier">Aetna <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">Dental Direct PPO</p><p class="plan-price">~$50 <span>/mo</span></p><p class="plan-max">$1,500 annual max</p><span class="flag-wait">Coverage: Jul 1</span><a href="#" class="plan-cta">Activate plan</a></div>
+    </div>
+    <p class="tier-hdr">&#10038; Full Coverage</p>
+    <div class="plans-grid">
+      <div class="plan-card"><p class="plan-carrier">Ameritas <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">PrimeStar Complete</p><p class="plan-price">~$60 <span>/mo</span></p><p class="plan-max">$2,000 annual max</p><span class="flag-now">Coverage: Tomorrow</span><a href="#" class="plan-cta">Activate plan</a></div>
+      <div class="plan-card"><p class="plan-carrier">Guardian <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">Premier 2.0</p><p class="plan-price">~$70 <span>/mo</span></p><p class="plan-max">$3,000 annual max</p><span class="flag-wait">Coverage: Jul 1</span><a href="#" class="plan-cta">Activate plan</a></div>
+      <div class="plan-card"><p class="plan-carrier">Delta Dental <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">PPO Premium</p><p class="plan-price">~$75 <span>/mo</span></p><p class="plan-max">$2,000 annual max</p><span class="flag-wait">Coverage: Jul 1 or 15</span><a href="#" class="plan-cta">Activate plan</a></div>
+      
+    </div>
+    <p class="tier-hdr">&#10038; Maximum Protection</p>
+    <div class="plans-grid">
+      <div class="plan-card"><p class="plan-carrier">Mutual of Omaha <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">TruAssure Complete</p><p class="plan-price">~$90 <span>/mo</span></p><p class="plan-max">$5,000 annual max</p><span class="flag-wait">Coverage: Jul 1</span><a href="#" class="plan-cta">Activate plan</a></div>
+      <div class="plan-card"><p class="plan-carrier">Humana <span class="plan-verified">&middot; Verified Jun 2026</span></p><p class="plan-name">Extend 5000</p><p class="plan-price">~$100 <span>/mo</span></p><p class="plan-max">$5,000 annual max + vision</p><span class="flag-now">Coverage: Within a week</span><a href="#" class="plan-cta">Activate plan</a></div>
+      <div class="plan-card" style="opacity:.72;border-style:dashed"><p class="plan-carrier">MetLife <span class="plan-verified">&middot; Under review</span></p><p class="plan-name">TakeAlong Dental</p><p class="plan-price" style="color:var(--ink-500)">TBD <span>/mo</span></p><p class="plan-max" style="color:var(--ink-500)">$1,000&ndash;$2,000 annual max</p><span style="display:inline-block;background:var(--cream-200);color:var(--ink-500);font:600 11px/1 &quot;Inter Tight&quot;;padding:4px 9px;border-radius:6px;margin-bottom:10px">&#9201; Under review</span><a href="#" class="plan-cta" style="background:var(--cream-200);color:var(--ink-500);cursor:default">Notify me when available</a></div>
+    </div>
+    <!-- Compare table with Coverage Active row -->
+    <h3 style="font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink-950);margin:28px 0 8px">Side-by-side — Annual max first, Coverage Active row</h3>
+    <table class="cmp-table">
+      <thead><tr><th class="row-label">Feature</th><th>UnitedHealthcare</th><th>Ameritas</th><th>Guardian</th><th>Delta Dental</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td class="row-label">Annual maximum</td><td><strong>$1,000</strong></td><td><strong>$2,000</strong></td><td><strong>$3,000</strong></td><td><strong>$2,000</strong></td></tr>
+        <tr><td class="row-label">Coverage active</td><td><span class="flag-now">Tomorrow</span></td><td><span class="flag-now">Tomorrow</span></td><td><span class="flag-wait">Jul 1</span></td><td><span class="flag-wait">Jul 1 or 15</span></td></tr>
+        <tr><td class="row-label">Monthly price</td><td>~$30/mo</td><td>~$60/mo</td><td>~$70/mo</td><td>~$75/mo</td></tr>
+        <tr><td class="row-label">Cleanings</td><td>100%, day one</td><td>100%, day one</td><td>100%, day one</td><td>100%, day one</td></tr>
+        <tr><td class="row-label">Fillings</td><td>80%, day one</td><td>80%, day one</td><td>85%, day one</td><td>80%, 6-mo wait</td></tr>
+        <tr><td class="row-label">Crowns</td><td>50%, 12-mo wait</td><td>50%, day one</td><td>50%, day one</td><td>50%, 12-mo wait</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+  <h3 style="font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink-950);padding:0 24px 8px;background:var(--cream-100);max-width:1080px;margin:0 auto">Pre-enrollment interstitial (new)</h3>
+  <div class="modal-overlay"><div class="modal-box"><p class="modal-eyebrow">Almost there</p><h3 class="modal-title">Opening Ameritas</h3><p class="modal-sub">Coverage starts: <strong>Tomorrow</strong>. Send you a confirmation?</p><input class="modal-input" type="email" placeholder="your@email.com"><button class="modal-btn">Send confirmation &amp; continue</button><a href="#" class="modal-skip">No thanks, continue to Ameritas</a></div></div>
+</div>
+
+<!-- PAGE 2: HUB INDEX -->
+<div class="page-panel" id="tab-hub">
+  <div class="hero"><div class="hero-inner">
+    <span class="eyebrow">&#10038; CoverCapy Resource Hub</span>
+    <h1>PPO dental insurance, <em>actually explained — 2026 guide.</em></h1>
+    <p class="hero-sub">Guides, glossary, and plan comparisons written for people with real dental situations.</p>
+    <div class="hero-cta-row"><a href="#" class="btn-primary-hero">Compare all 8 PPO plans &#8594;</a></div>
+    <p class="hero-trust">5,776 in-network dentists &middot; Plans from $30/mo &middot; No broker</p>
+  </div></div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#" aria-current="page">Hub home</a></li><li><a href="#">Compare plans</a></li><li><a href="#">Glossary</a></li><li><a href="#">No waiting period</a></li><li><a href="#">Between jobs</a></li><li><a href="#">Self-employed</a></li><li><a href="#">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div class="section-wrap"><div class="wrap">
+    <span class="change-badge">NEW PAGE</span>
+    <h2 style="font-family:var(--serif);font-size:26px;font-weight:500;color:var(--ink-950);margin-bottom:6px">Everything you need to compare and choose a PPO dental plan</h2>
+    <p style="font-size:15px;color:var(--ink-500);margin-bottom:24px">Six guides, a glossary, and a comparison table.</p>
+    <div class="hub-grid">
+      <a href="#" class="hub-card"><p class="hub-card-tag">Compare</p><h3 class="hub-card-title">Compare all 8 PPO plans side by side</h3><p class="hub-card-desc">Annual max, waiting periods, monthly cost, and activation date for every plan.</p></a>
+      <a href="#" class="hub-card"><p class="hub-card-tag">Reference</p><h3 class="hub-card-title">Dental insurance glossary</h3><p class="hub-card-desc">23 terms in plain language — annual maximum, coinsurance, waiting period, and more.</p></a>
+      <a href="#" class="hub-card"><p class="hub-card-tag">Situation guide</p><h3 class="hub-card-title">Dental insurance between jobs — fast COBRA alternative</h3><p class="hub-card-desc">COBRA vs. individual PPO dental insurance — timing, cost, COBRA election window — 63-day ERISA deadline.</p></a>
+      <a href="#" class="hub-card"><p class="hub-card-tag">Situation guide</p><h3 class="hub-card-title">Dental insurance for the self-employed</h3><p class="hub-card-desc">IRC 162(l) deduction rules, which plans qualify, how to maximize benefits.</p></a>
+      <a href="#" class="hub-card"><p class="hub-card-tag">Plan research</p><h3 class="hub-card-title">Plans with no waiting period</h3><p class="hub-card-desc">Procedure-tier breakdown. Who has no wait, what waits, and prior coverage waivers.</p></a>
+      <a href="#" class="hub-card"><p class="hub-card-tag">Urgency guide</p><h3 class="hub-card-title">Dental insurance that starts today — same-day PPO plans</h3><p class="hub-card-desc">Two plans activate tomorrow. What's covered day one, how to book immediately.</p></a>
+    </div>
+  </div></div>
+</div>
+
+<!-- PAGE 3: GLOSSARY -->
+<div class="page-panel" id="tab-glossary">
+  <div class="hero"><div class="hero-inner">
+    <span class="eyebrow">&#10038; Dental Insurance Hub</span>
+    <h1>Every dental insurance term <em>worth knowing — PPO glossary 2026.</em></h1>
+    <p class="hero-sub">23 terms. Plain language. No jargon.</p>
+    <div class="hero-cta-row"><a href="#" class="btn-primary-hero">Compare all PPO plans &#8594;</a></div>
+  </div></div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#">Compare plans</a></li><li><a href="#" aria-current="page">Glossary</a></li><li><a href="#">No waiting period</a></li><li><a href="#">Between jobs</a></li><li><a href="#">Self-employed</a></li><li><a href="#">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div style="background:var(--cream-100)"><div class="page-layout">
+    <div class="main-col">
+      <span class="change-badge">NEW PAGE + SIDEBAR — 23 terms</span>
+      <p style="font-size:14px;color:var(--ink-500);margin-bottom:20px;line-height:1.6">All 23 terms from the live page, in alphabetical order. Click "Why this matters" on any term to expand the practitioner note.</p>
+
+        <div class="term-entry" id="term-ada-fee">
+          <h3 class="term-h3">ADA fee schedule</h3>
+          <p class="term-def">The ADA fee schedule is a set of benchmark prices published annually by the American Dental Association based on what dentists across the country actually charge for each procedure code. PPO carriers use these benchmarks as a reference point when negotiating their own allowed amounts with in-network dentists. The survey results are broken down by region and percentile, so a carrier might pay at the 80th percentile in one city and the 70th in another. Your EOB will usually show the billed fee, the allowed amount, and the write-off between them.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Understanding the ADA schedule helps you decode the write-off column on your EOB. That contractual adjustment is money your in-network dentist agreed not to charge you. It is the financial benefit of staying in-network, made visible as a line item.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-allowed-amount" style="color:var(--teal-650)">Allowed amount</a>, <a href="#term-cdt" style="color:var(--teal-650)">CDT codes</a>, <a href="#term-in-network" style="color:var(--teal-650)">In-network dentist</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a></p>
+        </div>
+        <div class="term-entry" id="term-allowed-amount">
+          <h3 class="term-h3">Allowed amount</h3>
+          <p class="term-def">The allowed amount is the maximum fee your PPO carrier will recognize for a specific procedure, as negotiated with in-network providers. When you receive care from an in-network dentist, your coinsurance percentage is calculated on the allowed amount, not on the dentist's full billed charge. The difference between the billed amount and the allowed amount is written off entirely.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> The allowed amount is the number your actual bill is based on. Patients who compare plans on monthly premium alone often miss this. A plan with a slightly higher premium but a more generous allowed amount can save hundreds on a single crown.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a>, <a href="#term-in-network" style="color:var(--teal-650)">In-network dentist</a>, <a href="#term-ada-fee" style="color:var(--teal-650)">ADA fee schedule</a>, <a href="#term-balance-billing" style="color:var(--teal-650)">Balance billing</a></p>
+        </div>
+        <div class="term-entry" id="term-annual-maximum">
+          <h3 class="term-h3">Annual maximum</h3>
+          <p class="term-def">The annual maximum is the most your PPO plan will pay for covered dental services in a single plan year. Once you reach this limit, all further dental costs that year are 100 percent out of pocket, even for procedures the plan would otherwise cover. The cap resets at the start of the next plan year and does not roll over if unused.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Knowing your annual maximum helps you sequence expensive treatment across two plan years when possible. Scheduling a crown in December and the follow-up procedure in January effectively doubles the reimbursement available to you.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-deductible" style="color:var(--teal-650)">Deductible</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a>, <a href="#term-calendar-year" style="color:var(--teal-650)">Calendar year reset</a>, <a href="#term-plan-year" style="color:var(--teal-650)">Plan year</a></p>
+        </div>
+        <div class="term-entry" id="term-balance-billing">
+          <h3 class="term-h3">Balance billing</h3>
+          <p class="term-def">Balance billing happens when you receive care from an out-of-network dentist and they charge you the difference between their full fee and the amount your PPO plan is willing to pay. Unlike in-network providers, out-of-network dentists have not agreed to accept the carrier's allowed amount as payment in full, so the gap becomes your bill.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Balance billing is the most common source of unexpected dental bills. Calling a dentist and asking whether they "accept" your insurance is not sufficient. You must verify that they are contracted in-network with your specific PPO carrier before the procedure.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-in-network" style="color:var(--teal-650)">In-network dentist</a>, <a href="#term-allowed-amount" style="color:var(--teal-650)">Allowed amount</a>, <a href="#term-out-of-pocket" style="color:var(--teal-650)">Out of pocket</a>, <a href="#term-ppo" style="color:var(--teal-650)">PPO dental insurance</a></p>
+        </div>
+        <div class="term-entry" id="term-coverage-basic">
+          <h3 class="term-h3">Basic services</h3>
+          <p class="term-def">Basic dental services include procedures that repair existing damage: fillings, simple extractions, and basic periodontal scaling. Most PPO plans cover basic services at 80 percent of the allowed amount after your deductible. Some plans have a waiting period of three to six months before basic coverage activates, though several carriers, including UnitedHealthcare and Ameritas, activate basic services from day one.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Fillings are the most common adult dental need. Basic services coverage rates and waiting periods directly determine how much a new plan costs you in the first few months of enrollment, making them the most important tier to compare when you need work soon.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coverage-preventive" style="color:var(--teal-650)">Preventive care</a>, <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a>, <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a></p>
+        </div>
+        <div class="term-entry" id="term-calendar-year">
+          <h3 class="term-h3">Calendar year reset</h3>
+          <p class="term-def">A calendar year reset means your deductible, annual maximum, and frequency limits all start fresh on January 1, regardless of when you enrolled. Delta Dental, UnitedHealthcare, Aetna, and Mutual of Omaha operate on calendar years. If you enroll in October, you have only three months to use that year's benefits before everything resets.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Your reset date is the most underused tool in dental cost management. Patients who know their plan year end date make better decisions about sequencing crowns, root canals, and other expensive work across two calendar years to double the available reimbursement.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-plan-year" style="color:var(--teal-650)">Plan year</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-effective-date" style="color:var(--teal-650)">Effective date</a></p>
+        </div>
+        <div class="term-entry" id="term-cdt">
+          <h3 class="term-h3">CDT codes</h3>
+          <p class="term-def">CDT codes (Current Dental Terminology) are standardized five-digit billing codes beginning with the letter D that the American Dental Association publishes and updates annually. Every dental procedure has a CDT code, from D0120 (periodic exam) to D6010 (implant fixture). Insurance carriers apply the same reimbursement to the same code regardless of which in-network office performs the procedure.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> CDT codes make dental estimates portable. You can take a treatment plan from one office and get a competing estimate using the same codes, knowing your insurance pays the same amount at any contracted provider. It removes the mystery from dentist shopping.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-ada-fee" style="color:var(--teal-650)">ADA fee schedule</a>, <a href="#term-allowed-amount" style="color:var(--teal-650)">Allowed amount</a>, <a href="#term-in-network" style="color:var(--teal-650)">In-network dentist</a></p>
+        </div>
+        <div class="term-entry" id="term-coinsurance">
+          <h3 class="term-h3">Coinsurance</h3>
+          <p class="term-def">Coinsurance is the percentage of the allowed amount you pay for a covered dental procedure after the deductible. Standard PPO coinsurance tiers are 100 percent plan coverage on preventive care (you pay zero), 80 percent plan coverage on basic services (you pay 20 percent), and 50 percent plan coverage on major work (you pay 50 percent).</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Coinsurance is what insurance is actually worth on a procedure. A plan that looks affordable at $30 per month but pays only 20 percent on major work in Year 1 might cost you more out of pocket than a $75-per-month plan that covers 50 percent on the same crown.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-deductible" style="color:var(--teal-650)">Deductible</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-allowed-amount" style="color:var(--teal-650)">Allowed amount</a>, <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a></p>
+        </div>
+        <div class="term-entry" id="term-rating">
+          <h3 class="term-h3">CoverCapy rating</h3>
+          <p class="term-def">The CoverCapy rating is a 0-to-100 score calculated for each PPO plan using four equally weighted factors: coverage breadth across all tiers, annual maximum value, average waiting period across basic and major tiers, and value defined as coverage delivered per dollar of monthly premium. The score lets you compare plans on a consistent scale before reading the fine print.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> No carrier pays for a higher CoverCapy score. The algorithm runs identically across all plans. If two plans are close in score, the three-question match wizard on the compare page will separate them based on your specific treatment need and timing.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a>, <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-ppo" style="color:var(--teal-650)">PPO dental insurance</a></p>
+        </div>
+        <div class="term-entry" id="term-day-one">
+          <h3 class="term-h3">Day 1 activation</h3>
+          <p class="term-def">Day 1 activation means a coverage tier has zero waiting period and is usable starting on your effective date, the first day you are enrolled. Preventive care is almost universally day one across all PPO plans. A smaller number of plans extend day-one activation to basic services. Ameritas PrimeStar Complete goes further, covering major work including crowns from day one at 20 percent, which is rare in the individual PPO market.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Day-one activation on the tier that matches your treatment need is the single most important feature for patients who need care immediately. "Get cover today, see a dentist tomorrow" only holds if the tier covering your treatment has no waiting period on day one.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-effective-date" style="color:var(--teal-650)">Effective date</a>, <a href="#term-coverage-basic" style="color:var(--teal-650)">Basic services</a>, <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a></p>
+        </div>
+        <div class="term-entry" id="term-deductible">
+          <h3 class="term-h3">Deductible</h3>
+          <p class="term-def">A dental deductible is the fixed dollar amount you pay out of your own pocket on covered restorative services each plan year before your insurance begins sharing costs. Most individual PPO deductibles fall between $50 and $150 per person. Preventive care, including cleanings and exams, is typically exempt from the deductible, meaning you owe nothing out of pocket for those visits regardless of whether you have met it.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Patients often confuse the deductible with the total they will owe. It is actually the first layer of a three-layer cost structure: deductible, then coinsurance, then anything above the annual maximum. Knowing all three gives you the real number before treatment begins.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-out-of-pocket" style="color:var(--teal-650)">Out of pocket</a>, <a href="#term-coverage-basic" style="color:var(--teal-650)">Basic services</a></p>
+        </div>
+        <div class="term-entry" id="term-effective-date">
+          <h3 class="term-h3">Effective date</h3>
+          <p class="term-def">The effective date is the calendar day your dental insurance coverage officially begins. Any care received before this date is not covered, even if you enrolled and made a premium payment beforehand. Activation schedules vary widely by carrier. UnitedHealthcare, Ameritas, and Mutual of Omaha activate within one to three business days. Delta Dental activates on the 1st or 15th of the month. Guardian and Aetna activate on the 1st of the following month.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Effective dates determine when "Get cover today, see a dentist tomorrow" is literally true. Enrolling on a Monday with the right carrier can mean you are covered Wednesday. Enrolling with the wrong carrier can mean you wait five weeks. The difference is choosing a plan whose activation window fits your timeline.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-day-one" style="color:var(--teal-650)">Day 1 activation</a>, <a href="#term-calendar-year" style="color:var(--teal-650)">Calendar year reset</a></p>
+        </div>
+        <div class="term-entry" id="term-implants">
+          <h3 class="term-h3">Implants</h3>
+          <p class="term-def">A dental implant is a titanium post surgically placed into the jawbone to permanently replace a missing tooth. It is classified as a major dental procedure. PPO coverage for implants varies more than any other service category. Some plans exclude implants entirely. Others cover at 20 to 50 percent after a six-to-twelve month waiting period. Ameritas PrimeStar Complete covers implants at 20 percent from day one. Humana's coverage reaches 60 percent in Year 2.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Implants are one of the highest dental costs a patient faces. Plan selection for implant coverage requires checking three things: whether implants are covered at all, whether the missing tooth clause applies, and what the annual maximum is relative to the full treatment cost. Two or three plan years of benefits may be needed to fully fund a single implant.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a>, <a href="#term-missing-tooth" style="color:var(--teal-650)">Missing tooth clause</a>, <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a></p>
+        </div>
+        <div class="term-entry" id="term-in-network">
+          <h3 class="term-h3">In-network dentist</h3>
+          <p class="term-def">An in-network dentist is a licensed provider who has signed a contract with your PPO carrier agreeing to accept negotiated, reduced fees and to file insurance claims on your behalf. In-network status produces two concrete benefits: the dentist cannot charge you more than the allowed amount (no balance billing), and claim submission is handled automatically at the point of service.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> In-network status is the single largest lever for reducing out-of-pocket dental costs. A dentist who "takes your insurance" may still be out-of-network with your specific PPO product. Confirming in-network status before treatment protects you from balance billing.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-balance-billing" style="color:var(--teal-650)">Balance billing</a>, <a href="#term-allowed-amount" style="color:var(--teal-650)">Allowed amount</a>, <a href="#term-ppo" style="color:var(--teal-650)">PPO dental insurance</a>, <a href="#term-out-of-pocket" style="color:var(--teal-650)">Out of pocket</a></p>
+        </div>
+        <div class="term-entry" id="term-coverage-major">
+          <h3 class="term-h3">Major services</h3>
+          <p class="term-def">Major dental services include crowns, root canals, bridges, and dentures. They are the most expensive and least-covered tier in most PPO plans. Standard coverage is 50 percent of the allowed amount after both the deductible and the waiting period, which is typically six to twelve months on individual plans. Some carriers offer step-up coverage: Ameritas covers major at 50 percent from day one; Humana reaches 60 percent by Year 2.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Major services coverage rates determine your out-of-pocket on the most expensive dental work you will face. For anyone who needs a crown or root canal in the next six months, the waiting period is the controlling factor, not the premium.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coverage-basic" style="color:var(--teal-650)">Basic services</a>, <a href="#term-implants" style="color:var(--teal-650)">Implants</a>, <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a></p>
+        </div>
+        <div class="term-entry" id="term-missing-tooth">
+          <h3 class="term-h3">Missing tooth clause</h3>
+          <p class="term-def">A missing tooth clause is an exclusion that prevents a PPO plan from covering the replacement of a tooth that was already absent before your policy's effective date. If you lost a molar two years ago and enroll in a new plan today, many plans will deny implant or bridge coverage for that specific tooth, regardless of waiting periods or major service benefit levels. The clause is buried in the certificate of coverage, not the plan summary.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Patients who buy a PPO specifically for implant coverage on an existing gap frequently discover the clause after the fact. Getting a predetermination in writing before enrolling is the only reliable way to know whether a specific replacement procedure will be covered under a specific plan.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-implants" style="color:var(--teal-650)">Implants</a>, <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-effective-date" style="color:var(--teal-650)">Effective date</a>, <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a></p>
+        </div>
+        <div class="term-entry" id="term-out-of-pocket">
+          <h3 class="term-h3">Out of pocket</h3>
+          <p class="term-def">Your out-of-pocket dental cost is the total amount you personally pay after insurance benefits are applied. It is not the same as your premium, which you pay monthly whether or not you use any care. Out-of-pocket cost is composed of three layers: the deductible (your first dollars on covered restorative work), coinsurance (your percentage share of the allowed amount on each procedure), and any charges that exceed the annual maximum or fall entirely outside plan coverage.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Out-of-pocket cost is the number patients actually care about, and it is the number most difficult to find on a plan summary. Running the math before treatment, using real allowed amounts for your specific procedure and carrier, is the only way to avoid bill shock after the fact.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-deductible" style="color:var(--teal-650)">Deductible</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-balance-billing" style="color:var(--teal-650)">Balance billing</a></p>
+        </div>
+        <div class="term-entry" id="term-plan-year">
+          <h3 class="term-h3">Plan year</h3>
+          <p class="term-def">A plan year is a 12-month benefit cycle that resets on your enrollment anniversary rather than on January 1. Ameritas, Guardian, and Humana use plan-year structures for their individual PPO products. If you enrolled on June 15, your deductible and annual maximum refresh the following June 15, not on the coming January 1.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Patients who assume all dental plans reset on January 1 miss the planning window on plan-year policies. If your Ameritas policy resets in June and you need a crown, timing treatment just before and just after that date can give you access to two years of major service coverage.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-calendar-year" style="color:var(--teal-650)">Calendar year reset</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-effective-date" style="color:var(--teal-650)">Effective date</a></p>
+        </div>
+        <div class="term-entry" id="term-ppo">
+          <h3 class="term-h3">PPO dental insurance</h3>
+          <p class="term-def">A PPO (Preferred Provider Organization) dental plan gives you the freedom to visit any licensed dentist, with the lowest cost when you choose a provider who is contracted in-network with your carrier. In-network dentists have agreed to accept reduced, negotiated fees, which lowers your out-of-pocket cost and eliminates balance billing. You can visit out-of-network dentists but typically pay more.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> PPO is what most patients mean when they say "dental insurance." Understanding the PPO model, specifically the in-network discount mechanism, is the foundation for understanding every other term on this page. Every dollar you save by staying in-network is a direct result of the carrier's negotiated fee schedule.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-in-network" style="color:var(--teal-650)">In-network dentist</a>, <a href="#term-waiting-period" style="color:var(--teal-650)">Waiting period</a>, <a href="#term-annual-maximum" style="color:var(--teal-650)">Annual maximum</a>, <a href="#term-deductible" style="color:var(--teal-650)">Deductible</a></p>
+        </div>
+        <div class="term-entry" id="term-coverage-preventive">
+          <h3 class="term-h3">Preventive care</h3>
+          <p class="term-def">Preventive dental care includes routine cleanings (prophylaxis), periodic examinations, bite-wing and full-mouth X-rays, and oral cancer screenings. PPO plans almost universally cover preventive services at 100 percent with no deductible and no waiting period. Most plans allow two preventive cleanings per year, with some frequency limits measured by calendar date rather than calendar year.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Preventive care is the cheapest dental investment you can make, and under a PPO it is usually free at an in-network office. Patients who skip preventive visits to avoid cost end up paying far more in fillings and crowns. Every plan on CoverCapy covers preventive care at 100 percent with no waiting period.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coverage-basic" style="color:var(--teal-650)">Basic services</a>, <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a>, <a href="#term-in-network" style="color:var(--teal-650)">In-network dentist</a>, <a href="#term-deductible" style="color:var(--teal-650)">Deductible</a></p>
+        </div>
+        <div class="term-entry" id="term-vision">
+          <h3 class="term-h3">Vision add-on</h3>
+          <p class="term-def">A vision add-on bundles routine eye-exam and eyewear benefits with a dental PPO plan under a single monthly premium. Humana Extend includes vision in its base coverage. Most other PPO carriers offer vision as an optional rider at additional monthly cost, or through a separate standalone vision policy underwritten by a network like VSP or EyeMed.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> If you wear glasses or contacts, adding vision to a dental plan can beat buying a standalone vision policy, but only if the bundled network includes providers near you. The CoverCapy compare page shows which plans include vision and at what cost so you can run the math in one place.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-ppo" style="color:var(--teal-650)">PPO dental insurance</a>, <a href="#term-whitening" style="color:var(--teal-650)">Whitening</a>, <a href="#term-coinsurance" style="color:var(--teal-650)">Coinsurance</a></p>
+        </div>
+        <div class="term-entry" id="term-waiting-period">
+          <h3 class="term-h3">Waiting period</h3>
+          <p class="term-def">A dental insurance waiting period is the number of months between your coverage effective date and the date a given tier of treatment becomes eligible for reimbursement. Preventive care has no waiting period on virtually every PPO plan. Basic services such as fillings typically have a zero-to-six month wait. Major work such as crowns and root canals typically requires six to twelve months of prior enrollment before coverage activates.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> A waiting period is the difference between a plan that helps you today and a plan that helps you in six months. If you have a cracked tooth and need a crown this week, no amount of generous coinsurance matters if major coverage does not activate for 180 days.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-effective-date" style="color:var(--teal-650)">Effective date</a>, <a href="#term-day-one" style="color:var(--teal-650)">Day 1 activation</a>, <a href="#term-coverage-major" style="color:var(--teal-650)">Major services</a>, <a href="#term-coverage-basic" style="color:var(--teal-650)">Basic services</a></p>
+        </div>
+        <div class="term-entry" id="term-whitening">
+          <h3 class="term-h3">Whitening</h3>
+          <p class="term-def">Teeth whitening is a cosmetic procedure and is excluded from coverage by most PPO dental plans. Carriers classify it as elective because it improves appearance rather than treating disease or restoring function. Guardian is notable for including a whitening benefit in its base coverage. Humana provides an annual cosmetic allowance that can be applied toward whitening.</p>
+          <details class="term-details"><summary>Why this matters</summary><p class="term-why"><b>Why it matters:</b> Whitening coverage is plan-specific and rare enough that most patients overlook it. If aesthetic treatment is part of your dental goals, it meaningfully narrows your plan options and can shift the premium comparison in favor of plans that include it.</p></details>
+          <p style="font-size:12px;color:var(--ink-500);margin-top:8px">Related: <a href="#term-coverage-preventive" style="color:var(--teal-650)">Preventive care</a>, <a href="#term-vision" style="color:var(--teal-650)">Vision add-on</a>, <a href="#term-ppo" style="color:var(--teal-650)">PPO dental insurance</a></p>
+        </div>
+    </div>
+    <aside class="sidebar-col">
+      <div class="sb-cta-block"><span class="sb-cta-eyebrow">Independent review</span><h3 class="sb-cta-headline">Compare plans <em>side by side</em></h3><a href="#" class="sb-cta-btn">Compare all PPO plans</a><span class="sb-cta-sub">No broker. No spam. Free.</span></div>
+      <div class="sb-widget"><p class="sb-widget-title">All 23 terms</p><ul class="sb-list"><li><a href="#term-ada-fee">ADA fee schedule</a></li><li><a href="#term-allowed-amount">Allowed amount</a></li><li><a href="#term-annual-maximum">Annual maximum</a></li><li><a href="#term-balance-billing">Balance billing</a></li><li><a href="#term-coverage-basic">Basic services</a></li><li><a href="#term-calendar-year">Calendar year reset</a></li><li><a href="#term-cdt">CDT codes</a></li><li><a href="#term-coinsurance">Coinsurance</a></li><li><a href="#term-rating">CoverCapy rating</a></li><li><a href="#term-day-one">Day 1 activation</a></li><li><a href="#term-deductible">Deductible</a></li><li><a href="#term-effective-date">Effective date</a></li><li><a href="#term-implants">Implants</a></li><li><a href="#term-in-network">In-network dentist</a></li><li><a href="#term-coverage-major">Major services</a></li><li><a href="#term-missing-tooth">Missing tooth clause</a></li><li><a href="#term-out-of-pocket">Out of pocket</a></li><li><a href="#term-plan-year">Plan year</a></li><li><a href="#term-ppo">PPO dental insurance</a></li><li><a href="#term-coverage-preventive">Preventive care</a></li><li><a href="#term-vision">Vision add-on</a></li><li><a href="#term-waiting-period">Waiting period</a></li><li><a href="#term-whitening">Whitening</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Related guides</p><ul class="sb-list"><li><a href="#">Plans with no waiting period</a></li><li><a href="#">Coverage between jobs</a></li><li><a href="#">Dental for self-employed</a></li><li><a href="#">Need coverage today</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Page info</p><p class="sb-page-info">Last reviewed: <strong>June 2026</strong><br>Sources: ADA, carrier plan documents<br>Conflicts: None</p></div>
+      <a href="#" class="sb-ghost-btn">Find a PPO dentist near you</a>
+    </aside>
+  </div></div>
+</div>
+
+<!-- PAGE 4: BETWEEN JOBS -->
+<div class="page-panel" id="tab-between-jobs">
+  <div class="hero"><div class="hero-inner">
+    <span class="eyebrow">&#10038; Situation Guide</span>
+    <h1>Dental insurance between jobs — <em>replace COBRA fast.</em></h1>
+    <p class="hero-sub">COBRA or individual PPO? Depends on how quickly you need care and how much you want to spend.</p>
+    <div class="hero-cta-row"><a href="#" class="btn-primary-hero">See individual PPO plans &#8594;</a><a href="#" class="btn-ghost-hero">How long do I have to decide?</a></div>
+  </div></div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#">Compare plans</a></li><li><a href="#">Glossary</a></li><li><a href="#">No waiting period</a></li><li><a href="#" aria-current="page">Between jobs</a></li><li><a href="#">Self-employed</a></li><li><a href="#">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div style="background:var(--cream-100)"><div class="page-layout">
+    <div class="main-col">
+      <span class="change-badge">NEW PAGE + COBRA ACCURACY FIX</span>
+      <p class="article-lede">You generally have 60 days to elect COBRA coverage, measured from the later of the date coverage was lost or the date you received the election notice. After that window, COBRA is no longer an option.</p>
+      <h2 class="article-h2">COBRA vs individual PPO</h2>
+      <div class="cobra-grid">
+        <div class="cc-card"><p class="cc-card-label">COBRA</p><h4>Same coverage, full price</h4><ul><li>Same plan, same network</li><li>You pay 100% + 2% admin</li><li>Typically $250&ndash;$600/mo</li><li>Retroactive if elected in window</li><li>No new waiting periods</li></ul></div>
+        <div class="cc-card rec"><p class="cc-card-label" style="color:var(--mint-500)">Individual PPO</p><h4>New plan, lower cost</h4><ul><li>New plan — some waits may apply</li><li>$30&ndash;$100/mo</li><li>UnitedHealthcare and Ameritas: no wait on basics</li><li>Saves $150&ndash;$500/mo vs COBRA</li><li>Best if no major work immediately</li></ul></div>
+      </div>
+      <div class="info-box">COBRA makes sense only if: you need a crown or root canal within 3 months and you've already served waiting periods on your previous plan. For everyone else, individual PPO is almost always cheaper.</div>
+      <h2 class="article-h2" style="margin-top:20px">ERISA election window</h2>
+      <p class="article-p">Under ERISA, you have 60 days to elect COBRA measured from the <em>later</em> of the date your coverage was lost or the date you received your election notice. The notice can arrive weeks after your last day — the clock doesn't start until it's received.</p>
+      <div class="warn-box"><strong>Corrected:</strong> Prior version stated window starts from "last day of employment." ERISA measures from later of coverage loss or notice receipt. Source: ERISA §606.</div>
+      <details class="faq"><summary>Can I get dental coverage immediately after losing my job?</summary><p class="fbody">Yes. COBRA is retroactive if elected within the 60-day window. For individual PPO, UnitedHealthcare Primary and Ameritas PrimeStar both activate the next business day — no waiting period on preventive and basic care.</p></details>
+    </div>
+    <aside class="sidebar-col">
+      <div class="sb-cta-block"><span class="sb-cta-eyebrow">Coverage in 24 hours</span><h3 class="sb-cta-headline">Get covered <em>this week</em></h3><a href="#" class="sb-cta-btn">See all plans &#8594;</a><span class="sb-cta-sub">No broker. Plans from $30/mo.</span></div>
+      <div class="sb-widget"><p class="sb-widget-title">On this page</p><ul class="sb-list"><li><a href="#">COBRA vs individual PPO</a></li><li><a href="#">ERISA 60-day window</a></li><li><a href="#">What's covered immediately</a></li><li><a href="#">Which plan to choose</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Related</p><ul class="sb-list"><li><a href="#">Plans with no waiting period</a></li><li><a href="#">Need coverage today</a></li><li><a href="#">Compare all 8 PPO plans</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Page info</p><p class="sb-page-info">Last reviewed: <strong>June 2026</strong><br>Sources: ERISA §606, DOL guidance<br>Corrected: COBRA election window definition</p></div>
+      <a href="#" class="sb-ghost-btn">Find a PPO dentist near you</a>
+    </aside>
+  </div></div>
+</div>
+
+<!-- PAGE 5: SELF-EMPLOYED -->
+<div class="page-panel" id="tab-self-employed">
+  <div class="hero"><div class="hero-inner">
+    <span class="eyebrow">&#10038; Situation Guide</span>
+    <h1>Individual PPO dental insurance <em>for the self-employed.</em></h1>
+    <p class="hero-sub">Deduct your premium. Choose your dentist. No group plan required. Here's how it actually works.</p>
+    <div class="hero-cta-row"><a href="#" class="btn-primary-hero">Find my plan &#8594;</a></div>
+  </div></div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#">Compare plans</a></li><li><a href="#">Glossary</a></li><li><a href="#">No waiting period</a></li><li><a href="#">Between jobs</a></li><li><a href="#" aria-current="page">Self-employed</a></li><li><a href="#">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div style="background:var(--cream-100)"><div class="page-layout">
+    <div class="main-col">
+      <span class="change-badge">NEW PAGE + TAX ACCURACY FIXES</span>
+      <p class="article-lede">If you're self-employed, you may be able to deduct dental insurance premiums under IRC 162(l) — but several conditions apply. Here's the actual rule, not the simplified version.</p>
+      <h2 class="article-h2">IRC 162(l) self-employed dental deduction — full eligibility conditions</h2>
+      <div class="tax-box">
+        <h3>You can deduct dental premiums if all of these are true:</h3>
+        <ul class="tax-conditions">
+          <li>You're a sole proprietor, S-corp shareholder (2%+), or eligible partner</li>
+          <li>Neither you nor your spouse is eligible for employer-sponsored dental coverage</li>
+          <li>The deduction cannot exceed your net self-employment income for the year</li>
+          <li>You claim it on Form 7206, not Schedule A (above-the-line deduction)</li>
+        </ul>
+        <p class="tax-disclaimer">This summarizes IRC 162(l). Tax situations vary. Consult a CPA before claiming. CoverCapy is not a tax advisor.</p>
+      </div>
+      <div class="warn-box"><strong>Corrected:</strong> Prior version stated "deduct 100% of premiums" without qualification. The employer-plan disqualifier and earned-income cap affect many self-employed people. Updated to match IRS Form 7206 instructions.</div>
+      <details class="faq"><summary>Can I deduct dental if my spouse has employer dental?</summary><p class="fbody">No. IRC 162(l) requires that neither you nor your spouse is eligible for employer-sponsored coverage — even if your spouse didn't enroll. This is one of the most commonly misunderstood parts of the rule. Confirm with your CPA.</p></details>
+    </div>
+    <aside class="sidebar-col">
+      <div class="sb-cta-block"><span class="sb-cta-eyebrow">No group plan needed</span><h3 class="sb-cta-headline">Find your <em>individual PPO plan</em></h3><a href="#" class="sb-cta-btn">Compare plans &#8594;</a><span class="sb-cta-sub">Plans from $30/mo. No employer required.</span></div>
+      <div class="sb-widget"><p class="sb-widget-title">On this page</p><ul class="sb-list"><li><a href="#">IRC 162(l) deduction rules</a></li><li><a href="#">Employer-plan disqualifier</a></li><li><a href="#">Best plans for self-employed</a></li><li><a href="#">How to enroll</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Page info</p><p class="sb-page-info">Last reviewed: <strong>June 2026</strong><br>Sources: IRC 162(l), IRS Form 7206<br>Corrected: removed "100%" absolute language</p></div>
+      <a href="#" class="sb-ghost-btn">Find a PPO dentist near you</a>
+    </aside>
+  </div></div>
+</div>
+
+<!-- PAGE 6: NO WAITING PERIOD -->
+<div class="page-panel" id="tab-no-wait">
+  <div class="hero"><div class="hero-inner">
+    <span class="eyebrow">&#10038; Plan Research</span>
+    <h1>Which PPO dental plans have <em>no waiting period</em> — and for which procedures?</h1>
+    <p class="hero-sub">A plan-by-plan breakdown for people planning ahead. Not in a rush? <a href="#" style="color:var(--mint-500)">This is your guide.</a> Need care tomorrow? <a href="#" style="color:var(--mint-500)">See the urgency guide instead.</a></p>
+    <div class="hero-cta-row"><a href="#" class="btn-primary-hero">Compare plans by waiting period &#8594;</a></div>
+  </div></div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#">Compare plans</a></li><li><a href="#">Glossary</a></li><li><a href="#" aria-current="page">No waiting period</a></li><li><a href="#">Between jobs</a></li><li><a href="#">Self-employed</a></li><li><a href="#">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div style="background:var(--cream-100)"><div class="page-layout">
+    <div class="main-col">
+      <span class="change-badge">NEW PAGE + DIFFERENTIATED FROM IMMEDIATE</span>
+      <p class="article-lede">Most PPO plans have some waiting period. But the clock starts on enrollment, not when you need the treatment. Enrolling today and scheduling work for later is almost always the smart move.</p>
+      <h2 class="article-h2">Dental insurance waiting periods by procedure tier: preventive, basic, and major</h2>
+      <table class="proc-table">
+        <thead><tr><th>Procedure tier</th><th>No wait</th><th>6-month wait</th><th>12-month wait</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Preventive</strong> (cleanings, X-rays)</td><td class="proc-now">All 8 plans</td><td>&mdash;</td><td>&mdash;</td></tr>
+          <tr><td><strong>Basic</strong> (fillings, extractions)</td><td class="proc-now">Ameritas, UnitedHealthcare</td><td class="proc-wait">Delta, Guardian, Aetna</td><td>&mdash;</td></tr>
+          <tr><td><strong>Major</strong> (crowns, root canals)</td><td class="proc-now">Ameritas only</td><td>&mdash;</td><td class="proc-wait">Most others</td></tr>
+          <tr><td><strong>Orthodontics</strong></td><td>&mdash;</td><td>&mdash;</td><td class="proc-wait">All 8 plans</td></tr>
+        </tbody>
+      </table>
+      <h2 class="article-h2">Prior coverage waiver — how existing insurance waives waiting periods</h2>
+      <p class="article-p">Some carriers waive waiting periods if you had continuous dental coverage within the last 63 days. If you recently lost employer dental, ask about a prior coverage waiver before enrolling — it can eliminate 6&ndash;12 months of waiting time.</p>
+      <div class="info-box">The 63-day rule tracks HIPAA creditable coverage provisions. Most carriers that offer waivers require a termination letter or benefits summary from your previous plan.</div>
+      <p style="font-size:14px;color:var(--ink-500);margin-top:12px">Have a toothache and need care tomorrow? <a href="#" style="color:var(--teal-650)">See our urgency guide &#8594;</a></p>
+    </div>
+    <aside class="sidebar-col">
+      <div class="sb-cta-block"><span class="sb-cta-eyebrow">Start the clock today</span><h3 class="sb-cta-headline">See no-wait plans <em>by procedure</em></h3><a href="#" class="sb-cta-btn">Compare no-wait plans &#8594;</a><span class="sb-cta-sub">Plans from $30/mo. No broker.</span></div>
+      <div class="sb-widget"><p class="sb-widget-title">On this page</p><ul class="sb-list"><li><a href="#">Wait times by tier</a></li><li><a href="#">Plans with no major wait</a></li><li><a href="#">Prior coverage waiver</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Related</p><ul class="sb-list"><li><a href="#">Already enrolled? What's covered today</a></li><li><a href="#">What is a waiting period?</a></li><li><a href="#">Compare all 8 PPO plans</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Page info</p><p class="sb-page-info">Last reviewed: <strong>June 2026</strong><br>Sources: Carrier plan documents<br>Intent: researcher / planner</p></div>
+      <a href="#" class="sb-ghost-btn">Find a PPO dentist near you</a>
+    </aside>
+  </div></div>
+</div>
+
+<!-- PAGE 7: IMMEDIATE COVERAGE -->
+<div class="page-panel" id="tab-immediate">
+  <div class="hero"><div class="hero-inner">
+    <span class="eyebrow">&#10038; Urgency Guide</span>
+    <h1>Dental insurance that <em>starts today.</em></h1>
+    <p class="hero-sub">Yes &mdash; two PPO plans can activate as early as the next business day. Here's what's covered, what isn't, and how to book immediately.</p>
+    <div class="hero-cta-row"><a href="#" class="btn-primary-hero">Start coverage today &#8594;</a><a href="#" class="btn-ghost-hero">Find a dentist open now</a></div>
+    <p class="hero-trust">UnitedHealthcare Primary &middot; Ameritas PrimeStar &middot; Both activate next business day</p>
+  </div></div>
+  <div class="di-hub"><div class="di-hub-inner"><span class="di-hub-label"><span class="sp">&#10038;</span> Dental Insurance Hub</span><ul class="di-hub-links"><li><a href="#">Compare plans</a></li><li><a href="#">Glossary</a></li><li><a href="#">No waiting period</a></li><li><a href="#">Between jobs</a></li><li><a href="#">Self-employed</a></li><li><a href="#" aria-current="page">Need coverage now</a></li><li><a href="#" class="cta-chip">Find a dentist &#8594;</a></li></ul></div></div>
+  <div style="background:var(--cream-100)"><div class="page-layout">
+    <div class="main-col">
+      <span class="change-badge">NEW PAGE + URGENCY-FIRST INTENT</span>
+      <h2 class="article-h2">The two fastest-activating PPO dental plans in 2026</h2>
+      <table class="proc-table">
+        <thead><tr><th>Plan</th><th>Coverage starts</th><th>Monthly cost</th><th>Annual max</th></tr></thead>
+        <tbody>
+          <tr><td><strong>UnitedHealthcare Primary Dental</strong></td><td class="proc-now">Next business day</td><td>~$30/mo</td><td>$1,000</td></tr>
+          <tr><td><strong>Ameritas PrimeStar</strong></td><td class="proc-now">Next business day</td><td>~$60/mo</td><td>$2,000</td></tr>
+          <tr><td>Delta Dental PPO</td><td class="proc-wait">1st or 15th of month</td><td>~$75/mo</td><td>$2,000</td></tr>
+          <tr><td>Guardian Premier</td><td class="proc-wait">Jul 1</td><td>~$70/mo</td><td>$3,000</td></tr>
+        </tbody>
+      </table>
+      <h2 class="article-h2" style="margin-top:8px">What dental procedures are covered on day one of your plan</h2>
+      <div class="info-box"><strong>Covered immediately:</strong> Emergency exams &middot; Diagnostic X-rays &middot; Simple extractions &middot; Preventive cleanings<br><br><strong>What waits:</strong> Fillings (no wait on UnitedHealthcare/Ameritas) &middot; Crowns (12-mo wait UnitedHealthcare, day one Ameritas) &middot; Root canals (check plan) &middot; Implants (typically not covered)</div>
+      <p class="article-p">Ameritas PrimeStar is the stronger choice if you need a filling or crown — no waiting period on basic and major. UnitedHealthcare is better if you need lowest cost and just need emergency exam coverage now.</p>
+      <p style="font-size:14px;color:var(--ink-500);margin-top:4px">Planning ahead, not urgent? <a href="#" style="color:var(--teal-650)">See the no-waiting-period research guide &#8594;</a></p>
+      <details class="faq" style="margin-top:16px"><summary>Can I enroll and see a dentist the same day?</summary><p class="fbody">Coverage activates the next business day, not same-day. Enroll Monday, see a dentist Tuesday. Enroll Friday, coverage starts Monday. Call CoverCapy's concierge line to find an in-network office with same-week availability.</p></details>
+      <details class="faq"><summary>Is emergency dental covered from day one?</summary><p class="fbody">Yes, on both UnitedHealthcare Primary and Ameritas PrimeStar. Emergency exams and diagnostic X-rays have no waiting period. Simple extractions are also covered immediately. More complex work (crowns, root canals) depends on the plan.</p></details>
+    </div>
+    <aside class="sidebar-col">
+      <div class="sb-cta-block"><span class="sb-cta-eyebrow">Activate by tomorrow</span><h3 class="sb-cta-headline">Start coverage <em>today</em></h3><a href="#" class="sb-cta-btn">See the two fastest plans &#8594;</a><span class="sb-cta-sub">Next business day &middot; No broker.</span></div>
+      <div class="sb-widget"><p class="sb-widget-title">On this page</p><ul class="sb-list"><li><a href="#">The two fastest plans</a></li><li><a href="#">What's covered day one</a></li><li><a href="#">How to book immediately</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Related</p><ul class="sb-list"><li><a href="#">Which plans have no waiting period</a></li><li><a href="#">Dental between jobs</a></li><li><a href="#">Compare all 8 plans</a></li></ul></div>
+      <div class="sb-widget"><p class="sb-widget-title">Page info</p><p class="sb-page-info">Last reviewed: <strong>June 2026</strong><br>Sources: UnitedHealthcare, Ameritas carrier docs<br>Intent: urgent / in pain</p></div>
+      <a href="#" class="sb-ghost-btn">Find a dentist open now</a>
+    </aside>
+  </div></div>
+</div>
+
+<div class="preview-footer"><p>CoverCapy &middot; Hub Pages Preview &middot; June 2026 &middot; 5 new pages + 2 major updates &middot; covercapy.com</p></div>
+
+<script>
+(function(){
+  var ts = document.getElementById('theme-switch');
+  var html = document.documentElement;
+  var styleTag = document.createElement('style');
+  document.head.appendChild(styleTag);
+
+  function applyTheme(t, slow) {
+    html.classList.add('theme-switching');
+    if(slow) styleTag.textContent='html.theme-switching,html.theme-switching *{transition:background-color 1.2s,color 1.2s,border-color 1.2s,fill 1.2s,stroke 1.2s!important}';
+    html.setAttribute('data-theme', t);
+    ts.setAttribute('data-active', t);
+    ts.setAttribute('aria-checked', t==='jade'?'true':'false');
+    setTimeout(function(){ html.classList.remove('theme-switching'); styleTag.textContent=''; }, slow ? 1600 : 600);
+  }
+
+  ts.addEventListener('click', function(){
+    applyTheme(html.getAttribute('data-theme')==='gold' ? 'jade' : 'gold', false);
+  });
+  ts.addEventListener('keydown', function(e){
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); ts.click(); }
+  });
+
+  // Auto gold -> jade on load (same timing as T5)
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      ts.classList.add('flipping');
+      applyTheme('jade', true);
+      setTimeout(function(){ ts.classList.remove('flipping'); }, 2000);
+    }, 900);
+  });
+
+  // Tab navigation
+  document.querySelectorAll('.tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.page-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      var panel = document.getElementById('tab-' + btn.getAttribute('data-tab'));
+      if(panel){ panel.classList.add('active'); window.scrollTo(0,0); }
+    });
+  });
+
+  // Situation chips
+  document.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

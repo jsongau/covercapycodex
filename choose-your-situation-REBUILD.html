@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choose Your Situation — REBUILD preview | CoverCapy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CoverCapy — Choose Your Situation, rebuilt.
+   Palette + components matched to the LIVE index.html tokens
+   (coral primary, blue key-attrs, mint = go, ink-slab pills,
+   flat 1px card borders, 4px radius). No gradients, no
+   glassmorphism, no em-dashes. Plan facts trace to /data/plans/.
+   ============================================================ */
+:root{
+  --ink:#14181C; --teal:#06222B; --paper:#FBF7EF; --paper-2:#F3ECDD; --white:#FFFFFF;
+  --coral:#C44A3F; --coral-dark:#A93B32; --coral-ink:#7A2A1E;
+  --mint:#137A5B; --mint-soft:#E2F1EA; --blue:#2F5AD0; --blue-ink:#15356F;
+  --gold:#A37B3C; --line:#E2DACB; --line-2:#D2C9B6; --line-dark:#1E3A43;
+  --muted:#6A6354; --muted-2:#6A6354;
+  --maxw:1180px; --gutter:22px; --radius:4px;
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  --serif:"Fraunces","Tiempos Headline","GT Sectra",Georgia,serif;
+  --sans:"Inter Tight",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;font-optical-sizing:auto}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+.section{padding:76px 0;border-top:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+
+/* ---- editorial heading (matches live .eyebrow / .s-head) ---- */
+.s-head{max-width:46ch;margin-bottom:44px}
+.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 var(--s-4);font-weight:600;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--line-2)}
+.s-head h2{font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.06;margin:0 0 16px}
+.s-head .intro{font-size:1.08rem;color:var(--muted);max-width:54ch;margin:0;line-height:1.5}
+
+/* ---- 2-col layout: left = situation menu + matters, right = plan card ---- */
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:8px}
+@media(max-width:880px){.plan-grid{grid-template-columns:1fr;gap:30px}}
+.left-col{display:flex;flex-direction:column;gap:30px}
+
+/* ---- situation picker as vertical editorial cards ---- */
+.needpick{display:flex;flex-direction:column;gap:10px;margin:0}
+.needpick button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;
+  text-align:left;background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);
+  padding:15px 18px;cursor:pointer;font-family:var(--sans);
+  transition:background-color .15s,border-color .15s,box-shadow .15s}
+.needpick button:hover{border-color:var(--ink)}
+.needpick button[aria-pressed="true"]{background:var(--paper-2);border-color:var(--line-2);
+  box-shadow:inset 3px 0 0 var(--coral)}
+.np-name{display:block;font-family:var(--serif);font-weight:500;font-size:1.18rem;line-height:1.18;color:var(--ink)}
+.np-sub{display:block;font-size:.85rem;color:var(--muted);margin-top:3px}
+.np-mark{flex:none;width:8px;height:8px;border-right:2px solid var(--line-2);border-top:2px solid var(--line-2);
+  transform:rotate(45deg);transition:border-color .15s}
+.needpick button[aria-pressed="true"] .np-mark{border-color:var(--coral)}
+
+/* left rail: what matters */
+.matters .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);
+  margin:0 0 16px}
+.matters h3{font-size:1.5rem;line-height:1.15;margin:0 0 var(--s-4);color:var(--ink);
+  min-height:2.3em;transition:opacity .2s ease}
+.matters .matters-sub{color:var(--muted);font-size:1.0rem;margin:0 0 var(--s-5);max-width:44ch;
+  line-height:1.55;transition:opacity .2s ease}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 var(--s-5)}
+.chip{font-size:.9rem;border:1px solid var(--line);padding:10px 14px;color:var(--muted);background:var(--white)}
+.chip.key{border-color:var(--blue);color:var(--blue-ink);font-weight:600}
+.matters .why{font-size:.9rem;color:var(--muted-2);max-width:46ch;margin:0;line-height:1.5}
+
+/* right: the matched plan plate (matches live .plate: flat 1px border) */
+.plate{background:var(--white);border:1px solid var(--line-2);overflow:hidden}
+.plate .toprule{height:3px;background:var(--coral)}
+.plate.is-urgent .toprule{background:var(--mint)}
+.plate-inner{padding:26px 24px 24px}
+@media(max-width:480px){.plate-inner{padding:22px 18px}}
+.plate-eyebrow{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  color:var(--muted-2);margin:0 0 10px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:14px}
+.badge.go{background:var(--mint-soft);color:var(--mint);border:1px solid #C9E5D9}
+.badge.plan{background:var(--paper-2);color:var(--coral-ink);border:1px solid #E4D8BF}
+.badge.net{background:var(--paper-2);color:var(--teal);border:1px solid #D7CEBA}
+.plate-name{font-family:var(--serif);font-weight:500;font-size:1.85rem;line-height:1.06;
+  margin:0 0 4px;color:var(--ink)}
+.plate-price{font-size:.94rem;color:var(--muted);margin:0 0 var(--s-5)}
+.plate-price b{color:var(--ink);font-weight:600}
+.plate-rows{list-style:none;margin:0 0 var(--s-5);padding:0;border-top:1px solid var(--line)}
+.plate-rows li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;
+  border-bottom:1px solid var(--line);font-size:.94rem}
+.plate-rows li span:first-child{color:var(--muted)}
+.plate-rows li span:last-child{color:var(--ink);font-weight:600;text-align:right;max-width:60%;
+  font-variant-numeric:tabular-nums}
+.plate-fit{font-size:.96rem;line-height:1.55;color:var(--ink);background:var(--paper-2);
+  padding:15px 17px;margin:0 0 var(--s-5)}
+.plate-fit b{color:var(--ink)}
+.plate-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:14px 26px;
+  border-radius:var(--radius);font:600 1rem var(--sans);text-decoration:none;cursor:pointer;
+  border:1px solid transparent;transition:background-color .18s ease}
+.btn-primary{background:var(--coral);color:#fff;align-self:stretch}
+.btn-primary:hover{background:var(--coral-dark)}
+.tlink{font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--coral);
+  padding-bottom:2px;font-size:.94rem}
+.tlink:hover{border-bottom-color:var(--ink)}
+.concierge-note{display:flex;gap:9px;align-items:flex-start;font-size:.84rem;color:var(--muted-2);
+  margin:16px 0 0;line-height:1.45}
+.concierge-note svg{flex:none;margin-top:1px}
+.plate.is-action .plate-name{font-size:1.6rem}
+
+/* carrier rail (matches live .carrier-chips pills) */
+.carrier-rail{margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
+.carrier-rail .label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 16px}
+.carrier-chips{display:flex;flex-wrap:wrap;gap:8px}
+.carrier-chips a{font-size:.9rem;color:var(--ink);border:1px solid var(--line-2);border-radius:999px;
+  padding:8px 16px;text-decoration:none;transition:border-color .2s ease,color .2s ease}
+.carrier-chips a:hover{border-color:var(--ink)}
+
+.fade{animation:fade .26s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pv-note{max-width:var(--maxw);margin:24px auto 40px;padding:0 var(--gutter);font-size:.82rem;color:var(--muted-2)}
+</style>
+</head>
+<body>
+
+<section class="section" id="insurance" aria-labelledby="plan-h2">
+  <div class="wrap">
+    <div class="s-head">
+      <p class="eyebrow">Find the right plan</p>
+      <h2 id="plan-h2">The right plan depends on what you are facing.</h2>
+      <p class="intro">Implants next month read differently than a checkup, and a cracked tooth tonight reads differently than both. Tell us the situation. We surface the plan that actually fits, then help you verify the dentist of your choosing accepts it before you commit.</p>
+    </div>
+
+    <div class="plan-grid">
+      <!-- LEFT: situation menu + what matters -->
+      <div class="left-col">
+      <div class="needpick" role="tablist" aria-label="Choose your situation">
+        <button type="button" role="tab" data-need="preventive" aria-pressed="true"><span class="np-txt"><span class="np-name">Preventive care</span><span class="np-sub">Cleanings and exams, lowest cost</span></span><span class="np-mark" aria-hidden="true"></span></button>
+        <button type="button" role="tab" data-need="soon" aria-pressed="false"><span class="np-txt"><span class="np-name">Care can't wait</span><span class="np-sub">Treatment you need now, no waiting period</span></span><span class="np-mark" aria-hidden="true"></span></button>
+        <button type="button" role="tab" data-need="family" aria-pressed="false"><span class="np-txt"><span class="np-name">Family coverage</span><span class="np-sub">One plan for the whole household</span></span><span class="np-mark" aria-hidden="true"></span></button>
+        <button type="button" role="tab" data-need="major" aria-pressed="false"><span class="np-txt"><span class="np-name">Major treatment planned</span><span class="np-sub">Crowns and implants, planned ahead</span></span><span class="np-mark" aria-hidden="true"></span></button>
+        <button type="button" role="tab" data-need="keep-dentist" aria-pressed="false"><span class="np-txt"><span class="np-name">Keep my dentist</span><span class="np-sub">Stay with the dentist you trust</span></span><span class="np-mark" aria-hidden="true"></span></button>
+      </div>
+      <!-- LEFT: what matters for this situation -->
+      <div class="matters">
+        <p class="label">What decides your cost here</p>
+        <h3 id="m-title">Just cleanings and exams? Keep it light and low-cost.</h3>
+        <p class="matters-sub" id="m-sub">If you only need to stay on top of preventive care, you do not need a big maximum or major-work coverage. You want the lowest premium with preventive covered in full from day one.</p>
+        <div class="chips" id="m-chips" aria-label="Attributes that matter most"></div>
+        <p class="why" id="m-why">Highlighted attributes are the ones that move your out-of-pocket cost the most for this situation.</p>
+      </div>
+      </div>
+
+      <!-- RIGHT: the matched plan -->
+      <aside class="plate" id="plate" aria-live="polite" aria-label="Matched plan for your situation">
+        <div class="toprule"></div>
+        <div class="plate-inner" id="plate-inner"><!-- injected --></div>
+      </aside>
+    </div>
+
+    <nav class="carrier-rail" aria-label="Compare PPO plans by carrier">
+      <p class="label">Or compare by carrier</p>
+      <div class="carrier-chips">
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/ameritas-primestar">Ameritas</a>
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/uhc-primary-dental">UnitedHealthcare</a>
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/guardian-premier-ppo">Guardian</a>
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/humana-extend-5000">Humana</a>
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/metlife-ncd-complete">MetLife</a>
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/mutual-of-omaha-dental">Mutual of Omaha</a>
+        <a href="https://www.covercapy.com/dental-insurance/ppo-plans/aetna-dental-direct">Aetna</a>
+        <a href="https://www.covercapy.com/dental-insurance/delta-dental">Delta Dental</a>
+        <a href="https://www.covercapy.com/compare-ppo-dental-plans">All PPO plans</a>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<p class="pv-note">Preview build, matched to the live page palette. Every plan fact is drawn from <code>/data/plans/</code> (SSOT). Premiums are CoverCapy estimates and are labeled as such. Activation language follows each plan's do_not rules (no "instant" or "same-day"; UHC flagged as no major coverage; Mutual of Omaha activation not claimed).</p>
+
+<script>
+/* ============================================================
+   SITUATION -> PLAN MAP. Facts sourced from /data/plans/ SSOT.
+   Each entry is honest per that plan's do_not list.
+   ============================================================ */
+var BASE="https://www.covercapy.com";
+var SVG_SHIELD='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#137A5B" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg>';
+var SVG_CONC='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6A6354" stroke-width="1.7"><path d="M4 20a8 8 0 0116 0"/><circle cx="12" cy="8" r="4"/></svg>';
+
+var NEED = {
+  soon: {
+    urgent:true,
+    title:"When care cannot wait, the waiting period is everything.",
+    sub:"A high maximum is useless if the plan makes you wait three to six months before it pays. For urgent care, two things decide everything: no waiting period, and how fast coverage can start.",
+    chips:[["No waiting period",1],["How fast it starts",1],["Day-one coverage",1],["Annual maximum",0],["Deductible",0],["Network",0]],
+    why:"Most plans gate basic and major work behind 3 to 12 month waits. The few that do not are the only honest answer when you need care now.",
+    plan:{
+      eyebrow:"Best fit for urgent care",
+      badge:["go","No waiting period",SVG_SHIELD],
+      name:"Ameritas PrimeStar Care Complete",
+      price:"<b>~$60/mo</b> estimate, varies by state and ZIP",
+      rows:[
+        ["Waiting periods","None on any category"],
+        ["Coverage can start","As soon as tomorrow"],
+        ["Preventive / Basic","100% / 80% day one"],
+        ["Major work","20% year one, rising to 50%"]
+      ],
+      fit:"<b>The plan to reach for when care cannot wait.</b> No waiting periods on preventive, basic, major, or implants, and coverage can begin as soon as the next day. Major work pays 20% the first year and rises to 50% after, so it rewards getting covered now and treated soon.",
+      cta:["See Ameritas, no waiting period","/dental-insurance/ppo-plans/ameritas-primestar?need=soon"],
+      compare:["Compare every no-wait plan","/compare-ppo-dental-plans?need=soon"],
+      note:"We help you verify the dentist of your choosing accepts Ameritas, before you commit."
+    }
+  },
+  major: {
+    urgent:false,
+    title:"Planning crowns or implants? Maximum and major reimbursement decide it.",
+    sub:"When the work is big and you can time it, you want a high annual maximum and a strong major-work payout. A short wait is fine if you are planning a few months out.",
+    chips:[["Annual maximum",1],["Major reimbursement",1],["Implant benefit",1],["Waiting period",0],["Missing-tooth rule",0],["Network",0]],
+    why:"Big cases blow through small maximums fast. The featured plan pairs a generous ceiling with real major-work coverage once a short wait clears.",
+    plan:{
+      eyebrow:"Best fit for planned major work",
+      badge:["plan","Plan a few months ahead",SVG_SHIELD],
+      name:"Humana Extend 5000",
+      price:"<b>~$100/mo</b> estimate, varies by state and ZIP",
+      rows:[
+        ["Annual maximum","$5,000 per person"],
+        ["Major work","50% year one, 60% year two"],
+        ["Implant benefit","$2,000/yr, $4,000 lifetime"],
+        ["Waits","Major and implant: 6 months"]
+      ],
+      fit:"<b>Right fit if you can plan ahead.</b> A generous $5,000 maximum and 50% on major work, with a dedicated implant benefit. Major care and implants wait six months, so this rewards patience, not emergencies. Want a higher ceiling? MetLife NCD reaches a $10,000 maximum.",
+      cta:["See Humana Extend 5000","/dental-insurance/ppo-plans/humana-extend-5000?need=major"],
+      compare:["Compare high-maximum plans","/compare-ppo-dental-plans?need=major"],
+      note:"We help you verify the dentist of your choosing accepts Humana, before you commit."
+    }
+  },
+  preventive: {
+    urgent:false,
+    title:"Just cleanings and exams? Keep it light and low-cost.",
+    sub:"If you only need to stay on top of preventive care, you do not need a big maximum or major-work coverage. You want the lowest premium with preventive covered in full from day one.",
+    chips:[["Monthly premium",1],["Preventive coverage",1],["Day-one coverage",1],["Annual maximum",0],["Major work",0],["Network",0]],
+    why:"Paying for major-work coverage you will not use is wasted premium. For checkups, the lightest plan wins.",
+    plan:{
+      eyebrow:"Best fit for preventive care",
+      badge:["go","Lowest cost on the shelf",SVG_SHIELD],
+      name:"UHC Primary Dental",
+      price:"<b>~$30/mo</b> estimate, about $1 a day, ages 18 to 64",
+      rows:[
+        ["Preventive","100% in-network, day one"],
+        ["Basic services","50% day one, rising to 80%"],
+        ["Coverage can start","Day after your application"],
+        ["Major / implants","Not covered on this tier"]
+      ],
+      fit:"<b>The lightest, lowest-cost way to keep up.</b> Cleanings and exams are covered 100% from day one, on the UnitedHealthcare network of 80,000-plus dentists. Note it does not cover crowns, root canals, or implants, so step up a tier if major work is on the horizon.",
+      cta:["See UHC Primary Dental","/dental-insurance/ppo-plans/uhc-primary-dental?need=preventive"],
+      compare:["Compare low-cost plans","/compare-ppo-dental-plans?need=preventive"],
+      note:"We help you verify the dentist of your choosing accepts UnitedHealthcare, before you commit."
+    }
+  },
+  family: {
+    urgent:false,
+    title:"Covering a family? Day-one value and children's needs matter most.",
+    sub:"Families want a plan that works right away on everyday care, has room for more than one person, and covers children's orthodontics if braces are coming.",
+    chips:[["Day-one basic",1],["Annual maximum",1],["Child orthodontics",1],["Multi-member value",0],["Network",0],["Deductible",0]],
+    why:"Most individual plans exclude orthodontics entirely. The featured plan is one of the few that covers children's braces.",
+    plan:{
+      eyebrow:"Best fit for families",
+      badge:["go","85% basic, day one",SVG_SHIELD],
+      name:"Guardian Premier 2.0",
+      price:"<b>~$70/mo</b> estimate, varies by state, ZIP and age",
+      rows:[
+        ["Basic work","85% in-network, day one"],
+        ["Annual maximum","$3,000 per person"],
+        ["Child orthodontics","60% after a 12-month wait"],
+        ["Adult orthodontics","Not covered"]
+      ],
+      fit:"<b>Strong for families.</b> The highest day-one basic payout on our shelf at 85%, a $3,000 maximum, and coverage for children's orthodontics up to a $1,500 lifetime benefit. Adult orthodontics is not covered, and major work waits twelve months, so plan bigger treatment with that in mind.",
+      cta:["See Guardian Premier","/dental-insurance/ppo-plans/guardian-premier-ppo?need=family"],
+      compare:["Compare family plans","/compare-ppo-dental-plans?need=family"],
+      note:"We help you verify your family's dentist accepts Guardian, before you commit."
+    }
+  },
+  "keep-dentist": {
+    urgent:false,
+    title:"Set on your dentist? Start with the network, not the plan.",
+    sub:"When keeping your current dentist comes first, the plan only matters if your dentist accepts it. So we help you verify that first, then match you to a plan that fits.",
+    chips:[["Your dentist's network",1],["Network size",1],["Confirm in-network",1],["Premium",0],["Maximum",0]],
+    why:"A great plan your dentist does not take is the wrong plan. Network match comes before everything else here.",
+    plan:{
+      action:true,
+      eyebrow:"Network first",
+      badge:["net","Largest PPO footprint",SVG_CONC],
+      name:"Check if your dentist is in-network first.",
+      price:"Search your dentist, and we help you verify which PPO networks the office accepts before you choose a plan.",
+      rows:[
+        ["Best first step","Search your dentist"],
+        ["We help you verify","The networks your office accepts"],
+        ["Widest network we feature","Delta Dental PPO"]
+      ],
+      fit:"<b>Start with the office, not the brochure.</b> If you want the broadest odds your dentist is already in-network, Delta Dental PPO is one of the largest footprints we track at 112,000-plus dentists. We help you verify your specific office accepts it before you commit to anything.",
+      cta:["Find my dentist","/find-my-dentist?need=keep-dentist"],
+      compare:["See Delta Dental","/dental-insurance/delta-dental?need=keep-dentist"],
+      note:"Accepts your insurance is not the same as in your network. We help you verify which applies to your dentist."
+    }
+  }
+};
+
+(function(){
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.needpick button'));
+  var plate = document.getElementById('plate');
+  var inner = document.getElementById('plate-inner');
+  var mTitle = document.getElementById('m-title');
+  var mSub = document.getElementById('m-sub');
+  var mChips = document.getElementById('m-chips');
+  var mWhy = document.getElementById('m-why');
+
+  function chipHTML(list){
+    return list.map(function(c){
+      return '<span class="chip'+(c[1]?' key':'')+'">'+c[0]+'</span>';
+    }).join('');
+  }
+  function planHTML(p){
+    var rows = p.rows.map(function(r){
+      return '<li><span>'+r[0]+'</span><span>'+r[1]+'</span></li>';
+    }).join('');
+    var badge = '<span class="badge '+p.badge[0]+'">'+p.badge[2]+p.badge[1]+'</span>';
+    return ''+
+      '<p class="plate-eyebrow">'+p.eyebrow+'</p>'+
+      badge+
+      '<p class="plate-name">'+p.name+'</p>'+
+      '<p class="plate-price">'+p.price+'</p>'+
+      '<ul class="plate-rows">'+rows+'</ul>'+
+      '<p class="plate-fit">'+p.fit+'</p>'+
+      '<div class="plate-cta">'+
+        '<a class="btn btn-primary" href="'+BASE+p.cta[1]+'">'+p.cta[0]+'</a>'+
+        '<a class="tlink" href="'+BASE+p.compare[1]+'">'+p.compare[0]+'</a>'+
+      '</div>'+
+      '<p class="concierge-note">'+SVG_CONC+'<span>'+p.note+'</span></p>';
+  }
+
+  function apply(need){
+    var d = NEED[need]; if(!d) return;
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-need')===need)); });
+    mTitle.textContent = d.title;
+    mSub.textContent = d.sub;
+    mChips.innerHTML = chipHTML(d.chips);
+    mWhy.textContent = d.why;
+    plate.classList.toggle('is-urgent', !!d.urgent);
+    plate.classList.toggle('is-action', !!d.plan.action);
+    inner.innerHTML = planHTML(d.plan);
+    inner.classList.remove('fade'); void inner.offsetWidth; inner.classList.add('fade');
+    // track('home_plan_need', { need: need });  // wire to existing analytics in index.html
+  }
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-need')); });
+  });
+  apply('preventive'); // default
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!-- CoverCapy universal nav — SERVER-RENDERED fragment (T5 jade). Drop in place of <div id="cc-nav-mount"></div>.
+     Pure fragment: no <!DOCTYPE>, no <head>. All sitelink-candidate URLs are real <a href> and crawlable
+     before JS runs. mega-nav.js may enhance this DOM (dropdowns/drawer) but must NOT re-inject it. -->
+<style>
+.ccnav{position:sticky;top:0;z-index:9000;background:#F6F0E6;border-bottom:1px solid #E8E2D8;box-shadow:inset 0 1px 0 rgba(184,146,79,.25);font-family:'Inter Tight',system-ui,sans-serif}
+.ccnav-row{max-width:1180px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:6px;height:72px}
+.ccnav-brand{font-family:'Fraunces',Georgia,serif;font-size:21px;color:#082A30;text-decoration:none;margin-right:18px;white-space:nowrap}
+.ccnav-brand b{font-style:italic;font-weight:500}
+.ccnav-links{display:flex;align-items:center;gap:2px;flex:1;list-style:none;margin:0;padding:0}
+.ccnav-item{position:relative}
+.ccnav-item>a,.ccnav-item>button{font:600 14.5px/'Inter Tight',system-ui,sans-serif;color:#33453E;background:none;border:0;cursor:pointer;padding:9px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.ccnav-item>a:hover,.ccnav-item>button:hover,.ccnav-item>button[aria-expanded=true]{color:#14525B;background:#EFE8D9}
+.ccnav-ca{font-size:10px}
+.ccnav-cta{font:600 14px/'Inter Tight',system-ui,sans-serif;background:#082A30;color:#fff;border-radius:999px;padding:10px 18px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
+.ccnav-cta:hover{background:#0C3A42}
+.ccnav-panel{position:absolute;top:calc(100% + 6px);left:0;min-width:280px;background:#FFFDF8;border:1px solid #E8E2D8;border-top:2px solid #B8924F;border-radius:14px;box-shadow:0 18px 44px rgba(8,42,48,.14);padding:8px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .14s,transform .14s}
+.ccnav-panel[data-open]{opacity:1;transform:none;pointer-events:auto}
+.ccnav-panel a{display:block;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;color:#33453E;padding:8px 11px;border-radius:8px;text-decoration:none}
+.ccnav-panel a:hover{background:#E6F7EE;color:#14525B}
+.ccnav-panel .lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8A958F;padding:8px 11px 4px}
+.ccnav-panel .feat{display:block;background:#082A30;color:#fff;border-radius:10px;padding:11px 12px;margin:4px 4px 6px}
+.ccnav-panel .feat:hover{background:#0C3A42}
+.ccnav-panel .feat b{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:15px;color:#fff;display:block}
+.ccnav-panel .feat span{font-size:11px;color:#CFE0DA}
+@media(max-width:1080px){.ccnav-links{display:none}.ccnav-brand{margin-right:auto}}
+</style>
+<header class="ccnav" id="cc-nav" role="banner">
+  <div class="ccnav-row">
+    <a class="ccnav-brand" href="/"><b>CoverCapy</b></a>
+    <ul class="ccnav-links" role="menubar" aria-label="Primary">
+      <li class="ccnav-item">
+        <button type="button" aria-expanded="false" aria-controls="ccnav-plans">Find a Plan <span class="ccnav-ca" aria-hidden="true">&#9662;</span></button>
+        <div class="ccnav-panel" id="ccnav-plans" role="group" aria-label="PPO dental plans">
+          <a class="feat" href="/dental-insurance/delta-dental/"><b>Delta Dental</b><span>The full hub, the largest network in the country</span></a>
+          <div class="lbl">Featured plans</div>
+          <a href="/dental-insurance/ppo-plans/mutual-of-omaha-dental/">Mutual of Omaha, Dental Preferred</a>
+          <a href="/dental-insurance/ppo-plans/humana-extend-5000/">Humana Extend 5000</a>
+          <a href="/dental-insurance/ppo-plans/guardian-premier-ppo/">Guardian Premier 2.0</a>
+          <a href="/dental-insurance/ppo-plans/ameritas-primestar/">Ameritas PrimeStar Complete</a>
+          <a href="/dental-insurance/ppo-plans/aetna-dental-direct/">Aetna Dental Direct</a>
+          <a href="/dental-insurance/ppo-plans/uhc-primary-dental/">UnitedHealthcare Primary Dental</a>
+          <a href="/compare-ppo-dental-plans/">Compare the featured plans</a>
+          <a href="/guides/glossary/">PPO dental insurance glossary</a>
+        </div>
+      </li>
+      <li class="ccnav-item"><a href="/dental-treatment-cost-estimator/">Benefit Maxing</a></li>
+      <li class="ccnav-item"><a href="/covercapy-join/">Capy Rewards</a></li>
+      <li class="ccnav-item"><a href="/dentist-portal/">For Dentists</a></li>
+    </ul>
+    <a class="ccnav-cta" href="/find-my-dentist/">Find a dentist</a>
+  </div>
+</header>
+<script>
+/* Disclosure fallback — only binds if the enhancement script (mega-nav.js) has not claimed the nav. */
+(function(){
+  if(window.__CoverCapyMegaNavInitialized)return;
+  var btns=[].slice.call(document.querySelectorAll('.ccnav-item > button'));
+  function closeAll(x){btns.forEach(function(b){if(b!==x){b.setAttribute('aria-expanded','false');var p=document.getElementById(b.getAttribute('aria-controls'));if(p)p.removeAttribute('data-open');}});}
+  btns.forEach(function(b){var p=document.getElementById(b.getAttribute('aria-controls'));
+    b.addEventListener('click',function(e){e.stopPropagation();var o=b.getAttribute('aria-expanded')==='true';closeAll(b);b.setAttribute('aria-expanded',o?'false':'true');if(p){o?p.removeAttribute('data-open'):p.setAttribute('data-open','');}});
+    b.parentElement.addEventListener('mouseenter',function(){if(matchMedia('(hover:hover)').matches){closeAll(b);b.setAttribute('aria-expanded','true');if(p)p.setAttribute('data-open','');}});
+    b.parentElement.addEventListener('mouseleave',function(){if(matchMedia('(hover:hover)').matches){b.setAttribute('aria-expanded','false');if(p)p.removeAttribute('data-open');}});
+  });
+  document.addEventListener('click',function(){closeAll(null);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});
+})();
+</script>

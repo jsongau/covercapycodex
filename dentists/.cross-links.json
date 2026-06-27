@@ -1,0 +1,2392 @@
+{
+  "studio-dental-by-alexander-ash-dds": {
+    "provSlug": "alexander-ash",
+    "provName": "Dr. Alexander T Ash, DDS",
+    "stSlug": "california"
+  },
+  "c-c-dental": {
+    "provSlug": "timothy-cashion",
+    "provName": "Dr. Timothy James Cashion, DDS",
+    "stSlug": "texas"
+  },
+  "diablo-pacific-dental-group": {
+    "provSlug": "tim-patel",
+    "provName": "Dr. Tim J Patel, DDS",
+    "stSlug": "california"
+  },
+  "family-dental-sunnyvale": {
+    "provSlug": "russell-di-bari",
+    "provName": "Dr. Russell Douglas Di Bari, DDS",
+    "stSlug": "california"
+  },
+  "ismile-dental": {
+    "provSlug": "min-jeong-kim",
+    "provName": "Dr. Min Jeong Kim, DDS",
+    "stSlug": "california"
+  },
+  "modern-family-dental-sunnyvale": {
+    "provSlug": "russell-di-bari-sunnyvale",
+    "provName": "Dr. Russell Douglas Di Bari, DDS",
+    "stSlug": "california"
+  },
+  "silicon-valley-pediatric-dentistry-and-orthodontics-sunnyvale": {
+    "provSlug": "arthur-leclaire",
+    "provName": "Dr. Arthur Joseph Leclaire, DMD MS",
+    "stSlug": "california"
+  },
+  "alameda-pediatric-dentistry-orthodontics": {
+    "provSlug": "leila-zokaei-alameda",
+    "provName": "Dr. Leila Zokaei",
+    "stSlug": "california"
+  },
+  "richard-tabor-dds": {
+    "provSlug": "richard-tabor-alameda",
+    "provName": "Dr. Richard Hugh Tabor, DDS",
+    "stSlug": "california"
+  },
+  "total-health-dental-care-alameda-ca": {
+    "provSlug": "lila-skelley-alameda",
+    "provName": "Dr. Lila Marie Skelley, DDS",
+    "stSlug": "california"
+  },
+  "town-center-dental": {
+    "provSlug": "ida-soleimani-aliso-viejo",
+    "provName": "Dr. Ida M Soleimani, DDS",
+    "stSlug": "california"
+  },
+  "abilene-family-dentistry-north-webb-awtrey-dds": {
+    "provSlug": "jeffrey-webb",
+    "provName": "Dr. Jeffrey Michael Webb",
+    "stSlug": "texas"
+  },
+  "apex-general-dentistry": {
+    "provSlug": "tina-shih",
+    "provName": "Dr. Tina Shih, DDS",
+    "stSlug": "north-carolina"
+  },
+  "functional-dentistry-of-asheville": {
+    "provSlug": "blake-kingsbury",
+    "provName": "Dr. Blake C Kingsbury, DMD",
+    "stSlug": "north-carolina"
+  },
+  "cornerstone-family-dentistry-christopher-durusky-dds": {
+    "provSlug": "david-dobson",
+    "provName": "Dr. David J Dobson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "family-dental-health-of-south-asheville": {
+    "provSlug": "kevin-yee",
+    "provName": "Dr. Kevin Kosaku Yee, DDS",
+    "stSlug": "north-carolina"
+  },
+  "apex-dental-group-dr-john-s-kitzmiller-iii-dds": {
+    "provSlug": "john-kitzmiller",
+    "provName": "Dr. John Stanley Kitzmiller, DDS",
+    "stSlug": "north-carolina"
+  },
+  "lovett-dental-beaumont": {
+    "provSlug": "nancy-endari",
+    "provName": "Dr. Nancy N Endari, DDS",
+    "stSlug": "texas"
+  },
+  "los-gatos-dental-group": {
+    "provSlug": "gregory-sawyer",
+    "provName": "Dr. Gregory L. Sawyer, Greg Sawyer DDS",
+    "stSlug": "california"
+  },
+  "matthew-lau-dds-ficoi": {
+    "provSlug": "matthew-lau",
+    "provName": "Dr. Matthew J Lau, DDS",
+    "stSlug": "california"
+  },
+  "alma-dental-care": {
+    "provSlug": "richard-lane",
+    "provName": "Dr. Richard Clark Lane, DDS",
+    "stSlug": "california"
+  },
+  "sage-dental-baytown": {
+    "provSlug": "nicholas-ayoade",
+    "provName": "Dr. Nicholas Ayoade, DDS",
+    "stSlug": "texas"
+  },
+  "alameda-family-dental-group": {
+    "provSlug": "finn-tonsberg",
+    "provName": "Dr. Finn H Tonsberg, DDS",
+    "stSlug": "california"
+  },
+  "smile-magic-of-garland-239354": {
+    "provSlug": "lawrence-lanham",
+    "provName": "Dr. Lawrence Binkley Lanham, DDS",
+    "stSlug": "texas"
+  },
+  "downtown-bellevue-dental": {
+    "provSlug": "sherman-ely",
+    "provName": "Dr. Sherman Ely, DDS",
+    "stSlug": "washington"
+  },
+  "paraiso-joseph-dmd": {
+    "provSlug": "joseph-paraiso",
+    "provName": "Dr. Joseph Orosa Paraiso, DMD",
+    "stSlug": "california"
+  },
+  "randhawa-dentistry": {
+    "provSlug": "gurjit-randhawa",
+    "provName": "Dr. Gurjit Singh Randhawa, DDS MDS",
+    "stSlug": "california"
+  },
+  "marc-schwartz-dds": {
+    "provSlug": "marc-schwartz-belmont",
+    "provName": "Dr. Marc A Schwartz",
+    "stSlug": "california"
+  },
+  "total-health-dental-care-belmont-ca": {
+    "provSlug": "val-nickhinson",
+    "provName": "Dr. Val Nickhinson, DDS",
+    "stSlug": "california"
+  },
+  "channing-dental-7df862": {
+    "provSlug": "sandor-hites",
+    "provName": "Dr. Sandor Hites, DDS",
+    "stSlug": "california"
+  },
+  "refresh-dental": {
+    "provSlug": "nikta-ghaderi",
+    "provName": "Dr. Nikta Ghaderi",
+    "stSlug": "california"
+  },
+  "palo-alto-dental-wellness": {
+    "provSlug": "amrit-singh",
+    "provName": "Dr. Amrit Kaur Singh, DDS",
+    "stSlug": "california"
+  },
+  "total-health-dental-care-dana-street-berkeley": {
+    "provSlug": "denise-alexander",
+    "provName": "Dr. Denise Lor Alexander, DDS",
+    "stSlug": "california"
+  },
+  "imperial-highway-dental": {
+    "provSlug": "vaughn-stewart",
+    "provName": "Dr. Vaughn G Stewart, DDS",
+    "stSlug": "california"
+  },
+  "heyday-dental-dublin": {
+    "provSlug": "dan-xie",
+    "provName": "Dr. Dan Xie",
+    "stSlug": "california"
+  },
+  "your-dental-story-berkeley-dentist": {
+    "provSlug": "thomas-arnold",
+    "provName": "Dr. Thomas H. Arnold, DDS",
+    "stSlug": "california"
+  },
+  "cristina-herrera-dds": {
+    "provSlug": "lawrence-tran",
+    "provName": "Dr. Lawrence Tran, DMD",
+    "stSlug": "california"
+  },
+  "rodeo-dental-orthodontics-of-brownsville-8c2690": {
+    "provSlug": "tiffany-kwan",
+    "provName": "Dr. Tiffany Jane Kwan, DDS",
+    "stSlug": "texas"
+  },
+  "east-el-paso-dentist-51120c": {
+    "provSlug": "jaegun-ahn",
+    "provName": "Dr. Jaegun Ahn",
+    "stSlug": "texas"
+  },
+  "coastland-dental": {
+    "provSlug": "artur-arkelakyan",
+    "provName": "Dr. Artur Arkelakyan",
+    "stSlug": "california"
+  },
+  "joel-a-gentry-dds-pllc": {
+    "provSlug": "joel-gentry",
+    "provName": "Dr. Joel Alexander Gentry, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dr-david-shirinian-dds": {
+    "provSlug": "shayesteh-khosh",
+    "provName": "Dr. Shayesteh Rostamkolaei Khosh, DDS",
+    "stSlug": "california"
+  },
+  "burlingame-dental-fc801a": {
+    "provSlug": "houn-kim",
+    "provName": "Dr. Houn Young Kim, DDS",
+    "stSlug": "california"
+  },
+  "burlingame-dental-studio": {
+    "provSlug": "timothy-mccarthy",
+    "provName": "Dr. Timothy Vincent Mccarthy, DDS",
+    "stSlug": "california"
+  },
+  "burlingame-smile-studio-orthodontist-april-lee-dds-ms": {
+    "provSlug": "william-meyer",
+    "provName": "Dr. William Thomas Meyer, DDS",
+    "stSlug": "california"
+  },
+  "serenity-dental-orofacial-wellness-234443": {
+    "provSlug": "david-wong",
+    "provName": "Dr. David Gee Wong, DDS MDS",
+    "stSlug": "california"
+  },
+  "main-street-family-dentistry": {
+    "provSlug": "tara-wiggins-smith",
+    "provName": "Dr. Tara Lynnette Wiggins-Smith, DDS",
+    "stSlug": "north-carolina"
+  },
+  "goodridge-family-dentistry": {
+    "provSlug": "tyler-goodridge",
+    "provName": "Dr. Tyler Lance Matthew Goodridge, DDS",
+    "stSlug": "north-carolina"
+  },
+  "sunnyvale-dental-aesthetics": {
+    "provSlug": "janette-chung",
+    "provName": "Dr. Janette Chung, DDS",
+    "stSlug": "california"
+  },
+  "sunnyvale-town-center-dental-group": {
+    "provSlug": "brad-kaprelian-sunnyvale",
+    "provName": "Dr. Brad Thomas Kaprelian, DDS",
+    "stSlug": "california"
+  },
+  "dentists-of-south-bay": {
+    "provSlug": "tyler-ghadoushi",
+    "provName": "Dr. Tyler Ghadoushi, DDS",
+    "stSlug": "california"
+  },
+  "house-of-smiles-b43a26": {
+    "provSlug": "franklin-house",
+    "provName": "Dr. Franklin Richard House, DDS",
+    "stSlug": "texas"
+  },
+  "emerald-family-dentistry": {
+    "provSlug": "lavenderjit-mehat",
+    "provName": "Dr. Lavenderjit K Mehat, DDS",
+    "stSlug": "north-carolina"
+  },
+  "premier-dentistry-of-wake-forest": {
+    "provSlug": "angela-kang",
+    "provName": "Dr. Angela Kang, DMD",
+    "stSlug": "north-carolina"
+  },
+  "village-dental-wake-forest": {
+    "provSlug": "natasha-nagpal",
+    "provName": "Dr. Natasha Nagpal",
+    "stSlug": "north-carolina"
+  },
+  "diablo-creek-dentistry": {
+    "provSlug": "iryna-mysnyk",
+    "provName": "Dr. Iryna A. Mysnyk, DMD",
+    "stSlug": "california"
+  },
+  "olympic-dental-at-walnut-creek": {
+    "provSlug": "paula-roemer",
+    "provName": "Dr. Paula Roemer, DDS",
+    "stSlug": "california"
+  },
+  "walnut-creek-aesthetic-dentistry": {
+    "provSlug": "robert-miller",
+    "provName": "Dr. Robert F Miller, DDS",
+    "stSlug": "california"
+  },
+  "walnut-creek-dentists": {
+    "provSlug": "michael-carpentier",
+    "provName": "Dr. Michael Andrew Carpentier, DDS",
+    "stSlug": "california"
+  },
+  "walnut-creek-pediatric-dentistry": {
+    "provSlug": "alex-rader-walnut-creek",
+    "provName": "Dr. Alex Rader, DDS",
+    "stSlug": "california"
+  },
+  "jefferson-dental-associates-north-dentist-in-warwick-ri-dmd": {
+    "provSlug": "roy-ragge",
+    "provName": "Dr. Roy Alan Ragge, dmd",
+    "stSlug": "rhode-island"
+  },
+  "east-bay-family-dental": {
+    "provSlug": "navpreet-arora",
+    "provName": "Dr. Navpreet K Arora, DDS",
+    "stSlug": "california"
+  },
+  "manyak-dental-group": {
+    "provSlug": "sylvie-galerneau",
+    "provName": "Dr. Sylvie Galerneau",
+    "stSlug": "california"
+  },
+  "aspen-dental-wichita-falls-tx": {
+    "provSlug": "amirreza-sadrmanochehrinaeini",
+    "provName": "Dr. Amirreza Sadrmanochehrinaeini, DDS",
+    "stSlug": "texas"
+  },
+  "cornerstone-dental": {
+    "provSlug": "shawna-heetland",
+    "provName": "Dr. Shawna Maureen Heetland, DDS MSD",
+    "stSlug": "texas"
+  },
+  "united-dental-group": {
+    "provSlug": "anna-yoon",
+    "provName": "Dr. Anna Yoon, DDS",
+    "stSlug": "california"
+  },
+  "dentalworks-burlington": {
+    "provSlug": "dallas-oler",
+    "provName": "Dr. Dallas C Oler",
+    "stSlug": "north-carolina"
+  },
+  "brite-dental": {
+    "provSlug": "bhavana-thakur",
+    "provName": "Dr. Bhavana N Thakur, DDS",
+    "stSlug": "california"
+  },
+  "campbell-dental-care-and-aesthetics": {
+    "provSlug": "catalina-phan",
+    "provName": "Dr. Catalina Phan, DDS",
+    "stSlug": "california"
+  },
+  "waterford-dental-group": {
+    "provSlug": "johanna-achury-pearson",
+    "provName": "Dr. Johanna Achury-Pearson, Johanna Achury DDS",
+    "stSlug": "california"
+  },
+  "apex-family-dentistry": {
+    "provSlug": "terese-walters",
+    "provName": "Dr. Terese Marie Walters, DMD",
+    "stSlug": "north-carolina"
+  },
+  "holly-springs-dental-care": {
+    "provSlug": "keisha-davis",
+    "provName": "Dr. Keisha Brown Davis, DDS",
+    "stSlug": "north-carolina"
+  },
+  "the-dental-care-center-a63e8e": {
+    "provSlug": "william-ko",
+    "provName": "Dr. William Y Ko, DDS",
+    "stSlug": "north-carolina"
+  },
+  "toothbar-ee7ef2": {
+    "provSlug": "kimberley-barclay",
+    "provName": "Dr. Kimberley Alexandra Barclay, DMD",
+    "stSlug": "texas"
+  },
+  "mg-family-dentistry": {
+    "provSlug": "asfia-husain",
+    "provName": "Dr. Asfia Husain, DDS MS",
+    "stSlug": "texas"
+  },
+  "lembo-montgomery-mooresville-dentist": {
+    "provSlug": "kara-lembo",
+    "provName": "Dr. Kara Kristine Lembo, DDS",
+    "stSlug": "north-carolina"
+  },
+  "carson-plaza-dentistry": {
+    "provSlug": "savannah-waddy",
+    "provName": "Dr. Savannah Waddy, DDS",
+    "stSlug": "california"
+  },
+  "inspire-dental-cary": {
+    "provSlug": "robert-englehardt",
+    "provName": "Dr. Robert Alan Englehardt, DDS",
+    "stSlug": "north-carolina"
+  },
+  "jessica-bishop-dds-pa": {
+    "provSlug": "jessica-bishop",
+    "provName": "Dr. Jessica Lynn Bishop, ddspa",
+    "stSlug": "north-carolina"
+  },
+  "tarheel-family-cosmetic-dentistry-riley-hewgley-dds": {
+    "provSlug": "riley-hewgley",
+    "provName": "Dr. Riley Alexandra Hewgley, DDS",
+    "stSlug": "north-carolina"
+  },
+  "the-wellness-center-terecita-l-dean-dds": {
+    "provSlug": "matthew-lau-alameda",
+    "provName": "Dr. Matthew J Lau, DDS",
+    "stSlug": "california"
+  },
+  "landmark-dentistry-charlotte": {
+    "provSlug": "andre-brun",
+    "provName": "Dr. Andre Georges Brun, DMD",
+    "stSlug": "north-carolina"
+  },
+  "campbell-smile": {
+    "provSlug": "carol-mccutcheon",
+    "provName": "Dr. Carol J Mccutcheon, DDS",
+    "stSlug": "california"
+  },
+  "north-bay-smiles": {
+    "provSlug": "r-johns",
+    "provName": "Dr. R. Ronald Johns, DDS",
+    "stSlug": "california"
+  },
+  "hayward-dental-arts": {
+    "provSlug": "jack-tsai",
+    "provName": "Dr. Jack M. Tsai, DMD",
+    "stSlug": "california"
+  },
+  "inspire-dental-apex": {
+    "provSlug": "reem-helal",
+    "provName": "Dr. Reem Helal, DDS",
+    "stSlug": "north-carolina"
+  },
+  "singleton-smile-dental": {
+    "provSlug": "maria-pham",
+    "provName": "Dr. Maria Pham, DDS",
+    "stSlug": "california"
+  },
+  "pure-smile-dental-group": {
+    "provSlug": "marilyn-sy",
+    "provName": "Dr. Marilyn H Sy, DDS",
+    "stSlug": "california"
+  },
+  "bear-creek-family-dentistry": {
+    "provSlug": "trung-tang",
+    "provName": "Dr. Trung Minh Tang, DMD",
+    "stSlug": "texas"
+  },
+  "dental-care-at-alamance-crossing": {
+    "provSlug": "johnique-turner",
+    "provName": "Dr. Johnique Fonville Turner, DMD",
+    "stSlug": "north-carolina"
+  },
+  "prime-family-dental": {
+    "provSlug": "maria-maresca",
+    "provName": "Dr. Maria Cristina Maresca, DDS MS",
+    "stSlug": "north-carolina"
+  },
+  "mountain-view-advanced-dental": {
+    "provSlug": "nipa-sheth",
+    "provName": "Dr. Nipa Sheth, DDS",
+    "stSlug": "california"
+  },
+  "rosalyn-l-burke-dds-pc": {
+    "provSlug": "rosalyn-burke",
+    "provName": "Dr. Rosalyn L Burke, DDS",
+    "stSlug": "california"
+  },
+  "perla-dental-arlington-afbd7a": {
+    "provSlug": "anuradha-amara",
+    "provName": "Dr. Anuradha Amara, DDS",
+    "stSlug": "texas"
+  },
+  "campbell-premier-dental": {
+    "provSlug": "ronald-judd",
+    "provName": "Dr. Ronald Martin Judd, DDS",
+    "stSlug": "california"
+  },
+  "avalon-dental-group-sugar-land": {
+    "provSlug": "raymond-chui",
+    "provName": "Dr. Raymond M Chui, DDS",
+    "stSlug": "texas"
+  },
+  "happy-dental-care": {
+    "provSlug": "dawn-kahng",
+    "provName": "Dr. Dawn Kahng, DDS",
+    "stSlug": "california"
+  },
+  "darren-g-koch-dds-pa": {
+    "provSlug": "darren-koch",
+    "provName": "Dr. Darren Gregory Koch, DDS",
+    "stSlug": "north-carolina"
+  },
+  "adam-brown-dds": {
+    "provSlug": "juliya-vaghani",
+    "provName": "Dr. Juliya Vaghani, DDS",
+    "stSlug": "north-carolina"
+  },
+  "chestnut-square-dental": {
+    "provSlug": "richard-renfer",
+    "provName": "Dr. Richard Craig Renfer, DDS",
+    "stSlug": "california"
+  },
+  "dr-namching-j-young-dds": {
+    "provSlug": "namching-young",
+    "provName": "Dr. Namching Jennifer Young, DDS",
+    "stSlug": "california"
+  },
+  "jing-jing-qian-dds-inc": {
+    "provSlug": "myriam-tawfik",
+    "provName": "Dr. Myriam M. Tawfik, DDS",
+    "stSlug": "california"
+  },
+  "barringer-crestetto": {
+    "provSlug": "adam-saunders",
+    "provName": "Dr. Adam Saunders, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dr-benik-housepian-dds": {
+    "provSlug": "shayesteh-khosh-burbank",
+    "provName": "Dr. Shayesteh Rostamkolaei Khosh, DDS",
+    "stSlug": "california"
+  },
+  "stover-family-dentistry": {
+    "provSlug": "susan-stover",
+    "provName": "Dr. Susan I Stover, DDS",
+    "stSlug": "north-carolina"
+  },
+  "blue-ridge-family-dental": {
+    "provSlug": "rachael-schuette",
+    "provName": "Dr. Rachael Sarah Schuette, DDS",
+    "stSlug": "north-carolina"
+  },
+  "freshdental-gastonia-nc": {
+    "provSlug": "tapas-patel",
+    "provName": "Dr. Tapas Patel",
+    "stSlug": "north-carolina"
+  },
+  "el-camino-dental": {
+    "provSlug": "emily-zhang",
+    "provName": "Dr. Emily Zhang, DDS",
+    "stSlug": "california"
+  },
+  "brighter-day-dental": {
+    "provSlug": "david-dang",
+    "provName": "Dr. David Thanh Dang, DDS",
+    "stSlug": "california"
+  },
+  "concord-dental-care": {
+    "provSlug": "yasmine-zaeni",
+    "provName": "Dr. Yasmine Zaeni, DDS",
+    "stSlug": "california"
+  },
+  "mt-diablo-family-dentists": {
+    "provSlug": "naina-jain",
+    "provName": "Dr. Naina Jain",
+    "stSlug": "california"
+  },
+  "oasis-dentistry": {
+    "provSlug": "kenneth-white",
+    "provName": "Dr. Kenneth Wayne White",
+    "stSlug": "north-carolina"
+  },
+  "willow-pass-dental-care": {
+    "provSlug": "luz-rosato",
+    "provName": "Dr. Luz Adriana Rosato, DDS",
+    "stSlug": "california"
+  },
+  "smile-magic-of-corpus-christi-south-staples-b64c9c": {
+    "provSlug": "jalen-gibbons",
+    "provName": "Dr. Jalen Lawrence Gibbons, DDS",
+    "stSlug": "texas"
+  },
+  "petaluma-dental-group": {
+    "provSlug": "yolanda-mangrum",
+    "provName": "Dr. Yolanda Marye Mangrum, DDS",
+    "stSlug": "california"
+  },
+  "matthews-dental-care": {
+    "provSlug": "brian-clarke",
+    "provName": "Dr. Brian Clarke, DDS",
+    "stSlug": "north-carolina"
+  },
+  "pediatric-dentistry-limited": {
+    "provSlug": "mark-small",
+    "provName": "Dr. Mark P. Small, DMD",
+    "stSlug": "rhode-island"
+  },
+  "agape-dental-group": {
+    "provSlug": "anthony-tat",
+    "provName": "Dr. Anthony Tat, DDS",
+    "stSlug": "california"
+  },
+  "alpine-dental-care": {
+    "provSlug": "phuong-thu-phi",
+    "provName": "Dr. Phuong-Thu Phi",
+    "stSlug": "california"
+  },
+  "cupertino-dental-health": {
+    "provSlug": "paul-lee",
+    "provName": "Dr. Paul Y Lee, DDS",
+    "stSlug": "california"
+  },
+  "nova-dental-cupertino-eunice-gonsalves-dds": {
+    "provSlug": "dennis-hong",
+    "provName": "Dr. Dennis Jeu Hong, DDS",
+    "stSlug": "california"
+  },
+  "pacifica-dental": {
+    "provSlug": "elizabeth-low",
+    "provName": "Dr. Elizabeth Joanne Low, DDS",
+    "stSlug": "california"
+  },
+  "ryan-senft-dds": {
+    "provSlug": "william-huang",
+    "provName": "Dr. William Huang, DDS",
+    "stSlug": "california"
+  },
+  "rivers-family-dentistry": {
+    "provSlug": "kristina-rivers",
+    "provName": "Dr. Kristina Rivers, DDS",
+    "stSlug": "texas"
+  },
+  "smileworld-family-dental-dr-mira-godiwala-dds-cupertino-dentist": {
+    "provSlug": "mira-godiwala",
+    "provName": "Dr. Mira Godiwala, DDS",
+    "stSlug": "california"
+  },
+  "tiffany-c-hsu-dds-inc": {
+    "provSlug": "tiffany-hsu",
+    "provName": "Dr. Tiffany Chih-Tien Hsu, DDS",
+    "stSlug": "california"
+  },
+  "enso-dental-cupertino": {
+    "provSlug": "ankita-harshi-mota",
+    "provName": "Dr. Ankita Harshi Mota, DMD",
+    "stSlug": "california"
+  },
+  "city-heights-dental": {
+    "provSlug": "oliver-vengco",
+    "provName": "Dr. Oliver M Vengco, DMD",
+    "stSlug": "california"
+  },
+  "westlake-dental-care": {
+    "provSlug": "rodolfo-villasin",
+    "provName": "Dr. Rodolfo C. Villasin, DMD DDS",
+    "stSlug": "california"
+  },
+  "mccarthy-dental": {
+    "provSlug": "darryl-warren",
+    "provName": "Dr. Darryl Alan Warren, DDS PA",
+    "stSlug": "north-carolina"
+  },
+  "dublin-dental-studio": {
+    "provSlug": "henna-sandhu",
+    "provName": "Dr. Henna Sandhu, DDS",
+    "stSlug": "california"
+  },
+  "dublin-family-dental": {
+    "provSlug": "alysia-mascolo",
+    "provName": "Dr. Alysia Megan Mascolo, DDS",
+    "stSlug": "california"
+  },
+  "starbrite-dental-dublin": {
+    "provSlug": "richard-yai",
+    "provName": "Dr. Richard Yai, DDS",
+    "stSlug": "california"
+  },
+  "sunflower-dental": {
+    "provSlug": "robert-chacon",
+    "provName": "Dr. Robert A Chacon, DDS",
+    "stSlug": "california"
+  },
+  "valley-dental-and-orthodontics": {
+    "provSlug": "douglas-wong",
+    "provName": "Dr. Douglas K. C. Wong, DDS",
+    "stSlug": "california"
+  },
+  "durham-dental-studio": {
+    "provSlug": "luz-estrada",
+    "provName": "Dr. Luz Eliyer Estrada, DDS",
+    "stSlug": "north-carolina"
+  },
+  "smile-first-pediatric-dental": {
+    "provSlug": "sindhura-citineni",
+    "provName": "Dr. Sindhura Citineni, DDS",
+    "stSlug": "north-carolina"
+  },
+  "smith-family-dental-associates": {
+    "provSlug": "nicole-steckler",
+    "provName": "Dr. Nicole Lynn Steckler, DMD",
+    "stSlug": "rhode-island"
+  },
+  "agua-dental-edinburg": {
+    "provSlug": "henry-tran",
+    "provName": "Dr. Henry Tran, DDS",
+    "stSlug": "texas"
+  },
+  "zen-dental-group": {
+    "provSlug": "peng-han-li",
+    "provName": "Dr. Peng-Han Li",
+    "stSlug": "texas"
+  },
+  "elk-grove-dental-group": {
+    "provSlug": "ahmad-hamood",
+    "provName": "Dr. Ahmad Jawad Hamood, DDS",
+    "stSlug": "california"
+  },
+  "case-dental-group": {
+    "provSlug": "christine-lee",
+    "provName": "Dr. Christine Nam Lee, DMD",
+    "stSlug": "california"
+  },
+  "elk-grove-family-dentistry": {
+    "provSlug": "peter-ngai",
+    "provName": "Dr. Peter Kin Tung Ngai, DMD",
+    "stSlug": "california"
+  },
+  "elk-grove-healthy-smiles-dental": {
+    "provSlug": "gregory-adams",
+    "provName": "Dr. Gregory Lee Adams, DDS MS",
+    "stSlug": "california"
+  },
+  "laguna-family-dental": {
+    "provSlug": "guillermo-arellano",
+    "provName": "Dr. Guillermo A Arellano, DMD",
+    "stSlug": "california"
+  },
+  "le-dental-care-of-elk-grove": {
+    "provSlug": "hung-le",
+    "provName": "Dr. Hung Q Le, DDS",
+    "stSlug": "california"
+  },
+  "smile-time-dental": {
+    "provSlug": "suruchi-malpani",
+    "provName": "Dr. Suruchi Malpani, DDS",
+    "stSlug": "california"
+  },
+  "catlett-family-dentistry": {
+    "provSlug": "jennifer-laurence",
+    "provName": "Dr. Jennifer Nicole Laurence, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dentalworks-fayetteville": {
+    "provSlug": "sandra-kouyoumjian",
+    "provName": "Dr. Sandra Kouyoumjian, DDS",
+    "stSlug": "north-carolina"
+  },
+  "fayetteville-dental-studio-general-dentist-periodontist-and-dental-implant-specialist": {
+    "provSlug": "roland-lingle",
+    "provName": "Dr. Roland Clair Lingle, DDS",
+    "stSlug": "north-carolina"
+  },
+  "smile-starters-fayetteville": {
+    "provSlug": "paige-nance",
+    "provName": "Dr. Paige E Nance, dds",
+    "stSlug": "north-carolina"
+  },
+  "the-dental-care-center": {
+    "provSlug": "kelsey-weiss",
+    "provName": "Dr. Kelsey M Weiss, DMD",
+    "stSlug": "north-carolina"
+  },
+  "plantation-dental": {
+    "provSlug": "steven-melonakos",
+    "provName": "Dr. Steven Joseph Melonakos, DDS",
+    "stSlug": "north-carolina"
+  },
+  "sunrise-dental": {
+    "provSlug": "mark-donoway",
+    "provName": "Dr. Mark Allwin Donoway, DDS",
+    "stSlug": "north-carolina"
+  },
+  "big-little-teeth-pediatric-dentistry": {
+    "provSlug": "stephen-henry",
+    "provName": "Dr. Stephen R Henry, dds",
+    "stSlug": "california"
+  },
+  "family-dental-59b452": {
+    "provSlug": "robert-verbois",
+    "provName": "Dr. Robert David Verbois, DDS",
+    "stSlug": "california"
+  },
+  "peninsula-dental-associates-martin-phandl-dmd": {
+    "provSlug": "martin-phandl",
+    "provName": "Dr. Martin D Phandl",
+    "stSlug": "california"
+  },
+  "alamance-family-dentistry": {
+    "provSlug": "emily-dornblazer",
+    "provName": "Dr. Emily Laine Dornblazer, DMD",
+    "stSlug": "north-carolina"
+  },
+  "all-care-dental-fremont": {
+    "provSlug": "anil-chowdhary",
+    "provName": "Dr. Anil K Chowdhary, DMD",
+    "stSlug": "california"
+  },
+  "fremont-smiles-inc-bernard-stewart-mark-stewart-ryan-jergensen-lee-marneni": {
+    "provSlug": "ryan-jergensen",
+    "provName": "Dr. Ryan W. Jergensen, DDS",
+    "stSlug": "california"
+  },
+  "greenhills-dental-care": {
+    "provSlug": "shirley-bien",
+    "provName": "Dr. Shirley H Bien, DMD",
+    "stSlug": "california"
+  },
+  "hillside-smiles-co": {
+    "provSlug": "g-hong-hsu",
+    "provName": "Dr. G-Hong Robert Hsu, DDS MS",
+    "stSlug": "california"
+  },
+  "white-oak-dental-care": {
+    "provSlug": "robert-truly",
+    "provName": "Dr. Robert E. Truly, DDS",
+    "stSlug": "texas"
+  },
+  "orangethorpe-dental-care": {
+    "provSlug": "shirley-lee",
+    "provName": "Dr. Shirley Lee, DDS",
+    "stSlug": "california"
+  },
+  "charlotte-dentistry": {
+    "provSlug": "annie-carberry",
+    "provName": "Dr. Annie Kristin Carberry, DDS",
+    "stSlug": "north-carolina"
+  },
+  "ideal-dental-garland": {
+    "provSlug": "caitlinn-kolibaba",
+    "provName": "Dr. Caitlinn Kolibaba, DDS",
+    "stSlug": "texas"
+  },
+  "pch-smiles-dentistry-and-orthodontics": {
+    "provSlug": "maria-aiello",
+    "provName": "Dr. Maria Kathleen Aiello, DDS",
+    "stSlug": "california"
+  },
+  "labao-maria-e-dds": {
+    "provSlug": "kam-ho-li",
+    "provName": "Dr. Kam Ho Li, DDS",
+    "stSlug": "california"
+  },
+  "redwood-city-smile-dental": {
+    "provSlug": "marivic-agoncillo",
+    "provName": "Dr. Marivic A Agoncillo, DDS",
+    "stSlug": "california"
+  },
+  "spearmint-dental-orthodontics-wichita-falls": {
+    "provSlug": "sravanthi-dandala",
+    "provName": "Dr. Sravanthi Reddy Dandala, DMD",
+    "stSlug": "texas"
+  },
+  "atlantic-dental-group": {
+    "provSlug": "carter-lee",
+    "provName": "Dr. Carter Wells Lee, DDS",
+    "stSlug": "north-carolina"
+  },
+  "cape-fear-smiles-general-cosmetic-dentistry": {
+    "provSlug": "alexander-hicks",
+    "provName": "Dr. Alexander Hicks",
+    "stSlug": "north-carolina"
+  },
+  "carolinasdentist-b3de43": {
+    "provSlug": "andrew-lefeber",
+    "provName": "Dr. Andrew Lefeber, DDS",
+    "stSlug": "north-carolina"
+  },
+  "edgerton-and-glenn-dds-wilmington": {
+    "provSlug": "meredith-glenn",
+    "provName": "Dr. Meredith Taylor Edgerton Glenn, DDS",
+    "stSlug": "north-carolina"
+  },
+  "the-dental-studio-of-wilmington-b1cfe6": {
+    "provSlug": "allison-dreyer",
+    "provName": "Dr. Allison Nicole Dreyer, DDS",
+    "stSlug": "north-carolina"
+  },
+  "thrive-family-dental": {
+    "provSlug": "kensuke-matsumoto",
+    "provName": "Dr. Kensuke Matsumoto, DMD MS",
+    "stSlug": "north-carolina"
+  },
+  "holmes-and-willford": {
+    "provSlug": "kathryn-putney",
+    "provName": "Dr. Kathryn Gibbons Putney, DDS",
+    "stSlug": "north-carolina"
+  },
+  "lee-dentistry": {
+    "provSlug": "cyrus-lee-wilson",
+    "provName": "Dr. Cyrus Andrew Lee, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dentist-in-winston-salem": {
+    "provSlug": "perrin-black",
+    "provName": "Dr. Perrin Jefferson Black, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dentalworks-hope-mills": {
+    "provSlug": "snehlata-kulhari",
+    "provName": "Dr. Snehlata Kulhari, DMD",
+    "stSlug": "north-carolina"
+  },
+  "goldsboro-family-dental": {
+    "provSlug": "cynthia-wiley",
+    "provName": "Dr. Cynthia S. Wiley, DMD MDS",
+    "stSlug": "north-carolina"
+  },
+  "p-a-daniel-jr-dds": {
+    "provSlug": "cynthia-wiley-goldsboro",
+    "provName": "Dr. Cynthia S. Wiley, DMD MDS",
+    "stSlug": "north-carolina"
+  },
+  "stovall-dental": {
+    "provSlug": "orlando-stovall",
+    "provName": "Dr. Orlando Richard Stovall, DDS",
+    "stSlug": "north-carolina"
+  },
+  "himi-saxena-dds-pa": {
+    "provSlug": "himi-saxena",
+    "provName": "Dr. Himi Saxena, DDS",
+    "stSlug": "north-carolina"
+  },
+  "modern-family-dental-care-dentist-concord-charlotte": {
+    "provSlug": "isata-panda",
+    "provName": "Dr. Isata Yvonne Panda, DDS",
+    "stSlug": "north-carolina"
+  },
+  "smile32-family-dentistry": {
+    "provSlug": "randall-hashimoto",
+    "provName": "Dr. Randall Isao Hashimoto, DDS",
+    "stSlug": "california"
+  },
+  "friendly-dentistry": {
+    "provSlug": "jerry-clark",
+    "provName": "Dr. Jerry R Clark, DDS MS",
+    "stSlug": "north-carolina"
+  },
+  "greensboro-dental": {
+    "provSlug": "jonathan-hunt",
+    "provName": "Dr. Jonathan Hunt, DDS",
+    "stSlug": "north-carolina"
+  },
+  "greensboro-ivory-dental": {
+    "provSlug": "stephen-chou",
+    "provName": "Dr. Stephen Cy Chou, DDS",
+    "stSlug": "north-carolina"
+  },
+  "mango-dental": {
+    "provSlug": "elizabeth-applebaum",
+    "provName": "Dr. Elizabeth Ann Applebaum, DMD MS",
+    "stSlug": "north-carolina"
+  },
+  "norman-gill-dentistry": {
+    "provSlug": "graham-farless",
+    "provName": "Dr. Graham Edward Farless, DDS",
+    "stSlug": "north-carolina"
+  },
+  "ralston-pediatric-dentistry-belmont": {
+    "provSlug": "rosario-legasto",
+    "provName": "Dr. Rosario C. Legasto, DMD",
+    "stSlug": "california"
+  },
+  "brian-y-yang-dds-md": {
+    "provSlug": "mark-jadallah",
+    "provName": "Dr. Mark A Jadallah, DDS",
+    "stSlug": "california"
+  },
+  "happy-healthy-teeth-dr-christian-p-yee": {
+    "provSlug": "martin-phandl-foster-city",
+    "provName": "Dr. Martin D Phandl",
+    "stSlug": "california"
+  },
+  "dentalworks-greenville-nc": {
+    "provSlug": "craig-mckie",
+    "provName": "Dr. Craig Aaron Mckie",
+    "stSlug": "north-carolina"
+  },
+  "drs-davila-velazquez-p-a": {
+    "provSlug": "john-king",
+    "provName": "Dr. John King, DMD",
+    "stSlug": "north-carolina"
+  },
+  "lane-associates-family-dentistry-greenville": {
+    "provSlug": "oscar-jaimes",
+    "provName": "Dr. Oscar Jaimes, DMD",
+    "stSlug": "north-carolina"
+  },
+  "nc-dental-u-greenville": {
+    "provSlug": "william-ko-greenville",
+    "provName": "Dr. William Y Ko, DDS",
+    "stSlug": "north-carolina"
+  },
+  "lewis-family-dentistry": {
+    "provSlug": "kenneth-lewis-fayetteville",
+    "provName": "Dr. Kenneth Boyd Lewis, DMD",
+    "stSlug": "north-carolina"
+  },
+  "grace-dental": {
+    "provSlug": "cindy-chung",
+    "provName": "Dr. Cindy Sun-Myung Chung, DDS",
+    "stSlug": "california"
+  },
+  "rodeo-dental-orthodontics-of-harlingen": {
+    "provSlug": "veena-patnam",
+    "provName": "Dr. Veena Patnam, DMD",
+    "stSlug": "texas"
+  },
+  "wiseburn-dental": {
+    "provSlug": "marivic-simon",
+    "provName": "Dr. Marivic Asis Simon, DDS",
+    "stSlug": "california"
+  },
+  "bliss-family-dental-hayward-ca": {
+    "provSlug": "shilpi-shah",
+    "provName": "Dr. Shilpi Vastupal Shah, DMD",
+    "stSlug": "california"
+  },
+  "bright-now-dental-orthodontics-hayward-ca": {
+    "provSlug": "dipti-shinde",
+    "provName": "Dr. Dipti Ramling Shinde, DDS BDS",
+    "stSlug": "california"
+  },
+  "fab-dental-hayward-emergencies-endodontics-orthodontics-implants": {
+    "provSlug": "cong-liu",
+    "provName": "Dr. Cong Liu, DDS",
+    "stSlug": "california"
+  },
+  "premier-family-dental": {
+    "provSlug": "jin-chung",
+    "provName": "Dr. Jin Chung, DDS",
+    "stSlug": "california"
+  },
+  "signature-family-dentistry": {
+    "provSlug": "angelina-franklin",
+    "provName": "Dr. Angelina Carol Franklin, DDS",
+    "stSlug": "north-carolina"
+  },
+  "hanfield-village-dental-care": {
+    "provSlug": "arshia-zuber",
+    "provName": "Dr. Arshia Zuber, DDS",
+    "stSlug": "north-carolina"
+  },
+  "grovehill-family-dental": {
+    "provSlug": "egdon-san-luis",
+    "provName": "Dr. Egdon Libao San Luis, DDS",
+    "stSlug": "california"
+  },
+  "freshdental-hickory-nc": {
+    "provSlug": "nadia-assadallah",
+    "provName": "Dr. Nadia Assadallah",
+    "stSlug": "north-carolina"
+  },
+  "hickory-dental-care": {
+    "provSlug": "dale-spencer",
+    "provName": "Dr. Dale Spencer, DDSPA",
+    "stSlug": "north-carolina"
+  },
+  "dublin-dental-care-4b2597": {
+    "provSlug": "eric-pang",
+    "provName": "Dr. Eric Pang, DDS",
+    "stSlug": "california"
+  },
+  "gentle-care-family-dental-best-cosmetic-dentist-in-highpoint": {
+    "provSlug": "nilu-bhadani",
+    "provName": "Dr. Nilu K Bhadani, DDS",
+    "stSlug": "north-carolina"
+  },
+  "ideal-dental-high-point": {
+    "provSlug": "jessica-shen",
+    "provName": "Dr. Jessica Huiying Shen, DMD",
+    "stSlug": "north-carolina"
+  },
+  "lane-associates-family-dentistry-high-point": {
+    "provSlug": "nila-veerabagu",
+    "provName": "Dr. Nila Arunachalam Veerabagu, DMD",
+    "stSlug": "north-carolina"
+  },
+  "north-point-dental-associates": {
+    "provSlug": "sapna-thakkar",
+    "provName": "Dr. Sapna R Thakkar, DDS",
+    "stSlug": "north-carolina"
+  },
+  "a-dental-house": {
+    "provSlug": "janakkumar-patel",
+    "provName": "Dr. Janakkumar Bhagubhai Patel, DDS",
+    "stSlug": "north-carolina"
+  },
+  "coliseum-dental-concord": {
+    "provSlug": "hera-blazer",
+    "provName": "Dr. Hera Zoe Blazer, DDS",
+    "stSlug": "california"
+  },
+  "cupertino-smile-care": {
+    "provSlug": "yashar-eslami",
+    "provName": "Dr. Yashar Eslami, DDS",
+    "stSlug": "california"
+  },
+  "avent-ferry-family-dentistry": {
+    "provSlug": "scott-butts",
+    "provName": "Dr. Scott K Butts, DDS",
+    "stSlug": "north-carolina"
+  },
+  "klooster-family-dentistry": {
+    "provSlug": "kristen-lane",
+    "provName": "Dr. Kristen Lane",
+    "stSlug": "north-carolina"
+  },
+  "los-gatos-dental": {
+    "provSlug": "sara-ghasemi-los-gatos",
+    "provName": "Dr. Sara Ghasemi",
+    "stSlug": "california"
+  },
+  "novel-dental": {
+    "provSlug": "vanessa-campbell",
+    "provName": "Dr. Vanessa Menguser Campbell, DDS",
+    "stSlug": "north-carolina"
+  },
+  "sninski-schmitt-family-dentistry": {
+    "provSlug": "emily-payne",
+    "provName": "Dr. Emily Proctor Payne, DDS",
+    "stSlug": "north-carolina"
+  },
+  "sunset-ridge-family-dentistry": {
+    "provSlug": "brent-neidenthal",
+    "provName": "Dr. Brent Randall Neidenthal, DDS",
+    "stSlug": "north-carolina"
+  },
+  "alameda-dental-center": {
+    "provSlug": "andrew-rowe",
+    "provName": "Dr. Andrew C Rowe, DDS",
+    "stSlug": "california"
+  },
+  "hilda-kanon-dds": {
+    "provSlug": "hilda-kanon",
+    "provName": "Dr. Hilda Kanon, DDS",
+    "stSlug": "california"
+  },
+  "smiles-by-shaw": {
+    "provSlug": "chelsea-marcuard",
+    "provName": "Dr. Chelsea Elian Marcuard, DDS",
+    "stSlug": "north-carolina"
+  },
+  "huntersville-pediatric-dentistry": {
+    "provSlug": "jonathan-yura",
+    "provName": "Dr. Jonathan Yura, DDS",
+    "stSlug": "north-carolina"
+  },
+  "kreeb-family-dentistry": {
+    "provSlug": "alexandra-murtagh",
+    "provName": "Dr. Alexandra Murtagh",
+    "stSlug": "north-carolina"
+  },
+  "freshdental-concord-nc": {
+    "provSlug": "elisabeth-blackman",
+    "provName": "Dr. Elisabeth Grant Blackman, DDS",
+    "stSlug": "north-carolina"
+  },
+  "lane-associates-family-dentistry": {
+    "provSlug": "nilam-ghori",
+    "provName": "Dr. Nilam Savjibhai Ghori, DMD",
+    "stSlug": "north-carolina"
+  },
+  "ideal-dental-wake-forest": {
+    "provSlug": "olutosin-seriki",
+    "provName": "Dr. Olutosin Olarinde Seriki, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dental-care-of-walnut-creek": {
+    "provSlug": "howard-liu",
+    "provName": "Dr. Howard Liu, DDS",
+    "stSlug": "california"
+  },
+  "reimels-paterra-cosmetic-implant-dentistry": {
+    "provSlug": "meredith-stalnaker",
+    "provName": "Dr. Meredith Ann Stalnaker, DDS",
+    "stSlug": "north-carolina"
+  },
+  "southlake-family-and-cosmetic-dentistry": {
+    "provSlug": "jonathan-yura-huntersville",
+    "provName": "Dr. Jonathan Yura, DDS",
+    "stSlug": "north-carolina"
+  },
+  "beach-cities-dental-group-1ac358": {
+    "provSlug": "elizabeth-brito-huntington-beach",
+    "provName": "Dr. Elizabeth Brito, DDS",
+    "stSlug": "california"
+  },
+  "beach-cities-dental-group-d329f7": {
+    "provSlug": "elizabeth-brito-huntington-beach-ca",
+    "provName": "Dr. Elizabeth Brito, DDS",
+    "stSlug": "california"
+  },
+  "foster-city-dental-care-7b9b2c": {
+    "provSlug": "may-liu",
+    "provName": "Dr. May W Liu, DDS",
+    "stSlug": "california"
+  },
+  "a-beautiful-smile-the-office-of-dr-gina-mancini": {
+    "provSlug": "whitney-mitchell",
+    "provName": "Dr. Whitney Carraway Mitchell, DMD",
+    "stSlug": "north-carolina"
+  },
+  "aspen-dental-jacksonville-nc": {
+    "provSlug": "kassondra-michno",
+    "provName": "Dr. Kassondra Ann Michno, DMD",
+    "stSlug": "north-carolina"
+  },
+  "family-dental-care-nc": {
+    "provSlug": "virginia-wilson",
+    "provName": "Dr. Virginia Kelly Wilson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "wilson-pediatric-dentistry": {
+    "provSlug": "tamara-phelps-giscombe",
+    "provName": "Dr. Tamara Delcine Phelps-Giscombe, DDS",
+    "stSlug": "north-carolina"
+  },
+  "vannasane-touloupas-dentistry": {
+    "provSlug": "bobbee-vannasane",
+    "provName": "Dr. Bobbee Vannasane, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dental-care-at-palladium": {
+    "provSlug": "collin-moore",
+    "provName": "Dr. Collin Moore, DDS",
+    "stSlug": "north-carolina"
+  },
+  "aspen-dental-burlington-nc": {
+    "provSlug": "alexander-lombardozzi",
+    "provName": "Dr. Alexander Lombardozzi",
+    "stSlug": "north-carolina"
+  },
+  "aspen-dental-killeen-tx-dbd0d7": {
+    "provSlug": "steven-melter",
+    "provName": "Dr. Steven Melter, DMD MA",
+    "stSlug": "texas"
+  },
+  "south-coast-highway-dentistry": {
+    "provSlug": "juhee-park",
+    "provName": "Dr. Juhee Park",
+    "stSlug": "california"
+  },
+  "tea-hoang": {
+    "provSlug": "soo-yeon-kim",
+    "provName": "Dr. Soo Yeon Kim, DDS",
+    "stSlug": "california"
+  },
+  "advanced-dentistry-of-kannapolis": {
+    "provSlug": "lindsay-montgomery",
+    "provName": "Dr. Lindsay Scherer Montgomery, DDS/Dentist",
+    "stSlug": "north-carolina"
+  },
+  "roseville-dental-center": {
+    "provSlug": "amritpal-kaur",
+    "provName": "Dr. Amritpal Kaur",
+    "stSlug": "california"
+  },
+  "dental-park-fde015": {
+    "provSlug": "young-sil-jo",
+    "provName": "Dr. Young Sil Jo",
+    "stSlug": "texas"
+  },
+  "oc-precision-dental": {
+    "provSlug": "rick-morimoto",
+    "provName": "Dr. Rick H. Morimoto, DDS",
+    "stSlug": "california"
+  },
+  "riccobene-associates-family-dentistry": {
+    "provSlug": "horace-moore",
+    "provName": "Dr. Horace G Moore, DDS",
+    "stSlug": "north-carolina"
+  },
+  "silverado-ranch-dentistry": {
+    "provSlug": "hrag-artinian",
+    "provName": "Dr. Hrag Artinian, DMD",
+    "stSlug": "nevada"
+  },
+  "marcos-marcos-dds": {
+    "provSlug": "carliza-marcos",
+    "provName": "Dr. Carliza Arevelo Marcos, DDS",
+    "stSlug": "california"
+  },
+  "dental-excellence": {
+    "provSlug": "isaac-salinas",
+    "provName": "Dr. Isaac Enrique Salinas, DMD",
+    "stSlug": "north-carolina"
+  },
+  "las-positas-family-dental": {
+    "provSlug": "theresa-hoang",
+    "provName": "Dr. Theresa Thu Truc Hoang, DDS",
+    "stSlug": "california"
+  },
+  "livermore-dental-care": {
+    "provSlug": "adam-stephens",
+    "provName": "Dr. Adam Stephens, DDS",
+    "stSlug": "california"
+  },
+  "livermore-dental-spa": {
+    "provSlug": "peggy-chuang",
+    "provName": "Dr. Peggy Pei Ju Chuang, DMD",
+    "stSlug": "california"
+  },
+  "livermore-dentist-dentist-livermore-one-dental-livermore-south-s-family-dental": {
+    "provSlug": "navreena-sahota",
+    "provName": "Dr. Navreena Kaur Sahota, DDS",
+    "stSlug": "california"
+  },
+  "murrieta-dental-care": {
+    "provSlug": "todd-kamena",
+    "provName": "Dr. Todd Robert Kamena, DDS",
+    "stSlug": "california"
+  },
+  "sparkle-dental-office": {
+    "provSlug": "wanlan-xiao",
+    "provName": "Dr. Wanlan Xiao, DDS",
+    "stSlug": "california"
+  },
+  "valley-family-dentistry-jason-hsiao-dds": {
+    "provSlug": "steven-williams",
+    "provName": "Dr. Steven Mark Williams, DMD",
+    "stSlug": "california"
+  },
+  "affordable-dentist-near-me-of-longview": {
+    "provSlug": "alfred-fowler",
+    "provName": "Dr. Alfred Harris Fowler, DDS",
+    "stSlug": "texas"
+  },
+  "los-altos-dental-group": {
+    "provSlug": "kenneth-kwan",
+    "provName": "Dr. Kenneth S Kwan, DDS",
+    "stSlug": "california"
+  },
+  "los-altos-dentistry": {
+    "provSlug": "jeffrey-beagle",
+    "provName": "Dr. Jeffrey Brent Beagle, DDS",
+    "stSlug": "california"
+  },
+  "dr-mahsa-esfandiari-dental-group": {
+    "provSlug": "howard-may",
+    "provName": "Dr. Howard Michael May, DDS",
+    "stSlug": "california"
+  },
+  "james-lin-dmd-los-gatos-dentist": {
+    "provSlug": "gregg-trent",
+    "provName": "Dr. Gregg Eugene Trent, DDS",
+    "stSlug": "california"
+  },
+  "southpoint-dentistry": {
+    "provSlug": "luz-estrada-durham",
+    "provName": "Dr. Luz Eliyer Estrada, DDS",
+    "stSlug": "north-carolina"
+  },
+  "los-gatos-creek-dental": {
+    "provSlug": "lawrence-tran-los-gatos",
+    "provName": "Dr. Lawrence Tran, DMD",
+    "stSlug": "california"
+  },
+  "los-gatos-dental-specialists": {
+    "provSlug": "sara-ghasemi",
+    "provName": "Dr. Sara Ghasemi",
+    "stSlug": "california"
+  },
+  "los-gatos-family-dentistry": {
+    "provSlug": "patricia-hiep-chan-phan-underhill",
+    "provName": "Dr. Patricia Hiep-Chan T. Phan-Underhill, DDS",
+    "stSlug": "california"
+  },
+  "los-gatos-modern-dentistry-hafid-e-ortega-dds-inc": {
+    "provSlug": "hafid-ortega",
+    "provName": "Dr. Hafid E. Ortega, DDS",
+    "stSlug": "california"
+  },
+  "nicole-e-pagonis-dds": {
+    "provSlug": "lawrence-tran-los-gatos-ca",
+    "provName": "Dr. Lawrence Tran, DMD",
+    "stSlug": "california"
+  },
+  "dds-dental": {
+    "provSlug": "youn-seo-lee",
+    "provName": "Dr. Youn Seo Lee, DDS",
+    "stSlug": "washington"
+  },
+  "bright-dental-charlotte": {
+    "provSlug": "xin-chen",
+    "provName": "Dr. Xin Chen, DDS",
+    "stSlug": "north-carolina"
+  },
+  "craft-smiles-modern-family-dentistry": {
+    "provSlug": "nickesh-patel",
+    "provName": "Dr. Nickesh Patel, DDS",
+    "stSlug": "north-carolina"
+  },
+  "trailhead-advanced-dentistry": {
+    "provSlug": "mark-reiter",
+    "provName": "Dr. Mark Logan Reiter, DDS",
+    "stSlug": "north-carolina"
+  },
+  "red-oak-family-dentistry-of-mckinney-d21ced": {
+    "provSlug": "bennedick-mara",
+    "provName": "Dr. Bennedick Mara, DMD",
+    "stSlug": "texas"
+  },
+  "starlite-dental-mckinney-7dad98": {
+    "provSlug": "mahsa-astani",
+    "provName": "Dr. Mahsa Maboudian Astani, DDS",
+    "stSlug": "texas"
+  },
+  "stonebridge-dental-3f5805": {
+    "provSlug": "michael-bolten",
+    "provName": "Dr. Michael James Bolten",
+    "stSlug": "texas"
+  },
+  "de-marta-michelle-dmd": {
+    "provSlug": "ryan-starr",
+    "provName": "Dr. Ryan Starr, DMD",
+    "stSlug": "california"
+  },
+  "dr-ryan-a-starr-dmd": {
+    "provSlug": "ryan-starr-menlo-park",
+    "provName": "Dr. Ryan Starr, DMD",
+    "stSlug": "california"
+  },
+  "dr-victoria-berezina-dds": {
+    "provSlug": "lana-sundahl",
+    "provName": "Dr. Lana Jean Sundahl, DDS",
+    "stSlug": "california"
+  },
+  "grace-dental-pediatric": {
+    "provSlug": "cindy-chung-menlo-park",
+    "provName": "Dr. Cindy Sun-Myung Chung, DDS",
+    "stSlug": "california"
+  },
+  "lucy-hua-dds": {
+    "provSlug": "tanya-zaghi",
+    "provName": "Dr. Tanya Zaghi, DDS",
+    "stSlug": "california"
+  },
+  "menlo-park-family-dental": {
+    "provSlug": "lana-sundahl-menlo-park",
+    "provName": "Dr. Lana Jean Sundahl, DDS",
+    "stSlug": "california"
+  },
+  "stanford-family-dental-dr-jamie-paychev-dds": {
+    "provSlug": "marisa-walker",
+    "provName": "Dr. Marisa Walker, DDS",
+    "stSlug": "california"
+  },
+  "bliss-dental-and-orthodontics-midland": {
+    "provSlug": "hannah-lafrance",
+    "provName": "Dr. Hannah Sue Lafrance, DDS",
+    "stSlug": "texas"
+  },
+  "midland-dentistry-4-kids": {
+    "provSlug": "claudia-mendiola",
+    "provName": "Dr. Claudia Mendiola",
+    "stSlug": "texas"
+  },
+  "mills-peninsula-pediatric-dentistry-orthodontics": {
+    "provSlug": "kyra-lee",
+    "provName": "Dr. Kyra Lee, DDS MS",
+    "stSlug": "california"
+  },
+  "dentistry-of-the-carolinas-monroe": {
+    "provSlug": "samantha-sackos",
+    "provName": "Dr. Samantha Luise Sackos, DDS",
+    "stSlug": "north-carolina"
+  },
+  "smiles-dental-care": {
+    "provSlug": "emily-tovar-mountain-view",
+    "provName": "Dr. Emily Yang Tovar, DDS",
+    "stSlug": "california"
+  },
+  "merrell-smiles-of-monroe": {
+    "provSlug": "mohammad-kazemian",
+    "provName": "Dr. Mohammad A Kazemian, DDS",
+    "stSlug": "north-carolina"
+  },
+  "monroe-dental-care": {
+    "provSlug": "evan-erickson",
+    "provName": "Dr. Evan John Erickson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "piedmont-family-dentistry": {
+    "provSlug": "khelli-tiagha",
+    "provName": "Dr. Khelli A Tiagha, DMD",
+    "stSlug": "north-carolina"
+  },
+  "catawba-valley-dental-pate-raymond-g-dmd-pa": {
+    "provSlug": "raymond-pate",
+    "provName": "Dr. Raymond Gerald Pate, DMD",
+    "stSlug": "north-carolina"
+  },
+  "harbor-point-family-dentistry": {
+    "provSlug": "cory-mcmahan",
+    "provName": "Dr. Cory Mcmahan, DDS",
+    "stSlug": "north-carolina"
+  },
+  "mooresville-dental-group": {
+    "provSlug": "jesse-walsh",
+    "provName": "Dr. Jesse Walsh, DDS",
+    "stSlug": "north-carolina"
+  },
+  "schneider-family-cosmetic-dentistry": {
+    "provSlug": "greg-mccourt",
+    "provName": "Dr. Greg Monte Mccourt, DDS",
+    "stSlug": "north-carolina"
+  },
+  "the-dental-spot-best-family-cosmetic-and-same-day-emergency-dentist-in-mooresville": {
+    "provSlug": "clay-sholar",
+    "provName": "Dr. Clay Warren Sholar, DDS",
+    "stSlug": "north-carolina"
+  },
+  "ace-dental-of-killeen": {
+    "provSlug": "praveen-kumar-gonuguntla-kamma",
+    "provName": "Dr. Praveen Kumar Gonuguntla Kamma, DMD",
+    "stSlug": "texas"
+  },
+  "aesthetics-essentials-dental-group": {
+    "provSlug": "golgoun-habibi",
+    "provName": "Dr. Golgoun Habibi, DDS",
+    "stSlug": "california"
+  },
+  "allure-dental-center": {
+    "provSlug": "trinh-lee",
+    "provName": "Dr. Trinh N Lee, DDS",
+    "stSlug": "california"
+  },
+  "camino-family-dentistry": {
+    "provSlug": "lourdes-pedraza",
+    "provName": "Dr. Lourdes Pedraza, DDS",
+    "stSlug": "california"
+  },
+  "gorrell-smiles-mountain-view": {
+    "provSlug": "alexander-lew",
+    "provName": "Dr. Alexander Marcus Lew, DDS",
+    "stSlug": "california"
+  },
+  "peninsula-dental-excellence": {
+    "provSlug": "donald-whitebread",
+    "provName": "Dr. Donald H Whitebread, DDS",
+    "stSlug": "california"
+  },
+  "zen-dental-studio-mountain-view": {
+    "provSlug": "christina-lin",
+    "provName": "Dr. Christina Lin, DDS",
+    "stSlug": "california"
+  },
+  "john-w-daw-dds": {
+    "provSlug": "kathleen-rae-marcelo",
+    "provName": "Dr. Kathleen Rae Marcelo, DDS",
+    "stSlug": "california"
+  },
+  "jones-family-dentistry": {
+    "provSlug": "jon-steffensen",
+    "provName": "Dr. Jon Eric Steffensen",
+    "stSlug": "california"
+  },
+  "kenneth-j-bevan-dds": {
+    "provSlug": "amine-khoury",
+    "provName": "Dr. Amine George Khoury, DDS",
+    "stSlug": "california"
+  },
+  "napa-valley-dental-group": {
+    "provSlug": "charles-stratton",
+    "provName": "Dr. Charles E Stratton, DDS",
+    "stSlug": "california"
+  },
+  "shanahan-orthodontics": {
+    "provSlug": "amine-khoury-napa",
+    "provName": "Dr. Amine George Khoury, DDS",
+    "stSlug": "california"
+  },
+  "smile-country-dental": {
+    "provSlug": "douglas-mo",
+    "provName": "Dr. Douglas Tsung Kuo Mo, DDS",
+    "stSlug": "california"
+  },
+  "yarris-family-dental": {
+    "provSlug": "travis-yarris",
+    "provName": "Dr. Travis Michael Yarris, DDS",
+    "stSlug": "california"
+  },
+  "dental-care-of-greensboro": {
+    "provSlug": "douglas-kellogg",
+    "provName": "Dr. Douglas Alan Kellogg, DDS",
+    "stSlug": "north-carolina"
+  },
+  "smith-family-and-cosmetic-dentistry": {
+    "provSlug": "justin-shimer",
+    "provName": "Dr. Justin Mclawhorn Shimer, DMD",
+    "stSlug": "north-carolina"
+  },
+  "southern-oaks-dental-c75854": {
+    "provSlug": "dalas-young",
+    "provName": "Dr. Dalas Matthew Young",
+    "stSlug": "north-carolina"
+  },
+  "westcliff-dental": {
+    "provSlug": "omid-haroonian-newport-beach",
+    "provName": "Dr. Omid Haroonian, DDS",
+    "stSlug": "california"
+  },
+  "westcliff-dental-studio": {
+    "provSlug": "omid-haroonian-newport-beach-ca",
+    "provName": "Dr. Omid Haroonian, DDS",
+    "stSlug": "california"
+  },
+  "nest-dental": {
+    "provSlug": "masha-kleusch-mekhteys",
+    "provName": "Dr. Masha Kleusch-Mekhteys, DDS",
+    "stSlug": "california"
+  },
+  "twin-mountain-dentistry": {
+    "provSlug": "ricardo-ochinang",
+    "provName": "Dr. Ricardo Ochinang, DMD",
+    "stSlug": "texas"
+  },
+  "barone-orthodontics": {
+    "provSlug": "nicholas-barone",
+    "provName": "Dr. Nicholas Paul Barone, DMD",
+    "stSlug": "rhode-island"
+  },
+  "frank-d-amato-dmd-dentist-in-north-providence-ri": {
+    "provSlug": "steven-silverberg",
+    "provName": "Dr. Steven Wayne Silverberg, DMD",
+    "stSlug": "rhode-island"
+  },
+  "clayton-j-perry-dds": {
+    "provSlug": "clayton-perry",
+    "provName": "Dr. Clayton Joseph Perry, DDS",
+    "stSlug": "california"
+  },
+  "marin-modern-dentistry": {
+    "provSlug": "ira-simon",
+    "provName": "Dr. Ira R Simon, DDS",
+    "stSlug": "california"
+  },
+  "clint-bruyere-dds": {
+    "provSlug": "alfred-fowler-longview",
+    "provName": "Dr. Alfred Harris Fowler, DDS",
+    "stSlug": "texas"
+  },
+  "park-dental-novato": {
+    "provSlug": "ira-simon-novato",
+    "provName": "Dr. Ira R Simon, DDS",
+    "stSlug": "california"
+  },
+  "rafii-dental-care": {
+    "provSlug": "sebastian-rafii",
+    "provName": "Dr. Sebastian Ramteen Rafii, DDS",
+    "stSlug": "california"
+  },
+  "laurel-smile-dentistry-1af907": {
+    "provSlug": "alexander-chin",
+    "provName": "Dr. Alexander Francis Chin, DDS",
+    "stSlug": "california"
+  },
+  "oakland-smile-dental": {
+    "provSlug": "hans-facer",
+    "provName": "Dr. Hans Facer, DDS",
+    "stSlug": "california"
+  },
+  "uptown-dental-christopher-thomas-d-d-s": {
+    "provSlug": "malina-bankiewicz",
+    "provName": "Dr. Malina Bankiewicz, DDS",
+    "stSlug": "california"
+  },
+  "grant-liske-dds": {
+    "provSlug": "grant-liske",
+    "provName": "Dr. Grant M Liske, DDS",
+    "stSlug": "california"
+  },
+  "beach-park-family-dental-practice": {
+    "provSlug": "wen-wu-foster-city",
+    "provName": "Dr. Wen Wu",
+    "stSlug": "california"
+  },
+  "gastonia-dental-group": {
+    "provSlug": "william-white",
+    "provName": "Dr. William David White, DDS",
+    "stSlug": "north-carolina"
+  },
+  "dr-denise-m-henderson-dds": {
+    "provSlug": "denise-henderson",
+    "provName": "Dr. Denise Marie Henderson, DDS",
+    "stSlug": "california"
+  },
+  "gentle-dental-palo-alto": {
+    "provSlug": "sanli-huang",
+    "provName": "Dr. Sanli Shih Hsuan Huang, DDS",
+    "stSlug": "california"
+  },
+  "little-bytes-pediatric-dentistry": {
+    "provSlug": "sanli-huang-palo-alto",
+    "provName": "Dr. Sanli Shih Hsuan Huang, DDS",
+    "stSlug": "california"
+  },
+  "merna-tajaddod-orthodontics-braces-and-invisalign-treatment-in-palo-alto": {
+    "provSlug": "phillip-fletcher",
+    "provName": "Dr. Phillip Thomas Fletcher, DDS",
+    "stSlug": "california"
+  },
+  "palo-alto-advanced-dentists": {
+    "provSlug": "ryan-ho",
+    "provName": "Dr. Ryan Ho",
+    "stSlug": "california"
+  },
+  "palo-alto-dental-studio": {
+    "provSlug": "nidhi-pai",
+    "provName": "Dr. Nidhi Akash Pai, DDS",
+    "stSlug": "california"
+  },
+  "palo-alto-oral-health": {
+    "provSlug": "james-stephens",
+    "provName": "Dr. James Dana Stephens, DDS",
+    "stSlug": "california"
+  },
+  "beckstead-dental-group": {
+    "provSlug": "jung-nam",
+    "provName": "Dr. Jung Nam, DMD",
+    "stSlug": "california"
+  },
+  "montz-and-maher-dental-group": {
+    "provSlug": "nathalie-dunwody",
+    "provName": "Dr. Nathalie Clouse Dunwody, DDS",
+    "stSlug": "texas"
+  },
+  "vineyard-dental-spa": {
+    "provSlug": "nancy-azizi",
+    "provName": "Dr. Nancy Azizi, DDS",
+    "stSlug": "california"
+  },
+  "lalitha-smile-dental-services": {
+    "provSlug": "surya-manga-achyuta",
+    "provName": "Dr. Surya Manga Devi Achyuta, DDS",
+    "stSlug": "california"
+  },
+  "park-place-dental": {
+    "provSlug": "richard-lane-petaluma",
+    "provName": "Dr. Richard Clark Lane, DDS",
+    "stSlug": "california"
+  },
+  "park-plaza-dental": {
+    "provSlug": "michael-jones",
+    "provName": "Dr. Michael W. Jones, DDS",
+    "stSlug": "california"
+  },
+  "petaluma-kids-dental-care": {
+    "provSlug": "austin-nunez",
+    "provName": "Dr. Austin Gustavo Nunez, DDS MPH",
+    "stSlug": "california"
+  },
+  "petaluma-modern-dentistry": {
+    "provSlug": "thomas-szutz",
+    "provName": "Dr. Thomas Randall Szutz, DDS",
+    "stSlug": "california"
+  },
+  "petaluma-oral-surgery-dental-implant-center": {
+    "provSlug": "robert-koenitzer",
+    "provName": "Dr. Robert David Koenitzer, DDS",
+    "stSlug": "california"
+  },
+  "von-chan-d-d-s": {
+    "provSlug": "mahdad-nassiri",
+    "provName": "Dr. Mahdad Nassiri, DDS",
+    "stSlug": "california"
+  },
+  "pflugerville-modern-dentistry-and-orthodontics": {
+    "provSlug": "michael-roberts",
+    "provName": "Dr. Michael Roberts",
+    "stSlug": "texas"
+  },
+  "ideal-dental-huntersville": {
+    "provSlug": "joyce-munn",
+    "provName": "Dr. Joyce Bin-Hong Munn, DDS",
+    "stSlug": "north-carolina"
+  },
+  "make-a-smile-children-s-dental-orthodontics-endodontics-oral-surgery": {
+    "provSlug": "suruchi-malpani-elk-grove",
+    "provName": "Dr. Suruchi Malpani, DDS",
+    "stSlug": "california"
+  },
+  "elite-dental-implants-and-orthodontics-pleasanton": {
+    "provSlug": "youseph-anwar",
+    "provName": "Dr. Youseph Anwar, DDS",
+    "stSlug": "california"
+  },
+  "mona-gokani-dds-pleasanton-dentist": {
+    "provSlug": "steven-nerad",
+    "provName": "Dr. Steven Nerad, DMD",
+    "stSlug": "california"
+  },
+  "pacific-dental-care-and-fastbraces": {
+    "provSlug": "thomas-sellick",
+    "provName": "Dr. Thomas B Sellick, DDS",
+    "stSlug": "california"
+  },
+  "pleasanton-family-dentist-dr-sara-soleimani": {
+    "provSlug": "sara-soleimani",
+    "provName": "Dr. Sara Soleimani, DDS",
+    "stSlug": "california"
+  },
+  "pleasanton-smile-dental": {
+    "provSlug": "chandana-vundavalli",
+    "provName": "Dr. Chandana Vundavalli",
+    "stSlug": "california"
+  },
+  "pleasanton-star-dental": {
+    "provSlug": "chandana-vundavalli-pleasanton",
+    "provName": "Dr. Chandana Vundavalli",
+    "stSlug": "california"
+  },
+  "sustainable-smiles": {
+    "provSlug": "cynthia-young",
+    "provName": "Dr. Cynthia Young, DDS",
+    "stSlug": "california"
+  },
+  "zhao-dental-of-pleasanton": {
+    "provSlug": "norman-wong",
+    "provName": "Dr. Norman Wong, DDS",
+    "stSlug": "california"
+  },
+  "east-texas-dental-associates": {
+    "provSlug": "steve-lebo",
+    "provName": "Dr. Steve Wayne Lebo, DDS",
+    "stSlug": "texas"
+  },
+  "town-creek-dental": {
+    "provSlug": "luanne-anderson",
+    "provName": "Dr. Luanne Anderson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "lane-associates-family-dentistry-raleigh-wake-forest-road": {
+    "provSlug": "thomas-brader",
+    "provName": "Dr. Thomas Brader, DDS MD",
+    "stSlug": "north-carolina"
+  },
+  "dr-malcolm-j-boykin-dds": {
+    "provSlug": "james-hill",
+    "provName": "Dr. James L. Hill, DDS",
+    "stSlug": "california"
+  },
+  "estates-dental-todd-brilliant-dds": {
+    "provSlug": "laura-watterson",
+    "provName": "Dr. Laura Elizabeth Watterson, DMD",
+    "stSlug": "california"
+  },
+  "dr-michael-b-forman-dmd": {
+    "provSlug": "michael-forman",
+    "provName": "Dr. Michael Brian Forman, DMD",
+    "stSlug": "rhode-island"
+  },
+  "dentist-redwood-city-united-dental": {
+    "provSlug": "shabnam-mahzoon",
+    "provName": "Dr. Shabnam Mahzoon, dds",
+    "stSlug": "california"
+  },
+  "woodside-family-dental-f8d3de": {
+    "provSlug": "shikha-puri",
+    "provName": "Dr. Shikha Puri, DMD",
+    "stSlug": "california"
+  },
+  "ramona-dental-group": {
+    "provSlug": "randy-abdou",
+    "provName": "Dr. Randy Abdou, DMD",
+    "stSlug": "california"
+  },
+  "canyon-creek-family-dentistry-of-richardson": {
+    "provSlug": "srujani-reddy-gadusu",
+    "provName": "Dr. Srujani Reddy Gadusu, DDS",
+    "stSlug": "texas"
+  },
+  "trident-smiles": {
+    "provSlug": "janakkumar-patel-salisbury",
+    "provName": "Dr. Janakkumar Bhagubhai Patel, DDS",
+    "stSlug": "north-carolina"
+  },
+  "aspen-dental-rocky-mount-nc": {
+    "provSlug": "asad-siddiqi",
+    "provName": "Dr. Asad Aftab Siddiqi",
+    "stSlug": "north-carolina"
+  },
+  "denturecare-and-implant-solutions": {
+    "provSlug": "john-jernigan",
+    "provName": "Dr. John C Jernigan, dds",
+    "stSlug": "north-carolina"
+  },
+  "drs-belton-schrimper-dds-pa": {
+    "provSlug": "kevin-schrimper",
+    "provName": "Dr. Kevin Charles Schrimper, DDS",
+    "stSlug": "north-carolina"
+  },
+  "hunt-hunt-gorham-dentistry": {
+    "provSlug": "richard-hunt",
+    "provName": "Dr. Richard F Hunt, DDS",
+    "stSlug": "north-carolina"
+  },
+  "rocky-mount-family-dental": {
+    "provSlug": "adam-saunders-rocky-mount",
+    "provName": "Dr. Adam Saunders, DDS",
+    "stSlug": "north-carolina"
+  },
+  "rocky-mount-periodontics-and-implant-center": {
+    "provSlug": "hardin-rogers",
+    "provName": "Dr. Hardin Winslow Rogers, DDS MS PA",
+    "stSlug": "north-carolina"
+  },
+  "alora-dentistry-implant-center": {
+    "provSlug": "navpreet-bedi",
+    "provName": "Dr. Navpreet Singh Bedi, DDS",
+    "stSlug": "california"
+  },
+  "coastal-crown-dentistry": {
+    "provSlug": "juhee-park-laguna-beach",
+    "provName": "Dr. Juhee Park",
+    "stSlug": "california"
+  },
+  "myron-l-donesky-d-d-s": {
+    "provSlug": "donald-wilson",
+    "provName": "Dr. Donald Lewis Wilson, DDS MSD",
+    "stSlug": "california"
+  },
+  "bay-star-dental-b65330": {
+    "provSlug": "stephen-henry-foster-city",
+    "provName": "Dr. Stephen R Henry, dds",
+    "stSlug": "california"
+  },
+  "hastings-ranch-dental-group-and-orthodontics": {
+    "provSlug": "artur-azatyan",
+    "provName": "Dr. Artur Azatyan",
+    "stSlug": "california"
+  },
+  "waterford-pediatric-dentistry-orthodontics-of-dublin": {
+    "provSlug": "johanna-achury-pearson-dublin",
+    "provName": "Dr. Johanna Achury-Pearson, Johanna Achury DDS",
+    "stSlug": "california"
+  },
+  "kitty-hawk-dental-care": {
+    "provSlug": "kimberly-king",
+    "provName": "Dr. Kimberly King, DDS",
+    "stSlug": "california"
+  },
+  "aspen-dental-corpus-christi-tx": {
+    "provSlug": "kazi-nazma-sultana",
+    "provName": "Dr. Kazi Nazma Sultana, DDS",
+    "stSlug": "texas"
+  },
+  "maria-lourdes-yeo-dds": {
+    "provSlug": "rosario-legasto-belmont",
+    "provName": "Dr. Rosario C. Legasto, DMD",
+    "stSlug": "california"
+  },
+  "arbor-view-dental-group": {
+    "provSlug": "mohammed-alshammari",
+    "provName": "Dr. Mohammed Alshammari",
+    "stSlug": "california"
+  },
+  "rocky-ridge-family-dental": {
+    "provSlug": "amandeep-behniwal",
+    "provName": "Dr. Amandeep Behniwal, DDS",
+    "stSlug": "california"
+  },
+  "roseville-family-dental-care-95c148": {
+    "provSlug": "rupinderjit-kaur",
+    "provName": "Dr. Rupinderjit Kaur",
+    "stSlug": "california"
+  },
+  "aspen-dental-temple-tx": {
+    "provSlug": "edward-pushkarev",
+    "provName": "Dr. Edward Pushkarev",
+    "stSlug": "texas"
+  },
+  "forest-family-dentistry-652983": {
+    "provSlug": "robin-bethell",
+    "provName": "Dr. Robin D Bethell, DDS",
+    "stSlug": "texas"
+  },
+  "roseville-topsmiles": {
+    "provSlug": "mami-inouye",
+    "provName": "Dr. Mami Michelle Inouye, DDS",
+    "stSlug": "california"
+  },
+  "advanced-dental-care-of-round-rock": {
+    "provSlug": "yazmin-miranda",
+    "provName": "Dr. Yazmin J. Miranda, DMD",
+    "stSlug": "texas"
+  },
+  "high-point-dentistry": {
+    "provSlug": "tyler-birk",
+    "provName": "Dr. Tyler Birk, DDS",
+    "stSlug": "texas"
+  },
+  "cupertino-family-dentistry-dr-gayatri-sakhrani": {
+    "provSlug": "michael-schuck",
+    "provName": "Dr. Michael Carlton Schuck, DDS",
+    "stSlug": "california"
+  },
+  "rodeo-dental-orthodontics-of-brownsville-8938a6": {
+    "provSlug": "lucas-da-cruz",
+    "provName": "Dr. Lucas Da Cruz",
+    "stSlug": "texas"
+  },
+  "smile-charlotte": {
+    "provSlug": "kevin-berman",
+    "provName": "Dr. Kevin Louis Berman",
+    "stSlug": "north-carolina"
+  },
+  "laguna-west-dental-care": {
+    "provSlug": "francis-joven",
+    "provName": "Dr. Francis Madarang Joven, DMD",
+    "stSlug": "california"
+  },
+  "inspire-smiles-dental": {
+    "provSlug": "sumanpreet-walia",
+    "provName": "Dr. Sumanpreet K Walia, DDS",
+    "stSlug": "california"
+  },
+  "fuller-dental": {
+    "provSlug": "jamie-peterson",
+    "provName": "Dr. Jamie Jo Peterson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "promenade-dental-group": {
+    "provSlug": "hibba-bajwa",
+    "provName": "Dr. Hibba Zia Bajwa",
+    "stSlug": "california"
+  },
+  "brown-and-fortner-dental-group": {
+    "provSlug": "susan-muth",
+    "provName": "Dr. Susan Dickerson Muth, DDS",
+    "stSlug": "north-carolina"
+  },
+  "lillenberg-advanced-dentistry": {
+    "provSlug": "luanne-anderson-salisbury",
+    "provName": "Dr. Luanne Anderson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "salisbury-endodontics": {
+    "provSlug": "brett-henson",
+    "provName": "Dr. Brett R. Henson, DDS",
+    "stSlug": "north-carolina"
+  },
+  "steve-w-yang-dds": {
+    "provSlug": "steve-yang",
+    "provName": "Dr. Steve Woo-Suk Yang, DDS",
+    "stSlug": "north-carolina"
+  },
+  "aspen-dental-san-angelo-tx": {
+    "provSlug": "christian-torres",
+    "provName": "Dr. Christian Tiu Torres",
+    "stSlug": "texas"
+  },
+  "lake-merced-dentistry": {
+    "provSlug": "rodolfo-villasin-daly-city",
+    "provName": "Dr. Rodolfo C. Villasin, DMD DDS",
+    "stSlug": "california"
+  },
+  "brantly-dental": {
+    "provSlug": "kenneth-rees",
+    "provName": "Dr. Kenneth Anderson Rees, DMD",
+    "stSlug": "texas"
+  },
+  "concho-valley-family-dental": {
+    "provSlug": "jay-fandel",
+    "provName": "Dr. Jay Edward Fandel, DMD",
+    "stSlug": "texas"
+  },
+  "emergency-dental-care-usa": {
+    "provSlug": "roger-arredondo",
+    "provName": "Dr. Roger Eliseo Arredondo, DDS",
+    "stSlug": "texas"
+  },
+  "bliss-pediatric-dentistry-dentist-for-kids-in-san-carlos": {
+    "provSlug": "frank-hsu-san-carlos",
+    "provName": "Dr. Frank Hsu, DDS",
+    "stSlug": "california"
+  },
+  "dr-dipty-p-parikh-dds": {
+    "provSlug": "john-powers",
+    "provName": "Dr. John Joseph Powers, DDS",
+    "stSlug": "california"
+  },
+  "tavarez-orthodontics": {
+    "provSlug": "melinda-reynard",
+    "provName": "Dr. Melinda Margolis Reynard, DDS",
+    "stSlug": "california"
+  },
+  "valerie-gilman-dds-san-carlos": {
+    "provSlug": "brandon-phuong",
+    "provName": "Dr. Brandon Hung Phuong, DMD",
+    "stSlug": "california"
+  },
+  "beachside-smiles": {
+    "provSlug": "sean-thompson",
+    "provName": "Dr. Sean R Thompson, DDS",
+    "stSlug": "california"
+  },
+  "golden-lantern-dental": {
+    "provSlug": "herbert-malmon",
+    "provName": "Dr. Herbert Sheldon Malmon, DDS",
+    "stSlug": "california"
+  },
+  "origin-dental": {
+    "provSlug": "mojdeh-abbasian",
+    "provName": "Dr. Mojdeh Abbasian, DDS",
+    "stSlug": "california"
+  },
+  "seamless-dentistry": {
+    "provSlug": "todd-hendrickson",
+    "provName": "Dr. Todd Matthew Hendrickson, DMD",
+    "stSlug": "north-carolina"
+  },
+  "utc-periodontics-and-oral-implantology": {
+    "provSlug": "martin-abelar",
+    "provName": "Dr. Martin Phillip Abelar, DDS",
+    "stSlug": "california"
+  },
+  "gaston-dental-associates": {
+    "provSlug": "jared-little",
+    "provName": "Dr. Jared Michael Little, DDS MSD",
+    "stSlug": "north-carolina"
+  },
+  "financial-district-dentistry": {
+    "provSlug": "jasselle-cabugao",
+    "provName": "Dr. Jasselle Cancino Cabugao, DDS",
+    "stSlug": "california"
+  },
+  "san-francisco-dental-partners-general-cosmetic-and-implant-dentistry": {
+    "provSlug": "jasmine-bhuva",
+    "provName": "Dr. Jasmine Bhuva, DDS",
+    "stSlug": "california"
+  },
+  "valencia-dental-aesthetics": {
+    "provSlug": "consolacion-bragado",
+    "provName": "Dr. Consolacion S Bragado, dmd",
+    "stSlug": "california"
+  },
+  "total-health-dental-care-telegraph-avenue-berkeley": {
+    "provSlug": "matthew-nealon",
+    "provName": "Dr. Matthew James Nealon, DDS",
+    "stSlug": "california"
+  },
+  "peninsula-oral-surgery-burlingame": {
+    "provSlug": "halden-yu",
+    "provName": "Dr. Halden Shing Kwan Yu, DDS",
+    "stSlug": "california"
+  },
+  "bell-dental-center": {
+    "provSlug": "jason-yip",
+    "provName": "Dr. Jason Yip",
+    "stSlug": "california"
+  },
+  "eastowne-family-dentistry": {
+    "provSlug": "lisiane-ferreira-susin",
+    "provName": "Dr. Lisiane Ferreira-Susin, DDS",
+    "stSlug": "north-carolina"
+  },
+  "clove-dental-care-san-leandro-krishna-neelagiri-dds": {
+    "provSlug": "victor-drabkin",
+    "provName": "Dr. Victor Drabkin, DDS",
+    "stSlug": "california"
+  },
+  "estudillo-oral-surgery-implantology": {
+    "provSlug": "ronald-woo",
+    "provName": "Dr. Ronald Carey Woo, DDS",
+    "stSlug": "california"
+  },
+  "just-kids-pediatric-dentistry-orthodontics-san-leandro": {
+    "provSlug": "ronald-woo-san-leandro",
+    "provName": "Dr. Ronald Carey Woo, DDS",
+    "stSlug": "california"
+  },
+  "kamiya-khatwani-dds": {
+    "provSlug": "bruce-stephenson",
+    "provName": "Dr. Bruce A. Stephenson, DDS",
+    "stSlug": "california"
+  },
+  "kb-san-leandro-dental-studio": {
+    "provSlug": "dina-hammouda",
+    "provName": "Dr. Dina Moustafa Sobhi Hammouda, DDS MSD",
+    "stSlug": "california"
+  },
+  "nice-teeth-dental": {
+    "provSlug": "bruce-stephenson-san-leandro",
+    "provName": "Dr. Bruce A. Stephenson, DDS",
+    "stSlug": "california"
+  },
+  "riccobene-associates-family-and-specialty": {
+    "provSlug": "john-corcoran",
+    "provName": "Dr. John Tyler Corcoran, DDS",
+    "stSlug": "north-carolina"
+  },
+  "richard-fossum-dds": {
+    "provSlug": "richard-fossum",
+    "provName": "Dr. Richard F Fossum, DDS",
+    "stSlug": "texas"
+  },
+  "lewelling-dental-care": {
+    "provSlug": "shital-kazi",
+    "provName": "Dr. Shital Kazi, DDS",
+    "stSlug": "california"
+  },
+  "deccan-dental-samir-nanjapa-dds": {
+    "provSlug": "alyssa-coulter",
+    "provName": "Dr. Alyssa Gianella Coulter",
+    "stSlug": "california"
+  },
+  "robert-p-choi-dds": {
+    "provSlug": "may-liu-san-mateo",
+    "provName": "Dr. May W Liu, DDS",
+    "stSlug": "california"
+  },
+  "the-smile-co": {
+    "provSlug": "may-liu-san-mateo-ca",
+    "provName": "Dr. May W Liu, DDS",
+    "stSlug": "california"
+  },
+  "estudillo-family-dental": {
+    "provSlug": "sergio-correa-san-leandro-ca",
+    "provName": "Dr. Sergio Correa, DDS",
+    "stSlug": "california"
+  },
+  "san-leandro-oral-surgery-dr-hany-attia-dds-pc": {
+    "provSlug": "sergio-correa-san-leandro-ca",
+    "provName": "Dr. Sergio Correa, DDS",
+    "stSlug": "california"
+  },
+  "dr-darya-g-ghafourpour-dds-inc": {
+    "provSlug": "darya-ghafourpour",
+    "provName": "Dr. Darya G Ghafourpour, DDS",
+    "stSlug": "california"
+  },
+  "evosmile-igor-ochev-dds": {
+    "provSlug": "eric-wong",
+    "provName": "Dr. Eric Bao- Toan Wong, DDS",
+    "stSlug": "california"
+  },
+  "kantor-dental-group-implants": {
+    "provSlug": "eric-wong-san-rafael",
+    "provName": "Dr. Eric Bao- Toan Wong, DDS",
+    "stSlug": "california"
+  },
+  "marin-dental-care": {
+    "provSlug": "steven-chase",
+    "provName": "Dr. Steven S Chase, DDS",
+    "stSlug": "california"
+  },
+  "suzie-yang-dds": {
+    "provSlug": "eric-wong-san-rafael-ca",
+    "provName": "Dr. Eric Bao- Toan Wong, DDS",
+    "stSlug": "california"
+  },
+  "captain-dental-santa-clara": {
+    "provSlug": "wei-chen-liang",
+    "provName": "Dr. Wei Chen Liang, DDS",
+    "stSlug": "california"
+  },
+  "genesis-dentistry-dental-group": {
+    "provSlug": "alan-frame",
+    "provName": "Dr. Alan L Frame, dds",
+    "stSlug": "california"
+  },
+  "rivermark-dental": {
+    "provSlug": "christine-lee-santa-clara",
+    "provName": "Dr. Christine Y. Lee, DDS",
+    "stSlug": "california"
+  },
+  "santa-clara-family-dental": {
+    "provSlug": "sohail-saghezchi",
+    "provName": "Dr. Sohail Saghezchi, DDS",
+    "stSlug": "california"
+  },
+  "silicon-valley-dental": {
+    "provSlug": "anagha-jog",
+    "provName": "Dr. Anagha B. Jog, DMD DDS",
+    "stSlug": "california"
+  },
+  "silicon-valley-pediatric-dentistry-and-orthodontics-santa-clara": {
+    "provSlug": "janice-hwang",
+    "provName": "Dr. Janice Jinsun Hwang, DDS",
+    "stSlug": "california"
+  },
+  "smart-start-dental": {
+    "provSlug": "jeffrey-alexander",
+    "provName": "Dr. Jeffrey Paul Alexander, DDS",
+    "stSlug": "california"
+  },
+  "essential-dental-care": {
+    "provSlug": "leslie-jue",
+    "provName": "Dr. Leslie Jue, DDS",
+    "stSlug": "california"
+  },
+  "fountaingrove-dentistry": {
+    "provSlug": "robert-erlach",
+    "provName": "Dr. Robert W Erlach, DDS",
+    "stSlug": "california"
+  },
+  "gentle-dental-santa-rosa": {
+    "provSlug": "suzanne-fjarli",
+    "provName": "Dr. Suzanne M Fjarli, DDS",
+    "stSlug": "california"
+  },
+  "landeros-associates-family-cosmetic-dentistry": {
+    "provSlug": "joshua-hammer",
+    "provName": "Dr. Joshua Drew Hammer, DMD",
+    "stSlug": "california"
+  },
+  "wayne-dental-center": {
+    "provSlug": "cynthia-wiley-goldsboro-nc",
+    "provName": "Dr. Cynthia S. Wiley, DMD MDS",
+    "stSlug": "north-carolina"
+  },
+  "santa-rosa-endodontics": {
+    "provSlug": "emine-colin",
+    "provName": "Dr. Emine Catalbas Colin, DMD",
+    "stSlug": "california"
+  },
+  "johnson-dentistry-bryan": {
+    "provSlug": "john-johnson",
+    "provName": "Dr. John Albert Johnson, DDS",
+    "stSlug": "texas"
+  },
+  "dental-park-69c29a": {
+    "provSlug": "chan-min-park",
+    "provName": "Dr. Chan Min Park, DDS",
+    "stSlug": "texas"
+  },
+  "hanhan-dental": {
+    "provSlug": "suhair-hanhan",
+    "provName": "Dr. Suhair Salim Hanhan, DDS",
+    "stSlug": "california"
+  },
+  "image-orthodontics-south-san-francisco-westborough-blvd": {
+    "provSlug": "ricardo-yap",
+    "provName": "Dr. Ricardo Yap, DDS",
+    "stSlug": "california"
+  },
+  "june-rhee-dds": {
+    "provSlug": "june-rhee",
+    "provName": "Dr. June Han Rhee, DDS",
+    "stSlug": "california"
+  },
+  "smile-studio-of-south-sf": {
+    "provSlug": "ricardo-yap-south-san-francisco",
+    "provName": "Dr. Ricardo Yap, DDS",
+    "stSlug": "california"
+  },
+  "south-san-francisco-dental-care": {
+    "provSlug": "ricardo-yap-south-san-francisco-ca",
+    "provName": "Dr. Ricardo Yap, DDS",
+    "stSlug": "california"
+  },
+  "south-san-francisco-dental-excellence-kevin-tom-dds": {
+    "provSlug": "kevin-tom",
+    "provName": "Dr. Kevin Tom, DDS",
+    "stSlug": "california"
+  },
+  "vista-dental-care": {
+    "provSlug": "catherine-vista",
+    "provName": "Dr. Catherine M Vista, DDS",
+    "stSlug": "california"
+  },
+  "spokane-valley-dentistry": {
+    "provSlug": "kory-wilson",
+    "provName": "Dr. Kory J Wilson, dds",
+    "stSlug": "washington"
+  },
+  "kirkwood-dental-vinh-t-pham-dds": {
+    "provSlug": "vinh-pham",
+    "provName": "Dr. Vinh T Pham, DDS",
+    "stSlug": "california"
+  },
+  "dental-care-at-harris-crossing": {
+    "provSlug": "paul-samia",
+    "provName": "Dr. Paul Arthus Samia",
+    "stSlug": "north-carolina"
+  },
+  "winston-smiles-dentistry": {
+    "provSlug": "laurel-taylor",
+    "provName": "Dr. Laurel Elizabeth Taylor, DDS",
+    "stSlug": "north-carolina"
+  },
+  "roseville-dental-group": {
+    "provSlug": "david-cernik",
+    "provName": "Dr. David G Cernik, DDS",
+    "stSlug": "california"
+  },
+  "the-lakes-family-dental": {
+    "provSlug": "eric-flores",
+    "provName": "Dr. Eric Nathaniel Flores, DDS",
+    "stSlug": "texas"
+  }
+}

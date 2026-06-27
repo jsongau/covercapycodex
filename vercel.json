@@ -1,0 +1,446 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/find-my-dentist",
+      "destination": "/find-my-dentist.html"
+    },
+    {
+      "source": "/best-ppo-dentists/:area/:city",
+      "destination": "/find-my-dentist.html"
+    },
+    {
+      "source": "/best-ppo-dentists/:area",
+      "destination": "/find-my-dentist.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/inside/:rest*",
+      "destination": "/dental-insurance/delta-dental/:rest*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/inside",
+      "destination": "/dental-insurance/delta-dental",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/premium/:rest*",
+      "destination": "/dental-insurance/delta-dental/premium/:rest*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/compare/:rest*",
+      "destination": "/dental-insurance/delta-dental/compare/:rest*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/over-65/:rest*",
+      "destination": "/dental-insurance/delta-dental/over-65/:rest*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/uc-students/:rest*",
+      "destination": "/dental-insurance/delta-dental/uc-students/:rest*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/find-a-dentist/:rest*",
+      "destination": "/dental-insurance/delta-dental/find-a-dentist/:rest*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/premium",
+      "destination": "/dental-insurance/delta-dental/premium",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/compare",
+      "destination": "/dental-insurance/delta-dental/compare",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/over-65",
+      "destination": "/dental-insurance/delta-dental/over-65",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/uc-students",
+      "destination": "/dental-insurance/delta-dental/uc-students",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental/find-a-dentist",
+      "destination": "/dental-insurance/delta-dental/find-a-dentist",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/delta-dental",
+      "destination": "/dental-insurance/delta-dental",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/humana/extend-5000",
+      "destination": "/dental-insurance/ppo-plans/humana-extend-5000",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/metlife/ncd-complete",
+      "destination": "/dental-insurance/ppo-plans/metlife-ncd-complete",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/ameritas/primestar-care-complete",
+      "destination": "/dental-insurance/ppo-plans/ameritas-primestar",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance/ppo-plans/aetna/dental-direct",
+      "destination": "/dental-insurance/ppo-plans/aetna-dental-direct",
+      "permanent": true
+    },
+    {
+      "source": "/cost-calculator/crown:rest*",
+      "destination": "/guides/crowns/cost",
+      "permanent": true
+    },
+    {
+      "source": "/cost-calculator/implant:rest*",
+      "destination": "/guides/implants/",
+      "permanent": true
+    },
+    {
+      "source": "/cost-calculator/root-canal:rest*",
+      "destination": "/guides/root-canals/",
+      "permanent": true
+    },
+    {
+      "source": "/cost-calculator/invisalign:rest*",
+      "destination": "/guides/braces-invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/cost-calculator/:rest*",
+      "destination": "/dental-treatment-cost-estimator",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/root-canal-cost:rest*",
+      "destination": "/guides/root-canals/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/crown-cost:rest*",
+      "destination": "/guides/crowns/cost",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/dental-implant-cost:rest*",
+      "destination": "/guides/implants/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/dentures-cost:rest*",
+      "destination": "/guides/dentures/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/invisalign-cost:rest*",
+      "destination": "/guides/braces-invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/teeth-whitening-cost:rest*",
+      "destination": "/guides/whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-cost/:rest*",
+      "destination": "/dental-treatment-cost-estimator",
+      "permanent": true
+    },
+    {
+      "source": "/dental-financing/:rest*",
+      "destination": "/dental-financing-monthly-payments",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/unitedhealthcare-primary-dental:rest*",
+      "destination": "/dental-insurance/ppo-plans/uhc-primary-dental/",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/aetna-dental-direct-preferred:rest*",
+      "destination": "/dental-insurance/ppo-plans/aetna-dental-direct/",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/ameritas-primestar-complete:rest*",
+      "destination": "/dental-insurance/ppo-plans/ameritas-primestar/",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/guardian-premier-ppo:rest*",
+      "destination": "/dental-insurance/ppo-plans/guardian-premier-ppo/",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/mutual-of-omaha-dental-preferred:rest*",
+      "destination": "/dental-insurance/ppo-plans/mutual-of-omaha-dental/",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/humana-extend-5000:rest*",
+      "destination": "/dental-insurance/ppo-plans/humana-extend-5000/",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans/:rest*",
+      "destination": "/compare-ppo-dental-plans",
+      "permanent": true
+    },
+    {
+      "source": "/best-dental-insurance-for-:rest*",
+      "destination": "/compare-ppo-dental-plans",
+      "permanent": true
+    },
+    {
+      "source": "/best-dental-insurance:rest*",
+      "destination": "/compare-ppo-dental-plans",
+      "permanent": true
+    },
+    {
+      "source": "/learn/:rest*",
+      "destination": "/guides/glossary/",
+      "permanent": true
+    },
+    {
+      "source": "/cost-calculator",
+      "destination": "/dental-treatment-cost-estimator",
+      "permanent": true
+    },
+    {
+      "source": "/estimatecost",
+      "destination": "/dental-treatment-cost-estimator",
+      "permanent": true
+    },
+    {
+      "source": "/ppodentists",
+      "destination": "/find-my-dentist",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dentists",
+      "destination": "/find-my-dentist",
+      "permanent": true
+    },
+    {
+      "source": "/for-dentists/claim/:rest*",
+      "destination": "/dentist-portal",
+      "permanent": true
+    },
+    {
+      "source": "/for-dentists/:rest*",
+      "destination": "/dentist-portal",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance-glossary/:slug*",
+      "destination": "/guides/glossary/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance-between-jobs",
+      "destination": "/guides/between-jobs",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance-for-self-employed",
+      "destination": "/guides/self-employed",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance-immediate-coverage",
+      "destination": "/guides/immediate-coverage",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance-no-waiting-period",
+      "destination": "/guides/no-waiting-period",
+      "permanent": true
+    },
+    {
+      "source": "/ppodentists.html",
+      "destination": "/find-my-dentist",
+      "permanent": true
+    },
+    {
+      "source": "/finance",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/payment-plans",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-payment-plans",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/monthly-payments",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-monthly-payments",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/0-apr",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/0-apr-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/0-apr-dental-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/zero-percent-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/zero-percent-dental-financing",
+      "destination": "/dental-financing-monthly-payments.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare-ppo",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare-ppo-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare-dental-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare-dental-insurance",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-dental-insurance",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-ppo-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/dental-insurance-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-ppo-dental-plans",
+      "destination": "/compare-ppo-dental-plans.html",
+      "permanent": true
+    },
+    {
+      "source": "/estimatecost.html",
+      "destination": "/dental-treatment-cost-estimator.html",
+      "permanent": true
+    },
+    {
+      "source": "/estimatecosts.html",
+      "destination": "/dental-treatment-cost-estimator.html",
+      "permanent": true
+    },
+    {
+      "source": "/guides/dental-crown-cost",
+      "destination": "/guides/crowns/cost",
+      "permanent": true
+    },
+    {
+      "source": "/guides/crown-financing",
+      "destination": "/guides/crowns/financing",
+      "permanent": true
+    },
+    {
+      "source": "/guides/crown-cost-without-insurance",
+      "destination": "/guides/crowns/cost-without-insurance",
+      "permanent": true
+    },
+    {
+      "source": "/guides/crown-payment-plans",
+      "destination": "/guides/crowns/payment-plans",
+      "permanent": true
+    },
+    {
+      "source": "/guides/crown-financing-no-credit-check",
+      "destination": "/guides/crowns/financing-no-credit-check",
+      "permanent": true
+    },
+    {
+      "source": "/guides/does-insurance-cover-crowns",
+      "destination": "/guides/crowns/insurance-coverage",
+      "permanent": true
+    },
+    {
+      "source": "/guides/crown-cost-with-insurance",
+      "destination": "/guides/crowns/cost-with-insurance",
+      "permanent": true
+    },
+    {
+      "source": "/guides/crown-build-up-and-extra-costs",
+      "destination": "/guides/crowns/build-up-and-extra-costs",
+      "permanent": true
+    }
+  ]
+}

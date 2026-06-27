@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find PPO Dentists Near You | CoverCapy</title>
+  <meta name="description" content="Find top-rated PPO dentists near you. Verify your insurance coverage free through CoverCapy.">
+  <link rel="canonical" href="https://www.covercapy.com/find-my-dentist">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.covercapy.com/#website",
+        "url": "https://www.covercapy.com",
+        "name": "CoverCapy",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.covercapy.com/find-my-dentist?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "name": "Top PPO Dentists",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"item":{"@type":"LocalBusiness","name":"KYT Dental Services","address":{"@type":"PostalAddress","addressLocality":"Fountain Valley","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/orange-county/fountain-valley/kyt-dental-services/"}},
+          {"@type":"ListItem","position":2,"item":{"@type":"LocalBusiness","name":"Ethos Advanced Dental Care","address":{"@type":"PostalAddress","addressLocality":"Temecula","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/riverside/temecula/ethos-advanced-dental-care-ca-617776/"}},
+          {"@type":"ListItem","position":3,"item":{"@type":"LocalBusiness","name":"Canyon Crest Dental","address":{"@type":"PostalAddress","addressLocality":"Riverside","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/riverside/riverside/canyon-crest-dental-ca-2774d0/"}},
+          {"@type":"ListItem","position":4,"item":{"@type":"LocalBusiness","name":"Riverside Modern Dentistry","address":{"@type":"PostalAddress","addressLocality":"Riverside","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/riverside/riverside/riverside-modern-dentistry-ca-2dfd53/"}},
+          {"@type":"ListItem","position":5,"item":{"@type":"LocalBusiness","name":"Rancho Dental","address":{"@type":"PostalAddress","addressLocality":"Temecula","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/riverside/temecula/rancho-dental-ca-7f8beb/"}},
+          {"@type":"ListItem","position":6,"item":{"@type":"LocalBusiness","name":"Barsoum Dental Upland","address":{"@type":"PostalAddress","addressLocality":"Upland","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/san-bernardino/upland/barsoum-dental-upland-ca-484291/"}},
+          {"@type":"ListItem","position":7,"item":{"@type":"LocalBusiness","name":"Mesa Dental","address":{"@type":"PostalAddress","addressLocality":"San Diego","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/san-diego/san-diego/mesa-dental-san-diego-7/"}},
+          {"@type":"ListItem","position":8,"item":{"@type":"LocalBusiness","name":"The Super Dentists","address":{"@type":"PostalAddress","addressLocality":"Chula Vista","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/san-diego/chula-vista/the-super-dentists-chula-vista-31/"}},
+          {"@type":"ListItem","position":9,"item":{"@type":"LocalBusiness","name":"Capital Dental Group","address":{"@type":"PostalAddress","addressLocality":"Bakersfield","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/central-valley/bakersfield/capital-dental-group-bakersfield/"}},
+          {"@type":"ListItem","position":10,"item":{"@type":"LocalBusiness","name":"Haraz Dental Group","address":{"@type":"PostalAddress","addressLocality":"Fresno","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/central-valley/fresno/haraz-dental-group-fresno/"}},
+          {"@type":"ListItem","position":11,"item":{"@type":"LocalBusiness","name":"SmilePro Dental","address":{"@type":"PostalAddress","addressLocality":"Stockton","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/central-valley/stockton/smilepro-dental-stockton/"}},
+          {"@type":"ListItem","position":12,"item":{"@type":"LocalBusiness","name":"Escondido Family Dental Care","address":{"@type":"PostalAddress","addressLocality":"Escondido","addressRegion":"CA"},"url":"https://www.covercapy.com/dental/california/san-diego/escondido/escondido-family-dental-care-specialty-center-escondido-new1055/"}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --teal-night: #082A30;
+      --teal-700: #14525B;
+      --teal-300: #5E8C92;
+      --mint: #5BE0A0;
+      --mint-soft: #E6F7EE;
+      --cream-card: #FFFDF8;
+      --cream: #F6F0E6;
+      --gold-soft: #F3E8CF;
+      --ink: #082A30;
+      --ink-soft: #56655F;
+      --ink-faint: #8A958F;
+      --body: #3A4A42;
+      --line: #E8E2D8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      color: var(--body);
+      background: #F9F5EF;
+      line-height: 1.5;
+    }
+
+    a { color: var(--teal-700); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    .site-nav {
+      background: var(--teal-night);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: var(--mint);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-links a.active {
+      border-bottom: 2px solid var(--mint);
+      padding-bottom: 2px;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--teal-night);
+      padding: 36px 24px 40px;
+      color: #fff;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+
+    .breadcrumb a { color: rgba(255,255,255,0.6); }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb span { margin: 0 6px; }
+
+    h1#page-h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    #loc-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    #loc-input::placeholder { color: rgba(255,255,255,0.45); }
+
+    #loc-input:focus {
+      border-color: var(--mint);
+      background: rgba(255,255,255,0.15);
+    }
+
+    #search-btn {
+      padding: 12px 24px;
+      background: var(--mint);
+      color: var(--teal-night);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+
+    #search-btn:hover { opacity: 0.88; }
+
+    .carrier-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .carrier-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .carrier-pill:hover {
+      border-color: var(--mint);
+      color: #fff;
+    }
+
+    .carrier-pill.active {
+      background: var(--mint);
+      border-color: var(--mint);
+      color: var(--teal-night);
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      background: var(--cream-card);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-bar select {
+      padding: 7px 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.875rem;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .filter-bar select:focus { border-color: var(--teal-300); }
+
+    #result-count {
+      margin-left: auto;
+      font-size: 0.875rem;
+      color: var(--ink-faint);
+      font-weight: 500;
+    }
+
+    /* MAIN LAYOUT */
+    .main-layout {
+      display: flex;
+      gap: 0;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      align-items: flex-start;
+    }
+
+    /* MAP PANEL */
+    .map-panel {
+      width: 280px;
+      flex-shrink: 0;
+      margin-right: 20px;
+      position: sticky;
+      top: 72px;
+    }
+
+    .map-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .map-panel iframe {
+      width: 100%;
+      height: 320px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* RESULTS */
+    .results-panel {
+      flex: 1;
+      min-width: 0;
+    }
+
+    #results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* DENTIST CARD */
+    .dcard {
+      background: var(--cream-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+
+    .dcard:hover {
+      box-shadow: 0 4px 16px rgba(8,42,48,0.08);
+    }
+
+    .dcard-body {
+      padding: 18px 18px 14px;
+      flex: 1;
+    }
+
+    .dcard-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .dcard-doc {
+      font-size: 0.8rem;
+      color: var(--teal-300);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .dcard-loc {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    .dcard-rating {
+      font-size: 0.85rem;
+      color: var(--teal-700);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .dcard-carriers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 9px;
+      background: var(--mint-soft);
+      color: var(--teal-700);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .dcard-foot {
+      padding: 12px 18px 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-profile {
+      padding: 8px 14px;
+      border: 1.5px solid var(--teal-700);
+      border-radius: 6px;
+      color: var(--teal-700);
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-profile:hover {
+      background: var(--teal-700);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .btn-verify {
+      flex: 1;
+      padding: 8px 14px;
+      background: var(--teal-night);
+      color: var(--mint);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-verify:hover { opacity: 0.85; }
+
+    .no-results {
+      color: var(--ink-faint);
+      padding: 40px 0;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    /* RIGHT RAIL */
+    .rail {
+      width: 240px;
+      flex-shrink: 0;
+      margin-left: 20px;
+    }
+
+    .rail-box {
+      background: var(--cream-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .rail-box h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--teal-700);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .city-links h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .city-links ul {
+      list-style: none;
+    }
+
+    .city-links li {
+      margin-bottom: 6px;
+    }
+
+    .city-links a {
+      font-size: 0.82rem;
+      color: var(--teal-700);
+    }
+
+    /* SEO HUBS */
+    #seo-hubs {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      border-top: 1px solid var(--line);
+    }
+
+    #seo-hubs h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    #seo-hubs h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    #seo-hubs ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #seo-hubs a {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--cream-card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--teal-700);
+      transition: all 0.15s;
+    }
+
+    #seo-hubs a:hover {
+      background: var(--mint-soft);
+      border-color: var(--teal-300);
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--teal-night);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 20px 24px;
+      font-size: 0.82rem;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.6);
+    }
+
+    footer a:hover { color: #fff; }
+
+    /* MODAL */
+    .scrim {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8,42,48,0.55);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-box {
+      background: var(--cream-card);
+      border-radius: 12px;
+      max-width: 520px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 32px 28px 28px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--ink-faint);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-close:hover { color: var(--ink); }
+
+    .modal-overline {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal-300);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .modal-office {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      margin-bottom: 22px;
+    }
+
+    .modal-office em {
+      font-style: italic;
+      color: var(--teal-700);
+    }
+
+    /* Carrier tiles */
+    .carrier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .carrier-tile {
+      padding: 12px 8px;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.15s;
+      line-height: 1.3;
+    }
+
+    .carrier-tile:hover {
+      border-color: var(--teal-300);
+      color: var(--teal-700);
+      background: var(--mint-soft);
+    }
+
+    .carrier-tile.selected {
+      border-color: var(--teal-700);
+      background: var(--mint-soft);
+      color: var(--teal-night);
+    }
+
+    /* Form fields */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 7px;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-group input:focus { border-color: var(--teal-300); }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 12px 14px;
+      background: var(--gold-soft);
+      border-radius: 7px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--teal-700);
+      flex-shrink: 0;
+    }
+
+    .checkbox-row label {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--teal-night);
+      color: var(--mint);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-submit:hover { opacity: 0.85; }
+
+    .step-back {
+      background: none;
+      border: none;
+      color: var(--teal-300);
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-top: 12px;
+      padding: 0;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+    }
+
+    .step-back:hover { color: var(--teal-700); }
+
+    .success-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: block;
+      text-align: center;
+    }
+
+    .success-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .success-body {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .btn-close-success {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--mint-soft);
+      color: var(--teal-700);
+      border: 1.5px solid var(--teal-300);
+      border-radius: 8px;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-close-success:hover {
+      background: var(--teal-700);
+      color: #fff;
+      border-color: var(--teal-700);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .rail { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .map-panel { display: none; }
+      .main-layout { padding: 16px; }
+      .filter-bar { gap: 10px; }
+      #result-count { margin-left: 0; width: 100%; }
+      .carrier-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 0.8rem; }
+      .search-row { flex-direction: column; }
+      #search-btn { width: 100%; }
+      .modal-box { padding: 24px 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-logo">CoverCapy</a>
+  <ul class="nav-links">
+    <li><a href="/find-my-dentist" class="active">Find a Dentist</a></li>
+    <li><a href="/compare-ppo-dental-plans">Compare Plans</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" role="banner">
+  <div class="hero-inner">
+    <nav aria-label="breadcrumb" class="breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Find a Dentist</span>
+    </nav>
+    <h1 id="page-h1">Find PPO Dentists Near You</h1>
+    <p class="hero-sub">Verify your insurance in seconds. No phone calls.</p>
+    <div class="search-row">
+      <input id="loc-input" type="search" placeholder="ZIP code, city, or neighborhood" autocomplete="off" aria-label="Search by location">
+      <button id="search-btn" type="button">Search</button>
+    </div>
+    <div class="carrier-pills-row" role="group" aria-label="Filter by carrier">
+      <button class="carrier-pill" data-carrier="UnitedHealthcare" type="button">UHC</button>
+      <button class="carrier-pill" data-carrier="Aetna" type="button">Aetna</button>
+      <button class="carrier-pill" data-carrier="Ameritas" type="button">Ameritas</button>
+      <button class="carrier-pill" data-carrier="Guardian" type="button">Guardian</button>
+      <button class="carrier-pill" data-carrier="Delta Dental" type="button">Delta Dental</button>
+      <button class="carrier-pill" data-carrier="Humana" type="button">Humana</button>
+      <button class="carrier-pill" data-carrier="Cigna" type="button">Cigna</button>
+      <button class="carrier-pill" data-carrier="MetLife" type="button">MetLife</button>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" role="toolbar" aria-label="Filter results">
+  <select id="treatment-filter" aria-label="Filter by treatment">
+    <option value="">All Treatments</option>
+    <option value="General Dentistry">General Dentistry</option>
+    <option value="Cosmetic">Cosmetic</option>
+    <option value="Orthodontics">Orthodontics</option>
+    <option value="Implants">Implants</option>
+    <option value="Pediatric">Pediatric</option>
+    <option value="Emergency">Emergency</option>
+  </select>
+  <select id="distance-filter" aria-label="Filter by distance">
+    <option value="5">5 mi</option>
+    <option value="8">8 mi</option>
+    <option value="15">15 mi</option>
+    <option value="25">25 mi</option>
+    <option value="30" selected>30 mi</option>
+  </select>
+  <span id="result-count">Showing 12 dentists</span>
+</div>
+
+<!-- MAIN LAYOUT -->
+<main class="main-layout" id="main">
+  <!-- MAP -->
+  <aside class="map-panel" aria-label="Map of dentists">
+    <p class="map-label">Orange County area</p>
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-118.1,33.4,-117.5,33.9&layer=mapnik"
+      title="Map of dentists in Orange County"
+      loading="lazy"
+      referrerpolicy="no-referrer"
+      aria-hidden="true"
+    ></iframe>
+  </aside>
+
+  <!-- RESULTS -->
+  <section class="results-panel" aria-live="polite" aria-atomic="false">
+    <div id="results-grid">
+      <!-- JS renders here; static seed below for crawlers -->
+      <article class="dcard">
+        <div class="dcard-body">
+          <div class="dcard-name">KYT Dental Services</div>
+          <div class="dcard-doc">Dr. Isaac Sun DDS</div>
+          <div class="dcard-loc">Fountain Valley, California</div>
+          <div class="dcard-rating">★ 4.9 · 312 reviews</div>
+          <div class="dcard-carriers">
+            <span class="pill">Delta Dental</span>
+            <span class="pill">UnitedHealthcare</span>
+            <span class="pill">Aetna</span>
+            <span class="pill">Guardian</span>
+          </div>
+        </div>
+        <div class="dcard-foot">
+          <a href="/dental/california/orange-county/fountain-valley/kyt-dental-services/" class="btn-profile">View Profile →</a>
+          <button class="btn-verify" data-name="KYT Dental Services" data-phone="(714) 418-2102" onclick="fmdOpenVerify(this)">Verify Insurance — Free</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- RAIL -->
+  <aside class="rail" aria-label="CoverCapy network information">
+    <div class="rail-box">
+      <h3>The CoverCapy Network</h3>
+      <div class="stat-row">
+        <span class="stat-num">6,400+</span>
+        <span class="stat-label">verified dentists</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">50</span>
+        <span class="stat-label">states covered</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">Free</span>
+        <span class="stat-label">PPO verification</span>
+      </div>
+    </div>
+    <div class="rail-box city-links">
+      <h4>Browse by City</h4>
+      <ul>
+        <li><a href="/dental/california/orange-county/fountain-valley/">Fountain Valley</a></li>
+        <li><a href="/dental/california/orange-county/irvine/">Irvine</a></li>
+        <li><a href="/dental/california/orange-county/huntington-beach/">Huntington Beach</a></li>
+        <li><a href="/dental/california/orange-county/newport-beach/">Newport Beach</a></li>
+        <li><a href="/dental/california/orange-county/costa-mesa/">Costa Mesa</a></li>
+        <li><a href="/dental/california/orange-county/santa-ana/">Santa Ana</a></li>
+        <li><a href="/dental/california/orange-county/anaheim/">Anaheim</a></li>
+        <li><a href="/dental/california/los-angeles/">Los Angeles</a></li>
+      </ul>
+    </div>
+  </aside>
+</main>
+
+<!-- SEO HUBS -->
+<section id="seo-hubs">
+  <h2>Browse PPO Dentists by Area</h2>
+  <h3>Orange County</h3>
+  <ul>
+    <li><a href="/dental/california/orange-county/fountain-valley/">PPO Dentists in Fountain Valley</a></li>
+    <li><a href="/dental/california/orange-county/irvine/">PPO Dentists in Irvine</a></li>
+    <li><a href="/dental/california/orange-county/huntington-beach/">PPO Dentists in Huntington Beach</a></li>
+    <li><a href="/dental/california/orange-county/costa-mesa/">PPO Dentists in Costa Mesa</a></li>
+    <li><a href="/dental/california/orange-county/newport-beach/">PPO Dentists in Newport Beach</a></li>
+    <li><a href="/dental/california/orange-county/santa-ana/">PPO Dentists in Santa Ana</a></li>
+    <li><a href="/dental/california/orange-county/anaheim/">PPO Dentists in Anaheim</a></li>
+  </ul>
+  <h3>Los Angeles</h3>
+  <ul>
+    <li><a href="/dental/california/los-angeles/">PPO Dentists in Los Angeles</a></li>
+    <li><a href="/dental/california/los-angeles/west-hollywood/">PPO Dentists in West Hollywood</a></li>
+    <li><a href="/dental/california/los-angeles/beverly-hills/">PPO Dentists in Beverly Hills</a></li>
+  </ul>
+  <h3>By Insurance</h3>
+  <ul>
+    <li><a href="/dental/california/orange-county/?carrier=delta-dental">Delta Dental PPO Dentists</a></li>
+    <li><a href="/dental/california/orange-county/?carrier=unitedhealthcare">UnitedHealthcare PPO Dentists</a></li>
+    <li><a href="/dental/california/orange-county/?carrier=ameritas">Ameritas PPO Dentists</a></li>
+  </ul>
+</section>
+
+<!-- VERIFY MODAL -->
+<div id="fmd-verify-scrim" class="scrim" role="dialog" aria-modal="true" aria-labelledby="fmd-modal-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="fmdCloseVerify()" aria-label="Close">&times;</button>
+
+    <!-- Step 1: Choose carrier -->
+    <div id="fmd-step1">
+      <div class="modal-overline">PPO Verification</div>
+      <h2 class="modal-title" id="fmd-modal-title">Select your PPO carrier</h2>
+      <p class="modal-office">Verifying at <em id="fmd-office-name"></em></p>
+      <div class="carrier-grid" role="group" aria-label="Choose your insurance carrier">
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Delta Dental PPO" type="button">Delta Dental PPO</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Delta Dental Premier" type="button">Delta Dental Premier</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="UnitedHealthcare" type="button">UnitedHealthcare</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Aetna" type="button">Aetna</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Cigna" type="button">Cigna</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="MetLife" type="button">MetLife</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Anthem" type="button">Anthem</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Guardian" type="button">Guardian</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Humana" type="button">Humana</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Ameritas" type="button">Ameritas</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Principal" type="button">Principal</button>
+        <button class="carrier-tile" onclick="fmdSelectCarrier(this)" data-carrier="Other PPO" type="button">Other PPO</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Contact info -->
+    <div id="fmd-step2" style="display:none">
+      <div class="modal-overline">PPO Verification</div>
+      <h2 class="modal-title">Your contact info</h2>
+      <p class="modal-office">Carrier: <em id="fmd-carrier-display"></em></p>
+      <div class="form-group">
+        <label for="fmd-name">Name <span aria-hidden="true">*</span></label>
+        <input type="text" id="fmd-name" placeholder="Your full name" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="fmd-email">Email <span aria-hidden="true">*</span></label>
+        <input type="email" id="fmd-email" placeholder="you@example.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="fmd-phone">Phone <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label>
+        <input type="tel" id="fmd-phone" placeholder="(555) 000-0000" autocomplete="tel">
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="fmd-has-member-id">
+        <label for="fmd-has-member-id">I have my Member ID ready (we never store the number itself)</label>
+      </div>
+      <button class="btn-submit" onclick="fmdSubmit()" type="button">Send Verification Request</button>
+      <br>
+      <button class="step-back" onclick="fmdShowStep(1)" type="button">← Back</button>
+    </div>
+
+    <!-- Step 3: Success -->
+    <div id="fmd-step3" style="display:none">
+      <span class="success-icon" aria-hidden="true">✓</span>
+      <h2 class="success-title">Request sent.</h2>
+      <p class="success-body">
+        Your verification request has been sent to <em id="fmd-success-office"></em>.<br>
+        You will hear back within 1 business day.
+      </p>
+      <button class="btn-close-success" onclick="fmdCloseVerify()" type="button">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <p>© 2025 CoverCapy &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="mailto:contact@covercapy.com">contact@covercapy.com</a></p>
+</footer>
+
+<script>
+  // ── Supabase client ──────────────────────────────────────────────────────────
+  const SB_URL = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
+  const SB_ANON = 'sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf';
+  const sb = window.supabase.createClient(SB_URL, SB_ANON);
+
+  // ── Seed data (real records from Supabase — baked at build time) ─────────────
+  const SEED = [
+    // KYT Dental — featured office
+    { name: "KYT Dental Services", doctor_name: "Dr. Isaac Sun DDS", city: "Fountain Valley", state: "California", zip: "92708", address: "18800 Brookhurst St Ste 101, Fountain Valley, CA 92708", phone: "(714) 418-2102", weighted_rating: 4.9, weighted_review_count: 312, insurance_networks: ["Delta Dental","UnitedHealthcare","Aetna","Guardian","Cigna","MetLife"], slug: "kyt-dental-services", market_area: "Orange County" },
+    // Real Supabase records (top-rated CA dentists by review count)
+    { name: "Ethos Advanced Dental Care", doctor_name: "Dr. Jeremy Sewell", city: "Temecula", state: "California", zip: "92591", address: "29740 Rancho California Rd Ste 100, Temecula, CA 92591", phone: "(951) 267-9937", weighted_rating: 5.0, weighted_review_count: 1525, insurance_networks: ["Aetna","Anthem","United Healthcare","Blue Cross Blue Shield","MetLife","Guardian"], procedures: ["implants","All-on-4","cosmetic dentistry","veneers","whitening","crowns","dentures","emergency dental","cleanings","aligners","root canals","sedation dentistry"], slug: "ethos-advanced-dental-care-ca-617776", market_area: "Riverside" },
+    { name: "Canyon Crest Dental", city: "Riverside", state: "California", zip: "92507", address: "5225 Canyon Crest Dr #209, Riverside, CA 92507", phone: "(951) 425-4105", weighted_rating: 4.8, weighted_review_count: 1875, insurance_networks: ["Delta Dental","MetLife","Cigna","Anthem Blue Cross Blue Shield","Aetna","Guardian","Humana","UnitedHealthCare","Ameritas","Principal"], procedures: ["implants","whitening","sedation dentistry","aligners","cosmetic dentistry","root canals","fillings","veneers"], slug: "canyon-crest-dental-ca-2774d0", market_area: "Riverside" },
+    { name: "Riverside Modern Dentistry", doctor_name: "Dr. Michael Cho", city: "Riverside", state: "California", zip: "92503", address: "6161 Van Buren Boulevard Ste 103, Riverside, CA 92503", phone: "(951) 261-5277", weighted_rating: 5.0, weighted_review_count: 1441, insurance_networks: ["Aetna","Ameritas","Anthem","Cigna","Delta Dental","Guardian","MetLife","United Healthcare","United Concordia"], procedures: ["cleanings","fillings","crowns","emergency dental","veneers","whitening","root canals","bridges","implants","extractions","dentures","oral cancer screening"], slug: "riverside-modern-dentistry-ca-2dfd53", market_area: "Riverside" },
+    { name: "Rancho Dental", doctor_name: "Dr. F. Davis Perry", city: "Temecula", state: "California", zip: "92591", address: "29746 Rancho California Rd, Temecula, CA 92591", phone: "(951) 699-4746", weighted_rating: 4.9, weighted_review_count: 1537, insurance_networks: ["Aetna","Cigna","Delta Dental","Humana","Guardian","MetLife","United Concordia","United Healthcare"], procedures: ["cleanings","fillings","crowns","bridges","implants","veneers","whitening","root canals","Invisalign","orthodontics","sedation","dentures","emergency dental"], slug: "rancho-dental-ca-7f8beb", market_area: "Riverside" },
+    { name: "Barsoum Dental Upland", doctor_name: "Dr. Maher Barsoum", city: "Upland", state: "California", zip: "91786", address: "450 N Mountain Ave, Upland, CA 91786", phone: "(909) 920-5222", weighted_rating: 4.9, weighted_review_count: 1776, insurance_networks: ["Aetna","Ameritas","Anthem","Cigna","Delta Dental","Guardian","MetLife","United Healthcare","United Concordia"], procedures: ["cleanings","fillings","crowns","emergency dental","veneers","whitening","root canals","bridges","extractions","implants"], slug: "barsoum-dental-upland-ca-484291", market_area: "San Bernardino" },
+    { name: "Mesa Dental", city: "San Diego", state: "California", zip: "92117", address: "6215 Beadnell Way, San Diego, CA 92117", phone: "(858) 877-9540", weighted_rating: 4.9, weighted_review_count: 1799, insurance_networks: ["PPO verification pending"], slug: "mesa-dental-san-diego-7", market_area: "San Diego" },
+    { name: "The Super Dentists", city: "Chula Vista", state: "California", zip: "91910", address: "345 F St Ste 260, Chula Vista, CA 91910", phone: "(619) 336-8478", weighted_rating: 4.8, weighted_review_count: 4595, insurance_networks: [], open_weekends: true, slug: "the-super-dentists-chula-vista-31", market_area: "San Diego" },
+    { name: "Haraz Dental Group", city: "Fresno", state: "California", zip: "93710", address: "6099 N First St, Fresno, CA 93710", phone: "(559) 554-9791", weighted_rating: 4.8, weighted_review_count: 2515, insurance_networks: ["PPO verification pending"], slug: "haraz-dental-group-fresno", market_area: "Central Valley" },
+    { name: "SmilePro Dental", city: "Stockton", state: "California", zip: "95210", address: "8014 N Lower Sacramento Rd B, Stockton, CA 95210", phone: "(209) 336-8478", weighted_rating: 4.9, weighted_review_count: 2041, insurance_networks: ["PPO verification pending"], slug: "smilepro-dental-stockton", market_area: "Central Valley" },
+    { name: "Escondido Family Dental Care", city: "Escondido", state: "California", zip: "92025", address: "910 E Ohio Ave #201, Escondido, CA 92025", phone: "(760) 747-7223", weighted_rating: 4.9, weighted_review_count: 1745, insurance_networks: [], slug: "escondido-family-dental-care-specialty-center-escondido-new1055", market_area: "San Diego" },
+    { name: "Capital Dental Group", city: "Bakersfield", state: "California", zip: "93311", address: "8701 Camino Media STE A, Bakersfield, CA 93311", phone: "(661) 861-8000", weighted_rating: 4.8, weighted_review_count: 3963, insurance_networks: ["PPO verification pending"], slug: "capital-dental-group-bakersfield", market_area: "Central Valley" }
+  ];
+
+  // ── Helpers ──────────────────────────────────────────────────────────────────
+  function slugify(s) {
+    return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  function profileUrl(d) {
+    const st = slugify(d.state);
+    const mk = slugify(d.market_area || d.market || '');
+    const ci = slugify(d.city || '');
+    const sl = d.slug || slugify(d.name);
+    return `/dental/${st}/${mk}/${ci}/${sl}/`;
+  }
+
+  function carrierPills(carriers) {
+    if (!carriers || !carriers.length) return '';
+    return carriers.slice(0, 5).map(c => `<span class="pill">${c}</span>`).join('');
+  }
+
+  function cardHTML(d) {
+    const rating = d.weighted_rating || d.rating || '';
+    const reviews = d.weighted_review_count || d.reviews || '';
+    const name = d.name || '';
+    const doctor = d.doctor_name || d.doctor || '';
+    const carriers = d.insurance_networks || d.carriers || [];
+    const phone = d.phone || '';
+    const esc = s => String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return `<article class="dcard" data-id="${esc(d.id || '')}">
+      <div class="dcard-body">
+        <div class="dcard-name">${esc(name)}</div>
+        ${doctor ? `<div class="dcard-doc">${esc(doctor)}</div>` : ''}
+        <div class="dcard-loc">${esc(d.city || '')}, ${esc(d.state || '')}</div>
+        ${rating ? `<div class="dcard-rating">&#9733; ${parseFloat(rating).toFixed(1)} &middot; ${reviews} reviews</div>` : ''}
+        <div class="dcard-carriers">${carrierPills(carriers)}</div>
+      </div>
+      <div class="dcard-foot">
+        <a href="${profileUrl(d)}" class="btn-profile">View Profile &rarr;</a>
+        <button class="btn-verify" data-name="${esc(name)}" data-phone="${esc(phone)}" onclick="fmdOpenVerify(this)" type="button">Verify Insurance &mdash; Free</button>
+      </div>
+    </article>`;
+  }
+
+  // ── State ────────────────────────────────────────────────────────────────────
+  let ALL_DENTISTS = [];
+  let activeCarriers = new Set();
+  let activeTreatment = '';
+  let activeDistance = 30;
+
+  function renderCards(list) {
+    const grid = document.getElementById('results-grid');
+    if (!grid) return;
+    grid.innerHTML = list.length
+      ? list.map(cardHTML).join('')
+      : '<p class="no-results">No dentists found. Try a different location or carrier.</p>';
+    document.getElementById('result-count').textContent =
+      `Showing ${list.length} dentist${list.length === 1 ? '' : 's'}`;
+  }
+
+  function filterAndSort(list) {
+    let out = list;
+    if (activeCarriers.size) {
+      out = out.filter(d => {
+        const nets = d.insurance_networks || d.carriers || [];
+        return [...activeCarriers].some(c =>
+          nets.some(n => n.toLowerCase().includes(c.toLowerCase()))
+        );
+      });
+    }
+    if (activeTreatment) {
+      out = out.filter(d => {
+        const procs = d.procedures || [];
+        return procs.some(p => p.toLowerCase().includes(activeTreatment.toLowerCase()));
+      });
+    }
+    return out.sort((a, b) =>
+      (b.weighted_rating || b.rating || 0) - (a.weighted_rating || a.rating || 0)
+    );
+  }
+
+  function updateSeoMeta() {
+    const city = document.getElementById('loc-input').value.trim();
+    const carrier = [...activeCarriers][0] || '';
+    let title = 'Find PPO Dentists Near You | CoverCapy';
+    let desc = 'Find top-rated PPO dentists near you. Verify your insurance coverage free through CoverCapy.';
+    if (city && carrier) {
+      title = `${carrier} PPO Dentists in ${city} | CoverCapy`;
+      desc = `Find ${carrier} PPO dentists in ${city}. Verify your coverage free through CoverCapy.`;
+    } else if (city) {
+      title = `Best PPO Dentists in ${city} | CoverCapy`;
+      desc = `Find top-rated PPO dentists in ${city}. Verify your insurance in seconds, free through CoverCapy.`;
+    }
+    document.title = title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', desc);
+    const h1 = document.getElementById('page-h1');
+    if (h1) h1.textContent = city ? `Top-Rated PPO Dentists in ${city}` : 'Find PPO Dentists Near You';
+  }
+
+  // ── Search ───────────────────────────────────────────────────────────────────
+  function doSearch() {
+    const q = document.getElementById('loc-input').value.trim().toLowerCase();
+    updateSeoMeta();
+    const source = ALL_DENTISTS.length ? ALL_DENTISTS : SEED;
+    if (!q) { renderCards(filterAndSort(source)); return; }
+    const filtered = filterAndSort(source.filter(d =>
+      (d.city || '').toLowerCase().includes(q) ||
+      (d.zip || '').includes(q) ||
+      (d.state || '').toLowerCase().includes(q) ||
+      (d.address || '').toLowerCase().includes(q) ||
+      (d.market_area || d.market || '').toLowerCase().includes(q)
+    ));
+    renderCards(filtered);
+  }
+
+  // ── Modal state ──────────────────────────────────────────────────────────────
+  const fmdState = { office: '', carrier: '', step: 1 };
+
+  function fmdShowStep(n) {
+    [1, 2, 3].forEach(i => {
+      const el = document.getElementById('fmd-step' + i);
+      if (el) el.style.display = i === n ? 'block' : 'none';
+    });
+    fmdState.step = n;
+  }
+
+  function fmdOpenVerify(btn) {
+    const name = btn.dataset.name || '';
+    const phone = btn.dataset.phone || '';
+    const officeEl = document.getElementById('fmd-office-name');
+    if (officeEl) officeEl.textContent = name;
+    fmdState.office = name;
+    fmdState.phone = phone;
+    fmdState.carrier = '';
+    document.getElementById('fmd-verify-scrim').style.display = 'flex';
+    fmdShowStep(1);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fmdCloseVerify() {
+    document.getElementById('fmd-verify-scrim').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function fmdSelectCarrier(tile) {
+    document.querySelectorAll('.carrier-tile').forEach(t => t.classList.remove('selected'));
+    tile.classList.add('selected');
+    fmdState.carrier = tile.dataset.carrier;
+    const displayEl = document.getElementById('fmd-carrier-display');
+    if (displayEl) displayEl.textContent = fmdState.carrier;
+    setTimeout(() => fmdShowStep(2), 180);
+  }
+
+  function fmdSubmit() {
+    const name = (document.getElementById('fmd-name') || {}).value || '';
+    const email = (document.getElementById('fmd-email') || {}).value || '';
+    if (!name.trim()) {
+      alert('Please enter your name.');
+      return;
+    }
+    if (!email.trim() || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    const memberIdReady = (document.getElementById('fmd-has-member-id') || {}).checked || false;
+
+    const payload = {
+      office: fmdState.office,
+      carrier: fmdState.carrier,
+      name: name.trim(),
+      email: email.trim(),
+      phone: (document.getElementById('fmd-phone') || {}).value || '',
+      member_id_provided: memberIdReady   // boolean only, never the actual ID
+    };
+
+    console.log('POST /api/verify-ppo', payload);
+
+    const successEl = document.getElementById('fmd-success-office');
+    if (successEl) successEl.textContent = fmdState.office;
+    fmdShowStep(3);
+  }
+
+  // Close on backdrop click
+  document.addEventListener('click', e => {
+    const scrim = document.getElementById('fmd-verify-scrim');
+    if (e.target === scrim) fmdCloseVerify();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') fmdCloseVerify();
+  });
+
+  // ── Boot ─────────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    // Render seed immediately
+    renderCards(SEED);
+
+    // Carrier pill toggles
+    document.querySelectorAll('.carrier-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const c = btn.dataset.carrier;
+        btn.classList.toggle('active');
+        if (activeCarriers.has(c)) activeCarriers.delete(c);
+        else activeCarriers.add(c);
+        const source = ALL_DENTISTS.length ? ALL_DENTISTS : SEED;
+        renderCards(filterAndSort(source));
+        updateSeoMeta();
+      });
+    });
+
+    // Search
+    const searchBtn = document.getElementById('search-btn');
+    const locInput = document.getElementById('loc-input');
+    if (searchBtn) searchBtn.addEventListener('click', doSearch);
+    if (locInput) locInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+    // Treatment filter
+    const treatFilter = document.getElementById('treatment-filter');
+    if (treatFilter) {
+      treatFilter.addEventListener('change', e => {
+        activeTreatment = e.target.value;
+        const source = ALL_DENTISTS.length ? ALL_DENTISTS : SEED;
+        renderCards(filterAndSort(source));
+      });
+    }
+
+    // Distance filter (UI only for now — geolocation not implemented)
+    const distFilter = document.getElementById('distance-filter');
+    if (distFilter) {
+      distFilter.addEventListener('change', e => {
+        activeDistance = parseInt(e.target.value, 10);
+      });
+    }
+
+    // Load Supabase data — with full diagnostic logging
+    async function boot() {
+      console.group('[CoverCapy] Supabase boot diagnostics');
+      console.log('SB_URL:', SB_URL);
+      console.log('Key type:', SB_ANON.startsWith('sb_publishable') ? 'sb_publishable_ key' : 'JWT anon key');
+      console.log('supabase-js on window:', typeof window.supabase);
+
+      try {
+        // Raw fetch first — lets us see the actual HTTP response status + body
+        const rawUrl = `${SB_URL}/rest/v1/dentists?select=id,name,city&limit=1`;
+        console.log('Raw REST probe:', rawUrl);
+        const rawResp = await fetch(rawUrl, {
+          headers: {
+            'apikey': SB_ANON,
+            'Authorization': `Bearer ${SB_ANON}`,
+            'Accept': 'application/json'
+          }
+        });
+        const rawText = await rawResp.text();
+        console.log('Raw HTTP status:', rawResp.status, rawResp.statusText);
+        console.log('Raw response body:', rawText);
+        console.log('Response headers:', [...rawResp.headers.entries()].map(([k,v]) => `${k}: ${v}`).join('\n'));
+
+        // Now try via supabase-js
+        const { data: dentists, error } = await sb
+          .from('dentists')
+          .select('id,slug,name,doctor_name,city,state,zip,address,phone,website,accreditation_status,weighted_rating,weighted_review_count,insurance_networks,procedures,latitude,longitude,short_description,market_area,open_weekends')
+          .range(0, 999);
+
+        if (error) {
+          console.error('supabase-js error object:', JSON.stringify(error));
+          console.error('error.status:', error.status, 'error.code:', error.code, 'error.message:', error.message);
+          throw error;
+        }
+
+        console.log('supabase-js rows returned:', dentists ? dentists.length : 0);
+        console.groupEnd();
+
+        if (dentists && dentists.length) {
+          ALL_DENTISTS = dentists;
+          renderCards(filterAndSort(ALL_DENTISTS));
+        }
+      } catch (e) {
+        console.error('[CoverCapy] Boot failed — using seed data. Error:', e);
+        console.groupEnd();
+      }
+    }
+
+    boot();
+  });
+</script>
+</body>
+</html>

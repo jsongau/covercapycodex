@@ -1,0 +1,320 @@
+/* ==========================================================================
+   CoverCapy Hero Slider · Mobile CSS Overlay
+   Load after hero-slider.css.
+   This includes the mobile flow fix and compact 2×2 feature-strip badges.
+   No hero-slider-mobile.js is needed.
+   ========================================================================== */
+
+/* Value strip — collapse to single column under 360px so labels stay readable */
+@media (max-width: 359px){
+  .pc-value-strip{ grid-template-columns: 1fr; }
+  .pc-value-strip > div{ padding: 8px 12px; text-align: center; }
+}
+
+MOBILE FLOW FIX · 31MAY26
+   Purpose:
+   - Stop the chapter rail from floating over the plan card on phones.
+   - Let the active slide become normal page content on mobile instead
+     of a fixed-height internal scroll area.
+   - Compact the four feature strip into a small 2×2 badge grid with
+     no divider lines.
+   - No mobile JS needed: the existing carousel JS already listens for
+     touch swipes and toggles .is-active.
+   ════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 760px){
+
+  html,
+  body{
+    overflow-x:hidden;
+  }
+
+  .hero-wrap{
+    overflow:visible;
+  }
+
+  .hero{
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  .hero::before{
+    inset:0;
+  }
+
+  .hero-stage{
+    position:relative !important;
+    inset:auto !important;
+    min-height:0 !important;
+  }
+
+  .chapter{
+    position:relative !important;
+    inset:auto !important;
+    display:none !important;
+    grid-template-columns:1fr !important;
+    grid-template-rows:auto auto !important;
+    gap:18px !important;
+    align-items:start !important;
+    padding:44px 18px 18px !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    overflow:visible !important;
+    min-height:0 !important;
+    transition:none !important;
+  }
+
+  .chapter.is-active{
+    display:grid !important;
+  }
+
+  .chapter-text{
+    max-width:100% !important;
+  }
+
+  .headline{
+    font-size:clamp(38px, 10.4vw, 54px) !important;
+    line-height:1.06 !important;
+  }
+
+  .lede{
+    margin-top:20px !important;
+    font-size:16px !important;
+    line-height:1.58 !important;
+  }
+
+  .cta-row{
+    margin-top:28px !important;
+  }
+
+  .social-proof{
+    margin-top:22px !important;
+    flex-wrap:wrap !important;
+  }
+
+  .cc-avatar-stack{
+    width:100%;
+    margin-top:2px;
+  }
+
+  .chapter-visual{
+    min-height:0 !important;
+    width:100% !important;
+    padding:0 !important;
+  }
+
+  .ch1-stage,
+  .ch2-stage,
+  .ch3-stage,
+  .ch4-stage,
+  .ch5-stage{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+  }
+
+  .plan-card-float{
+    animation:none !important;
+    transform:none !important;
+  }
+
+  .primary-card{
+    padding:20px 18px 18px !important;
+    border-radius:22px !important;
+  }
+
+  .pc-carrier{
+    gap:10px !important;
+  }
+
+  .pc-carrier-mark{
+    width:34px !important;
+    height:34px !important;
+  }
+
+  .pc-carrier-name{
+    font-size:11.5px !important;
+  }
+
+  .pc-plan-name{
+    font-size:30px !important;
+  }
+
+  .pc-benefit{
+    grid-template-columns:20px minmax(0, 1fr) auto !important;
+    gap:9px !important;
+  }
+
+  .pc-benefit .label{
+    font-size:12.5px !important;
+  }
+
+  .pc-benefit .stamp{
+    font-size:11px !important;
+  }
+
+  .pc-value-strip{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:6px !important;
+    padding:6px !important;
+  }
+
+  .pc-value-strip > div{
+    padding:8px 5px !important;
+    min-width:0 !important;
+  }
+
+  .pc-value-strip strong{
+    font-size:14px !important;
+    white-space:nowrap !important;
+  }
+
+  .pc-value-strip span{
+    font-size:7.8px !important;
+    line-height:1.25 !important;
+    letter-spacing:.045em !important;
+  }
+
+  .pc-action{
+    gap:10px !important;
+  }
+
+  .pc-price-num{
+    font-size:26px !important;
+  }
+
+  .pc-activate{
+    padding:11px 14px !important;
+  }
+
+  /* The rail becomes normal content after the active slide.
+     This prevents it from covering cards while the user scrolls. */
+  .chapter-rail{
+    position:relative !important;
+    left:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    z-index:4 !important;
+    width:max-content !important;
+    max-width:calc(100vw - 28px) !important;
+    margin:6px auto 14px !important;
+    padding:6px 10px !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .rail-chapter{
+    padding:8px 10px !important;
+    min-width:38px !important;
+    justify-content:center !important;
+    gap:0 !important;
+  }
+
+  .rail-chapter .emotion{
+    display:none !important;
+  }
+
+  .rail-chapter .roman{
+    font-size:14px !important;
+  }
+
+  .rail-filament{
+    width:10px !important;
+  }
+
+  .progress-track{
+    position:relative !important;
+    bottom:auto !important;
+  }
+
+  .pause-btn{
+    top:18px !important;
+    right:18px !important;
+    z-index:30 !important;
+  }
+
+  .hero-arrow{
+    display:none !important;
+  }
+
+  .chapter-watermark{
+    display:none !important;
+  }
+
+  /* Compact feature strip: no vertical divider lines, no giant stack. */
+  .trust-strip{
+    padding:14px 14px 16px !important;
+    border-top:1px solid var(--line) !important;
+  }
+
+  .trust-strip-row{
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:10px !important;
+    max-width:520px !important;
+  }
+
+  .trust-strip-divider{
+    display:none !important;
+  }
+
+  .trust-strip-item{
+    min-width:0 !important;
+    gap:4px !important;
+    padding:10px 8px !important;
+    border:1px solid rgba(20,36,33,.08) !important;
+    border-radius:16px !important;
+    background:rgba(255,253,248,.52) !important;
+    box-shadow:0 1px 0 rgba(255,255,255,.70) inset !important;
+  }
+
+  .trust-strip-item .figure{
+    font-size:18px !important;
+    line-height:1 !important;
+  }
+
+  .trust-strip-item .label{
+    max-width:100% !important;
+    font-size:10.5px !important;
+    line-height:1.22 !important;
+  }
+}
+
+@media (max-width: 390px){
+  .chapter{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  .headline{
+    font-size:clamp(35px, 10.8vw, 48px) !important;
+  }
+
+  .lede{
+    font-size:15.5px !important;
+  }
+
+  .pc-value-strip span{
+    font-size:7.3px !important;
+  }
+
+  .trust-strip-row{
+    gap:8px !important;
+  }
+
+  .trust-strip-item{
+    padding:9px 6px !important;
+  }
+}
+
+
+
+@media (max-width: 760px){
+  #page-start{
+    scroll-margin-top:82px;
+  }
+}

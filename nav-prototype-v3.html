@@ -1,0 +1,1769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CoverCapy · Mega Nav (SEO build)</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --emerald:#1B5E5A; --emerald-deep:#0E3F44; --emerald-soft:#E7F0EC;
+  --ivory:#FFFDF9; --cream:#F4EDDF; --sand:#EFE7D6;
+  --gold:#C9A24B; --gold-deep:#8A6A23; --gold-soft:#F6ECD2;
+  --ink:#14242A; --ink-mid:#49666C; --ink-soft:#6B7D82; --ink-faint:#90A0A4;
+  --line:#E8E2D6; --line-soft:#EFEAE0;
+  --ff-serif:'Fraunces',Georgia,serif; --ff-sans:'Inter Tight',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --nav-h:84px; --subnav-h:0px;
+  --r-sm:9px; --r-md:13px; --r-lg:18px; --r-pill:999px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--ff-sans);color:var(--ink);background:var(--ivory);-webkit-font-smoothing:antialiased}
+:where([id]){scroll-margin-top:calc(var(--nav-h) + var(--subnav-h) + 14px)}
+a{color:inherit}
+
+/* ============ GLOBAL STICKY NAV ============ */
+.cc-nav{position:sticky;top:0;left:0;right:0;z-index:10010;background:var(--ivory);
+  border-bottom:1px solid transparent;
+  transition:height .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease);
+  padding-top:env(safe-area-inset-top)}
+.cc-nav.is-condensed{background:rgba(255,253,249,.94);backdrop-filter:saturate(1.1) blur(6px);-webkit-backdrop-filter:saturate(1.1) blur(6px);
+  border-bottom-color:color-mix(in srgb,var(--gold-deep) 20%,transparent);
+  box-shadow:0 1px 0 rgba(20,36,42,.04),0 10px 26px -20px rgba(20,36,42,.4)}
+/* fixed height, NOT var(--nav-h): --nav-h is an output the script writes for
+   the panels/sub-nav; if the bar read it back we'd get a ResizeObserver loop */
+.cc-row{height:84px;max-width:none;margin:0;padding:0 34px;display:flex;align-items:center;gap:18px;
+  transition:height .26s var(--ease)}
+.cc-nav.is-condensed .cc-row{height:62px}
+
+/* logo */
+.cc-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.cc-logo-mark{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;
+  background:linear-gradient(145deg,var(--emerald),var(--emerald-deep));color:var(--gold-soft);
+  font-family:var(--ff-serif);font-size:21px;font-weight:500;box-shadow:0 4px 14px rgba(14,63,68,.28);
+  transition:transform .26s var(--ease)}
+.cc-logo-img{width:42px;height:42px;object-fit:contain;flex-shrink:0;transition:transform .26s var(--ease)}
+.cc-logo-fallback{display:none;flex-shrink:0}
+.cc-nav.is-condensed .cc-logo-img,.cc-nav.is-condensed .cc-logo-fallback{transform:scale(.9)}
+.cc-logo-tx{display:flex;flex-direction:column;line-height:1;border-left:1px solid rgba(15,31,38,.16);padding-left:13px}
+.cc-logo-top{font-size:9.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#3C5560}
+.cc-logo-bot{font-family:var(--ff-serif);font-style:italic;font-size:14.5px;font-weight:500;color:var(--emerald-deep);margin-top:3px;letter-spacing:-.01em;white-space:nowrap}
+
+/* link row */
+.cc-links{display:flex;align-items:center;gap:2px;margin:0;margin-right:auto}
+.cc-item{position:relative}
+.cc-links{--cc-ease:cubic-bezier(.16,1,.3,1)}
+.cc-top{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border-radius:0;
+  font-family:var(--ff-sans);font-size:15px;font-weight:500;letter-spacing:-.004em;color:var(--ink);text-decoration:none;
+  background:transparent;border:none;cursor:pointer;position:relative;outline:none;transition:color .35s var(--cc-ease)}
+.cc-top:hover,.cc-top:focus-visible{color:var(--emerald-deep)}
+.cc-top .cc-caret{font-size:10px;color:var(--gold-deep);transition:transform .45s var(--cc-ease),color .3s}
+/* Concierge Hairline: gold underline draws in from the cursor's entry side, no pill */
+.cc-top::after{content:"";position:absolute;left:12px;right:12px;bottom:5px;height:1px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-deep));
+  transform:scaleX(0);transform-origin:var(--cc-origin,50%) 50%;
+  transition:transform .55s var(--cc-ease);will-change:transform}
+.cc-top:hover::after,.cc-top:focus-visible::after{transform:scaleX(1)}
+.cc-top:focus-visible::after{height:1.5px;box-shadow:0 0 0 1px rgba(201,162,74,.18)}
+.cc-item.is-open .cc-top{color:var(--emerald-deep)}
+.cc-item.is-open .cc-top::after{transform:scaleX(1);transform-origin:50% 50%;height:1.5px}
+.cc-item.is-open .cc-top .cc-caret{transform:rotate(180deg);color:var(--gold)}
+@media (prefers-reduced-motion:reduce){
+  .cc-top::after{transition:none;transform-origin:50% 50%}
+  .cc-top:hover::after,.cc-top:focus-visible::after,.cc-item.is-open .cc-top::after{transform:scaleX(1)}
+}
+/* stage-2 "open the page" morph — zero layout shift (overlay fade) */
+.cc-top .cc-go{display:none}
+.cc-top .cc-go-disabled{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px;
+  opacity:0;pointer-events:none;color:var(--emerald-deep);font-weight:600;white-space:nowrap;transition:opacity .2s var(--ease)}
+.cc-top .cc-go .ar{display:inline-block;transition:transform .2s var(--ease)}
+.cc-item.is-open .cc-top:hover .cc-go .ar{transform:translateX(3px)}
+.cc-find-ic{margin-right:1px}
+
+
+/* actions */
+.cc-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.cc-signin{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;transition:color .2s}
+.cc-signin:hover{color:var(--emerald-deep)}
+.cc-join{display:inline-flex;align-items:center;gap:7px;padding:10px 19px;border-radius:var(--r-pill);
+  background:linear-gradient(135deg,var(--emerald),var(--emerald-deep));color:var(--ivory);
+  font-size:13.5px;font-weight:600;text-decoration:none;box-shadow:0 3px 12px rgba(14,63,68,.26);
+  transition:transform .2s var(--ease),box-shadow .2s;position:relative;overflow:hidden}
+.cc-join:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(14,63,68,.34)}
+.cc-join::after{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);
+  transition:left .7s var(--ease);pointer-events:none}
+.cc-join:hover::after{left:135%}
+
+.cc-burger{display:none;width:44px;height:44px;border:none;background:transparent;cursor:pointer;
+  flex-direction:column;justify-content:center;gap:5px;align-items:center;border-radius:10px}
+.cc-burger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .26s var(--ease),opacity .2s}
+
+/* ============ BACKDROP ============ */
+.cc-backdrop{position:fixed;inset:var(--nav-h) 0 0 0;z-index:10000;background:rgba(14,63,68,.30);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
+.cc-backdrop.show{opacity:1;visibility:visible}
+
+/* ============ MEGA PANEL ============ */
+.cc-mega{position:fixed;top:var(--nav-h);left:0;right:0;z-index:10005;background:var(--ivory);
+  border-top:1px solid var(--line);box-shadow:0 30px 60px -28px rgba(8,42,48,.4);
+  opacity:0;transform:translateY(-8px);clip-path:inset(0 0 100% 0);visibility:hidden;
+  transition:clip-path .5s var(--ease),opacity .3s ease,transform .5s var(--ease),visibility .5s}
+.cc-item.is-open .cc-mega{opacity:1;transform:none;clip-path:inset(0 0 0 0);visibility:visible}
+/* SEO build: with JavaScript OFF, panels still open on hover/focus so every link is reachable and crawlable */
+html:not(.js) .cc-item:hover .cc-mega,html:not(.js) .cc-item:focus-within .cc-mega{opacity:1;transform:none;clip-path:inset(0 0 0 0);visibility:visible}
+html:not(.js) .cc-item:hover .mega-col,html:not(.js) .cc-item:focus-within .mega-col{opacity:1;transform:none}
+.cc-mega{max-height:calc(100dvh - var(--nav-h));overflow-y:auto;overscroll-behavior:contain}
+.mega-inner{max-width:none;margin:0;padding:22px 34px 22px;display:grid;
+  grid-template-columns:clamp(260px,24vw,340px) minmax(0,1fr);gap:clamp(24px,2.4vw,38px);align-items:start}
+/* Find panel: widen the lead column so the search reads as the primary element */
+#panel-find .mega-inner{padding:26px 34px 24px;grid-template-columns:clamp(360px,34vw,440px) minmax(0,1fr);column-gap:clamp(32px,3vw,56px)}
+#panel-find .mega-cols{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr)}
+.mega-lead{border-right:1px solid var(--line-soft);padding-right:34px}
+#panel-find .mega-lead{padding-right:40px}
+.mega-eyebrow{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);
+  display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.mega-eyebrow::before{content:"";width:16px;height:1px;background:var(--gold)}
+#panel-find .mega-eyebrow{margin-bottom:16px}
+.mega-title{font-family:var(--ff-serif);font-size:29px;font-weight:500;line-height:1.12;letter-spacing:-.015em;color:var(--ink);margin:0 0 12px}
+#panel-find .mega-title{font-size:30px;line-height:1.12;letter-spacing:-.015em;margin:0 0 14px}
+.mega-title em{font-style:italic;color:var(--emerald)}
+.mega-sub{font-size:15px;line-height:1.55;color:var(--ink-mid);margin:0 0 16px}
+#panel-find .mega-sub{font-size:15px;margin:0 0 16px}
+.mega-proof{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:600;color:var(--emerald-deep);line-height:1.4;margin:0 0 16px}
+.mega-proof::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:5px}
+.mega-feat-star{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-left:7px;border:1px solid rgba(201,162,75,.5);border-radius:999px;padding:1px 7px;vertical-align:middle}
+.cc-popular{border-top:1px solid var(--line-soft);margin-top:16px;padding-top:13px}
+.cc-popular-k{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
+.cc-popular-row{display:flex;flex-wrap:wrap;gap:7px}
+.cc-pop{font-size:12.5px;font-weight:500;color:var(--emerald-deep);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--ivory);transition:border-color .15s,background .15s}
+.cc-pop:hover{border-color:var(--emerald);background:var(--cream)}
+#cc-find-aside .mega-hero + .mega-hero{margin-top:12px}
+#cc-find-aside .cc-aside-h{flex-direction:row;align-items:center;justify-content:space-between;gap:16px;text-align:left}
+#cc-find-aside .cc-aside-h .cc-aside-h-tx{display:flex;flex-direction:column;min-width:0;flex:1 1 auto}
+#cc-find-aside .cc-aside-h .mega-hero-t{margin-top:9px}
+#cc-find-aside .cc-aside-h .mega-hero-cta{margin-top:0;flex-shrink:0;align-self:center}
+/* hero CTA = robust "enter the page" */
+.mega-hero{position:relative;display:flex;flex-direction:column;text-decoration:none;overflow:hidden;
+  border:1px solid var(--line);border-radius:14px;padding:15px 16px 15px;background:var(--ivory);
+  box-shadow:0 1px 0 rgba(20,36,42,.03);transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s var(--ease)}
+.mega-hero:hover{transform:translateY(-2px);box-shadow:0 18px 36px -22px rgba(14,63,68,.5);border-color:rgba(201,162,75,.5)}
+.mega-hero-k{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.mega-hero-k::before{content:"";width:16px;height:1px;background:var(--gold);flex:none}
+.mega-gt{letter-spacing:.16em}
+.mega-hero-t{font-family:var(--ff-serif);font-size:19px;font-weight:500;color:var(--ink);margin:11px 0 0;line-height:1.18;letter-spacing:-.01em}
+.mega-hero-s{font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin:7px 0 0}
+.mega-hero-cta{align-self:flex-start;margin-top:16px;display:inline-flex;align-items:center;padding:10px 18px;border-radius:11px;
+  background:var(--emerald-deep);color:var(--ivory);font-size:12.5px;font-weight:600;letter-spacing:.01em;
+  box-shadow:0 6px 16px -6px rgba(14,63,68,.5);transition:background .15s var(--ease),transform .15s var(--ease)}
+.mega-hero:hover .mega-hero-cta{background:var(--emerald);transform:translateY(-1px)}
+.mega-hero--featured{border-color:rgba(201,162,75,.55);padding-left:24px}
+.mega-hero--featured::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(var(--gold),var(--gold-deep))}
+
+/* columns */
+.mega-cols{display:grid;gap:30px}
+.mc-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mc-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:1440px){.mc-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mega-col{opacity:0;transform:translateY(10px);transition:opacity .36s ease,transform .42s var(--ease)}
+.cc-item.is-open .mega-col{opacity:1;transform:none}
+.cc-item.is-open .mega-col:nth-child(1){transition-delay:.10s}
+.cc-item.is-open .mega-col:nth-child(2){transition-delay:.17s}
+.cc-item.is-open .mega-col:nth-child(3){transition-delay:.24s}
+.mega-gt{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  margin:0 0 8px;padding-bottom:7px;border-bottom:1px solid var(--line-soft)}
+.mega-link{display:flex;align-items:flex-start;gap:10px;padding:6px 11px;margin:0 -11px;border-radius:var(--r-sm);
+  text-decoration:none;position:relative;transition:background .18s var(--ease)}
+.mega-link::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:0;
+  border-radius:0 2px 2px 0;background:var(--gold-deep);transition:height .18s var(--ease)}
+.mega-link:hover{background:var(--cream)}
+.mega-link:hover::before{height:60%}
+.mega-link .ic{flex-shrink:0;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:14px;
+  background:var(--emerald-soft);color:var(--emerald-deep)}
+.mega-link .tx{min-width:0}
+.mega-link .t{display:block;font-size:13.6px;font-weight:600;color:var(--ink);line-height:1.25}
+.mega-link .s{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:2px;line-height:1.35}
+.mega-viewall{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;font-weight:600;
+  color:var(--emerald-deep);text-decoration:none;transition:gap .2s var(--ease)}
+.mega-viewall:hover{gap:10px}
+/* geo drill-down: pick a state, narrow into its sectors */
+.geo-pick{margin-top:2px}
+.geo-select{width:100%;-webkit-appearance:none;appearance:none;background:var(--ivory) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="%238A6A23" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 12px center;border:1px solid var(--line);border-radius:10px;padding:10px 30px 10px 13px;font-family:var(--ff-sans);font-size:13.5px;font-weight:500;color:var(--ink);cursor:pointer;margin:0 0 11px;transition:border-color .15s}
+.geo-select:hover{border-color:var(--emerald)}
+.geo-select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.geo-regions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.geo-chip{font-size:12.5px;font-weight:500;color:var(--emerald-deep);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--ivory);transition:border-color .15s,background .15s,transform .15s var(--ease)}
+.geo-chip:hover{border-color:var(--emerald);background:var(--cream);transform:translateY(-1px)}
+.geo-allstates{display:inline-block;margin-top:9px;font-size:12px;font-weight:500;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);transition:color .15s,border-color .15s}
+.geo-allstates:hover{color:var(--emerald-deep);border-color:var(--emerald)}
+.mega-foot{border-top:1px solid var(--line-soft);background:rgba(244,237,223,.4)}
+.mega-foot-in{max-width:none;margin:0;padding:13px 34px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.mega-trust{display:flex;gap:20px;font-size:12px;color:var(--ink-soft);font-weight:500;flex-wrap:wrap}
+.mega-trust span{display:flex;align-items:center;gap:7px}
+.mega-trust span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.mega-foot-link{font-size:12.5px;font-weight:600;color:var(--emerald-deep);text-decoration:none;white-space:nowrap}
+
+/* zip search card (find panel) */
+.zip-card{border:1px solid var(--line);border-radius:var(--r-md);height:52px;padding:0 8px 0 16px;background:var(--ivory);
+  display:flex;align-items:center;gap:8px;box-shadow:0 3px 12px rgba(20,36,42,.05)}
+.zip-card input{flex:1;border:none;outline:none;background:transparent;font-family:var(--ff-sans);font-size:15px;color:var(--ink)}
+.zip-card:focus-within{border-color:var(--emerald);box-shadow:0 0 0 4px rgba(27,94,90,.14)}
+.zip-btn{position:relative;overflow:hidden;flex-shrink:0;border:none;cursor:pointer;height:40px;padding:0 18px;border-radius:var(--r-pill);
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;
+  background:linear-gradient(135deg,var(--emerald),var(--emerald-deep));color:var(--ivory);font-size:13px;font-weight:600;
+  box-shadow:0 4px 12px rgba(14,63,68,.22);transition:transform .15s var(--ease),box-shadow .2s var(--ease)}
+.zip-btn::after{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.40),transparent);transform:skewX(-18deg);transition:left .6s var(--ease);pointer-events:none}
+.zip-btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(14,63,68,.30)}
+.zip-btn:hover::after{left:140%}
+.zip-btn:active{transform:translateY(1px);box-shadow:0 5px 12px rgba(14,63,68,.24)}
+.zip-btn.is-busy{pointer-events:none;opacity:.92}
+.zip-btn.is-busy::after{display:none}
+.zip-btn .zip-spin{width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:zipspin .7s linear infinite;display:none}
+.zip-btn.is-busy .zip-spin{display:inline-block}
+.zip-btn.is-busy .zip-btn-tx{opacity:.85}
+@keyframes zipspin{to{transform:rotate(360deg)}}
+.zip-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.zip-chip{padding:6px 13px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--ivory);
+  font-size:12.5px;font-weight:500;color:var(--ink-mid);cursor:pointer;text-decoration:none}
+.zip-chip:hover{border-color:var(--emerald);color:var(--emerald-deep)}
+.cc-chips-browse{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-size:13px;font-weight:600;color:var(--emerald-deep);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+.cc-chips-browse::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.cc-chips-browse:hover{border-bottom-color:var(--gold-deep)}
+.cc-chips-browse[hidden]{display:none}
+/* live find result card */
+.find-card{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--ivory);box-shadow:0 14px 34px -22px rgba(8,42,48,.5);animation:fcin .3s var(--ease)}
+@keyframes fcin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fc-ban{display:flex;align-items:center;gap:8px;padding:9px 14px;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(100deg,var(--emerald),var(--emerald-deep))}
+.fc-ban.open{background:var(--gold-soft);color:var(--gold-deep)}
+.fc-bd{padding:14px 15px}
+.fc-nm{font-family:var(--ff-serif);font-size:18px;font-weight:500;color:var(--ink);line-height:1.15;text-decoration:none;display:inline-block}
+.fc-nm:hover{color:var(--emerald-deep)}
+.fc-rt{font-size:12.5px;color:var(--ink-mid);margin-top:4px}
+.fc-rt .st{color:var(--gold-deep);font-weight:700}
+.fc-loc{display:block;font-size:12px;color:var(--ink-mid);margin-top:8px;text-decoration:none;line-height:1.4}
+.fc-loc:hover{color:var(--emerald-deep)}
+.fc-mi{color:var(--emerald);font-weight:600}
+.fc-ph{display:inline-block;font-size:12.5px;color:var(--emerald-deep);font-weight:600;margin-top:7px;text-decoration:none}
+.fc-act{display:flex;gap:8px;padding:0 15px 15px}
+.fc-btn{flex:1;text-align:center;padding:9px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;text-decoration:none}
+.fc-btn.p{background:var(--emerald);color:#fff}
+.fc-btn.s{border:1px solid var(--line);color:var(--ink)}
+.fc-load{padding:18px 16px}
+.fc-load .fc-ey{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--emerald-deep)}
+.fc-load .fc-sub{font-size:13px;color:var(--ink-mid);margin-top:6px}
+.fc-note{font-size:10.5px;color:var(--ink-faint);margin-top:8px;text-align:center;font-style:italic}
+.zip-btn .ar{transition:transform .2s var(--ease);display:inline-block}
+.zip-btn:hover .ar{transform:translateX(3px)}
+/* omni autocomplete */
+.zip-wrap{position:relative}
+.cc-omni{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:60;background:var(--ivory);border:1px solid var(--line);
+  border-radius:var(--r-md);box-shadow:0 18px 44px -20px rgba(8,42,48,.5);padding:6px;max-height:300px;overflow:auto}
+.cc-omni[hidden]{display:none}
+.cc-omni-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:none;background:none;cursor:pointer;padding:9px 10px;border-radius:9px;font-family:var(--ff-sans)}
+.cc-omni-item:hover,.cc-omni-item.on{background:var(--cream)}
+.cc-omni-b{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:13px;flex-shrink:0;background:var(--emerald-soft);color:var(--emerald-deep)}
+.cc-omni-tx{min-width:0;flex:1}
+.cc-omni-l{display:block;font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-omni-l b{color:var(--emerald-deep)}
+.cc-omni-s{display:block;font-size:11px;color:var(--ink-soft);margin-top:1px}
+.cc-omni-k{flex-shrink:0;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#90a0a4;border:1px solid var(--line);border-radius:999px;padding:3px 8px}
+/* money.com-style bottom reveal dock */
+.cc-dock{position:fixed;left:50%;bottom:24px;transform:translate(-50%,150%);z-index:11000;width:min(430px,calc(100vw - 32px));
+  background:var(--ivory);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 70px -20px rgba(8,42,48,.55);
+  opacity:0;visibility:hidden;transition:transform .55s var(--ease),opacity .4s ease,visibility .55s;padding-bottom:env(safe-area-inset-bottom)}
+.cc-dock.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+.cc-dock-x{position:absolute;top:10px;right:10px;width:30px;height:30px;border:none;border-radius:50%;background:var(--cream);color:var(--ink);font-size:13px;cursor:pointer;display:grid;place-items:center;z-index:2}
+.cc-dock-x:hover{background:var(--sand)}
+.cc-dock .find-card{border:none;box-shadow:none;border-radius:18px}
+.cc-dock .card-4{border-radius:20px;box-shadow:none}
+.cc-dock{max-height:calc(100dvh - 40px)}
+#cc-find-dock-bd{max-height:calc(100dvh - 40px);overflow-y:auto;overscroll-behavior:contain;border-radius:18px}
+.card-stack{display:flex;flex-direction:column;gap:18px;padding:6px}
+.card-stack.is-multi{padding:14px 12px 12px}
+.card-stack-h{text-align:center;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);padding:2px 30px 4px}
+.card-stack-n{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--emerald-deep);color:var(--ivory);font-size:11px;margin-right:4px;vertical-align:middle}
+.card-stack-note{text-align:center;font-size:10.5px;color:var(--ink-faint);font-style:italic;padding:2px 0 4px}
+.card-stack.is-multi .card-4{border:1px solid rgba(201,162,75,.3);border-radius:18px;background:linear-gradient(168deg,var(--ivory),var(--cream));box-shadow:0 18px 44px -24px rgba(14,63,68,.5),0 2px 0 rgba(255,255,255,.7) inset}
+/* switch-between-the-two view (concept 3) */
+.card-switch{padding:4px 10px 12px}
+/* compact inline sort toggle, sits at the right of the rating row */
+.card-4__rating--toggle{justify-content:flex-start;gap:7px;flex-wrap:wrap}
+.cm-mini{display:inline-flex;gap:2px;background:var(--cream);border-radius:999px;padding:3px;margin-left:auto;flex:0 0 auto}
+.cm-mini-opt{border:none;background:transparent;font-family:var(--ff-sans);font-size:10.5px;font-weight:600;letter-spacing:.01em;padding:5px 10px;border-radius:999px;cursor:pointer;color:var(--ink-soft);white-space:nowrap;transition:background .15s,color .15s}
+.cm-mini-opt.on{background:var(--ivory);color:var(--emerald-deep);box-shadow:0 1px 4px rgba(20,36,42,.14)}
+.cw-head{text-align:center;padding:2px 28px 12px}
+.cw-head b{display:block;font-family:var(--ff-serif);font-size:17px;font-weight:500;color:var(--ink);line-height:1.2}
+.cw-head em{display:block;font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--gold-deep);margin-top:4px}
+.cw-card{padding:0 2px}
+.cw-both{display:block;text-align:center;font-size:12.5px;font-weight:600;color:var(--emerald-deep);text-decoration:none;margin-top:13px;padding-top:11px;border-top:1px solid var(--line)}
+.cw-both:hover{color:var(--gold-deep);text-decoration:underline}
+/* multi-office view: toggle + slider (scales to N) */
+.card-multi{padding:12px 12px 14px}
+.cm-head{text-align:center;padding:2px 28px 10px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep)}
+.cm-seg{display:flex;gap:4px;background:var(--cream);border-radius:999px;padding:4px;margin:0 auto 12px;max-width:280px}
+.cm-opt{flex:1;border:none;background:transparent;font-family:var(--ff-sans);font-size:12px;font-weight:600;padding:8px;border-radius:999px;cursor:pointer;color:var(--ink-soft);transition:background .15s,color .15s}
+.cm-opt.on{background:var(--ivory);color:var(--emerald-deep);box-shadow:0 2px 6px rgba(20,36,42,.12)}
+.cm-sortlabel{text-align:center;font-size:11.5px;color:var(--ink-soft);margin:0 0 12px}
+.card-slider{padding:12px 12px 14px}
+.cs-head{text-align:center;padding:2px 28px 12px}
+.cs-h-t{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep)}
+.cs-h-s{display:block;font-size:11px;color:var(--ink-soft);margin-top:3px}
+.card-stack-n{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--emerald-deep);color:var(--ivory);font-size:11px;margin-right:4px;vertical-align:middle}
+.cs-view{overflow:hidden}
+.cs-track{display:flex;transition:transform .42s var(--ease)}
+.cs-slide{flex:0 0 100%;min-width:0;padding:3px}
+.cs-slide .card-4{border:1px solid rgba(201,162,75,.28);border-radius:18px;box-shadow:0 14px 36px -24px rgba(14,63,68,.45)}
+.cs-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:8px}
+.cs-arw{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--ivory);color:var(--emerald-deep);font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .15s,border-color .15s,opacity .15s}
+.cs-arw:hover{background:var(--cream);border-color:var(--emerald)}
+.cs-arw:disabled{opacity:.35;cursor:default}
+.cs-dots{display:flex;gap:7px}
+.cs-dot{width:8px;height:8px;border-radius:50%;border:none;padding:0;background:rgba(20,36,42,.2);cursor:pointer;transition:background .15s,transform .15s}
+.cs-dot.on{background:var(--emerald-deep);transform:scale(1.25)}
+@media (prefers-reduced-motion:reduce){.cc-dock{transition:opacity .2s ease,visibility .2s}}
+/* ===== Mobile result sheet (clears index.html's bottom CTA bar via --cc-cta-bar-h) ===== */
+@media (max-width:600px){
+  .cc-dock{left:0;right:0;width:100%;max-width:none;margin:0;border-radius:18px 18px 0 0;
+    bottom:calc(var(--cc-cta-bar-h,0px) + env(safe-area-inset-bottom));
+    max-height:calc(100dvh - var(--cc-nav-h,64px) - var(--cc-cta-bar-h,0px) - 12px);
+    box-shadow:0 -10px 30px -6px rgba(8,42,48,.28);display:flex;flex-direction:column;
+    padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
+  #cc-find-dock-bd{flex:1 1 auto;max-height:none;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .cc-dock-mini{bottom:calc(var(--cc-cta-bar-h,0px) + env(safe-area-inset-bottom))}
+  .cc-dock-x{top:8px;right:8px;width:36px;height:36px}
+}
+@media (max-width:480px){
+  .card-4__name{font-size:21px}
+  .card-4__body{padding:18px 16px}
+  .card-4__cta{flex-direction:column}
+  .card-4__btn{width:100%;min-height:46px}
+  .card-4__contact{flex-direction:column;gap:10px}
+  .card-4__contact-r{flex-direction:row;align-items:center;gap:14px;align-self:flex-start}
+  .cw-head b{font-size:16px}
+  .cm-opt{padding:10px;min-height:44px}
+  .cs-arw{width:40px;height:40px}
+  .cs-dot{width:10px;height:10px}
+}
+
+/* dock collapsed (money.com slim bar) state */
+.cc-dock.is-collapsed{transform:translate(-50%,0)}
+.cc-dock.is-collapsed .cc-dock-x{display:none}
+.cc-dock .cc-dock-full{transition:opacity .25s var(--ease)}
+.cc-dock.is-collapsed .cc-dock-full{display:none}
+.cc-dock-mini{display:none;align-items:center;gap:12px;padding:13px 16px;cursor:pointer}
+.cc-dock.is-collapsed .cc-dock-mini{display:flex}
+.cc-dock-mini-grip{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:36px;height:4px;border-radius:999px;background:#DED7C9}
+.cc-dock-mini-nm{font-family:var(--ff-serif);font-size:15px;font-weight:500;color:var(--emerald-deep);line-height:1.25;flex:1;min-width:0}
+.cc-dock-mini-rt{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:14px;font-weight:700;color:var(--ink)}
+.cc-dock-mini-rt .s{color:var(--gold);font-size:13px}
+.cc-dock-mini-bk{flex-shrink:0;border:none;background:var(--emerald-deep);color:var(--ivory);font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer}
+.cc-dock-mini-bk:hover{background:var(--emerald)}
+
+/* omni badge color-by-type */
+.cc-omni-b.t-zip{background:var(--gold-soft);color:var(--gold-deep)}
+.cc-omni-b.t-state{background:var(--emerald-deep);color:var(--gold-soft)}
+.cc-omni-b.t-area,.cc-omni-b.t-local_area,.cc-omni-b.t-market_area{background:var(--cream);color:var(--gold-deep)}
+
+/* ===== CARD 4 (map anchored, practice centered) ===== */
+.card-4{position:relative;box-sizing:border-box;width:100%;max-width:560px;margin:0 auto;
+  background:linear-gradient(168deg,var(--ivory),var(--cream));
+  border-radius:20px;overflow:hidden;font-family:var(--ff-sans);color:var(--ink);
+  box-shadow:0 2px 0 rgba(255,255,255,.7) inset;animation:fcin .3s var(--ease)}
+.card-4 *,.card-4 *::before,.card-4 *::after{box-sizing:border-box}
+.cc-aside-promo{display:block;margin-top:12px;padding:16px;border:1px solid rgba(201,162,75,.42);border-radius:14px;background:linear-gradient(165deg,var(--gold-soft),var(--cream))}
+.cc-aside-promo-k{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+.cc-aside-promo-k::before{content:"";width:14px;height:1px;background:var(--gold-deep)}
+.cc-aside-promo-t{display:block;font-family:var(--ff-serif);font-size:16px;font-weight:500;color:var(--ink);margin:8px 0 0;line-height:1.25}
+.cc-aside-promo-btn{display:inline-flex;align-items:center;margin-top:13px;padding:9px 16px;border-radius:10px;background:var(--emerald-deep);color:var(--ivory);font-size:12.5px;font-weight:600;text-decoration:none;box-shadow:0 6px 16px -7px rgba(14,63,68,.6);transition:background .15s var(--ease),transform .15s var(--ease)}
+.cc-aside-promo-btn:hover{background:var(--emerald);transform:translateY(-1px)}
+/* aside cards: text left, button right */
+.ah-row{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
+.ah-tx{display:flex;flex-direction:column;min-width:0}
+.ah-row .mega-hero-cta,.ah-row .cc-aside-promo-btn{margin-top:0;flex-shrink:0;align-self:center}
+.ah-row .mega-hero-t,.ah-row .cc-aside-promo-t{margin-top:5px}
+.ah-city{white-space:nowrap}
+.card-4__top{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.card-4__dist{display:inline-block;font-size:12px;font-weight:600;color:var(--teal)}
+.card-4__distrow{display:flex;justify-content:center;margin:-2px 0 12px}
+/* contact row: address+distance left, phone+share right */
+.card-4__contact{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;text-align:left;margin:14px 0 16px;padding-top:14px;border-top:1px solid rgba(20,36,42,.10)}
+.card-4__contact .card-4__addr{display:flex;gap:10px;margin:0;min-width:0}
+.card-4__contact .card-4__dist{margin-top:8px}
+.card-4__contact-r{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex-shrink:0}
+.card-4__contact-r .card-4__phone{margin:0;white-space:nowrap}
+.card-4__share{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(27,94,90,.3);background:var(--ivory);color:var(--emerald-deep);font-family:var(--ff-sans);font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:10px;cursor:pointer;transition:background .15s var(--ease),border-color .15s var(--ease)}
+.card-4__share:hover{background:var(--cream);border-color:var(--emerald)}
+.card-4__share.copied{background:var(--emerald-soft);border-color:var(--emerald)}
+/* equal-size aside cards */
+#cc-find-aside .ah-row{min-height:96px;padding:16px}
+/* unified aside card: identical format, color via modifier */
+.cc-aside-card{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:12px;padding:16px;border-radius:14px;min-height:96px;border:1px solid var(--line);background:var(--ivory)}
+.cc-aside-card--gold{border-color:rgba(201,162,75,.42);background:linear-gradient(165deg,var(--gold-soft),var(--cream))}
+.cc-aside-k{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-deep)}
+.cc-aside-k::before{content:"";width:14px;height:1px;background:var(--gold-deep);flex:none}
+.cc-aside-t{display:block;font-family:var(--ff-serif);font-size:16px;font-weight:500;color:var(--ink);margin-top:7px;line-height:1.25}
+.cc-aside-cta{flex-shrink:0;align-self:center;display:inline-flex;align-items:center;padding:9px 16px;border-radius:10px;background:var(--emerald-deep);color:var(--ivory);font-size:12.5px;font-weight:600;text-decoration:none;box-shadow:0 6px 16px -7px rgba(14,63,68,.6);transition:background .15s var(--ease),transform .15s var(--ease)}
+.cc-aside-cta:hover{background:var(--emerald);transform:translateY(-1px)}
+.card-4__feat{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);padding-bottom:5px;border-bottom:1px solid var(--gold)}
+.card-4__subtle{display:block;text-align:center;margin-top:13px;font-size:12px;color:var(--ink-soft);text-decoration:none}
+.card-4__subtle:hover{color:var(--emerald-deep);text-decoration:underline}
+.card-4__body{padding:22px 22px 22px;text-align:center}
+.card-4__badge{display:inline-block;padding:6px 13px;border-radius:999px;background:var(--cream);border:1px solid rgba(201,162,75,.45);color:var(--emerald-deep);font-size:11.5px;font-weight:600;letter-spacing:.03em}
+.card-4__name{margin:2px 0 8px;font-family:var(--ff-serif);font-size:26px;font-weight:500;line-height:1.12;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:block}
+.card-4__name:hover{color:var(--emerald-deep)}
+.card-4__rating{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:10px}
+.card-4__stars{color:var(--gold);font-size:15px;letter-spacing:1px}
+.card-4__score{font-weight:700;font-size:14px;color:var(--ink)}
+.card-4__count{font-size:13px;color:#5d6b6f}
+.card-4__sources{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;padding:11px 0 13px;margin-bottom:14px;border-top:1px solid rgba(20,36,42,.08);border-bottom:1px solid rgba(20,36,42,.08)}
+.card-4__source{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:#36474c;font-weight:500}
+.card-4__dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.card-4__addr{display:inline-flex;gap:11px;text-align:left;margin-bottom:18px;text-decoration:none;color:inherit}
+.card-4__addr-pin{flex:0 0 auto;margin-top:3px;width:11px;height:11px;border-radius:50% 50% 50% 0;background:var(--emerald);transform:rotate(-45deg);box-shadow:0 0 0 3px rgba(27,94,90,.16)}
+.card-4__street{margin:0;font-size:14.5px;font-weight:600;color:var(--ink)}
+.card-4__region{margin:2px 0 0;font-size:13.5px;color:#5d6b6f}
+.card-4__phone{display:inline-block;margin-top:6px;font-size:13.5px;font-weight:600;color:var(--emerald);text-decoration:none}
+.card-4__phone:hover{text-decoration:underline}
+.card-4__cta{display:flex;flex-direction:column;gap:10px}
+@media(min-width:440px){.card-4__cta{flex-direction:row}.card-4__btn{flex:1}}
+.card-4__btn{padding:14px 18px;border-radius:13px;font-size:14.5px;font-weight:600;font-family:inherit;cursor:pointer;text-decoration:none;text-align:center;transition:transform .12s ease,background .15s ease}
+.card-4__btn:active{transform:translateY(1px)}
+.card-4__btn--primary{border:0;background:linear-gradient(160deg,var(--emerald),var(--emerald-deep));color:var(--ivory);box-shadow:0 10px 22px -10px rgba(14,63,68,.6)}
+.card-4__btn--primary:hover{background:var(--emerald)}
+.card-4__btn--ghost{background:rgba(255,255,255,.65);border:1px solid rgba(27,94,90,.28);color:var(--emerald-deep)}
+.card-4__btn--ghost:hover{background:var(--cream)}
+/* multi-city chooser + none state inside the dock */
+.card-4__pick{padding:22px 22px 24px;text-align:center}
+.card-4__pick-k{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+.card-4__pick-h{font-family:var(--ff-serif);font-size:21px;font-weight:500;color:var(--ink);margin:0 0 16px}
+.card-4__pick-h em{font-style:normal;color:var(--emerald)}
+.card-4__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px}
+.card-4__chip{padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:var(--ivory);font-size:13px;font-weight:600;color:var(--ink-mid);cursor:pointer;font-family:inherit}
+.card-4__chip:hover{border-color:var(--emerald);color:var(--emerald-deep)}
+.card-4__load{padding:26px 22px;text-align:center}
+.card-4__load-k{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--emerald-deep)}
+.card-4__load-s{font-size:13.5px;color:var(--ink-mid);margin-top:8px}
+.card-4__note{font-size:10.5px;color:var(--ink-faint);margin-top:12px;font-style:italic}
+.card-4__browse{display:block;text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid rgba(20,36,42,.08);font-size:13px;font-weight:600;color:var(--emerald-deep);text-decoration:none}
+.card-4__browse:hover{color:var(--gold-deep);text-decoration:underline}
+.card-4__dds{margin-top:16px;padding-top:16px;border-top:1px solid rgba(20,36,42,.10)}
+.card-4__dds-t{margin:0;font-family:var(--ff-serif);font-size:16px;font-weight:500;color:var(--ink)}
+.card-4__dds-s{margin:4px 0 12px;font-size:13px;line-height:1.45;color:var(--ink-soft)}
+
+/* carrier pills */
+.carriers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+#panel-ins .mega-cols{grid-template-columns:0.8fr 1.32fr 0.88fr}
+.carrier .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carrier{display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid var(--line);border-radius:var(--r-sm);
+  text-decoration:none;background:var(--ivory);transition:border-color .18s,transform .18s var(--ease)}
+.carrier:hover{border-color:var(--emerald);transform:translateY(-1px)}
+.carrier .b{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:700;
+  background:var(--emerald-soft);color:var(--emerald-deep);flex-shrink:0}
+.carrier .n{font-size:13px;font-weight:600;color:var(--ink)}
+/* "view all" as a full-width tile matching the carrier grid */
+.carrier--all{grid-column:1/-1;justify-content:center;gap:7px;background:var(--cream);border-style:dashed;margin-top:1px}
+.carrier--all .n{color:var(--emerald-deep)}
+.carrier--all .ar{font-size:14px;line-height:1;color:var(--emerald-deep);transition:transform .18s var(--ease)}
+.carrier--all:hover{border-style:solid;border-color:var(--emerald)}
+.carrier--all:hover .ar{transform:translateX(3px)}
+
+/* ============ SUB-NAV (stacked sticky) ============ */
+.subnav{position:sticky;top:var(--nav-h);z-index:9000;background:var(--ivory);
+  border-bottom:1px solid var(--line);transition:top .26s var(--ease),box-shadow .26s var(--ease)}
+.subnav.is-stuck{box-shadow:0 8px 22px -18px rgba(20,36,42,.5)}
+.subnav-in{max-width:none;margin:0;padding:0 34px;display:flex;align-items:center;gap:6px;height:54px;overflow-x:auto}
+.subnav-label{font-family:var(--ff-serif);font-size:15px;font-weight:500;color:var(--ink);margin-right:18px;white-space:nowrap}
+.subnav-label .tag{font-family:var(--ff-sans);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-deep);background:var(--gold-soft);padding:3px 8px;border-radius:var(--r-pill);margin-left:9px;vertical-align:middle}
+.subnav a{padding:8px 13px;border-radius:var(--r-pill);font-size:13px;font-weight:500;color:var(--ink-mid);
+  text-decoration:none;white-space:nowrap;transition:background .18s,color .18s}
+.subnav a:hover{background:var(--cream);color:var(--emerald-deep)}
+.subnav a.on{background:var(--emerald-soft);color:var(--emerald-deep);font-weight:600}
+
+/* ============ DEMO PAGE CONTENT ============ */
+.hero{max-width:1340px;margin:0 auto;padding:64px 30px 40px}
+.hero .eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:16px}
+.hero h1{font-family:var(--ff-serif);font-size:52px;font-weight:500;line-height:1.04;letter-spacing:-.02em;margin:0 0 18px;max-width:18ch}
+.hero h1 em{font-style:italic;color:var(--emerald)}
+.hero p{font-size:17px;line-height:1.6;color:var(--ink-mid);max-width:60ch;margin:0}
+.banner{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.banner-in{max-width:1340px;margin:0 auto;padding:14px 30px;font-size:13px;color:var(--ink-mid);text-align:center}
+.banner-in b{color:var(--emerald-deep)}
+.sec{max-width:1340px;margin:0 auto;padding:56px 30px;border-bottom:1px solid var(--line-soft)}
+.sec h2{font-family:var(--ff-serif);font-size:32px;font-weight:500;letter-spacing:-.01em;margin:0 0 16px}
+.sec p{font-size:15.5px;line-height:1.7;color:var(--ink-mid);max-width:70ch}
+.note{max-width:1340px;margin:24px auto 0;padding:0 30px;font-size:12px;color:var(--ink-faint)}
+footer.demo{background:var(--emerald-deep);color:rgba(255,253,249,.7);padding:50px 30px;text-align:center;font-size:13px}
+
+/* ============ MOBILE DRAWER ============ */
+.cc-drawer{position:fixed;top:0;right:0;bottom:0;width:min(86vw,380px);z-index:10020;background:var(--ivory);
+  transform:translateX(100%);transition:transform .34s var(--ease);display:flex;flex-direction:column;
+  box-shadow:-20px 0 50px -20px rgba(8,42,48,.5);padding-bottom:env(safe-area-inset-bottom)}
+.cc-drawer.open{transform:none}
+.cc-drawer-head{padding:20px 20px 16px;border-bottom:1px solid var(--line)}
+.cc-drawer-head .row{display:flex;align-items:center;justify-content:space-between}
+.cc-drawer-brand{font-family:var(--ff-serif);font-size:19px;color:var(--ink)}
+.cc-drawer-x{border:none;background:var(--cream);width:38px;height:38px;border-radius:10px;font-size:16px;cursor:pointer;color:var(--ink)}
+.cc-drawer-tag{font-size:12.5px;color:var(--ink-soft);margin-top:10px}
+.cc-drawer-nav{flex:1;overflow-y:auto;padding:8px 0}
+.cc-zip-m{padding:14px 18px;border-bottom:1px solid var(--line-soft)}
+.cc-zip-m .l{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:9px}
+.cc-zip-m .r{display:flex;gap:7px}
+.cc-zip-m input{flex:1;height:42px;padding:0 13px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:var(--ivory);outline:none}
+.cc-zip-m button{height:42px;padding:0 16px;background:var(--emerald);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600}
+.cc-acc{border-bottom:1px solid var(--line-soft)}
+.cc-acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:15px 20px;
+  background:transparent;border:none;font-family:var(--ff-sans);font-size:15.5px;font-weight:600;color:var(--ink);cursor:pointer}
+.cc-acc-btn .car{font-size:11px;color:var(--ink-faint);transition:transform .26s var(--ease)}
+.cc-acc.open .cc-acc-btn .car{transform:rotate(90deg);color:var(--emerald)}
+.cc-acc-body{max-height:0;overflow:hidden;transition:max-height .3s var(--ease)}
+.cc-acc-body-in{padding:2px 20px 14px}
+.cc-acc-body a{display:block;padding:9px 12px;font-size:14px;color:var(--ink-mid);text-decoration:none;border-radius:8px}
+.cc-acc-body a:hover{background:var(--cream);color:var(--emerald-deep)}
+.cc-acc-body a.feat{color:var(--emerald-deep);font-weight:600}
+.cc-drawer-foot{padding:16px 20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:9px}
+.cc-drawer-foot a{text-align:center;padding:12px;border-radius:var(--r-pill);font-size:14px;font-weight:600;text-decoration:none}
+.cc-drawer-join{background:linear-gradient(135deg,var(--emerald),var(--emerald-deep));color:var(--ivory)}
+.cc-drawer-sign{border:1px solid var(--line);color:var(--ink)}
+
+@media (max-width:1080px){
+  :root{--nav-h:64px}
+  .cc-links,.cc-actions{display:none}
+  .cc-logo-bot{font-size:13px}
+  .cc-burger{display:flex;margin-left:auto}
+  .cc-mega{display:none}
+  .hero h1{font-size:36px}
+  .hero{padding:40px 22px 30px}
+  .sec{padding:40px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .cc-mega{transform:none!important;clip-path:none!important}
+  .mega-col{transform:none!important}
+}
+/* prototype helper ribbon */
+.proto-flag{position:fixed;left:14px;bottom:14px;z-index:11000;background:var(--ink);color:var(--ivory);
+  font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 13px;border-radius:var(--r-pill);
+  box-shadow:0 8px 24px rgba(8,42,48,.4);opacity:.86}
+</style>
+</head>
+<body>
+
+<!-- ===================== GLOBAL NAV ===================== -->
+<header class="cc-nav" id="ccNav">
+  <div class="cc-row">
+    <a class="cc-logo" href="/">
+      <img alt="CoverCapy" class="cc-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="/assets/images/covercapy-logo.svg"/>
+      <svg aria-hidden="true" class="cc-logo-fallback" height="40" viewBox="0 0 64 64" width="40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><ellipse cx="42" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><rect fill="#0E3F44" height="32" rx="16" width="36" x="14" y="20"></rect><ellipse cx="32" cy="44" fill="#123F52" rx="9" ry="6"></ellipse><circle cx="25" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="39" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="25" cy="33" fill="#0E3F44" r="1"></circle><circle cx="39" cy="33" fill="#0E3F44" r="1"></circle><circle cx="29" cy="44" fill="#FCFAF4" r="1.1"></circle><circle cx="35" cy="44" fill="#FCFAF4" r="1.1"></circle></svg>
+      <span class="cc-logo-tx">
+        <span class="cc-logo-top">CoverCapy</span>
+        <span class="cc-logo-bot">Concierge Dental Network</span>
+      </span>
+    </a>
+
+    <nav class="cc-links" id="ccLinks" aria-label="Primary">
+
+      <!-- FIND A DENTIST -->
+      <div class="cc-item" data-key="find">
+        <a class="cc-top" href="/find-my-dentist.html" aria-haspopup="true" aria-expanded="false" aria-controls="panel-find" data-section="Find a Dentist">
+          <svg class="cc-find-ic" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="cc-label">Find a Dentist</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-find" role="region" aria-label="Find a Dentist">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Find a PPO Dentist</div>
+              <h3 class="mega-title">A PPO dentist near you, <em>verified</em> before you call.</h3>
+              <p class="mega-proof">Over 7,000 PPO dental offices listed across 850 cities.</p>
+              <div class="zip-wrap">
+                <div class="zip-card">
+                  <input id="cc-find-input" type="search" autocomplete="off" placeholder="ZIP or city..." aria-label="ZIP or city" role="combobox" aria-expanded="false" aria-controls="cc-omni" aria-autocomplete="list">
+                  <button id="cc-find-btn" class="zip-btn"><span class="zip-spin" aria-hidden="true"></span><span class="zip-btn-tx">Search</span></button>
+                </div>
+                <div class="cc-omni" id="cc-omni" role="listbox" aria-label="Location suggestions" hidden></div>
+              </div>
+              <div class="zip-chips">
+                <a class="zip-chip" data-q="90210" href="#">90210</a>
+                <a class="zip-chip" data-q="92697" href="#">92697</a>
+                <a class="zip-chip" data-q="Los Angeles County" href="#">Los Angeles County</a>
+                <a class="zip-chip" data-q="Texas" href="#">Texas</a>
+              </div>
+            </div>
+            <div class="mega-cols mc-2">
+              <div class="mega-col">
+                <p class="mega-gt">Search</p>
+                <a class="mega-link" href="/find-my-dentist.html"><span class="ic">⌖</span><span class="tx"><span class="t">Find my dentist</span><span class="s">Live search, PPO acceptance shown</span></span></a>
+                <p class="mega-gt" style="margin-top:18px">Browse by state</p>
+                <div class="geo-pick">
+                  <select id="ccGeoState" class="geo-select" aria-label="Choose a state to narrow by sector">
+                    <option value="california">California</option>
+                    <option value="texas">Texas</option>
+                    <option value="florida">Florida</option>
+                    <option value="new-york">New York</option>
+                    <option value="arizona">Arizona</option>
+                    <option value="washington">Washington</option>
+                    <option value="nevada">Nevada</option>
+                    <option value="new-jersey">New Jersey</option>
+                    <option value="pennsylvania">Pennsylvania</option>
+                    <option value="north-carolina">North Carolina</option>
+                    <option value="connecticut">Connecticut</option>
+                    <option value="rhode-island">Rhode Island</option>
+                    <option value="ohio">Ohio</option>
+                    <option value="illinois">Illinois</option>
+                  </select>
+                  <div class="geo-regions" id="ccGeoRegions">
+                    <a class="geo-chip" href="/dental/california/orange-county/">Orange County</a>
+                    <a class="geo-chip" href="/dental/california/los-angeles/">Los Angeles</a>
+                    <a class="geo-chip" href="/dental/california/san-gabriel-valley/">San Gabriel Valley</a>
+                    <a class="geo-chip" href="/dental/california/san-fernando-valley/">San Fernando Valley</a>
+                    <a class="geo-chip" href="/dental/california/riverside/">Riverside</a>
+                    <a class="geo-chip" href="/dental/california/san-bernardino/">San Bernardino</a>
+                    <a class="geo-chip" href="/dental/california/san-diego/">San Diego</a>
+                    <a class="geo-chip" href="/dental/california/bay-area/">Bay Area</a>
+                    <a class="geo-chip" href="/dental/california/sacramento/">Sacramento</a>
+                  </div>
+                  <a class="mega-viewall" id="ccGeoAll" href="/dental/california/">All California areas</a>
+                  <a class="geo-allstates" href="/dental/">View all states</a>
+                </div>
+              </div>
+              <div class="mega-col" id="cc-find-aside">
+                <a class="mega-hero" href="/find-my-dentist.html">
+                  <span class="mega-hero-k">Concierge search</span>
+                  <span class="mega-hero-t">Platinum Elite offices appear first near you</span>
+                  <span class="mega-hero-s">See which PPO plans an office accepts before you call.</span>
+                  <span class="mega-hero-cta">Find a PPO dentist</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Capy Accredited network</span><span>No assigned dentists</span><span>Always free for patients</span></div>
+            <a class="mega-foot-link" href="/find-my-dentist.html">Open the directory</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- INSURANCE -->
+      <div class="cc-item" data-key="ins">
+        <a class="cc-top" href="/dental-insurance/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-ins" data-section="Insurance">
+          <span class="cc-label">Insurance</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-ins" role="region" aria-label="Insurance">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Compare PPO Plans</div>
+              <h3 class="mega-title">Find the PPO plan that fits your <em>care.</em></h3>
+              <p class="mega-sub">Compare dental insurance plans, treatment coverage, dentist networks, and expected costs before you enroll.</p>
+              <a class="mega-hero mega-hero--featured" href="/dental-insurance/ppo-plans/uhc-primary-dental/">
+                <span class="mega-hero-k">Featured plan</span>
+                <span class="mega-hero-t">UnitedHealthcare Primary Dental</span>
+                <span class="mega-hero-s">Preventive care covered on day one.</span>
+                <span class="mega-hero-cta">Get insured in one day</span>
+              </a>
+            </div>
+            <div class="mega-cols mc-3">
+              <div class="mega-col">
+                <p class="mega-gt">Compare &amp; plans</p>
+                <a class="mega-link" href="/compare-ppo-dental-plans.html"><span class="ic">⇆</span><span class="tx"><span class="t">Compare PPO plans</span><span class="s">Match by treatment &amp; timing</span></span></a>
+                <a class="mega-link" href="/dental-insurance/"><span class="ic">▤</span><span class="tx"><span class="t">Insurance hub<span class="mega-feat-star">Start here</span></span><span class="s">How PPO dental works</span></span></a>
+                <a class="mega-link" href="/dental-insurance/ppo-plans/"><span class="ic">≡</span><span class="tx"><span class="t">All PPO plans</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Top carriers</p>
+                <div class="carriers">
+                  <a class="carrier" href="/dental-insurance/delta-dental/"><span class="b">Δ</span><span class="n">Delta Dental</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/uhc-primary-dental/"><span class="b">U</span><span class="n">UnitedHealthcare</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/metlife-ncd-complete/"><span class="b">M</span><span class="n">MetLife</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/guardian-premier-ppo/"><span class="b">G</span><span class="n">Guardian</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/humana-extend-5000/"><span class="b">H</span><span class="n">Humana</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/ameritas-primestar/"><span class="b">A</span><span class="n">Ameritas</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/aetna-dental-direct/"><span class="b">Ae</span><span class="n">Aetna</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/mutual-of-omaha-dental/"><span class="b">MO</span><span class="n">Mutual of Omaha</span></a>
+                  <a class="carrier carrier--all" href="/dental-insurance/ppo-plans/"><span class="n">View all carriers</span></a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">By situation</p>
+                <a class="mega-link" href="/guides/between-jobs/"><span class="ic">↻</span><span class="tx"><span class="t">Between jobs</span></span></a>
+                <a class="mega-link" href="/guides/self-employed/"><span class="ic">★</span><span class="tx"><span class="t">Self-employed</span></span></a>
+                <a class="mega-link" href="/guides/no-waiting-period/"><span class="ic">⚡</span><span class="tx"><span class="t">No waiting period</span></span></a>
+                <a class="mega-link" href="/guides/immediate-coverage/"><span class="ic">◷</span><span class="tx"><span class="t">Immediate coverage</span></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Hand-checked carriers</span><span>Verify dentist network first</span><span>Details vary by state</span></div>
+            <a class="mega-foot-link" href="/compare-ppo-dental-plans.html">Compare all PPO plans</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- BENEFIT MAXING -->
+      <div class="cc-item" data-key="bm">
+        <a class="cc-top" href="/benefit-maxing/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-bm" data-section="Benefit Maxing">
+          <span class="cc-label">Benefit Maxing</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-bm" role="region" aria-label="Benefit Maxing">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Use your plan</div>
+              <h3 class="mega-title">Use the benefits you <em>already</em> pay for.</h3>
+              <p class="mega-sub">Your plan resets every year and unused benefits don't carry over. We'll show you how to time care and check what's left.</p>
+            </div>
+            <div class="mega-cols mc-2">
+              <div class="mega-col">
+                <p class="mega-gt">Strategy</p>
+                <a class="mega-link" href="/benefit-maxing/"><span class="ic">◎</span><span class="tx"><span class="t">Maximize your benefits</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/smart-timing-protocol/"><span class="ic">◷</span><span class="tx"><span class="t">Smart timing protocol</span></span></a>
+                <a class="mega-link" href="/dental-treatment-cost-estimator.html"><span class="ic">＄</span><span class="tx"><span class="t">Cost estimator</span><span class="s">See your in-network savings</span></span></a>
+                <a class="mega-link" href="/dental-financing-monthly-payments.html"><span class="ic">0%</span><span class="tx"><span class="t">Financing &amp; payments</span><span class="s">Split major treatment monthly</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">By treatment</p>
+                <a class="mega-link" href="/benefit-maxing/guides/crowns/"><span class="ic">👑</span><span class="tx"><span class="t">Crowns</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/root-canals/"><span class="ic">🌱</span><span class="tx"><span class="t">Root canals</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/implants/"><span class="ic">🔩</span><span class="tx"><span class="t">Implants</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/braces-invisalign/"><span class="ic">😬</span><span class="tx"><span class="t">Braces &amp; Invisalign</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/whitening/"><span class="ic">✨</span><span class="tx"><span class="t">Whitening</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/dentures/"><span class="ic">🦷</span><span class="tx"><span class="t">Dentures</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/bridges/"><span class="ic">🌉</span><span class="tx"><span class="t">Bridges</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/deep-cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Deep cleaning</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Extractions</span></span></a>
+                <a class="mega-viewall" href="/benefit-maxing/guides/">All treatment guides</a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Dentist-informed</span><span>Educational planning</span></div>
+            <a class="mega-foot-link" href="/benefit-maxing/">Open Benefit Maxing</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- LEARN (formerly Guides; label only, URLs stay /guides/) -->
+      <div class="cc-item" data-key="guides">
+        <a class="cc-top" href="/guides/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-guides" data-section="Learn">
+          <span class="cc-label">Learn</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-guides" role="region" aria-label="Learn">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Before your appointment</div>
+              <h3 class="mega-title">Understand dental insurance <em>before</em> treatment begins.</h3>
+              <p class="mega-sub">Learn how PPO plans work, compare treatment costs, understand deductibles and annual maximums, and make confident decisions before your appointment.</p>
+            </div>
+            <div class="mega-cols mc-2">
+              <div class="mega-col">
+                <p class="mega-gt">How insurance works</p>
+                <a class="mega-link" href="/guides/in-network-vs-out-of-network-costs.html"><span class="ic">⇄</span><span class="tx"><span class="t">In-network vs out-of-network<span class="mega-feat-star">Start here</span></span><span class="s">Why the same crown costs differently</span></span></a>
+                <a class="mega-link" href="/guides/medi-cal-vs-ppo-dental.html"><span class="ic">⚖</span><span class="tx"><span class="t">Medi-Cal vs PPO dental</span></span></a>
+                <a class="mega-link" href="/guides/glossary/"><span class="ic">A̲</span><span class="tx"><span class="t">Glossary of terms</span><span class="s">Deductible, annual max, waiting period</span></span></a>
+                <a class="mega-link" href="/dental-insurance/delta-dental/for-employers/"><span class="ic">▤</span><span class="tx"><span class="t">For employers</span><span class="s">Offering dental to your team</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Emergencies</p>
+                <a class="mega-link" href="/benefit-maxing/guides/dental-emergencies/knocked-out-tooth/"><span class="ic">🦷</span><span class="tx"><span class="t">Knocked-out tooth</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/dental-emergencies/severe-toothache/"><span class="ic">⚠</span><span class="tx"><span class="t">Severe toothache</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/dental-emergencies/cracked-tooth/"><span class="ic">⚡</span><span class="tx"><span class="t">Cracked tooth</span></span></a>
+                <a class="mega-viewall" href="/benefit-maxing/guides/dental-emergencies/">All 11 emergencies</a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Editorial, dentist-informed</span><span>Educational estimates</span></div>
+            <a class="mega-foot-link" href="/guides/">All guides</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- MEMBERSHIP (Capy Rewards) -->
+      <div class="cc-item" data-key="rewards">
+        <a class="cc-top" href="/covercapy-join.html" aria-haspopup="true" aria-expanded="false" aria-controls="panel-rewards" data-section="Capy Rewards">
+          <span class="cc-label">Capy Rewards</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-rewards" role="region" aria-label="Capy Rewards">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Members' rewards</div>
+              <h3 class="mega-title">Join free. Earn rewards for taking care of your <em>smile.</em></h3>
+              <p class="mega-sub">Collect Capy Crowns as you care for your teeth and redeem them toward treatment at Capy Accredited offices. Your first 300 Crowns are included when you create your account.</p>
+            </div>
+            <div class="mega-cols mc-3">
+              <div class="mega-col">
+                <p class="mega-gt">Capy Crowns</p>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◎</span><span class="tx"><span class="t">How crowns work<span class="mega-feat-star">Start here</span></span><span class="s">Earn as you cover and care</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◷</span><span class="tx"><span class="t">Ways to earn</span><span class="s">Get covered, keep your cleanings</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">✦</span><span class="tx"><span class="t">Redeem your crowns</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Capy Diamonds</p>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◆</span><span class="tx"><span class="t">Nominate an office</span><span class="s">You both get rewarded</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">❖</span><span class="tx"><span class="t">Refer a friend</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◈</span><span class="tx"><span class="t">How Diamonds work</span></span></a>
+              </div>
+              <div class="mega-col">
+                <a class="mega-hero mega-hero--featured" href="/covercapy-join.html">
+                  <span class="mega-hero-k">Welcome bonus</span>
+                  <span class="mega-hero-t">Your first 300 Capy Crowns</span>
+                  <span class="mega-hero-s">Free the day you join, ready to redeem at Capy Accredited offices.</span>
+                  <span class="mega-hero-cta">Claim your 300 crowns</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Free to join</span><span>Redeem at Capy Accredited offices</span><span>First 300 crowns on us</span></div>
+            <a class="mega-foot-link" href="/covercapy-join.html">Open Capy Rewards</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- FOR DENTISTS -->
+      <div class="cc-item" data-key="dds">
+        <a class="cc-top" href="/dentist-portal.html" aria-haspopup="true" aria-expanded="false" aria-controls="panel-dds" data-section="For Dentists">
+          <span class="cc-label">For Dentists</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-dds" role="region" aria-label="For Dentists">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Dentist portal</div>
+              <h3 class="mega-title">Get <em>found</em> by PPO-ready patients.</h3>
+              <p class="mega-sub">Reach patients who already compared plans and know what they want.</p>
+              <p class="mega-proof">Listed across 850 cities and 14 states.</p>
+            </div>
+            <div class="mega-cols mc-3">
+              <div class="mega-col">
+                <p class="mega-gt">Join</p>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">＋</span><span class="tx"><span class="t">Join CoverCapy</span></span></a>
+                <a class="mega-link" href="/dentist-portal.html"><span class="ic">▦</span><span class="tx"><span class="t">Dentist portal</span></span></a>
+                <a class="mega-link" href="/claim-dentist-listing-profile.html"><span class="ic">✓</span><span class="tx"><span class="t">Claim your listing</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Membership</p>
+                <a class="mega-link" href="/capy-accreditation.html"><span class="ic">♔</span><span class="tx"><span class="t">Capy Accreditation</span><span class="s">The badge patients look for</span></span></a>
+                <a class="mega-link" href="/capy-practice-membership.html"><span class="ic">◆</span><span class="tx"><span class="t">Practice membership</span></span></a>
+                <a class="mega-link" href="/dentist-portal.html#platinum-elite"><span class="ic">❖</span><span class="tx"><span class="t">Platinum Elite</span><span class="s">One practice per county</span></span></a>
+              </div>
+              <div class="mega-col">
+                <a class="mega-hero mega-hero--featured" href="/dentist-portal.html#platinum-elite">
+                  <span class="mega-hero-k">Now launching by county</span>
+                  <span class="mega-hero-t">Platinum Elite</span>
+                  <span class="mega-hero-s">One practice per county. Claim yours before a neighbor does.</span>
+                  <span class="mega-hero-cta">Apply for Platinum Elite</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Reviewed and vetted</span><span>Cancel anytime</span></div>
+            <a class="mega-foot-link" href="/dentist-portal.html">Advertising disclosure</a>
+          </div></div>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="cc-actions">
+      <a class="cc-signin" href="/sign-in.html">Sign in</a>
+      <a class="cc-join" href="/covercapy-join.html">Create account</a>
+    </div>
+
+    <button class="cc-burger" id="ccBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="cc-backdrop" id="ccBackdrop"></div>
+
+<!-- ===================== STACKED STICKY SUB-NAV (demo) ===================== -->
+<nav class="subnav" id="subNav" aria-label="On this page">
+  <div class="subnav-in">
+    <span class="subnav-label">Delta Dental <span class="tag">Sub-nav demo</span></span>
+    <a href="#overview" class="on">Overview</a>
+    <a href="#plans">Plans</a>
+    <a href="#eligibility">Eligibility</a>
+    <a href="#networks">Networks</a>
+    <a href="#over-65">Over 65</a>
+    <a href="#faqs">FAQs</a>
+  </div>
+</nav>
+
+<!-- ===================== DEMO PAGE ===================== -->
+<section class="hero" id="overview">
+  <div class="eyebrow">Mega Nav Prototype</div>
+  <h1>Click to <em>open</em>. Click again to <em>enter</em>.</h1>
+  <p>Hover any top-level item to peek the panel. Click it once to lock it open, and the label morphs into "Open [Section]" so a second click takes you to the page. Scroll down: the global nav stays sticky and condenses, and the Delta Dental sub-nav stacks right beneath it, both pinned, never overlapping.</p>
+</section>
+
+<div class="banner"><div class="banner-in">Try it: <b>click "Insurance"</b> to reveal the panel, then click it again to enter. Or use the sub-nav above to jump, anchors clear both sticky bars.</div></div>
+
+<section class="sec" id="plans">
+  <h2>Plans</h2>
+  <p>This block exists to demonstrate scrolling and the stacked sticky behavior. As you scroll, watch the global navigation condense from 84px to 62px while the Delta Dental sub-nav re-pins directly below it using the live <code>--nav-h</code> custom property updated by a ResizeObserver. The active sub-nav tab updates as each section scrolls into view.</p>
+  <p>Curated, real links live inside each mega panel rather than dumping the full sitemap. Large clusters, the 24-term glossary, all carriers, the 11 emergency pages, collapse to a single "View all" pointing at their hub.</p>
+</section>
+
+<section class="sec" id="eligibility">
+  <h2>Eligibility</h2>
+  <p>Anchor jumps land with the section heading fully visible, never tucked behind the two sticky bars, thanks to <code>scroll-margin-top: calc(var(--nav-h) + var(--subnav-h) + 14px)</code>. The combined offset stays correct even after the header condenses, because both heights are measured live and written back to CSS variables.</p>
+</section>
+
+<section class="sec" id="networks">
+  <h2>Networks</h2>
+  <p>The mega panels reveal with an ease-out-expo curtain (clip-path) and a gentle column stagger that reads as deliberate and considered rather than springy. Exit is faster, with no stagger. All of this respects <code>prefers-reduced-motion</code>, collapsing to a simple fade.</p>
+</section>
+
+<section class="sec" id="over-65">
+  <h2>Over 65</h2>
+  <p>On mobile, the dropdowns are replaced by a slide-in drawer with accordion sections, a ZIP search, body-scroll-lock, focus trap, and return-focus to the menu button on close. Resize this window below 1080px to try it.</p>
+</section>
+
+<section class="sec" id="faqs">
+  <h2>FAQs</h2>
+  <p>This is the last anchor target. Scroll back up and the sub-nav remains pinned beneath the global nav the entire way. Both bars are always reachable, which is the core requirement: the universal nav is always sticky, and any page-level sub-nav stacks with it.</p>
+</section>
+
+<div class="note">Prototype only. Links point at real production paths so you can sanity-check the information architecture. Nothing here is wired to Supabase or live search.</div>
+
+<footer class="demo">CoverCapy, concierge dental network · prototype</footer>
+
+<!-- ===================== MOBILE DRAWER ===================== -->
+<aside class="cc-drawer" id="ccDrawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <div class="cc-drawer-head">
+    <div class="row">
+      <span class="cc-drawer-brand">CoverCapy</span>
+      <button class="cc-drawer-x" id="ccDrawerX" aria-label="Close menu">✕</button>
+    </div>
+    <div class="cc-drawer-tag">Find a PPO dentist. Get covered. Earn rewards.</div>
+  </div>
+  <div class="cc-drawer-nav">
+    <div class="cc-zip-m">
+      <div class="l">Find a PPO dentist</div>
+      <div class="r"><input type="search" placeholder="ZIP or city..."><button>Search</button></div>
+    </div>
+    <div class="cc-acc"><button class="cc-acc-btn">Find a Dentist <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/find-my-dentist.html">Find my dentist</a>
+      <a href="/dental-treatment-cost-estimator.html">Cost estimator</a>
+      <a href="/dental-financing-monthly-payments.html">Financing &amp; payments</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Insurance <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/compare-ppo-dental-plans.html">Compare PPO plans</a>
+      <a href="/dental-insurance/delta-dental/">Delta Dental</a>
+      <a href="/dental-insurance/ppo-plans/">All carriers</a>
+      <a href="/guides/no-waiting-period/">No waiting period</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Guides <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/guides/">All guides</a>
+      <a href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
+      <a href="/guides/glossary/">Glossary</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Benefit Maxing <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/benefit-maxing/">Maximize your benefits</a>
+      <a href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol</a>
+      <a href="/benefit-maxing/guides/dental-emergencies/">Dental emergencies</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">For Dentists <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/claim-dentist-listing-profile.html">Claim your profile</a>
+      <a href="/capy-accreditation.html">Capy Accreditation</a>
+      <a href="/capy-practice-membership.html">Practice membership</a>
+    </div></div></div>
+  </div>
+  <div class="cc-drawer-foot">
+    <a class="cc-drawer-join" href="/covercapy-join.html">Create account</a>
+    <a class="cc-drawer-sign" href="/sign-in.html">Sign in</a>
+  </div>
+</aside>
+
+<!-- money.com-style bottom reveal dock for the dentist result -->
+<div class="cc-dock" id="cc-find-dock" role="dialog" aria-label="Dentist match" aria-hidden="true">
+  <button class="cc-dock-x" id="cc-find-dock-x" type="button" aria-label="Close">✕</button>
+  <div class="cc-dock-full" id="cc-find-dock-bd"></div>
+  <div class="cc-dock-mini" id="cc-find-dock-mini" role="button" tabindex="0" aria-label="Expand result">
+    <span class="cc-dock-mini-grip" aria-hidden="true"></span>
+    <span class="cc-dock-mini-nm" id="cc-find-dock-mini-nm"></span>
+    <span class="cc-dock-mini-rt" id="cc-find-dock-mini-rt"></span>
+    <button class="cc-dock-mini-bk" id="cc-find-dock-mini-bk" type="button">Book appointment</button>
+  </div>
+</div>
+
+<!-- ===================== SEO LINK MAP (what a crawler indexes, no JS needed) ===================== -->
+<section style="max-width:1340px;margin:0 auto;padding:48px 30px 70px;border-top:1px solid #E8E2D6">
+  <div style="font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B98023;margin-bottom:12px">SEO build, what a crawler sees</div>
+  <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.01em;margin:0 0 10px;color:#14242A">Every nav link is in the page HTML</h2>
+  <p style="font-size:14.5px;line-height:1.6;color:#49666C;max-width:74ch;margin:0 0 4px">These links are written into the static HTML, so search engines and AI crawlers index them even with JavaScript turned off. The dropdown panels, live search, and result card are layered on top as enhancements. On the live site the same link block is baked into each of your pages by the generator. Turn off JavaScript and the menus still open on hover, every link still works.</p>
+  <p style="font-size:12.5px;color:#8A958F;margin:0 0 26px">Demonstration list below mirrors the nav. On production this lives inside a real &lt;nav&gt; element on every page.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px 32px;font-family:'Inter Tight',sans-serif">
+    <nav aria-label="Find a dentist links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Find a dentist</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/find-my-dentist.html">Find a PPO dentist</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-treatment-cost-estimator.html">Treatment cost estimator</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-financing-monthly-payments.html">Financing and monthly plans</a></nav>
+    <nav aria-label="Insurance links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Insurance</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/">Dental insurance guide</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/compare-ppo-dental-plans.html">Compare PPO plans</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/">All PPO plans</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/delta-dental/">Delta Dental</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/uhc-primary-dental/">UnitedHealthcare Primary Dental</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/metlife-ncd-complete/">MetLife</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/guardian-premier-ppo/">Guardian</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/humana-extend-5000/">Humana</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/ameritas-primestar/">Ameritas</a></nav>
+    <nav aria-label="Situation links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">By situation</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/between-jobs/">Coverage between jobs</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/self-employed/">Self-employed coverage</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/no-waiting-period/">No waiting period</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/immediate-coverage/">Immediate coverage</a></nav>
+    <nav aria-label="Guides links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Guides</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/glossary/">PPO dental glossary</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/medi-cal-vs-ppo-dental.html">Medi-Cal vs PPO dental</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/root-canal-cost.html">Root canal cost</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/crowns/cost.html">Crown cost</a></nav>
+    <nav aria-label="Benefit maxing links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Benefit maxing</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/">Maximize your benefits</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/dental-emergencies/">Dental emergencies</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/dental-emergencies/knocked-out-tooth/">Knocked-out tooth</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/crowns/">Crowns</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/root-canals/">Root canals</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/implants/">Implants</a></nav>
+    <nav aria-label="For dentists links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">For dentists</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/claim-dentist-listing-profile.html">Claim your profile</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dentist-portal.html">Dentist portal</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/capy-accreditation.html">Capy Accreditation</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/capy-practice-membership.html">Practice membership</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/delta-dental/for-employers/">For employers</a></nav>
+  </div>
+</section>
+
+<div class="proto-flag">CoverCapy nav, SEO build</div>
+
+<script>
+(function(){
+  'use strict';
+  var DESKTOP = function(){ return window.matchMedia('(min-width:1081px)').matches; };
+  var root = document.documentElement;
+  var nav = document.getElementById('ccNav');
+  var subnav = document.getElementById('subNav');
+  var backdrop = document.getElementById('ccBackdrop');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.cc-item'));
+  var closeTimer = null, openItem = null;
+
+  /* ---------- live sticky heights ---------- */
+  var lastNavH = -1, lastSubH = -1;
+  function syncHeights(){
+    var h = nav.offsetHeight, sh = subnav ? subnav.offsetHeight : 0;
+    if (h !== lastNavH){ lastNavH = h; root.style.setProperty('--nav-h', h + 'px'); root.style.setProperty('--cc-nav-h', h + 'px'); }
+    if (sh !== lastSubH){ lastSubH = sh; root.style.setProperty('--subnav-h', sh + 'px'); }
+  }
+  if (window.ResizeObserver){
+    var ro = new ResizeObserver(syncHeights);
+    ro.observe(nav); if (subnav) ro.observe(subnav);
+  }
+  window.addEventListener('resize', syncHeights);
+  window.addEventListener('orientationchange', syncHeights);
+  syncHeights();
+
+  /* ---------- condense on scroll + subnav stuck shadow ---------- */
+  var lastY = -1;
+  function onScroll(){
+    var y = window.scrollY;
+    if (y === lastY) return; lastY = y;
+    nav.classList.toggle('is-condensed', y > 40);
+    if (subnav){
+      var top = subnav.getBoundingClientRect().top;
+      subnav.classList.toggle('is-stuck', Math.abs(top - nav.offsetHeight) < 2);
+    }
+    if (openItem) closeMega(); // close panels on scroll
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ---------- mega open / close ---------- */
+  function openMega(item){
+    if (!item) return;
+    clearTimeout(closeTimer);
+    items.forEach(function(it){ if (it!==item){ it.classList.remove('is-open'); setAria(it,false); } });
+    item.classList.add('is-open'); setAria(item,true);
+    backdrop.classList.add('show');
+    openItem = item;
+    try{ document.dispatchEvent(new CustomEvent('cc:mega-open',{detail:{key:item.getAttribute('data-key')}})); }catch(e){}
+  }
+  function closeMega(){
+    items.forEach(function(it){ it.classList.remove('is-open'); setAria(it,false); });
+    backdrop.classList.remove('show');
+    openItem = null;
+  }
+  function setAria(item, open){
+    var a = item.querySelector('.cc-top');
+    if (a) a.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function scheduleClose(){ clearTimeout(closeTimer); closeTimer = setTimeout(closeMega, 160); }
+
+  items.forEach(function(item){
+    var top = item.querySelector('.cc-top');
+    var mega = item.querySelector('.cc-mega');
+
+    /* hover = peek (desktop only, reveal not navigate) */
+    item.addEventListener('mouseenter', function(){ if (DESKTOP()) openMega(item); });
+    item.addEventListener('mouseleave', function(){ if (DESKTOP()) scheduleClose(); });
+    if (mega){
+      mega.addEventListener('mouseenter', function(){ clearTimeout(closeTimer); });
+      mega.addEventListener('mouseleave', function(){ if (DESKTOP()) scheduleClose(); });
+    }
+
+    /* TWO-STAGE click: 1st opens (no nav), 2nd navigates */
+    top.addEventListener('click', function(e){
+      if (!DESKTOP()) return;                 // mobile uses drawer
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // power-user new tab
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        openMega(item);
+      }
+      /* if already open: do nothing here, let the <a href> navigate */
+    });
+
+    /* keyboard: ArrowDown moves into panel */
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowDown' && DESKTOP()){
+        e.preventDefault();
+        if (!item.classList.contains('is-open')) openMega(item);
+        var first = mega && mega.querySelector('a,button,input');
+        if (first) first.focus();
+      }
+    });
+
+    /* Concierge Hairline: draw the gold underline from the cursor's entry side */
+    top.addEventListener('pointerenter', function(e){
+      var r = top.getBoundingClientRect();
+      top.style.setProperty('--cc-origin', ((e.clientX - r.left) / r.width * 100) + '%');
+    });
+    top.addEventListener('focus', function(){ if(!top.matches(':hover')) top.style.setProperty('--cc-origin','50%'); });
+  });
+
+  /* close interactions */
+  backdrop.addEventListener('click', closeMega);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && openItem){ var t = openItem.querySelector('.cc-top'); closeMega(); if (t) t.focus(); }
+  });
+  document.addEventListener('focusout', function(e){
+    if (openItem && !openItem.contains(e.relatedTarget)) { /* allow into panel; close when leaving item subtree */
+      if (e.relatedTarget && !openItem.contains(e.relatedTarget)) closeMega();
+    }
+  });
+
+  /* ---------- sub-nav scroll-spy ---------- */
+  var spy = Array.prototype.slice.call(document.querySelectorAll('.subnav a'));
+  var targets = spy.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          spy.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#'+en.target.id); });
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  }
+
+  /* ---------- mobile drawer ---------- */
+  var drawer = document.getElementById('ccDrawer');
+  var burger = document.getElementById('ccBurger');
+  var drawerX = document.getElementById('ccDrawerX');
+  var scrollY = 0;
+  function openDrawer(){
+    scrollY = window.scrollY;
+    drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.add('show'); burger.setAttribute('aria-expanded','true');
+    document.body.style.position='fixed'; document.body.style.top = (-scrollY)+'px'; document.body.style.width='100%';
+    var f = drawer.querySelector('button,a,input'); if (f) f.focus();
+    document.addEventListener('keydown', trap);
+  }
+  function closeDrawer(){
+    drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('show'); burger.setAttribute('aria-expanded','false');
+    document.body.style.position=''; document.body.style.top=''; document.body.style.width='';
+    window.scrollTo(0, scrollY);
+    document.removeEventListener('keydown', trap);
+    burger.focus();
+  }
+  function trap(e){
+    if (e.key === 'Escape'){ closeDrawer(); return; }
+    if (e.key !== 'Tab') return;
+    var f = Array.prototype.slice.call(drawer.querySelectorAll('button,a,input')).filter(function(el){return el.offsetParent!==null;});
+    if (!f.length) return;
+    var first=f[0], last=f[f.length-1];
+    if (e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+  burger.addEventListener('click', openDrawer);
+  drawerX.addEventListener('click', closeDrawer);
+  backdrop.addEventListener('click', function(){ if (drawer.classList.contains('open')) closeDrawer(); });
+
+  /* drawer accordions */
+  Array.prototype.slice.call(document.querySelectorAll('.cc-acc-btn')).forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var acc = btn.parentElement;
+      var body = acc.querySelector('.cc-acc-body');
+      var open = acc.classList.toggle('open');
+      body.style.maxHeight = open ? body.scrollHeight+'px' : '0px';
+    });
+  });
+
+
+  /* ============================================================
+     Find a Dentist: omni autocomplete + ZIP to city (multi-city) +
+     Card 4 result in a money.com-style collapsible bottom dock.
+     Ported from components/mega-nav.html (real Supabase logic),
+     with file:// demo fallbacks so the preview works offline.
+     ============================================================ */
+  (function(){
+    var SUPA='https://hfvbeqlefwwjlrbyxpbj.supabase.co';
+    var KEY='sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf';
+    var R=18; /* PLATINUM_RADIUS_MILES */
+    var input=document.getElementById('cc-find-input');
+    var btn=document.getElementById('cc-find-btn');
+    var omni=document.getElementById('cc-omni');
+    var dock=document.getElementById('cc-find-dock');
+    var dockBd=document.getElementById('cc-find-dock-bd');
+    var dockX=document.getElementById('cc-find-dock-x');
+    var dockMini=document.getElementById('cc-find-dock-mini');
+    var dockMiniNm=document.getElementById('cc-find-dock-mini-nm');
+    var dockMiniRt=document.getElementById('cc-find-dock-mini-rt');
+    var dockMiniBk=document.getElementById('cc-find-dock-mini-bk');
+    if(!input||!btn||!omni||!dock||!dockBd) return;
+
+    /* ---------- file:// demo fallbacks (Supabase blocks the null origin) ---------- */
+    var DEMO_SUGGEST_ZIP={
+      '9440':[
+        {label:'94401',sublabel:'San Mateo, CA',kind:'zip',browse_scope:'zip',browse_value:'94401'},
+        {label:'94402',sublabel:'San Mateo, CA',kind:'zip',browse_scope:'zip',browse_value:'94402'},
+        {label:'94403',sublabel:'San Mateo, CA',kind:'zip',browse_scope:'zip',browse_value:'94403'}
+      ]
+    };
+    var DEMO_SUGGEST_TEXT=[
+      {label:'Los Angeles County',sublabel:'California, county / area',kind:'local_area',browse_scope:'local_area',browse_value:'Los Angeles County',lat:34.0522,lng:-118.2437},
+      {label:'Orange County',sublabel:'California, county / area',kind:'local_area',browse_scope:'local_area',browse_value:'Orange County'},
+      {label:'Irvine',sublabel:'California, city',kind:'city',browse_scope:'city',browse_value:'Irvine',lat:33.6846,lng:-117.8265},
+      {label:'Beverly Hills',sublabel:'California, city',kind:'city',browse_scope:'city',browse_value:'Beverly Hills',lat:34.0736,lng:-118.4004},
+      {label:'Houston',sublabel:'Texas, city',kind:'city',browse_scope:'city',browse_value:'Houston',lat:29.7604,lng:-95.3698}
+    ];
+    var DEMO_CITIES_BY_ZIP={
+      '91745':[
+        {name:'City of Industry',city:'City of Industry',lat:34.0197,lng:-117.9587,state:'California'},
+        {name:'Hacienda Heights',city:'Hacienda Heights',lat:33.9931,lng:-117.9686,state:'California'}
+      ]
+    };
+    function demoCityForZip(zip){
+      if(DEMO_CITIES_BY_ZIP[zip]) return DEMO_CITIES_BY_ZIP[zip];
+      var map={'90210':{name:'Beverly Hills',lat:34.0901,lng:-118.4065,state:'California'},
+        '92708':{name:'Fountain Valley',lat:33.7092,lng:-117.9536,state:'California'},
+        '92697':{name:'Irvine',lat:33.6405,lng:-117.8443,state:'California'},
+        '94401':{name:'San Mateo',lat:37.5741,lng:-122.3194,state:'California'}};
+      var c=map[zip]||{name:'San Mateo',lat:37.5630,lng:-122.3255,state:'California'};
+      c.city=c.name; return [c];
+    }
+    var DEMO_KYT={practice_name:'KYT Dental Services',rating:5.0,
+      google_rating:5.0,google_review_count:132,yelp_rating:5.0,yelp_review_count:132,
+      zocdoc_rating:5.0,zocdoc_review_count:464,review_count:728,
+      address:'11180 Warner Ave Suite 251, Fountain Valley, CA 92708',city:'Fountain Valley',state:'CA',zip:'92708',
+      distance_miles:1.1,phone:'(833) 598-3368',
+      profile_url:'/dental/california/orange-county/fountain-valley/kyt-dental-services/'};
+    var DEMO_ABRI={practice_name:'Abri Dental, Beverly Hills',rating:4.8,
+      google_rating:4.9,google_review_count:74,yelp_rating:3.0,yelp_review_count:6,
+      review_count:80,address:'50 N La Cienega Blvd #217, Beverly Hills, CA 90211',
+      city:'Beverly Hills',state:'CA',zip:'90211',distance_miles:1.5,phone:'(310) 275-0032',
+      profile_url:'/dental/california/los-angeles/beverly-hills/abri-dental/'};
+    var DEMO_ABRI_BURBANK={practice_name:'Abri Dental, Burbank',rating:4.9,
+      google_rating:4.9,google_review_count:118,yelp_rating:4.5,yelp_review_count:41,
+      review_count:159,address:'3808 W Riverside Dr, Burbank, CA 91505',
+      city:'Burbank',state:'CA',zip:'91505',distance_miles:11.2,phone:'(818) 558-0142',
+      profile_url:'/dental/california/los-angeles/burbank/abri-dental/'};
+    /* Demo offices only appear in their real home areas. Any other search returns
+       [] so the preview shows the truthful "no Platinum Elite within range" card,
+       instead of teleporting a demo office into a far-away ZIP with a fake distance.
+       (file:// only — over http the live RPC does real radius + haversine.) */
+    function demoDentistsFor(label){
+      var s=String(label||'').toLowerCase();
+      if(s.indexOf('los angeles')>-1||s.indexOf('la county')>-1) return [clone(DEMO_ABRI),clone(DEMO_ABRI_BURBANK)];
+      if(s.indexOf('beverly')>-1||s.indexOf('90210')>-1||s.indexOf('90211')>-1||s.indexOf('burbank')>-1||s.indexOf('91505')>-1) return [clone(DEMO_ABRI),clone(DEMO_ABRI_BURBANK)];
+      if(s.indexOf('fountain valley')>-1||s.indexOf('orange county')>-1||s.indexOf('92708')>-1||s.indexOf('kyt')>-1) return [clone(DEMO_KYT)];
+      return [];
+    }
+    function clone(o){return JSON.parse(JSON.stringify(o));}
+
+    /* ---------- helpers (ported) ---------- */
+    function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+    function rxq(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function fmtRating(v){var n=Number(v)||0;return n?(Math.round(n*10)/10).toFixed(1):'';}
+    function fmtCount(v){var n=Number(v)||0;return n?n.toLocaleString('en-US'):'';}
+    function starText(r){var c=Math.max(0,Math.min(5,Math.round(Number(r)||0)));return '★'.repeat(c)+'☆'.repeat(5-c);}
+    /* fetch wrappers: resolve null on network failure so callers fall back to demo */
+    function withTimeout(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null);},ms||2800);})]);}
+    function get(p){return withTimeout(fetch(SUPA+'/rest/v1/'+p,{headers:{apikey:KEY,Authorization:'Bearer '+KEY}}).then(function(r){return r.ok?r.json():[];}).catch(function(){return null;}));}
+    function rpc(fn,b){return withTimeout(fetch(SUPA+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(b||{})}).then(function(r){return r.ok?r.json():[];}).catch(function(){return null;}));}
+
+    function supabaseSuggest(q){
+      return rpc('nav_search_suggest',{q:q,max_n:8}).then(function(rows){
+        if(rows===null){ /* demo */
+          var s=String(q||'').trim();
+          if(/^\d/.test(s)){ var k=s.slice(0,4); return DEMO_SUGGEST_ZIP[k]||DEMO_SUGGEST_ZIP['9440']; }
+          var f=DEMO_SUGGEST_TEXT.filter(function(x){return x.label.toLowerCase().indexOf(s.toLowerCase())>-1;});
+          return f.length?f:DEMO_SUGGEST_TEXT;
+        }
+        return rows;
+      });
+    }
+    function citiesForZip(zip){
+      var q='search_locations?select=name,city,lat,lng,slug,local_area,market_area,state'
+        +'&type=eq.city&zip_codes=cs.{'+encodeURIComponent(zip)+'}&order=name';
+      return get(q).then(function(rows){ return rows===null?demoCityForZip(zip):rows; });
+    }
+    function featuredDentistsNear(lat,lng,label){
+      if(lat==null||lng==null) return Promise.resolve([]);
+      return rpc('nav_featured_dentist',{in_lat:Number(lat),in_lng:Number(lng),radius_miles:R}).then(function(rows){
+        var demo=demoDentistsFor(label);
+        if(rows===null){ demo.forEach(function(d){d.__demo=true;}); return demo; }
+        rows=rows||[];
+        /* PREVIEW ONLY: the live nav_featured_dentist RPC returns a single office,
+           so for areas where the demo has more (e.g. Los Angeles County), use the
+           demo set to show the multi-office slider. On production, swap this for a
+           real "all Platinum Elite within radius" RPC. */
+        if(rows.length<demo.length){ demo.forEach(function(d){d.__demo=true;}); return demo; }
+        return rows;
+      });
+    }
+
+    /* ---------- sourceRatingHTML (ported, Card 4 chip markup) ---------- */
+    var SRC_COLOR={Google:'#1a73e8',Yelp:'#d32323',Zocdoc:'#f5b400'};
+    function sourceRatingHTML(d){
+      var overall=Number(d.rating||0)||Number(d.aggregate_rating||0);
+      var gR=Number(d.google_rating||0),gC=Number(d.google_review_count||0);
+      var yR=Number(d.yelp_rating||0),yC=Number(d.yelp_review_count||0);
+      var zR=Number(d.zocdoc_rating||0),zC=Number(d.zocdoc_review_count||0);
+      var headR=overall||gR||yR||zR;
+      if(!headR) return {rating:'',sources:'',head:0,total:0};
+      var total=gC+yC+zC;
+      if(!total) total=Number(d.review_count||0)||Number(d.aggregate_review_count||0);
+      function chip(name,r,c){
+        if(!r) return '';
+        return '<span class="card-4__source"><span class="card-4__dot" style="background:'+SRC_COLOR[name]+'"></span>'
+          +name+' '+fmtRating(r)+(c?' ('+fmtCount(c)+')':'')+'</span>';
+      }
+      var chips=chip('Google',gR,gC)+chip('Yelp',yR,yC)+chip('Zocdoc',zR,zC);
+      var ratingLine='<div class="card-4__rating"><span class="card-4__stars" aria-hidden="true">'+starText(headR)+'</span>'
+        +'<span class="card-4__score">'+fmtRating(headR)+'</span>'
+        +(total?'<span class="card-4__count">'+fmtCount(total)+' reviews</span>':'')+'</div>';
+      return {rating:ratingLine,sources:chips?'<div class="card-4__sources">'+chips+'</div>':'',head:headR,total:total};
+    }
+
+    /* ---------- browse URL (ZIP/city pre-filled, autosubmit) ---------- */
+    function browseUrl(where){ return '/find-my-dentist.html?where='+encodeURIComponent(where||'')+'&autosubmit=1'; }
+
+    /* ---------- omni autocomplete ---------- */
+    var KIND_GLYPH={zip:'#',city:'⌂',local_area:'◆',market_area:'❖',state:'★'};
+    var KIND_TAG={zip:'ZIP',city:'City',local_area:'Area',market_area:'Market',state:'State'};
+    var tmr=null, active=-1, items=[], lastQuery='';
+    function hideOmni(){omni.hidden=true;omni.innerHTML='';input.setAttribute('aria-expanded','false');active=-1;items=[];}
+    function mark(){Array.prototype.forEach.call(omni.querySelectorAll('.cc-omni-item'),function(el,i){el.classList.toggle('on',i===active);if(i===active)el.scrollIntoView({block:'nearest'});});}
+    function highlight(text,q){
+      var t=esc(text),qq=esc(String(q||'').trim());
+      if(!qq) return t;
+      var i=t.toLowerCase().indexOf(qq.toLowerCase());
+      if(i<0) return t;
+      return t.slice(0,i)+'<b>'+t.slice(i,i+qq.length)+'</b>'+t.slice(i+qq.length);
+    }
+    function renderOmni(list,term){
+      list=(list||[]).filter(Boolean);
+      if(!list.length){hideOmni();return;}
+      items=list;active=-1;
+      omni.innerHTML=list.map(function(x,i){
+        var kind=x.kind||x.browse_scope||'city';
+        var glyph=KIND_GLYPH[kind]||'●';
+        var tag=KIND_TAG[kind]||'';
+        var sub=x.sublabel?'<span class="cc-omni-s">'+esc(x.sublabel)+'</span>':'';
+        return '<button type="button" class="cc-omni-item" data-i="'+i+'" role="option">'
+          +'<span class="cc-omni-b t-'+kind+'">'+glyph+'</span>'
+          +'<span class="cc-omni-tx"><span class="cc-omni-l">'+highlight(x.label,term)+'</span>'+sub+'</span>'
+          +'<span class="cc-omni-k">'+tag+'</span></button>';
+      }).join('');
+      omni.hidden=false;input.setAttribute('aria-expanded','true');
+      Array.prototype.forEach.call(omni.querySelectorAll('.cc-omni-item'),function(el){
+        el.addEventListener('mousedown',function(e){e.preventDefault();pick(+el.getAttribute('data-i'));});
+      });
+    }
+    function pick(i){
+      var x=items[i]; if(!x) return;
+      input.value=x.label; hideOmni();
+      resolveSelection({scope:x.browse_scope||x.kind,value:x.browse_value||x.value||x.label,label:x.label,lat:x.lat,lng:x.lng});
+    }
+    function requestSuggest(q){
+      var clean=String(q||'').trim();
+      var hasDigit=/\d/.test(clean);
+      if(!clean||(!hasDigit&&clean.length<2)){hideOmni();return;}
+      lastQuery=clean;
+      supabaseSuggest(clean).then(function(rows){
+        if(clean!==lastQuery) return;
+        renderOmni(rows||[],clean);
+      });
+    }
+    input.addEventListener('input',function(){
+      var t=input.value.trim(); clearTimeout(tmr);
+      if(t.length<2){hideOmni();return;}
+      tmr=setTimeout(function(){requestSuggest(t);},180);
+    });
+    input.addEventListener('keydown',function(e){
+      var open=!omni.hidden&&items.length;
+      if(e.key==='ArrowDown'){if(open){e.preventDefault();active=(active+1)%items.length;mark();}return;}
+      if(e.key==='ArrowUp'){if(open){e.preventDefault();active=(active-1+items.length)%items.length;mark();}return;}
+      if(e.key==='Enter'){e.preventDefault();if(open&&active>-1){pick(active);return;}hideOmni();runFreeText(input.value);return;}
+      if(e.key==='Escape'){if(open){hideOmni();}else{closeDock();}return;}
+    });
+    document.addEventListener('click',function(e){ if(!omni.contains(e.target)&&e.target!==input) hideOmni(); });
+
+    /* ---------- Card 4 renderers ---------- */
+    var lastDentist=null;
+    function loadingHTML(label){
+      return '<section class="card-4"><div class="card-4__load">'
+        +'<div class="card-4__load-k">Checking Platinum Elite availability</div>'
+        +'<div class="card-4__load-s">Searching near '+esc(label||'your area')+'</div></div></section>';
+    }
+    function cardHTML(d,originLabel,note,showDist){
+      var name=d.practice_name||'Platinum Elite dentist';
+      var profile=d.profile_url||d.booking_url||d.website||'/find-my-dentist.html';
+      var book=d.booking_url||d.profile_url||d.website||'/find-my-dentist.html';
+      var sr=sourceRatingHTML(d);
+      var addr=d.address||[d.city,d.state,d.zip].filter(Boolean).join(', ');
+      var street=addr,region='';
+      var ci=String(addr).indexOf(',');
+      if(ci>-1){street=addr.slice(0,ci).trim();region=addr.slice(ci+1).trim();}
+      var mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((name+' '+addr).trim());
+      var tel=String(d.phone||'').replace(/[^0-9+]/g,'');
+      var dist=(d.distance_miles!=null)?(Math.round(Number(d.distance_miles)*10)/10):null;
+      var origin=originLabel?('from '+originLabel):'nearby';
+      var distTag=(dist!=null)?'<div class="card-4__distrow"><span class="card-4__dist">'+dist+' mi '+esc(origin)+'</span></div>':'';
+      return '<section class="card-4" role="dialog" aria-label="'+esc(name)+'">'
+        +'<div class="card-4__body">'
+        +'<div class="card-4__top"><span class="card-4__feat">Featured Platinum Elite</span></div>'
+        +'<a class="card-4__name" href="'+esc(profile)+'">'+esc(name)+'</a>'
+        +sr.rating+sr.sources
+        +'<div class="card-4__contact">'
+        +(addr?'<a class="card-4__addr" href="'+esc(mapsUrl)+'" target="_blank" rel="noopener">'
+            +'<span class="card-4__addr-pin" aria-hidden="true"></span>'
+            +'<span><p class="card-4__street">'+esc(street)+'</p>'
+            +(region?'<p class="card-4__region">'+esc(region)+'</p>':'')
+            +((showDist!==false&&dist!=null)?'<span class="card-4__dist">'+dist+' mi '+esc(origin)+'</span>':'')
+            +'</span></a>':'<span></span>')
+        +'<div class="card-4__contact-r">'
+            +(d.phone?'<a class="card-4__phone" href="tel:'+esc(tel)+'">'+esc(d.phone)+'</a>':'')
+            +'<button type="button" class="card-4__share" data-name="'+esc(name)+'" data-url="'+esc(profile)+'"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="18" cy="5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="11" x2="16" y2="6.5" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="13" x2="16" y2="17.5" stroke="currentColor" stroke-width="1.8"/></svg> Share</button>'
+        +'</div>'
+        +'</div>'
+        +'<div class="card-4__cta">'
+        +'<a class="card-4__btn card-4__btn--primary" href="'+esc(book)+'">Book appointment</a>'
+        +'<a class="card-4__btn card-4__btn--ghost" href="'+esc(profile)+'">View dentist profile</a>'
+        +'</div>'
+        +(note?'<div class="card-4__note">'+esc(note)+'</div>':'')
+        +'</div></section>';
+    }
+    function noneHTML(label){
+      return '<section class="card-4">'
+        +'<div class="card-4__body">'
+        +'<div class="card-4__top"><span class="card-4__feat">PPO dentists near '+esc(label||'you')+'</span></div>'
+        +'<div class="card-4__name" style="font-size:21px;line-height:1.18">Browse PPO dentists<br><span class="ah-city">in '+esc(label||'this area')+'</span></div>'
+        +'<p class="card-4__region" style="margin:0 0 16px">No Platinum Elite office within '+R+' miles yet.<br>You can still see every PPO dentist in the area.</p>'
+        +'<div class="card-4__cta">'
+        +'<a class="card-4__btn card-4__btn--primary" href="'+esc(browseUrl(label))+'">Browse all dentists in '+esc(label||'your area')+'</a>'
+        +'</div>'
+        +'<a class="card-4__subtle" href="/claim-dentist-listing-profile.html">Are you a dentist in '+esc(label||'this area')+'? Claim your profile</a>'
+        +'</div></section>';
+    }
+    function cityPickHTML(zip,cities){
+      var chips=cities.map(function(c,idx){
+        return '<button type="button" class="card-4__chip" data-idx="'+idx+'">'+esc(c.name||c.city)+'</button>';
+      }).join('');
+      return '<section class="card-4"><div class="card-4__pick">'
+        +'<div class="card-4__pick-k">More than one city</div>'
+        +'<h3 class="card-4__pick-h">Which part of <em>'+esc(zip)+'</em>?</h3>'
+        +'<div class="card-4__chips">'+chips+'</div>'
+        +'<a class="card-4__btn card-4__btn--ghost" href="'+esc(browseUrl(zip))+'">Browse all dentists in '+esc(zip)+'</a>'
+        +'</div></section>';
+    }
+
+    /* ---------- dock + collapse ---------- */
+    function setBtnBusy(b){
+      if(!btn) return;
+      btn.classList.toggle('is-busy',!!b);
+      btn.setAttribute('aria-busy',b?'true':'false');
+      var tx=btn.querySelector('.zip-btn-tx');
+      if(tx) tx.textContent=b?'Searching':'Search';
+    }
+    function setDock(html){
+      dockBd.innerHTML=html; dock.classList.add('show');dock.classList.remove('is-collapsed'); dock.setAttribute('aria-hidden','false');
+      setBtnBusy(/card-4__load/.test(html));
+    }
+    /* ---- dynamic right-column aside ---- */
+    var aside=document.getElementById('cc-find-aside');
+    var asideDefault=aside?aside.innerHTML:'';
+    /* Both aside cards share one format; only the color modifier differs. */
+    /* aside cards use the same luxury concierge card (.mega-hero) as the default */
+    function asideCard(mod,eyebrow,line1,line2,cta,href){
+      return '<a class="mega-hero cc-aside-h'+mod+'" href="'+esc(href)+'">'
+        +'<span class="cc-aside-h-tx">'
+        +'<span class="mega-hero-k">'+eyebrow+'</span>'
+        +'<span class="mega-hero-t">'+line1+'<br><span class="ah-city">'+line2+'</span></span>'
+        +'</span>'
+        +'<span class="mega-hero-cta">'+cta+'</span></a>';
+    }
+    function asideFound(label){
+      if(!aside) return;
+      aside.innerHTML=
+        asideCard('','Keep looking','More PPO dentists','in '+esc(label||'your area'),'Browse all dentists',browseUrl(label||''))
+       +asideCard(' mega-hero--featured','For dentists','Get featured to PPO patients','near '+esc(label||'you'),'Get featured','/dentist-portal.html#platinum-elite');
+    }
+    function asideNone(label){
+      if(!aside) return;
+      aside.innerHTML=
+        asideCard('','No Platinum Elite within 18 miles','Browse PPO dentists','in '+esc(label||'your area'),'Browse all dentists',browseUrl(label||''))
+       +asideCard(' mega-hero--featured','For dentists, free','Be the first Platinum Elite office','near '+esc(label||'you'),'Claim your profile','/claim-dentist-listing-profile.html');
+    }
+    function asideReset(){ if(aside) aside.innerHTML=asideDefault; }
+    var chipsBrowse=document.getElementById('cc-chips-browse');
+    function setChipsBrowse(label){ if(!chipsBrowse) return; if(label){ chipsBrowse.textContent='Browse all dentists in '+label; chipsBrowse.href=browseUrl(label); chipsBrowse.hidden=false; } else { chipsBrowse.hidden=true; } }
+    function showNone(label){
+      /* no office to book: clear any prior result so scrolling can't re-collapse
+         into a stale "N Platinum Elite offices near <old area>" bar */
+      lastDentist=null; multiNav=null;
+      setDock(noneHTML(label)); asideNone(label); setChipsBrowse(label);
+      if(dockMiniNm) dockMiniNm.innerHTML='';
+      if(dockMiniRt) dockMiniRt.innerHTML='';
+    }
+    function reviewCount(d){ return Number(d.review_count||0)||Number(d.aggregate_review_count||0)||((Number(d.google_review_count)||0)+(Number(d.yelp_review_count)||0)+(Number(d.zocdoc_review_count)||0)); }
+    var multiNav=null; /* {prev,next} for keyboard arrows */
+    function showResults(list,originLabel,note,scope){
+      list=(list||[]).filter(Boolean); if(!list.length){ showNone(originLabel); return; }
+      var isCity=(scope==='city'||scope==='zip'||scope==null);
+      multiNav=null;
+      if(list.length===1){
+        lastDentist=list[0];
+        setDock('<div class="card-stack">'+cardHTML(list[0],originLabel,'',isCity)+'</div>');
+      } else {
+        lastDentist=list[0];
+        setDock('<div class="card-switch" id="cc-switch"></div>');
+        wireSwitch(list,originLabel,isCity);
+      }
+      asideFound(originLabel);
+      var sr=sourceRatingHTML(list[0]);
+      if(dockMiniNm) dockMiniNm.innerHTML=list.length>1?(list.length+' Platinum Elite offices<br><span class="ah-city">near '+esc(originLabel||'you')+'</span>'):esc(list[0].practice_name||'Platinum Elite dentist');
+      if(dockMiniRt) dockMiniRt.innerHTML=(list.length===1&&sr.head)?(fmtRating(sr.head)+' <span class="s">★</span>'):'';
+      if(dockMiniBk) dockMiniBk.dataset.href=list[0].booking_url||list[0].profile_url||list[0].website||'/find-my-dentist.html';
+    }
+    /* Switch between the two (concept 3): a toggle flips the single shown office.
+       Nearest only when the search has a precise center (city or ZIP). A pager
+       appears only when there are more than two offices. Left/Right keys move. */
+    function wireSwitch(list,label,isCity){
+      var box=dockBd.querySelector('#cc-switch'); if(!box) return;
+      var mode=isCity?'near':'reviews';
+      function sortBy(m){ var l=list.slice(); if(m==='near'){ l.sort(function(a,b){return (Number(a.distance_miles)||1e9)-(Number(b.distance_miles)||1e9);}); } else { l.sort(function(a,b){return reviewCount(b)-reviewCount(a);}); } return l; }
+      var usePager=(list.length>2)||(!isCity);
+      var idx=0;
+      /* compact sort toggle, injected into each card's rating row (city only) */
+      var toggleHTML=isCity?'<div class="cm-mini" role="group" aria-label="Sort offices"><button type="button" class="cm-mini-opt" data-sort="near">Nearest</button><button type="button" class="cm-mini-opt" data-sort="reviews">Most reviews</button></div>':'';
+      function injectToggle(){
+        if(!toggleHTML) return;
+        [].slice.call(box.querySelectorAll('.card-4__rating')).forEach(function(row){
+          if(row.querySelector('.cm-mini')) return;
+          row.classList.add('card-4__rating--toggle');
+          row.insertAdjacentHTML('beforeend',toggleHTML);
+        });
+        [].slice.call(box.querySelectorAll('.cm-mini-opt')).forEach(function(o){
+          o.classList.toggle('on',o.getAttribute('data-sort')===mode);
+          o.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); mode=o.getAttribute('data-sort'); idx=0; render(); });
+        });
+      }
+      function render(){
+        var sorted=sortBy(mode);
+        var body;
+        if(usePager){
+          body='<div class="cs-view"><div class="cs-track" id="cw-track">'+sorted.map(function(d){return '<div class="cs-slide">'+cardHTML(d,label,'',isCity)+'</div>';}).join('')+'</div></div>'
+            +'<div class="cs-nav"><button class="cs-arw cs-prev" aria-label="Previous office">&#8249;</button><div class="cs-dots" id="cw-dots">'+sorted.map(function(_,j){return '<button class="cs-dot'+(j===0?' on':'')+'" data-i="'+j+'"></button>';}).join('')+'</div><button class="cs-arw cs-next" aria-label="Next office">&#8250;</button></div>';
+        } else {
+          body='<div class="cw-card">'+cardHTML(sorted[0],label,'',isCity)+'</div>';
+        }
+        box.innerHTML=body;
+        injectToggle();
+        if(usePager){
+          var track=box.querySelector('#cw-track'), dots=box.querySelector('#cw-dots');
+          var prev=box.querySelector('.cs-prev'), next=box.querySelector('.cs-next');
+          function go(k){ idx=Math.max(0,Math.min(sorted.length-1,k)); track.style.transform='translateX(-'+(idx*100)+'%)'; [].slice.call(dots.children).forEach(function(d,j){d.classList.toggle('on',j===idx);}); if(prev)prev.disabled=(idx===0); if(next)next.disabled=(idx===sorted.length-1); }
+          if(prev) prev.addEventListener('click',function(){go(idx-1);});
+          if(next) next.addEventListener('click',function(){go(idx+1);});
+          [].slice.call(dots.children).forEach(function(d){ d.addEventListener('click',function(){go(+d.getAttribute('data-i'));}); });
+          go(0);
+          multiNav={prev:function(){go(idx-1);},next:function(){go(idx+1);}};
+        } else {
+          /* exactly two, city: arrows flip the toggle */
+          multiNav={prev:function(){mode='near';idx=0;render();},next:function(){mode='reviews';idx=0;render();}};
+        }
+      }
+      render();
+    }
+    function closeDock(){ dock.classList.remove('show','is-collapsed'); dock.setAttribute('aria-hidden','true'); lastDentist=null; multiNav=null; asideReset(); setChipsBrowse(null); }
+    function expandDock(){ dock.classList.remove('is-collapsed'); }
+    function collapseDock(){ if(lastDentist) dock.classList.add('is-collapsed'); }
+    /* minimize the result card when the user switches to another mega-nav tab */
+    document.addEventListener('cc:mega-open',function(e){ if(e.detail&&e.detail.key!=='find') collapseDock(); });
+    if(dockX) dockX.addEventListener('click',closeDock);
+    /* share a dentist */
+    if(dockBd) dockBd.addEventListener('click',function(e){
+      var btn=e.target.closest&&e.target.closest('.card-4__share'); if(!btn) return;
+      e.preventDefault();
+      var name=btn.getAttribute('data-name')||'PPO dentist';
+      var path=btn.getAttribute('data-url')||'/find-my-dentist.html';
+      var url=(location.protocol==='file:'?'https://covercapy.com':location.origin)+path;
+      if(navigator.share){ navigator.share({title:name,text:name+' on CoverCapy',url:url}).catch(function(){}); return; }
+      var done=function(){ btn.classList.add('copied'); var t=btn.querySelector('svg'); btn.lastChild.textContent=' Link copied'; setTimeout(function(){btn.classList.remove('copied');btn.lastChild.textContent=' Share';},1800); };
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done).catch(done); } else { done(); }
+    });
+    if(dockMini){
+      dockMini.addEventListener('click',function(e){ if(e.target===dockMiniBk) return; expandDock(); });
+      dockMini.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();expandDock();} });
+    }
+    if(dockMiniBk) dockMiniBk.addEventListener('click',function(e){ e.stopPropagation(); var h=dockMiniBk.dataset.href; if(h) window.location.href=h; });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&dock.classList.contains('show')) closeDock(); });
+    document.addEventListener('keydown',function(e){
+      if(!dock.classList.contains('show')||!multiNav) return;
+      if(/INPUT|TEXTAREA/.test((e.target&&e.target.tagName)||'')) return;
+      if(e.key==='ArrowLeft'){ e.preventDefault(); multiNav.prev(); }
+      else if(e.key==='ArrowRight'){ e.preventDefault(); multiNav.next(); }
+    });
+    /* touch: swipe left/right to move between offices, swipe down to dismiss */
+    (function(){
+      if(!dockBd) return; var sx=0,sy=0,on=false;
+      dockBd.addEventListener('touchstart',function(e){ var t=e.touches[0]; sx=t.clientX; sy=t.clientY; on=true; },{passive:true});
+      dockBd.addEventListener('touchend',function(e){ if(!on) return; on=false; var t=e.changedTouches[0]; var dx=t.clientX-sx, dy=t.clientY-sy;
+        if(multiNav && Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ if(dx<0) multiNav.next(); else multiNav.prev(); return; }
+        if(dy>70 && Math.abs(dy)>Math.abs(dx) && dockBd.scrollTop<=0){ closeDock(); }
+      },{passive:true});
+    })();
+
+    /* collapse on scroll down once a result is shown; expand on scroll up */
+    var lastScroll=window.scrollY;
+    window.addEventListener('scroll',function(){
+      if(!dock.classList.contains('show')||!lastDentist) return;
+      var y=window.scrollY;
+      if(y>lastScroll+8){ collapseDock(); }
+      else if(y<lastScroll-8){ expandDock(); }
+      lastScroll=y;
+    },{passive:true});
+
+    /* ---------- orchestration (ported) ---------- */
+    function previewPoint(label,lat,lng,scope){
+      setDock(loadingHTML(label));
+      return featuredDentistsNear(lat,lng,label).then(function(ds){
+        if(ds&&ds.length){ showResults(ds,label,ds[0].__demo?'Preview sample. Live results load on the site.':'',scope); }
+        else { showNone(label); }
+      });
+    }
+    function resolveZip(zip){
+      setDock(loadingHTML(zip));
+      return citiesForZip(zip).then(function(rows){
+        var cities=(rows||[]).filter(function(c){return c&&c.lat!=null&&c.lng!=null;});
+        if(cities.length===0){ return previewPoint(zip,null,null,'zip'); }
+        if(cities.length===1){ var o=cities[0]; return previewPoint(o.name||o.city||zip,o.lat,o.lng,'city'); }
+        setDock(cityPickHTML(zip,cities));
+        dockBd.querySelectorAll('.card-4__chip').forEach(function(chip){
+          chip.addEventListener('click',function(){
+            var c=cities[Number(chip.getAttribute('data-idx'))||0]; if(!c) return;
+            previewPoint(c.name||c.city,c.lat,c.lng,'city');
+          });
+        });
+      });
+    }
+    function resolveSelection(sel){
+      var scope=sel.scope||'city';
+      var value=sel.value;
+      var label=sel.label||value;
+      if(scope==='zip'){ resolveZip(value); return; }
+      if(sel.lat!=null&&sel.lng!=null&&sel.lat!==''&&sel.lng!==''){ previewPoint(label,sel.lat,sel.lng,scope); return; }
+      /* no centroid: try to resolve a city centroid via demo/REST, else show none */
+      setDock(loadingHTML(label));
+      get('search_locations?select=name,city,lat,lng&type=eq.city&city=ilike.'+encodeURIComponent(value||label)+'&limit=1').then(function(rows){
+        if(rows===null){ previewPoint(label,34.05,-118.24,scope); return; } /* demo centroid */
+        var loc=rows&&rows[0];
+        if(loc&&loc.lat!=null){ previewPoint(label,loc.lat,loc.lng,scope); }
+        else { showNone(label); }
+      });
+    }
+    function runFreeText(term){
+      var clean=String(term||'').trim().replace(/\s+/g,' ');
+      if(!clean) return;
+      hideOmni();
+      if(/^\d{5}$/.test(clean)){ resolveZip(clean); return; }
+      setDock(loadingHTML(clean));
+      supabaseSuggest(clean).then(function(rows){
+        rows=rows||[];
+        if(!rows.length){ showNone(clean); return; }
+        var exact=null;
+        for(var i=0;i<rows.length;i++){ if(String(rows[i].label||'').toLowerCase()===clean.toLowerCase()){ exact=rows[i]; break; } }
+        var pick=exact||rows[0];
+        resolveSelection({scope:pick.browse_scope||pick.kind,value:pick.browse_value||pick.value||pick.label,label:pick.label,lat:pick.lat,lng:pick.lng});
+      });
+    }
+
+    btn.addEventListener('click',function(){ hideOmni(); runFreeText(input.value); });
+    document.querySelectorAll('.zip-chip[data-q]').forEach(function(c){
+      c.addEventListener('click',function(e){ e.preventDefault(); input.value=c.getAttribute('data-q'); hideOmni(); runFreeText(c.getAttribute('data-q')); });
+    });
+  })();
+})();
+</script>
+<script>
+/* Geo drill-down: choose a state, narrow into its real sector hubs */
+(function(){
+  var CC_GEO={
+    california:{label:'California',r:[['Orange County','orange-county'],['Los Angeles','los-angeles'],['San Gabriel Valley','san-gabriel-valley'],['San Fernando Valley','san-fernando-valley'],['Riverside','riverside'],['San Bernardino','san-bernardino'],['San Diego','san-diego'],['Bay Area','bay-area'],['Sacramento','sacramento']]},
+    texas:{label:'Texas',r:[['Houston','houston'],['Dallas','dallas'],['Fort Worth','fort-worth'],['Austin','austin'],['San Antonio','san-antonio'],['El Paso','el-paso'],['Rio Grande Valley','rio-grande-valley']]},
+    florida:{label:'Florida',r:[['Miami','miami'],['Fort Lauderdale','fort-lauderdale'],['Palm Beach','palm-beach'],['Orlando','orlando'],['Tampa Bay','tampa-bay'],['Jacksonville','jacksonville'],['Naples & Fort Myers','naples-fort-myers']]},
+    'new-york':{label:'New York',r:[['New York City','new-york-city'],['Long Island','long-island'],['Westchester','westchester'],['Hudson Valley','hudson-valley'],['Buffalo','buffalo'],['Rochester','rochester'],['Albany','albany']]},
+    arizona:{label:'Arizona',r:[['Phoenix','phoenix'],['Scottsdale','scottsdale'],['East Valley','east-valley'],['West Valley','west-valley'],['Tucson Metro','tucson-metro'],['Northern Arizona','northern-arizona']]},
+    washington:{label:'Washington',r:[['Seattle','seattle'],['Eastside','eastside'],['Tacoma','tacoma'],['South King County','south-king-county'],['Spokane','spokane'],['Vancouver','vancouver']]},
+    nevada:{label:'Nevada',r:[['Las Vegas','las-vegas'],['Henderson','henderson'],['Summerlin','summerlin'],['Reno','reno'],['Lake Tahoe','lake-tahoe']]},
+    'new-jersey':{label:'New Jersey',r:[['Newark','newark'],['Jersey City','jersey-city'],['Bergen County','bergen-county'],['Middlesex County','middlesex-county'],['Ocean County','ocean-county'],['Jersey Shore','jersey-shore']]},
+    pennsylvania:{label:'Pennsylvania',r:[['Philadelphia','philadelphia'],['Pittsburgh','pittsburgh'],['Lehigh Valley','lehigh-valley'],['Harrisburg','harrisburg'],['Lancaster','lancaster'],['Scranton & Wilkes-Barre','scranton-wilkes-barre']]},
+    'north-carolina':{label:'North Carolina',r:[['Charlotte Metro','charlotte-metro'],['Research Triangle','research-triangle'],['Piedmont Triad','piedmont-triad'],['Cape Fear Coast','cape-fear-coast'],['Sandhills','sandhills']]},
+    connecticut:{label:'Connecticut',r:[['Fairfield County','fairfield-county'],['Hartford','hartford'],['New Haven','new-haven'],['Litchfield County','litchfield-county'],['New London','new-london']]},
+    'rhode-island':{label:'Rhode Island',r:[['Providence','providence'],['Newport','newport'],['Warwick','warwick'],['South County','south-county']]},
+    ohio:{label:'Ohio',r:[['Columbus','columbus'],['Cleveland','cleveland'],['Cincinnati','cincinnati']]},
+    illinois:{label:'Illinois',r:[['Chicago','chicago']]}
+  };
+  var sel=document.getElementById('ccGeoState'), box=document.getElementById('ccGeoRegions'), all=document.getElementById('ccGeoAll');
+  if(!sel||!box||!all) return;
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function render(st){
+    var d=CC_GEO[st]; if(!d) return;
+    box.innerHTML=d.r.map(function(x){return '<a class="geo-chip" href="/dental/'+st+'/'+x[1]+'/">'+esc(x[0])+'</a>';}).join('');
+    all.setAttribute('href','/dental/'+st+'/'); all.textContent='All '+d.label+' areas';
+  }
+  sel.addEventListener('change',function(){render(sel.value);});
+  render(sel.value);
+})();
+</script>
+</body>
+</html>

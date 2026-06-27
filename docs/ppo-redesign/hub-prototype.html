@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="warm">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoverCapy PPO Hub — Prototype (Direction C · Warm/Jade)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F0E6;--paper-2:#EFE8D9;--card:#FCFAF4;
+  --teal-night:#082A30;--ink:#21302A;--body:#3A4A42;--muted:#5F6359;--ink-faint:#6E7268;
+  --green:#2E5E45;--green-d:#234A37;--gold:#B8924F;--gold-text:#8A6721;
+  --line:#E3DAC8;--line-2:#D8CDB6;--cov-full:#2E5E45;--cov-partial:#B07A2E;--cov-none:#8A857B;--alert-bg:#F3E8CF;
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--prose:'Inter',system-ui,sans-serif;
+  --r-sm:8px;--r:14px;--r-lg:22px;--sh-sm:0 1px 0 rgba(8,42,48,.04);--sh:0 1px 0 rgba(8,42,48,.03),0 12px 30px rgba(8,42,48,.07);
+  --subnav-h:50px;
+}
+[data-palette="jade"]{
+  --paper:#F2F1EA;--paper-2:#E7EBE2;--card:#FAFCF7;--teal-night:#0B3A33;--ink:#123028;--body:#33453E;--muted:#566159;--ink-faint:#7A857C;
+  --green:#136A52;--green-d:#0F5341;--line:#DEE4D7;--line-2:#CBD6C4;--cov-full:#136A52;--cov-none:#86908A;--alert-bg:#EAF0E2;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--prose);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.tab{font-family:var(--sans);font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--serif);color:var(--teal-night);font-weight:500;margin:0}
+h1{font-size:42px;line-height:1.06;letter-spacing:-.01em}h2{font-size:26px}h3{font-size:19px}
+.it{font-style:italic;font-weight:400}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+.btn{font-family:var(--sans);font-weight:600;font-size:14px;border-radius:999px;padding:11px 20px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-green{background:var(--green);color:#fff}.btn-green:hover{background:var(--green-d)}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--teal-night)}
+.btn:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+.badge{font-family:var(--sans);font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px}
+.badge-shape{background:var(--paper-2);color:var(--ink);border:1px solid var(--line-2)}
+.badge-fit{background:var(--alert-bg);color:var(--gold-text)}
+.badge-review{background:var(--alert-bg);color:var(--gold-text);border:1px solid var(--gold)}
+
+/* top brandbar + palette */
+.brand{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand .logo{font-family:var(--serif);font-size:20px;color:var(--teal-night)}
+.brand .logo b{font-style:italic;font-weight:500}.brand .logo span{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-top:-2px}
+.pal{display:flex;gap:6px;align-items:center}
+.pbtn{font-family:var(--sans);font-weight:600;font-size:12px;border:1px solid var(--line-2);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 13px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.pbtn .dot{width:10px;height:10px;border-radius:50%}
+.pbtn[aria-pressed="true"]{background:var(--teal-night);color:#fff;border-color:transparent}
+
+/* sticky subnav */
+.subnav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.subnav .inner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;height:var(--subnav-h);align-items:center}
+.subnav .inner::-webkit-scrollbar{display:none}
+.subnav a{font-family:var(--sans);font-weight:600;font-size:13px;color:var(--muted);text-decoration:none;padding:8px 13px;border-radius:999px;white-space:nowrap;flex:none}
+.subnav a.on,.subnav a:hover{color:var(--teal-night);background:var(--paper-2)}
+section{scroll-margin-top:calc(var(--subnav-h) + 12px);padding:42px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.seclbl{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+
+/* hero */
+.lede{font-size:18px;color:var(--body);max-width:60ch}
+.trust{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:14px}
+.trust a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--line-2)}
+
+/* smart match */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);overflow:hidden}
+.mpanel{padding:24px}
+.mpanel.l{border-right:1px solid var(--line)}
+.flab{font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin:16px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:var(--sans);font-size:13px;font-weight:600;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer}
+.chip.on{background:var(--green);color:#fff;border-color:transparent}
+input[type=range]{width:100%;accent-color:var(--green)}
+.verdict h3{margin-bottom:2px}
+.vplan{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-top:12px;background:var(--paper)}
+.vplan.top{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.vplan .nm{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--teal-night)}
+.vplan .why{font-size:13px;color:var(--body);margin-top:5px}
+.vplan .why .cau{color:var(--cov-partial)}
+
+/* plan cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);padding:18px;display:flex;flex-direction:column}
+.card.fit{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh)}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.logo2{width:34px;height:34px;border-radius:8px;background:var(--teal-night);color:#fff;font-family:var(--serif);font-style:italic;display:grid;place-items:center;font-size:15px;flex:none}
+.pname{font-family:var(--serif);font-size:17px;color:var(--teal-night);line-height:1.15;margin-top:8px}
+.hl{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;margin:12px 0}
+.hc{background:var(--card);padding:8px 10px}
+.hc .l{font-family:var(--sans);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint)}
+.hc .v{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:17px;font-weight:600;color:var(--teal-night)}
+.hc .v small{font-size:11px;color:var(--muted);font-weight:500}
+.cov{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.cc{background:var(--card);padding:7px 4px;text-align:center}
+.cc .t{font-family:var(--sans);font-size:8.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-faint)}
+.cc .p{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:13px;font-weight:700}
+.pf{color:var(--cov-full)}.pp{color:var(--cov-partial)}.pn{color:var(--cov-none);font-style:italic;font-size:9.5px}
+.bf{font-size:12.5px;color:var(--body);margin:11px 0 13px;flex:1}.bf b{color:var(--teal-night)}
+.cact{display:flex;gap:6px}
+.cact .btn{padding:9px 14px;font-size:13px;flex:1;justify-content:center}
+
+/* matrix instrument */
+.term{border:1px solid var(--line-2);border-radius:var(--r);overflow:auto;box-shadow:var(--sh-sm);background:var(--card)}
+table.cmp{border-collapse:collapse;font-family:var(--sans);font-variant-numeric:tabular-nums;min-width:760px;width:100%}
+table.cmp thead th{position:sticky;top:0;background:var(--teal-night);color:#fff;font-size:12.5px;font-weight:600;text-align:center;padding:12px 12px;min-width:150px}
+table.cmp thead th.rh{text-align:left;left:0;z-index:2;color:var(--paper-2);min-width:130px}
+table.cmp tbody th{position:sticky;left:0;background:var(--paper-2);text-align:left;font-weight:600;color:var(--ink);font-size:12px;padding:9px 12px;z-index:1}
+table.cmp td{text-align:center;padding:9px 12px;font-size:12.5px;border-bottom:1px solid var(--line);color:var(--body)}
+table.cmp tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--paper) 55%,var(--card))}
+.best .v{font-weight:700;color:var(--teal-night);border-bottom:2px solid var(--gold);padding-bottom:1px}
+.best .pill{font-size:8.5px;font-weight:700;color:var(--gold-text);background:var(--alert-bg);padding:1px 5px;border-radius:5px;margin-left:5px}
+.na{color:var(--cov-none);font-style:italic}
+.yrtog{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;overflow:hidden;font-family:var(--sans);font-size:12px;font-weight:600}
+.yrtog button{border:0;background:var(--card);color:var(--muted);padding:6px 14px;cursor:pointer}
+.yrtog button.on{background:var(--teal-night);color:#fff}
+.note{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-top:10px}
+.foot{padding:34px 0 70px;color:var(--muted);font-family:var(--sans);font-size:12px}
+@media(max-width:740px){.match{grid-template-columns:1fr}.mpanel.l{border-right:0;border-bottom:1px solid var(--line)}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="logo"><b>CoverCapy</b><span>Concierge Dental Network</span></div>
+    <div class="pal"><span class="tab" style="font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.12em;margin-right:4px">Palette</span>
+      <button class="pbtn" data-p="warm" aria-pressed="true"><span class="dot" style="background:#2E5E45"></span>Warm</button>
+      <button class="pbtn" data-p="jade"><span class="dot" style="background:#136A52"></span>Jade</button>
+    </div>
+  </div>
+</div>
+
+<nav class="subnav" aria-label="PPO hub sections"><div class="wrap"><div class="inner">
+  <a href="#match" class="on">Smart Match</a><a href="#compare">Compare</a><a href="#plans">All plans</a>
+  <a href="#treatment">By treatment</a><a href="#carrier">By carrier</a><a href="#terms">PPO terms</a><a href="#dentist">Find a dentist</a><a href="#method">Methodology</a>
+</div></div></nav>
+
+<div class="wrap">
+
+  <section id="match">
+    <span class="eyebrow"><span>&#10038;</span> The PPO dental plan hub &middot; 2026</span>
+    <h1 style="margin:12px 0 10px">Compare every PPO dental plan<br><span class="it">in one independent place.</span></h1>
+    <p class="lede">Eight individual PPO plans, checked on what actually decides your bill, then matched to the treatment ahead and a top in-network dentist near you. No carrier pays for placement.</p>
+    <p class="trust">Independent &middot; no paid placement &middot; reviewed by dental billing specialists &middot; updated June 2026 &middot; <a href="#method">How we choose plans</a></p>
+
+    <div class="match" style="margin-top:22px">
+      <div class="mpanel l">
+        <div class="seclbl">Tell us about your visit</div>
+        <div class="flab">What do you need?</div>
+        <div class="chips" id="needs"></div>
+        <div class="flab">When?</div>
+        <div class="chips" id="times"></div>
+        <div class="flab">Monthly budget — <span class="tab" id="budgetVal" style="color:var(--teal-night);font-weight:700">$70</span></div>
+        <input type="range" id="budget" min="20" max="120" step="5" value="70">
+      </div>
+      <div class="mpanel verdict">
+        <div class="seclbl">&#10038; Your CoverCapy match</div>
+        <div id="verdict"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compare">
+    <div class="seclbl">The instrument</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
+      <div><h2>Put the plans side by side</h2><p style="margin:4px 0 0;color:var(--body)">Row = spec, column = plan. Best in each row is marked.</p></div>
+      <div class="yrtog" id="yrtog"><button class="on" data-y="1">Year 1</button><button data-y="2">Later years</button></div>
+    </div>
+    <div class="term" style="margin-top:14px"><table class="cmp" id="cmp"></table></div>
+    <p class="note">&ldquo;Not covered&rdquo; is muted italic; best-in-row carries a gold underline + BEST pill (never color alone). <em>Last verified June 2026 &middot; illustrative, varies by state &middot; view sources</em>.</p>
+  </section>
+
+  <section id="plans">
+    <div class="seclbl">All plans</div>
+    <h2 style="margin-bottom:16px">The full shelf</h2>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="method">
+    <div class="seclbl">Methodology</div>
+    <h2>How we choose, and how we make money</h2>
+    <p class="lede" style="margin-top:8px">CoverCapy is independent. No carrier pays for placement; offices in our network pay us, not the plan you pick. Every plan fact is traceable to an official source with a last-verified date. Premiums are illustrative and vary by state, age, and ZIP &mdash; confirm yours at quote.</p>
+  </section>
+
+  <div class="foot">CoverCapy PPO Hub — Direction C prototype. Plan facts shown are the current canonical values; production renders these server-side from one source. © CoverCapy 2026.</div>
+</div>
+
+<script>
+/* one frozen source — current compare-page values (NOT modified) */
+const PLANS=[
+ {k:'moo',car:'Mutual of Omaha',nm:'Dental Preferred',shape:'Maximum',from:57,max:5000,ded:50,eff:'Next business day',net:'Mutual of Omaha PPO (TruAssure)',
+  cov:{prev:[100,0],basic:[80,0],major:[20,0,50],implant:[20,0,50],ortho:null},bf:'Highest $5,000 max at a low premium — basic and major both from day one (20%, rising to 50% in Year 2).'},
+ {k:'humana',car:'Humana',nm:'Extend 5000',shape:'Maximum',from:100,max:5000,ded:75,eff:'6 days after enrolment',net:'Humana Extend PPO',vision:true,
+  cov:{prev:[100,0],basic:[80,3],major:[50,6,60],implant:[50,6,60],ortho:null},bf:'Dental + vision + hearing on one plan, with the best Year-1 major rate on the shelf.'},
+ {k:'guardian',car:'Guardian',nm:'Premier 2.0',shape:'Major / Full',from:70,max:3000,ded:50,eff:'1st of next month',net:'Guardian PPO',fit:true,
+  cov:{prev:[100,0],basic:[85,0],major:[50,12],implant:[50,12],ortho:[50,12,null,'child']},bf:'85% basic from day one plus kids’ braces, backed by an A++ carrier.'},
+ {k:'ameritas',car:'Ameritas',nm:'PrimeStar Care Complete',shape:'Major / Full',from:60,max:2000,max2:3500,ded:50,eff:'Next business day',net:'Ameritas PrimeStar',
+  cov:{prev:[100,0],basic:[80,0],major:[20,0,50],implant:[20,0,50],ortho:null},bf:'No waiting periods, day-one major and implants, and the max grows in Year 2.'},
+ {k:'delta',car:'Delta Dental',nm:'PPO Premium',shape:'Major / Full',from:75,max:2000,ded:50,eff:'1st or 15th',net:'Delta Dental PPO',
+  cov:{prev:[100,0],basic:[80,6],major:[50,12],implant:[50,12],ortho:[50,12,null,'adult+child']},bf:'Adult and child orthodontics and the largest network in the country.'},
+ {k:'aetna',car:'Aetna',nm:'Dental Direct',shape:'Essentials',from:50,max:1250,ded:50,eff:'1st of next month',net:'Aetna Dental PPO',
+  cov:{prev:[100,0],basic:[80,6],major:[50,12],implant:null,ortho:null},bf:'Balanced everyday coverage on one of the largest PPO networks (442k+ locations).'},
+ {k:'uhc',car:'UnitedHealthcare',nm:'Primary Dental',shape:'Essentials',from:30,max:1000,ded:50,eff:'Next business day',net:'UnitedHealthcare Dental PPO',ageCap:64,
+  cov:{prev:[100,0],basic:[50,0],major:null,implant:null,ortho:null},bf:'The cheapest start — cleanings and basic care from day one (ages 64 and under).'},
+ {k:'metlife',car:'MetLife',nm:'NCD Complete',shape:'Maximum',from:100,max:10000,ded:50,eff:'1st of next month',net:'MetLife PDP Plus',review:true,
+  cov:{prev:[100,0],basic:null,major:null,implant:null,ortho:null},bf:'The highest ceiling on the shelf ($10,000) — under review while we verify value.'}
+];
+const $=s=>document.querySelector(s);
+const money=n=>'$'+Number(n).toLocaleString();
+const initial=c=>c[0];
+function covCell(c,yr){ if(!c)return '<span class="na">Not covered</span>'; const pct=(yr===2&&c[2]!=null)?c[2]:c[0]; const w=c[1]; const wt=w===0?'day 1':w+'-mo'; return pct+'% &middot; '+wt; }
+function covShort(c,yr){ if(!c)return ['Not cov.','','pn']; const pct=(yr===2&&c[2]!=null)?c[2]:c[0]; const cls=pct>=80?'pf':(pct>0?'pp':'pn'); const w=c[1]===0?'day 1':c[1]+'-mo'; return [pct+'%',w,cls]; }
+
+/* ---- plan cards ---- */
+function renderCards(){
+  $('#cards').innerHTML=PLANS.map(p=>{
+    const cv=p.cov, g=k=>covShort(cv[k],1);
+    const grid=['prev','basic','major','implant','ortho'].map((k,i)=>{const[a,b,c]=g(k);const lbl=['Prev','Basic','Major','Implant','Ortho'][i];return `<div class="cc"><div class="t">${lbl}</div><div class="p ${c}">${a}</div><div class="t" style="color:var(--muted)">${b||'&nbsp;'}</div></div>`;}).join('');
+    return `<div class="card ${p.fit?'fit':''}">
+      <div class="ctop"><div style="display:flex;gap:9px;align-items:center"><span class="logo2">${initial(p.car)}</span><span class="badge badge-shape">${p.shape}</span></div>
+        ${p.fit?'<span class="badge badge-fit">Most fitting</span>':p.review?'<span class="badge badge-review">Under review</span>':''}</div>
+      <div class="pname">${p.car}<br><span class="it">${p.nm}</span></div>
+      <div class="hl"><div class="hc"><div class="l">From</div><div class="v">${money(p.from)}<small>/mo</small></div></div>
+        <div class="hc"><div class="l">Annual max</div><div class="v">${money(p.max)}${p.max2?'<small> → '+money(p.max2)+'</small>':''}</div></div>
+        <div class="hc"><div class="l">Deductible</div><div class="v">${money(p.ded)}</div></div>
+        <div class="hc"><div class="l">Starts</div><div class="v" style="font-size:12.5px">${p.eff}</div></div></div>
+      <div class="cov">${grid}</div>
+      <p class="bf"><b>Best for:</b> ${p.bf}</p>
+      <div class="cact"><a class="btn btn-green" href="#">View plan</a><a class="btn btn-ghost" href="#compare">Compare</a></div>
+    </div>`;}).join('');
+}
+
+/* ---- comparison matrix ---- */
+let YR=1;
+function renderMatrix(){
+  const cols=PLANS;
+  const head=`<thead><tr><th class="rh">Spec</th>${cols.map(p=>`<th>${p.car}<br><span style="font-weight:400;opacity:.8">${p.nm}</span></th>`).join('')}</tr></thead>`;
+  const minFrom=Math.min(...cols.map(p=>p.from)), maxMax=Math.max(...cols.map(p=>p.max));
+  const majPct=p=>{const c=p.cov.major;if(!c)return -1;return (YR===2&&c[2]!=null)?c[2]:c[0];};
+  const maxMaj=Math.max(...cols.map(majPct));
+  const row=(label,fn)=>`<tr><th>${label}</th>${cols.map(fn).join('')}</tr>`;
+  const cell=(v,best)=>best?`<td class="best"><span class="v">${v}</span><span class="pill">BEST</span></td>`:`<td>${v}</td>`;
+  let b='';
+  b+=row('From / mo',p=>cell(money(p.from),p.from===minFrom));
+  b+=row('Annual maximum',p=>cell(money(p.max)+(p.max2&&YR===2?' → '+money(p.max2):''),p.max===maxMax));
+  b+=row('Deductible',p=>`<td>${money(p.ded)}</td>`);
+  b+=row('Preventive',p=>`<td>${covCell(p.cov.prev,YR)}</td>`);
+  b+=row('Basic',p=>`<td>${covCell(p.cov.basic,YR)}</td>`);
+  b+=row('Major',p=>cell(covCell(p.cov.major,YR),majPct(p)===maxMaj&&maxMaj>0));
+  b+=row('Implants',p=>`<td>${covCell(p.cov.implant,YR)}</td>`);
+  b+=row('Orthodontics',p=>`<td>${p.cov.ortho?covCell(p.cov.ortho,YR)+(p.cov.ortho[3]?' <span style="color:var(--muted)">('+p.cov.ortho[3]+')</span>':''):'<span class="na">Not covered</span>'}</td>`);
+  b+=row('Coverage starts',p=>`<td>${p.eff}</td>`);
+  b+=row('Network',p=>`<td style="font-size:11.5px">${p.net}</td>`);
+  $('#cmp').innerHTML=head+'<tbody>'+b+'</tbody>';
+}
+
+/* ---- smart match (lens on same data) ---- */
+const NEEDS=[['prev','Cleaning'],['basic','Filling'],['major','Crown / RCT'],['implant','Implant'],['ortho','Braces']];
+const TIMES=[[0,'Need now'],[6,'Soon'],[18,'Planning']];
+const st={need:'major',time:0,budget:70};
+function renderChips(){
+  $('#needs').innerHTML=NEEDS.map(n=>`<button class="chip ${st.need===n[0]?'on':''}" data-n="${n[0]}">${n[1]}</button>`).join('');
+  $('#times').innerHTML=TIMES.map(t=>`<button class="chip ${st.time===t[0]?'on':''}" data-t="${t[0]}">${t[1]}</button>`).join('');
+}
+function scoreOf(p){
+  const c=p.cov[st.need]; if(!c)return null;
+  let s=50, why=[], cau='';
+  const pct=c[0], w=c[1];
+  s+=pct*0.4;
+  if(w>st.time){ s-=(w-st.time)*7; cau='about a '+w+'-month wait before that’s covered'; }
+  else { s+=14; why.push(w===0?'covered from day one':'your timing clears the '+w+'-mo wait'); }
+  if(p.from>st.budget) s-=(p.from-st.budget)*1.1; else s+=8;
+  s+=p.max/300;
+  if(p.review) s-=40;
+  why.push(pct+'% on '+NEEDS.find(n=>n[0]===st.need)[1].toLowerCase());
+  return {s,why:why.join(' · '),cau};
+}
+function renderVerdict(){
+  const scored=PLANS.map(p=>({p,r:scoreOf(p)})).filter(x=>x.r).sort((a,b)=>b.r.s-a.r.s);
+  if(!scored.length){$('#verdict').innerHTML='<p style="color:var(--muted)">No plan covers that yet — try another need.</p>';return;}
+  const top=scored[0], bk=scored[1];
+  const card=(x,isTop)=>`<div class="vplan ${isTop?'top':''}">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span class="nm">${x.p.car} ${x.p.nm}</span><span class="tab" style="font-weight:700;color:var(--teal-night)">${money(x.p.from)}<small style="color:var(--muted)">/mo</small></span></div>
+    <div class="why">${isTop?'<b>Closest fit.</b> ':'<b>Backup.</b> '}${x.r.why}${x.r.cau?' · <span class="cau">'+x.r.cau+'</span>':''}</div></div>`;
+  $('#verdict').innerHTML='<h3>'+top.p.car+' '+top.p.nm+'</h3><p style="font-size:13px;color:var(--muted);margin:2px 0 0">for '+NEEDS.find(n=>n[0]===st.need)[1].toLowerCase()+', '+(st.time===0?'needed now':st.time===6?'soon':'planning ahead')+', around '+money(st.budget)+'/mo</p>'+card(top,true)+(bk?card(bk,false):'')+'<p style="font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-top:12px">Pricing and availability need a location-specific quote.</p>';
+}
+
+/* events */
+document.addEventListener('click',e=>{
+  const n=e.target.closest('[data-n]'); if(n){st.need=n.dataset.n;renderChips();renderVerdict();}
+  const t=e.target.closest('[data-t]'); if(t){st.time=+t.dataset.t;renderChips();renderVerdict();}
+  const y=e.target.closest('[data-y]'); if(y){YR=+y.dataset.y;[...document.querySelectorAll('#yrtog button')].forEach(b=>b.classList.toggle('on',b===y));renderMatrix();}
+  const pal=e.target.closest('[data-p]'); if(pal){document.documentElement.dataset.palette=pal.dataset.p;[...document.querySelectorAll('.pbtn')].forEach(b=>b.setAttribute('aria-pressed',b===pal));}
+});
+$('#budget').addEventListener('input',e=>{st.budget=+e.target.value;$('#budgetVal').textContent=money(st.budget);renderVerdict();});
+/* subnav active state */
+const secs=[...document.querySelectorAll('section[id]')];
+const _io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.id;document.querySelectorAll('.subnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id));}});},{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>_io.observe(s));
+renderChips();renderVerdict();renderMatrix();renderCards();
+</script>
+</body>
+</html>

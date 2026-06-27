@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoverCapy · Nav hover effect samples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald:#1B5E5A; --emerald-deep:#0E3F44;
+    --gold:#C9A24A; --gold-deep:#8A6A23;
+    --ivory:#FFFDF9; --cream:#F4EDDF; --ink:#14242A; --line:#E8E2D8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#EBE3D4;color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:42px 26px 100px}
+  .lead-k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:34px;letter-spacing:-.01em;margin:10px 0 8px}
+  h1 em{font-style:italic;color:var(--emerald)}
+  .sub{color:#5b5240;max-width:74ch;line-height:1.6;margin:0 0 34px;font-size:15px}
+  .sample{background:var(--ivory);border:1px solid var(--line);border-radius:18px;padding:22px 22px 24px;margin-bottom:20px;box-shadow:0 1px 0 rgba(20,36,42,.03)}
+  .sample-h{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .sample-n{font-family:'Fraunces',serif;font-weight:600;font-size:14px;color:#fff;background:var(--emerald-deep);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .sample-h h2{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin:3px 0 5px;letter-spacing:-.01em}
+  .why{margin:0;font-size:13px;color:#6b6250;line-height:1.55;max-width:80ch}
+  .why b{color:var(--emerald-deep);font-weight:600}
+  .demo-nav{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:16px 18px;background:var(--ivory);border:1px solid var(--line);border-radius:13px}
+  .demo-nav .cc-top{font-size:15px}
+  .hint{font-size:11.5px;color:#9a917e;margin:10px 2px 0;font-style:italic}
+  .rec{margin-top:34px;background:var(--emerald-deep);color:#EAF3EF;border-radius:18px;padding:26px 26px 28px}
+  .rec h3{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0 0 10px;color:#fff}
+  .rec p{margin:0 0 10px;font-size:14px;line-height:1.6;color:rgba(234,243,239,.86)}
+  .rec b{color:var(--gold);font-weight:600}
+
+  /* ============================================================
+     1) FX: Concierge Hairline — origin-aware gold underline draw
+     ============================================================ */
+  .fx-underline{ --cc-origin:50%; --cc-ease:cubic-bezier(.16,1,.3,1); }
+  .fx-underline .cc-top{position:relative;display:inline-flex;align-items:baseline;gap:.34em;padding:.5rem .35rem;font-family:'Inter Tight',system-ui,sans-serif;font-weight:500;letter-spacing:.005em;color:var(--ink);text-decoration:none;background:none;border-radius:0;outline:none;-webkit-tap-highlight-color:transparent}
+  .fx-underline .cc-top::after{content:"";position:absolute;left:.35rem;right:.35rem;bottom:.28rem;height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-deep));transform:scaleX(0);transform-origin:var(--cc-origin) 50%;transition:transform .55s var(--cc-ease);will-change:transform}
+  .fx-underline .cc-label{transition:color .35s var(--cc-ease)}
+  .fx-underline .cc-caret{display:inline-block;font-size:.72em;color:var(--gold-deep);transform:translateY(-.05em) rotate(0deg);transition:transform .45s var(--cc-ease),color .35s var(--cc-ease)}
+  .fx-underline .cc-top:hover::after,.fx-underline .cc-top:focus-visible::after{transform:scaleX(1)}
+  .fx-underline .cc-top:hover .cc-label,.fx-underline .cc-top:focus-visible .cc-label{color:var(--emerald-deep)}
+  .fx-underline .cc-top:focus-visible{outline:none}
+  .fx-underline .cc-top:focus-visible::after{height:1.5px;box-shadow:0 0 0 1px rgba(201,162,74,.18)}
+  .fx-underline .cc-top.is-open::after{transform:scaleX(1);transform-origin:50% 50%;height:1.5px}
+  .fx-underline .cc-top.is-open .cc-label{color:var(--emerald-deep)}
+  .fx-underline .cc-top.is-open .cc-caret{transform:translateY(-.05em) rotate(180deg);color:var(--gold)}
+  @media (prefers-reduced-motion:reduce){
+    .fx-underline .cc-top::after{transition:none;transform-origin:50% 50%}
+    .fx-underline .cc-label,.fx-underline .cc-caret{transition:none}
+    .fx-underline .cc-top:hover::after,.fx-underline .cc-top:focus-visible::after,.fx-underline .cc-top.is-open::after{transform:scaleX(1)}
+  }
+
+  /* ============================================================
+     2) FX: Rising Tide — warm cream wash rises to fill
+     ============================================================ */
+  .fx-wash .cc-top{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:.42em;padding:.5rem .9rem;border-radius:999px;font-family:'Inter Tight',system-ui,sans-serif;font-weight:500;letter-spacing:.01em;color:var(--ink);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:color .42s cubic-bezier(.22,.61,.36,1)}
+  .fx-wash .cc-top::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(to top,color-mix(in srgb,var(--gold) 16%,var(--cream)) 0%,var(--cream) 55%,color-mix(in srgb,var(--cream) 70%,var(--ivory)) 100%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 0%,transparent);clip-path:inset(100% 0 0 0 round 999px);opacity:0;transition:clip-path .46s cubic-bezier(.22,.61,.36,1),opacity .30s ease,box-shadow .46s ease .04s;pointer-events:none}
+  .fx-wash .cc-top::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background-image:repeating-linear-gradient(0deg,color-mix(in srgb,var(--gold-deep) 4%,transparent) 0 1px,transparent 1px 3px);opacity:0;transition:opacity .5s ease;mix-blend-mode:multiply;pointer-events:none}
+  .fx-wash .cc-top:hover::before,.fx-wash .cc-top:focus-visible::before{clip-path:inset(0 0 0 0 round 999px);opacity:1;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 60%,transparent)}
+  .fx-wash .cc-top:hover::after,.fx-wash .cc-top:focus-visible::after{opacity:.6}
+  .fx-wash .cc-top:hover,.fx-wash .cc-top:focus-visible{color:var(--emerald-deep)}
+  .fx-wash .cc-caret{display:inline-block;font-size:.72em;line-height:1;color:var(--gold-deep);opacity:.65;transform:translateY(0);transition:transform .42s cubic-bezier(.22,.61,.36,1),opacity .3s ease}
+  .fx-wash .cc-top:hover .cc-caret,.fx-wash .cc-top:focus-visible .cc-caret{transform:translateY(-1px);opacity:1}
+  .fx-wash .cc-top.is-open::before{clip-path:inset(0 0 0 0 round 999px);opacity:1;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 80%,transparent)}
+  .fx-wash .cc-top.is-open::after{opacity:.7}
+  .fx-wash .cc-top.is-open{color:var(--emerald-deep)}
+  .fx-wash .cc-top.is-open .cc-caret{transform:translateY(-1px) rotate(180deg);opacity:1}
+  .fx-wash .cc-top:focus-visible{outline:2px solid color-mix(in srgb,var(--gold) 70%,transparent);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){
+    .fx-wash .cc-top::before{transition:opacity .2s ease,box-shadow .2s ease;clip-path:inset(0 0 0 0 round 999px)}
+    .fx-wash .cc-top::after,.fx-wash .cc-caret{transition:opacity .2s ease}
+    .fx-wash .cc-top{transition:color .2s ease}
+  }
+
+  /* ============================================================
+     3) FX: Status Jewel — lift + ground shadow + gold pip
+     (fx-lift applied directly on each .cc-top)
+     ============================================================ */
+  .fx-lift{--spring:360ms cubic-bezier(.34,1.32,.42,1);--ease-soft:220ms cubic-bezier(.22,.61,.36,1);position:relative;display:inline-flex;align-items:center;gap:.42em;padding:.56em .9em .56em 1.05em;border-radius:12px;font-family:'Inter Tight',system-ui,sans-serif;font-size:.95rem;font-weight:500;letter-spacing:.01em;color:var(--ink);text-decoration:none;background:transparent;transform:translateY(0);transform-origin:center bottom;transition:transform var(--spring),color var(--ease-soft),box-shadow var(--ease-soft),background-color var(--ease-soft);will-change:transform;-webkit-tap-highlight-color:transparent}
+  .fx-lift .cc-label{position:relative}
+  .fx-lift .cc-label::before{content:"";position:absolute;left:-.62em;top:50%;width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(201,162,74,0),0 1px 1px rgba(138,106,35,.35);transform:translate(-2px,-50%) scale(.2);opacity:0;transition:transform var(--spring),opacity var(--ease-soft),box-shadow var(--ease-soft)}
+  .fx-lift .cc-caret{display:inline-block;font-size:.7em;line-height:1;color:var(--gold-deep);opacity:.55;transform:translateY(.5px) rotate(0deg);transition:transform var(--spring),opacity var(--ease-soft),color var(--ease-soft)}
+  .fx-lift:hover,.fx-lift:focus-visible,.fx-lift.is-open{color:var(--emerald-deep);background:var(--ivory);transform:translateY(-3px);box-shadow:0 1px 2px rgba(20,36,42,.05),0 10px 22px -8px rgba(20,36,42,.18),0 22px 40px -22px rgba(14,63,68,.22)}
+  .fx-lift:hover .cc-label::before,.fx-lift:focus-visible .cc-label::before,.fx-lift.is-open .cc-label::before{opacity:1;transform:translate(-2px,-50%) scale(1);box-shadow:0 0 0 3px rgba(201,162,74,.14),0 1px 1px rgba(138,106,35,.35)}
+  .fx-lift:hover .cc-caret,.fx-lift:focus-visible .cc-caret,.fx-lift.is-open .cc-caret{opacity:.9;color:var(--gold-deep)}
+  .fx-lift.is-open .cc-caret{transform:translateY(.5px) rotate(180deg)}
+  .fx-lift:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .fx-lift:active{transform:translateY(-1px);transition:transform 90ms ease-out}
+  @media (prefers-reduced-motion:reduce){
+    .fx-lift,.fx-lift .cc-label::before,.fx-lift .cc-caret{transition-duration:120ms;transition-timing-function:ease}
+    .fx-lift:hover,.fx-lift:focus-visible,.fx-lift.is-open{transform:none}
+    .fx-lift:hover .cc-label::before,.fx-lift:focus-visible .cc-label::before,.fx-lift.is-open .cc-label::before{transform:translate(-2px,-50%) scale(1);box-shadow:0 1px 1px rgba(138,106,35,.35)}
+  }
+
+  /* ============================================================
+     4) FX: Lustre — magnetic cursor + gold spotlight sheen
+     ============================================================ */
+  .fx-magnetic .cc-top{--mx:50%;--my:50%;--sheen:0;position:relative;display:inline-flex;align-items:center;gap:.42em;padding:.62rem 1rem;border-radius:12px;font-family:'Inter Tight',system-ui,sans-serif;font-size:.95rem;font-weight:500;letter-spacing:.005em;color:var(--ink);text-decoration:none;isolation:isolate;-webkit-tap-highlight-color:transparent;transition:color .3s ease}
+  .fx-magnetic .cc-top::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:var(--sheen);background:radial-gradient(130px circle at var(--mx) var(--my),rgba(255,253,249,.55) 0%,rgba(201,162,74,.26) 34%,rgba(201,162,74,.07) 60%,rgba(201,162,74,0) 78%);transition:opacity .42s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+  .fx-magnetic .cc-top::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:calc(var(--sheen) * .9);box-shadow:inset 0 0 0 1px rgba(201,162,74,.22),0 6px 22px -12px rgba(138,106,35,.45);transition:opacity .42s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+  .fx-magnetic .cc-top .cc-label{--tx:0px;--ty:0px;display:inline-block;transform:translate(var(--tx),var(--ty));transition:transform .35s cubic-bezier(.22,.61,.36,1);will-change:transform}
+  .fx-magnetic .cc-top .cc-caret{font-size:.62em;line-height:1;color:var(--gold-deep);opacity:.7;transform:translateY(.06em);transition:transform .35s cubic-bezier(.22,.61,.36,1),opacity .3s ease}
+  .fx-magnetic .cc-top:hover{color:var(--emerald-deep)}
+  .fx-magnetic .cc-top:hover .cc-caret{opacity:1;transform:translateY(.18em)}
+  .fx-magnetic .cc-top.is-open{--sheen:1;--mx:50%;--my:42%;color:var(--emerald-deep)}
+  .fx-magnetic .cc-top.is-open .cc-caret{transform:rotate(180deg) translateY(.02em);opacity:1}
+  .fx-magnetic .cc-top.is-open::before{opacity:1}
+  .fx-magnetic .cc-top.is-open::after{opacity:.9}
+  .fx-magnetic .cc-top:focus-visible{outline:none;--sheen:1;--mx:50%;--my:50%;color:var(--emerald-deep);box-shadow:0 0 0 2px var(--ivory),0 0 0 3.5px rgba(201,162,74,.7)}
+  .fx-magnetic .cc-top:focus-visible::before{opacity:1}
+  @media (prefers-reduced-motion:reduce){
+    .fx-magnetic .cc-top .cc-label{transform:none !important;transition:none}
+    .fx-magnetic .cc-top::before,.fx-magnetic .cc-top::after{transition:opacity .2s linear}
+    .fx-magnetic .cc-top:hover::before,.fx-magnetic .cc-top.is-open::before{opacity:1;background:radial-gradient(160px circle at 50% 50%,rgba(201,162,74,.16) 0%,rgba(201,162,74,0) 72%)}
+  }
+
+  /* ============================================================
+     5) FX: Goldspark Gleam — shimmer sweep + variable sparks
+     ============================================================ */
+  .fx-spark .cc-top{position:relative;display:inline-flex;align-items:center;gap:.32em;padding:.5rem .7rem;border-radius:10px;font-family:'Inter Tight',system-ui,sans-serif;font-weight:500;color:var(--ink);text-decoration:none;cursor:pointer;background:transparent;transition:color .26s cubic-bezier(.22,.61,.36,1);-webkit-tap-highlight-color:transparent}
+  .fx-spark .cc-label{position:relative;z-index:2;background-image:linear-gradient(100deg,currentColor 0%,currentColor 38%,var(--gold) 48%,#F0DCA6 50%,var(--gold) 52%,currentColor 62%,currentColor 100%);background-size:240% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;transition:color .26s ease}
+  .fx-spark .cc-caret{position:relative;z-index:2;font-size:.7em;line-height:1;color:var(--gold-deep);opacity:.65;transition:transform .26s cubic-bezier(.22,.61,.36,1),opacity .26s ease}
+  .fx-spark .cc-top:hover,.fx-spark .cc-top:focus-visible,.fx-spark .cc-top.is-open{color:var(--emerald-deep)}
+  .fx-spark .cc-top:hover .cc-caret,.fx-spark .cc-top:focus-visible .cc-caret,.fx-spark .cc-top.is-open .cc-caret{opacity:1;transform:translateY(1px)}
+  .fx-spark .cc-top:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .fx-spark .cc-top.is-gleam .cc-label{-webkit-text-fill-color:transparent;color:transparent;animation:fxSparkSweep .52s cubic-bezier(.4,0,.2,1) forwards}
+  @keyframes fxSparkSweep{0%{background-position:120% 0}100%{background-position:-20% 0}}
+  .fx-spark .cc-spark-layer{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:visible}
+  .fx-spark .cc-spark{position:absolute;top:50%;left:50%;width:5px;height:5px;opacity:0;background:radial-gradient(circle,#FBEFC6 0%,var(--gold) 38%,rgba(201,162,74,0) 70%);border-radius:50%;transform:translate(-50%,-50%) scale(0);will-change:transform,opacity}
+  .fx-spark .cc-spark::before{content:"";position:absolute;inset:-55%;background:linear-gradient(0deg,transparent 46%,var(--gold) 50%,transparent 54%),linear-gradient(90deg,transparent 46%,var(--gold) 50%,transparent 54%);opacity:.85}
+  .fx-spark .cc-spark.go{animation:fxSparkPop var(--dur,460ms) cubic-bezier(.16,.84,.44,1) forwards}
+  @keyframes fxSparkPop{0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(0deg)}22%{opacity:1;transform:translate(-50%,-50%) scale(var(--s,1)) rotate(40deg)}100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,-9px))) scale(.2) rotate(95deg)}}
+  @media (prefers-reduced-motion:reduce){
+    .fx-spark .cc-label{animation:none !important;background:none;-webkit-text-fill-color:currentColor}
+    .fx-spark .cc-spark-layer{display:none !important}
+    .fx-spark .cc-top:hover,.fx-spark .cc-top:focus-visible,.fx-spark .cc-top.is-open{color:var(--emerald-deep);background:linear-gradient(0deg,rgba(201,162,74,.14),rgba(201,162,74,.14))}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lead-k">CoverCapy · interaction study</div>
+  <h1>Five ways the nav can feel <em>expensive</em>.</h1>
+  <p class="sub">Each row uses your real top-level labels. Hover any item to feel the effect; "Insurance" is left in its open/active state in every row so you can compare the resting treatment too. The grey pill is gone in all five.</p>
+
+  <!-- 1 -->
+  <section class="sample">
+    <div class="sample-h"><span class="sample-n">1</span><div>
+      <h2>Concierge Hairline</h2>
+      <p class="why">A gold hairline draws in from the side your cursor enters, the way a pen finishes a signature. <b>Why it lasts:</b> it reads like an embossed card, the calmest and most on-brand of the set.</p>
+    </div></div>
+    <nav class="demo-nav fx-underline">
+      <a class="cc-top" href="#"><span class="cc-label">Find a Dentist</span></a>
+      <a class="cc-top is-open" href="#"><span class="cc-label">Insurance</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Benefit Maxing</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Learn</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Capy Rewards</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">For Dentists</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+    </nav>
+  </section>
+
+  <!-- 2 -->
+  <section class="sample">
+    <div class="sample-h"><span class="sample-n">2</span><div>
+      <h2>Rising Tide</h2>
+      <p class="why">A warm cream wash floods up from the baseline into a soft linen pill, with a gold edge that ignites at the crest. <b>Why it lasts:</b> the upward "filling" gesture reads as generosity, leaving a good-paper afterimage.</p>
+    </div></div>
+    <nav class="demo-nav fx-wash">
+      <a class="cc-top" href="#"><span class="cc-label">Find a Dentist</span></a>
+      <a class="cc-top is-open" href="#"><span class="cc-label">Insurance</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Benefit Maxing</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Learn</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Capy Rewards</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">For Dentists</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+    </nav>
+  </section>
+
+  <!-- 3 -->
+  <section class="sample">
+    <div class="sample-h"><span class="sample-n">3</span><div>
+      <h2>Status Jewel</h2>
+      <p class="why">The item lifts to meet you on a soft ground shadow while a small gold pip blooms in beside the label. <b>Why it lasts:</b> the lift feels reciprocal and the jewel reads as a quiet "you are here" status cue.</p>
+    </div></div>
+    <nav class="demo-nav">
+      <a class="cc-top fx-lift" href="#"><span class="cc-label">Find a Dentist</span></a>
+      <a class="cc-top fx-lift is-open" href="#"><span class="cc-label">Insurance</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top fx-lift" href="#"><span class="cc-label">Benefit Maxing</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top fx-lift" href="#"><span class="cc-label">Learn</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top fx-lift" href="#"><span class="cc-label">Capy Rewards</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top fx-lift" href="#"><span class="cc-label">For Dentists</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+    </nav>
+  </section>
+
+  <!-- 4 -->
+  <section class="sample">
+    <div class="sample-h"><span class="sample-n">4</span><div>
+      <h2>Lustre</h2>
+      <p class="why">A warm gold sheen follows your cursor like light on a polished surface, and the label magnetizes a few pixels toward it. <b>Why it lasts:</b> continuous response to the smallest movement makes the hand keep exploring. (Needs a touch of JS.)</p>
+    </div></div>
+    <nav class="demo-nav fx-magnetic">
+      <a class="cc-top" href="#"><span class="cc-label">Find a Dentist</span></a>
+      <a class="cc-top is-open" href="#"><span class="cc-label">Insurance</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Benefit Maxing</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Learn</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Capy Rewards</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">For Dentists</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+    </nav>
+    <p class="hint">Move slowly across a word to feel the light track and the label lean in.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="sample">
+    <div class="sample-h"><span class="sample-n">5</span><div>
+      <h2>Goldspark Gleam <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);border:1px solid rgba(201,162,75,.5);border-radius:999px;padding:1px 8px;vertical-align:middle;margin-left:6px">Variable reward</span></h2>
+      <p class="why">A shimmer sweeps the word and 1&ndash;3 tiny gold glints fire with slight random variation every hover. <b>Why it lasts:</b> the variable-ratio payout is the "hover it again" hook &mdash; never identical, gone in under 600ms, gold-on-cream so it stays luxe, not arcade.</p>
+    </div></div>
+    <nav class="demo-nav fx-spark">
+      <a class="cc-top" href="#"><span class="cc-label">Find a Dentist</span></a>
+      <a class="cc-top is-open" href="#"><span class="cc-label">Insurance</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Benefit Maxing</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Learn</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">Capy Rewards</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+      <a class="cc-top" href="#"><span class="cc-label">For Dentists</span><span class="cc-caret" aria-hidden="true">▾</span></a>
+    </nav>
+    <p class="hint">Hover the same word a few times &mdash; the glints land differently each pass.</p>
+  </section>
+
+  <div class="rec">
+    <h3>My recommendation</h3>
+    <p><b>Concierge Hairline (1)</b> as the everyday base &mdash; it's the most on-brand, fastest, and ages best. Pair it with <b>Goldspark Gleam (5)</b> applied only to <b>Capy Rewards</b>, so the one gamified tab gets the variable-reward delight where it actually fits the product story, while the rest of the bar stays editorial and calm.</p>
+    <p>If you want the whole bar to feel more alive, <b>Lustre (4)</b> is the highest-"wow" but the heaviest; <b>Rising Tide (2)</b> and <b>Status Jewel (3)</b> are strong middle-ground options. Tell me which one (or combination) and I'll wire it into the real nav in nav-prototype-v3.html.</p>
+  </div>
+</div>
+
+<script>
+/* 1) Concierge Hairline — origin-aware draw */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.fx-underline .cc-top').forEach(function(el){
+    el.addEventListener('pointerenter',function(e){
+      if(reduce) return;
+      var r=el.getBoundingClientRect();
+      el.style.setProperty('--cc-origin',((e.clientX-r.left)/r.width*100)+'%');
+    });
+    el.addEventListener('focus',function(){ if(!el.matches(':hover')) el.style.setProperty('--cc-origin','50%'); });
+  });
+})();
+
+/* 4) Lustre — pointer tracking */
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll(".fx-magnetic .cc-top");
+  if(!items.length) return;
+  var MAGNET=5, DAMP=0.16;
+  function clamp(v,min,max){return v<min?min:(v>max?max:v);}
+  items.forEach(function(el){
+    var raf=0,tx=0,ty=0,mx=50,my=50,hot=false;
+    function paint(){raf=0;el.style.setProperty("--mx",mx+"%");el.style.setProperty("--my",my+"%");var label=el.querySelector(".cc-label");if(label){label.style.setProperty("--tx",tx.toFixed(2)+"px");label.style.setProperty("--ty",ty.toFixed(2)+"px");}}
+    function schedule(){if(!raf) raf=requestAnimationFrame(paint);}
+    function onEnter(){if(reduce){el.style.setProperty("--sheen","1");return;}hot=true;el.style.setProperty("--sheen","1");}
+    function onMove(e){if(reduce||!hot) return;var r=el.getBoundingClientRect();var px=e.clientX-r.left,py=e.clientY-r.top;mx=clamp((px/r.width)*100,0,100);my=clamp((py/r.height)*100,0,100);var cx=px-r.width/2,cy=py-r.height/2;tx=clamp(cx*DAMP,-MAGNET,MAGNET);ty=clamp(cy*DAMP,-MAGNET*0.6,MAGNET*0.6);schedule();}
+    function onLeave(){hot=false;if(el.classList.contains("is-open")) return;el.style.setProperty("--sheen","0");tx=ty=0;mx=50;my=50;schedule();}
+    el.addEventListener("pointerenter",onEnter);
+    el.addEventListener("pointermove",onMove);
+    el.addEventListener("pointerleave",onLeave);
+    el.addEventListener("blur",function(){if(!el.classList.contains("is-open")) onLeave();},true);
+  });
+})();
+
+/* 5) Goldspark Gleam — variable sparks */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rnd=function(min,max){return min+Math.random()*(max-min);};
+  document.querySelectorAll('.fx-spark .cc-top').forEach(function(top){
+    if(top.dataset.fxSpark) return; top.dataset.fxSpark='1';
+    var layer=document.createElement('span');layer.className='cc-spark-layer';layer.setAttribute('aria-hidden','true');top.appendChild(layer);
+    var cooling=false;
+    function fire(){
+      if(reduce||cooling) return; cooling=true; setTimeout(function(){cooling=false;},220);
+      top.classList.remove('is-gleam'); void top.offsetWidth; top.classList.add('is-gleam');
+      var n=1+Math.floor(Math.random()*3);
+      for(var i=0;i<n;i++){
+        var s=document.createElement('span');s.className='cc-spark';
+        s.style.left=rnd(16,78)+'%';s.style.top=rnd(30,70)+'%';
+        s.style.setProperty('--s',rnd(0.7,1.25).toFixed(2));
+        s.style.setProperty('--dx',rnd(-7,7).toFixed(1)+'px');
+        s.style.setProperty('--dy',rnd(-13,-5).toFixed(1)+'px');
+        s.style.setProperty('--dur',Math.round(rnd(380,560))+'ms');
+        layer.appendChild(s);
+        (function(node,delay){setTimeout(function(){node.classList.add('go');},delay);})(s,Math.round(rnd(0,90)));
+        s.addEventListener('animationend',function(){s.remove();});
+      }
+    }
+    top.addEventListener('mouseenter',fire);
+    top.addEventListener('focus',fire);
+    top.addEventListener('animationend',function(e){if(e.target===top||e.animationName==='fxSparkSweep') top.classList.remove('is-gleam');});
+  });
+})();
+</script>
+</body>
+</html>

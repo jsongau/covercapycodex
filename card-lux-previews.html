@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoverCapy · Two-card result options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#1B5E5A;--teal-deep:#0E3F44;--ivory:#FFFDF9;--cream:#F4EDDF;--gold:#C9A24A;--gold-deep:#8A6A23;--ink:#14242A;--ink-soft:#6B7D82;--line:rgba(20,36,42,.10)}
+  *{box-sizing:border-box}
+  body{margin:0;background:#EAE2D3;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:var(--ink)}
+  .wrap{max-width:1320px;margin:0 auto;padding:46px 24px 90px}
+  .head h1{font-family:'Fraunces',serif;font-weight:500;font-size:32px;margin:0 0 8px;letter-spacing:-.01em}
+  .head p{color:#5b5240;font-size:15px;max-width:70ch;margin:0;line-height:1.55}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:34px;margin-top:38px;align-items:start}
+  .opt{background:#F7F1E6;border:1px solid rgba(20,36,42,.1);border-radius:20px;padding:20px 18px 26px}
+  .opt-h{display:flex;align-items:baseline;gap:9px;margin-bottom:6px}
+  .opt-n{font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:#fff;background:var(--teal-deep);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .opt-t{font-family:'Fraunces',serif;font-size:19px;font-weight:500}
+  .opt-s{font-size:12.5px;color:var(--ink-soft);margin:0 0 14px 35px}
+  .stage{background:#FBF7EE;border-radius:16px;padding:22px 16px}
+
+  /* shared bits */
+  .src{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#36474c;font-weight:500}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .stars{color:var(--gold);letter-spacing:1px}
+
+  /* ===== Variant A: Editorial folio ===== */
+  .vA-stack{display:flex;flex-direction:column;gap:18px}
+  .vA-h{text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+  .vA-h b{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--teal-deep);color:#fff;font-size:11px;margin-right:5px;vertical-align:middle}
+  .vA-card{background:var(--ivory);border:1px solid rgba(201,162,75,.3);border-radius:16px;padding:22px 22px 20px;box-shadow:0 18px 44px -26px rgba(14,63,68,.5);text-align:center}
+  .vA-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);padding-bottom:5px;border-bottom:1px solid var(--gold)}
+  .vA-name{font-family:'Fraunces',serif;font-size:24px;font-weight:500;letter-spacing:-.01em;margin:12px 0 8px;color:var(--ink)}
+  .vA-rate{font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+  .vA-rate b{color:var(--ink);font-weight:700}
+  .vA-srcs{display:flex;justify-content:center;flex-wrap:wrap;gap:7px 14px;padding:11px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .vA-contact{display:flex;justify-content:space-between;align-items:flex-start;text-align:left;gap:12px;margin:14px 0 16px}
+  .vA-st{font-size:14px;font-weight:600}
+  .vA-rg{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .vA-dist{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--teal-deep);background:rgba(27,94,90,.07);border:1px solid rgba(27,94,90,.18);padding:3px 9px;border-radius:999px}
+  .vA-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+  .vA-ph{font-size:13px;font-weight:600;color:var(--teal);text-decoration:none}
+  .vA-share{font-size:12px;font-weight:600;color:var(--teal-deep);border:1px solid rgba(27,94,90,.3);background:var(--ivory);border-radius:9px;padding:6px 11px;cursor:pointer}
+  .vA-cta{display:flex;gap:10px}
+  .vA-btn{flex:1;text-align:center;padding:11px;border-radius:11px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;border:1px solid var(--teal)}
+  .vA-book{background:var(--teal);color:var(--ivory);border-color:var(--teal-deep)}
+  .vA-prof{background:var(--ivory);color:var(--teal-deep)}
+
+  /* ===== Variant B: Warm concierge ===== */
+  .vB-stack{display:flex;flex-direction:column;gap:16px}
+  .vB-h{text-align:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;justify-content:center;gap:8px}
+  .vB-h::before,.vB-h::after{content:"";height:1px;width:26px;background:var(--gold)}
+  .vB-card{position:relative;background:linear-gradient(168deg,var(--ivory),var(--cream));border-radius:20px;padding:22px 22px 20px;box-shadow:0 2px 0 rgba(255,255,255,.7) inset,0 22px 50px -28px rgba(14,63,68,.5)}
+  .vB-tag{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);background:rgba(201,162,74,.16);border-radius:999px;padding:5px 12px}
+  .vB-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .vB-name{font-family:'Fraunces',serif;font-size:25px;font-weight:500;margin:13px 0 8px;color:var(--teal-deep)}
+  .vB-rate{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--ink-soft);margin-bottom:13px}
+  .vB-rate b{color:var(--ink);font-weight:700;font-size:15px}
+  .vB-info{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:14px;padding:13px 15px;display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .vB-srcs{display:flex;flex-wrap:wrap;gap:6px 13px;margin-bottom:13px}
+  .vB-st{font-size:14px;font-weight:600}
+  .vB-rg{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .vB-dist{font-size:11.5px;font-weight:700;color:var(--teal);margin-top:7px}
+  .vB-r{text-align:right;flex:none;display:flex;flex-direction:column;gap:7px;align-items:flex-end}
+  .vB-ph{font-size:13px;font-weight:600;color:var(--teal);text-decoration:none}
+  .vB-share{font-size:12px;font-weight:600;color:var(--teal-deep);background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:9px;padding:6px 11px;cursor:pointer}
+  .vB-cta{display:flex;gap:10px}
+  .vB-btn{flex:1;text-align:center;padding:13px;border-radius:13px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none}
+  .vB-book{background:linear-gradient(160deg,var(--teal),var(--teal-deep));color:var(--ivory);box-shadow:0 10px 22px -10px rgba(14,63,68,.6)}
+  .vB-prof{background:rgba(255,255,255,.65);border:1px solid rgba(27,94,90,.28);color:var(--teal-deep)}
+
+  /* ===== Variant C: Modern depth ===== */
+  .vC-stack{display:flex;flex-direction:column;gap:16px}
+  .vC-h{text-align:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+  .vC-h b{color:var(--teal-deep)}
+  .vC-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px -30px rgba(8,42,48,.6),0 2px 6px rgba(8,42,48,.06)}
+  .vC-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 18px;background:linear-gradient(110deg,var(--teal-deep),var(--teal));color:var(--ivory)}
+  .vC-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#EBD9A8}
+  .vC-dist{font-size:11px;font-weight:700;background:rgba(255,255,255,.16);border-radius:999px;padding:3px 10px}
+  .vC-body{padding:18px}
+  .vC-name{font-family:'Fraunces',serif;font-size:23px;font-weight:600;margin:0 0 7px;color:var(--ink)}
+  .vC-rate{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--ink-soft);margin-bottom:12px}
+  .vC-rate b{color:var(--ink);font-weight:700;font-size:15px}
+  .vC-srcs{display:flex;flex-wrap:wrap;gap:7px 14px;padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--line)}
+  .vC-contact{display:flex;justify-content:space-between;gap:12px;margin-bottom:15px}
+  .vC-st{font-size:14px;font-weight:600}
+  .vC-rg{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .vC-r{text-align:right;display:flex;flex-direction:column;gap:7px;align-items:flex-end;flex:none}
+  .vC-ph{font-size:13px;font-weight:600;color:var(--teal);text-decoration:none}
+  .vC-share{font-size:12px;font-weight:600;color:var(--teal-deep);border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 11px;cursor:pointer}
+  .vC-cta{display:flex;gap:10px}
+  .vC-btn{flex:1;text-align:center;padding:12px;border-radius:11px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none}
+  .vC-book{background:var(--teal-deep);color:var(--ivory)}
+  .vC-prof{background:#fff;border:1px solid rgba(27,94,90,.3);color:var(--teal-deep)}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>Two offices, two main-character cards</h1>
+    <p>Same result for "Los Angeles County" (Abri Dental, Beverly Hills and Abri Dental, Burbank) in three directions. Pick one, or tell me which parts to combine.</p>
+  </div>
+  <div class="grid">
+
+    <!-- OPTION 1: EDITORIAL FOLIO -->
+    <div class="opt">
+      <div class="opt-h"><span class="opt-n">1</span><span class="opt-t">Editorial folio</span></div>
+      <p class="opt-s">Serif, hairline gold, centered, calm</p>
+      <div class="stage"><div class="vA-stack">
+        <div class="vA-h"><b>2</b> Platinum Elite offices near Los Angeles County</div>
+        <div class="vA-card">
+          <span class="vA-tag">Featured Platinum Elite</span>
+          <div class="vA-name">Abri Dental, Beverly Hills</div>
+          <div class="vA-rate"><span class="stars">★★★★★</span> <b>4.8</b> · 80 reviews</div>
+          <div class="vA-srcs"><span class="src"><span class="dot" style="background:#1a73e8"></span>Google 4.9 (74)</span><span class="src"><span class="dot" style="background:#d32323"></span>Yelp 3.0 (6)</span></div>
+          <div class="vA-contact"><div><div class="vA-st">50 N La Cienega Blvd #217</div><div class="vA-rg">Beverly Hills, CA 90211</div><span class="vA-dist">1.5 mi from Los Angeles County</span></div><div class="vA-r"><a class="vA-ph" href="#">(310) 275-0032</a><button class="vA-share">Share</button></div></div>
+          <div class="vA-cta"><a class="vA-btn vA-book" href="#">Book appointment</a><a class="vA-btn vA-prof" href="#">View dentist profile</a></div>
+        </div>
+        <div class="vA-card">
+          <span class="vA-tag">Featured Platinum Elite</span>
+          <div class="vA-name">Abri Dental, Burbank</div>
+          <div class="vA-rate"><span class="stars">★★★★★</span> <b>4.9</b> · 159 reviews</div>
+          <div class="vA-srcs"><span class="src"><span class="dot" style="background:#1a73e8"></span>Google 4.9 (118)</span><span class="src"><span class="dot" style="background:#d32323"></span>Yelp 4.5 (41)</span></div>
+          <div class="vA-contact"><div><div class="vA-st">3808 W Riverside Dr</div><div class="vA-rg">Burbank, CA 91505</div><span class="vA-dist">11.2 mi from Los Angeles County</span></div><div class="vA-r"><a class="vA-ph" href="#">(818) 558-0142</a><button class="vA-share">Share</button></div></div>
+          <div class="vA-cta"><a class="vA-btn vA-book" href="#">Book appointment</a><a class="vA-btn vA-prof" href="#">View dentist profile</a></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- OPTION 2: WARM CONCIERGE -->
+    <div class="opt">
+      <div class="opt-h"><span class="opt-n">2</span><span class="opt-t">Warm concierge</span></div>
+      <p class="opt-s">Cream surfaces, soft depth, rounded, inviting</p>
+      <div class="stage"><div class="vB-stack">
+        <div class="vB-h">2 Platinum Elite offices near Los Angeles County</div>
+        <div class="vB-card">
+          <span class="vB-tag">Featured Platinum Elite</span>
+          <div class="vB-name">Abri Dental, Beverly Hills</div>
+          <div class="vB-rate"><span class="stars">★★★★★</span> <b>4.8</b> · 80 reviews</div>
+          <div class="vB-srcs"><span class="src"><span class="dot" style="background:#1a73e8"></span>Google 4.9 (74)</span><span class="src"><span class="dot" style="background:#d32323"></span>Yelp 3.0 (6)</span></div>
+          <div class="vB-info"><div><div class="vB-st">50 N La Cienega Blvd #217</div><div class="vB-rg">Beverly Hills, CA 90211</div><div class="vB-dist">1.5 mi from Los Angeles County</div></div><div class="vB-r"><a class="vB-ph" href="#">(310) 275-0032</a><button class="vB-share">Share</button></div></div>
+          <div class="vB-cta"><a class="vB-btn vB-book" href="#">Book appointment</a><a class="vB-btn vB-prof" href="#">View dentist profile</a></div>
+        </div>
+        <div class="vB-card">
+          <span class="vB-tag">Featured Platinum Elite</span>
+          <div class="vB-name">Abri Dental, Burbank</div>
+          <div class="vB-rate"><span class="stars">★★★★★</span> <b>4.9</b> · 159 reviews</div>
+          <div class="vB-srcs"><span class="src"><span class="dot" style="background:#1a73e8"></span>Google 4.9 (118)</span><span class="src"><span class="dot" style="background:#d32323"></span>Yelp 4.5 (41)</span></div>
+          <div class="vB-info"><div><div class="vB-st">3808 W Riverside Dr</div><div class="vB-rg">Burbank, CA 91505</div><div class="vB-dist">11.2 mi from Los Angeles County</div></div><div class="vB-r"><a class="vB-ph" href="#">(818) 558-0142</a><button class="vB-share">Share</button></div></div>
+          <div class="vB-cta"><a class="vB-btn vB-book" href="#">Book appointment</a><a class="vB-btn vB-prof" href="#">View dentist profile</a></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- OPTION 3: MODERN DEPTH -->
+    <div class="opt">
+      <div class="opt-h"><span class="opt-n">3</span><span class="opt-t">Modern depth</span></div>
+      <p class="opt-s">Teal header band, crisp white, strong depth</p>
+      <div class="stage"><div class="vC-stack">
+        <div class="vC-h"><b>2</b> Platinum Elite offices near Los Angeles County</div>
+        <div class="vC-card">
+          <div class="vC-top"><span class="vC-tag">Featured Platinum Elite</span><span class="vC-dist">1.5 mi from Los Angeles County</span></div>
+          <div class="vC-body">
+            <div class="vC-name">Abri Dental, Beverly Hills</div>
+            <div class="vC-rate"><span class="stars">★★★★★</span> <b>4.8</b> · 80 reviews</div>
+            <div class="vC-srcs"><span class="src"><span class="dot" style="background:#1a73e8"></span>Google 4.9 (74)</span><span class="src"><span class="dot" style="background:#d32323"></span>Yelp 3.0 (6)</span></div>
+            <div class="vC-contact"><div><div class="vC-st">50 N La Cienega Blvd #217</div><div class="vC-rg">Beverly Hills, CA 90211</div></div><div class="vC-r"><a class="vC-ph" href="#">(310) 275-0032</a><button class="vC-share">Share</button></div></div>
+            <div class="vC-cta"><a class="vC-btn vC-book" href="#">Book appointment</a><a class="vC-btn vC-prof" href="#">View dentist profile</a></div>
+          </div>
+        </div>
+        <div class="vC-card">
+          <div class="vC-top"><span class="vC-tag">Featured Platinum Elite</span><span class="vC-dist">11.2 mi from Los Angeles County</span></div>
+          <div class="vC-body">
+            <div class="vC-name">Abri Dental, Burbank</div>
+            <div class="vC-rate"><span class="stars">★★★★★</span> <b>4.9</b> · 159 reviews</div>
+            <div class="vC-srcs"><span class="src"><span class="dot" style="background:#1a73e8"></span>Google 4.9 (118)</span><span class="src"><span class="dot" style="background:#d32323"></span>Yelp 4.5 (41)</span></div>
+            <div class="vC-contact"><div><div class="vC-st">3808 W Riverside Dr</div><div class="vC-rg">Burbank, CA 91505</div></div><div class="vC-r"><a class="vC-ph" href="#">(818) 558-0142</a><button class="vC-share">Share</button></div></div>
+            <div class="vC-cta"><a class="vC-btn vC-book" href="#">Book appointment</a><a class="vC-btn vC-prof" href="#">View dentist profile</a></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

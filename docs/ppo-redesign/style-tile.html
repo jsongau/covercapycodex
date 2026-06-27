@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoverCapy PPO — Style Tile (Direction C: Warm Research Terminal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F0E6;--paper-2:#EFE8D9;--card:#FCFAF4;
+  --teal-night:#082A30;--ink:#21302A;--body:#3A4A42;--muted:#5F6359;--ink-faint:#6E7268;
+  --green:#2E5E45;--green-d:#234A37;--green-l:#5C7A66;
+  --gold:#B8924F;--gold-text:#8A6721;
+  --line:#E3DAC8;--line-2:#D8CDB6;
+  --cov-full:#2E5E45;--cov-partial:#B07A2E;--cov-none:#8A857B;
+  --alert-bg:#F3E8CF;
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--prose:'Inter',system-ui,sans-serif;
+  --r-sm:8px;--r:14px;--r-lg:24px;
+  --sh-sm:0 1px 0 rgba(8,42,48,.04);--sh:0 1px 0 rgba(8,42,48,.03),0 12px 34px rgba(8,42,48,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--prose);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 80px}
+.tabnum{font-family:var(--sans);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.eyebrow .sp{color:var(--gold-text)}
+h1,h2,h3{font-family:var(--serif);color:var(--teal-night);font-weight:500;margin:0}
+h1{font-size:46px;line-height:1.05;letter-spacing:-.01em}
+h2{font-size:27px;margin:0 0 4px}
+h3{font-size:21px}
+.it{font-style:italic;font-weight:400}
+.lede{font-size:18px;color:var(--body);max-width:60ch}
+.trust{font-family:var(--sans);font-size:12.5px;color:var(--muted)}
+.trust a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--line-2)}
+section{margin-top:54px}
+.seclbl{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;border-top:1px solid var(--line);padding-top:12px}
+
+/* swatches */
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--card)}
+.sw .chip{height:62px}
+.sw .meta{padding:8px 10px;font-family:var(--sans);font-size:11.5px}
+.sw .meta b{display:block;color:var(--ink);font-size:12.5px}
+.sw .meta span{color:var(--muted)}
+
+/* type specimen */
+.spec-row{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--line);padding:12px 0}
+.spec-row .role{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);width:120px;flex:none}
+
+/* buttons */
+.btn{font-family:var(--sans);font-weight:600;font-size:14px;border-radius:999px;padding:11px 20px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-d)}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--teal-night)}
+.btn:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+.badge{font-family:var(--sans);font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px}
+.badge-shape{background:var(--paper-2);color:var(--ink);border:1px solid var(--line-2)}
+.badge-fit{background:var(--alert-bg);color:var(--gold-text)}
+.badge-review{background:var(--alert-bg);color:var(--gold-text);border:1px solid var(--gold)}
+
+/* plan card */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);padding:24px;max-width:380px}
+.card.fit{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.logo{width:40px;height:40px;border-radius:9px;background:var(--teal-night);color:#fff;font-family:var(--serif);font-style:italic;display:grid;place-items:center;font-size:18px}
+.headline{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;margin:16px 0}
+.hcell{background:var(--card);padding:10px 12px}
+.hcell .l{font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.hcell .v{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:19px;font-weight:600;color:var(--teal-night)}
+.hcell .v small{font-size:12px;color:var(--muted);font-weight:500}
+.cov{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.cov .cc{background:var(--card);padding:8px 6px;text-align:center}
+.cov .cc .t{font-family:var(--sans);font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint)}
+.cov .cc .p{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:14px;font-weight:700}
+.cov .cc .w{font-family:var(--sans);font-size:9.5px;color:var(--muted)}
+.p-full{color:var(--cov-full)} .p-part{color:var(--cov-partial)} .p-none{color:var(--cov-none);font-style:italic;font-size:10.5px!important}
+.bestfor{font-size:13px;color:var(--body);margin:14px 0 16px}
+.bestfor b{color:var(--teal-night)}
+
+/* matrix instrument */
+.term{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
+table.cmp{width:100%;border-collapse:collapse;font-family:var(--sans);font-variant-numeric:tabular-nums}
+table.cmp thead th{background:var(--teal-night);color:#fff;font-size:12.5px;font-weight:600;text-align:center;padding:12px 10px}
+table.cmp thead th.rowhdr{text-align:left;color:var(--paper-2)}
+table.cmp tbody th{text-align:left;font-weight:600;color:var(--ink);font-size:12.5px;padding:9px 10px;background:var(--paper-2)}
+table.cmp td{text-align:center;padding:9px 10px;font-size:13px;border-bottom:1px solid var(--line);color:var(--body)}
+table.cmp tr:nth-child(even) td{background:#FBF8F1}
+.best{position:relative}
+.best .v{font-weight:700;color:var(--teal-night);border-bottom:2px solid var(--gold)}
+.best .pill{display:inline-block;margin-left:6px;font-size:9px;font-weight:700;letter-spacing:.05em;color:var(--gold-text);background:var(--alert-bg);padding:1px 5px;border-radius:6px;vertical-align:middle}
+.na{color:var(--cov-none);font-style:italic}
+.note{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-top:10px}
+.cols2{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+@media(max-width:760px){.cols2{grid-template-columns:1fr}h1{font-size:34px}}
+.density{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dbox{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--card)}
+.dbox.tight{padding:10px}
+.dlbl{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.bara{display:inline-flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line-2);border-radius:999px;padding:6px 14px 6px 6px;font-family:var(--sans);font-size:12.5px;color:var(--body)}
+.bara .av{width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="eyebrow"><span class="sp">&#10038;</span> Direction C &middot; Warm Research Terminal</span>
+  <h1 style="margin:14px 0 12px">Compare every PPO dental plan<br><span class="it">in one independent place.</span></h1>
+  <p class="lede">A calm concierge room containing a precise comparison instrument. Premium concierge clarity meets a modern insurance research terminal &mdash; 70% spec-first, 30% editorial.</p>
+  <p class="trust" style="margin-top:16px">Independent &middot; no paid placement &middot; reviewed by dental billing specialists &middot; updated June 2026 &middot; <a href="#">How we choose plans</a></p>
+
+  <section>
+    <div class="seclbl">Color &mdash; warm room, contrast-safe</div>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:#F5F0E6"></div><div class="meta"><b>Paper</b><span>#F5F0E6 &middot; page</span></div></div>
+      <div class="sw"><div class="chip" style="background:#FCFAF4"></div><div class="meta"><b>Card</b><span>#FCFAF4</span></div></div>
+      <div class="sw"><div class="chip" style="background:#082A30"></div><div class="meta"><b>Teal-night</b><span>#082A30 &middot; ink/panels</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2E5E45"></div><div class="meta"><b>Green</b><span>#2E5E45 &middot; action</span></div></div>
+      <div class="sw"><div class="chip" style="background:#B8924F"></div><div class="meta"><b>Gold</b><span>#B8924F &middot; accent only</span></div></div>
+      <div class="sw"><div class="chip" style="background:#E3DAC8"></div><div class="meta"><b>Line</b><span>#E3DAC8 &middot; hairline</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="seclbl">Type &mdash; two roles, never blurred</div>
+    <div class="spec-row"><span class="role">Display / voice</span><span style="font-family:var(--serif);font-size:40px;color:var(--teal-night)">Fraunces serif</span></div>
+    <div class="spec-row"><span class="role">Plan name</span><span style="font-family:var(--serif);font-style:italic;font-size:26px;color:var(--teal-night)">Mutual of Omaha Dental Preferred</span></div>
+    <div class="spec-row"><span class="role">Data / specs</span><span class="tabnum" style="font-size:22px;font-weight:600;color:var(--teal-night)">$57/mo &middot; $5,000 max &middot; 100 / 80 / 20%</span></div>
+    <div class="spec-row"><span class="role">Body prose</span><span style="font-size:16px">Inter for calm explanation, where editorial adds value.</span></div>
+  </section>
+
+  <section class="cols2">
+    <div>
+      <div class="seclbl">Plan card &mdash; spec-first</div>
+      <div class="card fit">
+        <div class="card-top">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px"><span class="logo">M</span><span class="badge badge-shape">Major / Full</span></div>
+            <h3 style="margin:12px 0 0">Mutual of Omaha<br><span class="it" style="color:var(--teal-night)">Dental Preferred</span></h3>
+          </div>
+          <span class="badge badge-fit">Most fitting</span>
+        </div>
+        <div class="headline">
+          <div class="hcell"><div class="l">From</div><div class="v">$57<small>/mo</small></div></div>
+          <div class="hcell"><div class="l">Annual max</div><div class="v">$5,000</div></div>
+          <div class="hcell"><div class="l">Deductible</div><div class="v">$50</div></div>
+          <div class="hcell"><div class="l">Coverage starts</div><div class="v" style="font-size:14px">Next business day</div></div>
+        </div>
+        <div class="cov">
+          <div class="cc"><div class="t">Prev</div><div class="p p-full">100%</div><div class="w">day 1</div></div>
+          <div class="cc"><div class="t">Basic</div><div class="p p-full">80%</div><div class="w">day 1</div></div>
+          <div class="cc"><div class="t">Major</div><div class="p p-part">20%</div><div class="w">&rarr; 50% Y2</div></div>
+          <div class="cc"><div class="t">Implant</div><div class="p p-part">20%</div><div class="w">&rarr; 50% Y2</div></div>
+          <div class="cc"><div class="t">Ortho</div><div class="p p-none">Not cov.</div><div class="w">&nbsp;</div></div>
+        </div>
+        <p class="bestfor"><b>Best for:</b> the highest ceiling at a low premium, with basic and major both from day one.</p>
+        <a class="btn btn-green" href="#">View full plan</a>
+        <a class="btn btn-ghost" href="#" style="margin-left:6px">Compare</a>
+      </div>
+    </div>
+    <div>
+      <div class="seclbl">Buttons, badges, density, concierge</div>
+      <p><a class="btn btn-green" href="#">Find my best-fit plan</a> <a class="btn btn-ghost" href="#">Compare selected</a></p>
+      <p style="margin:14px 0"><span class="badge badge-shape">Preventive</span> <span class="badge badge-fit">Most fitting</span> <span class="badge badge-review">Under review</span></p>
+      <div class="density" style="margin-top:8px">
+        <div class="dbox"><div class="dlbl">.cc-comfort</div><div style="font-size:14px;color:var(--body)">Spacious, for explanation, Smart Match, and editorial.</div></div>
+        <div class="dbox tight"><div class="dlbl">.cc-terminal</div><div class="tabnum" style="font-size:12.5px;color:var(--body)">Dense · tabular · the comparison instrument.</div></div>
+      </div>
+      <p style="margin-top:18px"><span class="bara"><span class="av">&#9728;</span> Mr.&nbsp;Bara appears small, only at high-friction guidance &mdash; never over prices or matrices.</span></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="seclbl">The instrument &mdash; comparison matrix (teal-night header, tabular, best-in-row)</div>
+    <div class="term">
+      <table class="cmp">
+        <thead><tr><th class="rowhdr">Spec</th><th>MoO Dental Preferred</th><th>Humana Extend 5000</th><th>Delta PPO Premium</th></tr></thead>
+        <tbody>
+          <tr><th>From / mo</th><td class="best"><span class="v">$57</span><span class="pill">BEST</span></td><td>$65&ndash;100</td><td>$40&ndash;75</td></tr>
+          <tr><th>Annual maximum</th><td class="best"><span class="v">$5,000</span></td><td class="best"><span class="v">$5,000</span></td><td>$2,000</td></tr>
+          <tr><th>Deductible</th><td>$50</td><td>$75</td><td>$50</td></tr>
+          <tr><th>Preventive</th><td>100% &middot; day 1</td><td>100% &middot; day 1</td><td>100% &middot; day 1</td></tr>
+          <tr><th>Basic</th><td>80% &middot; day 1</td><td>80% &middot; 90-day</td><td>80% &middot; 6-mo</td></tr>
+          <tr><th>Major</th><td>20% &rarr; 50%</td><td class="best"><span class="v">50% &rarr; 60%</span><span class="pill">BEST</span></td><td>50% &middot; 12-mo</td></tr>
+          <tr><th>Implants</th><td>20% &rarr; 50%</td><td>50% &rarr; 60%</td><td>50% &middot; 12-mo</td></tr>
+          <tr><th>Orthodontics</th><td class="na">Not covered</td><td class="na">Not covered</td><td>50% &middot; 12-mo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Best-in-row marked with a gold underline + &ldquo;BEST&rdquo; pill (never color alone). &ldquo;Not covered&rdquo; is muted italic. Every number is Inter&nbsp;Tight tabular so columns align. One quiet line carries the legal weight: <em>Last verified June 2026 &middot; illustrative &middot; view sources</em>.</p>
+  </section>
+
+</div>
+</body>
+</html>
