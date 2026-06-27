@@ -5,7 +5,7 @@
   --gold:#C9A24B; --gold-deep:#8A6A23; --gold-soft:#F6ECD2;
   --ink:#14242A; --ink-mid:#49666C; --ink-soft:#6B7D82; --ink-faint:#90A0A4;
   --line:#E8E2D6; --line-soft:#EFEAE0;
-  --ff-serif:'Fraunces',Georgia,serif; --ff-sans:'Inter Tight',system-ui,sans-serif;
+  --ff-serif:'Fraunces',Georgia,serif; --ff-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
   --nav-h:84px; --subnav-h:0px;
   --r-sm:9px; --r-md:13px; --r-lg:18px; --r-pill:999px;
@@ -34,6 +34,14 @@ a{color:inherit}
   transition:height .26s var(--ease)}
 
 .cc-nav.is-condensed .cc-row{height:62px}
+
+/* scroll-progress bar — fills as you move down the page (driven by --cc-scroll) */
+.cc-scrollbar{position:absolute;left:0;bottom:0;height:2.5px;width:var(--cc-scroll,0%);max-width:100%;
+  background:linear-gradient(90deg,var(--emerald-deep),var(--emerald));border-radius:0 3px 3px 0;
+  z-index:3;pointer-events:none;transition:width .08s linear}
+@media (prefers-reduced-motion:reduce){
+.cc-scrollbar{transition:none}
+}
 
 
 /* logo */
@@ -66,7 +74,7 @@ a{color:inherit}
 
 .cc-top{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border-radius:0;
   font-family:var(--ff-sans);font-size:15px;font-weight:500;letter-spacing:-.004em;color:var(--ink);text-decoration:none;
-  background:transparent;border:none;cursor:pointer;position:relative;outline:none;transition:color .35s var(--cc-ease)}
+  background:transparent;border:none;cursor:pointer;position:relative;outline:none;white-space:nowrap;transition:color .35s var(--cc-ease)}
 
 .cc-top:hover,.cc-top:focus-visible{color:var(--emerald-deep)}
 
@@ -246,6 +254,13 @@ html:not(.js) .cc-item:hover .mega-col,html:not(.js) .cc-item:focus-within .mega
 .mc-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 
 .mc-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* Benefit Maxing: narrow strategy rail + treatments grouped Basic / Major / Ortho */
+#panel-bm .bm-cols{grid-template-columns:clamp(158px,13vw,188px) minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);gap:clamp(16px,1.6vw,28px)}
+
+#panel-bm .bm-major .mega-gt{text-align:center}
+
+.bm-major-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(3,auto);grid-template-columns:1fr 1fr;gap:0 18px}
 
 .mega-col{opacity:0;transform:translateY(10px);transition:opacity .36s ease,transform .42s var(--ease)}
 

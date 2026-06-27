@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="gold">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -176,11 +176,242 @@ body{margin:0;background:var(--paper);color:var(--body);font-family:var(--ff-san
 .cc-tooltip-link{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;color:#D7B877;text-decoration:underline;text-underline-offset:2px;}
 .cc-tooltip-arrow{position:absolute;bottom:-6px;width:10px;height:10px;background:var(--teal-night);border-right:1px solid rgba(184,146,79,.4);border-bottom:1px solid rgba(184,146,79,.4);transform:rotate(45deg);}
 .cc-tooltip[data-flipped="true"] .cc-tooltip-arrow{bottom:auto;top:-6px;transform:rotate(225deg);}
+/* ============================================================
+   CHROME UNIFICATION -- compare-style sub-nav + crumb
+   Tokens are aliased with --cc- prefix to avoid collision
+   with existing benefit-maxing token values.
+   ============================================================ */
+:root {
+  --cc-green:#0A7E7D; --cc-green-d:#0A6E6D; --cc-green-l:#5E707B;
+  --cc-sage:#E2F4F3; --cc-sage-2:#D3EBEA;
+  --cc-muted:#5E707B;
+  --cc-ink:#0F1B25; --cc-ink-soft:#33444F;
+  --cc-gold:#B26A00;
+  --cc-line:#DCE4EA; --cc-line-2:#C9D6DE;
+  --cc-card:#FFFFFF;
+  --cc-paper:#FFFFFF;
+  --cc-shadow:0 1px 2px rgba(15,27,37,.05),0 4px 12px -4px rgba(15,27,37,.10);
+  --sans:var(--ff-sans);
+  --toch:52px;
+}
+
+/* ---- sticky sub-nav ---- */
+.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:60;background:var(--cc-card);border-bottom:1px solid var(--cc-line);transition:background .45s ease}
+@media(max-width:1080px){.toc{top:72px}}
+.toc-prog{height:2px;background:var(--cc-green);width:0;transition:width .1s linear}
+.toc .wrap{display:flex;align-items:center;gap:2px;height:var(--toch);flex-wrap:nowrap;max-width:none;margin:0;padding-left:26px;padding-right:26px}
+.toc .theme-switch,.toc .toc-dd{flex:0 0 auto}
+.toc .theme-switch{order:99;margin-left:auto}
+@media(max-width:900px){
+  .toc .wrap{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .toc .wrap::-webkit-scrollbar{display:none}
+}
+
+/* dropdown buttons */
+.toc-dd{position:relative;flex-shrink:0}
+.toc-dd-btn{display:inline-flex;align-items:center;gap:7px;font:600 14px var(--sans);color:var(--cc-ink);background:transparent;border:0;cursor:pointer;padding:8px 13px;border-radius:8px;white-space:nowrap;line-height:1}
+.toc-dd-btn:hover,.toc-dd-btn[aria-expanded=true]{background:var(--cc-sage);color:var(--cc-green-d)}
+.dd-car{width:9px;height:9px;transition:transform .15s}
+.toc-dd-btn[aria-expanded=true] .dd-car{transform:rotate(180deg)}
+
+/* dropdown panels */
+.toc-dd-panel{position:absolute;top:calc(100% + 7px);left:0;width:290px;min-width:290px;background:var(--cc-card);border:1px solid rgba(18,22,27,.20);border-radius:12px;box-shadow:var(--cc-shadow);padding:7px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .15s,transform .15s;z-index:80;overflow:visible}
+.toc-dd-panel::before{content:"";position:absolute;top:-7px;left:20px;width:12px;height:12px;background:var(--cc-card);border-left:1px solid rgba(18,22,27,.20);border-top:1px solid rgba(18,22,27,.20);transform:rotate(45deg)}
+.toc-dd-panel[data-open]{opacity:1;transform:none;pointer-events:auto}
+.toc-dd-panel a{display:block;font:600 13.5px var(--sans);color:var(--cc-ink);padding:8px 11px;border-radius:9px;text-decoration:none;line-height:1.3}
+.toc-dd-panel a:hover{background:var(--cc-sage);color:var(--cc-green-d)}
+.toc-dd-panel a span{display:block;color:var(--cc-muted);font-size:11.5px;font-weight:400;margin-top:2px;line-height:1.4}
+@media(max-width:900px){.toc-dd-panel{position:fixed;left:12px;right:12px;min-width:0;top:calc(var(--toch) + 4px)}}
+
+/* dropdown section label + footer link */
+.dd-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cc-muted);padding:8px 11px 4px}
+.dd-all{border-top:1px solid var(--cc-line);margin-top:6px;color:var(--cc-green-d)!important;font-weight:600}
+
+/* Delta fly-out (nested inside Plans panel) */
+.dd-fly{position:relative}
+.dd-fly-btn{display:flex;justify-content:space-between;align-items:center;width:100%;gap:12px;font:600 13.5px var(--sans);color:var(--cc-ink);background:none;border:0;cursor:pointer;padding:9px 11px;border-radius:8px;text-align:left}
+.dd-fly-btn:hover,.dd-fly-btn[aria-expanded=true]{background:var(--cc-sage);color:var(--cc-green-d)}
+.dd-fly-car{width:11px;height:11px;flex-shrink:0}
+.dd-fly-panel{position:absolute;top:-9px;left:calc(100% + 6px);min-width:230px;background:var(--cc-card);border:1px solid var(--cc-line);border-top:2px solid var(--cc-green);border-radius:14px;box-shadow:0 18px 44px rgba(15,27,37,.16);padding:8px;opacity:0;transform:translateX(-6px);pointer-events:none;transition:.15s;z-index:90}
+.dd-fly-panel[data-open]{opacity:1;transform:none;pointer-events:auto}
+.dd-fly-panel a{display:block;font:500 13.5px var(--sans);color:var(--cc-ink);padding:8px 11px;border-radius:8px;text-decoration:none}
+.dd-fly-panel a:hover{background:var(--cc-sage);color:var(--cc-green-d)}
+@media(max-width:900px){.dd-fly-panel{position:static;left:auto;top:auto;box-shadow:none;border:0;border-top:1px solid var(--cc-line);border-radius:0;padding:4px 0 4px 16px;opacity:1;transform:none;pointer-events:auto;min-width:0}}
+
+/* ---- breadcrumb ---- */
+.crumb{background:var(--cc-card);border-bottom:0;font-size:12.5px;color:var(--cc-muted)}
+.crumb .wrap{padding:11px 26px}
+.crumb a{color:var(--cc-muted);text-decoration:none}
+.crumb a:hover{color:var(--cc-green-d)}
+.crumb span{color:var(--cc-ink);font-weight:600}
+
+/* ---- Gold/Jade theme toggle pill ---- */
+.theme-switch{
+  position:relative;display:inline-flex;align-items:center;
+  background:#1a1a1a;border:1.5px solid rgba(255,255,255,.08);border-radius:999px;
+  padding:4px;cursor:pointer;user-select:none;flex-shrink:0;height:38px;
+  box-shadow:0 2px 12px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06);
+  transition:border-color .35s,box-shadow .35s;
+}
+.theme-switch:hover{border-color:rgba(184,146,79,.5);box-shadow:0 2px 12px rgba(0,0,0,.32),0 0 0 3px rgba(184,146,79,.14),inset 0 1px 0 rgba(255,255,255,.06)}
+.ts-thumb{
+  position:absolute;top:4px;left:4px;
+  width:calc(50% - 4px);height:calc(100% - 8px);border-radius:999px;
+  background:#B8924F;
+  box-shadow:0 3px 10px rgba(184,146,79,.55),0 1px 3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform 1.8s cubic-bezier(.34,1.18,.64,1),background .7s ease;will-change:transform;
+}
+.theme-switch[data-active="jade"] .ts-thumb{transform:translateX(100%)}
+.ts-opt{
+  position:relative;z-index:1;display:flex;align-items:center;gap:5px;
+  padding:0 16px;height:100%;
+  font:700 11.5px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);transition:color .35s;white-space:nowrap;
+}
+.ts-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;transition:opacity .35s;opacity:0}
+.ts-opt.ts-gold .ts-dot{background:#B8924F}
+.ts-opt.ts-jade .ts-dot{background:#0FB5A6}
+.theme-switch[data-active="gold"] .ts-opt.ts-gold{color:#fff}
+.theme-switch[data-active="gold"] .ts-opt.ts-gold .ts-dot{opacity:1}
+.theme-switch[data-active="jade"] .ts-opt.ts-jade{color:#fff}
+.theme-switch[data-active="jade"] .ts-opt.ts-jade .ts-dot{opacity:1}
+@keyframes ts-pulse{
+  0%,100%{box-shadow:0 2px 12px rgba(0,0,0,.32),0 0 0 0 rgba(184,146,79,0),inset 0 1px 0 rgba(255,255,255,.06)}
+  50%{box-shadow:0 2px 12px rgba(0,0,0,.32),0 0 0 6px rgba(184,146,79,.18),inset 0 1px 0 rgba(255,255,255,.06)}
+}
+.theme-switch.flipping{animation:ts-pulse 1.8s ease-in-out}
+
+/* Gold theme overrides -- toc only, scoped tightly */
+[data-theme="gold"] .toc{background:#FBF6EC}
+[data-theme="gold"] .toc-dd-btn:hover,[data-theme="gold"] .toc-dd-btn[aria-expanded=true]{background:#F6EEDA;color:#8A6212}
+[data-theme="gold"] .toc-dd-panel a:hover{background:#F6EEDA;color:#8A6212}
+[data-theme="gold"] .dd-fly-btn:hover,[data-theme="gold"] .dd-fly-btn[aria-expanded=true]{background:#F6EEDA;color:#8A6212}
+[data-theme="gold"] .toc-prog{background:#C9A24A}
+[data-theme="gold"] .crumb{background:#FBF6EC}
+[data-theme="gold"] .crumb a:hover{color:#8A6212}
+[data-theme="gold"] .crumb span{color:#15202E}
+
+/* Jade theme overrides -- toc only, scoped tightly */
+[data-theme="jade"] .toc{background:#fff}
+[data-theme="jade"] .toc-prog{background:#0FB5A6}
+[data-theme="jade"] .toc-dd-btn:hover,[data-theme="jade"] .toc-dd-btn[aria-expanded=true]{background:rgba(15,181,166,.10);color:#0C8C81}
+[data-theme="jade"] .toc-dd-panel a:hover{background:rgba(15,181,166,.10);color:#0C8C81}
+[data-theme="jade"] .dd-fly-btn:hover,[data-theme="jade"] .dd-fly-btn[aria-expanded=true]{background:rgba(15,181,166,.10);color:#0C8C81}
+[data-theme="jade"] .dd-fly-panel{border-top-color:#0FB5A6}
+[data-theme="jade"] .crumb{background:#fff}
+[data-theme="jade"] .crumb a:hover{color:#0C8C81}
 </style>
 </head>
 <body>
 
 <div id="cc-nav-mount"></div>
+
+<!-- STICKY SUB-NAV: verbatim from compare-ppo-dental-plans.html / ppo-plans/index.html chrome -->
+<div class="toc">
+  <div class="toc-prog" id="tocProg"></div>
+  <div class="wrap">
+    <div class="theme-switch" id="cc-ts" data-active="gold" role="switch" aria-checked="false" tabindex="0" aria-label="Switch color theme, Gold or Jade">
+      <span class="ts-thumb"></span>
+      <span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span>
+      <span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
+    </div>
+    <div class="toc-dd" id="ddCompareWrap">
+      <button class="toc-dd-btn" id="ddCompareBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddCompare">Compare <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddCompare" role="menu" aria-label="Compare plans">
+        <a href="/compare-ppo-dental-plans" role="menuitem">Compare side by side</a>
+        <div class="dd-lbl">By coverage tier</div>
+        <a href="/compare-ppo-dental-plans#tier-essentials" role="menuitem">Essentials, budget-first</a>
+        <a href="/compare-ppo-dental-plans#tier-full" role="menuitem">Full coverage, most popular</a>
+        <a href="/compare-ppo-dental-plans#tier-maximum" role="menuitem">Maximum protection, highest limits</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddPlansWrap">
+      <button class="toc-dd-btn" id="ddPlansBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddPlans">Plans <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddPlans" role="menu" aria-label="PPO plans by carrier">
+        <div class="dd-lbl">Plans by carrier</div>
+        <a href="/dental-insurance/ppo-plans/uhc-primary-dental/" role="menuitem">UnitedHealthcare</a>
+        <a href="/dental-insurance/ppo-plans/aetna-dental-direct/" role="menuitem">Aetna</a>
+        <a href="/dental-insurance/ppo-plans/ameritas-primestar/" role="menuitem">Ameritas</a>
+        <a href="/dental-insurance/ppo-plans/guardian-premier-ppo/" role="menuitem">Guardian</a>
+        <a href="/dental-insurance/ppo-plans/mutual-of-omaha-dental/" role="menuitem">Mutual of Omaha</a>
+        <a href="/dental-insurance/ppo-plans/humana-extend-5000/" role="menuitem">Humana</a>
+        <a href="/dental-insurance/ppo-plans/metlife-ncd-complete/" role="menuitem">MetLife</a>
+        <div class="dd-fly" id="ddDeltaFly">
+          <button class="dd-fly-btn" aria-expanded="false" aria-haspopup="true" aria-controls="ddDelta">Delta Dental <svg class="dd-fly-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <div class="dd-fly-panel" id="ddDelta" role="menu" aria-label="Delta Dental hub">
+            <a href="/dental-insurance/ppo-plans/delta-dental-ppo-premium/" role="menuitem"><b>PPO Premium plan</b></a>
+            <a href="/dental-insurance/delta-dental/compare/" role="menuitem">Is Delta Dental good?</a>
+            <a href="/dental-insurance/delta-dental/over-65/" role="menuitem">Delta for over 65</a>
+            <a href="/dental-insurance/delta-dental/uc-students/" role="menuitem">Delta for UC students</a>
+          </div>
+        </div>
+        <a class="dd-all" href="/dental-insurance/ppo-plans/" role="menuitem">All carriers and plans</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddExploreWrap">
+      <button class="toc-dd-btn" id="ddExploreBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddExplore">Explore <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddExplore" role="menu" aria-label="Explore the hub">
+        <div class="dd-lbl">Guides and tools</div>
+        <a href="/dental-insurance/" role="menuitem">Dental insurance overview</a>
+        <a href="/dental-treatment-cost-estimator.html" role="menuitem">Treatment cost estimator</a>
+        <a href="/dental-insurance/ppo-plans/" role="menuitem">All carriers and plans</a>
+        <div class="dd-lbl">By situation</div>
+        <a href="/guides/no-waiting-period/" role="menuitem">No waiting period</a>
+        <a href="/guides/immediate-coverage/" role="menuitem">Coverage that starts now</a>
+        <a href="/guides/between-jobs/" role="menuitem">Between jobs</a>
+        <a href="/guides/self-employed/" role="menuitem">Self-employed</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddTreatWrap">
+      <button class="toc-dd-btn" id="ddTreatBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddTreat">By Treatment <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddTreat" role="menu" aria-label="By treatment">
+        <a href="/compare-ppo-dental-plans#treatment" role="menuitem">Compare plans by procedure</a>
+        <div class="dd-lbl">Procedures</div>
+        <a href="/guides/implants/" role="menuitem">Implants</a>
+        <a href="/guides/crowns/insurance-coverage.html" role="menuitem">Crowns</a>
+        <a href="/guides/root-canals/" role="menuitem">Root canals</a>
+        <a href="/guides/dentures/" role="menuitem">Dentures</a>
+        <a href="/guides/braces-invisalign/" role="menuitem">Braces and Invisalign</a>
+        <a href="/guides/whitening/" role="menuitem">Whitening</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddSitWrap">
+      <button class="toc-dd-btn" id="ddSitBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddSit">By Situation <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddSit" role="menu" aria-label="By situation">
+        <a href="/compare-ppo-dental-plans#situation" role="menuitem">Match plans by life event</a>
+        <div class="dd-lbl">Life situations</div>
+        <a href="/guides/immediate-coverage/" role="menuitem">Lost my benefits</a>
+        <a href="/guides/no-waiting-period/" role="menuitem">Need coverage now</a>
+        <a href="/guides/between-jobs/" role="menuitem">Between jobs</a>
+        <a href="/guides/self-employed/" role="menuitem">Self-employed</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddGlossWrap">
+      <button class="toc-dd-btn" id="ddGlossBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddGloss">Insurance Terms <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddGloss" role="menu" aria-label="PPO glossary terms">
+        <div class="dd-lbl">Key terms</div>
+        <a href="/guides/glossary/annual-maximum/" role="menuitem">Annual maximum</a>
+        <a href="/guides/glossary/waiting-period/" role="menuitem">Waiting period</a>
+        <a href="/guides/glossary/deductible/" role="menuitem">Deductible</a>
+        <a href="/guides/glossary/coinsurance/" role="menuitem">Coinsurance</a>
+        <a href="/guides/glossary/in-network/" role="menuitem">In-network</a>
+        <a href="/guides/glossary/coverage-major/" role="menuitem">Major services</a>
+        <a href="/guides/glossary/missing-tooth/" role="menuitem">Missing tooth clause</a>
+        <a href="/guides/glossary/out-of-pocket/" role="menuitem">Out of pocket</a>
+        <a href="/guides/glossary/effective-date/" role="menuitem">Effective date</a>
+        <a href="/guides/glossary/balance-billing/" role="menuitem">Balance billing</a>
+        <a class="dd-all" href="/guides/glossary/" role="menuitem">All terms, A to Z</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UNIFIED BREADCRUMB -- replace page-specific nav -->
+<div class="crumb">
+  <div class="wrap">
+    <a href="/">Home</a> / <a href="/benefit-maxing/">Benefit Maxing</a> / <span>Root Canals</span>
+  </div>
+</div>
 
 <nav class="cc-journey" aria-label="Your dental benefit path">
   <div class="cc-journey-inner">
@@ -193,13 +424,6 @@ body{margin:0;background:var(--paper);color:var(--body);font-family:var(--ff-san
 
 <main id="cr-main">
   <header class="cr-wrap">
-    <nav class="cr-crumbs" aria-label="Breadcrumb">
-      <a href="/">CoverCapy</a>
-      <span class="sep" aria-hidden="true">/</span>
-      <a href="/benefit-maxing/">Benefit Maxing</a>
-      <span class="sep" aria-hidden="true">/</span>
-      <span aria-current="page">Root Canals</span>
-    </nav>
     <span class="cr-eyebrow" style="margin-top:18px;">Inside your benefits</span>
     <h1 class="cr-h1" id="cr-h1">A root canal is often urgent. <em>Here is how your plan can pay its share fast.</em></h1>
     <p class="cr-lead">A root canal usually means infection or pain, so it rarely waits. The catch is that coverage swings widely by plan: some pay about 80 percent from day one, some pay about half after a wait, and a few pay nothing at all. This guide shows the typical cost, what your plan may pay, and which door on the hub fits your situation.</p>
@@ -337,6 +561,89 @@ body{margin:0;background:var(--paper);color:var(--body);font-family:var(--ff-san
 
 <div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
 
+<script>
+/* BM CHROME: sub-nav dropdowns + progress bar + Gold/Jade theme toggle
+   Idempotent: guarded by window.__bmTocInit */
+(function(){
+  if(window.__bmTocInit)return;
+  window.__bmTocInit=true;
+
+  /* ---- progress bar ---- */
+  var prog=document.getElementById('tocProg');
+  if(prog){
+    window.addEventListener('scroll',function(){
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      prog.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    },{passive:true});
+  }
+
+  /* ---- TOC dropdowns ---- */
+  var dds=[].slice.call(document.querySelectorAll('.toc-dd'));
+  if(dds.length){
+    function closeAll(except){
+      dds.forEach(function(d){
+        if(d!==except){
+          var b=d.querySelector('.toc-dd-btn'),p=d.querySelector('.toc-dd-panel');
+          if(b)b.setAttribute('aria-expanded','false');
+          if(p)p.removeAttribute('data-open');
+        }
+      });
+    }
+    var T=null;
+    dds.forEach(function(d){
+      var btn=d.querySelector('.toc-dd-btn'),panel=d.querySelector('.toc-dd-panel');
+      if(!btn||!panel)return;
+      function openDD(){clearTimeout(T);closeAll(d);btn.setAttribute('aria-expanded','true');panel.setAttribute('data-open','');}
+      function closeDD(){btn.setAttribute('aria-expanded','false');panel.removeAttribute('data-open');}
+      btn.addEventListener('click',function(e){e.stopPropagation();btn.getAttribute('aria-expanded')==='true'?closeDD():openDD();});
+      if(matchMedia('(hover:hover)').matches){
+        d.addEventListener('mouseenter',function(){clearTimeout(T);openDD();});
+        d.addEventListener('mouseleave',function(){clearTimeout(T);T=setTimeout(closeDD,450);});
+      }
+    });
+    document.addEventListener('click',function(e){if(!e.target.closest('.toc-dd'))closeAll(null);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});
+
+    /* Delta fly-out (inside Plans dropdown) */
+    var fly=document.getElementById('ddDeltaFly');
+    if(fly){
+      var fb=fly.querySelector('.dd-fly-btn'),fp=fly.querySelector('.dd-fly-panel'),FT=null;
+      function fclose(){fb.setAttribute('aria-expanded','false');fp.removeAttribute('data-open');}
+      function fopen(){clearTimeout(FT);fb.setAttribute('aria-expanded','true');fp.setAttribute('data-open','');}
+      fb.addEventListener('click',function(e){e.stopPropagation();fb.getAttribute('aria-expanded')==='true'?fclose():fopen();});
+      if(matchMedia('(hover:hover)').matches){
+        fly.addEventListener('mouseenter',function(){clearTimeout(FT);fopen();});
+        fly.addEventListener('mouseleave',function(){clearTimeout(FT);FT=setTimeout(fclose,450);});
+      }
+    }
+  }
+
+  /* ---- Gold/Jade theme toggle ---- */
+  var ccHtml=document.documentElement,ccTs=document.getElementById('cc-ts');
+  function applyTheme(t,slow){
+    var dur=slow?'1.4s':'0.45s';
+    var st=document.getElementById('cc-bm-theme-transition');
+    if(!st){st=document.createElement('style');st.id='cc-bm-theme-transition';document.head.appendChild(st);}
+    st.textContent='html,html *{transition:background '+dur+' ease,color '+dur+' ease,border-color '+dur+' ease,box-shadow '+dur+' ease !important}';
+    ccHtml.setAttribute('data-theme',t);
+    if(ccTs){ccTs.setAttribute('data-active',t);ccTs.setAttribute('aria-checked',t==='jade'?'true':'false');}
+    setTimeout(function(){if(st)st.textContent='';},slow?1600:600);
+  }
+  if(ccTs){
+    ccTs.setAttribute('data-active','gold');
+    ccTs.setAttribute('aria-checked','false');
+    ccTs.addEventListener('click',function(){
+      applyTheme(ccHtml.getAttribute('data-theme')==='gold'?'jade':'gold',false);
+    });
+    ccTs.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();ccTs.click();}
+    });
+    window.addEventListener('load',function(){
+      setTimeout(function(){applyTheme('jade',true);},1000);
+    });
+  }
+})();
+</script>
 <script>
 (function(){
   var components = [

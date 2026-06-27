@@ -15,7 +15,7 @@
   --gold:#C9A24B; --gold-deep:#8A6A23; --gold-soft:#F6ECD2;
   --ink:#14242A; --ink-mid:#49666C; --ink-soft:#6B7D82; --ink-faint:#90A0A4;
   --line:#E8E2D6; --line-soft:#EFEAE0;
-  --ff-serif:'Fraunces',Georgia,serif; --ff-sans:'Inter Tight',system-ui,sans-serif;
+  --ff-serif:'Fraunces',Georgia,serif; --ff-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
   --nav-h:84px; --subnav-h:0px;
   --r-sm:9px; --r-md:13px; --r-lg:18px; --r-pill:999px;
@@ -39,6 +39,11 @@ a{color:inherit}
 .cc-row{height:84px;max-width:none;margin:0;padding:0 34px;display:flex;align-items:center;gap:18px;
   transition:height .26s var(--ease)}
 .cc-nav.is-condensed .cc-row{height:62px}
+/* scroll-progress bar — fills as you move down the page (driven by --cc-scroll) */
+.cc-scrollbar{position:absolute;left:0;bottom:0;height:2.5px;width:var(--cc-scroll,0%);max-width:100%;
+  background:linear-gradient(90deg,var(--emerald-deep),var(--emerald));border-radius:0 3px 3px 0;
+  z-index:3;pointer-events:none;transition:width .08s linear}
+@media (prefers-reduced-motion:reduce){.cc-scrollbar{transition:none}}
 
 /* logo */
 .cc-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
@@ -59,7 +64,7 @@ a{color:inherit}
 .cc-links{--cc-ease:cubic-bezier(.16,1,.3,1)}
 .cc-top{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border-radius:0;
   font-family:var(--ff-sans);font-size:15px;font-weight:500;letter-spacing:-.004em;color:var(--ink);text-decoration:none;
-  background:transparent;border:none;cursor:pointer;position:relative;outline:none;transition:color .35s var(--cc-ease)}
+  background:transparent;border:none;cursor:pointer;position:relative;outline:none;white-space:nowrap;transition:color .35s var(--cc-ease)}
 .cc-top:hover,.cc-top:focus-visible{color:var(--emerald-deep)}
 .cc-top .cc-caret{font-size:10px;color:var(--gold-deep);transition:transform .45s var(--cc-ease),color .3s}
 /* Concierge Hairline: gold underline draws in from the cursor's entry side, no pill */
@@ -169,6 +174,10 @@ html:not(.js) .cc-item:hover .mega-col,html:not(.js) .cc-item:focus-within .mega
 .mega-cols{display:grid;gap:30px}
 .mc-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .mc-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* Benefit Maxing: narrow strategy rail + treatments grouped Basic / Major / Ortho */
+#panel-bm .bm-cols{grid-template-columns:clamp(158px,13vw,188px) minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);gap:clamp(16px,1.6vw,28px)}
+#panel-bm .bm-major .mega-gt{text-align:center}
+.bm-major-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(3,auto);grid-template-columns:1fr 1fr;gap:0 18px}
 @media (max-width:1440px){.mc-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .mega-col{opacity:0;transform:translateY(10px);transition:opacity .36s ease,transform .42s var(--ease)}
 .cc-item.is-open .mega-col{opacity:1;transform:none}
@@ -722,7 +731,7 @@ footer.demo{background:var(--emerald-deep);color:rgba(255,253,249,.7);padding:50
               <h3 class="mega-title">Use the benefits you <em>already</em> pay for.</h3>
               <p class="mega-sub">Your plan resets every year and unused benefits don't carry over. We'll show you how to time care and check what's left.</p>
             </div>
-            <div class="mega-cols mc-2">
+            <div class="mega-cols bm-cols">
               <div class="mega-col">
                 <p class="mega-gt">Strategy</p>
                 <a class="mega-link" href="/benefit-maxing/"><span class="ic">◎</span><span class="tx"><span class="t">Maximize your benefits</span></span></a>
@@ -731,17 +740,26 @@ footer.demo{background:var(--emerald-deep);color:rgba(255,253,249,.7);padding:50
                 <a class="mega-link" href="/dental-financing-monthly-payments.html"><span class="ic">0%</span><span class="tx"><span class="t">Financing &amp; payments</span><span class="s">Split major treatment monthly</span></span></a>
               </div>
               <div class="mega-col">
-                <p class="mega-gt">By treatment</p>
-                <a class="mega-link" href="/benefit-maxing/guides/crowns/"><span class="ic">👑</span><span class="tx"><span class="t">Crowns</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/root-canals/"><span class="ic">🌱</span><span class="tx"><span class="t">Root canals</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/implants/"><span class="ic">🔩</span><span class="tx"><span class="t">Implants</span></span></a>
+                <p class="mega-gt">Basic</p>
+                <a class="mega-link" href="/benefit-maxing/guides/cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Cleaning</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Simple extractions</span></span></a>
+              </div>
+              <div class="mega-col bm-major">
+                <p class="mega-gt">Major</p>
+                <div class="bm-major-grid">
+                  <a class="mega-link" href="/benefit-maxing/guides/crowns/"><span class="ic">👑</span><span class="tx"><span class="t">Crowns</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/root-canals/"><span class="ic">🌱</span><span class="tx"><span class="t">Root canals</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/implants/"><span class="ic">🔩</span><span class="tx"><span class="t">Implants</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/bridges/"><span class="ic">🌉</span><span class="tx"><span class="t">Bridges</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/dentures/"><span class="ic">🦷</span><span class="tx"><span class="t">Dentures</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/deep-cleaning/"><span class="ic">🧼</span><span class="tx"><span class="t">Deep cleaning</span></span></a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Ortho &amp; cosmetic</p>
                 <a class="mega-link" href="/benefit-maxing/guides/braces-invisalign/"><span class="ic">😬</span><span class="tx"><span class="t">Braces &amp; Invisalign</span></span></a>
                 <a class="mega-link" href="/benefit-maxing/guides/whitening/"><span class="ic">✨</span><span class="tx"><span class="t">Whitening</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/dentures/"><span class="ic">🦷</span><span class="tx"><span class="t">Dentures</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/bridges/"><span class="ic">🌉</span><span class="tx"><span class="t">Bridges</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/deep-cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Deep cleaning</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Extractions</span></span></a>
                 <a class="mega-viewall" href="/benefit-maxing/guides/">All treatment guides</a>
               </div>
             </div>
@@ -889,6 +907,7 @@ footer.demo{background:var(--emerald-deep);color:rgba(255,253,249,.7);padding:50
 
     <button class="cc-burger" id="ccBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
+  <span class="cc-scrollbar" aria-hidden="true"></span>
 </header>
 
 <div class="cc-backdrop" id="ccBackdrop"></div>
@@ -1087,6 +1106,9 @@ footer.demo{background:var(--emerald-deep);color:rgba(255,253,249,.7);padding:50
     var y = window.scrollY;
     if (y === lastY) return; lastY = y;
     nav.classList.toggle('is-condensed', y > 40);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)) : 0;
+    root.style.setProperty('--cc-scroll', pct.toFixed(2) + '%');
     if (subnav){
       var top = subnav.getBoundingClientRect().top;
       subnav.classList.toggle('is-stuck', Math.abs(top - nav.offsetHeight) < 2);

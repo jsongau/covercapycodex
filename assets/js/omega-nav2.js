@@ -1,4 +1,4 @@
-/* CoverCapy omega-nav2 behavior — generated from nav-prototype-v3.html */
+/* CoverCapy omega-nav2 — behavior. Generated from nav-prototype-v3.html. */
 (function(){
   'use strict';
   var DESKTOP = function(){ return window.matchMedia('(min-width:1081px)').matches; };
@@ -30,6 +30,9 @@
     var y = window.scrollY;
     if (y === lastY) return; lastY = y;
     nav.classList.toggle('is-condensed', y > 40);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)) : 0;
+    root.style.setProperty('--cc-scroll', pct.toFixed(2) + '%');
     if (subnav){
       var top = subnav.getBoundingClientRect().top;
       subnav.classList.toggle('is-stuck', Math.abs(top - nav.offsetHeight) < 2);

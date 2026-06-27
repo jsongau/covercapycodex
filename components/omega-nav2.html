@@ -1,6 +1,5 @@
 <!-- CoverCapy omega-nav2 — universal nav component (inject into #cc-nav-mount).
-     Styles: /assets/css/omega-nav2.css + -mobile.css | Behavior: /assets/js/omega-nav2.js
-     Generated from nav-prototype-v3.html. -->
+     Styles: /assets/css/omega-nav2.css + -mobile.css | Behavior: /assets/js/omega-nav2.js -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -173,7 +172,7 @@
               <h3 class="mega-title">Use the benefits you <em>already</em> pay for.</h3>
               <p class="mega-sub">Your plan resets every year and unused benefits don't carry over. We'll show you how to time care and check what's left.</p>
             </div>
-            <div class="mega-cols mc-2">
+            <div class="mega-cols bm-cols">
               <div class="mega-col">
                 <p class="mega-gt">Strategy</p>
                 <a class="mega-link" href="/benefit-maxing/"><span class="ic">◎</span><span class="tx"><span class="t">Maximize your benefits</span></span></a>
@@ -182,17 +181,26 @@
                 <a class="mega-link" href="/dental-financing-monthly-payments.html"><span class="ic">0%</span><span class="tx"><span class="t">Financing &amp; payments</span><span class="s">Split major treatment monthly</span></span></a>
               </div>
               <div class="mega-col">
-                <p class="mega-gt">By treatment</p>
-                <a class="mega-link" href="/benefit-maxing/guides/crowns/"><span class="ic">👑</span><span class="tx"><span class="t">Crowns</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/root-canals/"><span class="ic">🌱</span><span class="tx"><span class="t">Root canals</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/implants/"><span class="ic">🔩</span><span class="tx"><span class="t">Implants</span></span></a>
+                <p class="mega-gt">Basic</p>
+                <a class="mega-link" href="/benefit-maxing/guides/cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Cleaning</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Simple extractions</span></span></a>
+              </div>
+              <div class="mega-col bm-major">
+                <p class="mega-gt">Major</p>
+                <div class="bm-major-grid">
+                  <a class="mega-link" href="/benefit-maxing/guides/crowns/"><span class="ic">👑</span><span class="tx"><span class="t">Crowns</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/root-canals/"><span class="ic">🌱</span><span class="tx"><span class="t">Root canals</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/implants/"><span class="ic">🔩</span><span class="tx"><span class="t">Implants</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/bridges/"><span class="ic">🌉</span><span class="tx"><span class="t">Bridges</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/dentures/"><span class="ic">🦷</span><span class="tx"><span class="t">Dentures</span></span></a>
+                  <a class="mega-link" href="/benefit-maxing/guides/deep-cleaning/"><span class="ic">🧼</span><span class="tx"><span class="t">Deep cleaning</span></span></a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Ortho &amp; cosmetic</p>
                 <a class="mega-link" href="/benefit-maxing/guides/braces-invisalign/"><span class="ic">😬</span><span class="tx"><span class="t">Braces &amp; Invisalign</span></span></a>
                 <a class="mega-link" href="/benefit-maxing/guides/whitening/"><span class="ic">✨</span><span class="tx"><span class="t">Whitening</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/dentures/"><span class="ic">🦷</span><span class="tx"><span class="t">Dentures</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/bridges/"><span class="ic">🌉</span><span class="tx"><span class="t">Bridges</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/deep-cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Deep cleaning</span></span></a>
-                <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Extractions</span></span></a>
                 <a class="mega-viewall" href="/benefit-maxing/guides/">All treatment guides</a>
               </div>
             </div>
@@ -340,6 +348,7 @@
 
     <button class="cc-burger" id="ccBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
+  <span class="cc-scrollbar" aria-hidden="true"></span>
 </header>
 
 <div class="cc-backdrop" id="ccBackdrop"></div>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- =========================================================
+     REQUEST A DENTIST  |  CoverCapy
+     Standalone concierge form page. Inline scoped CSS + JS.
+     Posts to https://covercapy.com/api/request-a-dentist (Phase B).
+     Degrades gracefully if the endpoint is not live.
+     NEVER collects or stores member IDs.
+     ========================================================= -->
+
+<title>Request a Dentist: Concierge PPO Dentist Help | CoverCapy</title>
+<meta name="description" content="Ask CoverCapy to add or verify your dentist, or find an in-network PPO dentist in your area. Tell us your city and carrier and our concierge handles the rest. Free.">
+<meta name="keywords" content="request a dentist, add my dentist, find a PPO dentist in my area, is my dentist in network, verify my dentist accepts my PPO, concierge dentist request, in-network PPO dentist">
+<link rel="canonical" href="https://www.covercapy.com/request-a-dentist">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Request a Dentist: Concierge PPO Dentist Help | CoverCapy">
+<meta property="og:description" content="Ask CoverCapy to add or verify your dentist, or find an in-network PPO dentist in your area. Free concierge help.">
+<meta property="og:url" content="https://www.covercapy.com/request-a-dentist">
+
+<!-- CoverCapy Google Analytics / Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNBPGSZ1LZ');
+</script>
+
+<!-- CoverCapy Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8699915070570206" crossorigin="anonymous"></script>
+
+<!-- Sitewide CoverCapy shell presets: load before this page's CSS so nav/footer palette wins globally -->
+<link rel="stylesheet" href="/mega-nav.css">
+<link rel="stylesheet" href="/footer.css">
+
+<!-- Fonts: editorial serif + clean modern sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ====================== STRUCTURED DATA ====================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CoverCapy",
+  "url": "https://www.covercapy.com",
+  "description": "CoverCapy is a luxury concierge service for PPO dental coverage, helping patients verify coverage and find in-network dentists.",
+  "sameAs": ["https://www.covercapy.com"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Request a Dentist",
+  "url": "https://www.covercapy.com/request-a-dentist",
+  "description": "Ask CoverCapy to add or verify your dentist, or find an in-network PPO dentist in your area."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Request a Dentist",
+  "url": "https://www.covercapy.com/request-a-dentist",
+  "about": "Concierge requests to add, verify, or find an in-network PPO dentist.",
+  "publisher": { "@type": "Organization", "name": "CoverCapy", "url": "https://www.covercapy.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.covercapy.com" },
+    { "@type": "ListItem", "position": 2, "name": "Request a Dentist", "item": "https://www.covercapy.com/request-a-dentist" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I request a dentist on CoverCapy?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fill out the Request a Dentist form with your name, email, and city or ZIP. Add the practice name if you have one, and your PPO carrier if you know it. CoverCapy's concierge then verifies coverage or finds in-network options and replies to you, free of charge." } },
+    { "@type": "Question", "name": "Can CoverCapy add my current dentist?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter your dentist's practice name and city and CoverCapy will check whether the office is in network or can join CoverCapy, then confirm what your PPO plan covers there. There is no cost to ask." } },
+    { "@type": "Question", "name": "Do I have to give my insurance member ID?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The Request a Dentist form never asks for your member ID, group number, or Social Security number. You only share your name, contact details, location, and optionally a carrier name, so CoverCapy can route your request." } },
+    { "@type": "Question", "name": "Is requesting a dentist free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Submitting a request and getting concierge help to find or verify a PPO dentist is free. CoverCapy makes money through optional membership plans and accredited practices, not by charging patients to ask for help." } },
+    { "@type": "Question", "name": "How fast will CoverCapy respond?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CoverCapy aims to reply by email within one business day. If you add a phone number, the concierge may call with options. Response time can vary with carrier confirmations and office availability in your area." } },
+    { "@type": "Question", "name": "What if I do not have insurance yet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Choose I do not have insurance yet as your carrier and CoverCapy can show PPO dental plans that start fast, then help you find an in-network dentist. You can compare plans first on the Compare PPO Dental Plans page." } }
+  ]
+}
+</script>
+
+<style>
+/* All CSS scoped to .request-dentist-page so it cannot restyle the sitewide nav/footer. */
+.request-dentist-page{
+  --teal-night:#082A30; --teal-700:#14525B; --teal-300:#5E8C92; --mint:#5BE0A0; --mint-soft:#E6F7EE;
+  --cream:#F6F0E6; --cream-card:#FFFDF8; --ink:#082A30; --ink-soft:#56655F; --ink-faint:#8A958F;
+  --body:#3A4A42; --line:#E8E2D8; --gold-soft:#F3E8CF;
+  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --font-body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --maxw:980px; --r-lg:18px; --r-md:14px; --r-sm:10px;
+  font-family:var(--font-body); color:var(--ink); background:var(--cream); line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.request-dentist-page, .request-dentist-page *{box-sizing:border-box}
+.request-dentist-page .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+.request-dentist-page a{color:inherit}
+.request-dentist-page h1,.request-dentist-page h2,.request-dentist-page h3{
+  font-family:var(--font-display); font-weight:500; line-height:1.1; color:var(--ink); margin:0; text-wrap:balance}
+.request-dentist-page h1{font-size:clamp(2.3rem,5.4vw,3.5rem); letter-spacing:-.01em}
+.request-dentist-page h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.request-dentist-page p,.request-dentist-page li{text-wrap:pretty}
+.request-dentist-page .eyebrow{font-family:var(--font-body); font-weight:700; font-size:.72rem;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--teal-700)}
+.request-dentist-page .lead{font-size:clamp(1.05rem,1.5vw,1.2rem); color:var(--ink-soft); max-width:60ch}
+
+/* hero */
+.request-dentist-page .rd-hero{padding:60px 0 22px}
+.request-dentist-page .rd-hero h1{margin:14px 0 16px}
+.request-dentist-page .rd-cta{display:inline-flex; align-items:center; gap:.5em; margin-top:24px;
+  font-weight:700; font-size:1rem; padding:14px 26px; border-radius:100px; text-decoration:none;
+  background:var(--teal-night); color:var(--mint); transition:transform .18s ease, box-shadow .18s ease}
+.request-dentist-page .rd-cta:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(8,42,48,.22)}
+
+/* tldr */
+.request-dentist-page .rd-tldr{margin:24px 0 0; padding:18px 22px; background:var(--cream-card);
+  border:1px solid var(--line); border-left:4px solid var(--mint); border-radius:var(--r-md); max-width:72ch}
+.request-dentist-page .rd-tldr b{color:var(--teal-700)}
+
+/* two ways */
+.request-dentist-page section{padding:46px 0}
+.request-dentist-page .rd-ways{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+.request-dentist-page .rd-way{background:var(--cream-card); border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:26px}
+.request-dentist-page .rd-way h3{font-size:1.25rem; margin-bottom:8px}
+.request-dentist-page .rd-way p{margin:0; color:var(--ink-soft); font-size:.96rem}
+
+/* form */
+.request-dentist-page .rd-formwrap{background:var(--cream-card); border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:34px; box-shadow:0 18px 50px rgba(8,42,48,.07)}
+.request-dentist-page .rd-form{display:grid; grid-template-columns:1fr 1fr; gap:18px 20px}
+.request-dentist-page .rd-field{display:flex; flex-direction:column; gap:7px}
+.request-dentist-page .rd-field.full{grid-column:1 / -1}
+.request-dentist-page .rd-field label{font-weight:700; font-size:.86rem; color:var(--ink)}
+.request-dentist-page .rd-field label .opt{font-weight:500; color:var(--ink-faint); font-size:.8rem}
+.request-dentist-page .rd-field input,
+.request-dentist-page .rd-field select,
+.request-dentist-page .rd-field textarea{
+  font-family:var(--font-body); font-size:1rem; color:var(--ink); padding:13px 15px;
+  background:#fff; border:1px solid var(--line); border-radius:var(--r-sm); transition:border-color .15s, box-shadow .15s}
+.request-dentist-page .rd-field textarea{min-height:108px; resize:vertical}
+.request-dentist-page .rd-field input:focus,
+.request-dentist-page .rd-field select:focus,
+.request-dentist-page .rd-field textarea:focus{outline:none; border-color:var(--teal-300);
+  box-shadow:0 0 0 3px var(--mint-soft)}
+.request-dentist-page .rd-consent{grid-column:1 / -1; display:flex; gap:12px; align-items:flex-start;
+  padding:16px 18px; background:var(--cream); border:1px solid var(--line); border-radius:var(--r-sm)}
+.request-dentist-page .rd-consent input{margin-top:3px; width:18px; height:18px; flex:0 0 auto; accent-color:var(--teal-700)}
+.request-dentist-page .rd-consent label{font-size:.88rem; color:var(--ink-soft); font-weight:500}
+.request-dentist-page .rd-consent a{color:var(--teal-700); font-weight:600}
+.request-dentist-page .rd-submit{grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-top:4px}
+.request-dentist-page .rd-submit button{font-family:var(--font-body); font-weight:700; font-size:1rem;
+  padding:15px 30px; border:none; border-radius:100px; cursor:pointer; background:var(--teal-night);
+  color:var(--mint); transition:transform .18s ease, box-shadow .18s ease}
+.request-dentist-page .rd-submit button:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(8,42,48,.22)}
+.request-dentist-page .rd-submit button[disabled]{opacity:.6; cursor:default; transform:none; box-shadow:none}
+.request-dentist-page .rd-micro{font-size:.84rem; color:var(--ink-faint); max-width:42ch}
+
+/* result panels */
+.request-dentist-page .rd-result{grid-column:1 / -1; display:none; padding:22px 24px; border-radius:var(--r-md);
+  font-size:.96rem}
+.request-dentist-page .rd-result.show{display:block}
+.request-dentist-page .rd-result.ok{background:var(--mint-soft); border:1px solid var(--mint); color:var(--teal-night)}
+.request-dentist-page .rd-result.warn{background:var(--gold-soft); border:1px solid #E4CF9C; color:var(--teal-night)}
+.request-dentist-page .rd-result h3{margin:0 0 6px; font-size:1.25rem}
+.request-dentist-page .rd-result p{margin:0; color:var(--ink-soft)}
+.request-dentist-page .rd-result a{color:var(--teal-700); font-weight:600}
+.request-dentist-page .rd-result em{font-style:italic; color:var(--ink)}
+
+/* reassurance */
+.request-dentist-page .rd-trust{display:flex; flex-wrap:wrap; gap:14px; margin-top:10px}
+.request-dentist-page .rd-trust span{display:inline-flex; align-items:center; gap:9px; font-weight:600;
+  font-size:.9rem; color:var(--ink-soft); padding:11px 18px; background:var(--cream-card);
+  border:1px solid var(--line); border-radius:100px}
+.request-dentist-page .rd-trust .dot{width:8px; height:8px; border-radius:50%; background:var(--mint)}
+
+/* faq */
+.request-dentist-page .rd-faq{display:grid; gap:12px; max-width:820px}
+.request-dentist-page details.rd-q{background:var(--cream-card); border:1px solid var(--line);
+  border-radius:var(--r-md); padding:4px 22px}
+.request-dentist-page details.rd-q summary{list-style:none; cursor:pointer; padding:18px 0;
+  font-family:var(--font-display); font-size:1.08rem; font-weight:500; display:flex;
+  justify-content:space-between; align-items:center; gap:18px}
+.request-dentist-page details.rd-q summary::-webkit-details-marker{display:none}
+.request-dentist-page details.rd-q summary .ic{flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+  border:1px solid var(--line); display:grid; place-items:center; transition:.25s; color:var(--teal-700)}
+.request-dentist-page details.rd-q[open] summary .ic{transform:rotate(45deg); background:var(--teal-night);
+  color:var(--mint); border-color:transparent}
+.request-dentist-page details.rd-q .ans{padding:0 0 20px; color:var(--ink-soft); font-size:.96rem}
+
+/* internal links */
+.request-dentist-page .rd-xlinks{list-style:none; padding:0; margin:14px 0 0; display:flex; flex-wrap:wrap; gap:12px}
+.request-dentist-page .rd-xlinks a{display:inline-block; padding:12px 18px; background:var(--cream-card);
+  border:1px solid var(--line); border-radius:100px; text-decoration:none; color:var(--teal-700); font-weight:600}
+.request-dentist-page .rd-xlinks a:hover{color:var(--teal-night)}
+
+/* disclaimer */
+.request-dentist-page .rd-legal{padding:30px 0 64px}
+.request-dentist-page .rd-legal p{font-size:.8rem; color:var(--ink-faint); max-width:none; margin:0}
+
+@media (max-width:720px){
+  .request-dentist-page .rd-ways{grid-template-columns:1fr}
+  .request-dentist-page .rd-form{grid-template-columns:1fr}
+  .request-dentist-page .rd-formwrap{padding:24px}
+}
+</style>
+</head>
+
+<body class="request-dentist-shell">
+<!-- Sitewide mega nav mount. /mega-nav.css and /footer.css are already loaded in <head>. -->
+<div id="covercapy-mega-nav" data-include="/mega-nav.html"></div>
+
+<div id="request-dentist-page" class="request-dentist-page">
+<main>
+
+  <!-- HERO -->
+  <section class="rd-hero" id="top">
+    <div class="wrap">
+      <span class="eyebrow">CoverCapy &middot; Concierge</span>
+      <h1>Request a dentist</h1>
+      <p class="lead">Tell us the office you love, or the city you are in. Our concierge confirms your PPO coverage and brings you the best in-network options. Get cover today, see a dentist tomorrow.</p>
+      <a class="rd-cta" href="#request-form">Start my request</a>
+      <div class="rd-tldr">
+        <p><b>Quick answer:</b> Ask CoverCapy to add or verify a specific dentist, or to find an in-network PPO dentist near you. Share your name, email, and city or ZIP. We never ask for your member ID.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO WAYS -->
+  <section>
+    <div class="wrap">
+      <div class="rd-ways">
+        <div class="rd-way">
+          <h3>Add or verify my dentist</h3>
+          <p>You already have an office you trust. Give us the name and city and we confirm whether it is in network, or can join CoverCapy, then tell you what your plan covers there.</p>
+        </div>
+        <div class="rd-way">
+          <h3>Find me a dentist</h3>
+          <p>You want a fresh option. Give us your city and carrier and the concierge returns vetted in-network PPO dentists near you, with coverage already checked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="request-form">
+    <div class="wrap">
+      <h2>Send your request</h2>
+      <p class="lead" style="margin:10px 0 24px;">A real concierge reads every request. Required fields are marked. Everything else helps us help you faster.</p>
+      <div class="rd-formwrap">
+        <form class="rd-form" id="rdForm" novalidate>
+          <div class="rd-field">
+            <label for="rd-name">Full name</label>
+            <input id="rd-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="rd-field">
+            <label for="rd-email">Email</label>
+            <input id="rd-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="rd-field">
+            <label for="rd-phone">Phone <span class="opt">(optional)</span></label>
+            <input id="rd-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="rd-field">
+            <label for="rd-location">City or ZIP</label>
+            <input id="rd-location" name="location" type="text" autocomplete="postal-code" required>
+          </div>
+          <div class="rd-field full">
+            <label for="rd-dentist">Dentist or practice name <span class="opt">(optional)</span></label>
+            <input id="rd-dentist" name="dentist_name" type="text" placeholder="The office you would like added or verified">
+          </div>
+          <div class="rd-field full">
+            <label for="rd-carrier">PPO carrier <span class="opt">(optional)</span></label>
+            <select id="rd-carrier" name="ppo_carrier">
+              <option value="">Select your carrier, or skip</option>
+              <option>Delta Dental PPO</option>
+              <option>Delta Dental Premier</option>
+              <option>Cigna</option>
+              <option>Aetna</option>
+              <option>MetLife</option>
+              <option>Guardian</option>
+              <option>United Concordia</option>
+              <option>Anthem Blue Cross</option>
+              <option>Blue Cross Blue Shield</option>
+              <option>Humana</option>
+              <option>United Healthcare</option>
+              <option>Principal</option>
+              <option>Other or not sure</option>
+              <option>I do not have insurance yet</option>
+            </select>
+          </div>
+          <div class="rd-field full">
+            <label for="rd-message">Message <span class="opt">(optional)</span></label>
+            <textarea id="rd-message" name="message" placeholder="Anything we should know, like preferred days, treatments needed, or your timeline."></textarea>
+          </div>
+
+          <div class="rd-consent">
+            <input id="rd-consent" name="consent" type="checkbox" required>
+            <label for="rd-consent">I agree CoverCapy may contact me about this request. We never ask for your member ID. See the <a href="/privacy">Privacy Policy</a>.</label>
+          </div>
+
+          <div class="rd-result ok" id="rdOk" role="status" aria-live="polite"></div>
+          <div class="rd-result warn" id="rdWarn" role="status" aria-live="polite"></div>
+
+          <div class="rd-submit">
+            <button type="submit" id="rdSubmit">Send my request</button>
+            <span class="rd-micro">Free. No member ID needed. We reply by email, usually within one business day.</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="rd-trust">
+        <span><i class="dot"></i> We never store your member ID</span>
+        <span><i class="dot"></i> No cost to ask</span>
+        <span><i class="dot"></i> A real concierge, not a bot directory</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <h2>Questions, answered</h2>
+      <div class="rd-faq" style="margin-top:24px;">
+        <details class="rd-q"><summary>How do I request a dentist on CoverCapy?<span class="ic">+</span></summary><div class="ans">Fill out the Request a Dentist form with your name, email, and city or ZIP. Add the practice name if you have one, and your PPO carrier if you know it. CoverCapy's concierge then verifies coverage or finds in-network options and replies to you, free of charge.</div></details>
+        <details class="rd-q"><summary>Can CoverCapy add my current dentist?<span class="ic">+</span></summary><div class="ans">Yes. Enter your dentist's practice name and city and CoverCapy will check whether the office is in network or can join CoverCapy, then confirm what your PPO plan covers there. There is no cost to ask.</div></details>
+        <details class="rd-q"><summary>Do I have to give my insurance member ID?<span class="ic">+</span></summary><div class="ans">No. The Request a Dentist form never asks for your member ID, group number, or Social Security number. You only share your name, contact details, location, and optionally a carrier name, so CoverCapy can route your request.</div></details>
+        <details class="rd-q"><summary>Is requesting a dentist free?<span class="ic">+</span></summary><div class="ans">Yes. Submitting a request and getting concierge help to find or verify a PPO dentist is free. CoverCapy makes money through optional membership plans and accredited practices, not by charging patients to ask for help.</div></details>
+        <details class="rd-q"><summary>How fast will CoverCapy respond?<span class="ic">+</span></summary><div class="ans">CoverCapy aims to reply by email within one business day. If you add a phone number, the concierge may call with options. Response time can vary with carrier confirmations and office availability in your area.</div></details>
+        <details class="rd-q"><summary>What if I do not have insurance yet?<span class="ic">+</span></summary><div class="ans">Choose "I do not have insurance yet" as your carrier and CoverCapy can show PPO dental plans that start fast, then help you find an in-network dentist. You can compare plans first on the Compare PPO Dental Plans page.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERNAL LINKS -->
+  <section>
+    <div class="wrap">
+      <h2>Prefer to look yourself?</h2>
+      <ul class="rd-xlinks">
+        <li><a href="/find-my-dentist.html">Find my dentist by zip</a></li>
+        <li><a href="/compare-ppo-dental-plans">Compare PPO dental plans</a></li>
+        <li><a href="/featured-markets">Browse featured markets</a></li>
+        <li><a href="/dentist-portal.html">Are you a dentist? Add your practice</a></li>
+        <li><a href="/capy-accredited-dentists.html">See Capy Accredited dentists</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="rd-legal">
+    <div class="wrap">
+      <p><b>Disclaimer:</b> CoverCapy is a concierge service for PPO dental coverage and is not your dental office or a government program. Submitting a request does not create coverage or guarantee an appointment. CoverCapy never asks for or stores your insurance member ID, group number, or Social Security number.</p>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- Sitewide footer mount. Kept outside page scope so footer presets cannot be overwritten by this page. -->
+<div id="covercapy-footer" data-include="/footer.html"></div>
+
+<!-- ============================ SITEWIDE SHELL LOADER ============================ -->
+<script>
+(function(){
+  const includes = [
+    { mount: 'covercapy-mega-nav', html: '/mega-nav.html', script: '/mega-nav.js' },
+    { mount: 'covercapy-footer', html: '/footer.html', script: '/footer.js' }
+  ];
+  function loadHtml({ mount, html }){
+    const el = document.getElementById(mount);
+    if (!el) return Promise.resolve();
+    return fetch(html, { credentials: 'same-origin' })
+      .then(function(res){ if (!res.ok) throw new Error(html + ' returned ' + res.status); return res.text(); })
+      .then(function(markup){ el.innerHTML = markup; })
+      .catch(function(err){ console.warn('[CoverCapy shell] Could not load', html, err); });
+  }
+  function loadScriptOnce(src){
+    if (!src || document.querySelector('script[src="' + src + '"]')) return Promise.resolve();
+    return new Promise(function(resolve){
+      const s = document.createElement('script');
+      s.src = src; s.defer = true; s.onload = resolve;
+      s.onerror = function(){ console.warn('[CoverCapy shell] Could not load', src); resolve(); };
+      document.body.appendChild(s);
+    });
+  }
+  window.CoverCapyShellReady = Promise.all(includes.map(loadHtml))
+    .then(function(){ return Promise.all(includes.map(function(item){ return loadScriptOnce(item.script); })); });
+})();
+</script>
+
+<!-- ============================ PAGE SCRIPT ============================ -->
+<script>
+(function(){
+  function initRequestDentistPage(){
+    var page = document.getElementById('request-dentist-page');
+    if (!page) return;
+    var form = page.querySelector('#rdForm');
+    if (!form) return;
+    var btn = page.querySelector('#rdSubmit');
+    var okBox = page.querySelector('#rdOk');
+    var warnBox = page.querySelector('#rdWarn');
+    var ENDPOINT = 'https://covercapy.com/api/request-a-dentist';
+
+    function show(box, html){
+      okBox.classList.remove('show');
+      warnBox.classList.remove('show');
+      box.innerHTML = html;
+      box.classList.add('show');
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function esc(s){
+      return String(s == null ? '' : s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var name = (page.querySelector('#rd-name').value || '').trim();
+      var email = (page.querySelector('#rd-email').value || '').trim();
+      var location = (page.querySelector('#rd-location').value || '').trim();
+      var consent = page.querySelector('#rd-consent').checked;
+
+      if (!name || !email || !location || !consent){
+        show(warnBox, '<h3>Almost there</h3><p>Please add your name, email, city or ZIP, and check the consent box so we can reach you.</p>');
+        return;
+      }
+
+      // Build the payload. NOTE: no member ID, group number, SSN, or card image is ever collected.
+      var payload = {
+        name: name,
+        email: email,
+        phone: (page.querySelector('#rd-phone').value || '').trim(),
+        location: location,
+        dentist_name: (page.querySelector('#rd-dentist').value || '').trim(),
+        ppo_carrier: (page.querySelector('#rd-carrier').value || '').trim(),
+        message: (page.querySelector('#rd-message').value || '').trim(),
+        consent: true,
+        source_page_url: window.location.href
+      };
+
+      var dentistLabel = payload.dentist_name ? ('<em>' + esc(payload.dentist_name) + '</em>' ) : 'a great option near you';
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      var done = function(success){
+        btn.disabled = false;
+        btn.textContent = 'Send my request';
+        if (success){
+          show(okBox,
+            '<h3>Request received</h3>' +
+            '<p>Thank you, ' + esc(name) + '. Our concierge is looking into ' + dentistLabel +
+            ' and will reply to ' + esc(email) + ', usually within one business day. ' +
+            'Want to browse while you wait? <a href="/find-my-dentist.html">Find a dentist by zip</a>.</p>');
+          form.reset();
+        } else {
+          // Graceful fallback: endpoint not live or network error. Keep the user's input on screen.
+          var mailto = 'mailto:hello@covercapy.com?subject=' +
+            encodeURIComponent('Request a dentist: ' + (payload.dentist_name || payload.location)) +
+            '&body=' + encodeURIComponent(
+              'Name: ' + payload.name + '\nEmail: ' + payload.email +
+              '\nPhone: ' + payload.phone + '\nCity or ZIP: ' + payload.location +
+              '\nDentist: ' + payload.dentist_name + '\nCarrier: ' + payload.ppo_carrier +
+              '\nMessage: ' + payload.message);
+          show(warnBox,
+            '<h3>We saved your details</h3>' +
+            '<p>Thank you, ' + esc(name) + '. We could not reach the concierge desk just now, ' +
+            'but your request for ' + dentistLabel + ' has not been lost. ' +
+            'You can <a href="' + mailto + '">send it by email</a> and we will follow up at ' +
+            esc(email) + '.</p>');
+        }
+      };
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res){ done(res && res.ok); })
+      .catch(function(){ done(false); });
+    });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initRequestDentistPage);
+  } else {
+    initRequestDentistPage();
+  }
+})();
+</script>
+
+</body>
+</html>

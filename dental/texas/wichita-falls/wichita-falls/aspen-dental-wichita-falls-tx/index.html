@@ -27,7 +27,7 @@
   <meta name="ICBM" content="33.87158700000001, -98.53901619999999" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="stylesheet" href="/assets/css/mega-nav.css">
   <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
@@ -58,7 +58,7 @@
   html{scroll-behavior:smooth}
   html,body{overflow-x:clip}
   body{margin:0;background:var(--surface-primary);color:var(--body-text);
-    font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    font-family:'Inter Tight',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
     font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   p{margin:0 0 16px}
@@ -129,7 +129,7 @@
     color:var(--dark);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
   .dentist-list-heading{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:400;
     color:var(--dark);margin-bottom:18px}
-  .list-meta{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--muted)}
+  .list-meta{font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:400;color:var(--muted)}
 
   /* city pills */
   .city-strip{padding:48px 0;border-top:1px solid var(--border)}
@@ -246,7 +246,7 @@
   .plan-timing{font-size:11px;color:var(--skytext);font-weight:600;margin-top:2px}
   .plan-price{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:400;
     color:var(--dark);white-space:nowrap}
-  .plan-price span{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--muted)}
+  .plan-price span{font-family:'Inter Tight',sans-serif;font-size:11px;font-weight:400;color:var(--muted)}
 
   /* CTA box in rail */
   .cta-box{background:var(--surface-dark);color:var(--surface-primary);padding:22px;border-radius:4px}
@@ -746,6 +746,7 @@ dialog{padding:0;border:none;margin:auto;border-radius:20px;max-width:500px;widt
       <button class="btn btn-primary" data-open="insurance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>Verify my Insurance</button>
       <a class="btn btn-secondary" href="#book">Book an Appointment</a>
     </div>
+    <a class="t6-xlink" href="/dentists/texas/amirreza-sadrmanochehrinaeini/" style="display:flex;align-items:center;gap:12px;margin:16px 0 0;padding:13px 16px;border:1px solid #E8E2D8;border-radius:12px;background:#FFFDF8;text-decoration:none;color:inherit"><span style="width:40px;height:40px;border-radius:50%;background:#082A30;color:#5BE0A0;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:17px;flex-shrink:0">AS</span><span style="flex:1;min-width:0"><span style="display:block;font:600 10px/1 'Inter Tight',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8A958F">Meet the dentist</span><span style="display:block;font-family:'Fraunces',serif;font-size:16px;color:#082A30;margin-top:3px">Dr. Amirreza Sadrmanochehrinaeini, DDS</span></span><span style="color:#14525B;font-weight:600;font-size:13px;white-space:nowrap">View profile →</span></a>
     <p class="t5-concierge-line">We don't just list which PPOs this office accepts. We ask them on your behalf.</p>
     <p class="hero-claim-link" id="hero-claim"><a href="https://www.covercapy.com/for-dentists/claim/aspen-dental-wichita-falls-tx-wichita-falls">Is this your practice? Claim it free</a></p>
     <p class="data-checked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Data sourced from the office's public Google listing. Last updated June 23, 2026.</p>
@@ -1111,9 +1112,10 @@ var T5V7=(function(){
     if(!confirmed)rows+='<div class="hours-disclaimer">Hours not confirmed by this office. A standard schedule is shown as an estimate. Please call before visiting.</div>';
     qs('#hours-table').innerHTML=rows;
   }
+  function ccPlanLink(c){var m=[[/aetna/i,'aetna-dental-direct'],[/delta/i,'delta-dental-ppo-premium'],[/guardian/i,'guardian-premier-ppo'],[/humana/i,'humana-extend-5000'],[/ameritas/i,'ameritas-primestar'],[/(united|uhc)/i,'uhc-primary-dental'],[/metlife/i,'metlife-ncd-complete'],[/mutual of omaha/i,'mutual-of-omaha-dental']];for(var i=0;i<m.length;i++){if(m[i][0].test(c))return '<a href="https://www.covercapy.com/dental-insurance/ppo-plans/'+m[i][1]+'/" style="color:inherit;text-decoration:underline;text-underline-offset:2px">'+c+'</a>';}return c;}
   function renderCarrierRows(){
     var lc=T5.listedCarriers;
-    qs('#carrier-rows').innerHTML=lc.map(function(c,i){return '<div class="carrier-row'+(i>=2?' hidden':'')+'"><div><div class="carrier-name">'+c+'</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check" data-open="insurance">Check my plan</button></div>';}).join('');
+    qs('#carrier-rows').innerHTML=lc.map(function(c,i){return '<div class="carrier-row'+(i>=2?' hidden':'')+'"><div><div class="carrier-name">'+ccPlanLink(c)+'</div><div class="carrier-status"><span class="status-dot"></span>Publicly reported</div></div><button class="carrier-check" data-open="insurance">Check my plan</button></div>';}).join('');
     var tog=qs('#ins-toggle');if(tog)tog.style.display=lc.length>2?'block':'none';
   }
   function toggleIns(){
