@@ -1,19 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CoverCapy · Mega Nav (SEO build)</title>
-<script>document.documentElement.classList.add('js')</script>
+<!-- CoverCapy omega-nav2 — universal nav component (inject into #cc-nav-mount).
+     Styles: /assets/css/omega-nav2.css + -mobile.css | Behavior: /assets/js/omega-nav2.js
+     Generated from nav-prototype-v3.html. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/omega-nav2.css"/>
 <link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"/>
-</head>
-<body>
 
-<!-- ===================== GLOBAL NAV ===================== -->
 <header class="cc-nav" id="ccNav">
   <div class="cc-row">
     <a class="cc-logo" href="/">
@@ -351,59 +344,6 @@
 
 <div class="cc-backdrop" id="ccBackdrop"></div>
 
-<!-- ===================== STACKED STICKY SUB-NAV (demo) ===================== -->
-<nav class="subnav" id="subNav" aria-label="On this page">
-  <div class="subnav-in">
-    <span class="subnav-label">Delta Dental <span class="tag">Sub-nav demo</span></span>
-    <a href="#overview" class="on">Overview</a>
-    <a href="#plans">Plans</a>
-    <a href="#eligibility">Eligibility</a>
-    <a href="#networks">Networks</a>
-    <a href="#over-65">Over 65</a>
-    <a href="#faqs">FAQs</a>
-  </div>
-</nav>
-
-<!-- ===================== DEMO PAGE ===================== -->
-<section class="hero" id="overview">
-  <div class="eyebrow">Mega Nav Prototype</div>
-  <h1>Click to <em>open</em>. Click again to <em>enter</em>.</h1>
-  <p>Hover any top-level item to peek the panel. Click it once to lock it open, and the label morphs into "Open [Section]" so a second click takes you to the page. Scroll down: the global nav stays sticky and condenses, and the Delta Dental sub-nav stacks right beneath it, both pinned, never overlapping.</p>
-</section>
-
-<div class="banner"><div class="banner-in">Try it: <b>click "Insurance"</b> to reveal the panel, then click it again to enter. Or use the sub-nav above to jump, anchors clear both sticky bars.</div></div>
-
-<section class="sec" id="plans">
-  <h2>Plans</h2>
-  <p>This block exists to demonstrate scrolling and the stacked sticky behavior. As you scroll, watch the global navigation condense from 84px to 62px while the Delta Dental sub-nav re-pins directly below it using the live <code>--nav-h</code> custom property updated by a ResizeObserver. The active sub-nav tab updates as each section scrolls into view.</p>
-  <p>Curated, real links live inside each mega panel rather than dumping the full sitemap. Large clusters, the 24-term glossary, all carriers, the 11 emergency pages, collapse to a single "View all" pointing at their hub.</p>
-</section>
-
-<section class="sec" id="eligibility">
-  <h2>Eligibility</h2>
-  <p>Anchor jumps land with the section heading fully visible, never tucked behind the two sticky bars, thanks to <code>scroll-margin-top: calc(var(--nav-h) + var(--subnav-h) + 14px)</code>. The combined offset stays correct even after the header condenses, because both heights are measured live and written back to CSS variables.</p>
-</section>
-
-<section class="sec" id="networks">
-  <h2>Networks</h2>
-  <p>The mega panels reveal with an ease-out-expo curtain (clip-path) and a gentle column stagger that reads as deliberate and considered rather than springy. Exit is faster, with no stagger. All of this respects <code>prefers-reduced-motion</code>, collapsing to a simple fade.</p>
-</section>
-
-<section class="sec" id="over-65">
-  <h2>Over 65</h2>
-  <p>On mobile, the dropdowns are replaced by a slide-in drawer with accordion sections, a ZIP search, body-scroll-lock, focus trap, and return-focus to the menu button on close. Resize this window below 1080px to try it.</p>
-</section>
-
-<section class="sec" id="faqs">
-  <h2>FAQs</h2>
-  <p>This is the last anchor target. Scroll back up and the sub-nav remains pinned beneath the global nav the entire way. Both bars are always reachable, which is the core requirement: the universal nav is always sticky, and any page-level sub-nav stacks with it.</p>
-</section>
-
-<div class="note">Prototype only. Links point at real production paths so you can sanity-check the information architecture. Nothing here is wired to Supabase or live search.</div>
-
-<footer class="demo">CoverCapy, concierge dental network · prototype</footer>
-
-<!-- ===================== MOBILE DRAWER ===================== -->
 <aside class="cc-drawer" id="ccDrawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="cc-drawer-head">
     <div class="row">
@@ -450,7 +390,6 @@
   </div>
 </aside>
 
-<!-- money.com-style bottom reveal dock for the dentist result -->
 <div class="cc-dock" id="cc-find-dock" role="dialog" aria-label="Dentist match" aria-hidden="true">
   <button class="cc-dock-x" id="cc-find-dock-x" type="button" aria-label="Close">✕</button>
   <div class="cc-dock-full" id="cc-find-dock-bd"></div>
@@ -461,60 +400,3 @@
     <button class="cc-dock-mini-bk" id="cc-find-dock-mini-bk" type="button">Book appointment</button>
   </div>
 </div>
-
-<!-- ===================== SEO LINK MAP (what a crawler indexes, no JS needed) ===================== -->
-<section style="max-width:1340px;margin:0 auto;padding:48px 30px 70px;border-top:1px solid #E8E2D6">
-  <div style="font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B98023;margin-bottom:12px">SEO build, what a crawler sees</div>
-  <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.01em;margin:0 0 10px;color:#14242A">Every nav link is in the page HTML</h2>
-  <p style="font-size:14.5px;line-height:1.6;color:#49666C;max-width:74ch;margin:0 0 4px">These links are written into the static HTML, so search engines and AI crawlers index them even with JavaScript turned off. The dropdown panels, live search, and result card are layered on top as enhancements. On the live site the same link block is baked into each of your pages by the generator. Turn off JavaScript and the menus still open on hover, every link still works.</p>
-  <p style="font-size:12.5px;color:#8A958F;margin:0 0 26px">Demonstration list below mirrors the nav. On production this lives inside a real &lt;nav&gt; element on every page.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px 32px;font-family:'Inter Tight',sans-serif">
-    <nav aria-label="Find a dentist links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Find a dentist</div>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/find-my-dentist.html">Find a PPO dentist</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-treatment-cost-estimator.html">Treatment cost estimator</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-financing-monthly-payments.html">Financing and monthly plans</a></nav>
-    <nav aria-label="Insurance links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Insurance</div>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/">Dental insurance guide</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/compare-ppo-dental-plans.html">Compare PPO plans</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/">All PPO plans</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/delta-dental/">Delta Dental</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/uhc-primary-dental/">UnitedHealthcare Primary Dental</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/metlife-ncd-complete/">MetLife</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/guardian-premier-ppo/">Guardian</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/humana-extend-5000/">Humana</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/ameritas-primestar/">Ameritas</a></nav>
-    <nav aria-label="Situation links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">By situation</div>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/between-jobs/">Coverage between jobs</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/self-employed/">Self-employed coverage</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/no-waiting-period/">No waiting period</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/immediate-coverage/">Immediate coverage</a></nav>
-    <nav aria-label="Guides links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Guides</div>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/glossary/">PPO dental glossary</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/medi-cal-vs-ppo-dental.html">Medi-Cal vs PPO dental</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/root-canal-cost.html">Root canal cost</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/crowns/cost.html">Crown cost</a></nav>
-    <nav aria-label="Benefit maxing links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Benefit maxing</div>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/">Maximize your benefits</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/dental-emergencies/">Dental emergencies</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/dental-emergencies/knocked-out-tooth/">Knocked-out tooth</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/crowns/">Crowns</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/root-canals/">Root canals</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/implants/">Implants</a></nav>
-    <nav aria-label="For dentists links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">For dentists</div>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/claim-dentist-listing-profile.html">Claim your profile</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dentist-portal.html">Dentist portal</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/capy-accreditation.html">Capy Accreditation</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/capy-practice-membership.html">Practice membership</a>
-      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/delta-dental/for-employers/">For employers</a></nav>
-  </div>
-</section>
-
-<div class="proto-flag">CoverCapy nav, SEO build</div>
-
-
-
-<script src="/assets/js/omega-nav2.js"></script>
-</body>
-</html>
