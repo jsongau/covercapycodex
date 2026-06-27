@@ -1,0 +1,35 @@
+/* CoverCapy omega-nav2 — mobile / responsive (max-width) styles
+   Generated from nav-prototype-v3.html. Edit source, then regenerate. */
+@media (max-width:1440px){.mc-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){
+  .cc-dock{left:0;right:0;width:100%;max-width:none;margin:0;border-radius:18px 18px 0 0;
+    bottom:calc(var(--cc-cta-bar-h,0px) + env(safe-area-inset-bottom));
+    max-height:calc(100dvh - var(--cc-nav-h,64px) - var(--cc-cta-bar-h,0px) - 12px);
+    box-shadow:0 -10px 30px -6px rgba(8,42,48,.28);display:flex;flex-direction:column;
+    padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
+  #cc-find-dock-bd{flex:1 1 auto;max-height:none;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .cc-dock-mini{bottom:calc(var(--cc-cta-bar-h,0px) + env(safe-area-inset-bottom))}
+  .cc-dock-x{top:8px;right:8px;width:36px;height:36px}
+}
+@media (max-width:480px){
+  .card-4__name{font-size:21px}
+  .card-4__body{padding:18px 16px}
+  .card-4__cta{flex-direction:column}
+  .card-4__btn{width:100%;min-height:46px}
+  .card-4__contact{flex-direction:column;gap:10px}
+  .card-4__contact-r{flex-direction:row;align-items:center;gap:14px;align-self:flex-start}
+  .cw-head b{font-size:16px}
+  .cm-opt{padding:10px;min-height:44px}
+  .cs-arw{width:40px;height:40px}
+  .cs-dot{width:10px;height:10px}
+}
+@media (max-width:1080px){
+  :root{--nav-h:64px}
+  .cc-links,.cc-actions{display:none}
+  .cc-logo-bot{font-size:13px}
+  .cc-burger{display:flex;margin-left:auto}
+  .cc-mega{display:none}
+  .hero h1{font-size:36px}
+  .hero{padding:40px 22px 30px}
+  .sec{padding:40px 22px}
+}

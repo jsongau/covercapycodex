@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CoverCapy · Mega Nav (SEO build)</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/omega-nav2.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"/>
+</head>
+<body>
+
+<!-- ===================== GLOBAL NAV ===================== -->
+<header class="cc-nav" id="ccNav">
+  <div class="cc-row">
+    <a class="cc-logo" href="/">
+      <img alt="CoverCapy" class="cc-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" src="/assets/images/covercapy-logo.svg"/>
+      <svg aria-hidden="true" class="cc-logo-fallback" height="40" viewBox="0 0 64 64" width="40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><ellipse cx="42" cy="18" fill="#0E3F44" rx="5" ry="4"></ellipse><rect fill="#0E3F44" height="32" rx="16" width="36" x="14" y="20"></rect><ellipse cx="32" cy="44" fill="#123F52" rx="9" ry="6"></ellipse><circle cx="25" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="39" cy="33" fill="#FCFAF4" r="2.2"></circle><circle cx="25" cy="33" fill="#0E3F44" r="1"></circle><circle cx="39" cy="33" fill="#0E3F44" r="1"></circle><circle cx="29" cy="44" fill="#FCFAF4" r="1.1"></circle><circle cx="35" cy="44" fill="#FCFAF4" r="1.1"></circle></svg>
+      <span class="cc-logo-tx">
+        <span class="cc-logo-top">CoverCapy</span>
+        <span class="cc-logo-bot">Concierge Dental Network</span>
+      </span>
+    </a>
+
+    <nav class="cc-links" id="ccLinks" aria-label="Primary">
+
+      <!-- FIND A DENTIST -->
+      <div class="cc-item" data-key="find">
+        <a class="cc-top" href="/find-my-dentist.html" aria-haspopup="true" aria-expanded="false" aria-controls="panel-find" data-section="Find a Dentist">
+          <svg class="cc-find-ic" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="cc-label">Find a Dentist</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-find" role="region" aria-label="Find a Dentist">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Find a PPO Dentist</div>
+              <h3 class="mega-title">A PPO dentist near you, <em>verified</em> before you call.</h3>
+              <p class="mega-proof">Over 7,000 PPO dental offices listed across 850 cities.</p>
+              <div class="zip-wrap">
+                <div class="zip-card">
+                  <input id="cc-find-input" type="search" autocomplete="off" placeholder="ZIP or city..." aria-label="ZIP or city" role="combobox" aria-expanded="false" aria-controls="cc-omni" aria-autocomplete="list">
+                  <button id="cc-find-btn" class="zip-btn"><span class="zip-spin" aria-hidden="true"></span><span class="zip-btn-tx">Search</span></button>
+                </div>
+                <div class="cc-omni" id="cc-omni" role="listbox" aria-label="Location suggestions" hidden></div>
+              </div>
+              <div class="zip-chips">
+                <a class="zip-chip" data-q="90210" href="#">90210</a>
+                <a class="zip-chip" data-q="92697" href="#">92697</a>
+                <a class="zip-chip" data-q="Los Angeles County" href="#">Los Angeles County</a>
+                <a class="zip-chip" data-q="Texas" href="#">Texas</a>
+              </div>
+            </div>
+            <div class="mega-cols mc-2">
+              <div class="mega-col">
+                <p class="mega-gt">Search</p>
+                <a class="mega-link" href="/find-my-dentist.html"><span class="ic">⌖</span><span class="tx"><span class="t">Find my dentist</span><span class="s">Live search, PPO acceptance shown</span></span></a>
+                <p class="mega-gt" style="margin-top:18px">Browse by state</p>
+                <div class="geo-pick">
+                  <select id="ccGeoState" class="geo-select" aria-label="Choose a state to narrow by sector">
+                    <option value="california">California</option>
+                    <option value="texas">Texas</option>
+                    <option value="florida">Florida</option>
+                    <option value="new-york">New York</option>
+                    <option value="arizona">Arizona</option>
+                    <option value="washington">Washington</option>
+                    <option value="nevada">Nevada</option>
+                    <option value="new-jersey">New Jersey</option>
+                    <option value="pennsylvania">Pennsylvania</option>
+                    <option value="north-carolina">North Carolina</option>
+                    <option value="connecticut">Connecticut</option>
+                    <option value="rhode-island">Rhode Island</option>
+                    <option value="ohio">Ohio</option>
+                    <option value="illinois">Illinois</option>
+                  </select>
+                  <div class="geo-regions" id="ccGeoRegions">
+                    <a class="geo-chip" href="/dental/california/orange-county/">Orange County</a>
+                    <a class="geo-chip" href="/dental/california/los-angeles/">Los Angeles</a>
+                    <a class="geo-chip" href="/dental/california/san-gabriel-valley/">San Gabriel Valley</a>
+                    <a class="geo-chip" href="/dental/california/san-fernando-valley/">San Fernando Valley</a>
+                    <a class="geo-chip" href="/dental/california/riverside/">Riverside</a>
+                    <a class="geo-chip" href="/dental/california/san-bernardino/">San Bernardino</a>
+                    <a class="geo-chip" href="/dental/california/san-diego/">San Diego</a>
+                    <a class="geo-chip" href="/dental/california/bay-area/">Bay Area</a>
+                    <a class="geo-chip" href="/dental/california/sacramento/">Sacramento</a>
+                  </div>
+                  <a class="mega-viewall" id="ccGeoAll" href="/dental/california/">All California areas</a>
+                  <a class="geo-allstates" href="/dental/">View all states</a>
+                </div>
+              </div>
+              <div class="mega-col" id="cc-find-aside">
+                <a class="mega-hero" href="/find-my-dentist.html">
+                  <span class="mega-hero-k">Concierge search</span>
+                  <span class="mega-hero-t">Platinum Elite offices appear first near you</span>
+                  <span class="mega-hero-s">See which PPO plans an office accepts before you call.</span>
+                  <span class="mega-hero-cta">Find a PPO dentist</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Capy Accredited network</span><span>No assigned dentists</span><span>Always free for patients</span></div>
+            <a class="mega-foot-link" href="/find-my-dentist.html">Open the directory</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- INSURANCE -->
+      <div class="cc-item" data-key="ins">
+        <a class="cc-top" href="/dental-insurance/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-ins" data-section="Insurance">
+          <span class="cc-label">Insurance</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-ins" role="region" aria-label="Insurance">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Compare PPO Plans</div>
+              <h3 class="mega-title">Find the PPO plan that fits your <em>care.</em></h3>
+              <p class="mega-sub">Compare dental insurance plans, treatment coverage, dentist networks, and expected costs before you enroll.</p>
+              <a class="mega-hero mega-hero--featured" href="/dental-insurance/ppo-plans/uhc-primary-dental/">
+                <span class="mega-hero-k">Featured plan</span>
+                <span class="mega-hero-t">UnitedHealthcare Primary Dental</span>
+                <span class="mega-hero-s">Preventive care covered on day one.</span>
+                <span class="mega-hero-cta">Get insured in one day</span>
+              </a>
+            </div>
+            <div class="mega-cols mc-3">
+              <div class="mega-col">
+                <p class="mega-gt">Compare &amp; plans</p>
+                <a class="mega-link" href="/compare-ppo-dental-plans.html"><span class="ic">⇆</span><span class="tx"><span class="t">Compare PPO plans</span><span class="s">Match by treatment &amp; timing</span></span></a>
+                <a class="mega-link" href="/dental-insurance/"><span class="ic">▤</span><span class="tx"><span class="t">Insurance hub<span class="mega-feat-star">Start here</span></span><span class="s">How PPO dental works</span></span></a>
+                <a class="mega-link" href="/dental-insurance/ppo-plans/"><span class="ic">≡</span><span class="tx"><span class="t">All PPO plans</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Top carriers</p>
+                <div class="carriers">
+                  <a class="carrier" href="/dental-insurance/delta-dental/"><span class="b">Δ</span><span class="n">Delta Dental</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/uhc-primary-dental/"><span class="b">U</span><span class="n">UnitedHealthcare</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/metlife-ncd-complete/"><span class="b">M</span><span class="n">MetLife</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/guardian-premier-ppo/"><span class="b">G</span><span class="n">Guardian</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/humana-extend-5000/"><span class="b">H</span><span class="n">Humana</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/ameritas-primestar/"><span class="b">A</span><span class="n">Ameritas</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/aetna-dental-direct/"><span class="b">Ae</span><span class="n">Aetna</span></a>
+                  <a class="carrier" href="/dental-insurance/ppo-plans/mutual-of-omaha-dental/"><span class="b">MO</span><span class="n">Mutual of Omaha</span></a>
+                  <a class="carrier carrier--all" href="/dental-insurance/ppo-plans/"><span class="n">View all carriers</span></a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">By situation</p>
+                <a class="mega-link" href="/guides/between-jobs/"><span class="ic">↻</span><span class="tx"><span class="t">Between jobs</span></span></a>
+                <a class="mega-link" href="/guides/self-employed/"><span class="ic">★</span><span class="tx"><span class="t">Self-employed</span></span></a>
+                <a class="mega-link" href="/guides/no-waiting-period/"><span class="ic">⚡</span><span class="tx"><span class="t">No waiting period</span></span></a>
+                <a class="mega-link" href="/guides/immediate-coverage/"><span class="ic">◷</span><span class="tx"><span class="t">Immediate coverage</span></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Hand-checked carriers</span><span>Verify dentist network first</span><span>Details vary by state</span></div>
+            <a class="mega-foot-link" href="/compare-ppo-dental-plans.html">Compare all PPO plans</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- BENEFIT MAXING -->
+      <div class="cc-item" data-key="bm">
+        <a class="cc-top" href="/benefit-maxing/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-bm" data-section="Benefit Maxing">
+          <span class="cc-label">Benefit Maxing</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-bm" role="region" aria-label="Benefit Maxing">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Use your plan</div>
+              <h3 class="mega-title">Use the benefits you <em>already</em> pay for.</h3>
+              <p class="mega-sub">Your plan resets every year and unused benefits don't carry over. We'll show you how to time care and check what's left.</p>
+            </div>
+            <div class="mega-cols mc-2">
+              <div class="mega-col">
+                <p class="mega-gt">Strategy</p>
+                <a class="mega-link" href="/benefit-maxing/"><span class="ic">◎</span><span class="tx"><span class="t">Maximize your benefits</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/smart-timing-protocol/"><span class="ic">◷</span><span class="tx"><span class="t">Smart timing protocol</span></span></a>
+                <a class="mega-link" href="/dental-treatment-cost-estimator.html"><span class="ic">＄</span><span class="tx"><span class="t">Cost estimator</span><span class="s">See your in-network savings</span></span></a>
+                <a class="mega-link" href="/dental-financing-monthly-payments.html"><span class="ic">0%</span><span class="tx"><span class="t">Financing &amp; payments</span><span class="s">Split major treatment monthly</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">By treatment</p>
+                <a class="mega-link" href="/benefit-maxing/guides/crowns/"><span class="ic">👑</span><span class="tx"><span class="t">Crowns</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/root-canals/"><span class="ic">🌱</span><span class="tx"><span class="t">Root canals</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/implants/"><span class="ic">🔩</span><span class="tx"><span class="t">Implants</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/braces-invisalign/"><span class="ic">😬</span><span class="tx"><span class="t">Braces &amp; Invisalign</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/whitening/"><span class="ic">✨</span><span class="tx"><span class="t">Whitening</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/dentures/"><span class="ic">🦷</span><span class="tx"><span class="t">Dentures</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/bridges/"><span class="ic">🌉</span><span class="tx"><span class="t">Bridges</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/deep-cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Deep cleaning</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Extractions</span></span></a>
+                <a class="mega-viewall" href="/benefit-maxing/guides/">All treatment guides</a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Dentist-informed</span><span>Educational planning</span></div>
+            <a class="mega-foot-link" href="/benefit-maxing/">Open Benefit Maxing</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- LEARN (formerly Guides; label only, URLs stay /guides/) -->
+      <div class="cc-item" data-key="guides">
+        <a class="cc-top" href="/guides/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-guides" data-section="Learn">
+          <span class="cc-label">Learn</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-guides" role="region" aria-label="Learn">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Before your appointment</div>
+              <h3 class="mega-title">Understand dental insurance <em>before</em> treatment begins.</h3>
+              <p class="mega-sub">Learn how PPO plans work, compare treatment costs, understand deductibles and annual maximums, and make confident decisions before your appointment.</p>
+            </div>
+            <div class="mega-cols mc-2">
+              <div class="mega-col">
+                <p class="mega-gt">How insurance works</p>
+                <a class="mega-link" href="/guides/in-network-vs-out-of-network-costs.html"><span class="ic">⇄</span><span class="tx"><span class="t">In-network vs out-of-network<span class="mega-feat-star">Start here</span></span><span class="s">Why the same crown costs differently</span></span></a>
+                <a class="mega-link" href="/guides/medi-cal-vs-ppo-dental.html"><span class="ic">⚖</span><span class="tx"><span class="t">Medi-Cal vs PPO dental</span></span></a>
+                <a class="mega-link" href="/guides/glossary/"><span class="ic">A̲</span><span class="tx"><span class="t">Glossary of terms</span><span class="s">Deductible, annual max, waiting period</span></span></a>
+                <a class="mega-link" href="/dental-insurance/delta-dental/for-employers/"><span class="ic">▤</span><span class="tx"><span class="t">For employers</span><span class="s">Offering dental to your team</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Emergencies</p>
+                <a class="mega-link" href="/benefit-maxing/guides/dental-emergencies/knocked-out-tooth/"><span class="ic">🦷</span><span class="tx"><span class="t">Knocked-out tooth</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/dental-emergencies/severe-toothache/"><span class="ic">⚠</span><span class="tx"><span class="t">Severe toothache</span></span></a>
+                <a class="mega-link" href="/benefit-maxing/guides/dental-emergencies/cracked-tooth/"><span class="ic">⚡</span><span class="tx"><span class="t">Cracked tooth</span></span></a>
+                <a class="mega-viewall" href="/benefit-maxing/guides/dental-emergencies/">All 11 emergencies</a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Editorial, dentist-informed</span><span>Educational estimates</span></div>
+            <a class="mega-foot-link" href="/guides/">All guides</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- MEMBERSHIP (Capy Rewards) -->
+      <div class="cc-item" data-key="rewards">
+        <a class="cc-top" href="/covercapy-join.html" aria-haspopup="true" aria-expanded="false" aria-controls="panel-rewards" data-section="Capy Rewards">
+          <span class="cc-label">Capy Rewards</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-rewards" role="region" aria-label="Capy Rewards">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Members' rewards</div>
+              <h3 class="mega-title">Join free. Earn rewards for taking care of your <em>smile.</em></h3>
+              <p class="mega-sub">Collect Capy Crowns as you care for your teeth and redeem them toward treatment at Capy Accredited offices. Your first 300 Crowns are included when you create your account.</p>
+            </div>
+            <div class="mega-cols mc-3">
+              <div class="mega-col">
+                <p class="mega-gt">Capy Crowns</p>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◎</span><span class="tx"><span class="t">How crowns work<span class="mega-feat-star">Start here</span></span><span class="s">Earn as you cover and care</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◷</span><span class="tx"><span class="t">Ways to earn</span><span class="s">Get covered, keep your cleanings</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">✦</span><span class="tx"><span class="t">Redeem your crowns</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Capy Diamonds</p>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◆</span><span class="tx"><span class="t">Nominate an office</span><span class="s">You both get rewarded</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">❖</span><span class="tx"><span class="t">Refer a friend</span></span></a>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">◈</span><span class="tx"><span class="t">How Diamonds work</span></span></a>
+              </div>
+              <div class="mega-col">
+                <a class="mega-hero mega-hero--featured" href="/covercapy-join.html">
+                  <span class="mega-hero-k">Welcome bonus</span>
+                  <span class="mega-hero-t">Your first 300 Capy Crowns</span>
+                  <span class="mega-hero-s">Free the day you join, ready to redeem at Capy Accredited offices.</span>
+                  <span class="mega-hero-cta">Claim your 300 crowns</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Free to join</span><span>Redeem at Capy Accredited offices</span><span>First 300 crowns on us</span></div>
+            <a class="mega-foot-link" href="/covercapy-join.html">Open Capy Rewards</a>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- FOR DENTISTS -->
+      <div class="cc-item" data-key="dds">
+        <a class="cc-top" href="/dentist-portal.html" aria-haspopup="true" aria-expanded="false" aria-controls="panel-dds" data-section="For Dentists">
+          <span class="cc-label">For Dentists</span>
+          <span class="cc-go">Open</span>
+          <span class="cc-caret" aria-hidden="true">▾</span>
+        </a>
+        <div class="cc-mega" id="panel-dds" role="region" aria-label="For Dentists">
+          <div class="mega-inner">
+            <div class="mega-lead">
+              <div class="mega-eyebrow">Dentist portal</div>
+              <h3 class="mega-title">Get <em>found</em> by PPO-ready patients.</h3>
+              <p class="mega-sub">Reach patients who already compared plans and know what they want.</p>
+              <p class="mega-proof">Listed across 850 cities and 14 states.</p>
+            </div>
+            <div class="mega-cols mc-3">
+              <div class="mega-col">
+                <p class="mega-gt">Join</p>
+                <a class="mega-link" href="/covercapy-join.html"><span class="ic">＋</span><span class="tx"><span class="t">Join CoverCapy</span></span></a>
+                <a class="mega-link" href="/dentist-portal.html"><span class="ic">▦</span><span class="tx"><span class="t">Dentist portal</span></span></a>
+                <a class="mega-link" href="/claim-dentist-listing-profile.html"><span class="ic">✓</span><span class="tx"><span class="t">Claim your listing</span></span></a>
+              </div>
+              <div class="mega-col">
+                <p class="mega-gt">Membership</p>
+                <a class="mega-link" href="/capy-accreditation.html"><span class="ic">♔</span><span class="tx"><span class="t">Capy Accreditation</span><span class="s">The badge patients look for</span></span></a>
+                <a class="mega-link" href="/capy-practice-membership.html"><span class="ic">◆</span><span class="tx"><span class="t">Practice membership</span></span></a>
+                <a class="mega-link" href="/dentist-portal.html#platinum-elite"><span class="ic">❖</span><span class="tx"><span class="t">Platinum Elite</span><span class="s">One practice per county</span></span></a>
+              </div>
+              <div class="mega-col">
+                <a class="mega-hero mega-hero--featured" href="/dentist-portal.html#platinum-elite">
+                  <span class="mega-hero-k">Now launching by county</span>
+                  <span class="mega-hero-t">Platinum Elite</span>
+                  <span class="mega-hero-s">One practice per county. Claim yours before a neighbor does.</span>
+                  <span class="mega-hero-cta">Apply for Platinum Elite</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot"><div class="mega-foot-in">
+            <div class="mega-trust"><span>Reviewed and vetted</span><span>Cancel anytime</span></div>
+            <a class="mega-foot-link" href="/dentist-portal.html">Advertising disclosure</a>
+          </div></div>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="cc-actions">
+      <a class="cc-signin" href="/sign-in.html">Sign in</a>
+      <a class="cc-join" href="/covercapy-join.html">Create account</a>
+    </div>
+
+    <button class="cc-burger" id="ccBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="cc-backdrop" id="ccBackdrop"></div>
+
+<!-- ===================== STACKED STICKY SUB-NAV (demo) ===================== -->
+<nav class="subnav" id="subNav" aria-label="On this page">
+  <div class="subnav-in">
+    <span class="subnav-label">Delta Dental <span class="tag">Sub-nav demo</span></span>
+    <a href="#overview" class="on">Overview</a>
+    <a href="#plans">Plans</a>
+    <a href="#eligibility">Eligibility</a>
+    <a href="#networks">Networks</a>
+    <a href="#over-65">Over 65</a>
+    <a href="#faqs">FAQs</a>
+  </div>
+</nav>
+
+<!-- ===================== DEMO PAGE ===================== -->
+<section class="hero" id="overview">
+  <div class="eyebrow">Mega Nav Prototype</div>
+  <h1>Click to <em>open</em>. Click again to <em>enter</em>.</h1>
+  <p>Hover any top-level item to peek the panel. Click it once to lock it open, and the label morphs into "Open [Section]" so a second click takes you to the page. Scroll down: the global nav stays sticky and condenses, and the Delta Dental sub-nav stacks right beneath it, both pinned, never overlapping.</p>
+</section>
+
+<div class="banner"><div class="banner-in">Try it: <b>click "Insurance"</b> to reveal the panel, then click it again to enter. Or use the sub-nav above to jump, anchors clear both sticky bars.</div></div>
+
+<section class="sec" id="plans">
+  <h2>Plans</h2>
+  <p>This block exists to demonstrate scrolling and the stacked sticky behavior. As you scroll, watch the global navigation condense from 84px to 62px while the Delta Dental sub-nav re-pins directly below it using the live <code>--nav-h</code> custom property updated by a ResizeObserver. The active sub-nav tab updates as each section scrolls into view.</p>
+  <p>Curated, real links live inside each mega panel rather than dumping the full sitemap. Large clusters, the 24-term glossary, all carriers, the 11 emergency pages, collapse to a single "View all" pointing at their hub.</p>
+</section>
+
+<section class="sec" id="eligibility">
+  <h2>Eligibility</h2>
+  <p>Anchor jumps land with the section heading fully visible, never tucked behind the two sticky bars, thanks to <code>scroll-margin-top: calc(var(--nav-h) + var(--subnav-h) + 14px)</code>. The combined offset stays correct even after the header condenses, because both heights are measured live and written back to CSS variables.</p>
+</section>
+
+<section class="sec" id="networks">
+  <h2>Networks</h2>
+  <p>The mega panels reveal with an ease-out-expo curtain (clip-path) and a gentle column stagger that reads as deliberate and considered rather than springy. Exit is faster, with no stagger. All of this respects <code>prefers-reduced-motion</code>, collapsing to a simple fade.</p>
+</section>
+
+<section class="sec" id="over-65">
+  <h2>Over 65</h2>
+  <p>On mobile, the dropdowns are replaced by a slide-in drawer with accordion sections, a ZIP search, body-scroll-lock, focus trap, and return-focus to the menu button on close. Resize this window below 1080px to try it.</p>
+</section>
+
+<section class="sec" id="faqs">
+  <h2>FAQs</h2>
+  <p>This is the last anchor target. Scroll back up and the sub-nav remains pinned beneath the global nav the entire way. Both bars are always reachable, which is the core requirement: the universal nav is always sticky, and any page-level sub-nav stacks with it.</p>
+</section>
+
+<div class="note">Prototype only. Links point at real production paths so you can sanity-check the information architecture. Nothing here is wired to Supabase or live search.</div>
+
+<footer class="demo">CoverCapy, concierge dental network · prototype</footer>
+
+<!-- ===================== MOBILE DRAWER ===================== -->
+<aside class="cc-drawer" id="ccDrawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <div class="cc-drawer-head">
+    <div class="row">
+      <span class="cc-drawer-brand">CoverCapy</span>
+      <button class="cc-drawer-x" id="ccDrawerX" aria-label="Close menu">✕</button>
+    </div>
+    <div class="cc-drawer-tag">Find a PPO dentist. Get covered. Earn rewards.</div>
+  </div>
+  <div class="cc-drawer-nav">
+    <div class="cc-zip-m">
+      <div class="l">Find a PPO dentist</div>
+      <div class="r"><input type="search" placeholder="ZIP or city..."><button>Search</button></div>
+    </div>
+    <div class="cc-acc"><button class="cc-acc-btn">Find a Dentist <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/find-my-dentist.html">Find my dentist</a>
+      <a href="/dental-treatment-cost-estimator.html">Cost estimator</a>
+      <a href="/dental-financing-monthly-payments.html">Financing &amp; payments</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Insurance <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/compare-ppo-dental-plans.html">Compare PPO plans</a>
+      <a href="/dental-insurance/delta-dental/">Delta Dental</a>
+      <a href="/dental-insurance/ppo-plans/">All carriers</a>
+      <a href="/guides/no-waiting-period/">No waiting period</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Guides <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/guides/">All guides</a>
+      <a href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
+      <a href="/guides/glossary/">Glossary</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Benefit Maxing <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/benefit-maxing/">Maximize your benefits</a>
+      <a href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol</a>
+      <a href="/benefit-maxing/guides/dental-emergencies/">Dental emergencies</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">For Dentists <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/claim-dentist-listing-profile.html">Claim your profile</a>
+      <a href="/capy-accreditation.html">Capy Accreditation</a>
+      <a href="/capy-practice-membership.html">Practice membership</a>
+    </div></div></div>
+  </div>
+  <div class="cc-drawer-foot">
+    <a class="cc-drawer-join" href="/covercapy-join.html">Create account</a>
+    <a class="cc-drawer-sign" href="/sign-in.html">Sign in</a>
+  </div>
+</aside>
+
+<!-- money.com-style bottom reveal dock for the dentist result -->
+<div class="cc-dock" id="cc-find-dock" role="dialog" aria-label="Dentist match" aria-hidden="true">
+  <button class="cc-dock-x" id="cc-find-dock-x" type="button" aria-label="Close">✕</button>
+  <div class="cc-dock-full" id="cc-find-dock-bd"></div>
+  <div class="cc-dock-mini" id="cc-find-dock-mini" role="button" tabindex="0" aria-label="Expand result">
+    <span class="cc-dock-mini-grip" aria-hidden="true"></span>
+    <span class="cc-dock-mini-nm" id="cc-find-dock-mini-nm"></span>
+    <span class="cc-dock-mini-rt" id="cc-find-dock-mini-rt"></span>
+    <button class="cc-dock-mini-bk" id="cc-find-dock-mini-bk" type="button">Book appointment</button>
+  </div>
+</div>
+
+<!-- ===================== SEO LINK MAP (what a crawler indexes, no JS needed) ===================== -->
+<section style="max-width:1340px;margin:0 auto;padding:48px 30px 70px;border-top:1px solid #E8E2D6">
+  <div style="font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B98023;margin-bottom:12px">SEO build, what a crawler sees</div>
+  <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:28px;letter-spacing:-.01em;margin:0 0 10px;color:#14242A">Every nav link is in the page HTML</h2>
+  <p style="font-size:14.5px;line-height:1.6;color:#49666C;max-width:74ch;margin:0 0 4px">These links are written into the static HTML, so search engines and AI crawlers index them even with JavaScript turned off. The dropdown panels, live search, and result card are layered on top as enhancements. On the live site the same link block is baked into each of your pages by the generator. Turn off JavaScript and the menus still open on hover, every link still works.</p>
+  <p style="font-size:12.5px;color:#8A958F;margin:0 0 26px">Demonstration list below mirrors the nav. On production this lives inside a real &lt;nav&gt; element on every page.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px 32px;font-family:'Inter Tight',sans-serif">
+    <nav aria-label="Find a dentist links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Find a dentist</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/find-my-dentist.html">Find a PPO dentist</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-treatment-cost-estimator.html">Treatment cost estimator</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-financing-monthly-payments.html">Financing and monthly plans</a></nav>
+    <nav aria-label="Insurance links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Insurance</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/">Dental insurance guide</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/compare-ppo-dental-plans.html">Compare PPO plans</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/">All PPO plans</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/delta-dental/">Delta Dental</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/uhc-primary-dental/">UnitedHealthcare Primary Dental</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/metlife-ncd-complete/">MetLife</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/guardian-premier-ppo/">Guardian</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/humana-extend-5000/">Humana</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/ppo-plans/ameritas-primestar/">Ameritas</a></nav>
+    <nav aria-label="Situation links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">By situation</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/between-jobs/">Coverage between jobs</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/self-employed/">Self-employed coverage</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/no-waiting-period/">No waiting period</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/immediate-coverage/">Immediate coverage</a></nav>
+    <nav aria-label="Guides links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Guides</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/glossary/">PPO dental glossary</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/medi-cal-vs-ppo-dental.html">Medi-Cal vs PPO dental</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/root-canal-cost.html">Root canal cost</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/guides/crowns/cost.html">Crown cost</a></nav>
+    <nav aria-label="Benefit maxing links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">Benefit maxing</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/">Maximize your benefits</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/dental-emergencies/">Dental emergencies</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/dental-emergencies/knocked-out-tooth/">Knocked-out tooth</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/crowns/">Crowns</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/root-canals/">Root canals</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/benefit-maxing/guides/implants/">Implants</a></nav>
+    <nav aria-label="For dentists links"><div style="font:700 11px/1 'Inter Tight';letter-spacing:.12em;text-transform:uppercase;color:#6B7D82;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #EFEAE0">For dentists</div>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/claim-dentist-listing-profile.html">Claim your profile</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dentist-portal.html">Dentist portal</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/capy-accreditation.html">Capy Accreditation</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/capy-practice-membership.html">Practice membership</a>
+      <a style="display:block;font-size:13.5px;color:#14525B;text-decoration:none;padding:5px 0" href="/dental-insurance/delta-dental/for-employers/">For employers</a></nav>
+  </div>
+</section>
+
+<div class="proto-flag">CoverCapy nav, SEO build</div>
+
+
+
+<script src="/assets/js/omega-nav2.js"></script>
+</body>
+</html>
