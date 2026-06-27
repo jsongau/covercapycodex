@@ -45,6 +45,26 @@ The site lives at `covercapy.com`. It is deployed on Vercel from this GitHub rep
 
 ---
 
+## THE REPO FOLDER — THERE IS ONLY ONE
+
+### ⚠️ The repo lives at: `/Users/kytlegacy/covercapycodex ultimate 21JUN26`
+
+This is the ONLY working copy. It is the folder connected to Cowork sessions, and its
+git remote is `https://github.com/jsongau/covercapycodex.git` (Vercel deploys from this repo's `main`).
+
+**Do NOT use any other folder.** An old clone once existed at
+`/Users/kytlegacy/Claude/Projects/CoverCapy Dentists Scape`. It is STALE and out of sync.
+Running git there produces "nothing to commit" / rejected-push confusion because it does not
+contain current work. If you find that folder, ignore or delete it. Always:
+
+```bash
+cd "/Users/kytlegacy/covercapycodex ultimate 21JUN26"
+```
+
+### Deploy hygiene (these have blocked pushes before)
+- **No files over 100 MB** — GitHub hard-rejects them. Never commit zips/backups/exports into the repo. Keep them out via `.gitignore`.
+- **No secrets in committed files** — GitHub push-protection blocks the Supabase **service** key (`sb_secret_...`). Only the **anon** key (`eyJ...`, role `anon`) belongs in shipped pages; it is public by design.
+
 ## RUNNING THE GENERATOR — READ THIS CAREFULLY
 
 ### ⚠️ ALWAYS run from the REPO ROOT, never from inside seo-build/
@@ -53,7 +73,7 @@ The site lives at `covercapy.com`. It is deployed on Vercel from this GitHub rep
 
 ```bash
 # CORRECT — run from repo root:
-cd "/Users/kytlegacy/Claude/Projects/CoverCapy Dentists Scape"
+cd "/Users/kytlegacy/covercapycodex ultimate 21JUN26"
 node seo-build/generate-plans.js                     # full build (~8 min)
 node seo-build/generate-plans.js --dentist-pages     # T5 dentist pages only (~4 min)
 node seo-build/generate-plans.js --hubs              # hub pages only
@@ -67,7 +87,7 @@ The sandbox cannot reach Supabase. All generator runs must be from the user's Ma
 
 ### Full deploy workflow
 ```bash
-cd "/Users/kytlegacy/Claude/Projects/CoverCapy Dentists Scape"
+cd "/Users/kytlegacy/covercapycodex ultimate 21JUN26"
 node seo-build/generate-plans.js
 git add -A
 git commit -m "feat: description"
