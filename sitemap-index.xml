@@ -16,7 +16,10 @@
     <lastmod>2026-06-21</lastmod>
   </sitemap>
 
-  <!-- Doctor profile pages under /dentists/ (NPI-enriched, ~1,148) are currently noindex
-       (is_published=false in enrich-npi.js). Add a sitemap-doctors entry here once they are flipped to index. -->
+  <!-- Doctor profile pages under /dentists/ (NPI-enriched, 1,148). Now index,follow. -->
+  <sitemap>
+    <loc>https://www.covercapy.com/dentists/sitemap-dentists.xml</loc>
+    <lastmod>2026-06-26</lastmod>
+  </sitemap>
 
 </sitemapindex>
