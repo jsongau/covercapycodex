@@ -717,44 +717,79 @@ body{margin:0;background:var(--paper)}
   <!-- PLAN DECISION MODULE (need-based, replaces retail cards) -->
   <section class="section" id="insurance" aria-labelledby="plan-h2">
     <div class="wrap">
-      <div class="s-head"><h2 id="plan-h2">Pick the plan by what you actually need.</h2><p class="intro">Choose your situation and see which plan attributes matter most. Then compare current plans for your state.</p></div>
-      <div class="needpick" role="group" aria-label="Choose your situation">
-        <button type="button" data-need="soon" aria-pressed="true">Care needed soon</button>
-        <button type="button" data-need="major" aria-pressed="false">Major treatment planned</button>
-        <button type="button" data-need="preventive" aria-pressed="false">Preventive care</button>
-        <button type="button" data-need="family" aria-pressed="false">Family coverage</button>
-        <button type="button" data-need="employer" aria-pressed="false">Through my employer</button>
-        <button type="button" data-need="keep-dentist" aria-pressed="false">Keep my dentist</button>
+<style>
+/* Choose Your Situation, situation-aware module (cys-) */
+#cc-home .cys-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:8px}
+@media(max-width:880px){#cc-home .cys-grid{grid-template-columns:1fr;gap:30px}}
+#cc-home .cys-left{display:flex;flex-direction:column;gap:30px}
+#cc-home .cys-pick{display:flex;flex-direction:column;gap:10px;margin:0}
+#cc-home .cys-pick button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;background:var(--white);border:1px solid var(--line-2);border-radius:var(--radius);padding:15px 18px;cursor:pointer;font-family:var(--sans);transition:background-color .15s,border-color .15s,box-shadow .15s}
+#cc-home .cys-pick button:hover{border-color:var(--ink)}
+#cc-home .cys-pick button[aria-pressed="true"]{background:var(--paper-2);border-color:var(--line-2);box-shadow:inset 3px 0 0 var(--coral)}
+#cc-home .cys-name{display:block;font-family:var(--serif);font-weight:500;font-size:1.18rem;line-height:1.18;color:var(--ink)}
+#cc-home .cys-sub{display:block;font-size:.85rem;color:var(--muted);margin-top:3px}
+#cc-home .cys-mark{flex:none;width:8px;height:8px;border-right:2px solid var(--line-2);border-top:2px solid var(--line-2);transform:rotate(45deg);transition:border-color .15s}
+#cc-home .cys-pick button[aria-pressed="true"] .cys-mark{border-color:var(--coral)}
+#cc-home .cys-matters .cys-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin:0 0 16px}
+#cc-home .cys-matters h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.15;margin:0 0 16px;color:var(--ink);min-height:2.3em}
+#cc-home .cys-msub{color:var(--muted);font-size:1rem;margin:0 0 24px;max-width:44ch;line-height:1.55}
+#cc-home .cys-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
+#cc-home .cys-chip{font-size:.9rem;border:1px solid var(--line);padding:10px 14px;color:var(--muted);background:var(--white)}
+#cc-home .cys-chip.key{border-color:var(--blue);color:var(--blue-ink);font-weight:600}
+#cc-home .cys-why{font-size:.9rem;color:var(--muted-2);max-width:46ch;margin:0;line-height:1.5}
+#cc-home .cys-plate{background:var(--white);border:1px solid var(--line-2);overflow:hidden}
+#cc-home .cys-plate .cys-toprule{height:3px;background:var(--coral)}
+#cc-home .cys-plate.is-urgent .cys-toprule{background:var(--mint)}
+#cc-home .cys-inner{padding:26px 24px 24px}
+@media(max-width:480px){#cc-home .cys-inner{padding:22px 18px}}
+#cc-home .cys-eyebrow{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted-2);margin:0 0 10px}
+#cc-home .cys-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:14px}
+#cc-home .cys-badge.go{background:var(--mint-soft);color:var(--mint);border:1px solid #C9E5D9}
+#cc-home .cys-badge.plan{background:var(--paper-2);color:var(--coral-ink);border:1px solid #E4D8BF}
+#cc-home .cys-badge.net{background:var(--paper-2);color:var(--teal);border:1px solid #D7CEBA}
+#cc-home .cys-pname{font-family:var(--serif);font-weight:500;font-size:1.85rem;line-height:1.06;margin:0 0 4px;color:var(--ink)}
+#cc-home .cys-plate.is-action .cys-pname{font-size:1.6rem}
+#cc-home .cys-price{font-size:.94rem;color:var(--muted);margin:0 0 24px}
+#cc-home .cys-price b{color:var(--ink);font-weight:600}
+#cc-home .cys-rows{list-style:none;margin:0 0 24px;padding:0;border-top:1px solid var(--line)}
+#cc-home .cys-rows li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.94rem}
+#cc-home .cys-rows li span:first-child{color:var(--muted)}
+#cc-home .cys-rows li span:last-child{color:var(--ink);font-weight:600;text-align:right;max-width:60%;font-variant-numeric:tabular-nums}
+#cc-home .cys-fit{font-size:.96rem;line-height:1.55;color:var(--ink);background:var(--paper-2);padding:15px 17px;margin:0 0 24px}
+#cc-home .cys-fit b{color:var(--ink)}
+#cc-home .cys-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+#cc-home .cys-cta .btn-primary{align-self:stretch}
+#cc-home .cys-note{display:flex;gap:9px;align-items:flex-start;font-size:.84rem;color:var(--muted-2);margin:16px 0 0;line-height:1.45}
+#cc-home .cys-note svg{flex:none;margin-top:1px}
+#cc-home .cys-fade{animation:cysfade .26s ease}
+@keyframes cysfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#cc-home .cys-fade{animation:none}}
+</style>
+      <div class="s-head">
+        <p class="eyebrow">Find the right plan</p>
+        <h2 id="plan-h2">The right plan depends on what you are facing.</h2>
+        <p class="intro">Implants next month read differently than a checkup, and a cracked tooth tonight reads differently than both. Tell us the situation. We surface the plan that actually fits, then help you verify the dentist of your choosing accepts it before you commit.</p>
       </div>
-      <div class="plan-grid">
-        <div class="attrwrap">
-          <p class="att-h">Attributes that shape your decision</p>
-          <div class="attrs">
-            <span class="a key" data-attr="effective date">Effective date</span>
-            <span class="a key" data-attr="waiting period">Waiting period</span>
-            <span class="a" data-attr="annual maximum">Annual maximum</span>
-            <span class="a" data-attr="deductible">Deductible</span>
-            <span class="a" data-attr="procedure category">Procedure category</span>
-            <span class="a key" data-attr="network">Network</span>
-            <span class="a" data-attr="missing-tooth limitation">Missing-tooth limitation</span>
-            <span class="a" data-attr="state availability">State availability</span>
+      <div class="cys-grid">
+        <div class="cys-left">
+          <div class="cys-pick" role="tablist" aria-label="Choose your situation">
+            <button type="button" role="tab" data-need="preventive" aria-pressed="true"><span><span class="cys-name">Preventive care</span><span class="cys-sub">Cleanings and exams, lowest cost</span></span><span class="cys-mark" aria-hidden="true"></span></button>
+            <button type="button" role="tab" data-need="soon" aria-pressed="false"><span><span class="cys-name">Care can&#39;t wait</span><span class="cys-sub">Treatment you need now, no waiting period</span></span><span class="cys-mark" aria-hidden="true"></span></button>
+            <button type="button" role="tab" data-need="family" aria-pressed="false"><span><span class="cys-name">Family coverage</span><span class="cys-sub">One plan for the whole household</span></span><span class="cys-mark" aria-hidden="true"></span></button>
+            <button type="button" role="tab" data-need="major" aria-pressed="false"><span><span class="cys-name">Major treatment planned</span><span class="cys-sub">Crowns and implants, planned ahead</span></span><span class="cys-mark" aria-hidden="true"></span></button>
+            <button type="button" role="tab" data-need="keep-dentist" aria-pressed="false"><span><span class="cys-name">Keep my dentist</span><span class="cys-sub">Stay with the dentist you trust</span></span><span class="cys-mark" aria-hidden="true"></span></button>
           </div>
-          <p id="need-note" style="font-size:.9rem;color:var(--muted);margin:var(--s-4) 0 0">The attributes highlighted in blue tend to matter most for that situation.</p>
-          <div class="cta-row" style="margin-top:var(--s-5)"><a class="btn btn-primary" href="https://www.covercapy.com/compare-ppo-dental-plans" data-ev="home_plan_compare">Compare PPO plans</a></div>
+          <div class="cys-matters">
+            <p class="cys-label">What decides your cost here</p>
+            <h3 id="cys-mtitle">Just cleanings and exams? Keep it light and low-cost.</h3>
+            <p class="cys-msub" id="cys-msub">If you only need to stay on top of preventive care, you do not need a big maximum or major-work coverage. You want the lowest premium with preventive covered in full from day one.</p>
+            <div class="cys-chips" id="cys-chips" aria-label="Attributes that matter most"></div>
+            <p class="cys-why" id="cys-why">Highlighted attributes are the ones that move your out-of-pocket cost the most for this situation.</p>
+          </div>
         </div>
-        <aside class="planex" aria-label="Worked example: Humana Extend 5000">
-          <div class="planex-head">
-            <div><span class="planex-eyebrow">Worked example</span><p class="planex-name">Humana Extend 5000</p></div>
-            <span class="planex-meta">from ~$100/mo, varies by state and age</span>
-          </div>
-          <ul class="planex-attrs">
-            <li><span>Annual maximum</span><span>$5,000</span></li>
-            <li><span>Implant benefit</span><span>$2,000/yr · $4,000 lifetime</span></li>
-            <li><span>Waiting periods</span><span>Basic 3 mo · Major 6 mo · Implant 6 mo</span></li>
-            <li><span>May fit when</span><span>Implants, whitening, planning ahead</span></li>
-          </ul>
-          <p class="planex-fit" id="planex-fit">Partial fit. A strong $5,000 maximum, but major and implant benefits have a waiting period, so it suits you better when you can plan a few months ahead.</p>
-          <a class="tlink" href="https://www.covercapy.com/dental-insurance/ppo-plans/humana-extend-5000" data-ev="home_planex">See this plan</a>
+        <aside class="cys-plate" id="cys-plate" aria-live="polite" aria-label="Matched plan for your situation">
+          <div class="cys-toprule"></div>
+          <div class="cys-inner" id="cys-inner"></div>
         </aside>
       </div>
       <nav class="carrier-links" aria-label="Compare PPO plans by carrier">
@@ -1018,39 +1053,135 @@ body{margin:0;background:var(--paper)}
     }
   });
 
-  // plan need-selector: highlight the attributes that matter for the chosen need
-  var needMap = {
-    'soon': ['effective date', 'waiting period', 'network'],
-    'major': ['waiting period', 'annual maximum', 'missing-tooth limitation'],
-    'preventive': ['effective date', 'network', 'deductible'],
-    'family': ['annual maximum', 'network', 'state availability'],
-    'employer': ['network', 'annual maximum'],
-    'keep-dentist': ['network', 'effective date']
+  // Choose Your Situation: surface the matched plan per situation. Facts from /data/plans/ SSOT.
+  var CYS_BASE = "https://www.covercapy.com";
+  var CYS_SHIELD = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#137A5B" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg>';
+  var CYS_CONC = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6A6354" stroke-width="1.7"><path d="M4 20a8 8 0 0116 0"/><circle cx="12" cy="8" r="4"/></svg>';
+  var CYS = {
+    soon: {
+      urgent: true,
+      title: "When care cannot wait, the waiting period is everything.",
+      sub: "A high maximum is useless if the plan makes you wait three to six months before it pays. For urgent care, two things decide everything: no waiting period, and how fast coverage can start.",
+      chips: [["No waiting period",1],["How fast it starts",1],["Day-one coverage",1],["Annual maximum",0],["Deductible",0],["Network",0]],
+      why: "Most plans gate basic and major work behind 3 to 12 month waits. The few that do not are the only honest answer when you need care now.",
+      plan: {
+        eyebrow: "Best fit for urgent care",
+        badge: ["go","No waiting period",CYS_SHIELD],
+        name: "Ameritas PrimeStar Care Complete",
+        price: "<b>~$60/mo</b> estimate, varies by state and ZIP",
+        rows: [["Waiting periods","None on any category"],["Coverage can start","As soon as tomorrow"],["Preventive / Basic","100% / 80% day one"],["Major work","20% year one, rising to 50%"]],
+        fit: "<b>The plan to reach for when care cannot wait.</b> No waiting periods on preventive, basic, major, or implants, and coverage can begin as soon as the next day. Major work pays 20% the first year and rises to 50% after, so it rewards getting covered now and treated soon.",
+        cta: ["See Ameritas, no waiting period","/dental-insurance/ppo-plans/ameritas-primestar?need=soon"],
+        compare: ["Compare every no-wait plan","/compare-ppo-dental-plans?need=soon"],
+        note: "We help you verify the dentist of your choosing accepts Ameritas, before you commit."
+      }
+    },
+    major: {
+      urgent: false,
+      title: "Planning crowns or implants? Maximum and major reimbursement decide it.",
+      sub: "When the work is big and you can time it, you want a high annual maximum and a strong major-work payout. A short wait is fine if you are planning a few months out.",
+      chips: [["Annual maximum",1],["Major reimbursement",1],["Implant benefit",1],["Waiting period",0],["Missing-tooth rule",0],["Network",0]],
+      why: "Big cases blow through small maximums fast. The featured plan pairs a generous ceiling with real major-work coverage once a short wait clears.",
+      plan: {
+        eyebrow: "Best fit for planned major work",
+        badge: ["plan","Plan a few months ahead",CYS_SHIELD],
+        name: "Humana Extend 5000",
+        price: "<b>~$100/mo</b> estimate, varies by state and ZIP",
+        rows: [["Annual maximum","$5,000 per person"],["Major work","50% year one, 60% year two"],["Implant benefit","$2,000/yr, $4,000 lifetime"],["Waits","Major and implant: 6 months"]],
+        fit: "<b>Right fit if you can plan ahead.</b> A generous $5,000 maximum and 50% on major work, with a dedicated implant benefit. Major care and implants wait six months, so this rewards patience, not emergencies. Want a higher ceiling? MetLife NCD reaches a $10,000 maximum.",
+        cta: ["See Humana Extend 5000","/dental-insurance/ppo-plans/humana-extend-5000?need=major"],
+        compare: ["Compare high-maximum plans","/compare-ppo-dental-plans?need=major"],
+        note: "We help you verify the dentist of your choosing accepts Humana, before you commit."
+      }
+    },
+    preventive: {
+      urgent: false,
+      title: "Just cleanings and exams? Keep it light and low-cost.",
+      sub: "If you only need to stay on top of preventive care, you do not need a big maximum or major-work coverage. You want the lowest premium with preventive covered in full from day one.",
+      chips: [["Monthly premium",1],["Preventive coverage",1],["Day-one coverage",1],["Annual maximum",0],["Major work",0],["Network",0]],
+      why: "Paying for major-work coverage you will not use is wasted premium. For checkups, the lightest plan wins.",
+      plan: {
+        eyebrow: "Best fit for preventive care",
+        badge: ["go","Lowest cost on the shelf",CYS_SHIELD],
+        name: "UHC Primary Dental",
+        price: "<b>~$30/mo</b> estimate, about $1 a day, ages 18 to 64",
+        rows: [["Preventive","100% in-network, day one"],["Basic services","50% day one, rising to 80%"],["Coverage can start","Day after your application"],["Major / implants","Not covered on this tier"]],
+        fit: "<b>The lightest, lowest-cost way to keep up.</b> Cleanings and exams are covered 100% from day one, on the UnitedHealthcare network of 80,000-plus dentists. Note it does not cover crowns, root canals, or implants, so step up a tier if major work is on the horizon.",
+        cta: ["See UHC Primary Dental","/dental-insurance/ppo-plans/uhc-primary-dental?need=preventive"],
+        compare: ["Compare low-cost plans","/compare-ppo-dental-plans?need=preventive"],
+        note: "We help you verify the dentist of your choosing accepts UnitedHealthcare, before you commit."
+      }
+    },
+    family: {
+      urgent: false,
+      title: "Covering a family? Day-one value and children's needs matter most.",
+      sub: "Families want a plan that works right away on everyday care, has room for more than one person, and covers children's orthodontics if braces are coming.",
+      chips: [["Day-one basic",1],["Annual maximum",1],["Child orthodontics",1],["Multi-member value",0],["Network",0],["Deductible",0]],
+      why: "Most individual plans exclude orthodontics entirely. The featured plan is one of the few that covers children's braces.",
+      plan: {
+        eyebrow: "Best fit for families",
+        badge: ["go","85% basic, day one",CYS_SHIELD],
+        name: "Guardian Premier 2.0",
+        price: "<b>~$70/mo</b> estimate, varies by state, ZIP and age",
+        rows: [["Basic work","85% in-network, day one"],["Annual maximum","$3,000 per person"],["Child orthodontics","60% after a 12-month wait"],["Adult orthodontics","Not covered"]],
+        fit: "<b>Strong for families.</b> The highest day-one basic payout on our shelf at 85%, a $3,000 maximum, and coverage for children's orthodontics up to a $1,500 lifetime benefit. Adult orthodontics is not covered, and major work waits twelve months, so plan bigger treatment with that in mind.",
+        cta: ["See Guardian Premier","/dental-insurance/ppo-plans/guardian-premier-ppo?need=family"],
+        compare: ["Compare family plans","/compare-ppo-dental-plans?need=family"],
+        note: "We help you verify your family's dentist accepts Guardian, before you commit."
+      }
+    },
+    "keep-dentist": {
+      urgent: false,
+      title: "Set on your dentist? Start with the network, not the plan.",
+      sub: "When keeping your current dentist comes first, the plan only matters if your dentist accepts it. So we help you verify that first, then match you to a plan that fits.",
+      chips: [["Your dentist's network",1],["Network size",1],["Confirm in-network",1],["Premium",0],["Maximum",0]],
+      why: "A great plan your dentist does not take is the wrong plan. Network match comes before everything else here.",
+      plan: {
+        action: true,
+        eyebrow: "Network first",
+        badge: ["net","Largest PPO footprint",CYS_CONC],
+        name: "Check if your dentist is in-network first.",
+        price: "Search your dentist, and we help you verify which PPO networks the office accepts before you choose a plan.",
+        rows: [["Best first step","Search your dentist"],["We help you verify","The networks your office accepts"],["Widest network we feature","Delta Dental PPO"]],
+        fit: "<b>Start with the office, not the brochure.</b> If you want the broadest odds your dentist is already in-network, Delta Dental PPO is one of the largest footprints we track at 112,000-plus dentists. We help you verify your specific office accepts it before you commit to anything.",
+        cta: ["Find my dentist","/find-my-dentist?need=keep-dentist"],
+        compare: ["See Delta Dental","/dental-insurance/delta-dental?need=keep-dentist"],
+        note: "Accepts your insurance is not the same as in your network. We help you verify which applies to your dentist."
+      }
+    }
   };
-  var needBtns = document.querySelectorAll('.needpick button');
-  var attrEls = document.querySelectorAll('.attrs .a');
-  var fitMap = {
-    soon: 'Partial fit. A strong $5,000 maximum, but major and implant benefits have a waiting period, so it suits you better when you can plan a few months ahead.',
-    major: 'Strong fit. A $5,000 annual maximum and a dedicated implant benefit suit planned major work.',
-    preventive: 'More than you need. For cleanings and exams, a lower-cost plan usually fits better.',
-    family: 'Worth comparing for families. Add a spouse or dependent for a multi-member discount, and the $5,000 maximum helps. Check children and orthodontic needs.',
-    employer: 'This is an individual plan, not an employer group plan. If you already have PPO coverage through work, you likely do not need this — use CoverCapy to find an in-network dentist and check the benefits you already have.',
-    'keep-dentist': 'Only if your dentist takes Humana. Confirm the exact network before relying on it.'
-  };
-  function applyNeed(need) {
-    var keys = needMap[need] || [];
-    attrEls.forEach(function (el) {
-      var on = keys.indexOf((el.getAttribute('data-attr') || '').toLowerCase()) > -1;
-      el.classList.toggle('key', on);
-    });
-    needBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-need') === need)); });
-    var note = document.getElementById('need-note');
-    if (note) note.textContent = 'The attributes highlighted in blue tend to matter most for that situation.';
-    var fit = document.getElementById('planex-fit');
-    if (fit && fitMap[need]) fit.textContent = fitMap[need];
-    track('home_plan_need', { need: need });
-  }
-  needBtns.forEach(function (b) { b.addEventListener('click', function () { applyNeed(b.getAttribute('data-need')); }); });
+  (function () {
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.cys-pick button'));
+    if (!btns.length) return;
+    var plate = document.getElementById('cys-plate'), inner = document.getElementById('cys-inner'),
+        mT = document.getElementById('cys-mtitle'), mS = document.getElementById('cys-msub'),
+        mC = document.getElementById('cys-chips'), mW = document.getElementById('cys-why');
+    function chipHTML(list) { return list.map(function (c) { return '<span class="cys-chip' + (c[1] ? ' key' : '') + '">' + c[0] + '</span>'; }).join(''); }
+    function planHTML(p) {
+      var rows = p.rows.map(function (r) { return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>'; }).join('');
+      return '<p class="cys-eyebrow">' + p.eyebrow + '</p>' +
+        '<span class="cys-badge ' + p.badge[0] + '">' + p.badge[2] + p.badge[1] + '</span>' +
+        '<p class="cys-pname">' + p.name + '</p>' +
+        '<p class="cys-price">' + p.price + '</p>' +
+        '<ul class="cys-rows">' + rows + '</ul>' +
+        '<p class="cys-fit">' + p.fit + '</p>' +
+        '<div class="cys-cta"><a class="btn btn-primary" href="' + CYS_BASE + p.cta[1] + '" data-ev="home_plan_cta">' + p.cta[0] + '</a>' +
+        '<a class="tlink" href="' + CYS_BASE + p.compare[1] + '" data-ev="home_plan_compare">' + p.compare[0] + '</a></div>' +
+        '<p class="cys-note">' + CYS_CONC + '<span>' + p.note + '</span></p>';
+    }
+    function apply(need) {
+      var d = CYS[need]; if (!d) return;
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-need') === need)); });
+      mT.textContent = d.title; mS.textContent = d.sub; mC.innerHTML = chipHTML(d.chips); mW.textContent = d.why;
+      plate.classList.toggle('is-urgent', !!d.urgent);
+      plate.classList.toggle('is-action', !!d.plan.action);
+      inner.innerHTML = planHTML(d.plan);
+      inner.classList.remove('cys-fade'); void inner.offsetWidth; inner.classList.add('cys-fade');
+      track('home_plan_need', { need: need });
+    }
+    btns.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-need')); }); });
+    apply('preventive');
+  })();
 
   // live aggregate hook: replace server-rendered fallbacks ONLY if a verified payload is provided.
   // window.COVERCAPY_STATS would be injected from a cached Supabase aggregate view/RPC at render time.
