@@ -1,0 +1,166 @@
+<!--
+  CoverCapy Dental Savings Plans Sub-Nav ("2x sticky" second bar)
+  ==============================================================
+  Savings-hub twin of components/hub-subnav.html. Identical structure, classes,
+  theme toggle, scroll meter, and behaviour, so it is styled by the same
+  /assets/css/hub-theme.css and behaves identically. Only the dropdown links are
+  tailored to the dental savings plans hub. Kept separate so the insurance hub
+  sub-nav (hub-subnav.html) stays the single source of truth for that hub.
+
+  USE
+  ---
+  1. <head>: <link rel="stylesheet" href="/assets/css/hub-theme.css">
+  2. <body> after the mega-nav mount:
+        <div id="cc-nav-mount"></div>
+        <div id="cc-savings-subnav-mount"></div>
+        <div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <span>This page</span></div></div>
+  3. Loader: { mountId:'cc-savings-subnav-mount', html:'/components/savings-subnav.html', script:null }
+-->
+<div class="toc" aria-label="Dental savings plans hub sub navigation">
+  <div class="toc-prog" id="tocProg"></div>
+  <div class="wrap">
+    <div class="theme-switch" id="cc-ts" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme, Gold or Jade">
+      <span class="ts-thumb"></span>
+      <span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span>
+      <span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
+    </div>
+    <div class="toc-dd" id="ddCompareWrap">
+      <button class="toc-dd-btn" id="ddCompareBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddCompare">Compare <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddCompare" role="menu" aria-label="Compare savings plans">
+        <a href="/dental-savings-plans#compare-plans" role="menuitem">Compare all six savings plans</a>
+        <div class="dd-lbl">Decide</div>
+        <a href="/dental-savings-plans/vs-ppo/" role="menuitem">Savings plan vs PPO</a>
+        <a href="/dental-savings-plans/is-it-worth-it/" role="menuitem">Is it worth it?</a>
+        <a href="/dental-savings-plans/use-with-insurance/" role="menuitem">Use it with insurance</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddPlansWrap">
+      <button class="toc-dd-btn" id="ddPlansBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddPlans">Plans <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddPlans" role="menu" aria-label="Savings plans by carrier">
+        <div class="dd-lbl">Plans by carrier</div>
+        <a href="/dental-savings-plans/aetna-dental-access/" role="menuitem">Aetna Dental Access</a>
+        <a href="/dental-savings-plans/careington/" role="menuitem">Careington</a>
+        <a href="/dental-savings-plans/humana-dental-savings-plus/" role="menuitem">Humana Dental Savings Plus</a>
+        <a href="/dental-savings-plans/cignaplus-savings/" role="menuitem">CignaPlus Savings</a>
+        <a href="/dental-savings-plans/uhc-dental-savings/" role="menuitem">UnitedHealthcare</a>
+        <a href="/dental-savings-plans/delta-dental-patient-direct/" role="menuitem">Delta Dental Patient Direct</a>
+        <a class="dd-all" href="/dental-savings-plans" role="menuitem">All savings plans</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddExploreWrap">
+      <button class="toc-dd-btn" id="ddExploreBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddExplore">Explore <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddExplore" role="menu" aria-label="Explore the hub">
+        <div class="dd-lbl">Guides and tools</div>
+        <a href="/dental-savings-plans" role="menuitem">Dental savings plans overview</a>
+        <a href="/dental-savings-plans/how-dental-discount-cards-work/" role="menuitem">How discount cards work</a>
+        <a href="/dental-savings-plans/cheapest-dental-care-without-insurance/" role="menuitem">Cheapest care without insurance</a>
+        <a href="/dental-savings-plans/are-they-a-scam/" role="menuitem">Are they a scam?</a>
+        <a href="/dental-savings-plans/no-waiting-period/" role="menuitem">No waiting period dental</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddTreatWrap">
+      <button class="toc-dd-btn" id="ddTreatBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddTreat">By Treatment <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddTreat" role="menu" aria-label="By treatment">
+        <div class="dd-lbl">Procedures</div>
+        <a href="/dental-savings-plans/for-crowns/" role="menuitem">Crowns</a>
+        <a href="/dental-savings-plans/for-implants/" role="menuitem">Implants</a>
+        <a href="/dental-savings-plans/for-root-canals/" role="menuitem">Root canals</a>
+        <a href="/dental-savings-plans/for-dentures/" role="menuitem">Dentures</a>
+        <a href="/dental-savings-plans/for-bridges/" role="menuitem">Bridges</a>
+        <a href="/dental-savings-plans/wisdom-teeth-removal/" role="menuitem">Wisdom teeth removal</a>
+        <a href="/dental-savings-plans/for-deep-cleaning/" role="menuitem">Deep cleaning</a>
+        <a href="/dental-savings-plans/for-braces/" role="menuitem">Braces and aligners</a>
+        <a href="/dental-savings-plans/for-cosmetic-work/" role="menuitem">Veneers and whitening</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddSitWrap">
+      <button class="toc-dd-btn" id="ddSitBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddSit">By Situation <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddSit" role="menu" aria-label="By situation">
+        <div class="dd-lbl">Life situations</div>
+        <a href="/dental-savings-plans/for-seniors/" role="menuitem">Seniors and Medicare</a>
+        <a href="/dental-savings-plans/for-families/" role="menuitem">Families</a>
+        <a href="/dental-savings-plans/for-self-employed/" role="menuitem">Self-employed</a>
+        <a href="/dental-savings-plans/after-job-loss/" role="menuitem">After a job loss</a>
+        <a href="/dental-savings-plans/no-waiting-period/" role="menuitem">Need coverage now</a>
+      </div>
+    </div>
+    <div class="toc-dd" id="ddGlossWrap">
+      <button class="toc-dd-btn" id="ddGlossBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddGloss">Dental Terms <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <div class="toc-dd-panel" id="ddGloss" role="menu" aria-label="Dental savings plan terms">
+        <div class="dd-lbl">Understand the terms</div>
+        <a href="/dental-savings-plans/glossary/" role="menuitem">Dental savings glossary, A to Z</a>
+        <a href="/dental-savings-plans/how-dental-discount-cards-work/" role="menuitem">How discount cards work</a>
+        <a href="/dental-savings-plans/vs-ppo/" role="menuitem">Savings plan vs PPO</a>
+        <a href="/dental-savings-plans/are-they-a-scam/" role="menuitem">Are they a scam?</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* CoverCapy savings-hub sub-nav behaviour: scroll meter, Gold/Jade theme, dropdowns.
+   Self-contained and idempotent: guards against double-init when the loader replays it. */
+(function(){
+  if (window.__ccSavingsSubnavInit) return;
+  window.__ccSavingsSubnavInit = true;
+
+  var prog = document.getElementById('tocProg');
+  if (prog) {
+    window.addEventListener('scroll', function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+    }, { passive: true });
+  }
+
+  var ccHtml = document.documentElement, ccTs = document.getElementById('cc-ts');
+  function applyTheme(t, slow){
+    var dur = slow ? '1.4s' : '0.45s';
+    var st = document.getElementById('cc-theme-transition');
+    if (!st){ st = document.createElement('style'); st.id = 'cc-theme-transition'; document.head.appendChild(st); }
+    st.textContent = 'html,html *{transition:background ' + dur + ' ease,color ' + dur + ' ease,border-color ' + dur + ' ease,box-shadow ' + dur + ' ease !important}';
+    ccHtml.setAttribute('data-theme', t);
+    if (ccTs){ ccTs.setAttribute('data-active', t); ccTs.setAttribute('aria-checked', t === 'jade' ? 'true' : 'false'); }
+    setTimeout(function(){ if (st) st.textContent = ''; }, slow ? 1600 : 600);
+  }
+  ccHtml.setAttribute('data-theme', 'gold');
+  if (ccTs){
+    ccTs.setAttribute('data-active', 'gold'); ccTs.setAttribute('aria-checked', 'false');
+    ccTs.addEventListener('click', function(){ applyTheme(ccHtml.getAttribute('data-theme') === 'gold' ? 'jade' : 'gold', false); });
+    ccTs.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); ccTs.click(); } });
+  }
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      if (ccTs) ccTs.classList.add('flipping');
+      applyTheme('jade', true);
+      setTimeout(function(){ if (ccTs) ccTs.classList.remove('flipping'); }, 2000);
+    }, 1000);
+  });
+
+  var dds = [].slice.call(document.querySelectorAll('.toc-dd'));
+  if (dds.length){
+    var T = null;
+    function closeAll(except){
+      dds.forEach(function(d){
+        if (d !== except){
+          var b = d.querySelector('.toc-dd-btn'), p = d.querySelector('.toc-dd-panel');
+          if (b) b.setAttribute('aria-expanded', 'false');
+          if (p) p.removeAttribute('data-open');
+        }
+      });
+    }
+    dds.forEach(function(d){
+      var btn = d.querySelector('.toc-dd-btn'), panel = d.querySelector('.toc-dd-panel');
+      if (!btn || !panel) return;
+      function open(){ clearTimeout(T); closeAll(d); btn.setAttribute('aria-expanded', 'true'); panel.setAttribute('data-open', ''); }
+      function close(){ btn.setAttribute('aria-expanded', 'false'); panel.removeAttribute('data-open'); }
+      btn.addEventListener('click', function(e){ e.stopPropagation(); btn.getAttribute('aria-expanded') === 'true' ? close() : open(); });
+      if (matchMedia('(hover:hover)').matches){
+        d.addEventListener('mouseenter', function(){ clearTimeout(T); open(); });
+        d.addEventListener('mouseleave', function(){ clearTimeout(T); T = setTimeout(close, 450); });
+      }
+    });
+    document.addEventListener('click', function(e){ if (!e.target.closest('.toc-dd')) closeAll(null); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(null); });
+  }
+})();
+</script>

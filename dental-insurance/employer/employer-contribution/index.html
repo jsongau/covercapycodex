@@ -28,7 +28,9 @@
 {"@type":"Question","name":"What should a small business offer for dental?","acceptedAnswer":{"@type":"Answer","text":"A common, competitive small-business approach is to cover about half of the employee-only premium and let employees add dependents through pre-tax payroll. That keeps the employer cost low, roughly a few thousand dollars a year for ten employees, while still signaling a real benefit. Only about 30 percent of workers at small firms get dental, so offering it is a differentiator."}}
 ]}]}
 </script>
-<link rel="stylesheet" href="/assets/css/mega-nav.css"><link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"><link rel="stylesheet" href="/assets/css/footer.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XNBPGSZ1LZ');</script>
+<link rel="stylesheet" href="/assets/css/mega-nav.css"><link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"><link rel="stylesheet" href="/assets/css/footer.css"><link rel="stylesheet" href="/assets/css/hub-theme.css">
 <style>
 #cc-nav-mount{min-height:72px}#cc-footer-mount{min-height:420px}#cc-nav-mount:empty,#cc-footer-mount:empty{min-height:0}
 :root{--paper:#FAF6EC;--paper-2:#F1E9D6;--card:#FFFFFF;--ink:#15202E;--ink-soft:#3D4654;--green:#C9A24A;--green-d:#8A6212;--green-l:#B79447;--sage:#F6EEDA;--muted:#6B6857;--line:#E8DEC8;--line-2:#DCCFB2;--panel:#0A2342;--panel-ink:#F4F8FC;--panel-soft:rgba(244,248,252,.82);--panel-eye:#E0BC72;--covered-tint:#E4F6EE;--covered-ink:#0A5D43;--serif:'Inter Tight',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;--shadow:0 1px 2px rgba(10,35,66,.06),0 4px 14px -4px rgba(10,35,66,.16)}
@@ -64,6 +66,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-
 </head>
 <body>
 <div id="cc-nav-mount"></div>
+<div id="cc-hub-subnav-mount"></div>
 <div class="crumb"><div class="wrap"><a href="/">Home</a> / <a href="/dental-insurance/">Dental insurance</a> / <a href="/dental-insurance/employer/">For employers</a> / <span>How much employers cover</span></div></div>
 
 <section class="hero"><div class="wrap">
@@ -135,7 +138,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-
 </main>
 <div id="cc-footer-mount"></div>
 <script>
-(function(){var c=[{m:'cc-nav-mount',h:'/components/mega-nav.html',s:'/assets/js/mega-nav.js'},{m:'cc-footer-mount',h:'/components/footer.html',s:'/assets/js/footer.js'}];
+(function(){var c=[{m:'cc-nav-mount',h:'/components/mega-nav.html',s:'/assets/js/mega-nav.js'},{m:'cc-hub-subnav-mount',h:'/components/hub-subnav.html',s:null},{m:'cc-footer-mount',h:'/components/footer.html',s:'/assets/js/footer.js'}];
 var ls=function(src){return new Promise(function(r){if(!src||document.querySelector('script[src="'+src+'"]'))return r();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){r()};s.onerror=function(){r()};document.body.appendChild(s);});};
 var rp=function(a){a.forEach(function(o){if(!o.parentNode)return;var f=document.createElement('script');for(var i=0;i<o.attributes.length;i++)f.setAttribute(o.attributes[i].name,o.attributes[i].value);f.textContent=o.textContent;o.parentNode.replaceChild(f,o);});};
 var inj=async function(x){var m=document.getElementById(x.m);if(!m)return;try{var r=await fetch(x.h,{cache:'no-cache'});if(!r.ok)throw 0;var w=document.createElement('div');w.innerHTML=await r.text();var s=Array.from(w.querySelectorAll('script'));var p=m.parentNode;while(w.firstChild)p.insertBefore(w.firstChild,m);p.removeChild(m);rp(s);}catch(e){}};

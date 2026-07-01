@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="gold">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,14 +27,13 @@
 <!-- CoverCapy Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8699915070570206" crossorigin="anonymous"></script>
 
-<!-- Sitewide CoverCapy shell presets: load before this page's CSS so nav/footer palette wins globally -->
-<link rel="stylesheet" href="/mega-nav.css">
-<link rel="stylesheet" href="/footer.css">
+<!-- Universal hub chrome: styles the mega-nav mount, sub-nav bar, Gold/Jade theme, and breadcrumb -->
+<link rel="stylesheet" href="/assets/css/hub-theme.css">
 
-<!-- Fonts: editorial serif + clean sans -->
+<!-- Fonts: chrome (Inter Tight + Fraunces) plus this page's body (Hanken Grotesk) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ====================== STRUCTURED DATA ====================== -->
 <script type="application/ld+json">
@@ -335,8 +334,12 @@
 </head>
 
 <body class="savings-hub-shell">
-<!-- Sitewide mega nav mount. /mega-nav.css and /footer.css are already loaded in <head>. -->
-<div id="covercapy-mega-nav" data-include="/mega-nav.html"></div>
+<!-- UNIVERSAL MEGA NAV -->
+<div id="cc-nav-mount"></div>
+<!-- UNIVERSAL HUB SUB-NAV (savings-tailored links) -->
+<div id="cc-savings-subnav-mount"></div>
+<!-- PER-PAGE BREADCRUMB -->
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <span>Dental savings plans</span></div></div>
 
 <div id="savings-hub-page" class="savings-hub">
 <main>
@@ -800,7 +803,49 @@
 </div>
 
 <!-- Sitewide footer mount -->
-<div id="covercapy-footer" data-include="/footer.html"></div>
+<!-- UNIVERSAL FOOTER MOUNT (must precede the loader so getElementById finds it) -->
+<div id="cc-footer-mount"></div>
+<!-- UNIVERSAL COMPONENT LOADER: mega nav + savings sub-nav + footer -->
+<script>
+(function(){
+  var components=[
+    {mountId:'cc-nav-mount',            html:'/components/mega-nav.html',       script:'/assets/js/mega-nav.js'},
+    {mountId:'cc-savings-subnav-mount', html:'/components/savings-subnav.html', script:null},
+    {mountId:'cc-footer-mount',         html:'/components/footer.html',         script:'/assets/js/footer.js'}
+  ];
+  var loadScript=function(src){return new Promise(function(resolve){
+    if(!src||document.querySelector('script[src="'+src+'"]'))return resolve();
+    var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){resolve()};s.onerror=function(){resolve()};
+    document.body.appendChild(s);
+  });};
+  var replayScripts=function(scripts){scripts.forEach(function(old){
+    if(!old.parentNode)return;
+    var fresh=document.createElement('script');
+    for(var i=0;i<old.attributes.length;i++)fresh.setAttribute(old.attributes[i].name,old.attributes[i].value);
+    fresh.textContent=old.textContent;
+    old.parentNode.replaceChild(fresh,old);
+  });};
+  var injectComponent=async function(c){
+    var mount=document.getElementById(c.mountId);if(!mount)return;
+    try{
+      var res=await fetch(c.html,{cache:'no-cache'});
+      if(!res.ok)throw new Error(c.html+' '+res.status);
+      var wrapper=document.createElement('div');wrapper.innerHTML=await res.text();
+      var injected=Array.from(wrapper.querySelectorAll('script'));
+      var parent=mount.parentNode;
+      while(wrapper.firstChild)parent.insertBefore(wrapper.firstChild,mount);
+      parent.removeChild(mount);
+      replayScripts(injected);
+    }catch(e){console.warn('[CoverCapy loader]',c.html,e);}
+  };
+  var init=async function(){
+    for(var i=0;i<components.length;i++)await injectComponent(components[i]);
+    for(var i=0;i<components.length;i++)await loadScript(components[i].script);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+</script>
 
 <script>
 (function(){

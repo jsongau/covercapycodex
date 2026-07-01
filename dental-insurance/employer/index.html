@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XNBPGSZ1LZ');</script>
 
 <script type="application/ld+json">
 {
@@ -115,6 +117,7 @@
 <link rel="stylesheet" href="/assets/css/mega-nav.css">
 <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/hub-theme.css">
 <style>
 /* Mount guards: keep layout stable while universal nav/footer load */
 #cc-nav-mount{min-height:72px}
@@ -391,47 +394,7 @@ section[id]{scroll-margin-top:132px}
 <!-- UNIVERSAL MEGA NAV -->
 <div id="cc-nav-mount"></div>
 
-<!-- STICKY COMPACT TOC -->
-<div class="toc">
-  <div class="toc-prog" id="tocProg"></div>
-  <div class="wrap">
-    <div class="theme-switch" id="cc-ts" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme, Gold or Jade">
-      <span class="ts-thumb"></span>
-      <span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span>
-      <span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
-    </div>
-    <div class="toc-links" aria-label="On this page">
-      <a href="#how-it-works">How it works</a>
-      <a href="#best-plans">Best plans</a>
-      <a href="#compare">Compare</a>
-      <a href="#cost">Who pays what</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div class="toc-dd" id="ddPlansWrap">
-      <button class="toc-dd-btn" id="ddPlansBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddPlans">Carriers <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-      <div class="toc-dd-panel" id="ddPlans" role="menu" aria-label="Employer dental carriers">
-        <div class="dd-lbl">Best for maximum coverage</div>
-        <a href="#best-plans" role="menuitem">Humana group <span>Up to unlimited max, no waits at 5+</span></a>
-        <a href="#best-plans" role="menuitem">Beam (Ultra) <span>$5,000 max, live in about 5 days</span></a>
-        <a href="#best-plans" role="menuitem">MetLife group <span>$5,000 on richer designs</span></a>
-        <div class="dd-lbl">Value &amp; recognition</div>
-        <a href="#compare" role="menuitem">Delta, Guardian, Ameritas, Principal</a>
-        <a href="#compare" role="menuitem">Aetna, Cigna, Anthem, UnitedHealthcare</a>
-        <a class="dd-all" href="#compare" role="menuitem">See the full comparison</a>
-      </div>
-    </div>
-    <div class="toc-dd" id="ddDoWrap">
-      <button class="toc-dd-btn" id="ddDoBtn" aria-expanded="false" aria-haspopup="true" aria-controls="ddDo">Get covered <svg class="dd-car" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-      <div class="toc-dd-panel" id="ddDo" role="menu" aria-label="Get covered">
-        <a href="#quote" role="menuitem">Tell us about your team</a>
-        <a href="#how-it-works" role="menuitem">How group dental works</a>
-        <a href="#cost" role="menuitem">Who pays what</a>
-        <a href="/dental-insurance/" role="menuitem">Individual dental plans</a>
-        <a href="#for-dentists" role="menuitem">For dentists: join the network</a>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="cc-hub-subnav-mount"></div>
 
 <div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="/dental-insurance/">Dental insurance</a> / <span>For employers</span></div></div>
 
@@ -778,46 +741,7 @@ section[id]{scroll-margin-top:132px}
     btn.nextElementSibling.classList.toggle('open',!expanded);
   }
 
-  /* THEME (Gold/Jade) */
-  var ccHtml=document.documentElement,ccTs=document.getElementById('cc-ts');
-  function applyTheme(t,slow){
-    var dur=slow?'1.4s':'0.45s';
-    var styleTag=document.getElementById('cc-theme-transition');
-    if(!styleTag){styleTag=document.createElement('style');styleTag.id='cc-theme-transition';document.head.appendChild(styleTag);}
-    styleTag.textContent='html,html *{transition:background '+dur+' ease,color '+dur+' ease,border-color '+dur+' ease,box-shadow '+dur+' ease !important}';
-    ccHtml.setAttribute('data-theme',t);
-    if(ccTs){ccTs.setAttribute('data-active',t);ccTs.setAttribute('aria-checked',t==='jade'?'true':'false');}
-    setTimeout(function(){if(styleTag)styleTag.textContent='';},slow?1600:600);
-  }
-  function initTheme(){
-    if(ccTs){ccTs.setAttribute('data-active','gold');ccTs.setAttribute('aria-checked','false');
-      ccTs.addEventListener('click',function(){applyTheme(ccHtml.getAttribute('data-theme')==='gold'?'jade':'gold',false);});
-      ccTs.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ccTs.click();}});
-    }
-    window.addEventListener('load',function(){setTimeout(function(){applyTheme('jade',true);},1000);});
-  }
-
-  /* Console dropdowns */
-  (function(){
-    var dds=[].slice.call(document.querySelectorAll('.toc-dd'));
-    if(!dds.length)return;
-    function closeAll(except){dds.forEach(function(d){if(d!==except){var b=d.querySelector('.toc-dd-btn'),p=d.querySelector('.toc-dd-panel');if(b)b.setAttribute('aria-expanded','false');if(p)p.removeAttribute('data-open');}});}
-    var T=null;
-    dds.forEach(function(d){
-      var btn=d.querySelector('.toc-dd-btn'),panel=d.querySelector('.toc-dd-panel');if(!btn||!panel)return;
-      function open(){clearTimeout(T);closeAll(d);btn.setAttribute('aria-expanded','true');panel.setAttribute('data-open','');}
-      function close(){btn.setAttribute('aria-expanded','false');panel.removeAttribute('data-open');}
-      btn.addEventListener('click',function(e){e.stopPropagation();btn.getAttribute('aria-expanded')==='true'?close():open();});
-      if(matchMedia('(hover:hover)').matches){
-        d.addEventListener('mouseenter',function(){clearTimeout(T);open();});
-        d.addEventListener('mouseleave',function(){clearTimeout(T);T=setTimeout(close,450);});
-      }
-    });
-    document.addEventListener('click',function(e){if(!e.target.closest('.toc-dd'))closeAll(null);});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});
-  })();
-
-  /* Scrollspy */
+  /* Scrollspy (rail TOC active-link highlighting) */
   (function(){
     var prog=document.getElementById('tocProg');
     var links=[].slice.call(document.querySelectorAll('.guide-toc a'));
@@ -857,8 +781,6 @@ section[id]{scroll-margin-top:132px}
       }catch(err){fail();}
     });
   })();
-
-  initTheme();
 </script>
 
 <!-- UNIVERSAL FOOTER MOUNT -->
@@ -867,8 +789,9 @@ section[id]{scroll-margin-top:132px}
 <script>
 (function(){
   var components=[
-    {mountId:'cc-nav-mount',    html:'/components/mega-nav.html',  script:'/assets/js/mega-nav.js'},
-    {mountId:'cc-footer-mount', html:'/components/footer.html',    script:'/assets/js/footer.js'}
+    {mountId:'cc-nav-mount',        html:'/components/mega-nav.html',   script:'/assets/js/mega-nav.js'},
+    {mountId:'cc-hub-subnav-mount', html:'/components/hub-subnav.html', script:null},
+    {mountId:'cc-footer-mount',     html:'/components/footer.html',     script:'/assets/js/footer.js'}
   ];
   var loadScript=function(src){return new Promise(function(resolve){
     if(!src||document.querySelector('script[src="'+src+'"]'))return resolve();

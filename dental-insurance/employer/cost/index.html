@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XNBPGSZ1LZ');</script>
 
 <script type="application/ld+json">
 {
@@ -41,6 +43,7 @@
 <link rel="stylesheet" href="/assets/css/mega-nav.css">
 <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/hub-theme.css">
 <style>
 #cc-nav-mount{min-height:72px}#cc-footer-mount{min-height:420px}#cc-nav-mount:empty,#cc-footer-mount:empty{min-height:0}
 :root{--paper:#F6F8FA;--paper-2:#EAEFF3;--card:#FFFFFF;--ink:#0F1B25;--ink-soft:#33444F;--green:#0A7E7D;--green-d:#0A6E6D;--green-l:#5E707B;--sage:#E2F4F3;--sage-2:#D3EBEA;--muted:#5E707B;--line:#DCE4EA;--line-2:#C9D6DE;--gold:#B26A00;--rust:#C2410C;--panel:#0B3B40;--panel-ink:#EAF6F5;--panel-soft:#9FC4C2;--panel-eye:#6FD0CC;--covered:#0F9D6E;--covered-tint:#E4F6EE;--covered-ink:#0A5D43;--serif:'Inter Tight',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;--shadow:0 1px 2px rgba(15,27,37,.05),0 4px 12px -4px rgba(15,27,37,.10);--radius:16px;--toch:52px}
@@ -147,23 +150,7 @@ section[id]{scroll-margin-top:120px}
 </head>
 <body>
 <div id="cc-nav-mount"></div>
-
-<div class="toc">
-  <div class="toc-prog" id="tocProg"></div>
-  <div class="wrap">
-    <div class="theme-switch" id="cc-ts" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme">
-      <span class="ts-thumb"></span><span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span><span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
-    </div>
-    <div class="toc-links">
-      <a href="#calc">Calculator</a>
-      <a href="#turnover">Turnover ROI</a>
-      <a href="#tax">Tax savings</a>
-      <a href="#economics">The economics</a>
-      <a href="#kpis">KPIs</a>
-      <a href="#sources">Sources</a>
-    </div>
-  </div>
-</div>
+<div id="cc-hub-subnav-mount"></div>
 
 <div class="crumb"><div class="wrap"><a href="/">Home</a> / <a href="/dental-insurance/">Dental insurance</a> / <a href="/dental-insurance/employer/">For employers</a> / <span>Cost &amp; ROI</span></div></div>
 
@@ -413,21 +400,12 @@ section[id]{scroll-margin-top:120px}
   calc();
 })();
 
-/* ---------- theme + toc ---------- */
-(function(){
-  var ccHtml=document.documentElement,ccTs=document.getElementById('cc-ts');
-  function applyTheme(t,slow){var d=slow?'1.4s':'.45s';var s=document.getElementById('cc-tt');if(!s){s=document.createElement('style');s.id='cc-tt';document.head.appendChild(s);}s.textContent='html,html *{transition:background '+d+' ease,color '+d+' ease,border-color '+d+' ease}';ccHtml.setAttribute('data-theme',t);if(ccTs){ccTs.setAttribute('data-active',t);ccTs.setAttribute('aria-checked',t==='jade'?'true':'false');}setTimeout(function(){if(s)s.textContent='';},slow?1600:600);}
-  if(ccTs){ccTs.setAttribute('data-active','gold');ccTs.setAttribute('aria-checked','false');ccTs.addEventListener('click',function(){applyTheme(ccHtml.getAttribute('data-theme')==='gold'?'jade':'gold',false);});ccTs.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ccTs.click();}});}
-  window.addEventListener('load',function(){setTimeout(function(){applyTheme('jade',true);},1000);});
-  var prog=document.getElementById('tocProg');
-  if(prog)window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?(window.scrollY/h*100):0)+'%';},{passive:true});
-})();
 </script>
 
 <div id="cc-footer-mount"></div>
 <script>
 (function(){
-  var components=[{mountId:'cc-nav-mount',html:'/components/mega-nav.html',script:'/assets/js/mega-nav.js'},{mountId:'cc-footer-mount',html:'/components/footer.html',script:'/assets/js/footer.js'}];
+  var components=[{mountId:'cc-nav-mount',html:'/components/mega-nav.html',script:'/assets/js/mega-nav.js'},{mountId:'cc-hub-subnav-mount',html:'/components/hub-subnav.html',script:null},{mountId:'cc-footer-mount',html:'/components/footer.html',script:'/assets/js/footer.js'}];
   var loadScript=function(src){return new Promise(function(res){if(!src||document.querySelector('script[src="'+src+'"]'))return res();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){res()};s.onerror=function(){res()};document.body.appendChild(s);});};
   var replay=function(scr){scr.forEach(function(old){if(!old.parentNode)return;var f=document.createElement('script');for(var i=0;i<old.attributes.length;i++)f.setAttribute(old.attributes[i].name,old.attributes[i].value);f.textContent=old.textContent;old.parentNode.replaceChild(f,old);});};
   var inject=async function(c){var m=document.getElementById(c.mountId);if(!m)return;try{var r=await fetch(c.html,{cache:'no-cache'});if(!r.ok)throw 0;var w=document.createElement('div');w.innerHTML=await r.text();var s=Array.from(w.querySelectorAll('script'));var p=m.parentNode;while(w.firstChild)p.insertBefore(w.firstChild,m);p.removeChild(m);replay(s);}catch(e){}};
