@@ -393,3 +393,23 @@ If you are an AI agent reading this file:
 11. **Member ID is NEVER stored** — only `member_id_provided: boolean`.
 12. **`seo-build/` is gitignored** — the generator source is not in git. Only the output `dental/` is committed.
 13. **Plan facts come ONLY from `/data/plans/`.** This folder is the single source of truth for every featured insurance plan (premium, annual maximum, deductible, coverage percentages, waiting periods, network, caps, activation). Before stating ANY fact about a plan on a page, read that plan's `data/plans/{slug}.md`. Never invent or guess a plan number. Every fact in those files is sourced and dated; honor each file's `do_not` list. If a page and the SSOT disagree, the SSOT wins after re-verifying against the cited source. When a plan page, the compare page, or the hub is edited, reconcile it against `/data/plans/`. See `data/plans/README.md`.
+
+
+---
+
+## DENTAL SAVINGS PLANS — POSITIONING & EDITORIAL RULE
+
+CoverCapy sells **neither** insurance nor dental savings plans. That independence is the moat. Treat a savings plan as a **funnel, not a friend or a foe**.
+
+**Core message:** "We don't sell savings plans or insurance, so we can tell you the truth: for most people who can get a PPO, insurance wins on routine care, but a savings plan wins the day you need real work now. We'll tell you honestly which one you are."
+
+**Editorial rule for every savings-plan page:**
+1. Frame savings plan and PPO as two tools for two jobs. Never sell one or knock the other down.
+2. State plainly that CoverCapy sells neither and is paid by the dentists it verifies, so the answer has no thumb on the scale.
+3. Give a clear "a savings plan fits you when / a PPO fits you when" split.
+4. Never bash insurance or carriers. The enemy is confusion and the coverage gap.
+5. End every page on a CoverCapy destination (Find my dentist, Compare PPO plans, or the quiz), never an outbound link to buy a plan.
+6. Never take a savings-plan affiliate commission. The refusal to sell either side is the brand.
+7. Every number traces to `/data/plans/` SSOT or a dated source. Discounts are real but modest. Do not repeat sellers' best-case "50% off" as typical (for example, porcelain veneers discount is about 20%, not 50–60%, and premium cosmetic dentists often do not participate).
+
+**Layout:** the 3-column layout (left nav rail + center + right decision rail) is for **hub pages only**. Individual carrier and scenario article pages stay single-column with the universal chrome (mega-nav mount, savings sub-nav, `.crumb` breadcrumb, footer mount, Gold/Jade theme).

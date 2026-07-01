@@ -105,38 +105,39 @@
 
 <style>
 /* Scoped to .savings-hub so page CSS cannot restyle the sitewide nav/footer. */
+/* Re-themed to the universal hub-theme.css token system (Inter Tight + Gold/Jade aware) so the
+   body matches the /dental-insurance hub and responds to the Gold/Jade toggle. --ink, --ink-soft,
+   and --line intentionally inherit from hub-theme and are not redefined here. */
 .savings-hub{
-  --teal-night:#082A30; --teal-700:#14525B; --teal-300:#5E8C92; --mint:#5BE0A0;
-  --cream:#F6F0E6; --cream-card:#FFFDF8; --ink:#082A30; --ink-soft:#56655F; --ink-faint:#8A958F;
-  --body:#3A4A42; --line:#E8E2D8; --gold-soft:#F3E8CF; --gold:#B89456;
-  --bg:#FBF8F1; --panel:#FFFFFF;
-  --r-lg:22px; --r-md:14px; --r-sm:10px; --r-pill:999px;
-  --shadow-sm:0 2px 12px rgba(8,42,48,.06);
-  --shadow-md:0 16px 44px rgba(8,42,48,.10);
-  --ff-serif:'Fraunces',Georgia,serif;
-  --ff-sans:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;
+  --teal-night:var(--ink); --teal-700:var(--green-d); --teal-300:var(--green-l);
+  --mint:var(--green); --mint-soft:var(--sage);
+  --cream:var(--paper-2); --cream-card:var(--card); --ink-faint:var(--muted);
+  --body:var(--ink-soft); --gold-soft:var(--sage); --gold:var(--gold);
+  --bg:var(--paper); --panel:var(--card);
+  --r-lg:16px; --r-md:12px; --r-sm:10px; --r-pill:999px;
+  --shadow-sm:var(--shadow);
+  --shadow-md:var(--shadow);
+  --ff-serif:var(--serif);
+  --ff-sans:var(--sans);
   --maxw:1140px;
 }
 .savings-hub, .savings-hub *{box-sizing:border-box}
 .savings-hub{
-  margin:0; font-family:var(--ff-sans); color:var(--ink); line-height:1.65;
-  background:
-    radial-gradient(60% 50% at 10% 0%, rgba(94,140,146,.12), transparent 60%),
-    radial-gradient(50% 45% at 92% 6%, rgba(243,232,207,.5), transparent 60%),
-    var(--bg);
+  margin:0; font-family:var(--ff-sans); color:var(--ink-soft); line-height:1.65;
+  background:var(--paper);
   -webkit-font-smoothing:antialiased; overflow-x:hidden;
 }
 .savings-hub .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
 .savings-hub a{color:inherit}
 .savings-hub h1,.savings-hub h2,.savings-hub h3,.savings-hub h4{
-  font-family:var(--ff-serif); color:var(--ink); margin:0; line-height:1.1; font-weight:500}
-.savings-hub h1{font-size:clamp(2.4rem,5.4vw,4rem); letter-spacing:-.02em}
-.savings-hub h2{font-size:clamp(1.8rem,3.4vw,2.6rem); letter-spacing:-.01em}
-.savings-hub h3{font-size:1.25rem; font-weight:600}
+  font-family:var(--ff-serif); color:var(--ink); margin:0; line-height:1.16; font-weight:700; letter-spacing:-.02em}
+.savings-hub h1{font-size:clamp(30px,4.4vw,42px); letter-spacing:-.02em}
+.savings-hub h2{font-size:clamp(22px,2.8vw,28px); letter-spacing:-.01em}
+.savings-hub h3{font-size:18px; font-weight:600}
 .savings-hub p,.savings-hub li{color:var(--body); font-size:1.02rem}
 .savings-hub .eyebrow{font-family:var(--ff-sans); font-weight:800; font-size:.74rem;
   letter-spacing:.22em; text-transform:uppercase; color:var(--teal-700)}
-.savings-hub .lead{font-size:clamp(1.08rem,1.6vw,1.28rem); color:var(--ink-soft); max-width:62ch}
+.savings-hub .lead{font-size:clamp(17px,1.4vw,19px); color:var(--ink-soft); max-width:62ch}
 .savings-hub section{padding:64px 0; position:relative}
 .savings-hub .section-head{max-width:66ch; margin-bottom:36px}
 .savings-hub .section-head .eyebrow{display:block; margin-bottom:14px}
@@ -147,7 +148,7 @@
 .savings-hub .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5em;
   font-family:var(--ff-sans); font-weight:700; font-size:.98rem; padding:14px 26px; border-radius:var(--r-pill);
   border:1px solid transparent; cursor:pointer; text-decoration:none; transition:transform .18s ease, box-shadow .18s ease}
-.savings-hub .btn-primary{background:var(--teal-night); color:var(--mint); box-shadow:0 12px 28px rgba(8,42,48,.24)}
+.savings-hub .btn-primary{background:var(--green-d); color:#fff; box-shadow:var(--shadow)}
 .savings-hub .btn-primary:hover{transform:translateY(-2px); box-shadow:0 18px 38px rgba(8,42,48,.32)}
 .savings-hub .btn-ghost{background:var(--cream-card); color:var(--teal-700); border-color:var(--line)}
 .savings-hub .btn-ghost:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm)}
@@ -330,6 +331,52 @@
 @media (prefers-reduced-motion: reduce){
   .savings-hub *{transition:none !important; animation:none !important}
 }
+
+
+/* ===== floating savings-vs-insurance card (hub) ===== */
+.savings-hub .float-card{position:fixed; right:22px; bottom:22px; width:334px; max-width:calc(100vw - 32px);
+  background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:0 18px 50px rgba(0,0,0,.18);
+  padding:16px 16px 14px; z-index:60; transform:translateY(140%); opacity:0;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1), opacity .45s ease}
+.savings-hub .float-card.show{transform:none; opacity:1}
+.savings-hub .float-card .fc-close{position:absolute; top:9px; right:12px; border:0; background:none; font-size:19px; line-height:1; color:var(--muted); cursor:pointer}
+.savings-hub .float-card .fc-h{font-family:var(--sans); font-weight:800; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 10px; padding-right:18px}
+.savings-hub .float-card .fc-sub{font-size:11px; color:var(--muted); margin:8px 0 0}
+.savings-hub .rd-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; color:var(--ink-soft)}
+.savings-hub .rd-row:last-of-type{border-bottom:0}
+.savings-hub .rd-row b{font-size:12px; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap}
+.savings-hub .rd-a{background:var(--sage); color:var(--green-d)}
+.savings-hub .rd-p{background:var(--paper-2); color:var(--ink-soft)}
+.savings-hub .rail-btn{display:block; text-align:center; text-decoration:none; font-weight:700; font-size:14px; padding:11px 14px; border-radius:999px; border:1px solid var(--green-d); color:#fff; background:var(--green-d); margin-top:12px}
+.savings-hub .rail-btn:hover{filter:brightness(1.05)}
+@media (max-width:560px){ .savings-hub .float-card{right:12px; left:12px; width:auto; bottom:12px} }
+
+
+/* float card concierge tweaks */
+.savings-hub .float-card .fc-title{font-family:var(--ff-serif); font-weight:700; font-size:16px; color:var(--ink); margin:0 18px 2px 0; line-height:1.2}
+.savings-hub .float-card .fc-intro{font-size:12.5px; color:var(--muted); margin:0 0 10px}
+.savings-hub .float-card .rd-row span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.savings-hub .rd-catch{background:#FBEFD9; color:#7A4A00}
+/* before/after: what a plan takes off the bill */
+.savings-hub .baf-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:18px}
+.savings-hub .baf-col{text-align:center}
+.savings-hub .baf-lbl{font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-faint)}
+.savings-hub .baf-num{font-family:var(--ff-serif); font-weight:700; font-size:clamp(23px,3.6vw,32px); color:var(--ink); margin-top:6px; line-height:1}
+.savings-hub .baf-savecol .baf-num{color:var(--green-d)}
+.savings-hub .baf-pct{font-size:12px; font-weight:700; color:var(--green-d); margin-top:5px}
+.savings-hub .baf-bar{display:flex; height:24px; border-radius:999px; overflow:hidden; border:1px solid var(--line)}
+.savings-hub .baf-bar-mem{height:100%; background:var(--ink); transition:width .5s ease}
+.savings-hub .baf-bar-save{height:100%; background:var(--green); transition:width .5s ease}
+.savings-hub .baf-key{display:flex; gap:22px; justify-content:center; margin:10px 0 4px; font-size:12px; color:var(--ink-soft)}
+.savings-hub .baf-key .k{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px}
+.savings-hub .baf-key .k-mem{background:var(--ink)}
+.savings-hub .baf-key .k-save{background:var(--green)}
+@media (max-width:560px){ .savings-hub .baf-grid{grid-template-columns:1fr; gap:10px} }
+
+
+.savings-hub .float-card .fc-note{font-size:12.5px; line-height:1.5; color:#7A4A00; background:#FBEFD9; border-radius:10px; padding:9px 11px; margin-top:10px}
+.savings-hub .float-card .fc-trust{font-size:12px; color:var(--muted); text-align:center; margin-top:10px}
+
 </style>
 </head>
 
@@ -463,19 +510,19 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">See it move</span>
-      <h2>What one procedure looks like</h2>
-      <p class="lead" style="margin-top:14px">Drag from the full price toward the member price. Pick a procedure to see how far a single visit can move.</p>
+      <span class="eyebrow">The math on one procedure</span>
+      <h2>What a plan takes off the bill</h2>
+      <p class="lead" style="margin-top:14px">Pick a procedure to see the full price, the price with a savings plan, and what you would save.</p>
     </div>
     <div class="tool">
-      <div class="ba">
-        <div class="ba-stage">
-          <div><div class="lbl" style="font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)">You pay</div><div class="ba-num" id="baNum">$1,500</div></div>
-          <div class="ba-save"><div class="s" id="baSave">$0</div><div class="l">saved</div></div>
+      <div class="baf">
+        <div class="baf-grid">
+          <div class="baf-col"><div class="baf-lbl">Without a plan</div><div class="baf-num" id="bafFull">$0</div></div>
+          <div class="baf-col"><div class="baf-lbl">With a savings plan</div><div class="baf-num" id="bafMem">$0</div></div>
+          <div class="baf-col baf-savecol"><div class="baf-lbl">You save</div><div class="baf-num" id="bafSave">$0</div><div class="baf-pct" id="bafPct">0% off</div></div>
         </div>
-        <div class="ba-track"><div class="ba-fill" id="baFill"></div></div>
-        <input type="range" min="0" max="100" value="0" class="ba-range" id="baRange" aria-label="Drag from full price to member price">
-        <div class="ba-ends"><span>Full price</span><span>Member price</span></div>
+        <div class="baf-bar"><div class="baf-bar-mem" id="bafBarMem"></div><div class="baf-bar-save" id="bafBarSave"></div></div>
+        <div class="baf-key"><span><i class="k k-mem"></i>You pay</span><span><i class="k k-save"></i>You save</span></div>
         <div class="ba-pick" id="baPick"></div>
       </div>
     </div>
@@ -799,7 +846,29 @@
   </div>
 </section>
 
-</main>
+  </main>
+
+<!-- Floating savings-vs-insurance decision card (dismissible) -->
+<div class="float-card" id="ccFloat" role="complementary" aria-label="Savings plan versus insurance quick compare">
+  <button class="fc-close" id="ccFloatClose" aria-label="Dismiss this card" type="button">&times;</button>
+  <div class="fc-title">Which one is right for you?</div>
+  <div class="rd-row"><span>Cleanings are often free</span><b class="rd-a">PPO</b></div>
+  <div class="rd-row"><span>Pays part of bigger work</span><b class="rd-a">PPO</b></div>
+  <div class="rd-row"><span>Ready right away, no wait</span><b class="rd-p">Savings plan</b></div>
+  <div class="fc-note">A savings plan does not pay anything, so you still pay the whole bill yourself.</div>
+  <a href="/dental-savings-plans/vs-ppo/" class="rail-btn">See the full comparison</a>
+  <div class="fc-trust">We don't sell either one.</div>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('ccFloat'); if(!f) return;
+  var c=document.getElementById('ccFloatClose');
+  function onScroll(){ if(window.scrollY>560){ f.classList.add('show'); } }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  c.addEventListener('click', function(){ f.classList.remove('show'); window.removeEventListener('scroll', onScroll); });
+})();
+</script>
+
 </div>
 
 <!-- Sitewide footer mount -->
@@ -921,44 +990,40 @@
   }
   recalc();
 
-  /* ---------- Before / after slider ---------- */
+  /* ---------- What a plan takes off the bill ---------- */
   var baProcs = [
     {id:'crown', label:'Crown', full:1500, plan:949},
     {id:'rootcanal', label:'Root canal', full:1535, plan:791},
     {id:'implant', label:'Implant', full:4091, plan:2724},
-    {id:'veneer', label:'Veneer', full:1750, plan:715},
+    {id:'veneer', label:'Veneer', full:1750, plan:1400},
     {id:'braces', label:'Braces', full:6099, plan:4235}
   ];
   var baActive = baProcs[0];
-  var baRange = document.getElementById('baRange');
-  var baNum = document.getElementById('baNum');
-  var baSave = document.getElementById('baSave');
-  var baFill = document.getElementById('baFill');
-  var baPick = document.getElementById('baPick');
-
+  var bafFull=document.getElementById('bafFull'), bafMem=document.getElementById('bafMem'),
+      bafSave=document.getElementById('bafSave'), bafPct=document.getElementById('bafPct'),
+      bafBarMem=document.getElementById('bafBarMem'), bafBarSave=document.getElementById('bafBarSave'),
+      baPick=document.getElementById('baPick');
   if(baPick){
-    baProcs.forEach(function(p, i){
-      var btn = document.createElement('button');
-      btn.textContent = p.label;
+    baProcs.forEach(function(p,i){
+      var btn=document.createElement('button'); btn.type='button'; btn.textContent=p.label;
       if(i===0) btn.classList.add('active');
       btn.addEventListener('click', function(){
-        baActive = p;
-        [].forEach.call(baPick.children, function(c){ c.classList.remove('active'); });
-        btn.classList.add('active');
-        baRender();
+        baActive=p; [].forEach.call(baPick.children,function(c){c.classList.remove('active');});
+        btn.classList.add('active'); baRender();
       });
       baPick.appendChild(btn);
     });
   }
   function baRender(){
-    var t = baRange ? (+baRange.value)/100 : 0;
-    var price = baActive.full - (baActive.full - baActive.plan) * t;
-    var saved = baActive.full - price;
-    if(baNum) baNum.textContent = fmt(price);
-    if(baSave) baSave.textContent = fmt(saved);
-    if(baFill) baFill.style.width = (t*100) + '%';
+    var full=baActive.full, mem=baActive.plan, save=full-mem, pct=Math.round(save/full*100);
+    if(bafFull) bafFull.textContent=fmt(full);
+    if(bafMem) bafMem.textContent=fmt(mem);
+    if(bafSave) bafSave.textContent=fmt(save);
+    if(bafPct) bafPct.textContent=pct+'% off';
+    if(bafBarMem) bafBarMem.style.width=(mem/full*100)+'%';
+    if(bafBarSave) bafBarSave.style.width=(save/full*100)+'%';
   }
-  if(baRange){ baRange.addEventListener('input', baRender); baRender(); }
+  baRender();
 
   /* ---------- Decision quiz ---------- */
   var steps = root.querySelectorAll('.quiz-step');
