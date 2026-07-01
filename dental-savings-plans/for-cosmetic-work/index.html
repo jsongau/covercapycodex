@@ -98,6 +98,96 @@
   </div>
 </section>
 
+<section id="veneers">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Deep dive: veneers</span><h2>Where a savings plan actually helps on veneers</h2>
+      <p class="lead" style="margin-top:14px">Veneers are the clearest case for a savings plan, and also the one with the biggest catch. Here is the honest math, both sides.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h3>Why a discount can apply at all</h3><p>Insurance reimburses your dentist a share of covered work, then flatly excludes veneers as cosmetic, so it pays zero. A savings plan does not reimburse anyone. It just sets a lower cash price you pay directly at the visit. That is exactly why a discount can reach veneers when insurance will not. Cigna itself points people to a discount plan for cosmetic work like veneers.</p></div>
+      <div class="card flag"><h3>Why the catch is real</h3><p>The veneer discount is usually about 20 percent, not the headline 50, because veneers fall under a catch-all rate rather than a deep fixed price. And it only counts at a participating dentist. Many of the best cosmetic dentists work fee-for-service and are not in these networks, so the office you actually want may not honor the plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="veneer-model">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Interactive</span><h2>How to pay for veneers</h2><p class="lead" style="margin-top:14px">Pick how many veneers and the material. There is no single winner here. The cheapest route comes down to your own dentist's price, so use this to get a feel, not a quote.</p></div>
+    <div class="tool">
+      <div class="vn-controls">
+        <div class="vn-ctl"><span class="vn-lbl">Veneers</span>
+          <div class="vn-step"><button type="button" data-vn="minus" aria-label="One fewer veneer">&minus;</button><span id="vnN">6</span><button type="button" data-vn="plus" aria-label="One more veneer">+</button></div>
+        </div>
+        <div class="vn-ctl"><span class="vn-lbl">Material</span>
+          <div class="vn-mat"><button type="button" class="active" data-mat="porcelain">Porcelain</button><button type="button" data-mat="composite">Composite</button></div>
+        </div>
+      </div>
+      <div class="vn-rows" id="vnRows"></div>
+      <div class="card flag" style="margin-top:16px"><h3>So which is cheapest?</h3><p>It depends entirely on your dentist's price, and the numbers above are rough. Insurance never pays for veneers, but a PPO dentist's negotiated in-network fee is often the lowest and most transparent price you can get, and your PPO still covers the cleanings, fillings, and crowns you will need over the years. A savings plan can help when a good in-network dentist is out of reach, and a cash or pre-pay discount is worth asking about either way. The one sure move is to see a PPO dentist and get the number in writing first.</p></div>
+      <p class="tool-note">Modeled at national averages: porcelain about $1,765 per tooth, composite about $875 per tooth. Both vary widely, roughly $925 to $2,500 porcelain and $250 to $1,500 composite. Savings plan assumes about 20 percent off at a participating dentist, plus a roughly $150 yearly membership. PPO in-network veneer fees vary by dentist, so treat every figure here as a ballpark and get a real quote. Sources at the foot of the page.</p>
+      <div class="est-cta"><a href="/dental-insurance/ppo-plans/uhc-primary-dental/" class="btn btn-primary">Get UHC Primary Dental for in-network rates</a><a href="/find-my-dentist.html" class="btn btn-ghost">Find a PPO dentist</a></div>
+      <p style="margin:14px 0 0; font-size:.9rem; color:var(--ink-soft)">Prefer to explore discount options? <a href="/dental-savings-plans" style="color:var(--teal-700); font-weight:700">See dental savings plans</a>.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.carrier-page .vn-controls{display:flex; flex-wrap:wrap; gap:22px; margin-bottom:18px}
+.carrier-page .vn-lbl{display:block; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:7px}
+.carrier-page .vn-step{display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; overflow:hidden; background:var(--panel)}
+.carrier-page .vn-step button{width:36px; height:36px; border:0; background:var(--panel); color:var(--teal-700); font-size:1.2rem; cursor:pointer}
+.carrier-page .vn-step button:hover{background:var(--cream)}
+.carrier-page .vn-step span{width:40px; text-align:center; font-weight:700; color:var(--ink)}
+.carrier-page .vn-mat button{border:1px solid var(--line); background:var(--cream-card); color:var(--ink-soft); border-radius:999px; padding:8px 16px; font-weight:600; cursor:pointer; font-family:inherit; margin-right:6px}
+.carrier-page .vn-mat button.active{background:var(--teal-night); color:#fff; border-color:var(--teal-night)}
+.carrier-page .vn-rows{display:grid; gap:10px}
+.carrier-page .vn-row{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; border:1px solid var(--line); border-radius:var(--r-md); background:var(--cream-card)}
+.carrier-page .vn-row.vn-ppo{border-color:var(--teal-700); border-left:4px solid var(--teal-700); background:var(--panel)}
+.carrier-page .vn-info b{display:block; font-size:1rem; color:var(--ink)}
+.carrier-page .vn-info span{display:block; font-size:.85rem; color:var(--ink-soft); margin-top:2px; max-width:56ch}
+.carrier-page .vn-amt{font-family:var(--ff-serif); font-weight:700; font-size:1.35rem; color:var(--ink); white-space:nowrap; text-align:right}
+.carrier-page .vn-amt small{display:block; font-family:var(--ff-sans); font-weight:600; font-size:.7rem; color:var(--ink-faint); letter-spacing:.04em}
+.carrier-page .vn-tag{display:inline-block; font-size:.62rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--teal-700); background:var(--panel); border:1px solid var(--teal-700); border-radius:999px; padding:1px 8px; margin-left:6px; vertical-align:middle}
+</style>
+<script>
+(function(){
+  var PRICE={porcelain:1765, composite:875};
+  var n=6, mat='porcelain';
+  var rows=document.getElementById('vnRows'); if(!rows) return;
+  var fmt=function(x){return '$'+Math.round(x).toLocaleString('en-US');};
+  function calc(){
+    var per=PRICE[mat], cash=n*per;
+    var ways=[
+      {t:'A PPO dentist, in-network fee', tag:'Worth a quote', s:'Insurance will not pay for veneers, but a PPO dentist\'s negotiated fee is often the lowest, clearest price, and your PPO covers the rest of your care.', amt:null, ppo:true},
+      {t:'Cash or pre-pay discount', s:'Many dentists take roughly 10 percent off for paying up front. No membership, no network to match.', amt:cash*0.9},
+      {t:'A dental savings plan', s:'About 20 percent off at a participating dentist, plus a roughly $150 yearly membership. Only helps if your cosmetic dentist takes it.', amt:cash*0.8+150},
+      {t:'Full price, paid in cash', s:'No plan, no discount. The base you are comparing against.', amt:cash},
+      {t:'Dental insurance alone', s:'Veneers are cosmetic, so insurance pays nothing toward them.', amt:0, zero:true}
+    ];
+    rows.innerHTML=ways.map(function(w){
+      var tag=w.tag?' <span class="vn-tag">'+w.tag+'</span>':'';
+      var amt = w.ppo ? '<div class="vn-amt">Varies<small>get a quote</small></div>'
+              : w.zero ? '<div class="vn-amt">$0<small>paid by insurance</small></div>'
+              : '<div class="vn-amt">about '+fmt(w.amt)+'</div>';
+      return '<div class="vn-row'+(w.ppo?' vn-ppo':'')+'"><div class="vn-info"><b>'+w.t+tag+'</b><span>'+w.s+'</span></div>'+amt+'</div>';
+    }).join('');
+    document.getElementById('vnN').textContent=n;
+  }
+  document.querySelector('.vn-step').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    n=Math.max(1, Math.min(10, n+(b.getAttribute('data-vn')==='plus'?1:-1))); calc();
+  });
+  [].forEach.call(document.querySelectorAll('.vn-mat button'), function(btn){
+    btn.addEventListener('click', function(){
+      mat=btn.getAttribute('data-mat');
+      [].forEach.call(document.querySelectorAll('.vn-mat button'), function(x){x.classList.remove('active');});
+      btn.classList.add('active'); calc();
+    });
+  });
+  calc();
+})();
+</script>
+
 <section id="estimator">
   <div class="wrap">
     <div class="section-head"><span class="eyebrow">Interactive</span><h2>Estimate your savings</h2><p class="lead" style="margin-top:14px">Enter a price your dentist quoted, or tap a typical procedure, to see the estimated member price and savings.</p></div>
@@ -159,6 +249,9 @@
       <ul style="margin:0; padding-left:18px">
         <li>DentalPlans.com, Aetna Dental Access: <a href="https://www.dentalplans.com/dentalplans/aetnadentalaccess/">sample fee schedule and no annual maximum</a>.</li>
         <li>DentalInsurance.com, cosmetic dentistry: <a href="https://www.dentalinsurance.com/resources/specialty-dentistry/cosmetic-dentistry/">why insurance excludes cosmetic work</a>.</li>
+        <li>Cigna Healthcare, Discount Dental Programs: <a href="https://www.cigna.com/knowledge-center/discount-dental-programs">how a discount plan differs from insurance, and the veneers use case</a>.</li>
+        <li>DentalPlans.com, veneer costs without insurance: <a href="https://www.dentalplans.com/blog/how-much-do-veneers-cost-without-insurance/">per-tooth and full-smile price ranges</a>.</li>
+        <li>CareCredit, dental financing: <a href="https://www.carecredit.com/dentistry/">promotional terms and the deferred-interest caveat</a>.</li>
         <li>National Association of Dental Plans: <a href="https://www.nadp.org/about-dental-plans-care/understanding-dental-benefits/">how discount plans differ from insurance</a>.</li>
       </ul>
       <p style="margin:14px 0 0; font-size:.82rem; color:var(--ink-faint)">CoverCapy does not underwrite or sell insurance or dental savings plans. A dental savings plan is a discount membership, not insurance. Fee examples are sample figures that vary by dentist and region.</p>
