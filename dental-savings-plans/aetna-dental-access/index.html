@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="gold">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,10 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8699915070570206" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="/mega-nav.css">
-<link rel="stylesheet" href="/footer.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/hub-theme.css">
 <link rel="stylesheet" href="/dental-savings.css">
 
 <script type="application/ld+json">
@@ -55,10 +54,12 @@
 </head>
 
 <body class="carrier-shell">
-<div id="covercapy-mega-nav" data-include="/mega-nav.html"></div>
+<div id="cc-nav-mount"></div>
+<div id="cc-savings-subnav-mount"></div>
+
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-savings-plans">Dental savings plans</a> / <span>Aetna Dental Access</span></div></div>
 
 <div class="carrier-page">
-<div class="wrap"><nav class="crumb"><a href="/">Home</a> / <a href="/dental-savings-plans">Dental savings plans</a> / Aetna Dental Access</nav></div>
 <main>
 
 <section class="hero">
@@ -262,7 +263,47 @@
 </main>
 </div>
 
-<div id="covercapy-footer" data-include="/footer.html"></div>
+<div id="cc-footer-mount"></div>
+<script>
+(function(){
+  var components=[
+    {mountId:'cc-nav-mount',            html:'/components/mega-nav.html',       script:'/assets/js/mega-nav.js'},
+    {mountId:'cc-savings-subnav-mount', html:'/components/savings-subnav.html', script:null},
+    {mountId:'cc-footer-mount',         html:'/components/footer.html',         script:'/assets/js/footer.js'}
+  ];
+  var loadScript=function(src){return new Promise(function(resolve){
+    if(!src||document.querySelector('script[src="'+src+'"]'))return resolve();
+    var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){resolve()};s.onerror=function(){resolve()};
+    document.body.appendChild(s);
+  });};
+  var replayScripts=function(scripts){scripts.forEach(function(old){
+    if(!old.parentNode)return;
+    var fresh=document.createElement('script');
+    for(var i=0;i<old.attributes.length;i++)fresh.setAttribute(old.attributes[i].name,old.attributes[i].value);
+    fresh.textContent=old.textContent;
+    old.parentNode.replaceChild(fresh,old);
+  });};
+  var injectComponent=async function(c){
+    var mount=document.getElementById(c.mountId);if(!mount)return;
+    try{
+      var res=await fetch(c.html,{cache:'no-cache'});
+      if(!res.ok)throw new Error(c.html+' '+res.status);
+      var wrapper=document.createElement('div');wrapper.innerHTML=await res.text();
+      var injected=Array.from(wrapper.querySelectorAll('script'));
+      var parent=mount.parentNode;
+      while(wrapper.firstChild)parent.insertBefore(wrapper.firstChild,mount);
+      parent.removeChild(mount);
+      replayScripts(injected);
+    }catch(e){console.warn('[CoverCapy loader]',c.html,e);}
+  };
+  var init=async function(){
+    for(var i=0;i<components.length;i++)await injectComponent(components[i]);
+    for(var i=0;i<components.length;i++)await loadScript(components[i].script);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+</script>
 
 <script>
 window.CC_CARRIER = {

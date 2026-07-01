@@ -5,34 +5,34 @@
    (Fraunces + Hanken Grotesk, teal / mint / cream tokens).
    Used by every /dental-savings-plans/{carrier}/ page.
    ============================================================ */
+/* Re-themed to the universal hub-theme.css token system (Gold/Jade). --ink, --ink-soft,
+   and --line intentionally inherit from hub-theme and are not redefined here. */
 .carrier-page{
-  --teal-night:#082A30; --teal-700:#14525B; --teal-300:#5E8C92; --mint:#5BE0A0; --mint-soft:#E6F7EE;
-  --cream:#F6F0E6; --cream-card:#FFFDF8; --ink:#082A30; --ink-soft:#56655F; --ink-faint:#8A958F;
-  --body:#3A4A42; --line:#E8E2D8; --gold-soft:#F3E8CF; --gold:#B89456;
-  --bg:#FBF8F1; --panel:#FFFFFF;
-  --r-lg:22px; --r-md:14px; --r-sm:10px; --r-pill:999px;
-  --shadow-sm:0 2px 12px rgba(8,42,48,.06);
-  --shadow-md:0 16px 44px rgba(8,42,48,.10);
-  --ff-serif:'Fraunces',Georgia,serif;
-  --ff-sans:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;
+  --teal-night:var(--ink); --teal-700:var(--green-d); --teal-300:var(--green-l);
+  --mint:var(--green); --mint-soft:var(--sage);
+  --cream:var(--paper-2); --cream-card:var(--card); --ink-faint:var(--muted);
+  --body:var(--ink-soft); --gold-soft:var(--sage); --gold:var(--gold);
+  --bg:var(--paper); --panel:var(--card);
+  --r-lg:16px; --r-md:12px; --r-sm:10px; --r-pill:999px;
+  --shadow-sm:var(--shadow);
+  --shadow-md:var(--shadow);
+  --ff-serif:var(--serif);
+  --ff-sans:var(--sans);
   --maxw:1140px;
 }
 .carrier-page, .carrier-page *{box-sizing:border-box}
 .carrier-page{
-  margin:0; font-family:var(--ff-sans); color:var(--ink); line-height:1.65;
-  background:
-    radial-gradient(60% 50% at 10% 0%, rgba(94,140,146,.12), transparent 60%),
-    radial-gradient(50% 45% at 92% 6%, rgba(243,232,207,.5), transparent 60%),
-    var(--bg);
+  margin:0; font-family:var(--ff-sans); color:var(--ink-soft); line-height:1.65;
+  background:var(--paper);
   -webkit-font-smoothing:antialiased; overflow-x:hidden;
 }
 .carrier-page .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
 .carrier-page a{color:inherit}
 .carrier-page h1,.carrier-page h2,.carrier-page h3,.carrier-page h4{
-  font-family:var(--ff-serif); color:var(--ink); margin:0; line-height:1.1; font-weight:500}
-.carrier-page h1{font-size:clamp(2.3rem,5vw,3.6rem); letter-spacing:-.02em}
-.carrier-page h2{font-size:clamp(1.7rem,3.2vw,2.4rem); letter-spacing:-.01em}
-.carrier-page h3{font-size:1.2rem; font-weight:600}
+  font-family:var(--ff-serif); color:var(--ink); margin:0; line-height:1.16; font-weight:700; letter-spacing:-.02em}
+.carrier-page h1{font-size:clamp(30px,4.4vw,42px); letter-spacing:-.02em}
+.carrier-page h2{font-size:clamp(22px,2.8vw,28px); letter-spacing:-.01em}
+.carrier-page h3{font-size:18px; font-weight:600}
 .carrier-page p,.carrier-page li{color:var(--body); font-size:1.02rem}
 .carrier-page h1,.carrier-page h2,.carrier-page h3{text-wrap:balance}
 .carrier-page p,.carrier-page li{text-wrap:pretty}
@@ -52,7 +52,7 @@
 .carrier-page .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5em;
   font-family:var(--ff-sans); font-weight:700; font-size:.98rem; padding:14px 26px; border-radius:var(--r-pill);
   border:1px solid transparent; cursor:pointer; text-decoration:none; transition:transform .18s ease, box-shadow .18s ease}
-.carrier-page .btn-primary{background:var(--teal-night); color:var(--mint); box-shadow:0 12px 28px rgba(8,42,48,.24)}
+.carrier-page .btn-primary{background:var(--green-d); color:#fff; box-shadow:var(--shadow)}
 .carrier-page .btn-primary:hover{transform:translateY(-2px); box-shadow:0 18px 38px rgba(8,42,48,.32)}
 .carrier-page .btn-ghost{background:var(--cream-card); color:var(--teal-700); border-color:var(--line)}
 .carrier-page .btn-ghost:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm)}

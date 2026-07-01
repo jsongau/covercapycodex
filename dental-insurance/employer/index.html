@@ -137,6 +137,29 @@ section[id]{scroll-margin-top:132px}
 .rsbtn:hover{border-color:var(--green);color:var(--green-d)}
 .rshare-status{font-size:11px;color:var(--green-d);display:block;margin-top:7px;min-height:14px}
 .eyebrow .sp{color:var(--gold)}
+/* KING share card (share to employees -> individual plans) */
+.king{background:var(--panel);border-radius:16px;padding:22px 24px;color:var(--panel-soft);margin:14px 0 0}
+.king-badge{display:inline-block;background:var(--panel-eye);color:#0A2342;font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 11px;margin-bottom:10px}
+.king h3{color:#fff;font-size:20px;margin:0 0 8px}
+.king>p{color:var(--panel-soft);font-size:14px;max-width:62ch;margin:0 0 12px}
+.king-msg{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:13px 15px;font-size:13px;color:#EAF3F2;line-height:1.6}
+.king .cta-row{margin:14px 0 0;align-items:center}
+.king .btn-ghost{border-color:rgba(255,255,255,.34);color:#fff}
+.king .btn-ghost:hover{border-color:var(--panel-eye);color:var(--panel-eye)}
+.king .kstat{font-size:12.5px;color:var(--panel-eye)}
+/* two secondary share cards */
+.share-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 0}@media(max-width:640px){.share-two{grid-template-columns:1fr}}
+.scard{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+.scard h4{font-size:15px;margin:3px 0 8px}
+.scard>p{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+.scard .oe{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-d)}
+.msgbox2{background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:11px 13px;font-size:12.5px;color:var(--ink-soft);line-height:1.55;margin:0 0 10px}
+.sstat{font-size:12px;color:var(--green-d);display:block;margin-top:8px;min-height:14px}
+/* icon share row (Copy / Email / Share) */
+.rshare3{display:flex;gap:6px}
+.rshare3 .rsbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;font:600 12px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:9px;padding:9px 6px;cursor:pointer}
+.rshare3 .rsbtn:hover{border-color:var(--green);color:var(--green-d)}
+.rshare3 .rsbtn svg{width:14px;height:14px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -290,20 +313,32 @@ section[id]{scroll-margin-top:132px}
 
     <!-- SHARE -->
     <section class="esec" id="share">
-      <p class="eyebrow"><span class="sp">&#10038;</span> Bring an idea, not a request</p>
-      <h2>Send this to whoever signs off on benefits</h2>
-      <p>Asking for dental can feel like asking for a favor. It does not have to. Group dental is inexpensive, often free to the employer, and it gives leadership a real reason to keep the team together. Send the page, add a line, and let the numbers make the case for you.</p>
-      <div class="share-wrap">
-        <div>
-          <div class="rl-label" style="margin-bottom:6px">A message you can copy and paste</div>
-          <div class="msgbox" id="bossMsg">I came across how group dental works for small teams and thought it was worth a look. It is quoted per company rather than sold at a fixed price, it often costs the business little or nothing when set up as voluntary, and it is one of the cheaper ways to hold onto good people. Sharing in case it is useful, no pressure either way.</div>
-          <div class="cta-row" style="margin:12px 0 0"><button type="button" class="btn btn-green" id="copyMsgBtn">Copy the message</button><button type="button" class="btn btn-ghost" id="copyLinkBtn">Copy the link</button><span id="shareStatus" style="align-self:center;font-size:12.5px;color:var(--green-d)"></span></div>
+      <p class="eyebrow"><span class="sp">&#10038;</span> Share it forward</p>
+      <h2>However you decide, get your team covered</h2>
+      <p>Setting up a group plan is the strongest move. But even if the timing is not right, you can still make sure your people are covered, and look like the leader who pointed them to the answer.</p>
+
+      <div class="king">
+        <div class="king-badge">Zero cost, zero setup</div>
+        <h3>Send your team to their own coverage</h3>
+        <p>Not ready for a group plan? Forward CoverCapy and each person picks an individual PPO plan from about $30 a month, checks that their own dentist is in-network, and gets covered on their own. Your people get healthier and happier, and it never touches your budget.</p>
+        <div class="king-msg" id="teamMsg">Quick one for the team. If you have been meaning to sort out dental, CoverCapy compares individual plans from about $30 a month and checks your own dentist is covered before you buy. No pressure, just sharing in case it helps: https://www.covercapy.com/dental-insurance/</div>
+        <div class="cta-row"><button type="button" class="btn btn-green" id="copyTeamMsg">Copy a message for your team</button><button type="button" class="btn btn-ghost" id="emailTeam">Email my team</button><a href="/dental-insurance/" class="btn btn-ghost">Preview what they'll see</a><span class="kstat" id="teamStatus"></span></div>
+      </div>
+
+      <div class="share-two">
+        <div class="scard">
+          <div class="oe">Bring an idea, not a request</div>
+          <h4>Send this to whoever signs off</h4>
+          <div class="msgbox2" id="bossMsg">I came across how group dental works for small teams and thought it was worth a look. It is quoted per company, often costs the business little or nothing, and it is one of the cheaper ways to hold onto good people. Sharing in case it is useful, no pressure either way.</div>
+          <div class="cta-row" style="margin:0"><button type="button" class="btn btn-green" id="copyBossMsg">Copy the message</button><button type="button" class="btn btn-ghost" id="copyBossLink">Copy the link</button></div>
+          <span class="sstat" id="bossStatus"></span>
         </div>
-        <div class="owner-nudge">
+        <div class="scard">
           <div class="oe">Pass it along</div>
-          <h3>Know another owner who should see this?</h3>
-          <p>Most owners assume dental is expensive or complicated. It is neither. If a friend runs a team and grumbles about turnover, this is a two-minute read that might change how they think about it.</p>
-          <button type="button" class="btn btn-ghost" id="shareOwnerBtn">Share with an owner</button>
+          <h4>Know another owner?</h4>
+          <p>Most owners assume dental is expensive or complicated. It is neither. If a friend runs a team and grumbles about turnover, this two-minute read might change how they think about it.</p>
+          <div class="cta-row" style="margin:0"><button type="button" class="btn btn-ghost" id="shareOwnerBtn">Share with an owner</button></div>
+          <span class="sstat" id="ownerStatus"></span>
         </div>
       </div>
     </section>
@@ -361,11 +396,11 @@ section[id]{scroll-margin-top:132px}
       </div>
     </div>
     <div class="rc-mini">
-      <h4>Not the decision maker?</h4>
-      <p>Send this to whoever is, with a line that makes you look sharp.</p>
-      <div class="rshare">
-        <button class="rsbtn" id="rlCopyMsg">Copy note</button>
-        <button class="rsbtn" id="rlCopyLink">Copy link</button>
+      <div class="rl-label" style="margin-bottom:8px">Share this guide</div>
+      <div class="rshare3">
+        <button class="rsbtn" data-share="copy" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        <button class="rsbtn" data-share="email" aria-label="Share by email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</button>
+        <button class="rsbtn" data-share="native" aria-label="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>
       </div>
       <span class="rshare-status" id="rlStatus"></span>
     </div>
@@ -375,25 +410,37 @@ section[id]{scroll-margin-top:132px}
 </div><!-- /.ewrap -->
 
 <script>
-  /* share + copy helpers */
+  /* interactive sharing cards */
   (function(){
-    var msg=(document.getElementById('bossMsg')||{}).textContent||'';
-    var url=location.href.split('#')[0];
-    function flash(el,t){if(el){el.textContent=t;setTimeout(function(){el.textContent='';},2200);}}
-    function copy(text,statusEl,label){
-      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){flash(statusEl,label);}).catch(function(){flash(statusEl,'Press Cmd/Ctrl+C');});}
-      else{flash(statusEl,'Copy not supported');}
+    var hubUrl=location.href.split('#')[0];
+    var teamMsg=(document.getElementById('teamMsg')||{}).textContent.trim()||'';
+    var bossMsg=(document.getElementById('bossMsg')||{}).textContent.trim()||'';
+    function flash(el,t){if(el){el.textContent=t;setTimeout(function(){el.textContent='';},2600);}}
+    function copy(text,el,label){
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){flash(el,label);}).catch(function(){flash(el,'Press Cmd/Ctrl+C');});}
+      else{flash(el,'Copy not supported');}
     }
-    var s1=document.getElementById('shareStatus'),s2=document.getElementById('rlStatus');
-    var cm=document.getElementById('copyMsgBtn');if(cm)cm.addEventListener('click',function(){copy(msg+'\n\n'+url,s1,'Copied, paste it to your boss');});
-    var cl=document.getElementById('copyLinkBtn');if(cl)cl.addEventListener('click',function(){copy(url,s1,'Link copied');});
-    var rm=document.getElementById('rlCopyMsg');if(rm)rm.addEventListener('click',function(){copy(msg+'\n\n'+url,s2,'Copied');});
-    var rl=document.getElementById('rlCopyLink');if(rl)rl.addEventListener('click',function(){copy(url,s2,'Link copied');});
-    var so=document.getElementById('shareOwnerBtn');
-    if(so)so.addEventListener('click',function(){
-      var t='Group dental for small teams, worth a look',b='Thought of you. This lays out how group dental helps a small business hold onto people, and what it costs: '+url;
-      if(navigator.share){navigator.share({title:t,text:b,url:url}).catch(function(){});}
+    function on(id,fn){var e=document.getElementById(id);if(e)e.addEventListener('click',fn);}
+    /* KING: share to your team for individual plans (the moat) */
+    on('copyTeamMsg',function(){copy(teamMsg,document.getElementById('teamStatus'),'Copied, paste it to your team');});
+    on('emailTeam',function(){location.href='mailto:?subject='+encodeURIComponent('Dental coverage worth a look')+'&body='+encodeURIComponent(teamMsg);});
+    /* Send this to your boss */
+    on('copyBossMsg',function(){copy(bossMsg+'\n\n'+hubUrl,document.getElementById('bossStatus'),'Copied, paste it to your boss');});
+    on('copyBossLink',function(){copy(hubUrl,document.getElementById('bossStatus'),'Link copied');});
+    /* Know another owner */
+    on('shareOwnerBtn',function(){
+      var t='Group dental for small teams, worth a look',b='Thought of you. This lays out how group dental helps a small business hold onto people, and what it costs: '+hubUrl;
+      if(navigator.share){navigator.share({title:t,text:b,url:hubUrl}).catch(function(){});}
       else{location.href='mailto:?subject='+encodeURIComponent(t)+'&body='+encodeURIComponent(b);}
+    });
+    /* right-rail Share this guide (Copy / Email / Share) */
+    [].slice.call(document.querySelectorAll('.rshare3 .rsbtn[data-share]')).forEach(function(b){
+      b.addEventListener('click',function(){
+        var mode=b.getAttribute('data-share'),st=document.getElementById('rlStatus');
+        if(mode==='copy')copy(hubUrl,st,'Link copied');
+        else if(mode==='email')location.href='mailto:?subject='+encodeURIComponent('Employer dental, worth a look')+'&body='+encodeURIComponent('Thought this was useful: '+hubUrl);
+        else{if(navigator.share)navigator.share({title:'Employer dental with CoverCapy',url:hubUrl}).catch(function(){});else copy(hubUrl,st,'Link copied');}
+      });
     });
   })();
 
