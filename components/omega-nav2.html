@@ -1,4 +1,5 @@
-<!-- CoverCapy omega-nav2 — universal nav component (inject into #cc-nav-mount).
+<!-- CoverCapy universal nav (omega-nav2 generation) — inject into #cc-nav-mount.
+     Optional nav variant. Pages opt in by pointing their loader at omega-nav2 files.
      Styles: /assets/css/omega-nav2.css + -mobile.css | Behavior: /assets/js/omega-nav2.js -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,17 +104,17 @@
 
       <!-- INSURANCE -->
       <div class="cc-item" data-key="ins">
-        <a class="cc-top" href="/dental-insurance/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-ins" data-section="Insurance">
-          <span class="cc-label">Insurance</span>
+        <a class="cc-top" href="/dental-insurance/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-ins" data-section="Plans">
+          <span class="cc-label">Plans</span>
           <span class="cc-go">Open</span>
           <span class="cc-caret" aria-hidden="true">▾</span>
         </a>
-        <div class="cc-mega" id="panel-ins" role="region" aria-label="Insurance">
+        <div class="cc-mega" id="panel-ins" role="region" aria-label="Plans">
           <div class="mega-inner">
             <div class="mega-lead">
-              <div class="mega-eyebrow">Compare PPO Plans</div>
-              <h3 class="mega-title">Find the PPO plan that fits your <em>care.</em></h3>
-              <p class="mega-sub">Compare dental insurance plans, treatment coverage, dentist networks, and expected costs before you enroll.</p>
+              <div class="mega-eyebrow">Plans &amp; Coverage</div>
+              <h3 class="mega-title">Find the plan that fits your <em>care.</em></h3>
+              <p class="mega-sub">Compare PPO insurance, dental savings plans, and employer coverage. We sell neither, so the answer has no thumb on the scale.</p>
               <a class="mega-hero mega-hero--featured" href="/dental-insurance/ppo-plans/uhc-primary-dental/">
                 <span class="mega-hero-k">Featured plan</span>
                 <span class="mega-hero-t">UnitedHealthcare Primary Dental</span>
@@ -123,10 +124,13 @@
             </div>
             <div class="mega-cols mc-3">
               <div class="mega-col">
-                <p class="mega-gt">Compare &amp; plans</p>
+                <p class="mega-gt">PPO insurance</p>
                 <a class="mega-link" href="/compare-ppo-dental-plans.html"><span class="ic">⇆</span><span class="tx"><span class="t">Compare PPO plans</span><span class="s">Match by treatment &amp; timing</span></span></a>
                 <a class="mega-link" href="/dental-insurance/"><span class="ic">▤</span><span class="tx"><span class="t">Insurance hub<span class="mega-feat-star">Start here</span></span><span class="s">How PPO dental works</span></span></a>
                 <a class="mega-link" href="/dental-insurance/ppo-plans/"><span class="ic">≡</span><span class="tx"><span class="t">All PPO plans</span></span></a>
+                <p class="mega-gt" style="margin-top:18px">By situation</p>
+                <a class="mega-link" href="/guides/between-jobs/"><span class="ic">↻</span><span class="tx"><span class="t">Between jobs</span></span></a>
+                <a class="mega-link" href="/guides/no-waiting-period/"><span class="ic">⚡</span><span class="tx"><span class="t">No waiting period</span></span></a>
               </div>
               <div class="mega-col">
                 <p class="mega-gt">Top carriers</p>
@@ -143,11 +147,13 @@
                 </div>
               </div>
               <div class="mega-col">
-                <p class="mega-gt">By situation</p>
-                <a class="mega-link" href="/guides/between-jobs/"><span class="ic">↻</span><span class="tx"><span class="t">Between jobs</span></span></a>
-                <a class="mega-link" href="/guides/self-employed/"><span class="ic">★</span><span class="tx"><span class="t">Self-employed</span></span></a>
-                <a class="mega-link" href="/guides/no-waiting-period/"><span class="ic">⚡</span><span class="tx"><span class="t">No waiting period</span></span></a>
-                <a class="mega-link" href="/guides/immediate-coverage/"><span class="ic">◷</span><span class="tx"><span class="t">Immediate coverage</span></span></a>
+                <p class="mega-gt">Savings plans</p>
+                <a class="mega-link" href="/dental-savings-plans"><span class="ic">◈</span><span class="tx"><span class="t">Dental savings plans</span><span class="s">Not insurance, no waiting</span></span></a>
+                <a class="mega-link" href="/dental-savings-plans/vs-ppo/"><span class="ic">⚖</span><span class="tx"><span class="t">Savings plan or PPO?</span><span class="s">Two tools, two jobs</span></span></a>
+                <a class="mega-link" href="/dental-savings-plans/is-it-worth-it/"><span class="ic">✓</span><span class="tx"><span class="t">Is it worth it?</span></span></a>
+                <p class="mega-gt" style="margin-top:18px">For employers</p>
+                <a class="mega-link" href="/dental-insurance/employer/"><span class="ic">⌂</span><span class="tx"><span class="t">Employer plans hub</span><span class="s">Group coverage, compared</span></span></a>
+                <a class="mega-link" href="/dental-insurance/employer/cost/"><span class="ic">＄</span><span class="tx"><span class="t">What group plans cost</span></span></a>
               </div>
             </div>
           </div>
@@ -182,7 +188,6 @@
               </div>
               <div class="mega-col">
                 <p class="mega-gt">Basic</p>
-                <a class="mega-link" href="/benefit-maxing/guides/cleaning/"><span class="ic">🪥</span><span class="tx"><span class="t">Cleaning</span></span></a>
                 <a class="mega-link" href="/benefit-maxing/guides/fillings/"><span class="ic">🩹</span><span class="tx"><span class="t">Fillings</span></span></a>
                 <a class="mega-link" href="/benefit-maxing/guides/extractions/"><span class="ic">⛏</span><span class="tx"><span class="t">Simple extractions</span></span></a>
               </div>
@@ -232,7 +237,8 @@
                 <a class="mega-link" href="/guides/in-network-vs-out-of-network-costs.html"><span class="ic">⇄</span><span class="tx"><span class="t">In-network vs out-of-network<span class="mega-feat-star">Start here</span></span><span class="s">Why the same crown costs differently</span></span></a>
                 <a class="mega-link" href="/guides/medi-cal-vs-ppo-dental.html"><span class="ic">⚖</span><span class="tx"><span class="t">Medi-Cal vs PPO dental</span></span></a>
                 <a class="mega-link" href="/guides/glossary/"><span class="ic">A̲</span><span class="tx"><span class="t">Glossary of terms</span><span class="s">Deductible, annual max, waiting period</span></span></a>
-                <a class="mega-link" href="/dental-insurance/delta-dental/for-employers/"><span class="ic">▤</span><span class="tx"><span class="t">For employers</span><span class="s">Offering dental to your team</span></span></a>
+                <a class="mega-link" href="/guides/self-employed/"><span class="ic">★</span><span class="tx"><span class="t">Self-employed</span><span class="s">Coverage without a group plan</span></span></a>
+                <a class="mega-link" href="/guides/immediate-coverage/"><span class="ic">◷</span><span class="tx"><span class="t">Immediate coverage</span><span class="s">Insured this week, not next quarter</span></span></a>
               </div>
               <div class="mega-col">
                 <p class="mega-gt">Emergencies</p>

@@ -50,3 +50,6 @@ zii006nh
 
 # throwaway local previews
 *-PREVIEW.html
+
+# local safety backups
+.safety-backups/

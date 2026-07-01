@@ -847,3 +847,8 @@ html:not(.js) .cc-item:hover .mega-col,html:not(.js) .cc-item:focus-within .mega
 .proto-flag{position:fixed;left:14px;bottom:14px;z-index:11000;background:var(--ink);color:var(--ivory);
   font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 13px;border-radius:var(--r-pill);
   box-shadow:0 8px 24px rgba(8,42,48,.4);opacity:.86}
+
+/* omega-nav2 owns the page progress bar (.cc-scrollbar in the nav).
+   This stylesheet only loads on pages running omega-nav2, so hiding the
+   hub/savings subnav meter here guarantees no page ever shows two bars. */
+.toc-prog{display:none!important}

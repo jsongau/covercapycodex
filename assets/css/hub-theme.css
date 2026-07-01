@@ -60,11 +60,14 @@ th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vert
 thead th{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--paper-2)}
 tbody tr:last-child td{border-bottom:0}
 td a{font-weight:600}
-/* breadcrumb */
-.crumb{background:#fff;border-bottom:0;font-size:12.5px;color:var(--muted)}
-.crumb .wrap{padding-top:11px;padding-bottom:11px}
-.crumb a{color:var(--muted);text-decoration:none}
-.crumb a:hover{color:var(--green-d)}
+/* breadcrumb — universal standard.
+   Links must read as links: green, underlined on a soft tint, darker underline on hover.
+   Current page stays ink and unlinked. Do not drop links back to muted gray. */
+.crumb{background:#fff;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.crumb .wrap{padding-top:12px;padding-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.crumb a{color:var(--green-d);text-decoration:underline;text-decoration-color:rgba(15,181,166,.35);text-underline-offset:3px;padding:2px 1px;border-radius:3px}
+.crumb a:hover{color:var(--ink);text-decoration-color:currentColor}
+.crumb a:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .crumb span{color:var(--ink);font-weight:600}
 .crumb b{color:var(--ink);font-weight:600}
 /* eyebrow */
@@ -86,7 +89,7 @@ td a{font-weight:600}
 .faq details[open] summary{border-bottom:1px solid var(--line)}
 .faq details p{padding:12px 0 14px;margin:0}
 /* sticky sub-nav console (pins under the universal mega nav) */
-.toc{position:sticky;top:71px;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.toc{position:sticky;top:var(--cc-nav-h,71px);z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
 .toc .wrap{max-width:1180px;display:flex;align-items:center;gap:16px;height:var(--toch);flex-wrap:nowrap}
 .toc .theme-switch,.toc .toc-dd{flex:0 0 auto}
 /* Mobile: let the bar scroll sideways internally. Panels become position:fixed at <=900px
@@ -103,7 +106,7 @@ td a{font-weight:600}
 .toc-links a:hover{color:var(--ink)}
 .toc-cta{margin-left:auto;flex-shrink:0;background:#0A2342;color:#fff;font-weight:600;font-size:13px;border-radius:999px;padding:9px 16px;white-space:nowrap;text-decoration:none}
 /* theme switch — full definition lives in the sub-menu block below (matches the hub exactly) */
-@media(max-width:1080px){.toc{top:67px}.toc-brand{display:none}}
+@media(max-width:1080px){.toc{top:var(--cc-nav-h,67px)}.toc-brand{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 #cc-nav-mount:empty,#cc-footer-mount:empty{min-height:0}
 /* glossary / guide content compatibility (re-themed pages) */
@@ -290,7 +293,7 @@ td a{font-weight:600}
 .dd-sub a{padding:7px 11px 7px 22px!important;font-size:13px;color:var(--green-d)}
 .dd-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 11px 4px}
 .dd-all{border-top:1px solid var(--line);margin-top:6px;color:var(--green-d)!important;font-weight:600}
-.toc{position:sticky;top:71px;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,27,37,.03)}
+.toc{position:sticky;top:var(--cc-nav-h,71px);z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,27,37,.03)}
 .toc-prog{height:2px;background:var(--green);width:0;transition:width .1s linear}
 .toc .wrap{display:flex;align-items:center;gap:2px;height:var(--toch);flex-wrap:nowrap;max-width:none;margin:0;padding-left:26px;padding-right:26px}
 .toc .theme-switch,.toc .toc-dd{flex:0 0 auto}

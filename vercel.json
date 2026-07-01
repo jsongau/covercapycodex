@@ -14,9 +14,23 @@
     {
       "source": "/best-ppo-dentists/:area",
       "destination": "/find-my-dentist.html"
+    },
+    {
+      "source": "/for-dentists/claim/:slug",
+      "destination": "/claim-dentist-listing-profile.html"
     }
   ],
   "redirects": [
+    {
+      "source": "/ppo-plans.html",
+      "destination": "/compare-ppo-dental-plans",
+      "permanent": true
+    },
+    {
+      "source": "/ppo-plans/:rest*",
+      "destination": "/compare-ppo-dental-plans",
+      "permanent": true
+    },
     {
       "source": "/dental-insurance/ppo-plans/delta-dental/inside/:rest*",
       "destination": "/dental-insurance/delta-dental/:rest*",
