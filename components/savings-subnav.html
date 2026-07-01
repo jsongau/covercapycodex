@@ -19,7 +19,7 @@
 <div class="toc" aria-label="Dental savings plans hub sub navigation">
   <div class="toc-prog" id="tocProg"></div>
   <div class="wrap">
-    <div class="theme-switch" id="cc-ts" data-active="jade" role="switch" aria-checked="true" tabindex="0" aria-label="Switch color theme, Gold or Jade">
+    <div class="theme-switch" id="cc-ts" data-active="gold" role="switch" aria-checked="false" tabindex="0" aria-label="Switch color theme, Gold or Jade">
       <span class="ts-thumb"></span>
       <span class="ts-opt ts-gold"><span class="ts-dot"></span>Gold</span>
       <span class="ts-opt ts-jade"><span class="ts-dot"></span>Jade</span>
@@ -128,13 +128,7 @@
     ccTs.addEventListener('click', function(){ applyTheme(ccHtml.getAttribute('data-theme') === 'gold' ? 'jade' : 'gold', false); });
     ccTs.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); ccTs.click(); } });
   }
-  window.addEventListener('load', function(){
-    setTimeout(function(){
-      if (ccTs) ccTs.classList.add('flipping');
-      applyTheme('jade', true);
-      setTimeout(function(){ if (ccTs) ccTs.classList.remove('flipping'); }, 2000);
-    }, 1000);
-  });
+  /* Default theme stays Gold (warm). Users can flip to Jade with the toggle. */
 
   var dds = [].slice.call(document.querySelectorAll('.toc-dd'));
   if (dds.length){
