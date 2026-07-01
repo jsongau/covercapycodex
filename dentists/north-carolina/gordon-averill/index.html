@@ -633,7 +633,8 @@ function officesHTML(){
     const map=(o.latitude&&o.longitude)?'<a class="oc-map" href="'+H(dirUrl(o.address))+'" target="_blank" rel="noopener" aria-label="Map and directions to '+H(o.name)+'"><img loading="lazy" alt="" src="https://staticmap.openstreetmap.de/staticmap.php?center='+(+o.latitude)+','+(+o.longitude)+'&zoom=15&size=560x150&markers='+(+o.latitude)+','+(+o.longitude)+',lightblue1" onerror="this.closest(\'.oc-map\').style.display=\'none\'"></a>':'';
     return '<div class="office-card'+(i===SEL?' sel':'')+'"><span class="oc-mk">'+H((o.practice_name||o.name||'?').trim().charAt(0))+'</span><div style="flex:1;min-width:0"><div class="oc-name">'+H(o.name||o.practice_name)+' '+tierChip(o.accreditation_status)+'</div><div class="oc-line">'+addrLink(o.address)+'</div>'+ratingLine+map+'<div style="margin-top:13px;display:flex;gap:9px;flex-wrap:wrap">'+(OFFICES.length>1?'<button class="btn btn-out" style="min-height:44px;padding:11px 15px;font-size:13px" type="button" onclick="setSel('+i+')">'+(i===SEL?'Selected':'Show this location')+'</button>':'')+'<a class="btn btn-out" style="min-height:44px;padding:11px 15px;font-size:13px" href="'+H(o.seo_path||'#')+'">View office profile</a><a class="btn btn-out" style="min-height:44px;padding:11px 15px;font-size:13px" href="'+H(dirUrl(o.address))+'" target="_blank" rel="noopener">Directions</a></div></div></div>';
   }).join('');
-  const title = OFFICES.length>1 ? shortName()+' practices at '+OFFICES.length+' locations' : H(selOffice().practice_name||selOffice().name||'The office');
+  const o0=selOffice();
+  const title = OFFICES.length>1 ? shortName()+' practices at '+OFFICES.length+' locations' : (o0.seo_path?'<a href="'+H(o0.seo_path)+'" style="color:inherit;text-decoration:none">'+H(o0.practice_name||o0.name||'The office')+'</a>':H(o0.practice_name||o0.name||'The office'));
   return module('office','06','The office'+(OFFICES.length>1?'s':''),title, combined+cards
     +'<p class="disclaimer">Each office rating combines its Google, Yelp and Zocdoc reviews into a review-weighted average, shown per location and pooled across '+shortName()+'’s offices. Ratings reflect the offices, not an individual-provider score. Membership tiers are paid program participation, not a clinical-quality judgment.</p>');
 }
@@ -679,7 +680,154 @@ function relatedHTML(){
 }
 
 function ownerHTML(){
-  return '<div class="owner-band"><div class="ob-tag">For the practice</div><h2>Are you '+H(shortName())+' or an authorized representative?</h2><p>Claim this profile to update the biography, add a professional photo, correct insurance information, connect your booking link, and submit supporting evidence, improving what patients see and how often this page converts.</p><div class="owner-actions"><a class="btn btn-pri" href="#">Claim this profile</a><a class="btn btn-out" style="color:#F5ECD8;border-color:rgba(203,168,106,.4)" href="#">Suggest a correction</a></div></div>';
+  return '<style>
+.pur-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 8px}
+.pur-tab{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 'Inter Tight';padding:9px 14px;border-radius:8px;border:1px solid rgba(203,168,106,.3);color:rgba(245,236,216,.7);cursor:pointer;background:transparent;transition:.15s}
+.pur-tab:hover{border-color:var(--brass-lite);color:#F5ECD8}
+.pur-tab[aria-pressed=true]{background:rgba(203,168,106,.18);border-color:var(--brass-lite);color:#F5ECD8}
+.pur-tab svg{width:14px;height:14px;flex-shrink:0}
+.pur-form{display:none;flex-direction:column;gap:10px;padding:16px;background:rgba(255,255,255,.06);border:1px solid rgba(203,168,106,.2);border-radius:12px;margin-top:4px}
+.pur-form.open{display:flex}
+.pur-form label{display:flex;flex-direction:column;gap:4px;font:600 11px/1 'Inter Tight';letter-spacing:.06em;text-transform:uppercase;color:rgba(245,236,216,.55)}
+.pur-form input,.pur-form textarea{border:1px solid rgba(203,168,106,.25);border-radius:7px;padding:9px 11px;font:15px 'Inter Tight',sans-serif;background:rgba(255,255,255,.08);color:#F5ECD8;width:100%}
+.pur-form input::placeholder,.pur-form textarea::placeholder{color:rgba(245,236,216,.3)}
+.pur-submit{background:linear-gradient(180deg,var(--brass-lite),var(--brass));color:#241a07;font:700 14px/1 'Inter Tight';padding:12px 20px;border-radius:8px;border:none;cursor:pointer;width:100%;margin-top:4px}
+.pur-result{font-size:13px;padding:10px 14px;border-radius:8px;display:none;margin-top:4px}
+.pur-result:not(:empty){display:block}
+.pur-result.ok{background:rgba(43,140,80,.25);border:1px solid rgba(43,140,80,.4);color:#9FE1CB}
+.pur-result.err{background:rgba(200,60,60,.2);border:1px solid rgba(200,60,60,.3);color:#F0ADAD}
+.pur-note{font-size:12px;color:rgba(245,236,216,.45);line-height:1.5;margin-top:6px}
+</style>
+<style>
+.pur-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 8px}
+.pur-tab{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 'Inter Tight';padding:9px 14px;border-radius:8px;border:1px solid rgba(203,168,106,.3);color:rgba(245,236,216,.7);cursor:pointer;background:transparent;transition:.15s}
+.pur-tab:hover{border-color:var(--brass-lite);color:#F5ECD8}
+.pur-tab[aria-pressed=true]{background:rgba(203,168,106,.18);border-color:var(--brass-lite);color:#F5ECD8}
+.pur-tab svg{width:14px;height:14px;flex-shrink:0}
+.pur-form{display:none;flex-direction:column;gap:10px;padding:16px;background:rgba(255,255,255,.06);border:1px solid rgba(203,168,106,.2);border-radius:12px;margin-top:4px}
+.pur-form.open{display:flex}
+.pur-form label{display:flex;flex-direction:column;gap:4px;font:600 11px/1 'Inter Tight';letter-spacing:.06em;text-transform:uppercase;color:rgba(245,236,216,.55)}
+.pur-form input,.pur-form textarea{border:1px solid rgba(203,168,106,.25);border-radius:7px;padding:9px 11px;font:15px 'Inter Tight',sans-serif;background:rgba(255,255,255,.08);color:#F5ECD8;width:100%}
+.pur-form input::placeholder,.pur-form textarea::placeholder{color:rgba(245,236,216,.3)}
+.pur-submit{background:linear-gradient(180deg,var(--brass-lite),var(--brass));color:#241a07;font:700 14px/1 'Inter Tight';padding:12px 20px;border-radius:8px;border:none;cursor:pointer;width:100%;margin-top:4px}
+.pur-result{font-size:13px;padding:10px 14px;border-radius:8px;display:none;margin-top:4px}
+.pur-result:not(:empty){display:block}
+.pur-result.ok{background:rgba(43,140,80,.25);border:1px solid rgba(43,140,80,.4);color:#9FE1CB}
+.pur-result.err{background:rgba(200,60,60,.2);border:1px solid rgba(200,60,60,.3);color:#F0ADAD}
+.pur-note{font-size:12px;color:rgba(245,236,216,.45);line-height:1.5;margin-top:6px}
+</style>
+<div class="owner-band" id="provider-owner"><div class="ob-tag">For the practice</div>
+<h2 id="ob-h2">Are you the provider or an authorized representative?</h2>
+<p>Claim this profile to update the biography, add a professional photo, correct insurance information, connect your booking link, and submit supporting evidence, improving what patients see and how often this page converts.</p>
+<div class="owner-actions">
+  <a class="btn btn-pri" href="#">Claim this profile</a>
+  <a class="btn btn-out" style="color:#F5ECD8;border-color:rgba(203,168,106,.4)" href="#">Suggest a correction</a>
+</div></div>
+<script>
+(function(){var h=document.getElementById('ob-h2');if(h&&window.PROV&&PROV.name)h.textContent='Are you '+PROV.name+' or an authorized representative?';})();
+</script>
+
+<script>
+window.purTab=function(btn){
+  document.querySelectorAll('.pur-tab').forEach(function(b){b.setAttribute('aria-pressed','false');});
+  btn.setAttribute('aria-pressed','true');
+  var type=btn.dataset.type;
+  document.getElementById('pur-type').value=type;
+  var nf=document.getElementById('pur-new-office-fields');
+  nf.style.display=(type==='moved_office'||type==='add_office')?'flex':'none';
+  var form=document.getElementById('pur-form');
+  form.classList.add('open');
+  form.querySelector('input[name="contact_name"]').focus();
+};
+window.purSubmit=function(e){
+  e.preventDefault();
+  var f=e.target;
+  var res=document.getElementById('pur-result');
+  var v=function(n){return (f.elements[n]&&f.elements[n].value||'').trim();};
+  var o=selOffice();
+  var payload={
+    provider_slug:PROVIDER,
+    provider_name:PROV.name,
+    request_type:v('request_type'),
+    current_office_slug:o.slug||null,
+    current_office_name:o.name||o.practice_name||null,
+    new_office_name:v('new_office_name')||null,
+    new_office_address:v('new_office_address')||null,
+    new_office_phone:v('new_office_phone')||null,
+    new_office_website:v('new_office_website')||null,
+    message:v('message')||null,
+    contact_name:v('contact_name'),
+    contact_email:v('contact_email'),
+    source_page_url:location.href,
+  };
+  res.className='pur-result';res.textContent='Submitting...';
+  fetch(SUPA+'/rest/v1/provider_update_requests',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':KEY,'Authorization':'Bearer '+KEY,'Prefer':'return=minimal'},
+    body:JSON.stringify(payload)
+  }).then(function(r){
+    if(!r.ok)throw new Error('status '+r.status);
+    res.className='pur-result ok';
+    res.innerHTML='Thanks for the heads up. We'll review your suggestion and may follow up at <b>'+H(v('contact_email'))+'</b> if we need more info.';
+    f.querySelectorAll('input,textarea,button[type=submit]').forEach(function(el){el.disabled=true;});
+  }).catch(function(){
+    res.className='pur-result err';
+    res.innerHTML='Submission failed. Email us at <a href="mailto:hello@covercapy.com?subject=Profile+update+request" style="color:#9FE1CB">hello@covercapy.com</a> and we will handle it manually.';
+  });
+  return false;
+};
+</script>
+
+<script>
+window.purTab=function(btn){
+  document.querySelectorAll('.pur-tab').forEach(function(b){b.setAttribute('aria-pressed','false');});
+  btn.setAttribute('aria-pressed','true');
+  var type=btn.dataset.type;
+  document.getElementById('pur-type').value=type;
+  var nf=document.getElementById('pur-new-office-fields');
+  nf.style.display=(type==='moved_office'||type==='add_office')?'flex':'none';
+  var form=document.getElementById('pur-form');
+  form.classList.add('open');
+  form.querySelector('input[name="contact_name"]').focus();
+};
+window.purSubmit=function(e){
+  e.preventDefault();
+  var f=e.target;
+  var res=document.getElementById('pur-result');
+  var v=function(n){return (f.elements[n]&&f.elements[n].value||'').trim();};
+  var o=selOffice();
+  var payload={
+    provider_slug:PROVIDER,
+    provider_name:PROV.name,
+    request_type:v('request_type'),
+    current_office_slug:o.slug||null,
+    current_office_name:o.name||o.practice_name||null,
+    new_office_name:v('new_office_name')||null,
+    new_office_address:v('new_office_address')||null,
+    new_office_phone:v('new_office_phone')||null,
+    new_office_website:v('new_office_website')||null,
+    message:v('message')||null,
+    contact_name:v('contact_name'),
+    contact_email:v('contact_email'),
+    source_page_url:location.href,
+  };
+  res.className='pur-result';res.textContent='Submitting...';
+  fetch(SUPA+'/rest/v1/provider_update_requests',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':KEY,'Authorization':'Bearer '+KEY,'Prefer':'return=minimal'},
+    body:JSON.stringify(payload)
+  }).then(function(r){
+    if(!r.ok)throw new Error('status '+r.status);
+    res.className='pur-result ok';
+    res.innerHTML='Request received. Check <b>'+H(v('contact_email'))+'</b> — we will send a verification email before making any changes.';
+    f.querySelectorAll('input,textarea,button[type=submit]').forEach(function(el){el.disabled=true;});
+  }).catch(function(){
+    res.className='pur-result err';
+    res.innerHTML='Submission failed. Email us at <a href="mailto:hello@covercapy.com?subject=Profile+update+request" style="color:#9FE1CB">hello@covercapy.com</a> and we will handle it manually.';
+  });
+  return false;
+};
+</script>';
 }
 
 function renderRail(){

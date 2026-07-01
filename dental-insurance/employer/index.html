@@ -601,7 +601,7 @@ section[id]{scroll-margin-top:132px}
       <a class="di-link-card" href="/dental-insurance/employer/unitedhealthcare/"><span class="lc-eyebrow">Mid</span><span class="lc-title">UnitedHealthcare</span><span class="lc-sub">Bundle with medical; MaxMultiplier rollover.</span></a>
       <a class="di-link-card" href="/dental-insurance/employer/mutual-of-omaha/"><span class="lc-eyebrow">Value</span><span class="lc-title">Mutual of Omaha</span><span class="lc-sub">Trusted brand; 2&ndash;9 small-business path.</span></a>
     </div>
-    <div class="cta-row" style="margin:16px 0 0"><a href="/dental-insurance/employer/cost/" class="btn btn-green">Open the cost &amp; ROI calculator</a></div>
+    <div class="cta-row" style="margin:16px 0 0"><a href="/dental-insurance/employer/cost/" class="btn btn-green">Open the cost &amp; ROI calculator</a><a href="/dental-insurance/employer/turnover-cost/" class="btn btn-ghost">Cost of turnover</a><a href="/dental-insurance/employer/employer-contribution/" class="btn btn-ghost">How much employers cover</a></div>
   </section>
 
   <!-- WHO PAYS WHAT -->
@@ -656,6 +656,7 @@ section[id]{scroll-margin-top:132px}
       <h2 style="border:0;padding:0;margin:0 0 8px">Tell us about your team</h2>
       <p style="margin:0 0 4px">Group dental is configured to your company, so we start with a few details, not a price. We will come back with a clean, concierge-picked comparison.</p>
       <form id="empQuote" novalidate>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="quote-grid">
           <div class="qf"><label for="q-name">Your name</label><input id="q-name" name="name" type="text" autocomplete="name" required></div>
           <div class="qf"><label for="q-company">Company</label><input id="q-company" name="company" type="text" autocomplete="organization"></div>
@@ -753,10 +754,11 @@ section[id]{scroll-margin-top:132px}
 
   <div class="guide-rc plain guide-rel">
     <div class="rh">Related</div>
+    <a href="/dental-insurance/employer/cost/">Cost &amp; ROI calculator</a>
+    <a href="/dental-insurance/employer/turnover-cost/">The cost of turnover</a>
+    <a href="/dental-insurance/employer/employer-contribution/">How much employers cover</a>
     <a href="/dental-insurance/">Individual dental plans</a>
-    <a href="/compare-ppo-dental-plans">Compare PPO plans</a>
     <a href="/capy-accreditation.html">For dentists: accreditation</a>
-    <a href="/find-my-dentist">Find a PPO dentist</a>
   </div>
 
   <div class="guide-rc plain">
@@ -826,8 +828,10 @@ section[id]{scroll-margin-top:132px}
     }
   })();
 
-  /* Concierge intake (Phase B endpoint /api/employer-quote; graceful success either way) */
+  /* Concierge intake -> Supabase edge function employer-quote (publishable key, mailto fallback) */
   (function(){
+    var SUPA='https://hfvbeqlefwwjlrbyxpbj.supabase.co';
+    var KEY='sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf';
     var form=document.getElementById('empQuote'),ok=document.getElementById('empQuoteOk');
     if(!form)return;
     form.addEventListener('submit',function(e){
@@ -836,12 +840,21 @@ section[id]{scroll-margin-top:132px}
       if(!name.value.trim()){name.focus();return;}
       if(!email.value.trim()||email.value.indexOf('@')<0){email.focus();return;}
       var data={};new FormData(form).forEach(function(v,k){data[k]=v;});
-      data.source_page='/dental-insurance/employer/';
-      var done=function(){form.style.display='none';ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});};
+      data.source_page=location.pathname;
+      var btn=form.querySelector('button[type=submit]');if(btn){btn.disabled=true;btn.textContent='Sending…';}
+      var win=function(){form.style.display='none';ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});};
+      var fail=function(){
+        if(btn){btn.disabled=false;btn.textContent='Request my comparison';}
+        var subj=encodeURIComponent('Employer dental quote — '+(data.company||data.name||''));
+        var body=encodeURIComponent('Name: '+(data.name||'')+'\nCompany: '+(data.company||'')+'\nEmail: '+(data.email||'')+'\nZIP: '+(data.zip||'')+'\nEmployees: '+(data.employees||'')+'\nGoal: '+(data.goal||''));
+        ok.style.display='block';ok.innerHTML='We could not submit automatically right now. <a href="mailto:hello@covercapy.com?subject='+subj+'&body='+body+'">Send it as an email instead</a>.';ok.scrollIntoView({behavior:'smooth',block:'center'});
+      };
       try{
-        fetch('/api/employer-quote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-          .then(done).catch(done);
-      }catch(err){done();}
+        fetch(SUPA+'/functions/v1/employer-quote',{method:'POST',headers:{'Content-Type':'application/json',apikey:KEY,Authorization:'Bearer '+KEY},body:JSON.stringify(data)})
+          .then(function(r){if(!r.ok)throw 0;return r.json().catch(function(){return{};});})
+          .then(function(j){if(j&&j.ok===false)throw 0;win();})
+          .catch(fail);
+      }catch(err){fail();}
     });
   })();
 
