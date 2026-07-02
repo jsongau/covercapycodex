@@ -684,7 +684,6 @@ var CC_GEO_DATA={"Arizona":{"Central Arizona":["Casa Grande","Coolidge","Eloy","
       var label=sel.label||value;
       if(scope==='zip'){ resolveZip(value); return; }
       if(sel.lat!=null&&sel.lng!=null&&sel.lat!==''&&sel.lng!==''){ previewPoint(label,sel.lat,sel.lng,scope); return; }
-      if(scope==='state'){ window.location.href=browseUrl(label); return; }
       /* no centroid: resolve via REST (city name, then market area, then local area), else show none */
       setDock(loadingHTML(label));
       var tries=[
