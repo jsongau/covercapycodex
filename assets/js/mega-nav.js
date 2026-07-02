@@ -264,7 +264,7 @@
       + PLATINUM_RADIUS_MILES + ' miles of ' + place + ', as of this moment</span></div>'
       + '<div class="featured-meta">This area is open. Secure it before another practice does.</div>'
       + '<div class="feature-lines open-opportunity-lines"><span>Appear first in local results</span><span>Serve PPO-ready patients nearby</span></div>'
-      + '<a class="find-secure-cta" href="/dentist-portal.html#platinum-elite">Secure this area <b>→</b></a>'
+      + '<a class="find-secure-cta" href="/dentistportal.html#platinum-elite">Secure this area <b>→</b></a>'
       + '</div></div>';
   }
 

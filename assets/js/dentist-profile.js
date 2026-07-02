@@ -451,7 +451,7 @@ ${elite ? '' : '<p style="font-size:12px;color:var(--ink-soft);margin-top:16px">
     </ul>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
       <a href="/claim-listing/?practice=${encodeURIComponent(name)}" class="btn btn-primary">Claim This Profile →</a>
-      <a href="/dentist-portal/" class="btn btn-line">Learn about Platinum Elite →</a>
+      <a href="/dentistportal/" class="btn btn-line">Learn about Platinum Elite →</a>
     </div>
   </div>
   <div class="pdp-upsell-right" aria-hidden="true">

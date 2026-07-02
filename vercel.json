@@ -273,12 +273,12 @@
     },
     {
       "source": "/for-dentists/claim/:rest*",
-      "destination": "/dentist-portal",
+      "destination": "/dentistportal",
       "permanent": true
     },
     {
       "source": "/for-dentists/:rest*",
-      "destination": "/dentist-portal",
+      "destination": "/dentistportal",
       "permanent": true
     },
     {
@@ -474,6 +474,16 @@
     {
       "source": "/guides/crown-build-up-and-extra-costs",
       "destination": "/guides/crowns/build-up-and-extra-costs",
+      "permanent": true
+    },
+    {
+      "source": "/dentist-portal",
+      "destination": "/dentistportal",
+      "permanent": true
+    },
+    {
+      "source": "/dentist-portal.html",
+      "destination": "/dentistportal",
       "permanent": true
     }
   ]

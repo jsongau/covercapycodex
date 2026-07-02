@@ -20,12 +20,12 @@
 
 <title>Claim Your Dental Practice Profile | Capy Accredited Membership | CoverCapy</title>
 <meta name="description" content="Search your practice, claim your free CoverCapy profile, then apply for Capy Accredited or Platinum Elite membership. Applications are reviewed within 3 days and refunded in full if not approved." />
-<link rel="canonical" href="https://www.covercapy.com/dentist-portal" />
+<link rel="canonical" href="https://www.covercapy.com/dentistportal" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 
 <meta property="og:title" content="Claim Your Dental Practice Profile | CoverCapy Dentist Portal" />
 <meta property="og:description" content="Get found by PPO-ready patients. Claim your free profile, then apply for Capy Accreditation. Reviewed within 3 days, refunded in full if not approved." />
-<meta property="og:url" content="https://www.covercapy.com/dentist-portal" />
+<meta property="og:url" content="https://www.covercapy.com/dentistportal" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://www.covercapy.com/assets/covercapy-dentist-membership-og.jpg" />
 
@@ -130,7 +130,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.covercapy.com/" },
-    { "@type": "ListItem", "position": 2, "name": "For Dentists", "item": "https://www.covercapy.com/dentist-portal" }
+    { "@type": "ListItem", "position": 2, "name": "For Dentists", "item": "https://www.covercapy.com/dentistportal" }
   ]
 }
 </script>
@@ -219,6 +219,17 @@ button{font-family:var(--ff-sans)}
 .dp-section--cream{background:linear-gradient(180deg,var(--ivory),#FCFAF4)}
 .dp-hairline{border:none;border-top:1px solid var(--line-soft)}
 
+/* ---------- Portal sub-nav (sticky below the mega nav) ---------- */
+.dp-subnav{position:sticky;top:var(--cc-nav-h,72px);z-index:950;background:rgba(255,253,249,.94);-webkit-backdrop-filter:saturate(1.2) blur(8px);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line-soft)}
+.dp-subnav-inner{max-width:1180px;margin:0 auto;padding:0 26px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;white-space:nowrap}
+.dp-subnav-inner::-webkit-scrollbar{display:none}
+.dp-subnav-link{flex:none;display:inline-flex;align-items:center;padding:14px 12px 12px;font-size:12.5px;font-weight:600;color:var(--ink-mid);text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.dp-subnav-link:hover{color:var(--emerald-deep)}
+.dp-subnav-link.is-active{color:var(--emerald-deep);border-bottom-color:var(--gold)}
+.dp-subnav-link--add{margin-left:auto;color:var(--emerald);font-weight:700}
+.dp-subnav-link--add:hover{color:var(--emerald-deep)}
+#dp-hero-search,#dpv-readiness,#pricing,#faq{scroll-margin-top:calc(var(--cc-nav-h,72px) + 58px)}
+
 /* ---------- Checkout status banners ---------- */
 .dp-status{display:none;border-bottom:1px solid var(--line-soft)}
 .dp-status.is-shown{display:block}
@@ -283,6 +294,20 @@ button{font-family:var(--ff-sans)}
 .dp-aside-points{list-style:none;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft);display:flex;flex-direction:column;gap:9px}
 .dp-aside-points li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--ink);line-height:1.4;font-weight:500}
 .dp-aside-points li::before{content:"\2713";color:var(--emerald);font-weight:700;flex-shrink:0}
+
+/* hero aside: submit your practice expander */
+.dp-aside-expander{margin-top:16px;padding-top:12px;border-top:1px solid var(--line-soft)}
+.dp-aside-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:8px;border:none;background:none;padding:4px 0;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--ink-mid);text-align:left;transition:color .2s}
+.dp-aside-toggle:hover{color:var(--emerald-deep)}
+.dp-aside-toggle .chev{flex:none;width:14px;height:14px;color:var(--emerald);transition:transform .25s var(--ease)}
+.dp-aside-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.dp-aside-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.dp-aside-panel.is-open{grid-template-rows:1fr}
+.dp-aside-panel > div{overflow:hidden;visibility:hidden;transition:visibility .3s}
+.dp-aside-panel.is-open > div{visibility:visible}
+.dp-aside-panel p{font-size:12.5px;color:var(--ink-mid);line-height:1.55;margin:8px 0 12px}
+.dp-aside-add{display:inline-block;padding:10px 16px;border-radius:var(--r-sm);background:var(--emerald);color:var(--ivory);font-size:12.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(27,94,90,.22);transition:transform .2s var(--ease),box-shadow .2s}
+.dp-aside-add:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,94,90,.3)}
 
 /* ---------- Funnel strip ---------- */
 .dp-funnel{padding:52px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--ivory)}
@@ -371,7 +396,7 @@ button{font-family:var(--ff-sans)}
 .dpv-close{font-family:var(--ff-serif);font-style:italic;font-size:16.5px;color:var(--emerald);margin-top:26px}
 
 /* ---------- Profile preview widget (dpv-) ---------- */
-.dpv-widget{position:sticky;top:96px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--ivory);box-shadow:var(--sh-soft);padding:20px}
+.dpv-widget{position:sticky;top:calc(var(--cc-nav-h,72px) + 66px);border:1px solid var(--line);border-radius:var(--r-lg);background:var(--ivory);box-shadow:var(--sh-soft);padding:20px}
 .dpv-w-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .dpv-w-eye{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;gap:7px}
 .dpv-w-eye::before{content:"";width:14px;height:1px;background:var(--gold)}
@@ -396,6 +421,14 @@ button{font-family:var(--ff-sans)}
 .dpv-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink)}
 .dpv-meta .dot{color:var(--ink-soft)}
 .dpv-star{color:var(--gold);font-size:14px}
+/* review source pills (accredited state). The colored dots carry each source's
+   own brand color on purpose; everything else stays in the page palette. */
+.dpv-reviews{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.dpv-rev-pill{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:var(--ink-mid);background:var(--cream);border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 10px;white-space:nowrap}
+.dpv-rev-dot{flex:none;width:7px;height:7px;border-radius:50%}
+.dpv-rev-dot--google{background:#4285F4}
+.dpv-rev-dot--yelp{background:#D32323}
+.dpv-rev-dot--zocdoc{background:#FFC107}
 .dpv-off-note{font-size:12.5px;color:var(--ink-soft);margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)}
 .dpv-contact{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
 .dpv-line{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--ink-mid);line-height:1.45}
@@ -410,8 +443,6 @@ button{font-family:var(--ff-sans)}
 .dpv-see svg{flex:none;width:12px;height:12px;margin-top:1px;color:var(--emerald)}
 .dpv-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .dpv-act{flex:1;min-width:96px;text-align:center;font-size:11.5px;font-weight:700;padding:9px 10px;border-radius:var(--r-sm);text-decoration:none}
-.dpv-act.solid{background:var(--emerald);color:var(--ivory)}
-.dpv-act.solid:hover{background:var(--emerald-deep)}
 .dpv-act.ghost{border:1px solid var(--line);color:var(--ink-mid);pointer-events:none}
 .dpv-widget:not(.is-accredited) .dpv-acc-only{display:none}
 .dpv-widget.is-accredited .dpv-off-only{display:none}
@@ -486,17 +517,11 @@ button{font-family:var(--ff-sans)}
   .dpv-see{grid-template-columns:1fr}
 }
 
-/* ---------- Final band + trust row ---------- */
+/* ---------- Final band ---------- */
 .dp-final{text-align:center;padding:80px 0}
 .dp-final .dp-sub{margin-left:auto;margin-right:auto}
 .dp-final-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:26px;padding:15px 32px;border:none;border-radius:var(--r-md);background:var(--emerald);color:var(--ivory);font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(27,94,90,.22);transition:transform .2s var(--ease),box-shadow .2s}
 .dp-final-cta:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,94,90,.3)}
-.dp-trust{border-top:1px solid var(--line-soft);background:rgba(244,237,223,.4)}
-.dp-trust-inner{max-width:1180px;margin:0 auto;padding:14px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.dp-trust-items{display:flex;flex-wrap:wrap;gap:18px}
-.dp-trust-items span{font-size:11.5px;color:var(--ink-mid)}
-.dp-trust-link{font-size:12.5px;color:var(--emerald);font-weight:600;text-decoration:none}
-.dp-trust-link:hover{color:var(--emerald-deep)}
 
 /* ---------- Claim modal (mega nav cc-claim language) ---------- */
 .dp-claim{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:20px}
@@ -606,6 +631,17 @@ button{font-family:var(--ff-sans)}
 
 <div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
 
+<!-- Portal sub-nav: sticky quick links to the sections below -->
+<nav class="dp-subnav" id="dp-subnav" aria-label="Dentist portal sections">
+  <div class="dp-subnav-inner">
+    <a class="dp-subnav-link is-active" href="#dp-hero-search" data-dp-target="top">Claim your profile</a>
+    <a class="dp-subnav-link" href="#dpv-readiness" data-dp-target="dpv-readiness">Why accreditation</a>
+    <a class="dp-subnav-link" href="#pricing" data-dp-target="pricing">Pricing</a>
+    <a class="dp-subnav-link" href="#faq" data-dp-target="faq">FAQs</a>
+    <a class="dp-subnav-link dp-subnav-link--add" href="/add-your-practice">Add your practice</a>
+  </div>
+</nav>
+
 <!-- Checkout return states, shown by JS when ?checkout= is present -->
 <div class="dp-status dp-status--success" id="dp-status-success" role="status">
   <div class="dp-status-inner">
@@ -661,6 +697,18 @@ button{font-family:var(--ff-sans)}
           <li>Refunded in full if not approved</li>
           <li>Cancel monthly plans anytime</li>
         </ul>
+        <div class="dp-aside-expander">
+          <button class="dp-aside-toggle" id="dp-submit-toggle" type="button" aria-expanded="false" aria-controls="dp-submit-panel">
+            <span>Not listed yet? Submit your practice</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dp-aside-panel" id="dp-submit-panel">
+            <div>
+              <p>Send us your practice details and our team reviews the listing before it appears. A free account lets you track your listing and your application.</p>
+              <a class="dp-aside-add" href="/add-your-practice">Add your practice</a>
+            </div>
+          </div>
+        </div>
       </aside>
     </div>
   </div>
@@ -745,9 +793,9 @@ button{font-family:var(--ff-sans)}
         <article class="dpv-card" aria-live="polite">
           <span class="dpv-example">Example profile</span>
           <div class="dpv-card-top">
-            <span class="dpv-mono" aria-hidden="true">KYT</span>
+            <span class="dpv-mono" aria-hidden="true">CC</span>
             <div>
-              <div class="dpv-pname">KYT Dental Services</div>
+              <div class="dpv-pname">Capy Cove Dental</div>
               <div class="dpv-badges">
                 <span class="dpv-chip-unclaimed dpv-off-only">Unclaimed profile</span>
                 <span class="dpv-chip-acc dpv-acc-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>Capy Accredited</span>
@@ -756,13 +804,19 @@ button{font-family:var(--ff-sans)}
             </div>
           </div>
 
-          <div class="dpv-meta"><span class="dpv-star" aria-hidden="true">&#9733;</span><span>5.0</span><span class="dot">&middot;</span><span>132 reviews</span><span class="dot">&middot;</span><span>Fountain Valley, CA</span></div>
+          <div class="dpv-meta"><span class="dpv-star" aria-hidden="true">&#9733;</span><span class="dpv-off-only">4.9</span><span class="dpv-acc-only">5.0</span><span class="dot">&middot;</span><span class="dpv-off-only">169 reviews</span><span class="dpv-acc-only">788 reviews</span><span class="dot">&middot;</span><span>Fountain Valley, CA</span></div>
+
+          <div class="dpv-reviews dpv-acc-only" data-dpv-detail="reviews" aria-label="Reviews by source">
+            <span class="dpv-rev-pill"><span class="dpv-rev-dot dpv-rev-dot--google" aria-hidden="true"></span>Google 4.9 &middot; 169</span>
+            <span class="dpv-rev-pill"><span class="dpv-rev-dot dpv-rev-dot--yelp" aria-hidden="true"></span>Yelp 4.9 &middot; 210</span>
+            <span class="dpv-rev-pill"><span class="dpv-rev-dot dpv-rev-dot--zocdoc" aria-hidden="true"></span>Zocdoc 5.0 &middot; 409</span>
+          </div>
 
           <p class="dpv-off-note dpv-off-only">Unclaimed listing. Patients see the basics only.</p>
 
           <div class="dpv-contact dpv-acc-only">
-            <div class="dpv-line dpv-acc-only" data-dpv-detail="address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg><span>11180 Warner Ave Suite 251, Fountain Valley, CA 92708</span></div>
-            <div class="dpv-line dpv-acc-only" data-dpv-detail="phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1Z"/></svg><span>(833) 598-3368</span></div>
+            <div class="dpv-line dpv-acc-only" data-dpv-detail="address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Fountain Valley, CA</span></div>
+            <div class="dpv-line dpv-acc-only" data-dpv-detail="phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1Z"/></svg><span>(714) 555-0164</span></div>
           </div>
 
           <div class="dpv-acc-only" data-dpv-detail="specialties">
@@ -792,7 +846,7 @@ button{font-family:var(--ff-sans)}
           </div>
 
           <div class="dpv-actions dpv-acc-only" data-dpv-detail="actions">
-            <a class="dpv-act solid" href="/dental/california/orange-county/fountain-valley/kyt-dental-services/" target="_blank" rel="noopener">View profile</a>
+            <span class="dpv-act ghost" aria-hidden="true">View profile</span>
             <span class="dpv-act ghost" aria-hidden="true">Request appointment</span>
             <span class="dpv-act ghost" aria-hidden="true">Call office</span>
           </div>
@@ -812,9 +866,10 @@ button{font-family:var(--ff-sans)}
             <span data-dpv-legend="phone">Phone</span>
             <span data-dpv-legend="networks">PPO networks</span>
             <span data-dpv-legend="specialties">Specialties</span>
+            <span data-dpv-legend="reviews">Review sources</span>
             <span data-dpv-legend="actions">Booking actions</span>
           </div>
-          <p class="dpv-meter-note">Illustrative preview of what a completed, accredited profile displays.</p>
+          <p class="dpv-meter-note">Capy Cove Dental is a fictional example office, shown to illustrate what a complete, accredited profile displays. It is not a live listing.</p>
         </div>
       </div>
 
@@ -1029,18 +1084,6 @@ button{font-family:var(--ff-sans)}
     <button class="dp-final-cta" type="button" onclick="dpScrollToSearch()">Search your practice</button>
   </div>
 </section>
-
-<!-- Trust row -->
-<div class="dp-trust">
-  <div class="dp-trust-inner">
-    <div class="dp-trust-items">
-      <span>Reviewed and vetted</span>
-      <span>Reviewed by our team</span>
-      <span>Cancel anytime</span>
-    </div>
-    <a class="dp-trust-link" href="/advertising-disclosure">Advertising disclosure</a>
-  </div>
-</div>
 
 <!-- ============ CLAIM MODAL (found a practice) ============ -->
 <div class="dp-claim" id="dp-claim" aria-hidden="true">
@@ -1693,6 +1736,59 @@ button{font-family:var(--ff-sans)}
       });
     }, { threshold: 0.2 }).observe(heroSearch);
   }
+
+  /* ================= Portal sub-nav: smooth scroll + scroll spy ================= */
+  (function () {
+    var subnav = $('dp-subnav');
+    if (!subnav) return;
+    var links = Array.prototype.slice.call(subnav.querySelectorAll('.dp-subnav-link[data-dp-target]'));
+    if (!links.length) return;
+
+    function setActive(id) {
+      links.forEach(function (link) {
+        link.classList.toggle('is-active', link.getAttribute('data-dp-target') === id);
+      });
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href') || '';
+        if (href.charAt(0) !== '#') return;
+        var target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        setActive(link.getAttribute('data-dp-target'));
+        if (link.getAttribute('data-dp-target') === 'top') { window.dpScrollToSearch(); return; }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActive(entry.target.getAttribute('data-dp-spy'));
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      [['top', 'top'], ['dpv-readiness', 'dpv-readiness'], ['pricing', 'pricing'], ['faq', 'faq']].forEach(function (pair) {
+        var section = $(pair[0]);
+        if (!section) return;
+        section.setAttribute('data-dp-spy', pair[1]);
+        spy.observe(section);
+      });
+    }
+  })();
+
+  /* ================= Hero aside: submit your practice expander ================= */
+  (function () {
+    var toggle = $('dp-submit-toggle');
+    var panel = $('dp-submit-panel');
+    if (!toggle || !panel) return;
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.classList.toggle('is-open', !open);
+    });
+  })();
 })();
 </script>
 

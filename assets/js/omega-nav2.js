@@ -508,7 +508,7 @@ var CC_GEO_DATA={"Arizona":{"Central Arizona":["Casa Grande","Coolidge","Eloy","
       if(!aside) return;
       aside.innerHTML=
         asideCard('','Keep looking','More PPO dentists','in '+esc(label||'your area'),'Browse all dentists',browseUrl(label||''))
-       +asideCard(' mega-hero--featured','For dentists','Get featured to PPO patients','near '+esc(label||'you'),'Get featured','/dentist-portal.html#platinum-elite');
+       +asideCard(' mega-hero--featured','For dentists','Get featured to PPO patients','near '+esc(label||'you'),'Get featured','/dentistportal.html#platinum-elite');
     }
     function asideNone(label){
       if(!aside) return;

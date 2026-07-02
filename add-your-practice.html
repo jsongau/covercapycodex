@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- CoverCapy Google Analytics / Google tag copied from template -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBPGSZ1LZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNBPGSZ1LZ');
+</script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<title>Add Your Practice to CoverCapy | For Dental Practices</title>
+<meta name="description" content="Submit your dental practice to CoverCapy. Create a free account, send your practice details, and our team reviews the submission before it appears in the directory." />
+<link rel="canonical" href="https://www.covercapy.com/add-your-practice" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+
+<meta property="og:title" content="Add Your Practice to CoverCapy" />
+<meta property="og:description" content="Create a free account and submit your practice details. Our team reviews new practice submissions before they appear in the directory." />
+<meta property="og:url" content="https://www.covercapy.com/add-your-practice" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- CoverCapy shared component styles: mega nav + footer -->
+<link rel="stylesheet" href="assets/css/omega-nav2.css" />
+<link rel="stylesheet" href="assets/css/omega-nav2-mobile.css" />
+<link rel="stylesheet" href="assets/css/footer.css" />
+
+<style id="cc-shared-shell-mount-guards">
+  html, body { overflow-x: clip; }
+  body { max-width: 100vw; }
+  #cc-nav-mount { min-height: 72px; position: relative; z-index: 1000; }
+  #cc-footer-mount { display: block; position: relative; z-index: 2; }
+  body > nav.nav#nav,
+  body > .mobile-menu#mobileMenu,
+  body > footer.footer,
+  body > footer.site-footer,
+  body > .foot,
+  body > .footer { display: none !important; }
+  .cc-nav { z-index: 5000; }
+  .cc-dropdown { z-index: 6000; }
+  .cc-link:hover > .cc-dropdown,
+  .cc-link:focus-within > .cc-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.covercapy.com/" },
+    { "@type": "ListItem", "position": 2, "name": "For Dentists", "item": "https://www.covercapy.com/dentistportal" },
+    { "@type": "ListItem", "position": 3, "name": "Add Your Practice", "item": "https://www.covercapy.com/add-your-practice" }
+  ]
+}
+</script>
+
+<style>
+/* =========================================================
+   Add your practice: account creation + practice submission.
+   Same ivory / emerald / gold language as dentistportal.
+   ========================================================= */
+:root{
+  --ivory:#FFFDF9;
+  --cream:#FBF6EC;
+  --cream-deep:#F4EDDF;
+  --emerald:#1B5E5A;
+  --emerald-deep:#0E3F44;
+  --emerald-soft:#E7F0EC;
+  --gold:#E3A63C;
+  --gold-deep:#B98023;
+  --gold-soft:#F8E6C0;
+  --ink:#14242A;
+  --ink-mid:#4A5D64;
+  --ink-soft:#8194A0;
+  --line:rgba(20,36,42,.10);
+  --line-soft:rgba(20,36,42,.06);
+  --r-sm:9px;
+  --r-md:13px;
+  --r-lg:18px;
+  --r-pill:999px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ff-serif:"Fraunces",Georgia,serif;
+  --ff-sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --sh-soft:0 1px 2px rgba(20,36,42,.04),0 8px 28px rgba(20,36,42,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-sans);color:var(--ink);background:var(--ivory);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--emerald)}
+button{font-family:var(--ff-sans)}
+
+.ayp-wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+.ayp-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ayp-eyebrow::before{content:"";width:22px;height:1px;background:var(--gold)}
+.ayp-h1{font-family:var(--ff-serif);font-size:clamp(30px,3.8vw,44px);font-weight:400;line-height:1.08;letter-spacing:-.018em;color:var(--ink);max-width:20ch}
+.ayp-h1 em{font-style:italic;color:var(--emerald)}
+.ayp-sub{font-size:15px;line-height:1.6;color:var(--ink-mid);margin-top:12px;max-width:54ch}
+
+/* sub-nav, same bar as the dentist portal */
+.dp-subnav{position:sticky;top:var(--cc-nav-h,72px);z-index:950;background:rgba(255,253,249,.94);-webkit-backdrop-filter:saturate(1.2) blur(8px);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line-soft)}
+.dp-subnav-inner{max-width:1180px;margin:0 auto;padding:0 26px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;white-space:nowrap}
+.dp-subnav-inner::-webkit-scrollbar{display:none}
+.dp-subnav-link{flex:none;display:inline-flex;align-items:center;padding:14px 12px 12px;font-size:12.5px;font-weight:600;color:var(--ink-mid);text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.dp-subnav-link:hover{color:var(--emerald-deep)}
+.dp-subnav-link.is-active{color:var(--emerald-deep);border-bottom-color:var(--gold)}
+.dp-subnav-link--add{margin-left:auto;color:var(--emerald);font-weight:700}
+.dp-subnav-link--add:hover{color:var(--emerald-deep)}
+
+.ayp-hero{padding:58px 0 34px;background:
+  radial-gradient(800px 360px at 14% 0%, rgba(231,240,236,.55), transparent 60%),
+  radial-gradient(700px 320px at 92% 0%, rgba(243,233,207,.38), transparent 58%),
+  linear-gradient(180deg,var(--ivory),#FCFAF4)}
+.ayp-main{padding:10px 0 84px;background:linear-gradient(180deg,#FCFAF4,var(--ivory))}
+
+/* the single card */
+.ayp-card{max-width:600px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--ivory);box-shadow:var(--sh-soft);padding:28px 28px 24px}
+.ayp-card-eye{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.ayp-card-eye::before{content:"";width:14px;height:1px;background:var(--gold)}
+.ayp-card-h{font-family:var(--ff-serif);font-size:23px;font-weight:500;color:var(--ink);line-height:1.15;margin-bottom:4px}
+.ayp-card-h em{font-style:italic;color:var(--emerald)}
+.ayp-card-sub{font-size:13px;color:var(--ink-mid);margin-bottom:18px;line-height:1.55}
+
+.ayp-steps{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.ayp-dot{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;font-weight:700;border:1.5px solid var(--line);color:var(--ink-soft);background:var(--ivory)}
+.ayp-dot.is-on{background:var(--emerald);border-color:var(--emerald);color:var(--ivory)}
+.ayp-dot.is-done{background:var(--emerald-soft);border-color:var(--emerald);color:var(--emerald-deep)}
+.ayp-bar{flex:1;height:1px;background:var(--line)}
+.ayp-step-lab{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+
+.ayp-pane{display:none}
+.ayp-pane.is-on{display:block}
+
+.ayp-field{margin-bottom:13px}
+.ayp-field label{display:block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.ayp-field input,.ayp-field select{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:var(--r-sm);font-family:var(--ff-sans);font-size:14.5px;font-weight:500;color:var(--ink);background:#fff}
+.ayp-field input:focus,.ayp-field select:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px var(--emerald-soft)}
+.ayp-field input.is-invalid,.ayp-field select.is-invalid{border-color:#B23A1F;box-shadow:0 0 0 3px rgba(178,58,31,.12)}
+.ayp-field .hint{font-size:11px;color:var(--ink-soft);margin-top:5px;line-height:1.45}
+.ayp-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ayp-row3{display:grid;grid-template-columns:1.4fr .9fr .7fr;gap:12px}
+
+.ayp-btn{display:block;width:100%;padding:13px 18px;border-radius:var(--r-sm);border:none;background:var(--emerald);color:var(--ivory);font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(27,94,90,.22);transition:transform .2s var(--ease),box-shadow .2s,opacity .2s}
+.ayp-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,94,90,.3)}
+.ayp-btn:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}
+.ayp-alt{font-size:12.5px;color:var(--ink-mid);text-align:center;margin-top:14px}
+.ayp-alt button{border:none;background:none;color:var(--emerald);font-size:12.5px;font-weight:700;cursor:pointer;padding:0}
+.ayp-alt button:hover{color:var(--emerald-deep)}
+
+.ayp-error{display:none;margin-top:12px;border:1px solid rgba(178,58,31,.3);background:#FBEDE8;color:#7C3A28;border-radius:var(--r-sm);padding:11px 13px;font-size:12.5px;line-height:1.5}
+.ayp-error.is-shown{display:block}
+.ayp-notice{display:none;margin-top:12px;border:1px solid rgba(185,128,35,.28);background:var(--gold-soft);color:var(--ink);border-radius:var(--r-sm);padding:11px 13px;font-size:12.5px;line-height:1.55}
+.ayp-notice.is-shown{display:block}
+
+.ayp-session{display:none;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;border:1px solid rgba(27,94,90,.2);background:var(--emerald-soft);border-radius:var(--r-sm);padding:9px 12px;font-size:12.5px;color:var(--emerald-deep)}
+.ayp-session.is-shown{display:flex}
+.ayp-session b{font-weight:700;overflow:hidden;text-overflow:ellipsis}
+.ayp-session button{flex:none;border:none;background:none;color:var(--emerald);font-size:12px;font-weight:700;cursor:pointer;padding:0}
+.ayp-session button:hover{color:var(--emerald-deep)}
+
+.ayp-promise{display:flex;gap:9px;align-items:flex-start;font-size:12px;line-height:1.55;color:var(--ink-mid);background:var(--emerald-soft);border-radius:var(--r-sm);padding:11px 13px;margin:6px 0 0}
+.ayp-promise::before{content:"\2713";color:var(--emerald);font-weight:700;flex-shrink:0}
+.ayp-fine{font-size:10.5px;color:var(--ink-soft);line-height:1.55;margin-top:12px}
+
+/* success panel */
+.ayp-done-badge{width:44px;height:44px;border-radius:50%;background:var(--emerald);color:var(--ivory);display:grid;place-items:center;font-size:19px;font-weight:700;margin-bottom:14px}
+.ayp-done-h{font-family:var(--ff-serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:8px}
+.ayp-done-p{font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin-bottom:6px}
+.ayp-done-next{display:inline-block;margin-top:16px;padding:12px 20px;border-radius:var(--r-sm);background:var(--emerald);color:var(--ivory);font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(27,94,90,.22);transition:transform .2s var(--ease),box-shadow .2s}
+.ayp-done-next:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,94,90,.3)}
+.ayp-done-sub{display:block;font-size:12px;color:var(--ink-soft);margin-top:10px}
+
+@media (max-width:640px){
+  .ayp-wrap{padding:0 20px}
+  .ayp-hero{padding:44px 0 26px}
+  .ayp-card{padding:22px 20px 20px}
+  .ayp-row,.ayp-row3{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
+
+<!-- Portal sub-nav: links back to the dentist portal sections -->
+<nav class="dp-subnav" aria-label="Dentist portal sections">
+  <div class="dp-subnav-inner">
+    <a class="dp-subnav-link" href="/dentistportal#dp-hero-search">Claim your profile</a>
+    <a class="dp-subnav-link" href="/dentistportal#dpv-readiness">Why accreditation</a>
+    <a class="dp-subnav-link" href="/dentistportal#pricing">Pricing</a>
+    <a class="dp-subnav-link" href="/dentistportal#faq">FAQs</a>
+    <a class="dp-subnav-link dp-subnav-link--add is-active" href="/add-your-practice" aria-current="page">Add your practice</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="ayp-hero">
+  <div class="ayp-wrap">
+    <div class="ayp-eyebrow">For dental practices</div>
+    <h1 class="ayp-h1">Add your practice to <em>CoverCapy</em></h1>
+    <p class="ayp-sub">Create a free account, then send us your practice details. Our team reviews every new practice submission before it appears in the directory, and your account keeps a record of the submission.</p>
+  </div>
+</section>
+
+<!-- ============ THE CARD ============ -->
+<section class="ayp-main">
+  <div class="ayp-wrap">
+    <div class="ayp-card">
+
+      <div class="ayp-session" id="ayp-session">
+        <span>Signed in as <b id="ayp-session-email"></b></span>
+        <button type="button" id="ayp-signout">Sign out</button>
+      </div>
+
+      <div class="ayp-steps" aria-hidden="true">
+        <div class="ayp-dot is-on" id="ayp-dot-1">1</div>
+        <span class="ayp-step-lab">Account</span>
+        <div class="ayp-bar"></div>
+        <div class="ayp-dot" id="ayp-dot-2">2</div>
+        <span class="ayp-step-lab">Practice</span>
+      </div>
+
+      <!-- Step 1: create account or sign in -->
+      <div class="ayp-pane is-on" id="ayp-pane-1">
+        <div class="ayp-card-eye">Step 1 of 2</div>
+        <div class="ayp-card-h" id="ayp-auth-h">Create your free account</div>
+        <p class="ayp-card-sub" id="ayp-auth-sub">The account is free and lets you track your listing and any membership application.</p>
+
+        <div class="ayp-field">
+          <label for="ayp-email">Work email</label>
+          <input id="ayp-email" type="email" autocomplete="email" placeholder="you@yourpractice.com" />
+        </div>
+        <div class="ayp-field">
+          <label for="ayp-password">Password</label>
+          <input id="ayp-password" type="password" autocomplete="new-password" placeholder="At least 8 characters" />
+          <div class="hint" id="ayp-password-hint">Use at least 8 characters.</div>
+        </div>
+
+        <button class="ayp-btn" type="button" id="ayp-auth-btn">Create account</button>
+        <div class="ayp-alt" id="ayp-auth-alt">Already have an account? <button type="button" id="ayp-auth-switch">Sign in</button></div>
+
+        <div class="ayp-notice" id="ayp-confirm-notice">Almost there. We sent a confirmation link to your email. Open it and you will land back on this page, signed in and ready for step 2.</div>
+        <div class="ayp-error" id="ayp-auth-error" role="alert"></div>
+      </div>
+
+      <!-- Step 2: practice details -->
+      <div class="ayp-pane" id="ayp-pane-2">
+        <div class="ayp-card-eye">Step 2 of 2</div>
+        <div class="ayp-card-h">Practice details</div>
+        <p class="ayp-card-sub">Tell us about the office. Our team reviews the submission before the listing appears.</p>
+
+        <div class="ayp-field">
+          <label for="ayp-practice">Practice name</label>
+          <input id="ayp-practice" type="text" autocomplete="organization" placeholder="e.g. Fountain Valley Dental Studio" />
+        </div>
+        <div class="ayp-row">
+          <div class="ayp-field">
+            <label for="ayp-doctor">Doctor name</label>
+            <input id="ayp-doctor" type="text" autocomplete="name" placeholder="Dr. Jane Rivera" />
+          </div>
+          <div class="ayp-field">
+            <label for="ayp-work-email">Work email</label>
+            <input id="ayp-work-email" type="email" autocomplete="email" placeholder="you@yourpractice.com" />
+          </div>
+        </div>
+        <div class="ayp-row">
+          <div class="ayp-field">
+            <label for="ayp-phone">Office phone</label>
+            <input id="ayp-phone" type="tel" autocomplete="tel" placeholder="(714) 555-0139" />
+          </div>
+          <div class="ayp-field">
+            <label for="ayp-npi">NPI number, optional</label>
+            <input id="ayp-npi" type="text" inputmode="numeric" placeholder="10 digits" />
+            <div class="hint">The practice or provider NPI helps our team verify the office faster.</div>
+          </div>
+        </div>
+        <div class="ayp-field">
+          <label for="ayp-address">Street address</label>
+          <input id="ayp-address" type="text" autocomplete="street-address" placeholder="11180 Warner Ave Suite 100" />
+        </div>
+        <div class="ayp-row3">
+          <div class="ayp-field">
+            <label for="ayp-city">City</label>
+            <input id="ayp-city" type="text" autocomplete="address-level2" placeholder="Fountain Valley" />
+          </div>
+          <div class="ayp-field">
+            <label for="ayp-state">State</label>
+            <select id="ayp-state">
+              <option value="">Select</option>
+            </select>
+          </div>
+          <div class="ayp-field">
+            <label for="ayp-zip">ZIP</label>
+            <input id="ayp-zip" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="92708" />
+          </div>
+        </div>
+        <div class="ayp-field">
+          <label for="ayp-website">Website, optional</label>
+          <input id="ayp-website" type="text" autocomplete="url" placeholder="yourpractice.com" />
+        </div>
+
+        <button class="ayp-btn" type="button" id="ayp-submit-btn">Submit practice details</button>
+        <div class="ayp-promise">Our team reviews new practice submissions before they appear in the directory. We follow up at your work email if anything needs a second look.</div>
+        <div class="ayp-error" id="ayp-submit-error" role="alert"></div>
+        <p class="ayp-fine">Submitting does not create a public listing by itself. The listing appears after review, and claiming or listing a practice is free.</p>
+      </div>
+
+      <!-- Success -->
+      <div class="ayp-pane" id="ayp-pane-done">
+        <div class="ayp-done-badge" aria-hidden="true">&#10003;</div>
+        <div class="ayp-done-h">Submission received</div>
+        <p class="ayp-done-p">Our team reviews new practice submissions and follows up at your work email. Your account keeps a record of this submission.</p>
+        <p class="ayp-done-p">While the review runs, you can see what Capy Accreditation adds once your listing is live.</p>
+        <a class="ayp-done-next" href="/dentistportal#pricing">View membership pricing</a>
+        <span class="ayp-done-sub">The free listing stays free. Accreditation is optional.</span>
+      </div>
+
+      <noscript><p class="ayp-fine">This form needs JavaScript. You can also reach us from the <a href="/dentistportal">dentist portal</a>.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* Same Supabase project + publishable key as claim-dentist-listing-profile.html.
+     Auth: supabase-js v2 signUp / signInWithPassword. The insert into
+     office_claim_submissions requires a session; RLS allows authenticated
+     inserts where user_id = auth.uid() (the column defaults to auth.uid()). */
+  var SB_URL = 'https://hfvbeqlefwwjlrbyxpbj.supabase.co';
+  var SB_ANON = 'sb_publishable_wlfujszvn2logC3KNL3MsA_AW1F42kf';
+  var PAGE_URL = 'https://www.covercapy.com/add-your-practice';
+
+  var sb = null;
+  try {
+    if (window.supabase && window.supabase.createClient) sb = window.supabase.createClient(SB_URL, SB_ANON);
+  } catch (e) { console.warn('supabase init failed', e); }
+
+  function $(id) { return document.getElementById(id); }
+
+  var STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+  (function fillStates() {
+    var select = $('ayp-state');
+    STATES.forEach(function (name) {
+      var opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      select.appendChild(opt);
+    });
+  })();
+
+  var authMode = 'signup';   // 'signup' | 'signin'
+  var session = null;
+
+  /* ---------- pane + error helpers ---------- */
+  function showPane(name) {
+    ['1', '2', 'done'].forEach(function (key) {
+      $('ayp-pane-' + key).classList.toggle('is-on', key === name);
+    });
+    var dot1 = $('ayp-dot-1');
+    var dot2 = $('ayp-dot-2');
+    dot1.classList.toggle('is-on', name === '1');
+    dot1.classList.toggle('is-done', name !== '1');
+    dot2.classList.toggle('is-on', name === '2');
+    dot2.classList.toggle('is-done', name === 'done');
+  }
+  function showError(id, message) {
+    var box = $(id);
+    box.textContent = message;
+    box.classList.add('is-shown');
+  }
+  function hideError(id) {
+    var box = $(id);
+    box.textContent = '';
+    box.classList.remove('is-shown');
+  }
+  function setBusy(button, busy, busyText, idleText) {
+    button.disabled = busy;
+    button.textContent = busy ? busyText : idleText;
+  }
+  function markInvalid(input, invalid) {
+    input.classList.toggle('is-invalid', invalid);
+  }
+  function isEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  /* ---------- session handling ---------- */
+  function applySession(next) {
+    session = next || null;
+    var chip = $('ayp-session');
+    if (session && session.user) {
+      $('ayp-session-email').textContent = session.user.email || '';
+      chip.classList.add('is-shown');
+      var workEmail = $('ayp-work-email');
+      if (!workEmail.value) workEmail.value = session.user.email || '';
+      if (!$('ayp-pane-done').classList.contains('is-on')) showPane('2');
+    } else {
+      chip.classList.remove('is-shown');
+      showPane('1');
+    }
+  }
+
+  if (sb) {
+    sb.auth.getSession().then(function (result) {
+      applySession(result && result.data ? result.data.session : null);
+    }).catch(function () {});
+    sb.auth.onAuthStateChange(function (event, next) {
+      if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'TOKEN_REFRESHED') {
+        if (next) applySession(next);
+      }
+      if (event === 'SIGNED_OUT') applySession(null);
+    });
+  }
+
+  $('ayp-signout').addEventListener('click', function () {
+    if (!sb) return;
+    sb.auth.signOut().catch(function () {}).then(function () { applySession(null); });
+  });
+
+  /* ---------- step 1: create account / sign in ---------- */
+  var authBtn = $('ayp-auth-btn');
+  var switchBtn = $('ayp-auth-switch');
+
+  function setAuthMode(mode) {
+    authMode = mode;
+    hideError('ayp-auth-error');
+    $('ayp-confirm-notice').classList.remove('is-shown');
+    var signup = mode === 'signup';
+    $('ayp-auth-h').textContent = signup ? 'Create your free account' : 'Sign in to your account';
+    $('ayp-auth-sub').textContent = signup
+      ? 'The account is free and lets you track your listing and any membership application.'
+      : 'Welcome back. Sign in to continue to your practice details.';
+    authBtn.textContent = signup ? 'Create account' : 'Sign in';
+    $('ayp-password').setAttribute('autocomplete', signup ? 'new-password' : 'current-password');
+    $('ayp-password-hint').style.display = signup ? '' : 'none';
+    $('ayp-auth-alt').innerHTML = signup
+      ? 'Already have an account? <button type="button" id="ayp-auth-switch">Sign in</button>'
+      : 'New here? <button type="button" id="ayp-auth-switch">Create a free account</button>';
+    $('ayp-auth-switch').addEventListener('click', function () {
+      setAuthMode(authMode === 'signup' ? 'signin' : 'signup');
+    });
+  }
+  switchBtn.addEventListener('click', function () { setAuthMode('signin'); });
+
+  function validateAuth() {
+    var email = $('ayp-email');
+    var password = $('ayp-password');
+    var ok = true;
+    var emailValue = email.value.trim();
+    markInvalid(email, false);
+    markInvalid(password, false);
+    if (!isEmail(emailValue)) { markInvalid(email, true); ok = false; }
+    if (!password.value || password.value.length < 8) { markInvalid(password, true); ok = false; }
+    if (!ok) showError('ayp-auth-error', 'Enter a valid email and a password of at least 8 characters.');
+    return ok;
+  }
+
+  authBtn.addEventListener('click', function () {
+    hideError('ayp-auth-error');
+    $('ayp-confirm-notice').classList.remove('is-shown');
+    if (!sb) { showError('ayp-auth-error', 'The account service did not load. Refresh the page and try again.'); return; }
+    if (!validateAuth()) return;
+
+    var email = $('ayp-email').value.trim();
+    var password = $('ayp-password').value;
+    var idleText = authMode === 'signup' ? 'Create account' : 'Sign in';
+    setBusy(authBtn, true, authMode === 'signup' ? 'Creating account' : 'Signing in', idleText);
+
+    var done = function () { setBusy(authBtn, false, '', idleText); };
+
+    if (authMode === 'signin') {
+      sb.auth.signInWithPassword({ email: email, password: password }).then(function (result) {
+        done();
+        if (result.error) { showError('ayp-auth-error', result.error.message || 'Sign in failed. Check your email and password.'); return; }
+        applySession(result.data ? result.data.session : null);
+      }).catch(function () {
+        done();
+        showError('ayp-auth-error', 'We could not reach the account service. Check your connection and try again.');
+      });
+      return;
+    }
+
+    sb.auth.signUp({
+      email: email,
+      password: password,
+      options: { emailRedirectTo: PAGE_URL }
+    }).then(function (result) {
+      done();
+      if (result.error) {
+        var message = String(result.error.message || '');
+        if (/already|registered|exists/i.test(message)) {
+          showError('ayp-auth-error', 'An account with this email already exists. Sign in below instead.');
+          setAuthMode('signin');
+          $('ayp-email').value = email;
+        } else {
+          showError('ayp-auth-error', message || 'We could not create the account. Try again in a moment.');
+        }
+        return;
+      }
+      var user = result.data ? result.data.user : null;
+      var newSession = result.data ? result.data.session : null;
+      /* Existing confirmed users come back with an empty identities array. */
+      if (user && user.identities && user.identities.length === 0) {
+        showError('ayp-auth-error', 'An account with this email already exists. Sign in below instead.');
+        setAuthMode('signin');
+        $('ayp-email').value = email;
+        return;
+      }
+      if (typeof gtag === 'function') gtag('event', 'ayp_account_created');
+      if (newSession) { applySession(newSession); return; }
+      /* Email confirmation is required: the link brings them back here signed in. */
+      $('ayp-confirm-notice').classList.add('is-shown');
+    }).catch(function () {
+      done();
+      showError('ayp-auth-error', 'We could not reach the account service. Check your connection and try again.');
+    });
+  });
+
+  $('ayp-password').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); authBtn.click(); }
+  });
+
+  /* ---------- step 2: practice details ---------- */
+  var submitBtn = $('ayp-submit-btn');
+
+  function validateDetails() {
+    hideError('ayp-submit-error');
+    var practice = $('ayp-practice');
+    var workEmail = $('ayp-work-email');
+    var city = $('ayp-city');
+    var state = $('ayp-state');
+    var zip = $('ayp-zip');
+    var npi = $('ayp-npi');
+    var ok = true;
+    [practice, workEmail, city, state, zip, npi].forEach(function (input) { markInvalid(input, false); });
+    if (!practice.value.trim()) { markInvalid(practice, true); ok = false; }
+    if (!isEmail(workEmail.value.trim())) { markInvalid(workEmail, true); ok = false; }
+    if (!city.value.trim()) { markInvalid(city, true); ok = false; }
+    if (!state.value) { markInvalid(state, true); ok = false; }
+    var zipValue = zip.value.trim();
+    if (zipValue && !/^\d{5}(-\d{4})?$/.test(zipValue)) { markInvalid(zip, true); ok = false; }
+    var npiValue = npi.value.trim();
+    if (npiValue && !/^\d{10}$/.test(npiValue)) { markInvalid(npi, true); ok = false; }
+    if (!ok) showError('ayp-submit-error', 'Check the highlighted fields. Practice name, work email, city, and state are required. NPI is 10 digits and ZIP is 5 digits when provided.');
+    return ok;
+  }
+
+  function normalizeWebsite(value) {
+    var clean = String(value || '').trim();
+    if (!clean) return null;
+    if (!/^https?:\/\//i.test(clean)) clean = 'https://' + clean;
+    return clean.split('?')[0];
+  }
+
+  submitBtn.addEventListener('click', function () {
+    if (!sb) { showError('ayp-submit-error', 'The submission service did not load. Refresh the page and try again.'); return; }
+    if (!session) { showError('ayp-submit-error', 'Your session ended. Sign in again in step 1 to submit.'); showPane('1'); setAuthMode('signin'); return; }
+    if (!validateDetails()) return;
+
+    setBusy(submitBtn, true, 'Sending your submission', 'Submit practice details');
+
+    /* mode must be 'new' or 'claim' (table CHECK constraint). 'new' = new practice. */
+    var row = {
+      mode: 'new',
+      npi: $('ayp-npi').value.trim() || null,
+      practice_name: $('ayp-practice').value.trim(),
+      doctor_name: $('ayp-doctor').value.trim() || null,
+      work_email: $('ayp-work-email').value.trim(),
+      phone: $('ayp-phone').value.trim() || null,
+      address: $('ayp-address').value.trim() || null,
+      city: $('ayp-city').value.trim(),
+      state: $('ayp-state').value,
+      zip: $('ayp-zip').value.trim() || null,
+      website: normalizeWebsite($('ayp-website').value)
+    };
+
+    sb.from('office_claim_submissions').insert(row).then(function (result) {
+      setBusy(submitBtn, false, '', 'Submit practice details');
+      if (result.error) {
+        showError('ayp-submit-error', result.error.message || 'We could not save the submission. Try again in a moment.');
+        return;
+      }
+      if (typeof gtag === 'function') gtag('event', 'ayp_practice_submitted');
+      showPane('done');
+    }).catch(function () {
+      setBusy(submitBtn, false, '', 'Submit practice details');
+      showError('ayp-submit-error', 'We could not reach the submission service. Check your connection and try again.');
+    });
+  });
+})();
+</script>
+
+<!-- CoverCapy footer component mount -->
+<div id="cc-footer-mount" aria-label="CoverCapy footer mount"></div>
+
+<!-- Shared CoverCapy component loader: mega nav + footer -->
+<script id="cc-shared-shell-loader">
+(function(){
+  const components = [
+    { mountId: 'cc-nav-mount', html: 'components/omega-nav2.html', script: 'assets/js/omega-nav2.js' },
+    { mountId: 'cc-footer-mount', html: 'components/footer.html', script: 'assets/js/footer.js' }
+  ];
+
+  const loadScript = (src) => new Promise(resolve => {
+    if (!src || document.querySelector('script[src="' + src + '"]')) return resolve(true);
+    const s = document.createElement('script');
+    s.src = src;
+    s.defer = true;
+    s.onload = () => resolve(true);
+    s.onerror = () => { console.warn('[CoverCapy shell] optional script could not load:', src); resolve(false); };
+    document.body.appendChild(s);
+  });
+
+  const runScripts = (scripts) => {
+    scripts.forEach(old => {
+      const fresh = document.createElement('script');
+      Array.from(old.attributes).forEach(attr => fresh.setAttribute(attr.name, attr.value));
+      fresh.textContent = old.textContent;
+      old.replaceWith(fresh);
+    });
+  };
+
+  const injectComponent = async ({ mountId, html, script }) => {
+    const mount = document.getElementById(mountId);
+    if (!mount) return false;
+    try {
+      const res = await fetch(html, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(html + ' returned ' + res.status);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = await res.text();
+      const injectedScripts = Array.from(wrapper.querySelectorAll('script'));
+      const parent = mount.parentNode;
+      while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, mount);
+      parent.removeChild(mount);
+      runScripts(injectedScripts);
+      await loadScript(script);
+      return true;
+    } catch (err) {
+      console.error('[CoverCapy shell] failed:', html, err);
+      mount.innerHTML = '<div style="padding:14px 20px;text-align:center;font:14px system-ui;color:#667874;background:#FFFCF6;border:1px solid rgba(20,32,31,.10)">CoverCapy component did not load: ' + html + '</div>';
+      return false;
+    }
+  };
+
+  const boot = async () => {
+    for (const component of components) await injectComponent(component);
+    document.documentElement.classList.add('cc-shell-loaded');
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
+  else boot();
+})();
+</script>
+</body>
+</html>
