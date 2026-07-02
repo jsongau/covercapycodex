@@ -28,8 +28,31 @@ Coinsurance is figured on the plan's allowed amount (UCR), not the dentist's ful
 - [Guardian Premier 2.0](https://www.covercapy.com/dental-insurance/ppo-plans/guardian-premier-ppo/)
 - [Mutual of Omaha Dental Preferred](https://www.covercapy.com/dental-insurance/ppo-plans/mutual-of-omaha-dental/)
 - [Humana Extend 5000](https://www.covercapy.com/dental-insurance/ppo-plans/humana-extend-5000/)
-- [Delta Dental](https://www.covercapy.com/dental-insurance/ppo-plans/delta-dental/)
+- [Delta Dental](https://www.covercapy.com/dental-insurance/delta-dental/)
 - [MetLife NCD Complete](https://www.covercapy.com/dental-insurance/ppo-plans/metlife-ncd-complete/)
+
+## Delta Dental cluster (the largest US dental carrier)
+Delta Dental is a federation of 39 independent member companies covering more than 90 million Americans, the largest dental benefits system in the United States. It sells three products that are often confused: DeltaCare USA (a dental HMO with fixed copays and an assigned dentist, no annual maximum), Delta Dental PPO (see any dentist, coinsurance after a deductible up to an annual maximum), and Delta Dental Premier (the largest fee-for-service network). CoverCapy sells neither insurance nor dental plans.
+- [Delta Dental hub: plans, costs, PPO vs Premier, is it good](https://www.covercapy.com/dental-insurance/delta-dental/): The independent 2026 overview of Delta Dental.
+- [DeltaCare USA vs Delta Dental PPO, which to pick](https://www.covercapy.com/dental-insurance/delta-dental/deltacare-hmo-vs-ppo/): The HMO has fixed copays and no annual maximum but an assigned dentist; the PPO lets you see any dentist with coinsurance up to a maximum.
+- [Delta PPO vs Premier vs DeltaCare USA networks](https://www.covercapy.com/dental-insurance/delta-dental/networks/): How each of Delta's three networks pays, and what balance billing means.
+- [Delta Dental individual plans: Premium vs Basic](https://www.covercapy.com/dental-insurance/delta-dental/individual-plans/): Two individual PPO tiers; Premium adds major work and adult ortho on a $2,000 maximum, about $75/mo.
+- [Delta Dental PPO Premium plan: cost, coverage, waiting periods](https://www.covercapy.com/dental-insurance/delta-dental/premium/): 100% preventive, 80% basic, 50% major, $2,000 annual maximum, 12-month wait on major.
+- [Is Delta Dental good insurance? Honest review](https://www.covercapy.com/dental-insurance/delta-dental/is-delta-good/): The largest network and strong financials, weighed against mixed service reviews and waiting periods.
+- [Delta Dental vs other PPO plans compared](https://www.covercapy.com/dental-insurance/delta-dental/compare/): Delta against UnitedHealthcare, Guardian, Ameritas and Humana on cost, annual maximum and waiting periods.
+- [Delta Dental for seniors on Medicare (SCAN)](https://www.covercapy.com/dental-insurance/delta-dental/over-65/): SCAN Medicare Advantage dental runs on the DeltaCare USA network with an optional PPO buy-up.
+- [Which Delta Dental am I? Portals and payer IDs by state](https://www.covercapy.com/dental-insurance/delta-dental/eligibility/): Delta is 39 companies, so find yours, its member portal, and the electronic payer ID.
+- [Find a dentist who takes Delta Dental near you](https://www.covercapy.com/dental-insurance/delta-dental/find-a-dentist/): Search PPO, Premier or DeltaCare USA dentists and verify acceptance before booking.
+- [UC SHIP student dental is Delta Dental PPO](https://www.covercapy.com/dental-insurance/delta-dental/uc-students/): University of California student health insurance dental runs on Delta PPO unless waived.
+- [Delta Dental group plans for employers](https://www.covercapy.com/dental-insurance/delta-dental/for-employers/): How employer group PPO, PPO Plus Premier and DeltaCare HMO plans work.
+- [How dentists join Delta Dental (PPO and Premier)](https://www.covercapy.com/dental-insurance/delta-dental/for-dentists/): Contracting, CAQH credentialing timeline, and fee schedules.
+- [Does Delta Dental cover implants?](https://www.covercapy.com/dental-insurance/delta-dental/does-delta-dental-cover-implants/): Delta PPO covers implants at 50% after a 12-month wait, up to the annual maximum, subject to a missing-tooth clause; DeltaCare USA uses a state-specific copay.
+- [Delta Dental waiting periods](https://www.covercapy.com/dental-insurance/delta-dental/delta-dental-waiting-periods/): No wait for preventive, about 6 months for basic and 12 months for major work and implants on a PPO plan; the HMO and group plans have none.
+- [Delta Dental annual maximum](https://www.covercapy.com/dental-insurance/delta-dental/delta-dental-annual-maximum/): The PPO pays up to about $1,000 (Basic) or $2,000 (Premium) per calendar year, then you pay the rest; the DeltaCare USA HMO has no maximum.
+- [How to check Delta Dental coverage](https://www.covercapy.com/dental-insurance/delta-dental/how-to-check-delta-dental-coverage/): Find your Delta company, log into the member portal, or have the dentist verify with your member ID.
+- [When to enroll in or switch Delta Dental](https://www.covercapy.com/dental-insurance/delta-dental/enrollment-timing/): The new-hire and open-enrollment windows, qualifying life events, and the 63-day waiting-period credit.
+- [Delta Dental for federal employees (FEDVIP)](https://www.covercapy.com/dental-insurance/delta-dental/federal-employees/): Two FEDVIP PPO plans (Standard and High) for federal employees, retirees and military retirees; the High plan has an unlimited in-network annual maximum. Enroll via BENEFEDS.
+- [Delta Dental for small business](https://www.covercapy.com/dental-insurance/delta-dental/small-business/): Group PPO, PPO Plus Premier and DeltaCare HMO for a small team, with no waiting periods and the largest US dentist network.
 
 ## Dental insurance glossary (plain-language definitions)
 - [Glossary index, A to Z](https://www.covercapy.com/guides/glossary/)

@@ -119,7 +119,18 @@ Canonical slug format: `/dental/{state}/{market-area}/{city}/{dentist-slug}/`
 
 ---
 
-## GENERATOR — seo-build/generate-plans.js
+## TWO GENERATORS — do not confuse them
+
+CoverCapy has **two** separate page generators. Confusing them already caused a full session to misdiagnose live, build-time pages as 404s. Know which is which:
+
+| Generator | In git? | Runs where | Builds |
+|-----------|---------|------------|--------|
+| `delta-generate-plans.js` (repo root) | **Yes** | **Vercel, at deploy** — it is the Vercel Build Command and reaches Supabase from the build env | Delta spokes under `/dental-insurance/delta-dental/` (per-city dentist, area, UC-campus pages); also bakes the all-carrier plan table into `compare-ppo-dental-plans.html` and merges URLs into root `sitemap.xml` |
+| `seo-build/generate-plans.js` | No (gitignored) | **Mac Terminal only** (sandbox and Vercel do not run it) | The `/dental/` T3–T5 tree (~6,400 pages), committed as output |
+
+So the `/dental-insurance/delta-dental/{areas,dentists,students}/` pages are **generated at build time on Vercel** and intentionally do NOT exist in the repo. They are not 404s. To change them, edit `delta-generate-plans.js`; the output regenerates on the next deploy. Because `delta-generate-plans.js` is invoked by the Vercel **Build Command** (Project Settings, not `vercel.json`), renaming it requires updating that setting in lockstep. A one-line `generate-plans.js` compatibility shim currently forwards the old command to the renamed file.
+
+## GENERATOR (/dental/ tree) — seo-build/generate-plans.js
 
 ### Key functions
 - `buildDentistPage(d, market, state)` — T5 individual dentist profile
@@ -344,7 +355,7 @@ Wrapped in a Google Maps directions link. `onerror` on the img hides the row if 
 
 **Platform:** Vercel  
 **Trigger:** `git push origin main` → auto-deploy (~2 min)  
-**Build:** Static — no build step on Vercel. Files in `dental/` are served directly.
+**Build:** Vercel runs `delta-generate-plans.js` as the Build Command on every deploy (it regenerates the Delta spokes from Supabase and merges the sitemap). The committed `/dental/` tree and other static files are served as-is. See TWO GENERATORS above.
 
 ---
 
