@@ -518,7 +518,7 @@ var CC_GEO_DATA={"Arizona":{"Central Arizona":["Casa Grande","Coolidge","Eloy","
     }
     function asideReset(){ if(aside) aside.innerHTML=asideDefault; }
     var chipsBrowse=document.getElementById('cc-chips-browse');
-    function setChipsBrowse(label){ if(!chipsBrowse) return; if(label){ chipsBrowse.textContent='Browse all dentists in '+label; chipsBrowse.href=browseUrl(label); chipsBrowse.hidden=false; } else { chipsBrowse.hidden=true; } }
+    function setChipsBrowse(label){ if(!chipsBrowse) return; if(label){ chipsBrowse.textContent='See all dentists in '+label; chipsBrowse.href=browseUrl(label); chipsBrowse.hidden=false; } else { chipsBrowse.hidden=true; } }
     function showNone(label){
       /* no office to book: clear any prior result so scrolling can't re-collapse
          into a stale "N Platinum Elite offices near <old area>" bar */
@@ -530,13 +530,14 @@ var CC_GEO_DATA={"Arizona":{"Central Arizona":["Casa Grande","Coolidge","Eloy","
     function reviewCount(d){ return Number(d.review_count||0)||Number(d.aggregate_review_count||0)||((Number(d.google_review_count)||0)+(Number(d.yelp_review_count)||0)+(Number(d.zocdoc_review_count)||0)); }
     var multiNav=null; /* {prev,next} for keyboard arrows */
     function showResults(list,originLabel,note,scope){
+      setChipsBrowse(originLabel);
       /* always give the next step: full directory with this location prefilled */
       setTimeout(function(){
         if(!dockBd||dockBd.querySelector('.cc-dock-browse')) return;
         var a=document.createElement('a');
         a.className='card-4__subtle cc-dock-browse';
         a.href=browseUrl(originLabel);
-        a.textContent='See all PPO dentists in '+(originLabel||'your area')+' \u2192';
+        a.textContent='See all dentists in '+(originLabel||'your area');
         dockBd.appendChild(a);
       },0);
       list=(list||[]).filter(Boolean); if(!list.length){ showNone(originLabel); return; }
