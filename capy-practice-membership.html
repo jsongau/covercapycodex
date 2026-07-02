@@ -34,12 +34,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <!-- CoverCapy shared component styles: mega nav + footer -->
-<link rel="stylesheet" href="assets/css/mega-nav.css" />
-<link rel="stylesheet" href="assets/css/mega-nav-mobile.css" />
+<link rel="stylesheet" href="assets/css/omega-nav2.css" />
+<link rel="stylesheet" href="assets/css/omega-nav2-mobile.css" />
 <link rel="stylesheet" href="assets/css/footer.css" />
 
 <style id="cc-shared-shell-mount-guards">
-  html, body { overflow-x: hidden; }
+  html, body { overflow-x: clip; }
   body { max-width: 100vw; }
   #cc-nav-mount { min-height: 72px; position: relative; z-index: 1000; }
   #cc-footer-mount { display: block; position: relative; z-index: 2; }
@@ -463,6 +463,9 @@
   }
 }
 
+
+/* sticky nav guard: something sets body overflow-x:hidden at runtime; hidden breaks position:sticky */
+body{overflow-x:clip !important}
 </style>
 
 <style>
@@ -7647,7 +7650,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 <script id="cc-shared-shell-loader">
 (function(){
   const components = [
-    { mountId: 'cc-nav-mount', html: 'components/mega-nav.html', script: 'assets/js/mega-nav.js' },
+    { mountId: 'cc-nav-mount', html: 'components/omega-nav2.html', script: 'assets/js/omega-nav2.js' },
     { mountId: 'cc-footer-mount', html: 'components/footer.html', script: 'assets/js/footer.js' }
   ];
 

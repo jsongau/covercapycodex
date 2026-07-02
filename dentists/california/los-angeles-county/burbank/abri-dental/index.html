@@ -13,11 +13,8 @@
     gtag('config', 'G-XNBPGSZ1LZ');
   </script>
 
-<<<<<<< HEAD
   <!-- Google AdSense -->
   
-=======
->>>>>>> 6110993d3e892e08ac82fcc3e9bacd883013febf
   <title>Abri Dental Burbank | Dr. David Abri DDS | Cosmetic, Implant, Invisalign and TMJ Dentist on Riverside Dr | CoverCapy</title>
   <meta name="description" content="Abri Dental in Burbank, led by USC trained Dr. David Abri DDS on Riverside Drive in the Media District. Cosmetic, implant, Invisalign and TMJ care with a Qualified Medical Evaluator on staff. PPO benefits verified, written estimates, online booking." />
   <link rel="canonical" href="https://www.covercapy.com/dentists/california/los-angeles-county/burbank/abri-dental" />
@@ -45,17 +42,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet" />
 
-<<<<<<< HEAD
   <!-- CoverCapy universal mega nav + footer (shared site components) — mega-nav.css must load before mega-nav-mobile.css -->
   <link rel="stylesheet" href="/assets/css/mega-nav.css" />
   <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css" />
-=======
-  <!-- CoverCapy nav (self-contained loader: injects styles, markup, and behavior) -->
-  <script src="/assets/js/load-nav.js" defer></script>
-  <link rel="stylesheet" href="/assets/css/mega-nav-mobile.css" />
-
-  <!-- CoverCapy footer styles -->
->>>>>>> 6110993d3e892e08ac82fcc3e9bacd883013febf
   <link rel="stylesheet" href="/assets/css/footer.css" />
 
   <style>
@@ -80,12 +69,9 @@
       --ease:cubic-bezier(.22,.8,.3,1);
     }
     *{box-sizing:border-box}
-<<<<<<< HEAD
     /* Mount guards — keep layout stable while shared components load */
     #cc-nav-mount{min-height:72px}
     #cc-footer-mount{min-height:420px}
-=======
->>>>>>> 6110993d3e892e08ac82fcc3e9bacd883013febf
     section[id],header[id]{scroll-margin-top:calc(var(--nav-offset) + 66px)}
     html{scroll-behavior:smooth}
     body{
@@ -1052,11 +1038,7 @@
     var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function setNavOffset(){
-<<<<<<< HEAD
       var nav = document.querySelector('.cc-nav') || document.querySelector('#cc-nav-mount > *');
-=======
-      var nav = document.querySelector('#cc-nav-mount > *');
->>>>>>> 6110993d3e892e08ac82fcc3e9bacd883013febf
       var h = 0;
       if(nav){
         var cs = getComputedStyle(nav);
@@ -1187,7 +1169,6 @@
   })();
   </script>
 
-<<<<<<< HEAD
   <!-- CoverCapy universal nav + footer loader (shared site components) -->
   <script>
   (function(){
@@ -1237,22 +1218,6 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
     else init();
   })();
-=======
-  <!-- CoverCapy footer component loader -->
-  <script>
-    (function(){
-      function mount(url, id, after){
-        fetch(url).then(function(r){ return r.text(); }).then(function(html){
-          var el = document.getElementById(id);
-          if(el){ el.innerHTML = html; }
-          if(after){ after(); }
-        }).catch(function(){ /* component unavailable, page still readable */ });
-      }
-      mount('/components/footer.html', 'cc-footer-mount', function(){
-        var s = document.createElement('script'); s.src = '/assets/js/footer.js'; s.defer = true; document.body.appendChild(s);
-      });
-    })();
->>>>>>> 6110993d3e892e08ac82fcc3e9bacd883013febf
   </script>
 
 </body>

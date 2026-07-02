@@ -138,7 +138,7 @@
 
 /* breadcrumb */
 .cosmetic-page .crumb{font-size:.85rem; color:var(--ink-faint); padding:18px 0 0}
-.cosmetic-page .crumb a{color:var(--ink-soft); text-decoration:none}
+.cosmetic-page .crumb a{color:var(--teal-700); text-decoration:underline; text-decoration-color:rgba(20,82,91,.35); text-underline-offset:3px}
 
 /* answer lead */
 .cosmetic-page .answer{font-size:1.12rem; color:var(--ink); font-family:var(--ff-serif); font-weight:400; max-width:64ch}
@@ -218,6 +218,7 @@
 @media (prefers-reduced-motion: reduce){
   .cosmetic-page *{transition:none !important}
 }
+@media(min-width:1240px){.cosmetic-page .crumb{margin-left:-46px}}
 </style>
 </head>
 
@@ -249,7 +250,7 @@
   </div>
 
   <div class="wrap">
-    <p class="crumb"><a href="/">Home</a> &nbsp;/&nbsp; Cosmetic PPO Dentists</p>
+    <p class="crumb"><a href="/">CoverCapy</a> &nbsp;/&nbsp; Cosmetic PPO Dentists</p>
   </div>
 
   <!-- WHAT IT COVERS -->

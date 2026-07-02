@@ -27,7 +27,7 @@
  .brand .mk{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--jade),var(--jade-deep))}
  .sub nav{display:flex;gap:20px;margin-left:auto;font-size:14px;font-weight:500}.sub nav a{color:var(--muted);text-decoration:none}.sub nav a:hover{color:var(--ink)}.sub nav a.active{color:var(--ink)}
  @media(max-width:860px){.sub nav{display:none}}
- .crumb{background:#fff;border-bottom:1px solid rgba(18,22,27,.10);font-size:12.5px;color:#5A636E}.crumb .wrap{padding-top:11px;padding-bottom:11px}.crumb a{color:var(--muted);text-decoration:none}.crumb a:hover{color:var(--jade-deep)}.crumb span{color:var(--jade-deep)}
+ .crumb{background:transparent;border-bottom:0;font-size:12.5px;color:#5A636E}.crumb .wrap{max-width:1200px;margin:0 auto;padding:12px 28px}.crumb a{color:var(--jade-deep,var(--green-d,#0C8C81));text-decoration:underline;text-decoration-color:rgba(15,181,166,.35);text-underline-offset:3px}.crumb a:hover{color:var(--jade-deep)}.crumb span{color:var(--jade-deep)}
  .hero{padding:18px 0 8px}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--jade-deep)}
  h1.title{font-size:clamp(30px,4.6vw,50px);margin:12px 0 0}h1.title em{font-style:italic;color:var(--jade-deep)}
  .lede{font-size:18px;color:var(--muted);max-width:700px;margin:16px 0 0}
@@ -80,7 +80,7 @@
     Prefixed dcn- so it cannot collide with #cc-nav-mount or hubSetTier.
     Literal hex values used (this page does not define --jade tokens).
     ============================================================ */
- .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:8000;border-bottom:1px solid rgba(18,22,27,.10);background:#fff}
+ .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;border-bottom:1px solid rgba(18,22,27,.10);background:#fff}
  .dcn-bar{display:flex;align-items:center;gap:2px;max-width:1180px;margin:0;padding:0 32px;min-height:50px}
  .dcn-menu{display:flex;align-items:center;gap:2px}
  .dcn-item{position:relative}
@@ -117,8 +117,8 @@
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
 </style>
-<link rel="stylesheet" href="/assets/css/mega-nav.css"/>
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"/>
 <link rel="stylesheet" href="/assets/css/footer.css"/>
 </head><body>
 
@@ -180,7 +180,7 @@
 </nav>
 
 <!-- Breadcrumb -->
-<div class="crumb" style="background:#fff;border-bottom:1px solid var(--line);"><div class="wrap" style="padding:11px 0;"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>UC students</span></div></div>
+<div class="crumb" style="background:#fff;border-bottom:1px solid var(--line);"><div class="wrap" style="padding:12px 28px;"><a href="https://www.covercapy.com/">CoverCapy</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>UC students</span></div></div>
 
 <div class="wrap">
   <header class="hero"><span class="eyebrow">UC SHIP · Delta Dental PPO</span>
@@ -452,7 +452,7 @@ window.cc=function(t,r){try{r.session_id=ccSid();r.page_path=location.pathname;i
 <script>
 (function(){
   var comps=[
-    {id:'cc-nav-mount',    html:'/components/mega-nav.html', js:'/assets/js/mega-nav.js'},
+    {id:'cc-nav-mount',    html:'/components/omega-nav2.html', js:'/assets/js/omega-nav2.js'},
     {id:'cc-footer-mount', html:'/components/footer.html',   js:'/assets/js/footer.js'}
   ];
   function ls(src){return new Promise(function(r){if(!src||document.querySelector('script[src="'+src+'"]'))return r();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=r;s.onerror=r;document.body.appendChild(s);});}

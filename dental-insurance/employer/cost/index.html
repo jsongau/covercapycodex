@@ -40,12 +40,12 @@
 }
 </script>
 
-<link rel="stylesheet" href="/assets/css/mega-nav.css">
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
 <link rel="stylesheet" href="/assets/css/hub-theme.css">
 <style>
-#cc-nav-mount{min-height:72px}#cc-footer-mount{min-height:420px}#cc-nav-mount:empty,#cc-footer-mount:empty{min-height:0}
+#cc-nav-mount{min-height:84px}#cc-footer-mount{min-height:420px}#cc-nav-mount:empty,#cc-footer-mount:empty{min-height:0}
 :root{--paper:#F6F8FA;--paper-2:#EAEFF3;--card:#FFFFFF;--ink:#0F1B25;--ink-soft:#33444F;--green:#0A7E7D;--green-d:#0A6E6D;--green-l:#5E707B;--sage:#E2F4F3;--sage-2:#D3EBEA;--muted:#5E707B;--line:#DCE4EA;--line-2:#C9D6DE;--gold:#B26A00;--rust:#C2410C;--panel:#0B3B40;--panel-ink:#EAF6F5;--panel-soft:#9FC4C2;--panel-eye:#6FD0CC;--covered:#0F9D6E;--covered-tint:#E4F6EE;--covered-ink:#0A5D43;--serif:'Inter Tight',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;--shadow:0 1px 2px rgba(15,27,37,.05),0 4px 12px -4px rgba(15,27,37,.10);--radius:16px;--toch:52px}
 [data-theme="gold"]{--paper:#FAF6EC;--paper-2:#F1E9D6;--card:#FFFFFF;--ink:#15202E;--ink-soft:#3D4654;--green:#C9A24A;--green-d:#8A6212;--green-l:#B79447;--sage:#F6EEDA;--sage-2:#ECDFC2;--muted:#6B6857;--line:#E8DEC8;--line-2:#DCCFB2;--gold:#8A6212;--rust:#B0542E;--panel:#0A2342;--panel-ink:#F4F8FC;--panel-soft:rgba(244,248,252,.80);--panel-eye:#E0BC72;--shadow:0 1px 2px rgba(10,35,66,.06),0 4px 14px -4px rgba(10,35,66,.16)}
 [data-theme="gold"] body{background:var(--paper)}[data-theme="gold"] .btn-green{color:#14110A!important}
@@ -69,7 +69,7 @@ tbody tr:last-child td{border-bottom:0}
 .btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}.btn-ghost:hover{border-color:var(--green);color:var(--green);text-decoration:none}
 .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
 /* toc */
-.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:60;background:#fff;border-bottom:1px solid var(--line)}
+.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;background:#fff;border-bottom:1px solid var(--line)}
 [data-theme="gold"] .toc{background:#FBF6EC}
 .toc-prog{height:2px;background:var(--green);width:0;transition:width .1s linear}
 .toc .wrap{display:flex;align-items:center;gap:2px;height:var(--toch);flex-wrap:nowrap;max-width:none;margin:0;padding:0 26px}
@@ -85,7 +85,7 @@ section[id]{scroll-margin-top:120px}
 .ts-dot{width:5px;height:5px;border-radius:50%;opacity:0}.ts-opt.ts-gold .ts-dot{background:#B8924F}.ts-opt.ts-jade .ts-dot{background:#0FB5A6}
 .theme-switch[data-active="gold"] .ts-opt.ts-gold,.theme-switch[data-active="jade"] .ts-opt.ts-jade{color:#fff}
 .theme-switch[data-active="gold"] .ts-opt.ts-gold .ts-dot,.theme-switch[data-active="jade"] .ts-opt.ts-jade .ts-dot{opacity:1}
-.crumb{background:#fff;font-size:12.5px;color:var(--muted)}[data-theme="gold"] .crumb{background:#FBF6EC}
+.crumb{background:transparent;font-size:12.5px;color:var(--muted)}[data-theme="gold"] .crumb{background:transparent}
 .crumb .wrap{padding-top:11px;padding-bottom:11px}.crumb a{color:var(--muted)}.crumb span{color:var(--ink);font-weight:600}
 .guide-max{max-width:1120px;margin:0 auto;padding:0 24px}
 .di-hero{background:var(--paper);border-bottom:1px solid var(--line)}.di-hero .guide-max{padding-top:34px;padding-bottom:26px}
@@ -152,7 +152,7 @@ section[id]{scroll-margin-top:120px}
 <div id="cc-nav-mount"></div>
 <div id="cc-hub-subnav-mount"></div>
 
-<div class="crumb"><div class="wrap"><a href="/">Home</a> / <a href="/dental-insurance/">Dental insurance</a> / <a href="/dental-insurance/employer/">For employers</a> / <span>Cost &amp; ROI</span></div></div>
+<div class="crumb"><div class="wrap"><a href="/">CoverCapy</a> / <a href="/dental-insurance/">Dental insurance</a> / <a href="/dental-insurance/employer/">For employers</a> / <span>Cost &amp; ROI</span></div></div>
 
 <section class="di-hero">
   <div class="guide-max">
@@ -405,7 +405,7 @@ section[id]{scroll-margin-top:120px}
 <div id="cc-footer-mount"></div>
 <script>
 (function(){
-  var components=[{mountId:'cc-nav-mount',html:'/components/mega-nav.html',script:'/assets/js/mega-nav.js'},{mountId:'cc-hub-subnav-mount',html:'/components/hub-subnav.html',script:null},{mountId:'cc-footer-mount',html:'/components/footer.html',script:'/assets/js/footer.js'}];
+  var components=[{mountId:'cc-nav-mount',html:'/components/omega-nav2.html',script:'/assets/js/omega-nav2.js'},{mountId:'cc-hub-subnav-mount',html:'/components/hub-subnav.html',script:null},{mountId:'cc-footer-mount',html:'/components/footer.html',script:'/assets/js/footer.js'}];
   var loadScript=function(src){return new Promise(function(res){if(!src||document.querySelector('script[src="'+src+'"]'))return res();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){res()};s.onerror=function(){res()};document.body.appendChild(s);});};
   var replay=function(scr){scr.forEach(function(old){if(!old.parentNode)return;var f=document.createElement('script');for(var i=0;i<old.attributes.length;i++)f.setAttribute(old.attributes[i].name,old.attributes[i].value);f.textContent=old.textContent;old.parentNode.replaceChild(f,old);});};
   var inject=async function(c){var m=document.getElementById(c.mountId);if(!m)return;try{var r=await fetch(c.html,{cache:'no-cache'});if(!r.ok)throw 0;var w=document.createElement('div');w.innerHTML=await r.text();var s=Array.from(w.querySelectorAll('script'));var p=m.parentNode;while(w.firstChild)p.insertBefore(w.firstChild,m);p.removeChild(m);replay(s);}catch(e){}};

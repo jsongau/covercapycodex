@@ -425,12 +425,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- Universal CoverCapy component stylesheets (mega nav + footer) -->
-<link rel="stylesheet" href="assets/css/mega-nav.css">
-<link rel="stylesheet" href="assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="assets/css/omega-nav2.css">
+<link rel="stylesheet" href="assets/css/omega-nav2-mobile.css">
 <link rel="stylesheet" href="assets/css/footer.css">
 <style>
 /* Mount guards — keep layout stable while universal nav/footer load */
-#cc-nav-mount{min-height:72px}
+#cc-nav-mount{min-height:84px}
 #cc-footer-mount{min-height:420px}
 #cc-nav-mount:empty{min-height:0}
 #cc-footer-mount:empty{min-height:0}
@@ -555,9 +555,9 @@ section{padding:62px 0}
 .mact .sign:hover{color:var(--green)}
 
 /* ===== sticky compact TOC (Delta dcn-style sub-nav) ===== */
-.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:60;margin-top:0;background:#fff;border-bottom:1px solid var(--line);transition:background .45s ease}
+.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;margin-top:0;background:#fff;border-bottom:1px solid var(--line);transition:background .45s ease}
 section[id]{scroll-margin-top:132px}
-@media(max-width:1080px){.toc{top:72px}section[id]{scroll-margin-top:120px}}
+@media(max-width:1080px){.toc{top:var(--cc-nav-h,72px)}section[id]{scroll-margin-top:120px}}
 .toc-prog{height:2px;background:var(--green);width:0;transition:width .1s linear}
 .toc .wrap{display:flex;align-items:center;gap:2px;height:var(--toch);flex-wrap:nowrap;max-width:none;margin:0;padding-left:26px;padding-right:26px}
 .toc .theme-switch,.toc .toc-dd{flex:0 0 auto}
@@ -578,10 +578,10 @@ section[id]{scroll-margin-top:132px}
 .toc-cta{display:flex;gap:10px;flex-shrink:0;margin-left:18px}
 
 /* ===== breadcrumb (Delta crumb style) ===== */
-.crumb{background:#fff;border-bottom:0;font-size:12.5px;color:var(--muted)}
+.crumb{background:transparent;border-bottom:0;font-size:13px;color:var(--muted)}
 .crumb .wrap{padding-top:11px;padding-bottom:11px}
-.crumb a{color:var(--muted);text-decoration:none}
-.crumb a:hover{color:var(--green-d)}
+.crumb a{color:var(--green-d);text-decoration:underline;text-decoration-color:rgba(10,126,125,.35);text-underline-offset:3px;padding:2px 1px;border-radius:3px}
+.crumb a:hover{color:var(--ink);text-decoration-color:currentColor}
 .crumb span{color:var(--ink);font-weight:600}
 
 /* ===== smart match ===== */
@@ -865,7 +865,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .dcc-note{font-size:11px;color:rgba(244,239,226,.62);margin-top:11px;border-top:1px solid rgba(244,239,226,.18);padding-top:9px}
 /* ===== mobile pass (<=600px) ===== */
 @media(max-width:600px){
-  html,body{overflow-x:hidden;max-width:100%}
+  html,body{overflow-x: clip;max-width:100%}
   .wrap{padding:0 16px}
   .toc .wrap{gap:14px}
   .masthead .wrap{height:56px;gap:10px}
@@ -1330,7 +1330,7 @@ body,.masthead,.toc,.card,.pcard,.dcard,.cred,.band,.btn,.chip,.goal,.tchip,.omn
 </head>
 <body>
 
-<!-- UNIVERSAL MEGA NAV (injected from components/mega-nav.html) -->
+<!-- UNIVERSAL NAV (injected from components/omega-nav2.html) -->
 <div id="cc-nav-mount"></div>
 
 <!-- STICKY COMPACT TOC -->
@@ -1432,7 +1432,7 @@ body,.masthead,.toc,.card,.pcard,.dcard,.cred,.band,.btn,.chip,.goal,.tchip,.omn
   </div>
 </div>
 
-<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental insurance</a> / <a href="https://www.covercapy.com/dental-insurance/ppo-plans/">PPO Plans</a> / <span>Compare PPO plans</span></div></div>
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">CoverCapy</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental insurance</a> / <a href="https://www.covercapy.com/dental-insurance/ppo-plans/">PPO Plans</a> / <span>Compare PPO plans</span></div></div>
 
 <!-- SMART MATCH -->
 <section id="match">
@@ -2940,7 +2940,7 @@ boot();
 <script>
 (function(){
   const components = [
-    { mountId: 'cc-nav-mount',    html: 'components/mega-nav.html', script: 'assets/js/mega-nav.js' },
+    { mountId: 'cc-nav-mount',    html: 'components/omega-nav2.html', script: 'assets/js/omega-nav2.js' },
     { mountId: 'cc-footer-mount', html: 'components/footer.html',   script: 'assets/js/footer.js' }
   ];
 

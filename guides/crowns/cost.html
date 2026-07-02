@@ -38,8 +38,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CoverCapy component stylesheet bundle -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css" />
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css" />
+<link rel="stylesheet" href="/assets/css/omega-nav2.css" />
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css" />
 <link rel="stylesheet" href="/assets/css/footer.css" />
 
 <!-- Structured data -->
@@ -117,7 +117,7 @@ body {
  var(--paper);
  line-height:1.65;
  -webkit-font-smoothing:antialiased;
- overflow-x:hidden;
+ overflow-x:clip;
 }
 a { color:inherit; }
 
@@ -138,8 +138,8 @@ a { color:inherit; }
  letter-spacing:.24em; text-transform:uppercase; margin-bottom:20px;
 }
 .eyebrow::before { content:""; width:26px; height:1px; background:var(--gold); display:inline-block; }
-.rc-breadcrumb { font-size:12.5px; color:rgba(85,106,103,.8); margin-bottom:18px; }
-.rc-breadcrumb a { text-decoration:none; color:var(--deep); font-weight:600; }
+.rc-breadcrumb { font-size:13px; color:rgba(85,106,103,.8); margin-bottom:18px; }
+.rc-breadcrumb a { text-decoration:underline; text-decoration-color:rgba(10,110,109,.35); text-underline-offset:3px; color:var(--deep); font-weight:600; }
 h1 {
  font-family:var(--ff-serif);
  font-size:clamp(40px, 6.4vw, 74px);
@@ -262,6 +262,7 @@ table.rc-table { width:100%; border-collapse:collapse; min-width:520px; font-siz
  .rc-rail { position:static; order:-1; margin-bottom:8px; }
  .rc-index ol { columns:1; }
 }
+@media(min-width:1240px){.rc-breadcrumb{margin-left:18px}}
 </style>
 </head>
 <body>
@@ -270,7 +271,7 @@ table.rc-table { width:100%; border-collapse:collapse; min-width:520px; font-siz
 
 <main id="main-content" class="rc-shell">
  <article class="rc-main">
- <p class="rc-breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; <a href="/guides">Guides</a> &nbsp;/&nbsp; Dental Crown Cost</p>
+ <p class="rc-breadcrumb"><a href="/">CoverCapy</a> &nbsp;/&nbsp; <a href="/guides">Guides</a> &nbsp;/&nbsp; Dental Crown Cost</p>
  <span class="eyebrow">Procedure Guide · Restorative</span>
  <h1>What a dental crown <em>really</em> costs in 2026.</h1>
  <p class="rc-dek">A clear, no-spin breakdown of crown prices by material, what insurance actually pays, and every realistic way to spread the cost, including 0% and no-credit options.</p>
@@ -434,7 +435,7 @@ table.rc-table { width:100%; border-collapse:collapse; min-width:520px; font-siz
 <script>
 (function(){
  const components = [
- { mountId: 'cc-nav-mount', html: '/components/mega-nav.html', script: '/assets/js/mega-nav.js' },
+ { mountId: 'cc-nav-mount', html: '/components/omega-nav2.html', script: '/assets/js/omega-nav2.js' },
  { mountId: 'cc-footer-mount', html: '/components/footer.html', script: '/assets/js/footer.js' }
  ];
  const loadScript = (src) => new Promise(resolve => {

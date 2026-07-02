@@ -20,7 +20,7 @@
 <script type="application/ld+json">[
   {"@context":"https://schema.org","@type":"WebPage","name":"MetLife PPO Dentists in Inland Empire, CA","url":"https://www.covercapy.com/ppo-dentists/california/inland-empire/metlife/","description":"Find MetLife PPO dentists in Chino Hills and Chino, CA. Verify in-network status before scheduling."},
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.covercapy.com/"},
+    {"@type":"ListItem","position":1,"name":"CoverCapy","item":"https://www.covercapy.com/"},
     {"@type":"ListItem","position":2,"name":"California","item":"https://www.covercapy.com/ppo-dentists/california/"},
     {"@type":"ListItem","position":3,"name":"Inland Empire","item":"https://www.covercapy.com/ppo-dentists/california/inland-empire/"},
     {"@type":"ListItem","position":4,"name":"MetLife","item":"https://www.covercapy.com/ppo-dentists/california/inland-empire/metlife/"}
@@ -31,15 +31,15 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:'Inter Tight',sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;}
-    #progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0%;z-index:9999;transition:width .2s;}
-    .jump-bar{background:var(--teal-night);position:sticky;top:0;z-index:100;overflow-x:auto;}
+    
+    .jump-bar{background:var(--teal-night);position:sticky;top:var(--cc-nav-h,71px);z-index:9990;overflow-x:auto;}
     .jump-bar nav{max-width:var(--maxw);margin:0 auto;display:flex;padding:0 1.5rem;}
     .jump-bar a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.75rem 1rem;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
     .jump-bar a:hover,.jump-bar a.active{color:var(--gold);border-bottom-color:var(--gold);}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem;}
     section{padding:5rem 0;}
     .breadcrumb{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;font-size:.78rem;color:var(--ink-soft);margin-bottom:1.5rem;}
-    .breadcrumb a{color:var(--gold-deep);text-decoration:none;}
+    .breadcrumb a{color:var(--gold-deep);text-decoration:underline;text-decoration-color:rgba(138,98,18,.35);text-underline-offset:3px;}
     .breadcrumb a:hover{text-decoration:underline;}
     .hub-hero{background:var(--teal-night);color:#fff;padding:5rem 0 4rem;}
     .hub-hero .flourish{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:1rem;display:block;margin-bottom:.5rem;}
@@ -125,12 +125,13 @@
     .rv{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;}
     .rv.visible{opacity:1;transform:none;}
     @media(max-width:768px){section{padding:3.5rem 0;}.hub-hero{padding:3rem 0 2.5rem;}.card-grid-3,.dentist-grid{grid-template-columns:1fr;}.cta-group{flex-direction:column;}}
+@media(min-width:1240px){.breadcrumb{margin-left:-26px}}
 </style>
+<style>#cc-nav-mount{min-height:84px}#cc-nav-mount:empty{min-height:0}</style>
 </head>
 <body>
-<div id="progress-bar"></div>
-<div id="nav-placeholder"></div>
-
+<div id="cc-nav-mount"></div>
+<!-- page progress bar removed: omega nav provides one -->
 <div class="jump-bar">
   <nav aria-label="Page sections">
     <a href="#overview">Overview</a>
@@ -144,7 +145,7 @@
 <section class="hub-hero" id="overview">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a><span>/</span>
+      <a href="/">CoverCapy</a><span>/</span>
       <a href="/ppo-dentists/california/">California</a><span>/</span>
       <a href="/ppo-dentists/california/inland-empire/">Inland Empire</a><span>/</span>
       <span>MetLife</span>
@@ -330,7 +331,6 @@
     .then(function(html){ document.getElementById('cc-footer-mount').innerHTML = html; })
     .catch(function(){});
 </script>
-<script src="/assets/js/load-nav.js" defer></script>
 <script>
   window.addEventListener('scroll',function(){var d=document.documentElement;var pb=document.getElementById('progress-bar');if(pb)pb.style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';});
   var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.1});
@@ -344,5 +344,43 @@
 <script src="/assets/js/carrier-dentists.js" defer></script>
 <script src="/assets/js/ppo-verify-modal.js" defer></script>
 
+<script>
+(function(){
+  var components=[
+    {mountId:'cc-nav-mount', html:'/components/omega-nav2.html', script:'/assets/js/omega-nav2.js'}
+  ];
+  var loadScript=function(src){return new Promise(function(resolve){
+    if(!src||document.querySelector('script[src="'+src+'"]'))return resolve();
+    var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){resolve()};s.onerror=function(){resolve()};
+    document.body.appendChild(s);
+  });};
+  var replayScripts=function(scripts){scripts.forEach(function(old){
+    if(!old.parentNode)return;
+    var fresh=document.createElement('script');
+    for(var i=0;i<old.attributes.length;i++)fresh.setAttribute(old.attributes[i].name,old.attributes[i].value);
+    fresh.textContent=old.textContent;
+    old.parentNode.replaceChild(fresh,old);
+  });};
+  var injectComponent=async function(c){
+    var mount=document.getElementById(c.mountId);if(!mount)return;
+    try{
+      var res=await fetch(c.html,{cache:'no-cache'});
+      if(!res.ok)throw new Error(c.html+' '+res.status);
+      var wrapper=document.createElement('div');wrapper.innerHTML=await res.text();
+      var injected=Array.from(wrapper.querySelectorAll('script'));
+      var parent=mount.parentNode;
+      while(wrapper.firstChild)parent.insertBefore(wrapper.firstChild,mount);
+      parent.removeChild(mount);
+      replayScripts(injected);
+    }catch(e){console.warn('[CoverCapy loader]',c.html,e);}
+  };
+  var init=async function(){
+    for(var i=0;i<components.length;i++)await injectComponent(components[i]);
+    for(var i=0;i<components.length;i++)await loadScript(components[i].script);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+</script>
 </body>
 </html>

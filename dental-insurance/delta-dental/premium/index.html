@@ -52,9 +52,9 @@
   .logo .mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--jade),var(--jade-deep));box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);}
   nav.main{display:flex;gap:26px;font-size:14.5px;font-weight:500;}
   nav.main a{text-decoration:none;color:var(--muted);}nav.main a:hover{color:var(--ink);}
-  .crumb{background:#fff;border-bottom:1px solid rgba(18,22,27,.10);font-size:12.5px;color:#5A636E}
-  .crumb .wrap{padding-top:11px;padding-bottom:11px}
-  .crumb a{text-decoration:none;color:var(--muted);}.crumb a:hover{color:var(--jade-deep);}.crumb span{color:var(--ink);font-weight:600;}
+  .crumb{background:transparent;border-bottom:0;font-size:12.5px;color:#5A636E}
+  .crumb .wrap{max-width:1200px;margin:0 auto;padding:12px 28px}
+  .crumb a{color:var(--jade-deep);text-decoration:underline;text-decoration-color:rgba(15,181,166,.35);text-underline-offset:3px;}.crumb a:hover{color:var(--jade-deep);}.crumb span{color:var(--ink);font-weight:600;}
 
   .layout{position:relative;display:grid;grid-template-columns:1fr 372px;gap:46px;padding:38px 0 54px;align-items:start;}
   .layout::before{content:"";position:absolute;left:50%;transform:translateX(-50%);width:100vw;top:0;bottom:0;background:linear-gradient(180deg,var(--jade-tint) 0%,var(--jade-tint) 62%,rgba(230,247,244,.35) 100%);border-bottom:1px solid var(--jade);z-index:0;}
@@ -281,7 +281,7 @@
     Prefixed dcn- so it cannot collide with #cc-nav-mount or hubSetTier.
     Literal hex values used (this page does not define --jade tokens).
     ============================================================ */
- .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:8000;border-bottom:1px solid rgba(18,22,27,.10);background:#fff}
+ .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;border-bottom:1px solid rgba(18,22,27,.10);background:#fff}
  .dcn-bar{display:flex;align-items:center;gap:2px;max-width:1180px;margin:0;padding:0 32px;min-height:50px}
  .dcn-menu{display:flex;align-items:center;gap:2px}
  .dcn-item{position:relative}
@@ -319,8 +319,8 @@
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
 </style>
 <!-- Universal nav + footer component stylesheets -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css"/>
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"/>
 <link rel="stylesheet" href="/assets/css/footer.css"/>
 </head>
 <body>
@@ -382,7 +382,7 @@
 </nav>
 
 <!-- Breadcrumb -->
-<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>Premium plan</span></div></div>
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">CoverCapy</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>Premium plan</span></div></div>
 
 
 <div class="wrap">
@@ -1131,7 +1131,7 @@ window.cc=function(t,r){try{r.session_id=ccSid();r.page_path=location.pathname;i
 <script>
 (function(){
   var comps=[
-    {id:'cc-nav-mount',    html:'/components/mega-nav.html', js:'/assets/js/mega-nav.js'},
+    {id:'cc-nav-mount',    html:'/components/omega-nav2.html', js:'/assets/js/omega-nav2.js'},
     {id:'cc-footer-mount', html:'/components/footer.html',   js:'/assets/js/footer.js'}
   ];
   function ls(src){return new Promise(function(r){if(!src||document.querySelector('script[src="'+src+'"]'))return r();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=r;s.onerror=r;document.body.appendChild(s);});}

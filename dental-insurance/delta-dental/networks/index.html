@@ -11,7 +11,7 @@
 <meta property="og:type" content="article"><meta property="og:title" content="DeltaCare USA vs Delta PPO vs Premier"><meta property="og:description" content="Delta sells three products: DeltaCare USA is an HMO, PPO lets you pick any dentist, Premier is the big fee-for-service network. See which one you have."><meta property="og:url" content="https://www.covercapy.com/dental-insurance/delta-dental/networks/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/mega-nav.css"><link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"><link rel="stylesheet" href="/assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2.css"><link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"><link rel="stylesheet" href="/assets/css/footer.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[
  {"@type":"WebSite","@id":"https://www.covercapy.com/#website","name":"CoverCapy","url":"https://www.covercapy.com/"},
  {"@type":"WebPage","@id":"https://www.covercapy.com/dental-insurance/delta-dental/networks/#webpage","url":"https://www.covercapy.com/dental-insurance/delta-dental/networks/","name":"DeltaCare USA vs Delta Dental PPO vs Premier","isPartOf":{"@id":"https://www.covercapy.com/#website"},"inLanguage":"en-US","lastReviewed":"2026-06-24","breadcrumb":{"@id":"#breadcrumb"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".title",".answer .a"]}},
@@ -32,7 +32,7 @@
  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:-.015em;margin:0}a{color:inherit}
  .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
- .crumb{background:#fff;border-bottom:1px solid rgba(18,22,27,.10);font-size:12.5px;color:#5A636E}.crumb .wrap{padding-top:11px;padding-bottom:11px}.crumb a{color:var(--muted);text-decoration:none}.crumb a:hover{color:var(--jade-deep)}.crumb span{color:var(--ink);font-weight:600}
+ .crumb{background:transparent;border-bottom:0;font-size:12.5px;color:#5A636E}.crumb .wrap{max-width:1200px;margin:0 auto;padding:12px 28px}.crumb a{color:var(--jade-deep,var(--green-d,#0C8C81));text-decoration:underline;text-decoration-color:rgba(15,181,166,.35);text-underline-offset:3px}.crumb a:hover{color:var(--jade-deep)}.crumb span{color:var(--ink);font-weight:600}
  .subnav{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.92)}
  .subnav .wrap{display:flex;align-items:center;height:54px}.sn-links{display:flex;gap:22px;font-size:14px;font-weight:500;overflow-x:auto}.sn-links a{color:var(--muted);text-decoration:none;white-space:nowrap}.sn-links a:hover{color:var(--ink)}.sn-links a.active{color:var(--ink)}
  .herowrap{position:relative}.herowrap::before{content:"";position:absolute;left:50%;transform:translateX(-50%);width:100vw;top:0;bottom:0;background:linear-gradient(180deg,var(--jade-tint) 0%,var(--jade-tint) 64%,rgba(230,247,244,.3) 100%);border-bottom:1px solid var(--jade);z-index:0}
@@ -92,7 +92,7 @@
     Graphite & Jade. Flush-left. Humana-style category dropdowns.
     Prefixed dcn- so it cannot collide with #cc-nav-mount or hubSetTier.
     ============================================================ */
- .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:8000;border-bottom:1px solid var(--line);background:#fff}
+ .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;border-bottom:1px solid var(--line);background:#fff}
  .dcn-bar{display:flex;align-items:center;gap:2px;max-width:1180px;margin:0;padding:0 32px;min-height:50px}
  .dcn-menu{display:flex;align-items:center;gap:2px}
  .dcn-item{position:relative}
@@ -189,7 +189,7 @@
 </nav>
 
 <!-- Breadcrumb (under the sub-nav) -->
-<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>Networks</span></div></div>
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">CoverCapy</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>Networks</span></div></div>
 
 
 <div class="herowrap"><div class="wrap">
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded',function(){setNet('ppo');
 <!-- Universal component loader -->
 <script>
 (function(){
-  var comps=[{id:'cc-nav-mount',html:'/components/mega-nav.html',js:'/assets/js/mega-nav.js'},{id:'cc-footer-mount',html:'/components/footer.html',js:'/assets/js/footer.js'}];
+  var comps=[{id:'cc-nav-mount',html:'/components/omega-nav2.html',js:'/assets/js/omega-nav2.js'},{id:'cc-footer-mount',html:'/components/footer.html',js:'/assets/js/footer.js'}];
   function ls(src){return new Promise(function(r){if(!src||document.querySelector('script[src="'+src+'"]'))return r();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=r;s.onerror=r;document.body.appendChild(s);});}
   function ri(s){s.forEach(function(o){if(!o.parentNode)return;var f=document.createElement('script');Array.from(o.attributes).forEach(function(a){f.setAttribute(a.name,a.value)});f.textContent=o.textContent;o.parentNode.replaceChild(f,o);});}
   function ic(c){var m=document.getElementById(c.id);if(!m)return Promise.resolve();return fetch(c.html,{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var w=document.createElement('div');w.innerHTML=h;var sc=Array.from(w.querySelectorAll('script'));var p=m.parentNode;while(w.firstChild)p.insertBefore(w.firstChild,m);p.removeChild(m);ri(sc);}).catch(function(e){console.warn('[CC]',c.html,e);});}

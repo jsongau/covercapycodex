@@ -206,7 +206,7 @@
                 <p class="mega-gt">Ortho &amp; cosmetic</p>
                 <a class="mega-link" href="/benefit-maxing/guides/braces-invisalign/"><span class="ic">😬</span><span class="tx"><span class="t">Braces &amp; Invisalign</span></span></a>
                 <a class="mega-link" href="/benefit-maxing/guides/whitening/"><span class="ic">✨</span><span class="tx"><span class="t">Whitening</span></span></a>
-                <a class="mega-viewall" href="/benefit-maxing/guides/">All treatment guides</a>
+                <a class="mega-viewall" href="/benefit-maxing/">All treatment guides</a>
               </div>
             </div>
           </div>
@@ -219,7 +219,7 @@
 
       <!-- LEARN (formerly Guides; label only, URLs stay /guides/) -->
       <div class="cc-item" data-key="guides">
-        <a class="cc-top" href="/guides/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-guides" data-section="Learn">
+        <a class="cc-top" href="/guides/glossary/" aria-haspopup="true" aria-expanded="false" aria-controls="panel-guides" data-section="Learn">
           <span class="cc-label">Learn</span>
           <span class="cc-go">Open</span>
           <span class="cc-caret" aria-hidden="true">▾</span>
@@ -251,7 +251,7 @@
           </div>
           <div class="mega-foot"><div class="mega-foot-in">
             <div class="mega-trust"><span>Editorial, dentist-informed</span><span>Educational estimates</span></div>
-            <a class="mega-foot-link" href="/guides/">All guides</a>
+            <a class="mega-foot-link" href="/guides/glossary/">All guides</a>
           </div></div>
         </div>
       </div>
@@ -362,41 +362,78 @@
 <aside class="cc-drawer" id="ccDrawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="cc-drawer-head">
     <div class="row">
-      <span class="cc-drawer-brand">CoverCapy</span>
+      <span class="cc-drawer-brand"><span class="cc-drawer-brand-top">CoverCapy</span><span class="cc-drawer-brand-bot">Concierge Dental Network</span></span>
       <button class="cc-drawer-x" id="ccDrawerX" aria-label="Close menu">✕</button>
     </div>
-    <div class="cc-drawer-tag">Find a PPO dentist. Get covered. Earn rewards.</div>
+    <div class="cc-drawer-tag">Find a PPO dentist. Get covered. Earn free rewards.</div>
   </div>
   <div class="cc-drawer-nav">
     <div class="cc-zip-m">
       <div class="l">Find a PPO dentist</div>
-      <div class="r"><input type="search" placeholder="ZIP or city..."><button>Search</button></div>
+      <div class="r"><input id="cc-drawer-find-input" type="search" autocomplete="off" inputmode="search" placeholder="ZIP or city..." aria-label="ZIP or city"><button id="cc-drawer-find-btn" type="button">Search</button></div>
     </div>
     <div class="cc-acc"><button class="cc-acc-btn">Find a Dentist <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
       <a class="feat" href="/find-my-dentist.html">Find my dentist</a>
-      <a href="/dental-treatment-cost-estimator.html">Cost estimator</a>
-      <a href="/dental-financing-monthly-payments.html">Financing &amp; payments</a>
+      <p class="cc-acc-gt">Browse by state</p>
+      <a href="/dental/california/">California</a>
+      <a href="/dental/texas/">Texas</a>
+      <a href="/dental/florida/">Florida</a>
+      <a href="/dental/new-york/">New York</a>
+      <a href="/states.html">All states</a>
+      <p class="cc-acc-gt">Curated</p>
+      <a href="/cities.html">Featured cities</a>
+      <a href="/capy-accredited-dentists.html">Capy Accredited dentists</a>
+      <a href="/platinum-elite-dentists.html">Platinum Elite dentists</a>
     </div></div></div>
-    <div class="cc-acc"><button class="cc-acc-btn">Insurance <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+    <div class="cc-acc"><button class="cc-acc-btn">Find a Plan <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
       <a class="feat" href="/compare-ppo-dental-plans.html">Compare PPO plans</a>
+      <a href="/dental-insurance/">Insurance hub</a>
+      <a href="/dental-insurance/ppo-plans/">All PPO plans</a>
+      <a href="/dental-insurance/ppo-plans/uhc-primary-dental/">UnitedHealthcare Primary Dental</a>
       <a href="/dental-insurance/delta-dental/">Delta Dental</a>
-      <a href="/dental-insurance/ppo-plans/">All carriers</a>
+      <p class="cc-acc-gt">By situation</p>
       <a href="/guides/no-waiting-period/">No waiting period</a>
-    </div></div></div>
-    <div class="cc-acc"><button class="cc-acc-btn">Guides <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
-      <a class="feat" href="/guides/">All guides</a>
-      <a href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
-      <a href="/guides/glossary/">Glossary</a>
+      <a href="/guides/immediate-coverage/">Fast activation, covered this week</a>
+      <a href="/guides/between-jobs/">Between jobs</a>
+      <a href="/guides/self-employed/">Self-employed</a>
+      <p class="cc-acc-gt">Savings plans</p>
+      <a href="/dental-savings-plans">Dental savings plans hub</a>
+      <a href="/dental-savings-plans/vs-ppo/">Savings plan vs PPO</a>
+      <a href="/dental-savings-plans/is-it-worth-it/">Is it worth it?</a>
+      <p class="cc-acc-gt">For employers</p>
+      <a href="/dental-insurance/employer/">Employer plans hub</a>
+      <a href="/dental-insurance/employer/cost/">What group plans cost</a>
     </div></div></div>
     <div class="cc-acc"><button class="cc-acc-btn">Benefit Maxing <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
-      <a class="feat" href="/benefit-maxing/">Maximize your benefits</a>
-      <a href="/benefit-maxing/smart-timing-protocol/">Smart timing protocol</a>
+      <a class="feat" href="/dental-treatment-cost-estimator.html">Run Cost Estimator</a>
+      <a href="/benefit-maxing/smart-timing-protocol/">Smart Timing Strategy <span class="cc-badge">$10,000 Saved</span></a>
+      <a href="/dental-financing-monthly-payments.html">Monthly Payment Options <span class="cc-badge">0% APR</span></a>
+      <a href="/benefit-maxing/">Maximize your benefits</a>
+      <p class="cc-acc-gt">Treatment guides</p>
+      <a href="/benefit-maxing/guides/crowns/">Crowns</a>
+      <a href="/benefit-maxing/guides/implants/">Implants</a>
+      <a href="/benefit-maxing/guides/root-canals/">Root canals</a>
       <a href="/benefit-maxing/guides/dental-emergencies/">Dental emergencies</a>
     </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Capy Rewards <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/covercapy-join.html">How crowns work</a>
+      <a href="/covercapy-join.html">Ways to earn</a>
+      <a href="/covercapy-join.html">Redeem your crowns</a>
+      <a href="/covercapy-join.html">Nominate an office</a>
+      <a href="/covercapy-join.html">How Diamonds work</a>
+      <a href="/covercapy-join.html#refer">Refer a friend</a>
+    </div></div></div>
+    <div class="cc-acc"><button class="cc-acc-btn">Learn <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
+      <a class="feat" href="/guides/in-network-vs-out-of-network-costs.html">In-network vs out-of-network</a>
+      <a href="/guides/glossary/">Glossary of terms</a>
+      <a href="/guides/medi-cal-vs-ppo-dental.html">Medi-Cal vs PPO dental</a>
+    </div></div></div>
     <div class="cc-acc"><button class="cc-acc-btn">For Dentists <span class="car">▶</span></button><div class="cc-acc-body"><div class="cc-acc-body-in">
-      <a class="feat" href="/claim-dentist-listing-profile.html">Claim your profile</a>
+      <a class="feat" href="/dentist-portal.html">Dentist portal</a>
       <a href="/capy-accreditation.html">Capy Accreditation</a>
       <a href="/capy-practice-membership.html">Practice membership</a>
+      <a href="/claim-dentist-listing-profile.html">Claim your listing</a>
+      <a href="/dentist-portal.html#details-platinum">Platinum Elite</a>
     </div></div></div>
   </div>
   <div class="cc-drawer-foot">
@@ -404,14 +441,3 @@
     <a class="cc-drawer-sign" href="/sign-in.html">Sign in</a>
   </div>
 </aside>
-
-<div class="cc-dock" id="cc-find-dock" role="dialog" aria-label="Dentist match" aria-hidden="true">
-  <button class="cc-dock-x" id="cc-find-dock-x" type="button" aria-label="Close">✕</button>
-  <div class="cc-dock-full" id="cc-find-dock-bd"></div>
-  <div class="cc-dock-mini" id="cc-find-dock-mini" role="button" tabindex="0" aria-label="Expand result">
-    <span class="cc-dock-mini-grip" aria-hidden="true"></span>
-    <span class="cc-dock-mini-nm" id="cc-find-dock-mini-nm"></span>
-    <span class="cc-dock-mini-rt" id="cc-find-dock-mini-rt"></span>
-    <button class="cc-dock-mini-bk" id="cc-find-dock-mini-bk" type="button">Book appointment</button>
-  </div>
-</div>

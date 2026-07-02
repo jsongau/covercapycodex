@@ -137,7 +137,7 @@
 .emergency-page .tldr-card p{margin:0; color:var(--ink); font-size:1.04rem}
 
 .emergency-page .crumb{font-size:.85rem; color:var(--ink-faint); padding:18px 0 0}
-.emergency-page .crumb a{color:var(--ink-soft); text-decoration:none}
+.emergency-page .crumb a{color:var(--teal-700); text-decoration:underline; text-decoration-color:rgba(20,82,91,.35); text-underline-offset:3px}
 
 .emergency-page .answer{font-size:1.12rem; color:var(--ink); font-family:var(--ff-serif); font-weight:400; max-width:64ch}
 .emergency-page .answer strong{font-weight:600}
@@ -222,6 +222,7 @@
 @media (prefers-reduced-motion: reduce){
   .emergency-page *{transition:none !important}
 }
+@media(min-width:1240px){.emergency-page .crumb{margin-left:-46px}}
 </style>
 </head>
 
@@ -253,7 +254,7 @@
   </div>
 
   <div class="wrap">
-    <p class="crumb"><a href="/">Home</a> &nbsp;/&nbsp; Emergency PPO Dentists</p>
+    <p class="crumb"><a href="/">CoverCapy</a> &nbsp;/&nbsp; Emergency PPO Dentists</p>
   </div>
 
   <!-- WHAT IS AN EMERGENCY -->

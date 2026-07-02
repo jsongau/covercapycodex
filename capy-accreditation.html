@@ -16,8 +16,7 @@
      - Pricing: edit the CONFIG object at the top of <script> (priceAnnual / priceMonthly).
      - Review pillars, tech list, Platinum list, FAQ: edit the HTML directly,
        each block is labelled with a comment.
-     - In-page section nav: edit the .sectionnav links near the top of <body class="cc-has-site-shell">
-<div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>.
+     - In-page section nav: edit the .sectionnav links near the top of <body>.
      - Swap CTA links (marked  href="#apply" / "/membership" etc).
      - Paste your existing Google Analytics snippet where indicated in <head>.
      ========================================================= -->
@@ -130,7 +129,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0; font-family:var(--font-body); color:var(--ink);
   background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow-x:clip;
 }
 /* atmospheric background */
 body::before{
@@ -734,18 +733,20 @@ footer.site .flinks a:hover{color:#fff}
 </style>
 
 <!-- CoverCapy global shell styles: mega nav + footer -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css">
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
 
 <style id="cc-shell-sticky-fixes">
-  :root{ --cc-mega-nav-height:72px; --cc-section-nav-height:52px; }
+  :root{ --cc-mega-nav-height:84px; --cc-section-nav-height:52px; }
 
   #cc-nav-mount{
     min-height:var(--cc-mega-nav-height);
     position:relative;
     z-index:1000;
   }
+  /* Once the omega nav is injected, collapse the mount box so the nav can stick to the viewport. */
+  #cc-nav-mount:not(:empty){ display:contents; }
 
   #cc-footer-mount{
     min-height:420px;
@@ -790,7 +791,8 @@ footer.site .flinks a:hover{color:#fff}
 
 </head>
 
-<body>
+<body class="cc-has-site-shell">
+<div id="cc-nav-mount" aria-label="CoverCapy mega navigation mount"></div>
 <div id="progressbar" aria-hidden="true"></div>
 
 <!-- ============================ HEADER (replace with real mega-nav) ============================ -->
@@ -1516,7 +1518,7 @@ document.getElementById('quizSubmit').addEventListener('click', () => {
 <script id="cc-global-component-loader">
 (function(){
   const components = [
-    { mountId: 'cc-nav-mount',    html: '/components/mega-nav.html', script: '/assets/js/mega-nav.js' },
+    { mountId: 'cc-nav-mount',    html: '/components/omega-nav2.html', script: '/assets/js/omega-nav2.js' },
     { mountId: 'cc-footer-mount', html: '/components/footer.html',   script: '/assets/js/footer.js' }
   ];
 
@@ -1540,10 +1542,10 @@ document.getElementById('quizSubmit').addEventListener('click', () => {
   };
 
   const setMegaNavHeight = () => {
-    const mount = document.getElementById('cc-nav-mount');
-    if (!mount) return;
-    const measured = Math.ceil(mount.getBoundingClientRect().height);
-    const height = measured > 40 ? measured : 72;
+    const el = document.getElementById('ccNav') || document.getElementById('cc-nav-mount');
+    if (!el) return;
+    const measured = Math.ceil(el.getBoundingClientRect().height);
+    const height = measured > 40 ? measured : 84;
     document.documentElement.style.setProperty('--cc-mega-nav-height', height + 'px');
   };
 
@@ -1560,7 +1562,7 @@ document.getElementById('quizSubmit').addEventListener('click', () => {
         setTimeout(setMegaNavHeight, 250);
         setTimeout(setMegaNavHeight, 900);
         if ('ResizeObserver' in window) {
-          new ResizeObserver(setMegaNavHeight).observe(mount);
+          new ResizeObserver(setMegaNavHeight).observe(document.getElementById('ccNav') || mount);
         }
       }
     } catch (err) {

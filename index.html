@@ -31,14 +31,14 @@
 <!-- Inter Tight: used by the shared nav/hero/footer components -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap">
 <!-- #2 Shared component stylesheets (nav + hero + footer). Root-absolute so they resolve from /home-v2/. -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css">
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css">
 <link rel="stylesheet" href="/assets/css/hero-slider.css">
 <link rel="stylesheet" href="/assets/css/hero-slider-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
 <style>
   /* Mount guards — keep layout stable while components load */
-  #cc-nav-mount   { min-height: 72px; }
+  #cc-nav-mount   { min-height: 84px; }
   #cc-hero-mount  { min-height: 70vh; }
   #cc-footer-mount{ min-height: 420px; }
 </style>
@@ -1510,7 +1510,7 @@ body{margin:0;background:var(--paper)}
 <script>
 (function(){
   const components = [
-    { mountId: 'cc-nav-mount',    html: '/components/mega-nav.html',    script: '/assets/js/mega-nav.js' },
+    { mountId: 'cc-nav-mount',    html: '/components/omega-nav2.html',    script: '/assets/js/omega-nav2.js' },
     { mountId: 'cc-hero-mount',   html: '/components/hero-slider.html', script: '/assets/js/hero-slider.js' },
     { mountId: 'cc-footer-mount', html: '/components/footer.html',      script: '/assets/js/footer.js' }
   ];

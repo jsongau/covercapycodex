@@ -38,8 +38,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CoverCapy component stylesheet bundle -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css" />
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css" />
+<link rel="stylesheet" href="/assets/css/omega-nav2.css" />
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css" />
 <link rel="stylesheet" href="/assets/css/footer.css" />
 
 <!-- Structured data -->
@@ -118,7 +118,7 @@ body {
  var(--paper);
  line-height:1.65;
  -webkit-font-smoothing:antialiased;
- overflow-x:hidden;
+ overflow-x:clip;
 }
 a { color:inherit; }
 
@@ -129,7 +129,7 @@ a { color:inherit; }
  padding:clamp(36px, 5vw, 70px) 0 40px;
 }
 .de-breadcrumb { font-size:12.5px; color:rgba(85,106,103,.8); margin-bottom:18px; }
-.de-breadcrumb a { text-decoration:none; color:var(--deep); font-weight:600; }
+.de-breadcrumb a { text-decoration:underline; text-decoration-color:rgba(10,110,109,.35); text-underline-offset:3px; color:var(--deep); font-weight:600; }
 
 .de-eyebrow {
  display:inline-flex; align-items:center; gap:9px;
@@ -314,7 +314,7 @@ strong { color:var(--ink); }
 <div id="cc-nav-mount" aria-label="CoverCapy primary navigation mount"></div>
 
 <main id="main-content" class="de-wrap">
- <p class="de-breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; <a href="/guides">Guides</a> &nbsp;/&nbsp; <a href="/guides/crowns/cost">Dental Crown Cost</a> &nbsp;/&nbsp; Insurance Coverage</p>
+ <p class="de-breadcrumb"><a href="/">CoverCapy</a> &nbsp;/&nbsp; <a href="/guides">Guides</a> &nbsp;/&nbsp; <a href="/guides/crowns/cost">Dental Crown Cost</a> &nbsp;/&nbsp; Insurance Coverage</p>
 
  <!-- HERO / verdict -->
  <section class="de-hero">
@@ -481,7 +481,7 @@ strong { color:var(--ink); }
 <script>
 (function(){
  const components = [
- { mountId: 'cc-nav-mount', html: '/components/mega-nav.html', script: '/assets/js/mega-nav.js' },
+ { mountId: 'cc-nav-mount', html: '/components/omega-nav2.html', script: '/assets/js/omega-nav2.js' },
  { mountId: 'cc-footer-mount', html: '/components/footer.html', script: '/assets/js/footer.js' }
  ];
  const loadScript = (src) => new Promise(resolve => {

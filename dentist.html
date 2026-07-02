@@ -34,9 +34,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/footer.css">
-<!-- CoverCapy universal mega nav (shared site component) — mega-nav.css must load before mega-nav-mobile.css -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css">
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<!-- CoverCapy universal mega nav (shared site component) — omega-nav2.css must load before omega-nav2-mobile.css -->
+<link rel="stylesheet" href="/assets/css/omega-nav2.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css">
 <style>
 :root{
   --teal-night:#082A30; --teal-deep:#0C3A42; --teal-700:#14525B; --teal-300:#5E8C92;
@@ -1632,7 +1632,7 @@ body.dd-lock{overflow:hidden}
   #seo-hub-static .breadcrumb-bar,#seo-crumb-top .breadcrumb-bar{padding:14px 0 0}
   #seo-crumb-top{padding:0 0 2px}
   #seo-hub-static .breadcrumb-list,#seo-crumb-top .breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0;padding:0;font-size:.82rem;color:var(--ink-faint,#8A958F)}
-  #seo-hub-static .breadcrumb-list a,#seo-crumb-top .breadcrumb-list a{color:var(--teal-700,#14525B);text-decoration:none}
+  #seo-hub-static .breadcrumb-list a,#seo-crumb-top .breadcrumb-list a{color:var(--teal-700,#14525B);text-decoration:underline;text-decoration-color:rgba(20,82,91,.35);text-underline-offset:3px}
   #seo-hub-static .breadcrumb-list a:hover,#seo-crumb-top .breadcrumb-list a:hover{text-decoration:underline}
   #seo-hub-static .seo-h1{font-family:'Fraunces',serif;font-weight:500;font-size:2.1rem;line-height:1.12;color:var(--teal-night,#082A30);margin:18px 0 8px}
   #seo-hub-static .seo-h1-sub{font-size:1.02rem;color:var(--ink-soft,#56655F);margin:0 0 22px;max-width:760px}
@@ -1811,10 +1811,10 @@ body.dd-lock{overflow:hidden}
 <div id="cc-nav-mount"></div>
 <script>
 (function(){
-  fetch('/components/mega-nav.html', { cache: 'no-cache' }).then(function(r){ return r.text(); }).then(function(html){
+  fetch('/components/omega-nav2.html', { cache: 'no-cache' }).then(function(r){ return r.text(); }).then(function(html){
     var el = document.getElementById('cc-nav-mount');
     if(el){
-      /* Insert the nav markup, THEN re-create each inline script node so mega-nav.html's
+      /* Insert the nav markup, THEN re-create each inline script node so omega-nav2.html's
          inline behavior actually runs. Scripts assigned via innerHTML are inert and
          never execute — that is exactly why this page rendered the OLD Find-a-Dentist
          dropdown while the rest of the site (which replays the scripts) shows the new
@@ -1833,7 +1833,7 @@ body.dd-lock{overflow:hidden}
         old.parentNode.replaceChild(fresh, old);
       });
     }
-    var s = document.createElement('script'); s.src = '/assets/js/mega-nav.js'; s.defer = true; document.body.appendChild(s);
+    var s = document.createElement('script'); s.src = '/assets/js/omega-nav2.js'; s.defer = true; document.body.appendChild(s);
     /* Keep the sticky search rail / filters / map tucked under the real mega-nav height
        (the page's --nav-h was sized for the old 52px bar). The mount is now removed, so
        measure the real injected nav instead of the detached mount node. */

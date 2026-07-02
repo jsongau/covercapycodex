@@ -38,8 +38,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CoverCapy component stylesheet bundle -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css" />
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css" />
+<link rel="stylesheet" href="/assets/css/omega-nav2.css" />
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css" />
 <link rel="stylesheet" href="/assets/css/footer.css" />
 
 <!-- Structured data -->
@@ -96,7 +96,7 @@ body {
  radial-gradient(ellipse 720px 400px at 6% 0%, rgba(233,226,245,.30), transparent 62%),
  radial-gradient(ellipse 720px 400px at 96% 6%, rgba(200,221,212,.22), transparent 62%),
  var(--paper);
- line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+ line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:clip;
 }
 a { color:inherit; }
 
@@ -106,7 +106,7 @@ a { color:inherit; }
  font-weight:800; letter-spacing:.24em; text-transform:uppercase; margin-bottom:18px; }
 .eyebrow::before { content:""; width:26px; height:1px; background:var(--gold); display:inline-block; }
 .lg-breadcrumb { font-size:12.5px; color:rgba(85,106,103,.8); margin-bottom:16px; }
-.lg-breadcrumb a { text-decoration:none; color:var(--deep); font-weight:600; }
+.lg-breadcrumb a { text-decoration:underline; text-decoration-color:rgba(10,110,109,.35); text-underline-offset:3px; color:var(--deep); font-weight:600; }
 h1 { font-family:var(--ff-serif); font-size:clamp(38px,6vw,64px); line-height:1.02; letter-spacing:-.045em;
  margin:0 0 20px; font-weight:400; max-width:16ch; }
 h1 em { color:var(--deep); font-style:italic; }
@@ -166,13 +166,14 @@ strong { color:var(--ink); }
 .lg-related { margin:30px 0; padding:20px 24px; border:1px solid var(--line); border-radius:18px; background:rgba(255,252,246,.66); }
 .lg-related .eyebrow { margin-bottom:10px; }
 .lg-related a { display:inline-block; margin:4px 14px 4px 0; text-decoration:none; color:var(--deep); font-weight:600; font-size:15px; }
+@media(min-width:1240px){.lg-breadcrumb{margin-left:-102px}}
 </style>
 </head>
 <body>
 <div id="cc-nav-mount" aria-label="CoverCapy primary navigation mount"></div>
 
 <main id="main-content" class="lg-shell">
- <p class="lg-breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; <a href="/guides">Guides</a> &nbsp;/&nbsp; <a href="/guides/crowns/cost">Dental Crown Cost</a> &nbsp;/&nbsp; <a href="/guides/crowns/financing">Financing</a> &nbsp;/&nbsp; No Credit Check</p>
+ <p class="lg-breadcrumb"><a href="/">CoverCapy</a> &nbsp;/&nbsp; <a href="/guides">Guides</a> &nbsp;/&nbsp; <a href="/guides/crowns/cost">Dental Crown Cost</a> &nbsp;/&nbsp; <a href="/guides/crowns/financing">Financing</a> &nbsp;/&nbsp; No Credit Check</p>
  <span class="eyebrow">Money · No Credit Check</span>
  <h1>Dental crown financing with <em>no credit check</em>.</h1>
  <p class="lg-dek">A cracked tooth should not wait on your credit score. Here are the real no-credit-check and bad-credit routes that approve more patients for a crown: Sunbit, in-house office plans, dental savings plans, and your own pre-tax dollars.</p>
@@ -278,7 +279,7 @@ strong { color:var(--ink); }
 <script>
 (function(){
  const components = [
- { mountId: 'cc-nav-mount', html: '/components/mega-nav.html', script: '/assets/js/mega-nav.js' },
+ { mountId: 'cc-nav-mount', html: '/components/omega-nav2.html', script: '/assets/js/omega-nav2.js' },
  { mountId: 'cc-footer-mount', html: '/components/footer.html', script: '/assets/js/footer.js' }
  ];
  const loadScript = (src) => new Promise(resolve => {

@@ -199,9 +199,9 @@
   .meganav .wrap{display:flex;justify-content:space-between;align-items:center;width:100%;}
   .meganav .note{font-size:12px;font-weight:600;color:var(--muted);}.meganav .note b{color:var(--ink);}
   .subnav{position:static;z-index:40;background:rgba(255,255,255,.92);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .crumb{background:#fff;border-bottom:1px solid rgba(18,22,27,.10);font-size:12.5px;color:#5A636E}
-  .crumb .wrap{padding-top:11px;padding-bottom:11px}
-  .crumb a{text-decoration:none;color:var(--muted);}.crumb a:hover{color:var(--jade-deep);}.crumb span{color:var(--ink);font-weight:600;}
+  .crumb{background:transparent;border-bottom:0;font-size:12.5px;color:#5A636E}
+  .crumb .wrap{max-width:1200px;margin:0 auto;padding:12px 28px}
+  .crumb a{color:var(--jade-deep);text-decoration:underline;text-decoration-color:rgba(15,181,166,.35);text-underline-offset:3px;}.crumb a:hover{color:var(--jade-deep);}.crumb span{color:var(--ink);font-weight:600;}
   .subnav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:18px;}
   .sn-brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-size:18px;font-weight:600;white-space:nowrap;text-decoration:none;color:inherit;}
   .sn-brand .mk{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--jade),var(--jade-deep));}
@@ -223,7 +223,7 @@
     Prefixed dcn- so it cannot collide with #cc-nav-mount or hubSetTier.
     Literal hex values used (this page does not define --jade tokens).
     ============================================================ */
- .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:8000;border-bottom:1px solid rgba(18,22,27,.10);background:#fff}
+ .dcn{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;border-bottom:1px solid rgba(18,22,27,.10);background:#fff}
  .dcn-bar{display:flex;align-items:center;gap:2px;max-width:1180px;margin:0;padding:0 32px;min-height:50px}
  .dcn-menu{display:flex;align-items:center;gap:2px}
  .dcn-item{position:relative}
@@ -260,8 +260,8 @@
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
 </style>
-<link rel="stylesheet" href="/assets/css/mega-nav.css"/>
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"/>
 <link rel="stylesheet" href="/assets/css/footer.css"/>
 </head>
 <body>
@@ -324,7 +324,7 @@
 </nav>
 
 <!-- Breadcrumb -->
-<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>Compare</span></div></div>
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">CoverCapy</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental Insurance</a> / <a href="https://www.covercapy.com/dental-insurance/delta-dental/">Delta Dental</a> / <span>Compare</span></div></div>
 
 
 <div class="wrap">
@@ -477,7 +477,7 @@
 <script>
 (function(){
   var comps=[
-    {id:'cc-nav-mount',    html:'/components/mega-nav.html', js:'/assets/js/mega-nav.js'},
+    {id:'cc-nav-mount',    html:'/components/omega-nav2.html', js:'/assets/js/omega-nav2.js'},
     {id:'cc-footer-mount', html:'/components/footer.html',   js:'/assets/js/footer.js'}
   ];
   function ls(src){return new Promise(function(r){if(!src||document.querySelector('script[src="'+src+'"]'))return r();var s=document.createElement('script');s.src=src;s.defer=true;s.onload=r;s.onerror=r;document.body.appendChild(s);});}

@@ -35,8 +35,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <!-- Universal nav + footer component stylesheets -->
-<link rel="stylesheet" href="/assets/css/mega-nav.css"/>
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2.css"/>
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css"/>
 <link rel="stylesheet" href="/assets/css/footer.css"/>
 <style>
 /* ═══════════════════════════════════════════════════════════════════
@@ -497,7 +497,7 @@ table.cmp .vlink{font-weight:600}
    Byte-identical to compare-ppo-dental-plans.html.
    ═══════════════════════════════════════════════════════════════════ */
 /* Mount guards, keep layout stable while universal nav/footer load */
-#cc-nav-mount{min-height:72px}
+#cc-nav-mount{min-height:84px}
 #cc-footer-mount{min-height:420px}
 #cc-nav-mount:empty{min-height:0}
 #cc-footer-mount:empty{min-height:0}
@@ -534,7 +534,7 @@ table.cmp .vlink{font-weight:600}
 @media(max-width:900px){.toc-dd-panel{position:fixed;left:12px;right:12px;min-width:0;top:calc(var(--toch) + 4px)}}
 
 /* ===== sticky compact TOC (Delta dcn-style sub-nav) ===== */
-.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:60;margin-top:0;background:#fff;border-bottom:1px solid var(--line);transition:background .45s ease}
+.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;margin-top:0;background:#fff;border-bottom:1px solid var(--line);transition:background .45s ease}
 section[id]{scroll-margin-top:132px}
 @media(max-width:1080px){.toc{top:72px}section[id]{scroll-margin-top:120px}}
 .toc-prog{height:2px;background:var(--green);width:0;transition:width .1s linear}
@@ -547,10 +547,10 @@ section[id]{scroll-margin-top:132px}
 }
 
 /* ===== breadcrumb (Delta crumb style) ===== */
-.crumb{background:#fff;border-bottom:0;font-size:12.5px;color:var(--muted)}
+.crumb{background:transparent;border-bottom:0;font-size:13px;color:var(--muted)}
 .crumb .wrap{padding-top:11px;padding-bottom:11px}
-.crumb a{color:var(--muted);text-decoration:none}
-.crumb a:hover{color:var(--green-d)}
+.crumb a{color:var(--green-d);text-decoration:underline;text-decoration-color:rgba(10,126,125,.35);text-underline-offset:3px;padding:2px 1px;border-radius:3px}
+.crumb a:hover{color:var(--ink);text-decoration-color:currentColor}
 .crumb span{color:var(--ink);font-weight:600}
 
 /* ===== editorial hero head ===== */
@@ -802,7 +802,7 @@ body,.toc,.card,.pc,.btn,.chip,.chooser-btn,.filt-pill{transition:background-col
   </div>
 </div>
 
-<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental insurance</a> / <span>PPO Plans</span></div></div>
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">CoverCapy</a> / <a href="https://www.covercapy.com/dental-insurance/">Dental insurance</a> / <span>PPO Plans</span></div></div>
 
 <div class="wrap">
   <div class="layout">
@@ -2458,7 +2458,7 @@ body,.toc,.card,.pc,.btn,.chip,.chooser-btn,.filt-pill{transition:background-col
 <script>
 (function loadCoverCapyComponents(){
   var components=[
-    {mountId:'cc-nav-mount',html:['/components/mega-nav.html','components/mega-nav.html'],script:['/assets/js/mega-nav.js','assets/js/mega-nav.js'],successClass:'has-external-nav'},
+    {mountId:'cc-nav-mount',html:['/components/omega-nav2.html','components/omega-nav2.html'],script:['/assets/js/omega-nav2.js','assets/js/omega-nav2.js'],successClass:'has-external-nav'},
     {mountId:'cc-footer-mount',html:['/components/footer.html','components/footer.html'],script:['/assets/js/footer.js','assets/js/footer.js'],successClass:'has-external-footer'}
   ];
   function loadScript(list){return list.reduce(function(c,src){return c.catch(function(){return new Promise(function(res,rej){if(document.querySelector('script[src="'+src+'"]'))return res(true);var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){res(true)};s.onerror=function(){rej(new Error(src))};document.body.appendChild(s);});});},Promise.reject()).catch(function(){return false});}

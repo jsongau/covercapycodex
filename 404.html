@@ -28,15 +28,15 @@
   </script>
 
   <!-- CoverCapy shared component styles. These are needed so the injected nav/footer do not render as raw links. -->
-  <link rel="stylesheet" href="assets/css/mega-nav.css" />
-  <link rel="stylesheet" href="assets/css/mega-nav-mobile.css" />
+  <link rel="stylesheet" href="assets/css/omega-nav2.css" />
+  <link rel="stylesheet" href="assets/css/omega-nav2-mobile.css" />
   <link rel="stylesheet" href="assets/css/footer.css" />
 
-  <!-- Safety net only. Your real mega-nav.css still wins when it loads. -->
+  <!-- Safety net only. Your real omega-nav2.css still wins when it loads. -->
   <style id="cc-mega-nav-failsafe">
     #cc-nav-mount,
     #mega-nav-placeholder {
-      min-height: 72px;
+      min-height: 84px;
       position: relative;
       z-index: 1000;
     }
@@ -233,7 +233,7 @@
         radial-gradient(circle at 12% 10%, rgba(196,154,90,.28), transparent 34%),
         radial-gradient(circle at 88% 16%, rgba(74,168,157,.20), transparent 30%),
         linear-gradient(135deg, #fffaf0 0%, #f7efe2 46%, #edf7f4 100%);
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     #cc-nav-mount:empty,
@@ -650,8 +650,8 @@
       var components = [
         {
           mountId: 'cc-nav-mount',
-          html: ['components/mega-nav.html', '/components/mega-nav.html', 'mega-nav.html', '/mega-nav.html'],
-          script: ['assets/js/mega-nav.js', '/assets/js/mega-nav.js', 'mega-nav.js', '/mega-nav.js'],
+          html: ['components/omega-nav2.html', '/components/omega-nav2.html', 'omega-nav2.html', '/omega-nav2.html'],
+          script: ['assets/js/omega-nav2.js', '/assets/js/omega-nav2.js', 'omega-nav2.js', '/omega-nav2.js'],
           successClass: 'has-external-nav'
         },
         {

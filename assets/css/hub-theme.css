@@ -63,7 +63,7 @@ td a{font-weight:600}
 /* breadcrumb — universal standard.
    Links must read as links: green, underlined on a soft tint, darker underline on hover.
    Current page stays ink and unlinked. Do not drop links back to muted gray. */
-.crumb{background:#fff;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.crumb{background:transparent;border-bottom:0;font-size:13px;color:var(--muted)}
 .crumb .wrap{padding-top:12px;padding-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:2px}
 .crumb a{color:var(--green-d);text-decoration:underline;text-decoration-color:rgba(15,181,166,.35);text-underline-offset:3px;padding:2px 1px;border-radius:3px}
 .crumb a:hover{color:var(--ink);text-decoration-color:currentColor}
@@ -89,7 +89,7 @@ td a{font-weight:600}
 .faq details[open] summary{border-bottom:1px solid var(--line)}
 .faq details p{padding:12px 0 14px;margin:0}
 /* sticky sub-nav console (pins under the universal mega nav) */
-.toc{position:sticky;top:var(--cc-nav-h,71px);z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.toc{position:sticky;top:var(--cc-nav-h,71px);z-index:9990;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
 .toc .wrap{max-width:1180px;display:flex;align-items:center;gap:16px;height:var(--toch);flex-wrap:nowrap}
 .toc .theme-switch,.toc .toc-dd{flex:0 0 auto}
 /* Mobile: let the bar scroll sideways internally. Panels become position:fixed at <=900px
@@ -293,7 +293,7 @@ td a{font-weight:600}
 .dd-sub a{padding:7px 11px 7px 22px!important;font-size:13px;color:var(--green-d)}
 .dd-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 11px 4px}
 .dd-all{border-top:1px solid var(--line);margin-top:6px;color:var(--green-d)!important;font-weight:600}
-.toc{position:sticky;top:var(--cc-nav-h,71px);z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,27,37,.03)}
+.toc{position:sticky;top:var(--cc-nav-h,71px);z-index:9990;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,27,37,.03)}
 .toc-prog{height:2px;background:var(--green);width:0;transition:width .1s linear}
 .toc .wrap{display:flex;align-items:center;gap:2px;height:var(--toch);flex-wrap:nowrap;max-width:none;margin:0;padding-left:26px;padding-right:26px}
 .toc .theme-switch,.toc .toc-dd{flex:0 0 auto}

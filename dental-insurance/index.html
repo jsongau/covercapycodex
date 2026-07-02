@@ -155,12 +155,12 @@
 }
 </script>
 
-<link rel="stylesheet" href="/assets/css/mega-nav.css">
-<link rel="stylesheet" href="/assets/css/mega-nav-mobile.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2.css">
+<link rel="stylesheet" href="/assets/css/omega-nav2-mobile.css">
 <link rel="stylesheet" href="/assets/css/footer.css">
 <style>
 /* Mount guards: keep layout stable while universal nav/footer load */
-#cc-nav-mount{min-height:72px}
+#cc-nav-mount{min-height:84px}
 #cc-footer-mount{min-height:420px}
 #cc-nav-mount:empty{min-height:0}
 #cc-footer-mount:empty{min-height:0}
@@ -279,9 +279,9 @@ td a{font-weight:600}
 .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
 
 /* ===== sticky compact TOC (sub-nav console, verbatim from compare hub) ===== */
-.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:60;margin-top:0;background:#fff;border-bottom:1px solid var(--line);transition:background .45s ease}
+.toc{position:sticky;top:var(--cc-nav-h,68px);z-index:9990;margin-top:0;background:#fff;border-bottom:1px solid var(--line);transition:background .45s ease}
 section[id]{scroll-margin-top:132px}
-@media(max-width:1080px){.toc{top:72px}section[id]{scroll-margin-top:120px}}
+@media(max-width:1080px){.toc{top:var(--cc-nav-h,72px)}section[id]{scroll-margin-top:120px}}
 .toc-prog{height:2px;background:var(--green);width:0;transition:width .1s linear}
 .toc .wrap{display:flex;align-items:center;gap:2px;height:var(--toch);flex-wrap:nowrap;max-width:none;margin:0;padding-left:26px;padding-right:26px}
 .toc .theme-switch,.toc .toc-dd{flex:0 0 auto}
@@ -328,10 +328,10 @@ section[id]{scroll-margin-top:132px}
 @media(max-width:900px){.dd-fly-panel{position:static;left:auto;top:auto;box-shadow:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:4px 0 4px 16px;opacity:1;transform:none;pointer-events:auto;min-width:0}}
 
 /* ===== breadcrumb (verbatim from compare hub) ===== */
-.crumb{background:#fff;border-bottom:0;font-size:12.5px;color:var(--muted)}
+.crumb{background:transparent;border-bottom:0;font-size:13px;color:var(--muted)}
 .crumb .wrap{padding-top:11px;padding-bottom:11px}
-.crumb a{color:var(--muted);text-decoration:none}
-.crumb a:hover{color:var(--green-d)}
+.crumb a{color:var(--green-d);text-decoration:underline;text-decoration-color:rgba(10,126,125,.35);text-underline-offset:3px;padding:2px 1px;border-radius:3px}
+.crumb a:hover{color:var(--ink);text-decoration-color:currentColor}
 .crumb span{color:var(--ink);font-weight:600}
 
 /* ===== T5 Gold/Jade toggle pill ===== */
@@ -643,7 +643,7 @@ body,.toc,.card,.pcard,.btn,.di-link-card,.di-best-card{transition:background-co
   </div>
 </div>
 
-<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">Home</a> / <span>Dental insurance</span></div></div>
+<div class="crumb"><div class="wrap"><a href="https://www.covercapy.com/">CoverCapy</a> / <span>Dental insurance</span></div></div>
 
 <!-- HERO -->
 <section class="di-hero">
@@ -1306,7 +1306,7 @@ body,.toc,.card,.pcard,.btn,.di-link-card,.di-best-card{transition:background-co
 <script>
 (function(){
   var components=[
-    {mountId:'cc-nav-mount',    html:'/components/mega-nav.html',  script:'/assets/js/mega-nav.js'},
+    {mountId:'cc-nav-mount',    html:'/components/omega-nav2.html',  script:'/assets/js/omega-nav2.js'},
     {mountId:'cc-footer-mount', html:'/components/footer.html',    script:'/assets/js/footer.js'}
   ];
   var loadScript=function(src){return new Promise(function(resolve){

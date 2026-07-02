@@ -80,7 +80,7 @@
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Home",
+            "name": "CoverCapy",
             "item": "https://www.covercapy.com/"
           },
           {
@@ -276,23 +276,15 @@
       .dentist-card { grid-template-columns: 1fr; }
     }
   </style>
+<style>#cc-nav-mount{min-height:84px}#cc-nav-mount:empty{min-height:0}</style>
 </head>
 <body>
+<div id="cc-nav-mount"></div>
 
 <!-- ═══════════════════════════════════════════════
      READING PROGRESS BAR
 ════════════════════════════════════════════════ -->
 <div id="progress" role="presentation" aria-hidden="true"></div>
-
-<!-- ═══════════════════════════════════════════════
-     NAV (injected by load-nav.js)
-════════════════════════════════════════════════ -->
-<div id="nav-mount">
-  <nav class="nav-stub" aria-label="Site navigation">
-    <a href="/">CoverCapy</a>
-  </nav>
-</div>
-<script src="/assets/js/load-nav.js" defer></script>
 
 <!-- ═══════════════════════════════════════════════
      JUMP BAR
@@ -319,7 +311,7 @@
 
     <!-- Breadcrumb -->
     <nav class="crumb" aria-label="Breadcrumb">
-      <a href="/">Home</a>
+      <a href="/">CoverCapy</a>
       <span aria-hidden="true"> / </span>
       <a href="/ppo-dentists/california/">California</a>
       <span aria-hidden="true"> / </span>
@@ -1179,5 +1171,43 @@
 
 <script src="/assets/js/footer.js" defer></script>
 
+<script>
+(function(){
+  var components=[
+    {mountId:'cc-nav-mount', html:'/components/omega-nav2.html', script:'/assets/js/omega-nav2.js'}
+  ];
+  var loadScript=function(src){return new Promise(function(resolve){
+    if(!src||document.querySelector('script[src="'+src+'"]'))return resolve();
+    var s=document.createElement('script');s.src=src;s.defer=true;s.onload=function(){resolve()};s.onerror=function(){resolve()};
+    document.body.appendChild(s);
+  });};
+  var replayScripts=function(scripts){scripts.forEach(function(old){
+    if(!old.parentNode)return;
+    var fresh=document.createElement('script');
+    for(var i=0;i<old.attributes.length;i++)fresh.setAttribute(old.attributes[i].name,old.attributes[i].value);
+    fresh.textContent=old.textContent;
+    old.parentNode.replaceChild(fresh,old);
+  });};
+  var injectComponent=async function(c){
+    var mount=document.getElementById(c.mountId);if(!mount)return;
+    try{
+      var res=await fetch(c.html,{cache:'no-cache'});
+      if(!res.ok)throw new Error(c.html+' '+res.status);
+      var wrapper=document.createElement('div');wrapper.innerHTML=await res.text();
+      var injected=Array.from(wrapper.querySelectorAll('script'));
+      var parent=mount.parentNode;
+      while(wrapper.firstChild)parent.insertBefore(wrapper.firstChild,mount);
+      parent.removeChild(mount);
+      replayScripts(injected);
+    }catch(e){console.warn('[CoverCapy loader]',c.html,e);}
+  };
+  var init=async function(){
+    for(var i=0;i<components.length;i++)await injectComponent(components[i]);
+    for(var i=0;i<components.length;i++)await loadScript(components[i].script);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+</script>
 </body>
 </html>

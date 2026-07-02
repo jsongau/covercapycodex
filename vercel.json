@@ -22,6 +22,26 @@
   ],
   "redirects": [
     {
+      "source": "/benefit-maxing/guides/",
+      "destination": "/benefit-maxing",
+      "permanent": false
+    },
+    {
+      "source": "/benefit-maxing/guides",
+      "destination": "/benefit-maxing",
+      "permanent": false
+    },
+    {
+      "source": "/guides/",
+      "destination": "/guides/glossary",
+      "permanent": false
+    },
+    {
+      "source": "/guides",
+      "destination": "/guides/glossary",
+      "permanent": false
+    },
+    {
       "source": "/ppo-plans.html",
       "destination": "/compare-ppo-dental-plans",
       "permanent": true
