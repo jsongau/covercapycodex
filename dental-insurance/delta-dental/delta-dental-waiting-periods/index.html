@@ -100,6 +100,26 @@
    .dcn.dcn-mopen .dcn-cta{display:inline-flex;margin:12px 0 2px;width:100%;justify-content:center}
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
+
+ /* micro-tool (retention widget) */
+ .mt{border:1px solid var(--jade);background:linear-gradient(135deg,var(--jade-tint),#fff);border-radius:16px;padding:20px 22px;margin:6px 0 4px}
+ .mt-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--jade-deep);margin-bottom:8px}
+ .mt-q{font-family:var(--serif);font-size:17px;margin-bottom:12px}
+ .mt-opts{display:flex;flex-wrap:wrap;gap:9px}
+ .mt-opt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--line-strong);border-radius:999px;padding:9px 15px;cursor:pointer}
+ .mt-opt:hover{border-color:var(--jade)}
+ .mt-opt[aria-pressed="true"]{border-color:var(--jade);background:var(--jade);color:var(--jade-ink)}
+ .mt-opt:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+ .mt-in{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+ .mt-in .pre{font-size:15px;color:var(--muted)}
+ .mt-in input{font-family:var(--sans);font-size:15px;padding:10px 13px;border:1.5px solid var(--line-strong);border-radius:11px;width:140px}
+ .mt-in input:focus{outline:2px solid var(--jade);outline-offset:1px;border-color:var(--jade)}
+ .mt-go{font-family:var(--sans);font-weight:600;font-size:14px;background:var(--graphite);color:#fff;border:0;border-radius:11px;padding:11px 18px;cursor:pointer}
+ .mt-res{margin-top:14px;font-size:15px;line-height:1.55;display:none}
+ .mt-res.on{display:block}
+ .mt-res b{color:var(--jade-deep)}
+ .mt-cta{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--jade-deep);text-decoration:none}
+ @media(prefers-reduced-motion:reduce){.mt-opt{transition:none}}
 </style>
 </head><body>
 
@@ -165,6 +185,11 @@
     <div class="statline">On a Delta Dental PPO plan, major work and implants usually carry a 12-month waiting period, but it can be waived with proof of prior comparable coverage.
       <small>Source: Delta Dental PPO plan documents, verified 2026.</small>
     </div>
+  </section>
+
+  <!-- MICRO-TOOL -->
+  <section class="block" id="mt-sec" style="border-top:none;padding-top:6px">
+    <div class="mt"><div class="mt-lab">Your wait</div><div class="mt-q">What kind of work do you need?</div><div class="mt-opts" id="mtWp"><button type="button" class="mt-opt" data-v="prev" aria-pressed="false">Cleaning or exam</button><button type="button" class="mt-opt" data-v="basic" aria-pressed="false">Filling</button><button type="button" class="mt-opt" data-v="major" aria-pressed="false">Crown, implant or braces</button></div><div class="mt-res" id="mtWpRes" aria-live="polite"></div></div>
   </section>
 
   <section class="block">
@@ -237,6 +262,7 @@
   </section>
 </div>
 
+<script>(function(){var box=document.getElementById("mtWp"),r=document.getElementById("mtWpRes");if(!box)return;var M={prev:"Preventive care is <b>covered from day one</b> on a Delta PPO plan, no waiting period.",basic:"Basic work like fillings usually has <b>about a 6-month wait</b> on an individual PPO plan.",major:"Major work, implants and braces usually have <b>about a 12-month wait</b> on an individual PPO plan, but it is <b>waivable</b> if you had comparable coverage with a gap under 63 days. A DeltaCare USA HMO or an employer group plan has no wait at all."};box.addEventListener("click",function(e){var b=e.target.closest(".mt-opt");if(!b)return;box.querySelectorAll(".mt-opt").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});r.innerHTML=M[b.getAttribute("data-v")]+" <a class=\"mt-cta\" href=\"/dental-insurance/delta-dental/deltacare-hmo-vs-ppo/\">See a plan with no wait</a>";r.classList.add("on");try{if(window.gtag)gtag("event","mt_wait",{v:b.getAttribute("data-v")});}catch(e2){}});})();</script>
 <div id="cc-footer-mount"></div>
 
 <script>

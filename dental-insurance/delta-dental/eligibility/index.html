@@ -108,6 +108,17 @@
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
 
+ .statline{background:var(--jade-ink);color:#fff;border-radius:16px;padding:20px 24px;margin-top:18px;font-family:var(--serif);font-size:19px;line-height:1.4}
+ .statline small{display:block;font-family:var(--sans);font-size:12px;color:rgba(255,255,255,.72);margin-top:10px;font-weight:400}
+ .idfilter{margin:16px 0 10px}
+ .idfilter input{width:100%;max-width:440px;font-family:var(--sans);font-size:15px;padding:11px 14px;border:1.5px solid var(--line-strong);border-radius:11px}
+ .idfilter input:focus{outline:2px solid var(--jade);outline-offset:1px;border-color:var(--jade)}
+ .idtable-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+ table.idtable{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
+ table.idtable th,table.idtable td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line)}
+ table.idtable thead th{background:var(--graphite);color:#fff;font-weight:600;font-size:12px}
+ table.idtable td.pid{font-family:var(--serif);color:var(--jade-deep);font-weight:500;white-space:nowrap}
+ table.idtable tbody tr:hover{background:var(--jade-tint)}
 </style>
 </head><body>
 
@@ -195,6 +206,72 @@
       </div>
       <div class="result" id="result"></div>
     </div>
+  </section>
+
+  <!-- FULL PAYER-ID REFERENCE (server-rendered HTML, filterable) -->
+  <section class="block" id="payer-table">
+    <div class="sec-head"><span class="eyebrow">Full reference</span><h2>Every Delta company and payer ID by state</h2><p>All 50 states and DC, with the Delta company, electronic claims payer ID, provider tool and member phone for each. From Delta's member company contact sheet (DF03 rev 10/24); verify against the current ID card before filing.</p></div>
+    <div class="statline">Delta Dental has no single payer ID. Delta Dental Insurance Company uses 94276 as a common fallback, but each member company has its own, for example 77777 in California and 05030 in Illinois.
+      <small>Source: Delta Dental member company contact sheet (DF03 rev 10/24).</small>
+    </div>
+    <div class="idfilter"><input type="search" id="idFilter" placeholder="Filter by state, company or payer ID" aria-label="Filter the payer ID table"></div>
+    <div class="idtable-wrap">
+    <table class="idtable"><thead><tr><th>State</th><th>Delta company</th><th>Payer ID</th><th>Provider tool</th><th>Member phone</th></tr></thead>
+    <tbody id="idtbody">
+      <tr class="idrow" data-k="alabama delta dental insurance company 94276"><td>Alabama</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="alaska delta dental of alaska (claims via oregon) cdor1"><td>Alaska</td><td>Delta Dental of Alaska (claims via Oregon)</td><td class="pid">CDOR1</td><td>Delta Dental of Oregon portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="arizona delta dental of arizona 86027"><td>Arizona</td><td>Delta Dental of Arizona</td><td class="pid">86027</td><td>Delta Dental of Arizona portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="arkansas delta dental of arkansas cdar1"><td>Arkansas</td><td>Delta Dental of Arkansas</td><td class="pid">CDAR1</td><td>Delta Dental of Arkansas portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="california delta dental of california 77777"><td>California</td><td>Delta Dental of California</td><td class="pid">77777</td><td>Provider Tools</td><td>800-422-4234</td></tr>
+      <tr class="idrow" data-k="colorado delta dental of colorado 84056"><td>Colorado</td><td>Delta Dental of Colorado</td><td class="pid">84056</td><td>Delta Dental of Colorado portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="connecticut delta dental of new jersey 22189"><td>Connecticut</td><td>Delta Dental of New Jersey</td><td class="pid">22189</td><td>Delta Dental of New Jersey portal</td><td>800-452-9310</td></tr>
+      <tr class="idrow" data-k="delaware delta dental of delaware (claims via pennsylvania) 51022"><td>Delaware</td><td>Delta Dental of Delaware (claims via Pennsylvania)</td><td class="pid">51022</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="district of columbia delta dental of the district of columbia (claims via pennsylvania) 52147"><td>District of Columbia</td><td>Delta Dental of the District of Columbia (claims via Pennsylvania)</td><td class="pid">52147</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="florida delta dental insurance company 94276"><td>Florida</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="georgia delta dental insurance company 94276"><td>Georgia</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="hawaii hawaii dental service 99010"><td>Hawaii</td><td>Hawaii Dental Service</td><td class="pid">99010</td><td>Hawaii Dental Service portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="idaho delta dental of idaho 82029"><td>Idaho</td><td>Delta Dental of Idaho</td><td class="pid">82029</td><td>Delta Dental of Idaho portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="illinois delta dental of illinois 05030"><td>Illinois</td><td>Delta Dental of Illinois</td><td class="pid">05030</td><td>Delta Dental of Illinois Dentist Connection</td><td>800-323-1743</td></tr>
+      <tr class="idrow" data-k="indiana delta dental of indiana (claims via michigan) ddpin"><td>Indiana</td><td>Delta Dental of Indiana (claims via Michigan)</td><td class="pid">DDPIN</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="iowa delta dental of iowa cdia1"><td>Iowa</td><td>Delta Dental of Iowa</td><td class="pid">CDIA1</td><td>Delta Dental of Iowa portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="kansas delta dental of kansas e3960"><td>Kansas</td><td>Delta Dental of Kansas</td><td class="pid">E3960</td><td>Delta Dental of Kansas portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="kentucky delta dental of kentucky cdky1"><td>Kentucky</td><td>Delta Dental of Kentucky</td><td class="pid">CDKY1</td><td>Delta Dental of Kentucky portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="louisiana delta dental insurance company 94276"><td>Louisiana</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="maine northeast delta dental 02027"><td>Maine</td><td>Northeast Delta Dental</td><td class="pid">02027</td><td>Northeast Delta Dental portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="maryland delta dental of pennsylvania 23166"><td>Maryland</td><td>Delta Dental of Pennsylvania</td><td class="pid">23166</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="massachusetts delta dental of massachusetts 04614"><td>Massachusetts</td><td>Delta Dental of Massachusetts</td><td class="pid">04614</td><td>Delta Dental of Massachusetts portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="michigan delta dental of michigan ddpmi"><td>Michigan</td><td>Delta Dental of Michigan</td><td class="pid">DDPMI</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="minnesota delta dental of minnesota 07000"><td>Minnesota</td><td>Delta Dental of Minnesota</td><td class="pid">07000</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="mississippi delta dental insurance company 94276"><td>Mississippi</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="missouri delta dental of missouri 43090"><td>Missouri</td><td>Delta Dental of Missouri</td><td class="pid">43090</td><td>Delta Dental of Missouri portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="montana delta dental insurance company 94276"><td>Montana</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="nebraska delta dental of nebraska (claims via minnesota) 07025"><td>Nebraska</td><td>Delta Dental of Nebraska (claims via Minnesota)</td><td class="pid">07025</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="nevada delta dental insurance company 94276"><td>Nevada</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="new hampshire northeast delta dental 02027"><td>New Hampshire</td><td>Northeast Delta Dental</td><td class="pid">02027</td><td>Northeast Delta Dental portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="new jersey delta dental of new jersey 22189"><td>New Jersey</td><td>Delta Dental of New Jersey</td><td class="pid">22189</td><td>Delta Dental of New Jersey portal</td><td>800-452-9310</td></tr>
+      <tr class="idrow" data-k="new mexico delta dental of new mexico 85022"><td>New Mexico</td><td>Delta Dental of New Mexico</td><td class="pid">85022</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="new york delta dental of new york (claims via pennsylvania) 11198"><td>New York</td><td>Delta Dental of New York (claims via Pennsylvania)</td><td class="pid">11198</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="north carolina delta dental of north carolina (claims via michigan) 56101"><td>North Carolina</td><td>Delta Dental of North Carolina (claims via Michigan)</td><td class="pid">56101</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="north dakota delta dental of minnesota 07000"><td>North Dakota</td><td>Delta Dental of Minnesota</td><td class="pid">07000</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="ohio delta dental of ohio (claims via michigan) ddpoh"><td>Ohio</td><td>Delta Dental of Ohio (claims via Michigan)</td><td class="pid">DDPOH</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="oklahoma delta dental of oklahoma 22229 or cdok1"><td>Oklahoma</td><td>Delta Dental of Oklahoma</td><td class="pid">22229 or CDOK1</td><td>Delta Dental of Oklahoma portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="oregon delta dental of oregon cdor1"><td>Oregon</td><td>Delta Dental of Oregon</td><td class="pid">CDOR1</td><td>Delta Dental of Oregon portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="pennsylvania delta dental of pennsylvania 23166"><td>Pennsylvania</td><td>Delta Dental of Pennsylvania</td><td class="pid">23166</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="rhode island delta dental of rhode island 05029"><td>Rhode Island</td><td>Delta Dental of Rhode Island</td><td class="pid">05029</td><td>Delta Dental of Rhode Island portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="south carolina delta dental of south carolina (claims via missouri) 43091"><td>South Carolina</td><td>Delta Dental of South Carolina (claims via Missouri)</td><td class="pid">43091</td><td>Delta Dental of South Carolina portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="south dakota delta dental of south dakota 54097"><td>South Dakota</td><td>Delta Dental of South Dakota</td><td class="pid">54097</td><td>Delta Dental of South Dakota portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="tennessee delta dental of tennessee cdtn1"><td>Tennessee</td><td>Delta Dental of Tennessee</td><td class="pid">CDTN1</td><td>Dental Office Toolkit</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="texas delta dental insurance company 94276"><td>Texas</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="utah delta dental insurance company 94276"><td>Utah</td><td>Delta Dental Insurance Company</td><td class="pid">94276</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="vermont northeast delta dental 02027"><td>Vermont</td><td>Northeast Delta Dental</td><td class="pid">02027</td><td>Northeast Delta Dental portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="virginia delta dental of virginia 54084"><td>Virginia</td><td>Delta Dental of Virginia</td><td class="pid">54084</td><td>Delta Dental of Virginia portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="washington delta dental of washington 91062"><td>Washington</td><td>Delta Dental of Washington</td><td class="pid">91062</td><td>Delta Dental of Washington portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="west virginia delta dental of west virginia (claims via pennsylvania) 31096"><td>West Virginia</td><td>Delta Dental of West Virginia (claims via Pennsylvania)</td><td class="pid">31096</td><td>Provider Tools</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="wisconsin delta dental of wisconsin 39069"><td>Wisconsin</td><td>Delta Dental of Wisconsin</td><td class="pid">39069</td><td>Delta Dental of Wisconsin portal</td><td>On your ID card</td></tr>
+      <tr class="idrow" data-k="wyoming delta dental of wyoming 07027"><td>Wyoming</td><td>Delta Dental of Wyoming</td><td class="pid">07027</td><td>Delta Dental of Wyoming portal</td><td>On your ID card</td></tr>
+    </tbody></table>
+    </div>
+    <p class="disc" id="idNoMatch" style="display:none">No state or company matches that filter.</p>
   </section>
 
   <!-- HOW TO CHECK -->
@@ -324,6 +401,19 @@ document.addEventListener('DOMContentLoaded',function(){
  Object.keys(NAMES).sort(function(a,b){return NAMES[a]<NAMES[b]?-1:1;}).forEach(function(k){opts+='<option value="'+k+'">'+NAMES[k]+'</option>';});
  sel.innerHTML=opts;sel.value='CA';pick('CA');
 });
+</script>
+<!-- Payer-ID table filter (vanilla, progressive enhancement) -->
+<script>
+(function(){
+  var inp=document.getElementById('idFilter'); if(!inp)return;
+  var rows=Array.prototype.slice.call(document.querySelectorAll('#idtbody .idrow'));
+  var none=document.getElementById('idNoMatch');
+  inp.addEventListener('input',function(){
+    var q=inp.value.trim().toLowerCase(),shown=0;
+    rows.forEach(function(r){var m=q===''||r.getAttribute('data-k').indexOf(q)>-1;r.style.display=m?'':'none';if(m)shown++;});
+    if(none)none.style.display=shown?'none':'';
+  });
+})();
 </script>
 <!-- Delta cluster nav behaviour (self-contained, prefix dcn) -->
 <script>

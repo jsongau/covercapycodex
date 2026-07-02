@@ -100,6 +100,26 @@
    .dcn.dcn-mopen .dcn-cta{display:inline-flex;margin:12px 0 2px;width:100%;justify-content:center}
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
+
+ /* micro-tool (retention widget) */
+ .mt{border:1px solid var(--jade);background:linear-gradient(135deg,var(--jade-tint),#fff);border-radius:16px;padding:20px 22px;margin:6px 0 4px}
+ .mt-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--jade-deep);margin-bottom:8px}
+ .mt-q{font-family:var(--serif);font-size:17px;margin-bottom:12px}
+ .mt-opts{display:flex;flex-wrap:wrap;gap:9px}
+ .mt-opt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--line-strong);border-radius:999px;padding:9px 15px;cursor:pointer}
+ .mt-opt:hover{border-color:var(--jade)}
+ .mt-opt[aria-pressed="true"]{border-color:var(--jade);background:var(--jade);color:var(--jade-ink)}
+ .mt-opt:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+ .mt-in{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+ .mt-in .pre{font-size:15px;color:var(--muted)}
+ .mt-in input{font-family:var(--sans);font-size:15px;padding:10px 13px;border:1.5px solid var(--line-strong);border-radius:11px;width:140px}
+ .mt-in input:focus{outline:2px solid var(--jade);outline-offset:1px;border-color:var(--jade)}
+ .mt-go{font-family:var(--sans);font-weight:600;font-size:14px;background:var(--graphite);color:#fff;border:0;border-radius:11px;padding:11px 18px;cursor:pointer}
+ .mt-res{margin-top:14px;font-size:15px;line-height:1.55;display:none}
+ .mt-res.on{display:block}
+ .mt-res b{color:var(--jade-deep)}
+ .mt-cta{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--jade-deep);text-decoration:none}
+ @media(prefers-reduced-motion:reduce){.mt-opt{transition:none}}
 </style>
 </head><body>
 
@@ -165,6 +185,11 @@
     <div class="statline">Delta Dental group plans have no waiting periods at any group size, and Delta runs the largest dentist network in the country.
       <small>Source: Delta Dental Small Business Program, verified 2026.</small>
     </div>
+  </section>
+
+  <!-- MICRO-TOOL -->
+  <section class="block" id="mt-sec" style="border-top:none;padding-top:6px">
+    <div class="mt"><div class="mt-lab">For your team</div><div class="mt-q">Most dental offices already take Delta.</div><div style="font-size:15px;color:var(--muted);line-height:1.55">So a team spread across ZIP codes likely stays in network, with no waiting periods on group plans. Estimate cost per head and compare PPO, PPO Plus Premier and DeltaCare options.</div><a class="mt-cta" href="/dental-insurance/delta-dental/for-employers/">See how Delta employer plans work</a></div>
   </section>
 
   <section class="block">
@@ -234,6 +259,7 @@
       DeltaCare USA HMO plan · <a href="https://www1.deltadentalins.com/individuals-and-families/plans/deltacare-usa.html" target="_blank" rel="nofollow noopener">deltadentalins.com</a></p>
   </section>
 </div>
+
 
 <div id="cc-footer-mount"></div>
 

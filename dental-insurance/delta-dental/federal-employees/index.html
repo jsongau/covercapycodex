@@ -100,6 +100,26 @@
    .dcn.dcn-mopen .dcn-cta{display:inline-flex;margin:12px 0 2px;width:100%;justify-content:center}
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
+
+ /* micro-tool (retention widget) */
+ .mt{border:1px solid var(--jade);background:linear-gradient(135deg,var(--jade-tint),#fff);border-radius:16px;padding:20px 22px;margin:6px 0 4px}
+ .mt-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--jade-deep);margin-bottom:8px}
+ .mt-q{font-family:var(--serif);font-size:17px;margin-bottom:12px}
+ .mt-opts{display:flex;flex-wrap:wrap;gap:9px}
+ .mt-opt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--line-strong);border-radius:999px;padding:9px 15px;cursor:pointer}
+ .mt-opt:hover{border-color:var(--jade)}
+ .mt-opt[aria-pressed="true"]{border-color:var(--jade);background:var(--jade);color:var(--jade-ink)}
+ .mt-opt:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+ .mt-in{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+ .mt-in .pre{font-size:15px;color:var(--muted)}
+ .mt-in input{font-family:var(--sans);font-size:15px;padding:10px 13px;border:1.5px solid var(--line-strong);border-radius:11px;width:140px}
+ .mt-in input:focus{outline:2px solid var(--jade);outline-offset:1px;border-color:var(--jade)}
+ .mt-go{font-family:var(--sans);font-weight:600;font-size:14px;background:var(--graphite);color:#fff;border:0;border-radius:11px;padding:11px 18px;cursor:pointer}
+ .mt-res{margin-top:14px;font-size:15px;line-height:1.55;display:none}
+ .mt-res.on{display:block}
+ .mt-res b{color:var(--jade-deep)}
+ .mt-cta{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--jade-deep);text-decoration:none}
+ @media(prefers-reduced-motion:reduce){.mt-opt{transition:none}}
 </style>
 </head><body>
 
@@ -165,6 +185,11 @@
     <div class="statline">The Delta Dental FEDVIP High Plan has an unlimited in-network annual maximum, a benefit almost no private individual plan offers.
       <small>Source: Delta Dental FEDVIP plan details, verified July 2026.</small>
     </div>
+  </section>
+
+  <!-- MICRO-TOOL -->
+  <section class="block" id="mt-sec" style="border-top:none;padding-top:6px">
+    <div class="mt"><div class="mt-lab">Standard or High?</div><div class="mt-q">Do you expect major work, implants, or adult braces?</div><div class="mt-opts" id="mtFe"><button type="button" class="mt-opt" data-v="yes" aria-pressed="false">Yes</button><button type="button" class="mt-opt" data-v="no" aria-pressed="false">No, mostly routine care</button></div><div class="mt-res" id="mtFeRes" aria-live="polite"></div></div>
   </section>
 
   <section class="block">
@@ -241,6 +266,7 @@
   </section>
 </div>
 
+<script>(function(){var box=document.getElementById("mtFe"),r=document.getElementById("mtFeRes");if(!box)return;var M={yes:"The <b>High plan</b> fits: it pays major work at 50%, adds adult orthodontics, and carries an <b>unlimited in-network annual maximum</b>, so a big year is covered.",no:"The <b>Standard plan</b> may be enough and costs less: 100% preventive in network with a $1,500 annual maximum. You can move up to High at the next Open Season if your needs change."};box.addEventListener("click",function(e){var b=e.target.closest(".mt-opt");if(!b)return;box.querySelectorAll(".mt-opt").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});r.innerHTML=M[b.getAttribute("data-v")]+" <a class=\"mt-cta\" href=\"/dental-insurance/delta-dental/find-a-dentist/\">Find a Delta dentist for your plan</a>";r.classList.add("on");try{if(window.gtag)gtag("event","mt_fedvip",{v:b.getAttribute("data-v")});}catch(e2){}});})();</script>
 <div id="cc-footer-mount"></div>
 
 <script>

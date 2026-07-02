@@ -100,6 +100,26 @@
    .dcn.dcn-mopen .dcn-cta{display:inline-flex;margin:12px 0 2px;width:100%;justify-content:center}
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
+
+ /* micro-tool (retention widget) */
+ .mt{border:1px solid var(--jade);background:linear-gradient(135deg,var(--jade-tint),#fff);border-radius:16px;padding:20px 22px;margin:6px 0 4px}
+ .mt-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--jade-deep);margin-bottom:8px}
+ .mt-q{font-family:var(--serif);font-size:17px;margin-bottom:12px}
+ .mt-opts{display:flex;flex-wrap:wrap;gap:9px}
+ .mt-opt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--line-strong);border-radius:999px;padding:9px 15px;cursor:pointer}
+ .mt-opt:hover{border-color:var(--jade)}
+ .mt-opt[aria-pressed="true"]{border-color:var(--jade);background:var(--jade);color:var(--jade-ink)}
+ .mt-opt:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+ .mt-in{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+ .mt-in .pre{font-size:15px;color:var(--muted)}
+ .mt-in input{font-family:var(--sans);font-size:15px;padding:10px 13px;border:1.5px solid var(--line-strong);border-radius:11px;width:140px}
+ .mt-in input:focus{outline:2px solid var(--jade);outline-offset:1px;border-color:var(--jade)}
+ .mt-go{font-family:var(--sans);font-weight:600;font-size:14px;background:var(--graphite);color:#fff;border:0;border-radius:11px;padding:11px 18px;cursor:pointer}
+ .mt-res{margin-top:14px;font-size:15px;line-height:1.55;display:none}
+ .mt-res.on{display:block}
+ .mt-res b{color:var(--jade-deep)}
+ .mt-cta{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--jade-deep);text-decoration:none}
+ @media(prefers-reduced-motion:reduce){.mt-opt{transition:none}}
 </style>
 </head><body>
 
@@ -165,6 +185,11 @@
     <div class="statline">The individual Delta Dental PPO Premium plan pays up to a $2,000 annual maximum per person, resetting every January 1. The DeltaCare USA HMO has no annual maximum.
       <small>Source: Delta Dental plan documents, verified 2026.</small>
     </div>
+  </section>
+
+  <!-- MICRO-TOOL -->
+  <section class="block" id="mt-sec" style="border-top:none;padding-top:6px">
+    <div class="mt"><div class="mt-lab">See where the cap hits</div><div class="mt-q">How much major work (crowns, implants) do you expect this year?</div><div class="mt-in"><span class="pre">$</span><input type="number" id="mtMax" inputmode="numeric" placeholder="4000" aria-label="Expected major work in dollars"><button type="button" class="mt-go" id="mtMaxGo">See what the plan covers</button></div><div class="mt-res" id="mtMaxRes" aria-live="polite"></div></div>
   </section>
 
   <section class="block">
@@ -236,6 +261,7 @@
   </section>
 </div>
 
+<script>(function(){var b=document.getElementById("mtMaxGo"),i=document.getElementById("mtMax"),r=document.getElementById("mtMaxRes");if(!b)return;function go(){var q=parseFloat(i.value)||0;if(q<=0){r.classList.remove("on");return;}var p=Math.min(q*0.5,2000),y=q-p,hit=q*0.5>=2000;r.innerHTML="On $"+q.toLocaleString()+" of major work at 50%, a Premium plan pays about <b>$"+Math.round(p).toLocaleString()+"</b> and you pay about <b>$"+Math.round(y).toLocaleString()+"</b>."+(hit?" You have reached the <b>$2,000 annual maximum</b>, so the plan pays nothing more this year.":" You reach the $2,000 maximum at about $4,000 of major work in a year.")+" A new plan year on January 1 gives a fresh maximum, so splitting big treatment across the year can help. <a class=\"mt-cta\" href=\"/dental-insurance/delta-dental/enrollment-timing/\">How to time it</a>";r.classList.add("on");try{if(window.gtag)gtag("event","mt_max_calc");}catch(e){}}b.addEventListener("click",go);i.addEventListener("keydown",function(e){if(e.key==="Enter")go();});})();</script>
 <div id="cc-footer-mount"></div>
 
 <script>

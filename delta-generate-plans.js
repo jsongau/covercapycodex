@@ -987,7 +987,14 @@ const DELTA_CORE_URLS = [
   '/dental-insurance/delta-dental/find-a-dentist/',
   '/dental-insurance/delta-dental/uc-students/',
   '/dental-insurance/delta-dental/for-employers/',
-  '/dental-insurance/delta-dental/for-dentists/'
+  '/dental-insurance/delta-dental/for-dentists/',
+  '/dental-insurance/delta-dental/does-delta-dental-cover-implants/',
+  '/dental-insurance/delta-dental/delta-dental-waiting-periods/',
+  '/dental-insurance/delta-dental/delta-dental-annual-maximum/',
+  '/dental-insurance/delta-dental/how-to-check-delta-dental-coverage/',
+  '/dental-insurance/delta-dental/enrollment-timing/',
+  '/dental-insurance/delta-dental/federal-employees/',
+  '/dental-insurance/delta-dental/small-business/'
 ];
 async function pingIndexNow() {
   if (typeof fetch !== 'function') { console.warn('[indexnow] no global fetch, skipping'); return; }

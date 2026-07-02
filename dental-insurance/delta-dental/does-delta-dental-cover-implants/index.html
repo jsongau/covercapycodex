@@ -101,6 +101,26 @@
    .dcn.dcn-mopen .dcn-cta{display:inline-flex;margin:12px 0 2px;width:100%;justify-content:center}
  }
  @media(prefers-reduced-motion:reduce){.dcn-caret{transition:none}}
+
+ /* micro-tool (retention widget) */
+ .mt{border:1px solid var(--jade);background:linear-gradient(135deg,var(--jade-tint),#fff);border-radius:16px;padding:20px 22px;margin:6px 0 4px}
+ .mt-lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--jade-deep);margin-bottom:8px}
+ .mt-q{font-family:var(--serif);font-size:17px;margin-bottom:12px}
+ .mt-opts{display:flex;flex-wrap:wrap;gap:9px}
+ .mt-opt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--line-strong);border-radius:999px;padding:9px 15px;cursor:pointer}
+ .mt-opt:hover{border-color:var(--jade)}
+ .mt-opt[aria-pressed="true"]{border-color:var(--jade);background:var(--jade);color:var(--jade-ink)}
+ .mt-opt:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+ .mt-in{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+ .mt-in .pre{font-size:15px;color:var(--muted)}
+ .mt-in input{font-family:var(--sans);font-size:15px;padding:10px 13px;border:1.5px solid var(--line-strong);border-radius:11px;width:140px}
+ .mt-in input:focus{outline:2px solid var(--jade);outline-offset:1px;border-color:var(--jade)}
+ .mt-go{font-family:var(--sans);font-weight:600;font-size:14px;background:var(--graphite);color:#fff;border:0;border-radius:11px;padding:11px 18px;cursor:pointer}
+ .mt-res{margin-top:14px;font-size:15px;line-height:1.55;display:none}
+ .mt-res.on{display:block}
+ .mt-res b{color:var(--jade-deep)}
+ .mt-cta{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--jade-deep);text-decoration:none}
+ @media(prefers-reduced-motion:reduce){.mt-opt{transition:none}}
 </style>
 </head><body>
 
@@ -166,6 +186,11 @@
     <div class="statline">Delta Dental PPO covers implants at 50% after a 12-month wait, up to the plan's annual maximum, which is $2,000 on the individual Premium tier.
       <small>Source: Delta Dental PPO Premium plan documents, verified 2026.</small>
     </div>
+  </section>
+
+  <!-- MICRO-TOOL -->
+  <section class="block" id="mt-sec" style="border-top:none;padding-top:6px">
+    <div class="mt"><div class="mt-lab">Estimate your cost</div><div class="mt-q">What is your dentist's quote for the implant?</div><div class="mt-in"><span class="pre">$</span><input type="number" id="mtImp" inputmode="numeric" placeholder="4500" aria-label="Implant quote in dollars"><button type="button" class="mt-go" id="mtImpGo">See what Delta pays</button></div><div class="mt-res" id="mtImpRes" aria-live="polite"></div></div>
   </section>
 
   <section class="block">
@@ -249,6 +274,7 @@
   </section>
 </div>
 
+<script>(function(){var b=document.getElementById("mtImpGo"),i=document.getElementById("mtImp"),r=document.getElementById("mtImpRes");if(!b)return;function go(){var q=parseFloat(i.value)||0;if(q<=0){r.classList.remove("on");return;}var p=Math.min(q*0.5,2000),y=q-p;r.innerHTML="On a $"+q.toLocaleString()+" implant, a Delta PPO plan at 50% pays about <b>$"+Math.round(p).toLocaleString()+"</b> (up to the $2,000 annual maximum) and you pay about <b>$"+Math.round(y).toLocaleString()+"</b>. Estimate only, before the deductible and any missing-tooth or alternate-benefit reduction; confirm your remaining maximum first. <a class=\"mt-cta\" href=\"/dental-insurance/delta-dental/find-a-dentist/\">Find a Delta dentist to confirm</a>";r.classList.add("on");try{if(window.gtag)gtag("event","mt_implant_calc");}catch(e){}}b.addEventListener("click",go);i.addEventListener("keydown",function(e){if(e.key==="Enter")go();});})();</script>
 <div id="cc-footer-mount"></div>
 
 <script>

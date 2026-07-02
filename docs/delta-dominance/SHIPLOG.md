@@ -240,3 +240,48 @@ Ran a harness over all 20 Delta hand-authored pages (hub plus 19 sub-pages). Eve
 1. `rm -f .git/index.lock` on the Mac before committing.
 2. Vercel Build Command -> `node delta-generate-plans.js`, then delete the shim.
 3. After deploy: verify the IndexNow key file serves, then the Bing Webmaster import (`geo-setup.md`).
+
+---
+
+## 2026-07-02 (cont.) — Phase 3: eligibility payer-ID moat table
+
+### The "Plaid for dental" reference, now crawlable and liftable
+The eligibility page already carried complete, sourced payer-ID data (DF03 rev 10/24) for all 51 states, but it lived only in the JavaScript state-picker, so crawlers and AI engines saw zero rows. Added a server-rendered, filterable HTML table of all 50 states plus DC (Delta company, electronic claims payer ID, provider tool, member phone), generated directly from the existing data so nothing was transcribed by hand. Added a quotable stat callout and a vanilla client-side filter input (progressive enhancement). The state-picker stays for quick single-state lookup.
+- 51 payer-ID rows now in raw HTML, citation bait for "delta dental payer id" and "which delta dental am I".
+- Schema parses; all 5 inline scripts parse; payer IDs verified against source (77777 CA, 05030 IL, DDPMI MI, 94276 fallback, 91062 WA). No review-date bump (data unchanged, only surfaced).
+
+### Files changed
+- `dental-insurance/delta-dental/eligibility/index.html`
+
+### Phase 3 reconciliation (completed 2026-07-02)
+- SCAN SSOT reconciled in `scan-delta-medicare.md`: verified 2026 carrier split. Delta administers SCAN dental in California (especially southern CA) and Washington; DentaQuest in Arizona, Nevada, Texas and some California plans and counties, so California can be either; New Mexico confirm per plan. Sourced to SCAN's 2026 pages. Note: not a clean state split.
+- Compare page: added a server-rendered three-way PPO vs Premier vs DeltaCare table (`#three-products`) that links down to the deltacare-hmo-vs-ppo deep page and the networks page. Schema parses, no em-dash.
+- Premium page: reconciled the "No missing-tooth clause" claim against SSOT. Qualified it as California-specific in the checklist, the answer block and the fine print, and rewrote the FAQ (visible and schema) to explain that non-California Premium renewals from August 2025 carry an initial-placement (missing-tooth) exclusion. Schema parses.
+
+Phase 3 is complete and the whole Delta cluster is reconciled and harness-verified. All eight master-prompt phases are done. What remains is the measurement loop (weekly GSC, monthly citation battery) and title re-iteration once data arrives.
+
+### Files changed (this segment)
+- `data/plans/scan-delta-medicare.md`
+- `dental-insurance/delta-dental/compare/index.html` (three-way table)
+- `dental-insurance/delta-dental/premium/index.html` (missing-tooth reconciliation)
+
+---
+
+## 2026-07-02 (cont.) — Retention: per-page micro-tools
+
+### Turned the read-and-leave pages into do-something pages
+Added a small, genuinely useful interactive tool to each of the seven reference pages (the new pages that had no tool), so a visitor who clicks has a reason to stay and a specific next step. Vanilla inline JS, progressive enhancement (the static answer stays intact for GEO), accessible (aria-pressed, aria-live, keyboard), no popups.
+- implants: implant cost calculator (quote in, plan pays and you pay at 50% up to the $2,000 max), links to find a dentist.
+- annual-maximum: "where the cap hits" calculator (major-work dollars in, plan pays and when you reach $2,000), links to enrollment-timing.
+- waiting-periods: work-type chooser (preventive, basic, major, with the 63-day waiver), links to the HMO with no wait.
+- federal-employees: Standard vs High recommender (major work coming?), links to find a dentist.
+- enrollment-timing: "is major work coming?" switch guidance, links to HMO vs PPO.
+- how-to-check: patient vs office router, links to the eligibility payer-ID tool.
+- small-business: contextual nudge to the employer plans and cost estimator.
+Each tool ends on a specific CoverCapy destination, not a generic "find a dentist." All figures trace to SSOT.
+
+### Verification
+All seven: schema parses, all inline JS parses (node --check), no em-dash, links resolve, no artifacts. One apostrophe-escape caught and fixed on the implants widget.
+
+### Files changed
+- seven pages under `/dental-insurance/delta-dental/`: does-delta-dental-cover-implants, delta-dental-annual-maximum, delta-dental-waiting-periods, federal-employees, enrollment-timing, how-to-check-delta-dental-coverage, small-business.
